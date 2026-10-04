@@ -1,0 +1,24 @@
+{
+  "command": [
+    "timeout",
+    "--signal=TERM",
+    "--kill-after=5s",
+    "50s",
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1920x1080x24",
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/e2e/provider-draft.spec.ts",
+    "--workers=2",
+    "--retries=0",
+    "--timeout=25000",
+    "--output=/tmp/opencode/provider-draft-regression/artifacts",
+    "--reporter=list,json,html"
+  ],
+  "node": "v22.23.3",
+  "exitCode": 1,
+  "elapsedSeconds": 26.71937870979309
+}

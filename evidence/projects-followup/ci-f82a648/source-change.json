@@ -1,0 +1,47 @@
+{
+  "application": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+  "baseline": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+  "productionAdditions": 4,
+  "productionRemovals": 2,
+  "productionFiles": [
+    "packages/app/src/kit/styles.css",
+    "packages/app/src/screens/system/system.css"
+  ],
+  "changedRules": 4,
+  "testAddedLines": 43,
+  "newCases": 2,
+  "testLines": 406,
+  "testSHA256": "899a1ae786d68645117d4bd0c9d6d1be413850a3b5bc3f2ab195f9abe319eef3",
+  "old363LinePrefixExact": true,
+  "archivedBaselineTestExact": true,
+  "otherE2EFilesExact": 30,
+  "sevenProjectContractTestsUnchanged": true,
+  "dependenciesUnchanged": true,
+  "workflowAndWorkersUnchanged": true,
+  "frozenInputDelta": [
+    "packages/app/src/kit/styles.css",
+    "packages/app/src/screens/system/system.css"
+  ],
+  "rules": [
+    {
+      "file": "packages/app/src/kit/styles.css",
+      "selector": ".toast .t-body",
+      "change": "min-width:0; overflow-wrap:anywhere"
+    },
+    {
+      "file": "packages/app/src/kit/styles.css",
+      "selector": ".card .body2",
+      "change": "overflow-wrap:anywhere"
+    },
+    {
+      "file": "packages/app/src/screens/system/system.css",
+      "selector": ".systeme-pbody h3, .systeme-phead h1, .systeme-instr",
+      "change": "overflow-wrap:anywhere"
+    },
+    {
+      "file": "packages/app/src/screens/system/system.css",
+      "selector": ".systeme-preview > span:last-child",
+      "change": "flex:1; min-width:0; overflow-wrap:anywhere"
+    }
+  ]
+}

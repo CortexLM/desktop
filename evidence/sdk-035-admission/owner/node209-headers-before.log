@@ -1,0 +1,261 @@
+npm warn cli npm v11.19.0 does not support Node.js v20.9.0. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+
+added 2 packages, and audited 3 packages in 610ms
+
+found 0 vulnerabilities
+TAP version 13
+# Subtest: AgentEvent automatically reconnects with UUID since, preserving query parameters
+ok 1 - AgentEvent automatically reconnects with UUID since, preserving query parameters
+  ---
+  duration_ms: 28.961248
+  ...
+# Subtest: turn replay retains original POST, bytes, key and numeric Last-Event-ID
+not ok 2 - turn replay retains original POST, bytes, key and numeric Last-Event-ID
+  ---
+  duration_ms: 17.117168
+  location: 'file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/runtime.test.mjs:36:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+
+      {
+        body: '{"message":"original","reasoning_effort":"low"}',
+    +   cursor: null,
+    -   cursor: '12',
+        key: null,
+        method: 'POST',
+        url: 'http://sdk.test/v1/conversations/c/messages/m/edit'
+      }
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    url: 'http://sdk.test/v1/conversations/c/messages/m/edit'
+    method: 'POST'
+    body: '{"message":"original","reasoning_effort":"low"}'
+    cursor: '12'
+  actual:
+    url: 'http://sdk.test/v1/conversations/c/messages/m/edit'
+    method: 'POST'
+    body: '{"message":"original","reasoning_effort":"low"}'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/runtime.test.mjs:50:10)
+    process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    async Test.run (node:internal/test_runner/test:632:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:374:7)
+  ...
+# Subtest: fresh invocation needs original key; invalid replay identity makes no request
+ok 3 - fresh invocation needs original key; invalid replay identity makes no request
+  ---
+  duration_ms: 0.88838
+  ...
+# Subtest: stream_expired followed by socket failure never starts another turn; caller reloads durable transcript
+ok 4 - stream_expired followed by socket failure never starts another turn; caller reloads durable transcript
+  ---
+  duration_ms: 5.266798
+  ...
+# Subtest: realtime advances fresh numeric sequence after room reset, never hello zero
+not ok 5 - realtime advances fresh numeric sequence after room reset, never hello zero
+  ---
+  duration_ms: 4.435819
+  location: 'file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/runtime.test.mjs:82:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+
+    null !== '2'
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '2'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/runtime.test.mjs:90:10)
+    async Test.run (node:internal/test_runner/test:632:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:374:7)
+  ...
+# Subtest: refresh 401 through the same client rejects instead of waiting on itself
+ok 6 - refresh 401 through the same client rejects instead of waiting on itself
+  ---
+  duration_ms: 2.564348
+  ...
+# Subtest: concurrent 401s share one successful refresh, null does not resend stale credentials
+ok 7 - concurrent 401s share one successful refresh, null does not resend stale credentials
+  ---
+  duration_ms: 9.131581
+  ...
+# Subtest: embedded Fetch subscriptions and turns abort an idle response body
+ok 8 - embedded Fetch subscriptions and turns abort an idle response body
+  ---
+  duration_ms: 12.71993
+  ...
+# Subtest: a terminal event ends an open socket and acknowledges its cursor
+ok 9 - a terminal event ends an open socket and acknowledges its cursor
+  ---
+  duration_ms: 4.314197
+  ...
+# Subtest: abort stops frames already buffered in the same chunk
+ok 10 - abort stops frames already buffered in the same chunk
+  ---
+  duration_ms: 3.434288
+  ...
+# Subtest: a request and a turn replay never cross a changed token source
+ok 11 - a request and a turn replay never cross a changed token source
+  ---
+  duration_ms: 6.520712
+  ...
+# Subtest: new sign-in aborts a late refresh before it can replace the new cookie
+ok 12 - new sign-in aborts a late refresh before it can replace the new cookie
+  ---
+  duration_ms: 6.569202
+  ...
+# Subtest: adopting a sign-in token preserves its refresh cookie; a rejected sign-in preserves the guest
+ok 13 - adopting a sign-in token preserves its refresh cookie; a rejected sign-in preserves the guest
+  ---
+  duration_ms: 8.808437
+  ...
+# Subtest: a reactive request during refresh adopts the issued token and cookie
+ok 14 - a reactive request during refresh adopts the issued token and cookie
+  ---
+  duration_ms: 3.288447
+  ...
+# Subtest: external refresh reconciles reactive token changes before replay
+ok 15 - external refresh reconciles reactive token changes before replay
+  ---
+  duration_ms: 1.447195
+  ...
+# Subtest: external refresh can await another SDK call without waiting on itself
+ok 16 - external refresh can await another SDK call without waiting on itself
+  ---
+  duration_ms: 2.499998
+  ...
+# Subtest: token removal refuses a private turn replay
+ok 17 - token removal refuses a private turn replay
+  ---
+  duration_ms: 2.809461
+  ...
+# Subtest: successful sign-in invalidates a private request admitted during sign-in
+ok 18 - successful sign-in invalidates a private request admitted during sign-in
+  ---
+  duration_ms: 4.005294
+  ...
+# Subtest: native Fetch sign-in remains readable after replacing account lifetime
+ok 19 - native Fetch sign-in remains readable after replacing account lifetime
+  ---
+  duration_ms: 24.495359
+  ...
+# Subtest: successful logout clears an SDK-cached bearer
+ok 20 - successful logout clears an SDK-cached bearer
+  ---
+  duration_ms: 2.073433
+  ...
+# Subtest: account abort cancels buffered turn frames and an idle embedded subscription
+ok 21 - account abort cancels buffered turn frames and an idle embedded subscription
+  ---
+  duration_ms: 6.790344
+  ...
+# Subtest: generated OTP inputs, void acknowledgement, raw upload and public MFA error
+not ok 22 - generated OTP inputs, void acknowledgement, raw upload and public MFA error
+  ---
+  duration_ms: 15.204797
+  location: 'file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/runtime.test.mjs:362:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+
+    + null
+    - 'application/octet-stream'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'application/octet-stream'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/runtime.test.mjs:377:10)
+    process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    async Test.run (node:internal/test_runner/test:632:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:374:7)
+  ...
+# Subtest: HTTP media types match parsers; generated SSE returns before EOF; WS plain HTTP refuses
+not ok 23 - HTTP media types match parsers; generated SSE returns before EOF; WS plain HTTP refuses
+  ---
+  duration_ms: 3.518549
+  location: 'file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/runtime.test.mjs:383:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+
+    + null
+    - 'application/json'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'application/json'
+  operator: 'strictEqual'
+  stack: |-
+    fetch (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/runtime.test.mjs:389:14)
+    send (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/node_modules/@cortex/sdk/dist/client.js:88:25)
+    requestWithAuth (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/node_modules/@cortex/sdk/dist/client.js:147:27)
+    process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    async request (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/node_modules/@cortex/sdk/dist/gen/client/client.gen.js:59:24)
+    async TestContext.<anonymous> (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/runtime.test.mjs:401:20)
+    async Test.run (node:internal/test_runner/test:632:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:374:7)
+  ...
+# Subtest: AgentEvent JSON methods preserve Headers and tuples and pin their transport
+not ok 24 - AgentEvent JSON methods preserve Headers and tuples and pin their transport
+  ---
+  duration_ms: 0.93245
+  location: 'file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/runtime.test.mjs:405:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+
+    + null
+    - 'Bearer explicit'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'Bearer explicit'
+  operator: 'strictEqual'
+  stack: |-
+    fetch (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/runtime.test.mjs:407:12)
+    send (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/node_modules/@cortex/sdk/dist/client.js:88:25)
+    requestWithAuth (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/node_modules/@cortex/sdk/dist/client.js:147:27)
+    process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    async request (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/node_modules/@cortex/sdk/dist/gen/client/client.gen.js:59:24)
+    async TestContext.<anonymous> (file:///tmp/cortex-sdk-consumer-VomHW7/npmAx3Vc0/runtime.test.mjs:412:20)
+    async Test.run (node:internal/test_runner/test:632:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:374:7)
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 19
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 374.13674
+node:internal/errors:866
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /root/.npm/_npx/b5d3b5a454130e1b/node_modules/node/bin/node --test runtime.test.mjs
+    at checkExecSyncError (node:child_process:890:11)
+    at execFileSync (node:child_process:926:15)
+    at file:///root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-sdk/packages/sdk/test/package.mjs:29:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:217:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:316:24)
+    at async loadESM (node:internal/process/esm_loader:34:7)
+    at async handleMainPromise (node:internal/modules/run_main:66:12) {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 1127842,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v20.9.0

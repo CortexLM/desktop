@@ -1,0 +1,30 @@
+HTTP/2.0 200 OK
+Access-Control-Allow-Origin: *
+Access-Control-Expose-Headers: ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset, Warning
+Cache-Control: private, max-age=60, s-maxage=60
+Content-Security-Policy: default-src 'none'
+Content-Type: application/json; charset=utf-8
+Date: Sat, 03 Oct 2026 11:20:22 GMT
+Etag: W/"4275bd18d455c651b29d568bf9ce26fef712524e1377803da2593d593656bb93"
+Last-Modified: Sat, 03 Oct 2026 11:06:21 GMT
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Server: github.com
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+Vary: Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With
+X-Accepted-Oauth-Scopes:
+X-Content-Type-Options: nosniff
+X-Frame-Options: deny
+X-Github-Api-Version-Selected: 2022-11-28
+X-Github-Edge-Region: iad
+X-Github-Media-Type: github.v3; format=json
+X-Github-Request-Id: A9F8:13BA48:34BF6E:AFE506:6AC0E4F6
+X-Oauth-Client-Id: 178c6fc778ccc68e1d6a
+X-Oauth-Scopes: admin:org, gist, repo, workflow
+X-Ratelimit-Limit: 5000
+X-Ratelimit-Remaining: 4655
+X-Ratelimit-Reset: 1791027281
+X-Ratelimit-Resource: core
+X-Ratelimit-Used: 345
+X-Xss-Protection: 0
+
+{"sha":"411c56d1f8c340af88513eb1a34a7296293c6bef","node_id":"C_kwDOT6_8YtoAKDQxMWM1NmQxZjhjMzQwYWY4ODUxM2ViMWEzNGE3Mjk2MjkzYzZiZWY","url":"https://api.github.com/repos/CortexLM/desktop/git/commits/411c56d1f8c340af88513eb1a34a7296293c6bef","html_url":"https://github.com/CortexLM/desktop/commit/411c56d1f8c340af88513eb1a34a7296293c6bef","author":{"name":"Mathis","email":"154886644+echobt@users.noreply.github.com","date":"2026-10-03T11:06:21Z"},"committer":{"name":"GitHub","email":"noreply@github.com","date":"2026-10-03T11:06:21Z"},"tree":{"sha":"e64dcbf7df5cccd03e09b57c8aeb2ec919851d48","url":"https://api.github.com/repos/CortexLM/desktop/git/trees/e64dcbf7df5cccd03e09b57c8aeb2ec919851d48"},"message":"Merge 37c22c2fcff92fb76b10ffc97ec0643ac325d62f into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d","parents":[{"sha":"9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d","url":"https://api.github.com/repos/CortexLM/desktop/git/commits/9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d","html_url":"https://github.com/CortexLM/desktop/commit/9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"},{"sha":"37c22c2fcff92fb76b10ffc97ec0643ac325d62f","url":"https://api.github.com/repos/CortexLM/desktop/git/commits/37c22c2fcff92fb76b10ffc97ec0643ac325d62f","html_url":"https://github.com/CortexLM/desktop/commit/37c22c2fcff92fb76b10ffc97ec0643ac325d62f"}],"verification":{"verified":true,"reason":"valid","signature":"-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqwOGtCRC1aQ7uu5UhlAAAnOoQADnw36awWbk8ZMFzhs5y6RnA\nsCKCr2B6mLl9wYLsk1YnrrLM9lNNGhNIWydtdIrNVDJY7a7/gpQY38S3CyoUmLXF\nOtNou6HYo6qJQbuMNkIK+grRLw7WITzs+IJgP9D1q2Derja4j/gtotqKEOOpwRJu\n0jw9eIT+AT1zCIKEM25tOW5KDk73amtBh8cjHuUMUm/Zlef87VQL3iXr45FBY4F3\nfZMgbTxCkKAtuNDzkeDnaUdGDXtoS4Ay3yxnFFXs6NLB5zbD4sAbyUOPFlBprgFV\ns9PY3UBBHoMM/D4Yo4xNcqeLj6WJbZ+U0L154hspWC9dX2iUqbYEVFhnGi5YC84f\nxXCMKvTk3HlvmYTHJVKLiFU3nvDgEJWIfU+UKSa83thYzWnKI75B+Mkwo+8WRMPH\nfxzK5PAyVuT3VSXTJrGwiajFIDi5VaNzUpclTeeIeI8UnDsG/ydEUx1WgkeAXRCz\nD1z32EI1aDeG4Mkl5sB/YYowSZORg11pyk/avSi/i2guntHt29Wf5VzvGWaagS7U\niWmmI3PrhgOS6KKUNSeNR1yHf0/PH0aJbda0Z+E6E7jLZXcXaehALU/AOYOk/xgt\nwiEOn7yUPBTAECJ3/lQVWtmSrwpX11s+m0xyu3VzYSItYrparFS7R/mUhBHAWBPH\nIgjDGT1AcV530KLGdkr1\n=7GT1\n-----END PGP SIGNATURE-----\n","payload":"tree e64dcbf7df5cccd03e09b57c8aeb2ec919851d48\nparent 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d\nparent 37c22c2fcff92fb76b10ffc97ec0643ac325d62f\nauthor Mathis <154886644+echobt@users.noreply.github.com> 1791025581 +0000\ncommitter GitHub <noreply@github.com> 1791025581 +0000\n\nMerge 37c22c2fcff92fb76b10ffc97ec0643ac325d62f into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d\n","verified_at":"2026-10-03T11:06:21Z"}}

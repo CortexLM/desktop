@@ -1,0 +1,146 @@
+[
+  {
+    "os": "e2e-linux",
+    "file": "provider-draft.spec.ts",
+    "theme": "light",
+    "lines": [
+      99,
+      99
+    ],
+    "before": {
+      "after-disable": false,
+      "after-enable": false
+    },
+    "after": {
+      "after-disable": true,
+      "after-enable": true
+    },
+    "refills": 0
+  },
+  {
+    "os": "e2e-linux",
+    "file": "provider-draft.spec.ts",
+    "theme": "dark",
+    "lines": [
+      99,
+      99
+    ],
+    "before": {
+      "after-disable": false,
+      "after-enable": false
+    },
+    "after": {
+      "after-disable": true,
+      "after-enable": true
+    },
+    "refills": 0
+  },
+  {
+    "os": "e2e-linux",
+    "file": "provider-key-pending.spec.ts",
+    "theme": "light",
+    "lines": [
+      84,
+      101
+    ],
+    "before": {
+      "putNewerDraftPreserved": false,
+      "deleteNewerDraftPreserved": false
+    },
+    "after": {
+      "putNewerDraftPreserved": true,
+      "deleteNewerDraftPreserved": true
+    },
+    "refillConditionsFalse": true
+  },
+  {
+    "os": "e2e-linux",
+    "file": "provider-key-pending.spec.ts",
+    "theme": "dark",
+    "lines": [
+      84,
+      101
+    ],
+    "before": {
+      "putNewerDraftPreserved": false,
+      "deleteNewerDraftPreserved": false
+    },
+    "after": {
+      "putNewerDraftPreserved": true,
+      "deleteNewerDraftPreserved": true
+    },
+    "refillConditionsFalse": true
+  },
+  {
+    "os": "macos",
+    "file": "provider-draft.spec.ts",
+    "theme": "light",
+    "lines": [
+      99,
+      99
+    ],
+    "before": {
+      "after-disable": false,
+      "after-enable": false
+    },
+    "after": {
+      "after-disable": true,
+      "after-enable": true
+    },
+    "refills": 0
+  },
+  {
+    "os": "macos",
+    "file": "provider-draft.spec.ts",
+    "theme": "dark",
+    "lines": [
+      99,
+      99
+    ],
+    "before": {
+      "after-disable": false,
+      "after-enable": false
+    },
+    "after": {
+      "after-disable": true,
+      "after-enable": true
+    },
+    "refills": 0
+  },
+  {
+    "os": "macos",
+    "file": "provider-key-pending.spec.ts",
+    "theme": "light",
+    "lines": [
+      84,
+      101
+    ],
+    "before": {
+      "putNewerDraftPreserved": false,
+      "deleteNewerDraftPreserved": false
+    },
+    "after": {
+      "putNewerDraftPreserved": true,
+      "deleteNewerDraftPreserved": true
+    },
+    "refillConditionsFalse": true
+  },
+  {
+    "os": "macos",
+    "file": "provider-key-pending.spec.ts",
+    "theme": "dark",
+    "lines": [
+      84,
+      101
+    ],
+    "before": {
+      "putNewerDraftPreserved": false,
+      "deleteNewerDraftPreserved": false
+    },
+    "after": {
+      "putNewerDraftPreserved": true,
+      "deleteNewerDraftPreserved": true
+    },
+    "refillConditionsFalse": true
+  }
+]

@@ -1,0 +1,80 @@
+{
+  "captureDirtyBase": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+  "laterReceiptRevision": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+  "laterDirty": false,
+  "515InputsMatchLaterGit": true,
+  "captureAndLaterReceiptPayloadsEqual": true,
+  "sourceDelta": [
+    {
+      "path": "packages/app/src/kit/styles.css",
+      "previousSHA256": "8f2caecacb1574f931e2113be8bd7cfef039fc0105a776ef5a66bc6e867cd730",
+      "currentSHA256": "1f728575e54ab195b0efa61c80043b5300264c98ff0210934c475f183c893be1",
+      "added": 2,
+      "removed": 2
+    },
+    {
+      "path": "packages/app/src/screens/system/system.css",
+      "previousSHA256": "99997698d23f177f27a3e632022bd6120297708cd414e829e0613d833bc3514e",
+      "currentSHA256": "f82f52986d0148715b3b596afde15018852a9e4821dac918237e249fb2f8ecbd",
+      "added": 2,
+      "removed": 0
+    }
+  ],
+  "unchangedInputs": 513,
+  "unchangedRendererInputs": 471,
+  "currentRenderer": {
+    "revision": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+    "sourceFingerprint": "2230ff6f2deeee6b9d2b7eff21e96f152c193e15dfa824080721b3d1853d4464",
+    "sourceFileCount": 473,
+    "sourcePaths": [
+      "packages/app/src",
+      "packages/app/public",
+      "packages/app/index.html",
+      "packages/app/vite.config.ts",
+      "packages/app/package.json",
+      "packages/i18n/src",
+      "packages/i18n/locales",
+      "packages/client/src",
+      "packages/schema/src",
+      "package.json",
+      "bun.lock",
+      "tsconfig.json"
+    ]
+  },
+  "previousRenderer": {
+    "revision": "0597848cdbdec362e1441b44c67bf74c525feefa",
+    "sourceFingerprint": "6070fc3282e019c04a29f6a2a68f36f029c56e7813c4aecd84cba46f071a5bb4",
+    "sourceFileCount": 473,
+    "sourcePaths": [
+      "packages/app/src",
+      "packages/app/public",
+      "packages/app/index.html",
+      "packages/app/vite.config.ts",
+      "packages/app/package.json",
+      "packages/i18n/src",
+      "packages/i18n/locales",
+      "packages/client/src",
+      "packages/schema/src",
+      "package.json",
+      "bun.lock",
+      "tsconfig.json"
+    ]
+  },
+  "buildMembers": 90,
+  "unchangedPathAndBytes": 87,
+  "jsAssetsByteExact": 57,
+  "mainAndPreloadByteExact": true,
+  "renamedByteExactJS": {
+    "old": "packages/app/dist/assets/index-Cvqb1vYV.js",
+    "new": "packages/app/dist/assets/index-ddbTF0D4.js",
+    "sha256": "e0527034c7c35a2ccf680bb750d156cf0511f4edc20ece0e21a1a453bf31309d"
+  },
+  "changedCSS": {
+    "old": "packages/app/dist/assets/index-BLVQW-LL.css",
+    "oldSHA256": "44540a26450648a7745ce4c75c36ec0b7a90d3e12f029dd4bdf9f74f2395ecbf",
+    "new": "packages/app/dist/assets/index-BI2hVXPN.css",
+    "newSHA256": "6531efe4f5e496773b489657e19d46ccc4b7e355cd39b5ea1cbd997b8de16e48"
+  },
+  "htmlChange": "CSS href and byte-identical JS src filename only",
+  "limit": "Supplied frozen-build/source binding; no fresh rebuild, ASAR, native or CI attestation."
+}

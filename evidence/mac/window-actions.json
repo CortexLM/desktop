@@ -1,0 +1,10 @@
+{
+  "commit": "d40b5d786a44657cf18ea5b990d83f3a357034e1",
+  "macOS": "26.6.2",
+  "method": "mac-computer native clicks, followed by System Events accessibility queries",
+  "actions": [
+    { "time": "2026-10-02T03:23:00Z", "control": "yellow traffic light", "observed": { "AXMinimized": true }, "restored": { "AXMinimized": false } },
+    { "time": "2026-10-02T03:27:00Z", "control": "green traffic light", "observed": { "AXFullScreen": true }, "restored": { "AXFullScreen": false } }
+  ],
+  "scope": "Manual native-action observation on the installed unsigned build; timestamps rounded to the minute. Not an automated regression test."
+}

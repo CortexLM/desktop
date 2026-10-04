@@ -1,66 +1,70 @@
 # 00 — Overview
 
-These rules are binding on every contributor, human or agent. Read
-[`AGENTS.md`](../AGENTS.md) first, then the rule file that covers the surface you
-are about to touch. Every pull request carries the attestation in
-[`.github/pull_request_template.md`](../.github/pull_request_template.md).
+These rules bind every contributor, human or agent. Read [`AGENTS.md`](../AGENTS.md)
+first, then the rule file for the surface you touch. Every pull request carries the
+attestation in [`.github/pull_request_template.md`](../.github/pull_request_template.md).
 
 ## The rule files
 
 | File | Covers |
 | --- | --- |
-| `00-overview.md` | This map, the non-negotiables, how to read the rest |
-| [`01-security.md`](./01-security.md) | Tokens, secrets, guest vs signed-in |
-| [`02-errors.md`](./02-errors.md) | User-facing error copy, no vendor names |
-| [`03-responsive.md`](./03-responsive.md) | 390 / 768 / 1440, dark + light, tokens |
-| [`04-structure.md`](./04-structure.md) | `packages/app` vs `packages/cortex-api`, storage, no stand-ins |
+| `00-overview.md` | This map, the non-negotiables, what was retired |
+| [`01-security.md`](./01-security.md) | Keys stay in main, sandboxed renderer, no secrets in git |
+| [`02-errors.md`](./02-errors.md) | Error codes → Cortex copy, no vendor names |
+| [`03-responsive.md`](./03-responsive.md) | Window sizes, dark + light, CSS variables |
+| [`04-structure.md`](./04-structure.md) | Package boundaries, no seeded data |
 | [`05-documentation.md`](./05-documentation.md) | What to update and when |
-| [`06-product.md`](./06-product.md) | Chat vs Code vs Bot, Paper Concept 03 |
-| [`07-git-and-prs.md`](./07-git-and-prs.md) | Branches, commits, PR attestation |
+| [`06-product.md`](./06-product.md) | Surfaces, live vs preview vs blocked |
+| [`07-git-and-prs.md`](./07-git-and-prs.md) | Branches, commits, attestation |
 | [`08-testing.md`](./08-testing.md) | Which suite proves which claim |
 
 ## What this product is
 
-Cortex is one Electron 42 desktop app plus the same UI on the web, in a Bun
-workspaces monorepo. One shell hosts two products — **Chat** and **Code** — and
-the switcher between them lives in `packages/app/src/shell/sidebar.tsx` and, on
-desktop, in the custom title bar. Bot is a separate app. There is exactly one
-renderer, `packages/app`, and it is SolidJS. The live service is
-`https://api.cortex.foundation`, reached through `packages/cortex-api`.
+Cortex desktop is one Electron 44 app in a Bun workspaces monorepo. The agent engine
+(`packages/core`) runs in the Electron main process and is served to the React renderer
+(`packages/app`) over IPC — no socket, no external database. Local mode needs no account;
+Cortex Cloud (`https://api.cortex.foundation`) and self-hosted servers are optional
+connection modes. See [`docs/architecture.md`](../docs/architecture.md).
 
 ## Non-negotiables
 
-1. **The product is Cortex.** The word Cortex is the only product name that
-   appears in code, docs, UI copy, commit messages, branch names, or PR titles.
-   No other assistant brand, no vendor brand, no internal codename.
-2. **The domain is `cortex.foundation`.** Do not introduce another host, and do
-   not hardcode one where `packages/cortex-api` already resolves the base URL.
-3. **UI copy is English.** One language in the interface. Existing French
-   comments in older modules are legacy; new comments and all user-visible
-   strings are English.
-4. **Honest states, always.** Empty, loading, error, and signed-out are real
-   states with real copy. A screen never fakes success, never invents rows, and
-   never presents a cache as a live answer. See `04-structure.md`.
-5. **Never show a vendor name to a user.** See `02-errors.md`. This is the rule
-   most often broken, and it is the one reviewers check first.
-6. **Design values come from tokens.** `@cortex-ide/tokens` through
-   `@cortex-ide/ui`. Regenerate with `bun run paper:sync`; do not hand-edit
-   generated files. See `03-responsive.md`.
-7. **Secrets never reach the renderer.** See `01-security.md`.
+1. **The product is Cortex.** No other assistant brand, vendor brand or codename in code,
+   docs, UI copy, commits, branches or PR titles.
+2. **The domain is `cortex.foundation`.** The cloud URL is `CLOUD_URL` in
+   `packages/core/src/connection.ts`; do not hardcode another host.
+3. **English is the source copy.** Every user-facing string is a key in
+   `packages/i18n/locales/en/*.json`, read through `t()`. `bun run audit:i18n` enforces it.
+4. **Honest states.** Empty, loading, error and unavailable are real states with real copy.
+   Live mode never shows fixture rows and never fakes success (`04-structure.md`).
+5. **Never show a vendor name or raw error to a user** (`02-errors.md`).
+6. **Theme values are CSS variables** from `packages/app/src/kit/styles.css` (`03-responsive.md`).
+7. **Provider keys never reach the renderer** (`01-security.md`).
+
+## Retired rules, and why
+
+The rewrite removed the systems these rules policed. They are deleted, not kept as dead letters:
+
+| Retired | Why |
+| --- | --- |
+| Paper *Cortex FF1 v1* sync, `paper:*` scripts, `design/paper/screens.json`, `routes.ts` manifest test | The UI is now ported from a local design reference; screens register through `packages/app/src/registry.tsx` and are compared with `scripts/compare-shots.mjs` |
+| SolidJS renderer, `@cortex-ide/tokens` / `@cortex-ide/ui` | Renderer is React 19 + `@base-ui/react`; theme variables live in `kit/styles.css` |
+| `better-sqlite3` / `node-pty` dual-ABI builds | No native addons; storage is `node:sqlite` |
+| `packages/main`, `packages/preload`, `packages/shared`, `packages/cortex-api`, `packages/ai-engine` | Replaced by `packages/desktop`, `packages/schema`, `packages/core`, `packages/protocol`, `packages/server`, `packages/client` |
+| Auto-update feeds, R2 publishing, CodeBuild-only dist, signing gates | Release workflows were removed; release and signing are not configured (`AGENTS.md` § CI) |
+| `/welcome`, Chat \| Code \| Bot switcher, sign-in-locked Code | The app opens on Chat home; the switcher is Cortex \| Cortex Code; local Code needs no account |
+| `max-lines` / `complexity` ESLint limits, `test:discovery`, `quality:*` | Not in the current `eslint.config.mjs` or `package.json` |
 
 ## How to read a rule
 
-Each file states the rule, then shows a **Bad** and a **Good** example. The bad
-examples are taken from real defects in this tree or from real review comments —
-they are not strawmen. If a rule and the code disagree, the rule wins and the
-code is the bug; fix the code or open an issue, do not copy the defect.
+Each rule states what to do, with a **Bad** and **Good** example drawn from this tree. If a
+rule and the code disagree, the code is the bug: fix it or open an issue.
 
 ## Where the ground truth lives
 
 | Question | Answer lives in |
 | --- | --- |
-| Which screens exist? | `packages/app/src/routes.ts` (asserted against `design/paper/screens.json`) |
-| What does the service return? | `packages/cortex-api/CONTRACT.md` |
-| What crosses the IPC bridge? | `packages/shared/src/types/ipc/*` |
-| What is locked product behaviour? | `CONTRIBUTING.md` § Product lock and `06-product.md` |
+| Which screens exist? | `packages/app/src/screens/*/index.tsx` (`SCREENS`), `#/gallery` |
+| Which engine routes exist? | `packages/protocol/src/index.ts` |
+| What crosses IPC? | `packages/desktop/src/preload.ts`, `packages/desktop/src/main.ts` |
+| Engine guarantees | `packages/core/README.md`, `docs/engine.md` |
 | How do I run it? | `AGENTS.md`, `README.md`, `CONTRIBUTING.md` |

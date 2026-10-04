@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-03",
+  "status": "scoped-prototype-adoption",
+  "packet": "/tmp/opencode/g4-bot-corrected-20261003/",
+  "finalEvidence": "/tmp/opencode/g4-bot-visual-final-three-20261003/",
+  "finalEvidenceManifestSHA256": "3dd7b32d8cc6aa940433161540e59016dd143227edfa5b4c81db986d99dc4cb7",
+  "reviews": [
+    {
+      "reviewer": "A",
+      "manifest": "/tmp/opencode/g4-bot-final-review-A-20261003/manifest.json",
+      "manifestSHA256": "2f2ca600eb67c3d74d22a6564c6722cbf4ef692cfc8b6655ce87af7b065d56b9",
+      "verdict": "PASS_SCOPED_ARTIFACT_ADOPTION",
+      "minimumSevenCriteria": "NV",
+      "coordinatorVerification": "PASS"
+    },
+    {
+      "reviewer": "B",
+      "manifest": "/tmp/opencode/g4-bot-final-review-B-20261003/manifest.json",
+      "manifestSHA256": "94207d8b2605e70435f8e22cab1d3a315371e28b8e867a9ef30afb5734e35e9d",
+      "verdict": "SCOPED_PASS",
+      "minimumScoredCriteria": 9,
+      "originalFormComparison": "NV nonblocking",
+      "coordinatorVerification": "PASS"
+    }
+  ],
+  "sourceFiles": {
+    "/root/cortex-ui/src/screens/lot-g4-bot-create.tsx": "966ae7e1ef99dc236eeab02b3746e68e9fdcf1ab76540a64c9ec9cf00201453e",
+    "/root/cortex-ui/src/screens/lot-g4-bot-create.css": "cf5bbae61a9a272c8665b435782f9c9dd388ab26fea6f7d67b4f31c157829e2c",
+    "/root/cortex-ios-ui/src/screens/lot-g4-bot-create.tsx": "0d658bd2faab89aa75bafaa9ca66c9a73721c6a43925d7c78125cc8ab54ffd67",
+    "/root/cortex-ios-ui/src/screens/lot-g4-bot-create.css": "93bee4ed9dcc3057af10eb4ca2445c63f3218cd8d82a480dbc80611565da1a77"
+  },
+  "scope": {
+    "plannedVisualPositions": 8,
+    "completeIOSLandscapeTraversals": 4,
+    "directRecords": 68,
+    "guideUnion": [0, 918],
+    "bottomGapsPx": [0, 0, 0, 0],
+    "captureCalls": 156,
+    "captureCeiling": 156
+  },
+  "prototypeIntegrationAuthorized": true,
+  "productImportAuthorized": false,
+  "wholeProductAccepted": false,
+  "fullLongGuidePixelReadability": "NV",
+  "nativeIOS": "NV"
+}

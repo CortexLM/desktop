@@ -1,0 +1,174 @@
+--- activity/packages/app/src/screens/chat/live-chat.tsx
++++ files/packages/app/src/screens/chat/live-chat.tsx
+@@ -8,11 +8,12 @@
+ import { api } from "../../api";
+ import { useMessages, usePermissions, useProjects, useQuery } from "../../state/live";
+ import { toolName, toolTitle } from "../../state/tool-label";
+-import { useNav } from "../../shell/nav";
++import { navigation, readHash, useNav } from "../../shell/nav";
+ import { useT } from "../../i18n";
+ import { isPreview, useFixtures, usePreviewBot } from "../../preview";
+ import { Actions, Att, BotRow, Paras, css, useBotCfg, useFx } from "./shared";
+-import { ModelComposer, useModels, type SendOptions } from "./model-composer";
++import { ModelComposer, useModels, type ComposerLeaveGuard, type SendOptions } from "./model-composer";
++import { readRaster } from "../files/raster";
+ 
+ const KNOWN_ERRORS = ["model_no_image_input", "model_no_pdf_input", "context_window_exceeded", "model_not_found", "provider_key_missing", "provider_auth_failed",
+   "provider_rate_limited", "provider_error", "provider_disabled", "provider_unsupported", "session_busy", "aborted", "tool_failed", "permission_rejected",
+@@ -196,11 +197,20 @@
+ 
+ const textOf = (m: MessageWithParts) => m.parts.filter((p): p is Extract<Part, { type: "text" }> => p.type === "text").map((p) => p.text).join("\n");
+ 
+-function FileThumb({ p }: { p: FilePart }) {
+-  const t = useT();
+-  const src = p.url ?? (p.data ? `data:${p.mime};base64,${p.data}` : undefined);
+-  if (p.mime.startsWith("image/") && src) return <img className="chat-thumb" src={src} alt={p.filename ?? t("chat.att.image")} />;
+-  return <Att name={p.filename ?? t("chat.att.file")} meta={p.mime} />;
++function FileThumb({ p, onOpen, blocked }: { p: FilePart; onOpen?: () => void; blocked?: boolean }) {
++  const t = useT();
++  const { mime, data, url } = p;
++  const raster = React.useMemo(() => readRaster({ mime, data, url }), [mime, data, url]);
++  const [image, setImage] = React.useState<{ raster: typeof raster; src: string; ready: boolean } | null>(null);
++  React.useEffect(() => {
++    if (!raster.ok) { setImage(null); return; }
++    const src = URL.createObjectURL(new Blob([raster.value.bytes], { type: raster.value.mime }));
++    setImage({ raster, src, ready: false });
++    return () => URL.revokeObjectURL(src);
++  }, [raster]);
++  if (!image || image.raster !== raster || !raster.ok) return <Att name={p.filename ?? t("chat.att.file")} meta={p.mime} />;
++  const thumbnail = <img className="chat-thumb" src={image.src} alt={p.filename ?? t("chat.att.image")} onLoad={() => setImage((current) => current?.src === image.src && !current.ready ? { ...current, ready: true } : current)} onError={() => { URL.revokeObjectURL(image.src); setImage((current) => current?.src === image.src ? null : current); }} />;
++  return onOpen ? <button type="button" className="chat-thumb-open" disabled={!image.ready} aria-label={t("files.upload.open", { name: p.filename ?? t("chat.att.image") })} onPointerDown={(e) => { if (blocked) e.preventDefault(); }} onClick={onOpen}>{thumbnail}</button> : thumbnail;
+ }
+ 
+ function LiveReasoning({ text, live, secs }: { text: string; live: boolean; secs?: number }) {
+@@ -259,7 +269,7 @@
+ 
+ function LiveChat({ id }: { id: string }) {
+   const t = useT();
+-  const { go } = useNav();
++  const { go, params, route } = useNav();
+   const toast = useToast();
+   const session = useQuery(() => api.sessions.get(id), [id], (e) => e.type === "session.updated" && e.properties.session.id === id
+     || e.type === "session.deleted" && e.properties.sessionID === id || e.type === "project.deleted");
+@@ -272,6 +282,20 @@
+   const [projectDraft, setProjectDraft] = React.useState<{ value: string } | null>(null);
+   const [projectBusy, setProjectBusy] = React.useState(false);
+   const projectWrite = React.useRef(false);
++  const renameWrite = React.useRef(false);
++  const [renameBusy, setRenameBusy] = React.useState(false);
++  const composer = React.useRef<ComposerLeaveGuard>(null);
++  const opening = React.useRef(false);
++  const [leaving, setLeaving] = React.useState(false);
++  const atChat = React.useCallback(() => {
++    const hash = readHash();
++    return hash.route === "chat" && !hash.params.has("preview") && !hash.params.has("shot") && hash.params.getAll("id").length === 1 && hash.params.get("id") === id;
++  }, [id]);
++  React.useLayoutEffect(() => {
++    const sync = () => { if (opening.current && atChat()) { opening.current = false; setLeaving(false); composer.current?.resume(); } };
++    navigation.addEventListener("currententrychange", sync);
++    return () => navigation.removeEventListener("currententrychange", sync);
++  }, [atChat]);
+   const owner = React.useRef(false);
+   React.useLayoutEffect(() => { owner.current = true; return () => { owner.current = false; }; }, []);
+   const end = React.useRef<HTMLDivElement>(null);
+@@ -279,11 +303,27 @@
+   const open = !!last && last.info.role === "assistant" && !last.info.time.completed && !last.info.error;
+   const busy = status === "busy" || status === "retry" || open || (!!last && last.info.role === "user" && status !== "error");
+   const asks = perms.state === "ready" ? perms.data.filter((p) => p.sessionID === id) : [];
++  const attachmentBlocked = busy || renaming || renameBusy || !!projectDraft || projectBusy;
++  const attachment = (p: FilePart, m: MessageWithParts) => {
++    const valid = route === "chat" && !params.has("preview") && !params.has("shot") && params.getAll("id").length === 1
++      && session.state === "ready" && session.data.id === id && session.data.kind === "chat"
++      && m.info.sessionID === id && p.sessionID === id && p.messageID === m.info.id
++      && /^ses_[0-9a-f]{32,}$/.test(id) && /^msg_[0-9a-f]{32,}$/.test(m.info.id) && /^prt_[0-9a-f]{32,}$/.test(p.id);
++    return <FileThumb key={p.id} p={p} blocked={attachmentBlocked} onOpen={valid ? () => {
++      if (!owner.current || opening.current || !atChat()) return;
++      if (attachmentBlocked || projectWrite.current || renameWrite.current || !composer.current?.tryLeave()) {
++        toast.add({ title: t("files.image.finishDraft"), data: { icon: "info" } }); return;
++      }
++      opening.current = true; setLeaving(true);
++      try { go("file-image", { session: id, message: m.info.id, part: p.id }); }
++      catch { opening.current = false; setLeaving(false); composer.current?.resume(); }
++    } : undefined} />;
++  };
+   React.useEffect(() => { end.current?.scrollIntoView({ block: "end" }); }, [msgs, asks.length]);
+ 
+   const title = session.state === "ready" ? session.data.title || t("chat.untitled") : "";
+   const prompt = (parts: PromptPartInput[], o?: SendOptions) =>
+-    api.sessions.prompt(id, { parts, model: o?.model, reasoning: o?.reasoning, ...(session.state === "ready" && !session.data.parentID ? { expectedProjectID: session.data.projectID ?? null } : {}) }).then(() => true, (e: { code?: string }) => {
++    opening.current ? Promise.resolve(false) : api.sessions.prompt(id, { parts, model: o?.model, reasoning: o?.reasoning, ...(session.state === "ready" && !session.data.parentID ? { expectedProjectID: session.data.projectID ?? null } : {}) }).then(() => true, (e: { code?: string }) => {
+       const k = errKey(e?.code);
+       toast.add({ title: t(`chat.err.${k}.title`), description: t(`chat.err.${k}.body`), data: { icon: "alert-triangle" } });
+       return false;
+@@ -293,6 +333,7 @@
+     if (u) prompt(u.parts.filter((p): p is Extract<Part, { type: "text" | "file" }> => p.type === "text" || p.type === "file"));
+   };
+   const remove = () => {
++    if (opening.current) return;
+     let undone = false;
+     toast.add({ title: t("chat.toast.deleted"), description: title, data: { undo: true, icon: "trash", onUndo: () => { undone = true; go("chat", { id }); } },
+       onClose: () => { if (!undone) api.sessions.delete(id).catch(() => {}); } });
+@@ -301,7 +342,7 @@
+   const movable = session.state === "ready" && session.data.kind === "chat" && !session.data.parentID;
+   const projectMissing = !!projectDraft?.value && projects.state === "ready" && !projects.data.some((p) => p.id === projectDraft.value);
+   const move = async () => {
+-    if (!owner.current || projectWrite.current || !projectDraft || !movable || projects.state !== "ready" || projectMissing) return;
++    if (!owner.current || opening.current || projectWrite.current || !projectDraft || !movable || projects.state !== "ready" || projectMissing) return;
+     const submitted = projectDraft;
+     projectWrite.current = true; setProjectBusy(true);
+     try {
+@@ -314,7 +355,7 @@
+   };
+ 
+   return (<>
+-    <div className="content-top">
++    <div className="content-top" inert={leaving}>
+       {projectDraft ? <form style={{ display: "flex", flex: 1, minWidth: 0, gap: 4 }} aria-busy={projectBusy || projects.state === "loading"} onSubmit={(e) => { e.preventDefault(); void move(); }}>
+         <select className="input" name="value" aria-label={t("chat.preview.project")} value={projectDraft.value} onChange={(e) => setProjectDraft({ value: e.target.value })} disabled={!movable || projects.state !== "ready"} autoFocus style={{ flex: 1, minWidth: 0 }}>
+           <option value="">{t("chat.preview.noProject")}</option>
+@@ -326,14 +367,14 @@
+       </form> : renaming
+         ? <input className="input pg-rename" autoFocus defaultValue={title} aria-label={t("chat.history.newName")}
+             onKeyDown={(e) => { if (e.key === "Enter") e.currentTarget.blur(); if (e.key === "Escape") setRenaming(false); }}
+-            onBlur={(e) => { const v = e.currentTarget.value.trim(); if (v && v !== title) api.sessions.update(id, { title: v }).then(session.reload, () => {}); setRenaming(false); }} />
++            onBlur={(e) => { const v = e.currentTarget.value.trim(); if (v && v !== title) { renameWrite.current = true; setRenameBusy(true); api.sessions.update(id, { title: v }).then(session.reload, () => {}).finally(() => { renameWrite.current = false; if (owner.current) setRenameBusy(false); }); } setRenaming(false); }} />
+         : <span className="title">{title}</span>}
+       <Pop trigger={<button className="ibtn" aria-label={t("chat.options")}><Icon name="chevron-down" size={12} /></button>}>
+-        <MItem icon="edit" onClick={() => { setProjectDraft(null); setRenaming(true); }}>{t("chat.menu.rename")}</MItem>
+-        {movable && <MItem icon="folder" onClick={() => { setRenaming(false); setProjectDraft({ value: session.data.projectID ?? "" }); projects.reload(); }}>{t("chat.menu.move")}</MItem>}<MSep />
++        <MItem icon="edit" onClick={() => { if (!opening.current && !renameWrite.current) { setProjectDraft(null); setRenaming(true); } }}>{t("chat.menu.rename")}</MItem>
++        {movable && <MItem icon="folder" onClick={() => { if (!opening.current) { setRenaming(false); setProjectDraft({ value: session.data.projectID ?? "" }); projects.reload(); } }}>{t("chat.menu.move")}</MItem>}<MSep />
+         <MItem icon="trash" danger onClick={remove}>{t("chat.menu.delete")}</MItem>
+       </Pop>
+-      <div className="spacer" /><IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" onClick={() => go("home", session.state === "ready" && session.data.projectID ? { project: session.data.projectID } : undefined)} />
++      <div className="spacer" /><IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" disabled={leaving} onClick={() => { if (!opening.current) go("home", session.state === "ready" && session.data.projectID ? { project: session.data.projectID } : undefined); }} />
+     </div>
+     <div className="thread"><div className="thread-inner">
+       {session.state === "error" && <ErrorCard code={session.code === "not_found" ? "not_found" : "network"} />}
+@@ -345,7 +386,7 @@
+           const text = textOf(m);
+           return (
+             <div key={m.info.id} className="chat-ucol">
+-              {files.length > 0 && <div className="chat-ufiles">{files.map((p) => <FileThumb key={p.id} p={p} />)}</div>}
++              {files.length > 0 && <div className="chat-ufiles">{files.map((p) => attachment(p, m))}</div>}
+               {text && <div className="msg-user">{text}</div>}
+             </div>
+           );
+@@ -361,7 +402,7 @@
+             {visible.map((p) => {
+               if (p.type === "reasoning") return <LiveReasoning key={p.id} text={p.text} live={streaming && p === visible[visible.length - 1]} secs={secs} />;
+               if (p.type === "tool") return <ToolBlock key={p.id} p={p} />;
+-              if (p.type === "file") return <FileThumb key={p.id} p={p} />;
++              if (p.type === "file") return attachment(p, m);
+               if (p.type === "text") return <Paras key={p.id} text={p.text} caret={streaming && p === lastText} testId="assistant-text" />;
+               return null;
+             })}
+@@ -377,7 +418,7 @@
+     </div></div>
+     <div className="dock">
+       {(noModel || models.state === "error") && <NoProvider />}
+-      <ModelComposer placeholder={t("chat.reply")} live={models} busy={busy} onStop={() => api.sessions.abort(id).catch(() => {})} onNoModel={() => setNoModel(true)}
++      <ModelComposer leaveGuard={composer} placeholder={t("chat.reply")} live={models} busy={busy} onStop={() => api.sessions.abort(id).catch(() => {})} onNoModel={() => setNoModel(true)}
+         onSend={(text, atts, o) => prompt(toParts(text, atts), o)} />
+       <span className="hint">{t("chat.hint")}</span>
+     </div>

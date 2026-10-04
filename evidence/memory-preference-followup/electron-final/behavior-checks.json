@@ -1,0 +1,58 @@
+{
+  "observations": [
+    {
+      "run": "final-full",
+      "title": "Memory pause persists across restart, preserves notes and gates future Bot context — light",
+      "providerRequests": 4,
+      "savedNotes": 3,
+      "checks": {
+        "onIncludesOnlyOwnNote": true,
+        "offIncludesNoNotesOrSection": true,
+        "offRetainsPersona": true,
+        "resumedIncludesManualPausedNote": true,
+        "plainChatHasNoBotNotes": true
+      }
+    },
+    {
+      "run": "final-full",
+      "title": "Memory pause persists across restart, preserves notes and gates future Bot context — dark",
+      "providerRequests": 4,
+      "savedNotes": 3,
+      "checks": {
+        "onIncludesOnlyOwnNote": true,
+        "offIncludesNoNotesOrSection": true,
+        "offRetainsPersona": true,
+        "resumedIncludesManualPausedNote": true,
+        "plainChatHasNoBotNotes": true
+      }
+    },
+    {
+      "run": "boundary-targeted",
+      "title": "Memory pause persists across restart, preserves notes and gates future Bot context — light",
+      "providerRequests": 4,
+      "savedNotes": 3,
+      "checks": {
+        "onIncludesOnlyOwnNote": true,
+        "offIncludesNoNotesOrSection": true,
+        "offRetainsPersona": true,
+        "resumedIncludesManualPausedNote": true,
+        "plainChatHasNoBotNotes": true
+      }
+    },
+    {
+      "run": "boundary-targeted",
+      "title": "Memory pause persists across restart, preserves notes and gates future Bot context — dark",
+      "providerRequests": 4,
+      "savedNotes": 3,
+      "checks": {
+        "onIncludesOnlyOwnNote": true,
+        "offIncludesNoNotesOrSection": true,
+        "offRetainsPersona": true,
+        "resumedIncludesManualPausedNote": true,
+        "plainChatHasNoBotNotes": true
+      }
+    }
+  ],
+  "sourceAssertions": "tests/e2e/runtime-settings.spec.ts:81–136: real UI/IPC, one same-profile restart, exact note/history preservation and four serialized fake-provider requests per theme; :139–217: defaults/preview/absent-only legacy import and real400/404/200 recovery.",
+  "narrowLimits": "Manual-delete trial click/focus and export enabled assertions establish reachability; existing memory-safety cases exercise real deletion separately. No real Cloud/account inference."
+}

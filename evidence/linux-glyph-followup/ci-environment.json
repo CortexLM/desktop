@@ -1,0 +1,51 @@
+{
+  "run": 37105137365,
+  "logSHA256": "ec9cb3f7cc5158ae3c5ebae41725ced84078e7a1284cc127a0f200ef5fed2e30",
+  "lines": [
+    {
+      "line": 53,
+      "text": "2026-10-03T07:04:57.3134396Z OS Version: Ubuntu 24.04.3 LTS"
+    },
+    {
+      "line": 238,
+      "text": "2026-10-03T07:05:46.0155799Z node: v22.22.0"
+    },
+    {
+      "line": 303,
+      "text": "2026-10-03T07:05:51.1677115Z ##[group]Run sudo apt-get update && sudo apt-get install -y xvfb"
+    },
+    {
+      "line": 304,
+      "text": "2026-10-03T07:05:51.1677615Z \u001b[36;1msudo apt-get update && sudo apt-get install -y xvfb\u001b[0m"
+    },
+    {
+      "line": 326,
+      "text": "2026-10-03T07:05:53.8048705Z   xserver-common"
+    },
+    {
+      "line": 328,
+      "text": "2026-10-03T07:05:53.8051210Z   xfonts-base"
+    },
+    {
+      "line": 330,
+      "text": "2026-10-03T07:05:53.8153745Z   xserver-common xvfb"
+    },
+    {
+      "line": 335,
+      "text": "2026-10-03T07:05:53.8351953Z Get:2 http://mirror.hetzner.com/ubuntu/packages noble-updates/main amd64 xserver-common all 2:21.1.12-1ubuntu1.8 [34.8 kB]"
+    },
+    {
+      "line": 360,
+      "text": "2026-10-03T07:05:54.2336679Z Preparing to unpack .../xserver-common_2%3a21.1.12-1ubuntu1.8_all.deb ..."
+    },
+    {
+      "line": 361,
+      "text": "2026-10-03T07:05:54.2382349Z Unpacking xserver-common (2:21.1.12-1ubuntu1.8) over (2:21.1.12-1ubuntu1.5) ..."
+    },
+    {
+      "line": 364,
+      "text": "2026-10-03T07:05:54.2811479Z Setting up xserver-common (2:21.1.12-1ubuntu1.8) ..."
+    }
+  ],
+  "fontInventoryInArtifacts": false
+}

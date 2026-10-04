@@ -1,0 +1,30 @@
+﻿2026-10-03T02:58:00.1620300Z ##[group]Run npx electron-builder --mac dir zip --arm64 --publish never -c.mac.identity=null -c.mac.notarize=false
+2026-10-03T02:58:00.1620880Z npx electron-builder --mac dir zip --arm64 --publish never -c.mac.identity=null -c.mac.notarize=false
+2026-10-03T02:58:00.1750860Z shell: /bin/bash -e {0}
+2026-10-03T02:58:00.1751080Z env:
+2026-10-03T02:58:00.1751220Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T02:58:00.1751500Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 476
+2026-10-03T02:58:00.1751700Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 596
+2026-10-03T02:58:00.1751870Z ##[endgroup]
+2026-10-03T02:58:00.9169110Z   • electron-builder  version=26.15.3 os=25.3.0
+2026-10-03T02:58:00.9213970Z   • loaded configuration  file=/Users/runner/_work/desktop/desktop/electron-builder.yml
+2026-10-03T02:58:01.1597760Z   • detected workspace root for project using lock file  pm=bun config=undefined resolved=/Users/runner/_work/desktop/desktop projectDir=/Users/runner/_work/desktop/desktop
+2026-10-03T02:58:01.1617730Z   • executing @electron/rebuild  electronVersion=44.5.1 arch=arm64 buildFromSource=false workspaceRoot=/Users/runner/_work/desktop/desktop projectDir=./ appDir=./
+2026-10-03T02:58:01.1618300Z   • installing native dependencies  arch=arm64
+2026-10-03T02:58:01.2500120Z   • completed installing native dependencies
+2026-10-03T02:58:01.2512110Z   • packaging       platform=darwin arch=arm64 electron=44.5.1 appOutDir=dist/mac-arm64
+2026-10-03T02:58:01.4206380Z   • downloaded      label=electron progress=100%
+2026-10-03T02:58:03.0317630Z   • downloaded electron zip extracted successfully  output=/Users/runner/_work/desktop/desktop/dist/mac-arm64
+2026-10-03T02:58:03.0419470Z   • searching for node modules  pm=bun searchDir=/Users/runner/_work/desktop/desktop
+2026-10-03T02:58:03.0421260Z   • note: bun does not support any CLI for dependency tree extraction, utilizing file traversal collector instead
+2026-10-03T02:58:03.0421750Z   • using manual traversal of node_modules to build dependency tree
+2026-10-03T02:58:03.0432040Z   • searching for node modules  pm=traversal searchDir=/Users/runner/_work/desktop/desktop
+2026-10-03T02:58:03.0432540Z   • using manual traversal of node_modules to build dependency tree
+2026-10-03T02:58:03.0436660Z   • no node modules returned while searching directories  searchDirectories=[""]
+2026-10-03T02:58:03.1956290Z   • default Electron icon is used  reason=application icon is not set
+2026-10-03T02:58:03.2186140Z   • Current build is a part of pull request, code signing will be skipped.
+2026-10-03T02:58:03.2186620Z Set env CSC_FOR_PULL_REQUEST to true to force code signing.
+2026-10-03T02:58:03.2187280Z There are serious security concerns with CSC_FOR_PULL_REQUEST=true (see the  CircleCI documentation (https://circleci.com/docs/1.0/fork-pr-builds/) for details)
+2026-10-03T02:58:03.2188200Z If you have SSH keys, sensitive env vars or AWS credentials stored in your project settings and untrusted forks can make pull requests against your repo, then this option isn't for you.
+2026-10-03T02:58:03.2189420Z   • building        target=macOS zip arch=arm64 file=dist/Cortex-0.2.0-arm64-mac.zip
+2026-10-03T02:58:12.6891100Z   • building block map  blockMapFile=dist/Cortex-0.2.0-arm64-mac.zip.blockmap

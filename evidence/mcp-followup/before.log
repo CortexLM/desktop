@@ -1,0 +1,132 @@
+$ vitest run packages/core/test/mcp.test.ts packages/server/test/server.test.ts -t "MCP|configuration"
+
+ RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+ ❯ packages/core/test/mcp.test.ts (3 tests | 3 failed) 31ms
+   ❯ main-only MCP connection configuration (3)
+     × returns metadata only and keeps complete connection material out of SQLite across reopen 19ms
+     × preserves prior configuration when its replacement cannot be stored 6ms
+     × migrates legacy configuration only after credential persistence succeeds 4ms
+ ❯ packages/server/test/server.test.ts (6 tests | 1 failed | 5 skipped) 29ms
+   ❯ server via app.fetch (6)
+     ↓ CRUD, validation and stable error shape
+     ↓ provider key route is write-only
+     × MCP routes never return connection URLs, commands, arguments or credentials 27ms
+     ↓ prompt returns 202 and SSE carries the run
+     ↓ every route is mounted
+     ↓ listen() serves over a real socket
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/core/test/mcp.test.ts > main-only MCP connection configuration > returns metadata only and keeps complete connection material out of SQLite across reopen
+AssertionError: expected { Object (name, type, ...) } to deeply equal { Object (name, type, ...) }
+
+- Expected
++ Received
+
+  {
++   "args": [
++     "private-argument",
++   ],
++   "command": "private-command",
+    "enabled": false,
++   "env": {
++     "TOKEN": "private-environment",
++   },
+    "name": "private",
+    "status": "disabled",
+    "tools": [],
+    "type": "stdio",
+  }
+
+ ❯ packages/core/test/mcp.test.ts:18:21
+     16|     try {
+     17|       const saved = await core.mcp.add(cfg)
+     18|       expect(saved).toEqual({ name: "private", type: "stdio", enabled:…
+       |                     ^
+     19|       expect(JSON.stringify(core.storage.listDocs("mcp"))).not.toConta…
+     20|       expect(JSON.stringify(core.storage.listDocs("mcp"))).not.toConta…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  packages/core/test/mcp.test.ts > main-only MCP connection configuration > preserves prior configuration when its replacement cannot be stored
+AssertionError: promise resolved "{ name: 'remote', type: 'remote', …(4) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "enabled": false,
++   "name": "remote",
++   "status": "disabled",
++   "tools": [],
++   "type": "remote",
++   "url": "https://replacement.test",
+  }
+
+ ❯ packages/core/test/mcp.test.ts:51:118
+     49|       const before = core.storage.listDocs("mcp")
+     50|       refuse = true
+     51|       await expect(core.mcp.add({ name: "remote", type: "remote", url:…
+       |                                                                                                                      ^
+     52|       expect(core.storage.listDocs("mcp")).toEqual(before)
+     53|       expect(core.mcp.get("remote")).toEqual({ name: "remote", type: "…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  packages/core/test/mcp.test.ts > main-only MCP connection configuration > migrates legacy configuration only after credential persistence succeeds
+AssertionError: expected '[{"name":"legacy","type":"remote","ur…' not to contain 'legacy-secret'
+
+Expected: "legacy-secret"
+Received: "[{"name":"legacy","type":"remote","url":"https://legacy.test/token","headers":{"Authorization":"legacy-secret"},"enabled":false,"status":"disabled","tools":[]}]"
+
+ ❯ packages/core/test/mcp.test.ts:67:51
+     65|     try {
+     66|       core.storage.putDoc("mcp", "legacy", legacy)
+     67|       expect(JSON.stringify(core.mcp.list())).not.toContain("legacy-se…
+       |                                                   ^
+     68|       await core.mcp.connectAll()
+     69|       expect(core.storage.getDoc("mcp", "legacy")).toEqual(legacy)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  packages/server/test/server.test.ts > server via app.fetch > MCP routes never return connection URLs, commands, arguments or credentials
+AssertionError: expected { name: 'stdio', type: 'stdio', …(6) } to deeply equal { name: 'stdio', type: 'stdio', …(3) }
+
+- Expected
++ Received
+
+  {
++   "args": [
++     "private-argument",
++   ],
++   "command": "private-command",
+    "enabled": false,
++   "env": {
++     "TOKEN": "private-env",
++   },
+    "name": "stdio",
+    "status": "disabled",
+    "tools": [],
+    "type": "stdio",
+  }
+
+ ❯ packages/server/test/server.test.ts:59:37
+     57|       const response = await app.fetch(json("POST", "/api/mcp", cfg))
+     58|       expect(response.status).toBe(201)
+     59|       expect(await response.json()).toEqual({ name: cfg.name, type: cf…
+       |                                     ^
+     60|       for (const request of [json("GET", "/api/mcp"), json("PATCH", `/…
+     61|         const r = await app.fetch(request)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  4 failed | 5 skipped (9)
+   Start at  20:05:02
+   Duration  670ms (import 60%, transform 33%, tests 6%, worker 1%)
+
+error: script "test" exited with code 1

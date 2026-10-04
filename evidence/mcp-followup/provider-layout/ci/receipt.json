@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "verdict": "PASS: provider key-row CI regression and scoped renderer review",
+  "run": {
+    "id": 37066222793,
+    "url": "https://github.com/CortexLM/desktop/actions/runs/37066222793",
+    "attempt": 1,
+    "event": "pull_request",
+    "conclusion": "success",
+    "head_branch": "goal/desktop-rewrite",
+    "head_sha": "9d704ee2ec38de71668f0c323dfbe780a8138600",
+    "created_at": "2026-10-02T21:20:17Z",
+    "updated_at": "2026-10-02T21:28:34Z"
+  },
+  "source": {
+    "head": "9d704ee2ec38de71668f0c323dfbe780a8138600",
+    "base": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+    "checkout_merge": "8eb9387d9c120ff2f0b46325e2615b93fab92dd2",
+    "merge_parents": ["9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d", "9d704ee2ec38de71668f0c323dfbe780a8138600"],
+    "head_and_merge_tree": "a58c51b9dcec5626fb0add1585d2c2ed6d8ddd73",
+    "app_src_tree": "c829cab08f0e47db6e41e8d6c7d6dbbe4d26017c",
+    "compared_previous_head": "de623fdb18551b634f1c388fda7fe1481c9563a8",
+    "changed_executable_paths": [
+      {"path": "packages/app/src/screens/system/settings.tsx", "blob": "43958943179a9efabc79897826bf2c1a098928c9", "sha256": "e42841ec03f971ae4458694f436a225b47bea138d65fc33120b7d7276f302294"},
+      {"path": "packages/app/src/screens/system/system.css", "blob": "2b9fb453d78c723dd3057ea70c7c28e39a9512fa", "sha256": "d9b6fa9c4157e8dd8659b23a7b402bc6c38d9b31c7fb2ecec5e2761d244f64cc"},
+      {"path": "tests/e2e/ui-flows.spec.ts", "blob": "5eb867918f73a56465f2bf16737cb96d63b304e0", "sha256": "924c466a0e25fa698c580c5c5f72d0cd8ed76e0c75b16da7306759b86715db1c"}
+    ],
+    "unchanged_git_objects": {
+      "packages/desktop": "7e06c2fea17a79ecd0163b7a6a2c710a7722d5d2",
+      "packages/core": "4448a7f9690d50d737a7cd99087722cc1aa89034",
+      "scripts": "f39da28b4a71684f1c2f2fd364e0a92c323dd539",
+      "vendor": "f195d130092da03c4299a5fb5b4c7dbf85066bbf",
+      "bun.lock": "e7a6699315e0b1540076dcb8c059dacd51fa677a",
+      "package.json": "cc1f8aa0296f9ee43e68d20ee45d8017c6fd436f",
+      ".github/workflows/ci.yml": "864e36efa34d7efd1b4198d504703eb87698729f",
+      "playwright.config.ts": "daaa65b2f9f9e45abd4b300c8ed076679b8a38a6"
+    },
+    "provenance_checks": ["All three checkout logs name the merge", "Both Playwright reports name the merge and run", "GitHub commit API confirms equal head/merge trees", "All three check runs confirm this head and success"],
+    "scope": "Existing provider form gains wrapping controls; CSS selectors are provider-specific. Other source/tests/scripts/workflow unchanged; remaining changes are docs/evidence."
+  },
+  "jobs": [
+    {"id": 111034543702, "name": "E2E (Playwright + Electron, Linux)", "runner": "blacksmith-4vcpu-ubuntu-2404", "conclusion": "success", "check_run_conclusion": "success", "completed_at": "2026-10-02T21:24:14Z"},
+    {"id": 111034543841, "name": "macOS build, package, launch", "runner": "blacksmith-6vcpu-macos-26", "conclusion": "success", "check_run_conclusion": "success", "completed_at": "2026-10-02T21:28:33Z"},
+    {"id": 111034543848, "name": "Lint, typecheck, unit tests, i18n audit", "runner": "ubuntu-latest", "conclusion": "success", "check_run_conclusion": "success", "completed_at": "2026-10-02T21:21:15Z"}
+  ],
+  "checks": {
+    "lint": "success",
+    "typecheck": "success",
+    "unit_files_passed": 15,
+    "unit_passed": 173,
+    "unit_skipped": 1,
+    "unit_skip": {"file": "packages/desktop/test/remote.test.ts:177", "name": "lists models from a real backend", "condition": "it.skipIf(!process.env.CORTEX_TEST_BACKEND_URL)"},
+    "i18n": {"files": 63, "used_keys": 2265, "english_keys": 3395, "problems": 0}
+  },
+  "e2e": {
+    "e2e-linux": {
+      "report_member": "test-results/e2e.json",
+      "report_sha256": "ee2aa4b5c7d6313ba9edf67ca9c39554fa3fa2984db38ae82fd6b226d62600a1",
+      "report_bytes": 341040,
+      "playwright_version": "1.63.0",
+      "configured_and_actual_workers": 4,
+      "configured_retries": 0,
+      "stats": {"startTime": "2026-10-02T21:20:53.833Z", "duration": 192567.786, "expected": 52, "skipped": 0, "unexpected": 0, "flaky": 0},
+      "passed_results": 52,
+      "retry_count": 0,
+      "report_errors": [],
+      "result_error_count": 0,
+      "stderr_entries": 0,
+      "screen_state_renders": 426,
+      "provider_cases": [
+        {"theme": "light", "duration_ms": 15348, "widths": [960, 1024, 1440], "attachments": 3, "status": "passed", "retry": 0},
+        {"theme": "dark", "duration_ms": 15188, "widths": [960, 1024, 1440], "attachments": 3, "status": "passed", "retry": 0}
+      ]
+    },
+    "macos": {
+      "report_member": "test-results/e2e.json",
+      "report_sha256": "6645d557d5def16e35c51a5913f2d4095b744a83ea3f1e2fc37762ae7bf9153a",
+      "report_bytes": 341106,
+      "playwright_version": "1.63.0",
+      "configured_and_actual_workers": 1,
+      "configured_retries": 0,
+      "stats": {"startTime": "2026-10-02T21:20:55.670Z", "duration": 420338.18799999997, "expected": 52, "skipped": 0, "unexpected": 0, "flaky": 0},
+      "passed_results": 52,
+      "retry_count": 0,
+      "report_errors": [],
+      "result_error_count": 0,
+      "stderr_entries": 0,
+      "screen_state_renders": 426,
+      "provider_cases": [
+        {"theme": "light", "duration_ms": 15344, "widths": [960, 1024, 1440], "attachments": 3, "status": "passed", "retry": 0},
+        {"theme": "dark", "duration_ms": 15903, "widths": [960, 1024, 1440], "attachments": 3, "status": "passed", "retry": 0}
+      ]
+    }
+  },
+  "artifacts": [
+    {"id": 11252577698, "name": "e2e-linux", "archive_bytes": 14545269, "archive_sha256": "01f67b5cfab830be4354e4b25481bdd39ee91bdff5a85cfd9db946b8ec7da4c0", "digest_verified": true, "extracted_members_verified": 158, "created_at": "2026-10-02T21:24:09Z", "expires_at": "2026-12-31T21:20:17Z"},
+    {"id": 11253605464, "name": "macos", "archive_bytes": 14140780, "archive_sha256": "c35205f316895db816a63d84787dde8926b32363e30f2fcebd1065e5c4e288b9", "digest_verified": true, "extracted_members_verified": 162, "created_at": "2026-10-02T21:28:26Z", "expires_at": "2026-12-31T21:20:17Z"},
+    {"id": 11253755117, "name": "cortex-mac-arm64-zip", "archive_bytes": 144610971, "archive_sha256": "7ca8051f63de4b0d3b8666dd157b2b0e73c02b552fb541c4e2d3c6b84f9e8f11", "digest_verified": true, "extracted_members_verified": 1, "created_at": "2026-10-02T21:28:30Z", "expires_at": "2026-10-09T21:28:26Z"}
+  ],
+  "package": {
+    "artifact": "cortex-mac-arm64-zip",
+    "member": "Cortex-0.2.0-arm64-mac.zip",
+    "bytes": 144904596,
+    "sha256": "1ca63896aab2827aadad0539037d3100884368d29d922aaecae50aed4062d9fd",
+    "member_sha256": {
+      "Cortex.app/Contents/MacOS/Cortex": "ca7e3290800255f5018160cff99cf6ecc58eae299c66148de1374a70e2715c83",
+      "Cortex.app/Contents/Resources/app.asar": "489aeec814519ab949095de58acb8384c6076462f64299dfeaee6cc670046ffb",
+      "Cortex.app/Contents/Info.plist": "b0db15d88c3160dd88860e56587befca9d981c8b2b334b8a3e8507a7d6c7b182"
+    },
+    "platform": "darwin",
+    "arch": "arm64",
+    "electron": "44.5.1",
+    "unsigned": true,
+    "notarized": false,
+    "published": false,
+    "command": "npx electron-builder --mac dir zip --arm64 --publish never -c.mac.identity=null -c.mac.notarize=false",
+    "smoke": "SMOKE OK",
+    "window": "Cortex cortex://app/index.html",
+    "process_survival_seconds": 10,
+    "renderer_capture": "macos/out/smoke-renderer.png",
+    "renderer_sha256": "bb69536bf3b15ff6bd53db88c9c3197711ef1a5cae4ac36e2036e35deb0651da",
+    "native_capture": "failed; out/smoke-screen.png absent",
+    "native_capture_error": "could not create image from display; screencapture failed: Command failed: screencapture -x out/smoke-screen.png",
+    "native_failure_nonfatal_in_script": true,
+    "packaging_note": "default Electron icon is used; application icon is not set",
+    "linux_packaging": "not run by this CI; inspected source-build minimum-window images instead"
+  },
+  "crash_artifact": {
+    "member": "macos/out/ExcUserFault_Setup Assistant-2026-03-16-083243.ips",
+    "sha256": "384ea4db6324dc5b8ab6a0fd5a4594b620e76ec694e0f0bb75495595824f90dd",
+    "bytes": 48034,
+    "app": "Setup Assistant",
+    "bundle_id": "com.apple.SetupAssistant",
+    "timestamp": "2026-03-16 08:32:43.00 -0700",
+    "is_simulated": 1,
+    "finding": "Only uploaded .ips; predates run, unrelated to Cortex. No uploaded Cortex crash report found; absence is not a no-crash claim."
+  },
+  "original_input_hashes": [
+    {"path": "/tmp/opencode/provider-key-ci-jobs.json", "bytes": 5285, "sha256": "76fc18174d18b8cad1cc0a8955e0494e540693744574cf0fddeeb750610752ba"},
+    {"path": "/tmp/opencode/provider-key-ci-artifacts.json", "bytes": 2103, "sha256": "0320d98b928a0e04badbe558f9694fc51b730b5c5a4dd1b55a899909aeea9fc6"},
+    {"path": "/tmp/opencode/provider-key-ci/jobs-checks.log", "bytes": 39584, "sha256": "f513c312df7b11b04dd7b06d524830588dda5cb165e3ffd7247facdc225dac0a"},
+    {"path": "/tmp/opencode/provider-key-ci/jobs-e2e-linux.log", "bytes": 78780, "sha256": "2202a72fd7877074551d1062b3670773a68c14ea589301bd3a5df6933a223801"},
+    {"path": "/tmp/opencode/provider-key-ci/jobs-macos.log", "bytes": 74201, "sha256": "905ceb020d0b0984091d4758c950d0b2ca7523e8f7a39ccd4e5a43b0369e14ee"}
+  ],
+  "image_review": {"manifest": "images.tsv", "provider_images": 12, "source_minimum_chat_images": 4, "packaged_smoke_renderer_images": 1, "all_reviewed_full_size": true, "scope_result": "Provider label/hint readable, controls contained, narrow wrapping and wide inline layout preserved; named shell images render without a new blocking defect.", "other_surfaces": "No new visual acceptance claim; prior de623fd review retains its own revision."},
+  "historical_failures": "Earlier 1e91a43 screenshot timeout and ca08282 navigation-stability timeout remain failed with unknown causes; later green results do not diagnose them.",
+  "execution": "Read existing artifacts, logs and APIs; no builds, tests, CI reruns, Mac actions or source edits."
+}

@@ -1,0 +1,22 @@
+# Saved raster preflight — author handoff
+- Owned product files only: `packages/app/src/screens/files/raster.ts` (158 lines), `raster.test.ts` (133 lines).
+- Delivery exports match exactly: `Raster`, `readRaster`, `rasterFilename`; no runtime dependency, DOM, Buffer, fetch, file IO or native decode in the validator.
+- `readRaster` returns `{ok:true,value}` or `{ok:false,reason:"unsupported"|"invalid"|"tooLarge"}`; success bytes are `Uint8Array<ArrayBuffer>`, MIME normalized lowercase, dimensions encoded pixels.
+- Exactly one defined source: raw base64 data or matching data-URL MIME. Dual/missing sources, external/path/blob URLs, SVG/HTML and MIME parameters refused. Bare MIME matching is case-insensitive but whitespace is refused.
+- Standard base64 only; optional canonical padding/unpadded mod4=2/3, zero unused pad bits. Encoded/exact decoded byte ceilings checked before `atob`; whitespace, URL-safe alphabet, misplaced/excess padding refused.
+- Inclusive ceilings: 50,000,000 file bytes after base64 decoding, 40,000,000 pixels, 32,768 each positive dimension. No source assignment occurs here.
+- PNG: full chunk bounds, first/unique IHDR, legal bit-depth/color/compression/filter/interlace header, required palette for indexed data, contiguous IDAT, terminal IEND. APNG chunks and unknown critical chunks refused; ancillary metadata retained.
+- JPEG: 8-bit SOF0/1/2 (baseline/extended sequential/progressive), 1/3/4 components, segment lengths, SOS framing, one SOF, terminal EOI/no trailer. Entropy scan recognizes stuffed FF00/restart/fill markers; subsequent framed headers cannot hide conflicting dimensions. Other JPEG processes are unsupported.
+- WebP: exact RIFF size, bounded/padded chunks, one VP8/VP8L bitstream, optional first VP8X canvas matching encoded dimensions, alpha/metadata framing. Animation flags/ANIM/ANMF refused. Unknown RIFF chunks remain bounded and retained, as permitted by WebP.
+- No PNG CRC, JPEG tables/entropy or compressed pixel validation: native image decode remains mandatory before display/download. Preflight does not promise a total decoder/renderer/IPC memory bound or metadata sanitization.
+- Filename: last path component, removed control/format/bidi/path-unsafe characters, replaced suffix, 60-code-point stem plus MIME-derived extension; empty/dot/reserved device names fall back to `image`. Embedded original metadata remains in downloaded bytes.
+- Tests use independently generated 3×2 Pillow/libjpeg/libwebp fixtures (RGB/RGBA/indexed PNG; baseline/progressive JPEG; lossy/lossless/extended/alpha WebP), inline constants only; no new dependency.
+- Meaningful refusals: ambiguous/unsafe source, signature/MIME mismatch, canonical padding, pre-expansion byte ceiling, inclusive dimension/pixel boundaries, malformed/duplicate/conflicting headers, chunk truncation/order, actual animation, JPEG stuffed markers/metadata and download names.
+- Final focused run: **18 passed, 0 failed**, Node22 Vitest, `NODE_ENV=test`; `/tmp/opencode/g1-files-raster-unit.json`. The large-byte test allocates one shared encoded string and intercepts `atob` at the exact allowed ceiling, avoiding a 50 MB decoded buffer.
+- Scoped ESLint passes both files. Scoped strict TypeScript check passes both files with existing ES2023/DOM/Bundler settings. `git diff --check` returned no errors.
+- Full `tsc -p tsconfig.json` initially failed only at another owner's `packages/app/src/screens/files/image.tsx:129:85` (`reason` on ready/error union). That file was not edited; integrated recheck remains coordinator-owned.
+- Commands used Node `/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node` with `node_modules/vitest/vitest.mjs`, `node_modules/eslint/bin/eslint.js`, `node_modules/typescript/bin/tsc`.
+- No UI/app build, full unit/E2E suite, native/package/device/network/CI work, commit or delegation. Coordinator owns viewer/native decode, docs and source-bound runtime verification.
+## Final SHA-256
+- `raster.ts`: `ee05e29a8d4c4d5b25d588df1f2d100cf9c717a4c82213d3306ba4200179794e`
+- `raster.test.ts`: `5c2f28910314b5f7005944c5d3d750a0466fd0eb4c13e9cf691c92f138e04981`

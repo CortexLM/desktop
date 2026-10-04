@@ -1,0 +1,110 @@
+{
+  "head": "78857365a509d78af10ebdda5b52348a2e50e961",
+  "checkout": "83ca246c73ca185adae5fb657b54893193be637c",
+  "tree": "67dd35f563da6a8efcd72d658734199c0c9ce481",
+  "headCheckoutTreeEqual": true,
+  "previous": "ffc118a2e58df66f430f3078e00f6e931dd910cf",
+  "rendererSourcePaths": [
+    "packages/app/src",
+    "packages/app/public",
+    "packages/app/index.html",
+    "packages/app/vite.config.ts",
+    "packages/app/package.json",
+    "packages/i18n/src",
+    "packages/i18n/locales",
+    "packages/client/src",
+    "packages/schema/src",
+    "package.json",
+    "bun.lock",
+    "tsconfig.json"
+  ],
+  "rendererSourceCount": 473,
+  "rendererFingerprint": "6a17e5001e296fcf502782e0641d00b9d169f112c210663b6b79da02e2afebdc",
+  "applicationSourceDelta": [
+    "packages/app/src/screens/code/lot-code.css",
+    "packages/app/src/screens/code/lot-code.tsx"
+  ],
+  "unchanged": [
+    {
+      "path": "packages/desktop/src/main.ts",
+      "gitBlob": "5c9c43e74de804114bd579c7456ae56f1572a5a6",
+      "unchanged": true
+    },
+    {
+      "path": "packages/desktop/src/preload.ts",
+      "gitBlob": "ff6aa877b2d646f2b7a84dc5032f0ebb6e769375",
+      "unchanged": true
+    },
+    {
+      "path": "packages/desktop/src/remote.ts",
+      "gitBlob": "2c80c0f31d2e464650bdf4a6b19e3f1840662ea4",
+      "unchanged": true
+    },
+    {
+      "path": "packages/desktop/src/remote-session.ts",
+      "gitBlob": "ee9704e3f41c4c3c4fc8098da405e2de3cbb0a4a",
+      "unchanged": true
+    },
+    {
+      "path": "packages/app/src/App.tsx",
+      "gitBlob": "63bb71f9c223df3b12f1a692dae547177c1462da",
+      "unchanged": true
+    },
+    {
+      "path": "packages/app/src/preview.tsx",
+      "gitBlob": "0895e988d3bb8de7b054d973498d4ee8aea46c49",
+      "unchanged": true
+    },
+    {
+      "path": "packages/app/src/screens/system/account.tsx",
+      "gitBlob": "4cca1ba2a851863c33ca2b046a39051f1ac6c772",
+      "unchanged": true
+    },
+    {
+      "path": "packages/app/src/screens/system/settings.tsx",
+      "gitBlob": "24b2292445f9d14b9cd336c96731add7285fb1a2",
+      "unchanged": true
+    },
+    {
+      "path": "packages/app/src/screens/work/home.tsx",
+      "gitBlob": "45f8e40ef14540766636ce3409cbc1f6a58e40c5",
+      "unchanged": true
+    },
+    {
+      "path": "packages/app/src/screens/code/index.tsx",
+      "gitBlob": "7819ff385f9a17ce2ddfc10f3e0ad6ba1180e833",
+      "unchanged": true
+    },
+    {
+      "path": "tests/e2e/remote-auth.spec.ts",
+      "gitBlob": "a6fee55f28f44d01ee73032f216d48d612b4e708",
+      "unchanged": true
+    },
+    {
+      "path": "tests/e2e/terminal-copy.spec.ts",
+      "gitBlob": "9e0036464c3dceda20c929a1b2fb9a3bc2f18012",
+      "unchanged": true
+    },
+    {
+      "path": "tests/e2e/code-diff-scroll.spec.ts",
+      "gitBlob": "9ad1d6337ce43e070fcde0c31ae84cb8388f216d",
+      "unchanged": true
+    },
+    {
+      "path": "tests/e2e/navigation.spec.ts",
+      "gitBlob": "a4c413e73ce45cc3ec431baafa46973859e34bb1",
+      "unchanged": true
+    },
+    {
+      "path": "tests/e2e/work-scroll.spec.ts",
+      "gitBlob": "65e6f8fd35087ccbee2d9994a194583a28362852",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/smoke.mjs",
+      "gitBlob": "7f0f1446fae57f6f8b4d60e3087e800727f8e4cb",
+      "unchanged": true
+    }
+  ],
+  "workingTreeSourceUsed": false
+}

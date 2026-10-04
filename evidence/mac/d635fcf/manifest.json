@@ -1,0 +1,136 @@
+{
+  "timestamp": "2026-10-02T23:00:21.946Z",
+  "appSHA256": "aa11177040f5fd1e2367fad84575b23e85416bfdd64572e16e1686b0f166ee08",
+  "captures": [
+    {
+      "file": "code-model-selected-light.png",
+      "theme": "light",
+      "width": 960,
+      "height": 640,
+      "windowID": 7922,
+      "route": "#/code-session?theme=light&id=ses_01a0fed8071300009e4debbbad58ed58"
+    },
+    {
+      "file": "code-attachment-refused-light.png",
+      "theme": "light",
+      "width": 960,
+      "height": 640,
+      "windowID": 7922,
+      "route": "#/code-session?theme=light&id=ses_01a0fed8071300009e4debbbad58ed58"
+    },
+    {
+      "file": "code-model-refused-light.png",
+      "theme": "light",
+      "width": 960,
+      "height": 640,
+      "windowID": 7922,
+      "route": "#/code-session?theme=light&id=ses_01a0fed8071300009e4debbbad58ed58"
+    },
+    {
+      "file": "routine-running-light.png",
+      "theme": "light",
+      "width": 960,
+      "height": 640,
+      "windowID": 7922,
+      "route": "#/automations?theme=light"
+    },
+    {
+      "file": "routine-interrupted-light.png",
+      "theme": "light",
+      "width": 960,
+      "height": 640,
+      "windowID": 7922,
+      "route": "#/automations?theme=light"
+    },
+    {
+      "file": "code-model-selected-dark.png",
+      "theme": "dark",
+      "width": 960,
+      "height": 640,
+      "windowID": 7922,
+      "route": "#/code-session?theme=dark&id=ses_01a0fed87d950000614d07c4e34357e4"
+    },
+    {
+      "file": "code-attachment-refused-dark.png",
+      "theme": "dark",
+      "width": 960,
+      "height": 640,
+      "windowID": 7922,
+      "route": "#/code-session?theme=dark&id=ses_01a0fed87d950000614d07c4e34357e4"
+    },
+    {
+      "file": "code-model-refused-dark.png",
+      "theme": "dark",
+      "width": 960,
+      "height": 640,
+      "windowID": 7922,
+      "route": "#/code-session?theme=dark&id=ses_01a0fed87d950000614d07c4e34357e4"
+    },
+    {
+      "file": "routine-running-dark.png",
+      "theme": "dark",
+      "width": 960,
+      "height": 640,
+      "windowID": 7922,
+      "route": "#/automations?theme=dark"
+    },
+    {
+      "file": "routine-interrupted-dark.png",
+      "theme": "dark",
+      "width": 960,
+      "height": 640,
+      "windowID": 7922,
+      "route": "#/automations?theme=dark"
+    }
+  ],
+  "checks": [
+    {
+      "theme": "light",
+      "codeModelRequests": [
+        "reasoner",
+        "reasoner",
+        "text-only",
+        "text-only",
+        "reasoner",
+        "reasoner"
+      ],
+      "reopenedModel": "text-only",
+      "attachmentRefusedAndRecoveredOnce": true,
+      "attachmentControlReachable": true,
+      "disabledRefusalRetainsDraftAndHistory": true,
+      "controlsReachable": true
+    },
+    {
+      "theme": "light",
+      "runningBadge": true,
+      "duplicateStatus": 409,
+      "oneRunOnly": true,
+      "abortedFailedAfterReload": true
+    },
+    {
+      "theme": "dark",
+      "codeModelRequests": [
+        "reasoner",
+        "reasoner",
+        "text-only",
+        "text-only",
+        "reasoner",
+        "reasoner"
+      ],
+      "reopenedModel": "text-only",
+      "attachmentRefusedAndRecoveredOnce": true,
+      "attachmentControlReachable": true,
+      "disabledRefusalRetainsDraftAndHistory": true,
+      "controlsReachable": true
+    },
+    {
+      "theme": "dark",
+      "runningBadge": true,
+      "duplicateStatus": 409,
+      "oneRunOnly": true,
+      "abortedFailedAfterReload": true
+    }
+  ],
+  "errorsSinceAttach": [],
+  "method": "Installed app; real IPC/local engine; deterministic inference server; OS screencapture; reduced motion; real timers."
+}

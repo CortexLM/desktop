@@ -1,0 +1,123 @@
+[
+  {
+    "original": "/var/tmp/opencode/ci-2956564/logs/0_E2E (Playwright + Electron, Linux).txt",
+    "retained": "logs/0_E2E-(Playwright-+-Electron-Linux).txt.gz",
+    "rawSHA256": "57f0a14257141f4a25db960108aeedb03163ba0c8718872ad6389b4c04b3604b",
+    "rawBytes": 59617,
+    "gzipSHA256": "79d0006813a73ccb3b6ae99f250fc1d644e978c388a2f1ae99c289ccea22afa8",
+    "normalized": "logs/0_E2E-(Playwright-+-Electron-Linux).txt",
+    "normalizedSHA256": "187a74e2b888d21e385d506d9161256aa92e05050dbb233ece3ec082e5909bbf",
+    "transformation": "BOM/ANSI removed, CRLF normalized, trailing whitespace stripped; original gzip retained."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-2956564/logs/1_macOS build, package, launch.txt",
+    "retained": "logs/1_macOS-build-package-launch.txt.gz",
+    "rawSHA256": "d2dfa8316194f3bab33bb66451c45a2156e7beecf316105bdeb4e7498a7e67bd",
+    "rawBytes": 58666,
+    "gzipSHA256": "5c8e8726f9efb0005f5ee04e41709c5de58d4e0fec232dbb7cca767ffd98255b",
+    "normalized": "logs/1_macOS-build-package-launch.txt",
+    "normalizedSHA256": "70c901a09cb93e2a8e26a45c256a7d82b2f33d5cfda56e300cd9e9408e7283db",
+    "transformation": "BOM/ANSI removed, CRLF normalized, trailing whitespace stripped; original gzip retained."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-2956564/logs/2_Lint, typecheck, unit tests, i18n audit.txt",
+    "retained": "logs/2_Lint-typecheck-unit-tests-i18n-audit.txt.gz",
+    "rawSHA256": "22cf005789d0e368e57501091af46023cabf3e4fc9de20765b9d845490cd21f4",
+    "rawBytes": 28927,
+    "gzipSHA256": "99ddf6f338f95fdfee797d2c7ec8bbee6959d9817a4e1ba4bd2c55d81161468b",
+    "normalized": "logs/2_Lint-typecheck-unit-tests-i18n-audit.txt",
+    "normalizedSHA256": "f8802e001f58d63d31e6b5e35a4114938511eb5160abf889e5354c98ae8b43a3",
+    "transformation": "BOM/ANSI removed, CRLF normalized, trailing whitespace stripped; original gzip retained."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-2956564/macos/out/smoke.log",
+    "retained": "logs/smoke.log.gz",
+    "rawSHA256": "e95c0bf9e887f756b0ff9bc4d72ca983f1d518a5693fbe472fa946a51dfd87b9",
+    "rawBytes": 97,
+    "gzipSHA256": "f3ac6024f3559fb1acf7ad051674ffd18e582feb744f7bea5203b394b00dbc40",
+    "normalized": "logs/smoke.log",
+    "normalizedSHA256": "e95c0bf9e887f756b0ff9bc4d72ca983f1d518a5693fbe472fa946a51dfd87b9",
+    "transformation": "BOM/ANSI removed, CRLF normalized, trailing whitespace stripped; original gzip retained."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-2956564/metadata/artifacts.http",
+    "retained": "metadata/artifacts.http.gz",
+    "rawSHA256": "7365895e770966e182840055c44bea6b329bba242eb3e3c7355b46186b1bf20b",
+    "rawBytes": 3497,
+    "gzipSHA256": "4871dd22fb5b5d4e500528e76e6815eee2201933476d8c963bc4ae2dc2b63f5e",
+    "normalized": "metadata/artifacts.http",
+    "normalizedSHA256": "f57bbaeabde4be532aeb6fb0c89ca81705eca4b0477c406ee562c51822f6ed5a",
+    "transformation": "BOM/ANSI removed, CRLF normalized, trailing whitespace stripped; original gzip retained."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-2956564/metadata/checkout.http",
+    "retained": "metadata/checkout.http.gz",
+    "rawSHA256": "908606a93f98d6994bf0a7e7447db8e5854937079207a8654716adc6ab620c69",
+    "rawBytes": 4070,
+    "gzipSHA256": "28012fe92dcc334015e166fc5a019cccf1b3f370e8eabb332317c503e8243bbc",
+    "normalized": "metadata/checkout.http",
+    "normalizedSHA256": "a513f1ed8be361a9312ca8783c5d94578a2ff089bf422e79bb2590545e81cfee",
+    "transformation": "BOM/ANSI removed, CRLF normalized, trailing whitespace stripped; original gzip retained."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-2956564/metadata/jobs.http",
+    "retained": "metadata/jobs.http.gz",
+    "rawSHA256": "7f484551eb5de1369a2a3e6d2b0f20b638185d0bb84f913e8ff55354316bd0c4",
+    "rawBytes": 11920,
+    "gzipSHA256": "67d3c58f0e65e0d7255da6d09a45940b2858b75ee871a1d859e8d59f31e8065f",
+    "normalized": "metadata/jobs.http",
+    "normalizedSHA256": "df5665f4219f61b5bac88ede8817359d825c1f3754eabd9015a2896705ee5bcd",
+    "transformation": "BOM/ANSI removed, CRLF normalized, trailing whitespace stripped; original gzip retained."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-2956564/metadata/run.http",
+    "retained": "metadata/run.http.gz",
+    "rawSHA256": "9902a1cffecb1b66fa506e2e2812d66025c8da55b316c5d8f7515570dd18f0cf",
+    "rawBytes": 13730,
+    "gzipSHA256": "3d15f9be792c445750d28581c006658c63174686d4312846e6ed620442f798b4",
+    "normalized": "metadata/run.http",
+    "normalizedSHA256": "0c7d15ede8491fd266f89c441ece4cfa09bf0f523d471c069ec1fe67e223e028",
+    "transformation": "BOM/ANSI removed, CRLF normalized, trailing whitespace stripped; original gzip retained."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-2956564/e2e-linux/test-results/e2e.json",
+    "retained": "e2e-linux-report.json.gz",
+    "rawSHA256": "b02d8c824cbfc64fe6aba82941c8a196eaceec1f136a34519492921ab110d85b",
+    "rawBytes": 1483824,
+    "gzipSHA256": "5aba8591de1e5a54ddacfee143215288b6d66128f7559b4a2bd92fc903f83307"
+  },
+  {
+    "original": "/var/tmp/opencode/ci-2956564/macos/test-results/e2e.json",
+    "retained": "macos-report.json.gz",
+    "rawSHA256": "4cde77f25562eb1d737bc5896070eb0f962ed274b0b7c62cb17c16a66722d059",
+    "rawBytes": 1476279,
+    "gzipSHA256": "2e2d78eca1669c4a87f6f5b50c4b1a6eb1d6e4d6bd50ea52dabb746c43285c2a"
+  },
+  {
+    "original": "/var/tmp/opencode/ci-2956564/e2e-linux/out/fonts/fontconfig.tsv",
+    "retained": "fonts/fontconfig.tsv.gz",
+    "rawSHA256": "d4faf59f319f5c4004ee732483fa5d5db6916175843c77e1fde7f457e723d724",
+    "rawBytes": 504703,
+    "gzipSHA256": "8f735d6bf851c4ff33412c9e4602cb26dcd9984485bfdacf9ec39d0ba79580e3",
+    "normalized": "fonts/fontconfig.tsv",
+    "normalizedSHA256": "d4faf59f319f5c4004ee732483fa5d5db6916175843c77e1fde7f457e723d724",
+    "transformation": "BOM/ANSI removed, CRLF normalized, trailing whitespace stripped; original gzip retained."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-2956564/e2e-linux/out/fonts/packages.tsv",
+    "retained": "fonts/packages.tsv.gz",
+    "rawSHA256": "e594331bca235ce63c919f6c09d3d788e1f2668cbbd74ed2fad7b9a17a180283",
+    "rawBytes": 154,
+    "gzipSHA256": "81ec97df459ad4f2f7ab8caa8d5b77de2566fe20d0307fc7de628446df5415f0",
+    "normalized": "fonts/packages.tsv",
+    "normalizedSHA256": "e594331bca235ce63c919f6c09d3d788e1f2668cbbd74ed2fad7b9a17a180283",
+    "transformation": "BOM/ANSI removed, CRLF normalized, trailing whitespace stripped; original gzip retained."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-2956564/macos/out/ExcUserFault_Setup Assistant-2026-03-16-083243.ips",
+    "retained": "logs/ExcUserFault_Setup Assistant-2026-03-16-083243.ips.gz",
+    "rawSHA256": "384ea4db6324dc5b8ab6a0fd5a4594b620e76ec694e0f0bb75495595824f90dd",
+    "rawBytes": 48034,
+    "gzipSHA256": "b51b4824f155dfe860b4b813e4bc08f2adcb46eabd6dec77c82b301dc00633f7"
+  }
+]

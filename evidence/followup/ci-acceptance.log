@@ -1,0 +1,6 @@
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T10:49:28.0644259Z       Tests  131 passed | 1 skipped (132)
+Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-02T10:49:29.5605160Z i18n audit: 62 files, 1743 keys used, 2683 keys in en, 0 problem(s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T10:50:39.6904310Z   12 passed (1.7m)
+macOS build, package, launch	Packaged smoke test	2026-10-02T10:51:09.7856440Z screencapture failed: Command failed: screencapture -x out/smoke-screen.png
+macOS build, package, launch	Packaged smoke test	2026-10-02T10:51:09.7864850Z SMOKE OK
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T10:51:01.7662157Z   12 passed (1.8m)

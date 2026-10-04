@@ -1,0 +1,93 @@
+{
+  "report_errors": [],
+  "result_errors": [],
+  "registry": "screens.spec.ts:41 asserts no accumulated page errors, missing theme/content or raw keys across the sweep. It is not a screenshot/pixel acceptance assertion.",
+  "auth": "Each of six remote-auth cases asserts no pageerror or controlled backend errors; privateStateStaysInMain asserts no renderer HTTP request and exact sanitized state.",
+  "intentional_errors": [
+    {
+      "file": "navigation.spec.ts",
+      "name": "skipped-native-transitions",
+      "data": {
+        "records": [
+          {
+            "kind": "route",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          },
+          {
+            "kind": "theme",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          }
+        ],
+        "unhandled": [],
+        "errors": []
+      }
+    },
+    {
+      "file": "navigation.spec.ts",
+      "name": "native-callback-errors",
+      "data": {
+        "records": [
+          {
+            "kind": "route",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          },
+          {
+            "kind": "theme",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          },
+          {
+            "kind": "route",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          },
+          {
+            "kind": "theme",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          }
+        ],
+        "unhandled": [
+          {
+            "source": "updateCallbackDone",
+            "kind": "route",
+            "name": "Error",
+            "message": "Native route callback failed"
+          },
+          {
+            "source": "finished",
+            "kind": "route",
+            "name": "Error",
+            "message": "Native route callback failed"
+          },
+          {
+            "source": "updateCallbackDone",
+            "kind": "theme",
+            "name": "Error",
+            "message": "Native theme callback failed"
+          }
+        ],
+        "errors": [
+          "Native route callback failed",
+          "Native route callback failed",
+          "Native theme callback failed"
+        ]
+      }
+    }
+  ]
+}

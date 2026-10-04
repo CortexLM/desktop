@@ -1,0 +1,40 @@
+{
+  "observedAt": "2026-10-03T02:36:25.107927+00:00",
+  "linux": {
+    "artifact": 11261019492,
+    "downloadSHA256Verified": true,
+    "apiDigest": "sha256:cdcdac54b6f4390ecbc9888ef486da88167f4637e2d05bc8bce2c62d95bda931",
+    "archive": "/var/tmp/opencode/recovery-ci-749bc0c/e2e-linux.zip"
+  },
+  "macos": {
+    "artifact": 11261149881,
+    "apiDigest": "sha256:611fe87c541c8354d219b93ff800376378e3d3237c4a4ed7ac4a6a2e76a9e323",
+    "apiMatchesUploadLog": true,
+    "downloadSHA256Verified": false,
+    "reason": "Coordinator supplied extracted cache. No outer ZIP found in that cache or top-level /tmp/opencode recovery/Mac/CI ZIP candidates. No duplicate download. Per-member hashes and report/trace binding verified.",
+    "cache": "/tmp/opencode/live-recovery-ci-failed-mac"
+  },
+  "package": {
+    "artifactPresent": false,
+    "packageStep": "skipped",
+    "smokeStep": "skipped",
+    "newMacZIPFromRun": false,
+    "smokeFilesInCache": false
+  },
+  "failureTrace": {
+    "path": "/tmp/opencode/live-recovery-ci-failed-mac/test-results/artifacts/work-scroll-Work-initial-s-7206c-ng-back-user-control-\u2014-dark/trace.zip",
+    "sha256": "1de20105a8ce5b5a1d96aecaef40391b96bde5597cc3915f13f6084d58acfcf5",
+    "bytes": 157737,
+    "entries": 9,
+    "kind": "Playwright test.trace and attachments; no browser trace/network stream present"
+  },
+  "crashFiles": [
+    {
+      "path": "/tmp/opencode/live-recovery-ci-failed-mac/out/ExcUserFault_Setup Assistant-2026-03-16-083243.ips",
+      "sha256": "384ea4db6324dc5b8ab6a0fd5a4594b620e76ec694e0f0bb75495595824f90dd",
+      "name": "Setup Assistant",
+      "timestamp": "2026-03-16 08:32:43.00 -0700",
+      "simulated": true
+    }
+  ]
+}

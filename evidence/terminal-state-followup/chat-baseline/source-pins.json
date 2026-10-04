@@ -1,0 +1,80 @@
+{
+  "applicationRevision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+  "documentaryHeadAtRun": "72d2926b284760d96462cc931777761eedf9e3c1",
+  "sources": [
+    {
+      "path": "tests/e2e/chat-missing.spec.ts",
+      "sha256": "a9bdc8e86f3ede94f0b54dc6a5d8b45142a62b98ad9fd0af2515c96bddb3d994",
+      "snapshotOriginal": "/tmp/opencode/chat-missing-regression/baseline/source/tests/e2e/chat-missing.spec.ts",
+      "revision": null,
+      "stateAtRun": "new uncommitted test at documentary HEAD 72d2926b284760d96462cc931777761eedf9e3c1",
+      "retainedPath": "source/chat-missing.spec.ts"
+    },
+    {
+      "path": "tests/e2e/fixtures.ts",
+      "sha256": "a9772c5fe4038dd4a260bf1d47d7a6f382ba40ea54eb4cde9ab2048223e2fe03",
+      "snapshotOriginal": "/tmp/opencode/chat-missing-regression/baseline/source/tests/e2e/fixtures.ts",
+      "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+      "gitBlob": "d23a732e7252e3fb0f4a9c16f7f3468790b33760",
+      "gitURL": "https://github.com/CortexLM/desktop/blob/760c4a046ce454bc8b0ab2fd85c941fec321c3ea/tests/e2e/fixtures.ts"
+    },
+    {
+      "path": "tests/e2e/fake-provider.ts",
+      "sha256": "2d6e794add17a55a7c70fa72b93f024129a2bd4c1b9bd3d055efca48a11c14ee",
+      "snapshotOriginal": "/tmp/opencode/chat-missing-regression/baseline/source/tests/e2e/fake-provider.ts",
+      "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+      "gitBlob": "40d6499a5d1aaad5a0e1447181d1c03b4130dcf8",
+      "gitURL": "https://github.com/CortexLM/desktop/blob/760c4a046ce454bc8b0ab2fd85c941fec321c3ea/tests/e2e/fake-provider.ts"
+    },
+    {
+      "path": "packages/app/src/screens/chat/live-chat.tsx",
+      "sha256": "2a1c72aed2b979797be67d6f37612726a7d086e7a902ab5423d8d9026dc299ab",
+      "snapshotOriginal": "/tmp/opencode/chat-missing-regression/baseline/source/packages/app/src/screens/chat/live-chat.tsx",
+      "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+      "gitBlob": "4ef9f46ae59d72bceee6c464025c62864b6f18d0",
+      "gitURL": "https://github.com/CortexLM/desktop/blob/760c4a046ce454bc8b0ab2fd85c941fec321c3ea/packages/app/src/screens/chat/live-chat.tsx",
+      "retainedPath": "source/live-chat.760c4a0.tsx"
+    },
+    {
+      "path": "packages/app/src/state/live.ts",
+      "sha256": "fde8193d44f8e943915b18a5b3dc074ef048dc1f37cd580f25db1f2bfab6ed34",
+      "snapshotOriginal": "/tmp/opencode/chat-missing-regression/baseline/source/packages/app/src/state/live.ts",
+      "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+      "gitBlob": "c37e8c920418a50375b180341ba041624b8b4727",
+      "gitURL": "https://github.com/CortexLM/desktop/blob/760c4a046ce454bc8b0ab2fd85c941fec321c3ea/packages/app/src/state/live.ts"
+    },
+    {
+      "path": "packages/core/test/fixtures/catalog.json",
+      "sha256": "1c6fe3acb86c4da727ed66e7fc11880a7057a5d633fe762938e5a35d1d885206",
+      "snapshotOriginal": "/tmp/opencode/chat-missing-regression/baseline/source/packages/core/test/fixtures/catalog.json",
+      "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+      "gitBlob": "2617c035d548d3f91144aec18dc9c1a167f6f791",
+      "gitURL": "https://github.com/CortexLM/desktop/blob/760c4a046ce454bc8b0ab2fd85c941fec321c3ea/packages/core/test/fixtures/catalog.json"
+    },
+    {
+      "path": "packages/i18n/locales/en/shell.json",
+      "sha256": "8ba4529fadc5da8e2a562d19e37788f8dfbb1c697487563c745e9facf9e87c75",
+      "snapshotOriginal": "/tmp/opencode/chat-missing-regression/baseline/source/packages/i18n/locales/en/shell.json",
+      "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+      "gitBlob": "20874feb7293c25e5167732ad8c7f130d0156cd9",
+      "gitURL": "https://github.com/CortexLM/desktop/blob/760c4a046ce454bc8b0ab2fd85c941fec321c3ea/packages/i18n/locales/en/shell.json"
+    },
+    {
+      "path": "packages/i18n/locales/en/chat.json",
+      "sha256": "2127240c44415c513d8ea761e44fdc5a110100f4ba253554632f7d57f3494736",
+      "snapshotOriginal": "/tmp/opencode/chat-missing-regression/baseline/source/packages/i18n/locales/en/chat.json",
+      "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+      "gitBlob": "104d8d98a2c17603fb0803b07077360ec34c9ebe",
+      "gitURL": "https://github.com/CortexLM/desktop/blob/760c4a046ce454bc8b0ab2fd85c941fec321c3ea/packages/i18n/locales/en/chat.json"
+    },
+    {
+      "path": "packages/i18n/locales/en/common.json",
+      "sha256": "69f0e0e8b334dfbc9b796b095acf6e8fe610becdb7d8a7aa6abb5489edc2f8c5",
+      "snapshotOriginal": "/tmp/opencode/chat-missing-regression/baseline/source/packages/i18n/locales/en/common.json",
+      "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+      "gitBlob": "cdc6011d9f02a6c0a03c0f4c0772cdfee0096da8",
+      "gitURL": "https://github.com/CortexLM/desktop/blob/760c4a046ce454bc8b0ab2fd85c941fec321c3ea/packages/i18n/locales/en/common.json"
+    }
+  ],
+  "currentSourceRead": false
+}

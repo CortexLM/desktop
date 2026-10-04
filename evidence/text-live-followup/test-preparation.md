@@ -1,0 +1,19 @@
+# Saved-text Electron suite handoff
+- Source: `tests/e2e/files-text.spec.ts`, 262 lines; SHA-256 `1db7c1845446e5d7eaf62596f90bd11033cb3b8b4e713c20f41b68bd968eb9a8`.
+- Nine source-defined cases: eight declarations, lifecycle expanded across light/dark. No skipped cases.
+- `mode: "default"` overrides full parallelism within this file while retaining independent failures for all old-build negatives.
+- Coordinator runs the first baseline against unchanged `d20a012` distribution with `E2E_WORKERS=1`; this executor ran no tests/build/app/full typecheck.
+- Scoped ESLint passes. TypeScript syntactic/semantic diagnostics for this source only: zero; dependency graph/full repository not attested.
+- Static upper-budget arithmetic: exactly 5,000,000 bytes, 50,000 rows, 100,000 UTF-16 units in longest row.
+- Lifecycle themes: duplicate filenames/exact IDs, admitted user files despite initial inference failure, escaped Markdown/HTML, real Copy, original-byte download, disabled-provider reload/restart.
+- Empty/refusals: raw empty, empty data URL, BOM-only, ambiguous/missing/external sources, MIME/encoding/padding/control/byte/row/width refusals, tuple mismatch and Code ownership.
+- Retry/deletion: real original session/history responses held after main completes them; single Retry, deletion prevents stale read/Copy/Download.
+- Tuple/preview: held reads/actions across owner changes, canceled precommit preview/Back, authoritative reread without stale dispatch.
+- Shell/Copy: one pending-action fence, retained owner across sidebar/focus/theme changes, native clipboard fulfillment, denial preserves selectable text.
+- Chat: typed/file/read/refused/submitting drafts, pending rename, missing-model refusal, canceled Open/Back retains composer ownership.
+- Budget/locales: native keyboard scrolling, bounded filename/source pane, two themes at minimum size, eight locales; planned captures total 14.
+- Clipboard success calls the original browser API, then reads the actual Electron clipboard. Denial alone is synthetic; exact browser input plus newline-normalized native text are asserted.
+- Clipboard snapshots retain available item formats, restore during cleanup; renderer/main hooks restore, pending writes settle, downloads retain real `will-download` completion and original-byte comparison.
+- Other files (notably `components.spec.ts`) also write the OS clipboard. Focus plus bounded polling cannot isolate cross-file writes; `E2E_WORKERS=1` is needed for uncontended clipboard acceptance. Normal full workers remain coordinator-owned.
+- Downloads use `setSavePath`; this proves delivered bytes, not installed native Save dialog behavior. Immutable saved-user-part mutation has no genuine public path here; no synthetic mutation proof.
+- No runtime pass, screenshot quality, performance, baseline-negative, native-package or full-suite acceptance claimed. Existing image tests/helpers/provider untouched.

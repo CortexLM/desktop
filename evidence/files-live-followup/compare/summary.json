@@ -1,0 +1,66 @@
+{
+  "disposition": "Scoped static preview pass; no new blocking regression identified",
+  "applicationRevision": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "captureDirtyBase": "d390cce590600cf5896fa19acf0ddd44d7057e2c",
+  "rendererFingerprint": "087587293bfb7c2ccf85176cece73982ae75db48318e1c381270caa5196a0d73",
+  "rows": 9,
+  "compared": 8,
+  "explicitGaps": 1,
+  "routes": {
+    "chat": 2,
+    "file-image": 7
+  },
+  "suppliedPNGs": 25,
+  "suppliedPNGBytes": 40601499,
+  "maximum": {
+    "state": "chat-light",
+    "thresholdPixels": 7915,
+    "exactPct": 0.15268132716049382,
+    "roundedPct": 0.15
+  },
+  "meanExactPct": 0.05295621141975308,
+  "fullFramesRGBAExactToFrozen": 0,
+  "thresholdZeroFrames": 0,
+  "fullFramesRGBAExactToPrior": 0,
+  "imageContentRegionsRGBAExactToPrior": 6,
+  "contentRegion": [
+    754,
+    150,
+    2880,
+    1800
+  ],
+  "sourceInputs": 520,
+  "rendererInputs": 478,
+  "gitInputsMatched": 520,
+  "buildMembers": 90,
+  "servedAssets": 20,
+  "frozenSourceFiles": 106,
+  "originalClock": {
+    "mode": "fixed",
+    "source": "cli",
+    "time": "2026-10-02T12:00:00.000Z",
+    "timezone": "UTC",
+    "timers": "real"
+  },
+  "historicalClock": {
+    "mode": "fixed",
+    "source": "cli",
+    "time": "2026-10-02T12:09:00.000Z",
+    "timezone": "UTC",
+    "timers": "real"
+  },
+  "contacts": 3,
+  "fullSizePairs": 8,
+  "additionalUnpairedFullSizeApps": 1,
+  "newWebPs": 15,
+  "canonicalReuses": 2,
+  "newWebPBytes": 24192700,
+  "previousFailedAttemptCreditedCaptures": 0,
+  "limits": [
+    "French 1440x900 scale2 preview only",
+    "No uploaded/selected Chat-state captures",
+    "No new application tests or full-suite review",
+    "No CI/native/package/ASAR-byte admission",
+    "No full-product acceptance"
+  ]
+}

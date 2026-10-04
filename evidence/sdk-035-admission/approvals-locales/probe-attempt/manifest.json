@@ -1,0 +1,1330 @@
+{
+  "status": "failed",
+  "startedAt": "2026-10-03T05:17:35.912Z",
+  "revision": "78857365a509d78af10ebdda5b52348a2e50e961",
+  "headAtStart": "78857365a509d78af10ebdda5b52348a2e50e961",
+  "membersBefore": {
+    "members": 90,
+    "sha256": "b2c2f54529a76ac43549136a496c7b24865fe722f8889ca9b42fed9e340c8dcb",
+    "allMatch": true
+  },
+  "sourceReceipt": {
+    "revision": "78857365a509d78af10ebdda5b52348a2e50e961",
+    "paths": [
+      "packages/app/src",
+      "packages/app/public",
+      "packages/app/index.html",
+      "packages/app/vite.config.ts",
+      "packages/app/package.json",
+      "packages/i18n/src",
+      "packages/i18n/locales",
+      "packages/client/src",
+      "packages/schema/src",
+      "package.json",
+      "bun.lock",
+      "tsconfig.json"
+    ],
+    "sourceFingerprint": "6a17e5001e296fcf502782e0641d00b9d169f112c210663b6b79da02e2afebdc",
+    "sourceFileCount": 473
+  },
+  "scriptSHA256": "7dc6986eb0113405010d9f52b4d70ee2f7c7841675b27a51983f0630ecded4ae",
+  "sourceHashes": {
+    "packages/i18n/locales/en/code.json": "381da5afb706c0408c90aceb4e32287e767f406be4a1d2fae0650f499f7d00db",
+    "packages/i18n/locales/fr/code.json": "6636d0c3f03cca0fa7c161de49f368e8816caf0a1a9af3c673c2d92314cb7526",
+    "packages/i18n/locales/es/code.json": "1bab03f62b65f1f60659ab460c1ad8b9a7150a853e3671026c00f5454f84508d",
+    "packages/i18n/locales/de/code.json": "325a3869511a422a1a7bd026ebaf062269ea5e92a7af28b0f5cd60d2d0d18a87",
+    "packages/i18n/locales/ja/code.json": "afb34f84274df6f73e5c7d445d848d1d18469da4320b2d1e0c0912a6fdb579e1",
+    "packages/i18n/locales/zh-Hans/code.json": "b589fbe9670aad43531f3ce765014e876b972758770394cd2a0504d79e4a6dd9",
+    "packages/i18n/locales/pt-BR/code.json": "e494aa315fbd229719726e400f6dae75eeca2332980f6346e2332dcb3140825f",
+    "packages/i18n/locales/ko/code.json": "ce034d801d15186c99aced5d0b76ede44cbb3e53a9e7640a10eda1195b61a1f6",
+    "packages/app/src/screens/code/lot-code.tsx": "c60639ed760972d48291bd0afcdbb601ca8cc0a7b831655dfca7194fdd4a0e7c",
+    "packages/app/src/screens/code/lot-code.css": "dd0c1bb34e70c558058451e381ed9a4ccd8a87208315f3ff949e13d7db660f00"
+  },
+  "views": [
+    {
+      "locale": "en",
+      "theme": "light",
+      "errors": [],
+      "checks": [
+        {
+          "name": "exact 960x640 desktop/sidebar",
+          "passed": true
+        },
+        {
+          "name": "locale and loaded fonts",
+          "passed": true
+        },
+        {
+          "name": "catalog headings",
+          "passed": true
+        },
+        {
+          "name": "catalog row titles",
+          "passed": true
+        },
+        {
+          "name": "catalog row descriptions",
+          "passed": true
+        },
+        {
+          "name": "headings painted",
+          "passed": true
+        },
+        {
+          "name": "row 1: complete painted text/control",
+          "passed": true
+        },
+        {
+          "name": "row 1: description below title",
+          "passed": true
+        },
+        {
+          "name": "row 1: allocated text width",
+          "passed": true
+        },
+        {
+          "name": "row 1: no text/control overlap",
+          "passed": true
+        },
+        {
+          "name": "row 2: complete painted text/control",
+          "passed": true
+        },
+        {
+          "name": "row 2: description below title",
+          "passed": true
+        },
+        {
+          "name": "row 2: allocated text width",
+          "passed": true
+        },
+        {
+          "name": "row 2: no text/control overlap",
+          "passed": true
+        },
+        {
+          "name": "actual text font glyphs reported",
+          "passed": false
+        },
+        {
+          "name": "Tab control 1: localized and hittable",
+          "passed": true
+        },
+        {
+          "name": "Tab control 2: localized and hittable",
+          "passed": true
+        },
+        {
+          "name": "full opacity after keyboard",
+          "passed": true
+        },
+        {
+          "name": "960x640 screenshot",
+          "passed": true
+        },
+        {
+          "name": "no page/console errors",
+          "passed": true
+        }
+      ],
+      "expected": {
+        "headings": [
+          "Cortex Code settings",
+          "Approvals"
+        ],
+        "titles": [
+          "Default model",
+          "Notify me when an approval is waiting"
+        ],
+        "descriptions": [
+          "For new tasks and reviews",
+          "Desktop and phone notification"
+        ],
+        "model": "Deep code",
+        "switch": "Notify approvals"
+      },
+      "before": {
+        "viewport": [
+          960,
+          640
+        ],
+        "dpr": 1,
+        "lang": "en",
+        "locale": "en",
+        "theme": "light",
+        "host": "desktop",
+        "window": {
+          "left": 0,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "width": 960,
+          "height": 640
+        },
+        "sidebar": "shown",
+        "fonts": {
+          "status": "loaded",
+          "declared": [
+            {
+              "family": "Geist",
+              "status": "loaded"
+            },
+            {
+              "family": "Geist Mono",
+              "status": "loaded"
+            }
+          ],
+          "bodyFamily": "Geist, ui-sans-serif, system-ui, sans-serif",
+          "browserLanguages": [
+            "en-US",
+            "c"
+          ]
+        },
+        "headings": [
+          {
+            "text": "Cortex Code settings",
+            "paint": {
+              "rect": {
+                "left": 357,
+                "top": 64,
+                "right": 485.25,
+                "bottom": 80,
+                "width": 128.25,
+                "height": 16
+              },
+              "boxes": [
+                {
+                  "left": 357,
+                  "top": 63,
+                  "right": 485.25,
+                  "bottom": 80,
+                  "width": 128.25,
+                  "height": 17
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            }
+          },
+          {
+            "text": "Approvals",
+            "paint": {
+              "rect": {
+                "left": 617,
+                "top": 110,
+                "right": 900,
+                "bottom": 136,
+                "width": 283,
+                "height": 26
+              },
+              "boxes": [
+                {
+                  "left": 617,
+                  "top": 110,
+                  "right": 708.875,
+                  "bottom": 136,
+                  "width": 91.875,
+                  "height": 26
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            }
+          }
+        ],
+        "rows": [
+          {
+            "title": "Default model",
+            "description": "For new tasks and reviews",
+            "titlePaint": {
+              "rect": {
+                "left": 631,
+                "top": 166,
+                "right": 771.984375,
+                "bottom": 182,
+                "width": 140.984375,
+                "height": 16
+              },
+              "boxes": [
+                {
+                  "left": 631,
+                  "top": 165,
+                  "right": 716.4375,
+                  "bottom": 182,
+                  "width": 85.4375,
+                  "height": 17
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "list code-approval-defaults",
+                  "x": true,
+                  "y": true,
+                  "left": 617,
+                  "top": 154,
+                  "right": 900,
+                  "bottom": 303
+                },
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            },
+            "descriptionPaint": {
+              "rect": {
+                "left": 631,
+                "top": 184,
+                "right": 771.984375,
+                "bottom": 216,
+                "width": 140.984375,
+                "height": 32
+              },
+              "boxes": [
+                {
+                  "left": 631,
+                  "top": 184,
+                  "right": 731.609375,
+                  "bottom": 200,
+                  "width": 100.609375,
+                  "height": 16
+                },
+                {
+                  "left": 631,
+                  "top": 200,
+                  "right": 672.8125,
+                  "bottom": 216,
+                  "width": 41.8125,
+                  "height": 16
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "sub",
+                  "x": true,
+                  "y": true,
+                  "left": 631,
+                  "top": 184,
+                  "right": 772,
+                  "bottom": 216
+                },
+                {
+                  "className": "list code-approval-defaults",
+                  "x": true,
+                  "y": true,
+                  "left": 617,
+                  "top": 154,
+                  "right": 900,
+                  "bottom": 303
+                },
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            },
+            "control": {
+              "rect": {
+                "left": 783.984375,
+                "top": 177,
+                "right": 886,
+                "bottom": 205,
+                "width": 102.015625,
+                "height": 28
+              },
+              "boxes": [
+                {
+                  "left": 783.984375,
+                  "top": 177,
+                  "right": 886,
+                  "bottom": 205,
+                  "width": 102.015625,
+                  "height": 28
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "list code-approval-defaults",
+                  "x": true,
+                  "y": true,
+                  "left": 617,
+                  "top": 154,
+                  "right": 900,
+                  "bottom": 303
+                },
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            },
+            "allocated": {
+              "left": 631,
+              "top": 166,
+              "right": 771.984375,
+              "bottom": 216,
+              "width": 140.984375,
+              "height": 50
+            },
+            "belowTitle": true,
+            "fitsAllocated": true,
+            "clearOfControl": true
+          },
+          {
+            "title": "Notify me when an approval is waiting",
+            "description": "Desktop and phone notification",
+            "titlePaint": {
+              "rect": {
+                "left": 631,
+                "top": 241,
+                "right": 840,
+                "bottom": 273,
+                "width": 209,
+                "height": 32
+              },
+              "boxes": [
+                {
+                  "left": 631,
+                  "top": 240,
+                  "right": 813.390625,
+                  "bottom": 257,
+                  "width": 182.390625,
+                  "height": 17
+                },
+                {
+                  "left": 631,
+                  "top": 256,
+                  "right": 675.53125,
+                  "bottom": 273,
+                  "width": 44.53125,
+                  "height": 17
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "list code-approval-defaults",
+                  "x": true,
+                  "y": true,
+                  "left": 617,
+                  "top": 154,
+                  "right": 900,
+                  "bottom": 303
+                },
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            },
+            "descriptionPaint": {
+              "rect": {
+                "left": 631,
+                "top": 275,
+                "right": 840,
+                "bottom": 291,
+                "width": 209,
+                "height": 16
+              },
+              "boxes": [
+                {
+                  "left": 631,
+                  "top": 275,
+                  "right": 801.734375,
+                  "bottom": 291,
+                  "width": 170.734375,
+                  "height": 16
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "sub",
+                  "x": true,
+                  "y": true,
+                  "left": 631,
+                  "top": 275,
+                  "right": 840,
+                  "bottom": 291
+                },
+                {
+                  "className": "list code-approval-defaults",
+                  "x": true,
+                  "y": true,
+                  "left": 617,
+                  "top": 154,
+                  "right": 900,
+                  "bottom": 303
+                },
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            },
+            "control": {
+              "rect": {
+                "left": 852,
+                "top": 256,
+                "right": 886,
+                "bottom": 276,
+                "width": 34,
+                "height": 20
+              },
+              "boxes": [
+                {
+                  "left": 852,
+                  "top": 256,
+                  "right": 886,
+                  "bottom": 276,
+                  "width": 34,
+                  "height": 20
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "list code-approval-defaults",
+                  "x": true,
+                  "y": true,
+                  "left": 617,
+                  "top": 154,
+                  "right": 900,
+                  "bottom": 303
+                },
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            },
+            "allocated": {
+              "left": 631,
+              "top": 241,
+              "right": 840,
+              "bottom": 291,
+              "width": 209,
+              "height": 50
+            },
+            "belowTitle": true,
+            "fitsAllocated": true,
+            "clearOfControl": true
+          }
+        ],
+        "fullOpacity": true
+      },
+      "platformFonts": [],
+      "keyboard": [
+        {
+          "text": "Deep code",
+          "label": null,
+          "role": null,
+          "focused": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "label": "Notify approvals",
+          "role": "switch",
+          "focused": true,
+          "hit": true
+        }
+      ],
+      "after": {
+        "viewport": [
+          960,
+          640
+        ],
+        "dpr": 1,
+        "lang": "en",
+        "locale": "en",
+        "theme": "light",
+        "host": "desktop",
+        "window": {
+          "left": 0,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "width": 960,
+          "height": 640
+        },
+        "sidebar": "shown",
+        "fonts": {
+          "status": "loaded",
+          "declared": [
+            {
+              "family": "Geist",
+              "status": "loaded"
+            },
+            {
+              "family": "Geist Mono",
+              "status": "loaded"
+            }
+          ],
+          "bodyFamily": "Geist, ui-sans-serif, system-ui, sans-serif",
+          "browserLanguages": [
+            "en-US",
+            "c"
+          ]
+        },
+        "headings": [
+          {
+            "text": "Cortex Code settings",
+            "paint": {
+              "rect": {
+                "left": 357,
+                "top": 64,
+                "right": 485.25,
+                "bottom": 80,
+                "width": 128.25,
+                "height": 16
+              },
+              "boxes": [
+                {
+                  "left": 357,
+                  "top": 63,
+                  "right": 485.25,
+                  "bottom": 80,
+                  "width": 128.25,
+                  "height": 17
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            }
+          },
+          {
+            "text": "Approvals",
+            "paint": {
+              "rect": {
+                "left": 617,
+                "top": 110,
+                "right": 900,
+                "bottom": 136,
+                "width": 283,
+                "height": 26
+              },
+              "boxes": [
+                {
+                  "left": 617,
+                  "top": 110,
+                  "right": 708.875,
+                  "bottom": 136,
+                  "width": 91.875,
+                  "height": 26
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            }
+          }
+        ],
+        "rows": [
+          {
+            "title": "Default model",
+            "description": "For new tasks and reviews",
+            "titlePaint": {
+              "rect": {
+                "left": 631,
+                "top": 166,
+                "right": 771.984375,
+                "bottom": 182,
+                "width": 140.984375,
+                "height": 16
+              },
+              "boxes": [
+                {
+                  "left": 631,
+                  "top": 165,
+                  "right": 716.4375,
+                  "bottom": 182,
+                  "width": 85.4375,
+                  "height": 17
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "list code-approval-defaults",
+                  "x": true,
+                  "y": true,
+                  "left": 617,
+                  "top": 154,
+                  "right": 900,
+                  "bottom": 303
+                },
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            },
+            "descriptionPaint": {
+              "rect": {
+                "left": 631,
+                "top": 184,
+                "right": 771.984375,
+                "bottom": 216,
+                "width": 140.984375,
+                "height": 32
+              },
+              "boxes": [
+                {
+                  "left": 631,
+                  "top": 184,
+                  "right": 731.609375,
+                  "bottom": 200,
+                  "width": 100.609375,
+                  "height": 16
+                },
+                {
+                  "left": 631,
+                  "top": 200,
+                  "right": 672.8125,
+                  "bottom": 216,
+                  "width": 41.8125,
+                  "height": 16
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "sub",
+                  "x": true,
+                  "y": true,
+                  "left": 631,
+                  "top": 184,
+                  "right": 772,
+                  "bottom": 216
+                },
+                {
+                  "className": "list code-approval-defaults",
+                  "x": true,
+                  "y": true,
+                  "left": 617,
+                  "top": 154,
+                  "right": 900,
+                  "bottom": 303
+                },
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            },
+            "control": {
+              "rect": {
+                "left": 783.984375,
+                "top": 177,
+                "right": 886,
+                "bottom": 205,
+                "width": 102.015625,
+                "height": 28
+              },
+              "boxes": [
+                {
+                  "left": 783.984375,
+                  "top": 177,
+                  "right": 886,
+                  "bottom": 205,
+                  "width": 102.015625,
+                  "height": 28
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "list code-approval-defaults",
+                  "x": true,
+                  "y": true,
+                  "left": 617,
+                  "top": 154,
+                  "right": 900,
+                  "bottom": 303
+                },
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            },
+            "allocated": {
+              "left": 631,
+              "top": 166,
+              "right": 771.984375,
+              "bottom": 216,
+              "width": 140.984375,
+              "height": 50
+            },
+            "belowTitle": true,
+            "fitsAllocated": true,
+            "clearOfControl": true
+          },
+          {
+            "title": "Notify me when an approval is waiting",
+            "description": "Desktop and phone notification",
+            "titlePaint": {
+              "rect": {
+                "left": 631,
+                "top": 241,
+                "right": 840,
+                "bottom": 273,
+                "width": 209,
+                "height": 32
+              },
+              "boxes": [
+                {
+                  "left": 631,
+                  "top": 240,
+                  "right": 813.390625,
+                  "bottom": 257,
+                  "width": 182.390625,
+                  "height": 17
+                },
+                {
+                  "left": 631,
+                  "top": 256,
+                  "right": 675.53125,
+                  "bottom": 273,
+                  "width": 44.53125,
+                  "height": 17
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "list code-approval-defaults",
+                  "x": true,
+                  "y": true,
+                  "left": 617,
+                  "top": 154,
+                  "right": 900,
+                  "bottom": 303
+                },
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            },
+            "descriptionPaint": {
+              "rect": {
+                "left": 631,
+                "top": 275,
+                "right": 840,
+                "bottom": 291,
+                "width": 209,
+                "height": 16
+              },
+              "boxes": [
+                {
+                  "left": 631,
+                  "top": 275,
+                  "right": 801.734375,
+                  "bottom": 291,
+                  "width": 170.734375,
+                  "height": 16
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "sub",
+                  "x": true,
+                  "y": true,
+                  "left": 631,
+                  "top": 275,
+                  "right": 840,
+                  "bottom": 291
+                },
+                {
+                  "className": "list code-approval-defaults",
+                  "x": true,
+                  "y": true,
+                  "left": 617,
+                  "top": 154,
+                  "right": 900,
+                  "bottom": 303
+                },
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            },
+            "control": {
+              "rect": {
+                "left": 852,
+                "top": 256,
+                "right": 886,
+                "bottom": 276,
+                "width": 34,
+                "height": 20
+              },
+              "boxes": [
+                {
+                  "left": 852,
+                  "top": 256,
+                  "right": 886,
+                  "bottom": 276,
+                  "width": 34,
+                  "height": 20
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "clipping": [
+                {
+                  "className": "list code-approval-defaults",
+                  "x": true,
+                  "y": true,
+                  "left": 617,
+                  "top": 154,
+                  "right": 900,
+                  "bottom": 303
+                },
+                {
+                  "className": "page",
+                  "x": true,
+                  "y": true,
+                  "left": 337,
+                  "top": 100,
+                  "right": 940,
+                  "bottom": 635
+                },
+                {
+                  "className": "frame",
+                  "x": true,
+                  "y": true,
+                  "left": 53,
+                  "top": 44,
+                  "right": 955,
+                  "bottom": 635
+                },
+                {
+                  "className": "window",
+                  "x": true,
+                  "y": true,
+                  "left": 0,
+                  "top": 0,
+                  "right": 960,
+                  "bottom": 640
+                }
+              ],
+              "hit": true
+            },
+            "allocated": {
+              "left": 631,
+              "top": 241,
+              "right": 840,
+              "bottom": 291,
+              "width": 209,
+              "height": 50
+            },
+            "belowTitle": true,
+            "fitsAllocated": true,
+            "clearOfControl": true
+          }
+        ],
+        "fullOpacity": true
+      },
+      "capture": {
+        "file": "screens/approvals-en-light.png",
+        "sha256": "ac7b1006a3fc4d47e172514b80a57403368729dcc4c1ef8c375e9d6d8220c007",
+        "pixels": [
+          960,
+          640
+        ]
+      },
+      "status": "failed"
+    }
+  ],
+  "startupErrors": [],
+  "fatal": "AssertionError [ERR_ASSERTION]: Stop at the first failed locale; retain its negative capture and source unchanged\n\n'failed' !== 'passed'\n\n    at file:///var/tmp/opencode/approvals-locales-7885736/check.mjs:116:12",
+  "membersAfter": {
+    "members": 90,
+    "sha256": "b2c2f54529a76ac43549136a496c7b24865fe722f8889ca9b42fed9e340c8dcb",
+    "allMatch": true
+  },
+  "finishedAt": "2026-10-03T05:17:38.746Z"
+}

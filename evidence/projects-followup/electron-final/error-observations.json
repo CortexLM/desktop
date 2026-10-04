@@ -1,0 +1,385 @@
+[
+  {
+    "run": "production-full",
+    "file": "appearance-theme.spec.ts",
+    "attachment": "appearance-theme-observations-light",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "appearance-theme.spec.ts",
+    "attachment": "appearance-theme-observations-dark",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "bot-owner.spec.ts",
+    "attachment": "bot-owner-evidence",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "bot-owner.spec.ts",
+    "attachment": "bot-owner-evidence",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "bot-owner.spec.ts",
+    "attachment": "bot-owner-evidence",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "bot-owner.spec.ts",
+    "attachment": "bot-owner-evidence",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "chat-missing.spec.ts",
+    "attachment": "chat-missing-evidence",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "chat-missing.spec.ts",
+    "attachment": "chat-missing-evidence",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "chat-missing.spec.ts",
+    "attachment": "chat-missing-evidence",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "chat-missing.spec.ts",
+    "attachment": "chat-missing-evidence",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "code-models.spec.ts",
+    "attachment": "code-failure-evidence",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "code-models.spec.ts",
+    "attachment": "code-failure-evidence",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "code-models.spec.ts",
+    "attachment": "code-failure-evidence",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "code-models.spec.ts",
+    "attachment": "code-failure-evidence",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "navigation.spec.ts",
+    "attachment": "skipped-native-transitions",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "navigation.spec.ts",
+    "attachment": "skipped-native-transitions",
+    "field": "unhandled",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "navigation.spec.ts",
+    "attachment": "native-callback-errors",
+    "field": "errors",
+    "value": [
+      "Native route callback failed",
+      "Native route callback failed",
+      "Native theme callback failed"
+    ],
+    "intentionalInjection": true
+  },
+  {
+    "run": "production-full",
+    "file": "navigation.spec.ts",
+    "attachment": "native-callback-errors",
+    "field": "unhandled",
+    "value": [
+      {
+        "source": "updateCallbackDone",
+        "kind": "route",
+        "name": "Error",
+        "message": "Native route callback failed"
+      },
+      {
+        "source": "finished",
+        "kind": "route",
+        "name": "Error",
+        "message": "Native route callback failed"
+      },
+      {
+        "source": "updateCallbackDone",
+        "kind": "theme",
+        "name": "Error",
+        "message": "Native theme callback failed"
+      }
+    ],
+    "intentionalInjection": true
+  },
+  {
+    "run": "production-full",
+    "file": "navigation.spec.ts",
+    "attachment": "preview-departure-errors",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "provider-draft.spec.ts",
+    "attachment": "provider-draft-observation-light",
+    "field": "httpRequests",
+    "value": 0,
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "provider-draft.spec.ts",
+    "attachment": "provider-draft-observation-dark",
+    "field": "httpRequests",
+    "value": 0,
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "provider-key-pending.spec.ts",
+    "attachment": "provider-key-pending-evidence",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "provider-key-pending.spec.ts",
+    "attachment": "provider-key-pending-evidence",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "provider-key-pending.spec.ts",
+    "attachment": "provider-key-pending-evidence",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-full",
+    "file": "provider-key-pending.spec.ts",
+    "attachment": "provider-key-pending-evidence",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-targeted",
+    "file": "chat-missing.spec.ts",
+    "attachment": "chat-missing-evidence",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-targeted",
+    "file": "chat-missing.spec.ts",
+    "attachment": "chat-missing-evidence",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-targeted",
+    "file": "chat-missing.spec.ts",
+    "attachment": "chat-missing-evidence",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-targeted",
+    "file": "chat-missing.spec.ts",
+    "attachment": "chat-missing-evidence",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-targeted",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-targeted",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-targeted",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-targeted",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-targeted",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-targeted",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-targeted",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "errors",
+    "value": [],
+    "intentionalInjection": false
+  },
+  {
+    "run": "production-targeted",
+    "file": "live-state.spec.ts",
+    "attachment": "live-state-errors",
+    "field": "rendererHttp",
+    "value": [],
+    "intentionalInjection": false
+  }
+]

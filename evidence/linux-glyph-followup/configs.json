@@ -1,0 +1,224 @@
+[
+  {
+    "mode": "without-cjk",
+    "config": "/var/tmp/opencode/linux-ci-glyphs/without-cjk/fonts.conf",
+    "sha256": "a868115aad86af9ddb055c916450a87aa399158308edcc8b8338bd16a6136261",
+    "fontDirectories": [
+      "/usr/share/fonts/truetype/dejavu"
+    ],
+    "cache": "/var/tmp/opencode/linux-ci-glyphs/without-cjk/cache",
+    "coverage": [
+      {
+        "locale": "en",
+        "coverage": true,
+        "missingCodepoints": []
+      },
+      {
+        "locale": "ja",
+        "coverage": false,
+        "missingCodepoints": [
+          "U+3001",
+          "U+3002",
+          "U+3044",
+          "U+3046",
+          "U+304A",
+          "U+304D",
+          "U+304F",
+          "U+3055",
+          "U+3057",
+          "U+305B",
+          "U+305F",
+          "U+3060",
+          "U+3066",
+          "U+3067",
+          "U+307E",
+          "U+3082",
+          "U+3092",
+          "U+3093",
+          "U+30A4",
+          "U+30AD",
+          "U+30B5",
+          "U+30BB",
+          "U+30E1",
+          "U+30E3",
+          "U+30EB",
+          "U+30F3",
+          "U+30FC",
+          "U+4E00",
+          "U+5165",
+          "U+5185",
+          "U+529B",
+          "U+5BB9",
+          "U+5EA6",
+          "U+78BA",
+          "U+8A66",
+          "U+8A8D"
+        ]
+      },
+      {
+        "locale": "ko",
+        "coverage": false,
+        "missingCodepoints": [
+          "U+ACE0",
+          "U+ADF8",
+          "U+B2C8",
+          "U+B2E4",
+          "U+B3C4",
+          "U+B825",
+          "U+B85C",
+          "U+B97C",
+          "U+BA54",
+          "U+BABB",
+          "U+BCF4",
+          "U+C138",
+          "U+C18C",
+          "U+C2B5",
+          "U+C2DC",
+          "U+C694",
+          "U+C744",
+          "U+C774",
+          "U+C778",
+          "U+C77C",
+          "U+C785",
+          "U+C815",
+          "U+C9C0",
+          "U+CDE8",
+          "U+D558",
+          "U+D55C",
+          "U+D588",
+          "U+D655"
+        ]
+      },
+      {
+        "locale": "zh-Hans",
+        "coverage": false,
+        "missingCodepoints": [
+          "U+3002",
+          "U+4FE1",
+          "U+5199",
+          "U+53D6",
+          "U+540E",
+          "U+586B",
+          "U+5F55",
+          "U+606F",
+          "U+60A8",
+          "U+65E0",
+          "U+67E5",
+          "U+68C0",
+          "U+6CD5",
+          "U+6D88",
+          "U+767B",
+          "U+7684",
+          "U+770B",
+          "U+7BB1",
+          "U+8BD5",
+          "U+8BF7",
+          "U+90AE",
+          "U+91CD"
+        ]
+      }
+    ],
+    "matches": {
+      "ja": {
+        "command": [
+          "fc-match",
+          "-f",
+          "%{family}\t%{file}\n",
+          ":lang=ja"
+        ],
+        "exitCode": 0,
+        "stdout": "DejaVu Math TeX Gyre\t/usr/share/fonts/truetype/dejavu/DejaVuMathTeXGyre.ttf\n",
+        "stderr": ""
+      },
+      "ko": {
+        "command": [
+          "fc-match",
+          "-f",
+          "%{family}\t%{file}\n",
+          ":lang=ko"
+        ],
+        "exitCode": 0,
+        "stdout": "DejaVu Math TeX Gyre\t/usr/share/fonts/truetype/dejavu/DejaVuMathTeXGyre.ttf\n",
+        "stderr": ""
+      },
+      "zh-cn": {
+        "command": [
+          "fc-match",
+          "-f",
+          "%{family}\t%{file}\n",
+          ":lang=zh-cn"
+        ],
+        "exitCode": 0,
+        "stdout": "DejaVu Math TeX Gyre\t/usr/share/fonts/truetype/dejavu/DejaVuMathTeXGyre.ttf\n",
+        "stderr": ""
+      }
+    }
+  },
+  {
+    "mode": "with-system",
+    "config": "/var/tmp/opencode/linux-ci-glyphs/with-system/fonts.conf",
+    "sha256": "364afa8a8517cb97df62d422435378d51b580015011a170bbb5b12908a726459",
+    "fontDirectories": [
+      "/usr/share/fonts",
+      "/usr/local/share/fonts"
+    ],
+    "cache": "/var/tmp/opencode/linux-ci-glyphs/with-system/cache",
+    "coverage": [
+      {
+        "locale": "en",
+        "coverage": true,
+        "missingCodepoints": []
+      },
+      {
+        "locale": "ja",
+        "coverage": true,
+        "missingCodepoints": []
+      },
+      {
+        "locale": "ko",
+        "coverage": true,
+        "missingCodepoints": []
+      },
+      {
+        "locale": "zh-Hans",
+        "coverage": true,
+        "missingCodepoints": []
+      }
+    ],
+    "matches": {
+      "ja": {
+        "command": [
+          "fc-match",
+          "-f",
+          "%{family}\t%{file}\n",
+          ":lang=ja"
+        ],
+        "exitCode": 0,
+        "stdout": "IPAGothic,IPA\u30b4\u30b7\u30c3\u30af\t/usr/share/fonts/truetype/fonts-japanese-gothic.ttf\n",
+        "stderr": ""
+      },
+      "ko": {
+        "command": [
+          "fc-match",
+          "-f",
+          "%{family}\t%{file}\n",
+          ":lang=ko"
+        ],
+        "exitCode": 0,
+        "stdout": "Unifont\t/usr/share/fonts/opentype/unifont/unifont.otf\n",
+        "stderr": ""
+      },
+      "zh-cn": {
+        "command": [
+          "fc-match",
+          "-f",
+          "%{family}\t%{file}\n",
+          ":lang=zh-cn"
+        ],
+        "exitCode": 0,
+        "stdout": "Unifont\t/usr/share/fonts/opentype/unifont/unifont.otf\n",
+        "stderr": ""
+      }
+    }
+  }
+]

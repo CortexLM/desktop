@@ -1,0 +1,1904 @@
+{
+  "revision": "74579d574646aff5dbd462247b4fd47a99dd2cdd",
+  "dirty": true,
+  "sourceFileCount": 474,
+  "sourceFingerprint": "64a314be9950c61466f8beec1b1ef50aa7f5b60a7f67d67bc3deff805a5800ef",
+  "files": [
+    {
+      "path": "bun.lock",
+      "sha256": "dada4e8c730bd0514dd0506c7ee7b453ac1f698bd509561a8ad43367b796f8a6"
+    },
+    {
+      "path": "package.json",
+      "sha256": "8a271456a70e06095c307033c36a9a7017cba19b99484bf8108fcd8770b98233"
+    },
+    {
+      "path": "packages/app/index.html",
+      "sha256": "781613a341f544f5211cda2e9d3d6f920346075a265a57b512c280ba73ca5679"
+    },
+    {
+      "path": "packages/app/package.json",
+      "sha256": "4350e87f5dde5fa53e1f5110a5d671866ea330199962a4a819da921744629371"
+    },
+    {
+      "path": "packages/app/public/favicon.svg",
+      "sha256": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66"
+    },
+    {
+      "path": "packages/app/public/fonts/Geist-Variable.woff2",
+      "sha256": "a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8"
+    },
+    {
+      "path": "packages/app/public/fonts/GeistMono-Variable.woff2",
+      "sha256": "fba8f577f38a2bbcbe818efa6348dd58f36303a10b8737c42fefad275be563ab"
+    },
+    {
+      "path": "packages/app/public/gel/apparence.png",
+      "sha256": "7fb11eee005f003972d8cf3b5ab3dc214ff2a6faa227e7906a5d4a79d588a6e8"
+    },
+    {
+      "path": "packages/app/public/gel/automatisations.png",
+      "sha256": "6b2d3e9f7ebd52a02640c57b796a7ca7e5ad9099021f45651933f8676e81781c"
+    },
+    {
+      "path": "packages/app/public/gel/bot.png",
+      "sha256": "88faf8abeaf30cece620e5c0bfe23129ce2bf3baa01ced547df8451c7ad1ee06"
+    },
+    {
+      "path": "packages/app/public/gel/code.png",
+      "sha256": "b1db22be65796a9f0895e14b337e1025848800f83cbd3a54a406768dd1d3c769"
+    },
+    {
+      "path": "packages/app/public/gel/compte.png",
+      "sha256": "6221a290e83996717a2e9c249861ae8d8718b2557b96a690e627cb68381de9c7"
+    },
+    {
+      "path": "packages/app/public/gel/confidentialite.png",
+      "sha256": "9921425f1f6b9bcf3106bc12d6960c8448ef35585a261f10f3f3d4ef89e5ef8c"
+    },
+    {
+      "path": "packages/app/public/gel/documents.png",
+      "sha256": "239f547be46bdaf6c94fda5ba53941c4a9d8e8376f55a71b763232b7d18fe885"
+    },
+    {
+      "path": "packages/app/public/gel/donnees.png",
+      "sha256": "436243ddfcd285480e7d29befdf96619ccf51f86abe5883f4f7fc435fd3aec81"
+    },
+    {
+      "path": "packages/app/public/gel/extensions.png",
+      "sha256": "5695bb8057b5b9e0f1a63e68bb8f2d49822a8b8b0721b55f207ec01477f5cb11"
+    },
+    {
+      "path": "packages/app/public/gel/general.png",
+      "sha256": "24f0fd7e6efc55049250abdb81e4ec2c6cdb35e95547a6a7e190827e407cf503"
+    },
+    {
+      "path": "packages/app/public/gel/images.png",
+      "sha256": "5723c419048c27c7863f29ffbe82bdca7f1be5dd585de5b8426704de771f0785"
+    },
+    {
+      "path": "packages/app/public/gel/modeles.png",
+      "sha256": "76b3ee444a4bc512062e4c9dded1e35dee628f154b11d5822c735fa2d9286e84"
+    },
+    {
+      "path": "packages/app/public/gel/notifications.png",
+      "sha256": "bf0e25a5de8037ce0ecd4387206f4a835d41b1b79efb3d7673cc40dd9f7df164"
+    },
+    {
+      "path": "packages/app/public/gel/raccourcis.png",
+      "sha256": "94e0844de2f5e29200f88dfe66976d81d0cf6b5c9aba7f72ad3a23ea6bff1998"
+    },
+    {
+      "path": "packages/app/public/gel/recherche-web.png",
+      "sha256": "fc976ecaa29cfe2f47765bcc16bbdde5bae7dd3a775d791e4f12f0931929715d"
+    },
+    {
+      "path": "packages/app/public/icons.svg",
+      "sha256": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a"
+    },
+    {
+      "path": "packages/app/public/img/atelier.png",
+      "sha256": "c52a6832e8112485d6d2f9b4e765af272f964b0b18067e3ce3c8fd74c7825b4e"
+    },
+    {
+      "path": "packages/app/public/img/aube.png",
+      "sha256": "2743b253211c84075187ea2f7ffaa3011d5b44daa6b368049dc3153427d16662"
+    },
+    {
+      "path": "packages/app/public/img/ceramique.png",
+      "sha256": "3339e692a943d3e27a64e63e71c9d9894c23ad59f124223808743ad08263f4cd"
+    },
+    {
+      "path": "packages/app/public/img/crepuscule.png",
+      "sha256": "e723124b4ede2e2ad9f8f64d20b718a6854bd01df3c00ecac20cd936ae89d3aa"
+    },
+    {
+      "path": "packages/app/public/img/lagon.png",
+      "sha256": "f8f863d35c5ebc00e3a8946111577a3e79d3473e6d05adc153c8f992cbd7fbdd"
+    },
+    {
+      "path": "packages/app/public/img/marche.png",
+      "sha256": "0c063b8f49cf5345d191ca9b501b35f70922b508f9752546cd1572b1ccab601f"
+    },
+    {
+      "path": "packages/app/public/img/montagne.png",
+      "sha256": "e16a210f3867a9023acc0f61cdcb0ae19aada457fa7f8af7cddbd992980f8d3c"
+    },
+    {
+      "path": "packages/app/public/img/prairie.png",
+      "sha256": "ce9fd320c8c98ed73f40b3787366e09ff8c665d6930014b2b2d1c20da3801968"
+    },
+    {
+      "path": "packages/app/src/App.tsx",
+      "sha256": "8e70b0f8e145da3a89d5337330c84f6bfdaa2ce2f24d629466f375d7887aba7d"
+    },
+    {
+      "path": "packages/app/src/api.ts",
+      "sha256": "9203cbf5c8a6b68fb64f99b8a8865cf702fac727e2cce59a1f466ef01bda6cc6"
+    },
+    {
+      "path": "packages/app/src/components/composer.tsx",
+      "sha256": "3053fa0df270058013077c537598a6c59e0d35bdae7cde0e254d5f8767078328"
+    },
+    {
+      "path": "packages/app/src/i18n.tsx",
+      "sha256": "2d1f7b5452ee6ba75b50b45e5eb1c998fda3c2e7afe8f3209b98de6006ba8637"
+    },
+    {
+      "path": "packages/app/src/icons/Icon.tsx",
+      "sha256": "e4bce77dae6bfa4e997973f9183855afbeae678b7d9ee46c921cac62732bfdfb"
+    },
+    {
+      "path": "packages/app/src/icons/svg/agent.svg",
+      "sha256": "23f0143e3f2efa831271dc9d0d01b5080b55156ab0fdc519d61df604e52641fa"
+    },
+    {
+      "path": "packages/app/src/icons/svg/alert-triangle.svg",
+      "sha256": "b45e1510b5ea16a110f8497662dbad51f4aea2f2122ae177c04dadd2262e9244"
+    },
+    {
+      "path": "packages/app/src/icons/svg/archive.svg",
+      "sha256": "401a7d3d5dd4cecefe5d282d4d2a143b1adaed962a3d69786bff474815e47413"
+    },
+    {
+      "path": "packages/app/src/icons/svg/arrow-left.svg",
+      "sha256": "22d89d9c12cebfba9749afbb591143ad0f79747739abfa58fe6ffdc91d3f46ba"
+    },
+    {
+      "path": "packages/app/src/icons/svg/arrow-right.svg",
+      "sha256": "f9c28969dc4517eef77e8c629cb65cd82e8f7494bca07023d2f383ba7a654293"
+    },
+    {
+      "path": "packages/app/src/icons/svg/arrow-up.svg",
+      "sha256": "062f0f5827c7b9420ad43e136ac67d53a34c9c09c7869accc10a6ae8b5e5e20e"
+    },
+    {
+      "path": "packages/app/src/icons/svg/bell.svg",
+      "sha256": "d605e75f450ddc4085df23262d1aa396fe20d9fa3e2a1ddc5c5d03a984dea932"
+    },
+    {
+      "path": "packages/app/src/icons/svg/bolt.svg",
+      "sha256": "9182849af811770dd735d619fcbd3926c8212cb980b5c05315614221a3d22aaf"
+    },
+    {
+      "path": "packages/app/src/icons/svg/bot.svg",
+      "sha256": "07023e0981236f1fcc53637fb48004d5369f8f787a2a963c4db921ba87151e75"
+    },
+    {
+      "path": "packages/app/src/icons/svg/bug.svg",
+      "sha256": "c2e34e6671f70c866ce9c865fb58757a9637a396a50848d5f07eca8b35d303d1"
+    },
+    {
+      "path": "packages/app/src/icons/svg/calendar.svg",
+      "sha256": "a75355932e169352dfaf730d9faaaf943d8a21000d3b2215e6be5964b2a0143a"
+    },
+    {
+      "path": "packages/app/src/icons/svg/camera.svg",
+      "sha256": "c832f80e435708d50cee51261ed4b1614a633ab1b33a819c55746cc8b0a58138"
+    },
+    {
+      "path": "packages/app/src/icons/svg/check-circle.svg",
+      "sha256": "2b541604c11d2079f44afc78ea5fd913a366c37ea6ebaf9b8abfc54293b56fb6"
+    },
+    {
+      "path": "packages/app/src/icons/svg/check.svg",
+      "sha256": "a9a9ae73db15bcf1a7b8c7e8c32efc5353b2266ef3768de203b88986f638ab11"
+    },
+    {
+      "path": "packages/app/src/icons/svg/chevron-down.svg",
+      "sha256": "ee86c1d9f2a31ab442782b7aef7a04418da8aa412a1976341db855fdb8ab0657"
+    },
+    {
+      "path": "packages/app/src/icons/svg/chevron-right.svg",
+      "sha256": "05b418e99cb925444944c33f030a6a41fa8c36a54e231ace4e4a6ccca2cb2c86"
+    },
+    {
+      "path": "packages/app/src/icons/svg/chevron-up-down.svg",
+      "sha256": "1710214275fe3702913e5d5701888c240c5b69f367e7693f19100eb57ca33b13"
+    },
+    {
+      "path": "packages/app/src/icons/svg/clock-loop.svg",
+      "sha256": "e668e6bb270d534e5dff0796996d61a2fc2604264b938374c9b5da6c05930f4d"
+    },
+    {
+      "path": "packages/app/src/icons/svg/close.svg",
+      "sha256": "b78d74a3dbbc1a07963c3b1ed68cf83c8c94dd97f0a99c6e79b34ad4098d5093"
+    },
+    {
+      "path": "packages/app/src/icons/svg/code.svg",
+      "sha256": "dbd229b7e3ffb6e2ffd0b1cb534bf5546a76d0193ccb768170f2fdd09985bc26"
+    },
+    {
+      "path": "packages/app/src/icons/svg/collapse.svg",
+      "sha256": "870528f339a9c4784cc4b22ccea9d7acf27abb7d4c3c4d47b97b4fa3547aa514"
+    },
+    {
+      "path": "packages/app/src/icons/svg/command.svg",
+      "sha256": "7ef769f74e56a9a1ecf05516d1dc29183476c341fa30b6ffe802888c66d5c92a"
+    },
+    {
+      "path": "packages/app/src/icons/svg/compose.svg",
+      "sha256": "26115e7c4636e0ec70f5e93420a87ce1a0cb8436b7280e434473b0a11c7f868e"
+    },
+    {
+      "path": "packages/app/src/icons/svg/copy.svg",
+      "sha256": "6fa99bd1c1a85a2173c71b2d4bfbcb4744566024916a586941faf28c1e256691"
+    },
+    {
+      "path": "packages/app/src/icons/svg/cpu.svg",
+      "sha256": "a6667ae4cba2fea97f9511939833dd6682641a209d69e9c9bba01f5fda4532bd"
+    },
+    {
+      "path": "packages/app/src/icons/svg/diff.svg",
+      "sha256": "b2a85bb75e15704905d4fdd4acea5ce1c0074bbf910d724b04fe43244f0dca40"
+    },
+    {
+      "path": "packages/app/src/icons/svg/download.svg",
+      "sha256": "a999b26c885f66f278871931942edbd37cda59fd079358bc09c7e7c509b7f88b"
+    },
+    {
+      "path": "packages/app/src/icons/svg/edit.svg",
+      "sha256": "26b9f7b8bc017a98f3aeb321bec828289cbd85e5f403e15ea75c95b7ea472d40"
+    },
+    {
+      "path": "packages/app/src/icons/svg/expand.svg",
+      "sha256": "231ed608a3b655ad5e32a4d2a88851d9303e87f14fe69d1147354de2f5738808"
+    },
+    {
+      "path": "packages/app/src/icons/svg/file-code.svg",
+      "sha256": "867221eb1f43d95fccd8c939a96364bf44adb727ace612bdad1960d0da303a61"
+    },
+    {
+      "path": "packages/app/src/icons/svg/file.svg",
+      "sha256": "067818c99297fa7bb2c688c1beb760abc9fffdd19ccfba0b16d25ec0250fb884"
+    },
+    {
+      "path": "packages/app/src/icons/svg/focus.svg",
+      "sha256": "708c4e5868287d9d08b914d594c5ae1cd40989992aca8d5164fa3c8d9e25b929"
+    },
+    {
+      "path": "packages/app/src/icons/svg/folder-code.svg",
+      "sha256": "a5248d51995dd80611ecfd919e6e824f47a2537b80f483ac43c86da9b282b2f2"
+    },
+    {
+      "path": "packages/app/src/icons/svg/folder-open.svg",
+      "sha256": "bca4f6207ca9827ee78a02ce4eb4ef34715c0855cbb068fb141d6e01cd47d7b5"
+    },
+    {
+      "path": "packages/app/src/icons/svg/folder.svg",
+      "sha256": "19e3b011e827a34f5d7952e377f229a1eacdf74b8504aed21ee62e7a6e580f18"
+    },
+    {
+      "path": "packages/app/src/icons/svg/git-branch.svg",
+      "sha256": "c85b30b70ef9f702887e88111bfabc82e5950c994dd92506723abd0b6aa0c643"
+    },
+    {
+      "path": "packages/app/src/icons/svg/globe.svg",
+      "sha256": "cd5f5fd1f1656b2a883fff3b6a83569722ede6d2d8bee9fa7a34fd719d441922"
+    },
+    {
+      "path": "packages/app/src/icons/svg/history.svg",
+      "sha256": "bd4205217fe75cc3f27493e032f83efc2bbb7a5c4641d27e2d4de39b29826754"
+    },
+    {
+      "path": "packages/app/src/icons/svg/home.svg",
+      "sha256": "a9e5b29a3f944682d9ba5b096a1afb7637c9762c2965b701399b407718a162cc"
+    },
+    {
+      "path": "packages/app/src/icons/svg/image.svg",
+      "sha256": "f6b1d8764a85f4f24c238a4e4ed16c1fab04fba60760c0210a17431ed53989d7"
+    },
+    {
+      "path": "packages/app/src/icons/svg/info.svg",
+      "sha256": "9a15937e36e8ea2cedcda4e0efcb105049a2b98691eb6f409e2a8ebfdc348fbc"
+    },
+    {
+      "path": "packages/app/src/icons/svg/key.svg",
+      "sha256": "df91318d30e54567a955874239249e02cd921c76303c1b514af643cd8fac4a55"
+    },
+    {
+      "path": "packages/app/src/icons/svg/link.svg",
+      "sha256": "5e9a008c2e9405cb6eb2e9fe08b587ff5fc28d1123a83cd00f5bb9a2bd42943d"
+    },
+    {
+      "path": "packages/app/src/icons/svg/loader.svg",
+      "sha256": "e420af91037fa3a88e10b2ee6c938030a67e2770cfbe2e655ca91e62e38053b2"
+    },
+    {
+      "path": "packages/app/src/icons/svg/mail.svg",
+      "sha256": "19dbf1bd965f6c31b25160da73f7c567322361baa2619f156f0c4ae6750b98fe"
+    },
+    {
+      "path": "packages/app/src/icons/svg/mentions.svg",
+      "sha256": "259ff3238768e316fadf3a56e65cf266811655600ae5a263b9930bf0d38cd9f8"
+    },
+    {
+      "path": "packages/app/src/icons/svg/mic-off.svg",
+      "sha256": "ac9b0e2410ec474649a6fe8feb69198c9f4b82ea25ac63754d360f2b337d7867"
+    },
+    {
+      "path": "packages/app/src/icons/svg/mic.svg",
+      "sha256": "d72c65c19f20c17dab7bf38c39f5f9659f198dc1bfd09803789f0ca5e6ce47a8"
+    },
+    {
+      "path": "packages/app/src/icons/svg/moon.svg",
+      "sha256": "08f2e15d96d35de4cf925610103d566912a6b932a73a560383c7e5931bf1e45e"
+    },
+    {
+      "path": "packages/app/src/icons/svg/more-horizontal.svg",
+      "sha256": "31d7966cd4fbe1a558d8ed983882ca5556cf27aa1789c51a38f7287f85579b06"
+    },
+    {
+      "path": "packages/app/src/icons/svg/paperclip.svg",
+      "sha256": "8d59f35fd36603f8dab6f68b0403a89b77eba91c3758f548dfd5312163a6a0b2"
+    },
+    {
+      "path": "packages/app/src/icons/svg/pause.svg",
+      "sha256": "f4ea9fc6ec490766fe13fe996a9576b6a02c7c19066ee3727a52062b5bd20d8a"
+    },
+    {
+      "path": "packages/app/src/icons/svg/pin.svg",
+      "sha256": "920be59bab56ea41332a671231167a580d0c3cc1d039e134211c9f9a2445af3a"
+    },
+    {
+      "path": "packages/app/src/icons/svg/play.svg",
+      "sha256": "38814c3c15202766428250434cab0a9b29de7ecf9c66da53c3273022b5a9b1b1"
+    },
+    {
+      "path": "packages/app/src/icons/svg/plus.svg",
+      "sha256": "ced0632b59e0ed3861ddec976887134fa791bcec4e0f8a38af7bd70397990682"
+    },
+    {
+      "path": "packages/app/src/icons/svg/projects.svg",
+      "sha256": "bdca1eb0692112d689129b865539684155701480f5ee2b24ec3df747d80caca2"
+    },
+    {
+      "path": "packages/app/src/icons/svg/pull-request.svg",
+      "sha256": "a716c67f01d634764c27db099c529f45942407dc53d438124efa72ef0b962a0e"
+    },
+    {
+      "path": "packages/app/src/icons/svg/refresh.svg",
+      "sha256": "e18bf448ba1714530cb420c97f6c17c64bb3b1e2d222a77bf7ad0d9372de0730"
+    },
+    {
+      "path": "packages/app/src/icons/svg/rocket.svg",
+      "sha256": "dd2c29dfea4e49957d05343978d20909add8be7b20e626b06a219167bd6f66bc"
+    },
+    {
+      "path": "packages/app/src/icons/svg/search.svg",
+      "sha256": "8ed10b43f6768db12d94eef1aa6181a936e8c95224d1a682be3a19c9096b87cd"
+    },
+    {
+      "path": "packages/app/src/icons/svg/settings.svg",
+      "sha256": "59cc73e048d95684b1fc338bdbc95078d5991a27be595cda28444ebee43d2fd2"
+    },
+    {
+      "path": "packages/app/src/icons/svg/share.svg",
+      "sha256": "d5dfe6533eaa7da5fe46712aa41d61ae5c762bc1bc8b0281f2f49b04eb25cf1e"
+    },
+    {
+      "path": "packages/app/src/icons/svg/shield-check.svg",
+      "sha256": "51c633c0e67bc0ba500ac0274b1d450552021cff9f82423f0461cc68d0227df9"
+    },
+    {
+      "path": "packages/app/src/icons/svg/sidebar-toggle.svg",
+      "sha256": "704fd3e060cb7c0a55209df33e3d4617345f2eec2c16a70e072f12f02ed1c038"
+    },
+    {
+      "path": "packages/app/src/icons/svg/smartphone.svg",
+      "sha256": "c086228c6e4aef08ef83ea35dff421962bba73997389f8e265b8377e319f6c2a"
+    },
+    {
+      "path": "packages/app/src/icons/svg/sparkle-free.svg",
+      "sha256": "2a853d9e055930060518938fa8397adda28979d8fce97c0ecaef5637c71aafbe"
+    },
+    {
+      "path": "packages/app/src/icons/svg/stop.svg",
+      "sha256": "6d8443cc8e2f8ee0e62070e9110970c86745abde490c1a845c577b9c9071949c"
+    },
+    {
+      "path": "packages/app/src/icons/svg/sun.svg",
+      "sha256": "5b9f9ec849540b4d5ec9700fcafb287b46598c7ea411c50d44f554683416ac9a"
+    },
+    {
+      "path": "packages/app/src/icons/svg/system.svg",
+      "sha256": "1aa95bba95a054bf79529daf5cda51411fd11cf863b86e52cf308b2d125c1298"
+    },
+    {
+      "path": "packages/app/src/icons/svg/terminal.svg",
+      "sha256": "a95163d33ae9091ca8b29647eb8bfc7a984b2ac6ab291d9bed87653f7158c6e5"
+    },
+    {
+      "path": "packages/app/src/icons/svg/thumb-down.svg",
+      "sha256": "ef687bbbfc0b6eb6f20869fe9c0fb06b1477563711c5f6fdd857bfdaf3ca80cf"
+    },
+    {
+      "path": "packages/app/src/icons/svg/thumb-up.svg",
+      "sha256": "94173a3af13baff8b0ffce91e1651e1a90ce94154ce1d78fa2c23398f6b9ba44"
+    },
+    {
+      "path": "packages/app/src/icons/svg/trash.svg",
+      "sha256": "2547461f963794d15d93d91965fcb49178326673cfadad5daecd231bf0872c10"
+    },
+    {
+      "path": "packages/app/src/icons/svg/user.svg",
+      "sha256": "a6cf381f927f1fca80a79c69b6d214b14d981f6ad4ed917d113f0660c7e0be26"
+    },
+    {
+      "path": "packages/app/src/icons/svg/voice-wave.svg",
+      "sha256": "e066439261e6724de4b775eae450c3a8c6a9a8a7d874f67dcc8f0f4aa28fd287"
+    },
+    {
+      "path": "packages/app/src/icons/svg/x-circle.svg",
+      "sha256": "a8bfb2a59419e86a37914fc3fcff3d486c1c76d4b7d5ca209f1838593c88ccc5"
+    },
+    {
+      "path": "packages/app/src/kit/styles.css",
+      "sha256": "1f728575e54ab195b0efa61c80043b5300264c98ff0210934c475f183c893be1"
+    },
+    {
+      "path": "packages/app/src/kit/ui.tsx",
+      "sha256": "df465e775780fca2e8022cd591a6e33a6865191c4b1a8818c32eb664f238bd50"
+    },
+    {
+      "path": "packages/app/src/main.tsx",
+      "sha256": "549e1bde41600e5cabcf7f74189b43fe3aa53aa777b1dc3e79dae0f0c9dc60fd"
+    },
+    {
+      "path": "packages/app/src/mascot/Mascot.tsx",
+      "sha256": "59674f2b3e7187239dfb76ba63e63f7cc53c1edcdd3299a350400291fe445fb9"
+    },
+    {
+      "path": "packages/app/src/mascot/mascot.css",
+      "sha256": "4b52362c8a7f2d38f158028509aca840a2f8312e5b66ea263f598a6e194526f7"
+    },
+    {
+      "path": "packages/app/src/mascot/parts.tsx",
+      "sha256": "bcbfc008d47d65a8595500a554c8b2a2e0993d0a43c66886cda6606cbd6bf0f6"
+    },
+    {
+      "path": "packages/app/src/preview.tsx",
+      "sha256": "5734b59643af8811a75159c651ee23bf3c766b5abe5d428cbef34b8f70873629"
+    },
+    {
+      "path": "packages/app/src/registry.tsx",
+      "sha256": "8828895bf0c2ffb16abd5d51233e64ffae0703524875d2874c319c1d273de911"
+    },
+    {
+      "path": "packages/app/src/screens/bots/bot.tsx",
+      "sha256": "f660ed2a4ab303bf55527ed8c9d8c4e535df786675790509f51a55c21409a6f1"
+    },
+    {
+      "path": "packages/app/src/screens/bots/fixtures.ts",
+      "sha256": "8381f17feca76b6dc23d485f36ce5b2077a34dea0fc1c70ce29f8abcfd77a4c1"
+    },
+    {
+      "path": "packages/app/src/screens/bots/hairline.tsx",
+      "sha256": "0aa017a7e37bb6fbb7a74fb856bcd384adec01494207d0c6bd28b97a45719dcb"
+    },
+    {
+      "path": "packages/app/src/screens/bots/index.tsx",
+      "sha256": "b7c08f2345681dd6dd81bf99c2442fae12929537a8c5f8b1e7612bf4baefa1fe"
+    },
+    {
+      "path": "packages/app/src/screens/bots/mascot-io.ts",
+      "sha256": "1d861d3474cd77e33f3f4763c7ec8678a8384d120bc112ff09b9e4fabaf8e5bd"
+    },
+    {
+      "path": "packages/app/src/screens/bots/team.tsx",
+      "sha256": "1953d41d75427d9d5b55f3baec75102443149df6b802900e0d8ed513562eb14c"
+    },
+    {
+      "path": "packages/app/src/screens/chat/canvas.tsx",
+      "sha256": "87fafa4cf19666b71209f8572e6eb5cdd81b6fcde125fc517d2e3c51ff987af2"
+    },
+    {
+      "path": "packages/app/src/screens/chat/chat.css",
+      "sha256": "cf4e8b7223110f47574748b95664ed04217adbfa31762bc5925ed79091005fec"
+    },
+    {
+      "path": "packages/app/src/screens/chat/extras.tsx",
+      "sha256": "ac30cbe6eee033b83bd7483864d198ca9ade2375ee4773be355b66326f9eea3a"
+    },
+    {
+      "path": "packages/app/src/screens/chat/index.tsx",
+      "sha256": "683cf98f8025dcc74e7008a90107215b8db2efb9d269edf430ba0300b5310d78"
+    },
+    {
+      "path": "packages/app/src/screens/chat/live-chat.tsx",
+      "sha256": "c5ea58ac346d4ade23ab7c4c4c0934edb8132e123eec9320f41983ca7c9b16e0"
+    },
+    {
+      "path": "packages/app/src/screens/chat/model-composer.tsx",
+      "sha256": "cf9fde70480feddd3030f4c430038ede8869fb823a4808d22ec69b361e27b93a"
+    },
+    {
+      "path": "packages/app/src/screens/chat/pages.tsx",
+      "sha256": "6575d12d2393b28987b6b43643e185b97a853c5d0986f44d17de985009e3cb0b"
+    },
+    {
+      "path": "packages/app/src/screens/chat/research.tsx",
+      "sha256": "1295122b01954f2e51edaab12da6bc70b5d762375f69429b28405455b9b652f4"
+    },
+    {
+      "path": "packages/app/src/screens/chat/shared.tsx",
+      "sha256": "9d79558bb5c24bdefce55a46ff93f17eeeb10e73bbb49931607a3ea9788c38bc"
+    },
+    {
+      "path": "packages/app/src/screens/chat/states.tsx",
+      "sha256": "5137d51b864e70ecaa21f0105f25fbecd3796cc1cd8ca69c74fe544a59e1ddf8"
+    },
+    {
+      "path": "packages/app/src/screens/chat/voice.tsx",
+      "sha256": "9745d445c511987d2196d1eca7408bc52560a970662e9a0e40185d37e4695648"
+    },
+    {
+      "path": "packages/app/src/screens/code/code.tsx",
+      "sha256": "51c76d03b98da536bc84d8e010a22115ca1df1d215df2723fab9224d0a1db225"
+    },
+    {
+      "path": "packages/app/src/screens/code/fixtures.ts",
+      "sha256": "6588da57175a1017646ac0b7a47943b89612c0235d49875cf67e478bc0af7f1d"
+    },
+    {
+      "path": "packages/app/src/screens/code/index.tsx",
+      "sha256": "9e4805dda50343bd48cb0b45993ff57b9bbc5c90aae8ab1d0e383842e2f3a3f8"
+    },
+    {
+      "path": "packages/app/src/screens/code/lot-code.css",
+      "sha256": "dd0c1bb34e70c558058451e381ed9a4ccd8a87208315f3ff949e13d7db660f00"
+    },
+    {
+      "path": "packages/app/src/screens/code/lot-code.tsx",
+      "sha256": "c60639ed760972d48291bd0afcdbb601ca8cc0a7b831655dfca7194fdd4a0e7c"
+    },
+    {
+      "path": "packages/app/src/screens/code/parts.tsx",
+      "sha256": "6b94f4b93c4032a3807e3b09d40334202d4867c227c92f87319579da3df9893f"
+    },
+    {
+      "path": "packages/app/src/screens/files/docs.tsx",
+      "sha256": "4823841db9bf30607811439ccf7a77c4d7dce9ab67321555ea4d4c5f480cdc99"
+    },
+    {
+      "path": "packages/app/src/screens/files/files.css",
+      "sha256": "6c8c504edca7622fe954f4d9413252fa8279a409c5188e787ae754c76e05b842"
+    },
+    {
+      "path": "packages/app/src/screens/files/index.tsx",
+      "sha256": "5b31e1c5be1d534bcbb19b017ebdc3417beb48189125909839d706ca1a4dde33"
+    },
+    {
+      "path": "packages/app/src/screens/files/media.tsx",
+      "sha256": "2abd71d902f483d46278b1d80733f79a01c20a9f996099cf5ebb15c899ebab1b"
+    },
+    {
+      "path": "packages/app/src/screens/files/shared.tsx",
+      "sha256": "3c988daa8d44c2db16bb53c3a6e2f08313ed95f5a8a622405dc54b771be694f1"
+    },
+    {
+      "path": "packages/app/src/screens/system/account.tsx",
+      "sha256": "7d6946caefc5f0333267c41fb472d321a8f62358023933c7e2fcd2c6674f0a36"
+    },
+    {
+      "path": "packages/app/src/screens/system/common.tsx",
+      "sha256": "efc26b8a17a17995139477aad2f6f396c28e9ec251fc1a6a802cdb0405db2a8c"
+    },
+    {
+      "path": "packages/app/src/screens/system/components-data.ts",
+      "sha256": "71860f9bdc7cb839bcc3e555bafd1e543c199faa3dc62764b1b40c979cacf9fd"
+    },
+    {
+      "path": "packages/app/src/screens/system/components.css",
+      "sha256": "c36f5d4634bc20e3831e44cdd5ee0fb2a65d566841a7433860d07fd368424598"
+    },
+    {
+      "path": "packages/app/src/screens/system/components.tsx",
+      "sha256": "b632bdf520ed6d44171963cce138f7f80db5defbb0e072bc6ba3ca63ed514b44"
+    },
+    {
+      "path": "packages/app/src/screens/system/fixtures.ts",
+      "sha256": "fab0e862234325b013eedd519debc99a09acd70ca23fd8abcf9fe157c6af1719"
+    },
+    {
+      "path": "packages/app/src/screens/system/index.tsx",
+      "sha256": "eb372916d653074839f08e8c442ee03227fce890c323589979d053941622ada4"
+    },
+    {
+      "path": "packages/app/src/screens/system/misc.tsx",
+      "sha256": "e2543e4b9b104e6784d5c02cc5aaae14993c19b848c3619c6bdfd08ac33073e7"
+    },
+    {
+      "path": "packages/app/src/screens/system/projects.tsx",
+      "sha256": "7928365a51f542d6c1af0a1dab3f11c3d7a80560e105130746b39adabb425011"
+    },
+    {
+      "path": "packages/app/src/screens/system/search.tsx",
+      "sha256": "3d1080ab1c3e79d61e2e50f51ef1cd49497b80a6276fa879d10acd70eea0269b"
+    },
+    {
+      "path": "packages/app/src/screens/system/settings.tsx",
+      "sha256": "8b012ffa2b1b464bb82b7f050b82275564ecb1dc9708dce2be35a64aefcd6d48"
+    },
+    {
+      "path": "packages/app/src/screens/system/system.css",
+      "sha256": "f82f52986d0148715b3b596afde15018852a9e4821dac918237e249fb2f8ecbd"
+    },
+    {
+      "path": "packages/app/src/screens/work/common.tsx",
+      "sha256": "a40a315591ed8a82dd825ac04dad9da54ee9a02b176e050a56290c3bf4b1bd86"
+    },
+    {
+      "path": "packages/app/src/screens/work/desk.tsx",
+      "sha256": "1fd2ca98a9416e8da406aa64f56ab4eecb1f934a741e785ae91888d30d82aa99"
+    },
+    {
+      "path": "packages/app/src/screens/work/fixtures.ts",
+      "sha256": "5fdf264c749b919c1033722a109eb9daa75d03c854ab64cfee645e5667bb67b6"
+    },
+    {
+      "path": "packages/app/src/screens/work/home.tsx",
+      "sha256": "61e37805bd9591619ce82e1e0e73af39fcf79b76ac0277bbf6b531a311cfd5b8"
+    },
+    {
+      "path": "packages/app/src/screens/work/index.tsx",
+      "sha256": "4b2305976659778dcd5cf49dbad47715ce067c9c189cd278666036563b6ea914"
+    },
+    {
+      "path": "packages/app/src/screens/work/routines.tsx",
+      "sha256": "7cb53f717dae1271d0ac0346ec33124734a61ba26dfba9c581dd0c5415bb3e48"
+    },
+    {
+      "path": "packages/app/src/screens/work/work.css",
+      "sha256": "8e29cb494561ef4c29454b993a2e87f3e39e75087a6e80438caf16d936916577"
+    },
+    {
+      "path": "packages/app/src/shell/gallery.tsx",
+      "sha256": "d7947b6429567e4bb0b3ddb945f5798f5d6c43cd7613956f748adb733be5e20c"
+    },
+    {
+      "path": "packages/app/src/shell/nav.tsx",
+      "sha256": "876682aef675ef9e0b1c5a3a59a49b00acbb1da84a7897f0dc17efa287579315"
+    },
+    {
+      "path": "packages/app/src/shell/not-found.tsx",
+      "sha256": "8c9fe887cc8a45ef9f2635f045696f7d214649ecaa677fcf9927dd2e3dda8876"
+    },
+    {
+      "path": "packages/app/src/shell/shell.tsx",
+      "sha256": "05eb0b2d7e013d735a3d95d259986a8fb5202f9b04e5c1142d787126bdfc0056"
+    },
+    {
+      "path": "packages/app/src/state/live.ts",
+      "sha256": "7af5441489592dfb8f3a6f9ff6fb5b68f6e9d035b9704933f3df73ca777ec057"
+    },
+    {
+      "path": "packages/app/src/state/runtime-settings.ts",
+      "sha256": "a441e7e520e803c49f1fb5a5755c8e2cb0efed9dcdb4f30ce284a789f44e8c00"
+    },
+    {
+      "path": "packages/app/src/state/tool-label.ts",
+      "sha256": "ccdc2f6894f6968011502495ca69a9fce1e15369c4a89b8f9a5ddea29fc0bf1a"
+    },
+    {
+      "path": "packages/app/vite.config.ts",
+      "sha256": "d0948d1dc790d03af0c06baa6649e6dc111000e879cb5986f9653d62db74b368"
+    },
+    {
+      "path": "packages/client/src/index.ts",
+      "sha256": "8134f2b0a1254745a998de64e8801e8d0ad53da2f8db8f39a86824c1118d7be3"
+    },
+    {
+      "path": "packages/i18n/locales/de/bots.json",
+      "sha256": "b7d3ad8f372e43945a62a78af1f796b6b14a12365b19de196d325d4f9eeadc33"
+    },
+    {
+      "path": "packages/i18n/locales/de/bots.source.json",
+      "sha256": "c4c5fdb55a243758ffbef0da65ce0747c2dd54ba53812645f196b44492937ddb"
+    },
+    {
+      "path": "packages/i18n/locales/de/chat.json",
+      "sha256": "62c28e29b7eb5021532cf342a0a21a966d73e6d4fa5f2f9ecead7af54a0bf8c9"
+    },
+    {
+      "path": "packages/i18n/locales/de/chat.source.json",
+      "sha256": "84c06c79f8d02fcc0c445debd38e0063f99a5574cdc4be4e2ed5d6ea153de84a"
+    },
+    {
+      "path": "packages/i18n/locales/de/code.json",
+      "sha256": "325a3869511a422a1a7bd026ebaf062269ea5e92a7af28b0f5cd60d2d0d18a87"
+    },
+    {
+      "path": "packages/i18n/locales/de/code.source.json",
+      "sha256": "89a7fd4e7965a0fedb4b0de07dcf2a04270201d98ae7eabd3d45be05a4797f88"
+    },
+    {
+      "path": "packages/i18n/locales/de/common.json",
+      "sha256": "a1004240418e3ceb69d675cd01d8439a9aeba1e8fc5001c14b3321b49e81f3bb"
+    },
+    {
+      "path": "packages/i18n/locales/de/common.source.json",
+      "sha256": "bf40defb66ab9c15ce531a1fa102f8941e392e47cfa39cbe8dee3afb6c252056"
+    },
+    {
+      "path": "packages/i18n/locales/de/components.json",
+      "sha256": "715869fa7846697624125223e5b1729a68d4d48566daf4c09e3fc3a47bdacf91"
+    },
+    {
+      "path": "packages/i18n/locales/de/composer.json",
+      "sha256": "94b84706bb77654851c3027baa00d2c04086cabf5d59877de0ffb3c7378232ee"
+    },
+    {
+      "path": "packages/i18n/locales/de/composer.source.json",
+      "sha256": "d8352e3b9d0240235113127f4ef708508d1911bfbc5019cacbe5652eabd914c5"
+    },
+    {
+      "path": "packages/i18n/locales/de/files.json",
+      "sha256": "0111d608d079fce5b4719006b4835d87544a943c33d2b2d23594e824be5f67d6"
+    },
+    {
+      "path": "packages/i18n/locales/de/files.source.json",
+      "sha256": "684711be8c9fcf16d6dff21c9b98291baf59cc8127f83dfc7742f6ec5cfee659"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/bots.json",
+      "sha256": "92bc4446907234ecea65b19c774853384264eb8456f8e3d46c6def5e06690032"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/bots.source.json",
+      "sha256": "269e171661c0cc3a90782766b37d5515d337bfff087f18cf807718d0b6236d50"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/chat.json",
+      "sha256": "cdb2ee34795b7c53f934718e9dc13dc20927c8993c258c542e568037c111898d"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/chat.source.json",
+      "sha256": "786d78d5e4669edc1d062e25825c3dca267ffcb2e304458f56cbd83843266c28"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/code.json",
+      "sha256": "fca062faae1cfa8aa9926c788cac60ab6a01710b71b5782e6759aee3fb2368f8"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/code.source.json",
+      "sha256": "1e837d86568680543183182cc1cf3a2f9338c3ec669e140f58663c600815e403"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/files.json",
+      "sha256": "2f11a12e4fd37c82a27114aa612c587270cf85ef86962c80f00562378ffb1b1c"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/files.source.json",
+      "sha256": "1dbfcbcdc94fb4f3ef162ec055329bbdb49659e8573d69d47d664e4898c3201d"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/shell.json",
+      "sha256": "7747716042c5d24f4c8614468a0db57542c4f347468f289e3632eee30e556958"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/shell.source.json",
+      "sha256": "00566cac2472d935a4c4338a11a73cd6798ed42b45c92275a66c3129e10181c5"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/system.json",
+      "sha256": "ba0a1854411fe6d675f5fa36947ebc5cfd2645e31089f46dd5931606c3d5131d"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/system.source.json",
+      "sha256": "5d039fbbca359213bb4df24ea76ba64a6fd41d397997cb490e18135327baa9be"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/work.json",
+      "sha256": "948192505d2e8eb0d0906b0d88a5f38cbbbfe984d213317e529bf7f2d8baf27d"
+    },
+    {
+      "path": "packages/i18n/locales/de/fixtures/work.source.json",
+      "sha256": "2b62a8ad3eb58cb23cc5e597cf59928b15dedd908081656e27ca40152536fa8c"
+    },
+    {
+      "path": "packages/i18n/locales/de/gallery.json",
+      "sha256": "0c32c8dc4c20d22cc15aff1f5d23d24902a3706cd9289a812160d125d82bdb5d"
+    },
+    {
+      "path": "packages/i18n/locales/de/gallery.source.json",
+      "sha256": "dc3f97c5c697fd9944d87ed31d06e9d34152bfbd97fbb263f80b88b207fc3c7e"
+    },
+    {
+      "path": "packages/i18n/locales/de/mascot.json",
+      "sha256": "05e0efe55fbafbb25a985f7791038d119095ff274c4264a92cce8da4a8700b2a"
+    },
+    {
+      "path": "packages/i18n/locales/de/mascot.source.json",
+      "sha256": "ae38b38a2d3b0ec0e722faaa495e7f538667b2ad497d2e03512511d4a4832fe5"
+    },
+    {
+      "path": "packages/i18n/locales/de/menu.json",
+      "sha256": "03b0a2bd1c993c55059dd891af972e87a462a867ae1fc66e15e067d1097f4e9a"
+    },
+    {
+      "path": "packages/i18n/locales/de/menu.source.json",
+      "sha256": "11d7562457fb4e3a7263cbeeb74a9003cbefe6c68e80625923855a27b24c8128"
+    },
+    {
+      "path": "packages/i18n/locales/de/shell.json",
+      "sha256": "bbaf0ebd0cfb14986065ead2dd2f655437a57117b4d3d17fd3205ca7776f203d"
+    },
+    {
+      "path": "packages/i18n/locales/de/shell.source.json",
+      "sha256": "8ba4529fadc5da8e2a562d19e37788f8dfbb1c697487563c745e9facf9e87c75"
+    },
+    {
+      "path": "packages/i18n/locales/de/system.json",
+      "sha256": "39b5eaf5e868100d58d573ca8eef2d79107ddad33e8b53f0a87b88ca70da2f3a"
+    },
+    {
+      "path": "packages/i18n/locales/de/system.source.json",
+      "sha256": "78c2b71f48055a1cb9db3d838bbc434a882a708bdd0369ce0699d0c52c3896e2"
+    },
+    {
+      "path": "packages/i18n/locales/de/work.json",
+      "sha256": "761f1bd85943dbb35c6e911109a54364075574e1057a1f0238bd9f85783418b8"
+    },
+    {
+      "path": "packages/i18n/locales/de/work.source.json",
+      "sha256": "c22d0e5a9bc9ffeaaeae1a6d7c50dcbc2f4afecfa61e1bc17bf50b649f5f05df"
+    },
+    {
+      "path": "packages/i18n/locales/en/bots.json",
+      "sha256": "3c16b300332752ca200884548941ebb3b5562fd4a9ed1a2ce5f350411798681f"
+    },
+    {
+      "path": "packages/i18n/locales/en/chat.json",
+      "sha256": "2127240c44415c513d8ea761e44fdc5a110100f4ba253554632f7d57f3494736"
+    },
+    {
+      "path": "packages/i18n/locales/en/code.json",
+      "sha256": "381da5afb706c0408c90aceb4e32287e767f406be4a1d2fae0650f499f7d00db"
+    },
+    {
+      "path": "packages/i18n/locales/en/common.json",
+      "sha256": "69f0e0e8b334dfbc9b796b095acf6e8fe610becdb7d8a7aa6abb5489edc2f8c5"
+    },
+    {
+      "path": "packages/i18n/locales/en/components.json",
+      "sha256": "8ce0eb4d0e4ce93928777ab8707582ca73042f1cdef4b7d2d6e49b790563d520"
+    },
+    {
+      "path": "packages/i18n/locales/en/composer.json",
+      "sha256": "8132ad4e6f739f4c0ecc627a3b7d5e68b3f3858593a984ccd4d38081bff3b25e"
+    },
+    {
+      "path": "packages/i18n/locales/en/files.json",
+      "sha256": "b562d99dd24ff72852040cbb59f1e1555138fdcc2945b3bdc16de6b9ed564daa"
+    },
+    {
+      "path": "packages/i18n/locales/en/fixtures/bots.json",
+      "sha256": "17e0bf9cdd982cb4d9a1c6cf81d4196cf69d84fa681d3e7cc66857a9a50d50ce"
+    },
+    {
+      "path": "packages/i18n/locales/en/fixtures/chat.json",
+      "sha256": "b6cf74ab31e9f99c93d157f59ba7c3150b8f37ee9451b5b69579945192e89ceb"
+    },
+    {
+      "path": "packages/i18n/locales/en/fixtures/code.json",
+      "sha256": "fc47284fb40cadf634115afb2ccc54f55cccbbfa0b20168123ed7fe0940fe585"
+    },
+    {
+      "path": "packages/i18n/locales/en/fixtures/files.json",
+      "sha256": "60dfc53f85d0e9475bef9ef6156562251c5c30ee71cb7e0d52bdb35ab1652b4a"
+    },
+    {
+      "path": "packages/i18n/locales/en/fixtures/shell.json",
+      "sha256": "21e8ac50cad84924c8772d82d2a99fcfae466ef39c26af5bc6b3c33cd4395518"
+    },
+    {
+      "path": "packages/i18n/locales/en/fixtures/system.json",
+      "sha256": "5b9a628050360121bf5589f6c3c331c12a9e91994a25d1af321d659b3e8395ae"
+    },
+    {
+      "path": "packages/i18n/locales/en/fixtures/work.json",
+      "sha256": "8d1a340ee7be41c1096a68a7d90fbde2c8e5230628127196913ceb31bc0a05c6"
+    },
+    {
+      "path": "packages/i18n/locales/en/gallery.json",
+      "sha256": "441a708f30711f0b1495143970d3cc85c4c897f7062fe85ddb91463c03f4532f"
+    },
+    {
+      "path": "packages/i18n/locales/en/mascot.json",
+      "sha256": "38dbd69c857f2a0b4c194e08044b20f6b7a08e7048f4010ec59cf9abb6be2a39"
+    },
+    {
+      "path": "packages/i18n/locales/en/menu.json",
+      "sha256": "8e89227662b19633fad7b041bebed4861d9158953bf90ac2b922ac064316b8a0"
+    },
+    {
+      "path": "packages/i18n/locales/en/shell.json",
+      "sha256": "8ba4529fadc5da8e2a562d19e37788f8dfbb1c697487563c745e9facf9e87c75"
+    },
+    {
+      "path": "packages/i18n/locales/en/system.json",
+      "sha256": "11c7908686eaee10c25a9426441fb79c1e72a48d324e22e486fcf0db9aaba8fe"
+    },
+    {
+      "path": "packages/i18n/locales/en/work.json",
+      "sha256": "b048e9d08538c76641f215503a3e7f43216fa4c4d9b4f41c4f3de4a6de41ade9"
+    },
+    {
+      "path": "packages/i18n/locales/es/bots.json",
+      "sha256": "13d924e10d0b0f54f24c418635d6bb29d3d70fb97842c9c96c60dbed34867586"
+    },
+    {
+      "path": "packages/i18n/locales/es/bots.source.json",
+      "sha256": "c4c5fdb55a243758ffbef0da65ce0747c2dd54ba53812645f196b44492937ddb"
+    },
+    {
+      "path": "packages/i18n/locales/es/chat.json",
+      "sha256": "52f041b592c327dd54eb4f372b21b906f06d3f4abe2cd0c88dbd778f92da9397"
+    },
+    {
+      "path": "packages/i18n/locales/es/chat.source.json",
+      "sha256": "84c06c79f8d02fcc0c445debd38e0063f99a5574cdc4be4e2ed5d6ea153de84a"
+    },
+    {
+      "path": "packages/i18n/locales/es/code.json",
+      "sha256": "1bab03f62b65f1f60659ab460c1ad8b9a7150a853e3671026c00f5454f84508d"
+    },
+    {
+      "path": "packages/i18n/locales/es/code.source.json",
+      "sha256": "89a7fd4e7965a0fedb4b0de07dcf2a04270201d98ae7eabd3d45be05a4797f88"
+    },
+    {
+      "path": "packages/i18n/locales/es/common.json",
+      "sha256": "21e780a16640e1596cd7a6761d98cebd88517e056832b65c6ce58f7575495fbe"
+    },
+    {
+      "path": "packages/i18n/locales/es/common.source.json",
+      "sha256": "bf40defb66ab9c15ce531a1fa102f8941e392e47cfa39cbe8dee3afb6c252056"
+    },
+    {
+      "path": "packages/i18n/locales/es/components.json",
+      "sha256": "e481da459be60b70b5776ecfb6ff597b36c876f44790f222a1d5fc573c1f905b"
+    },
+    {
+      "path": "packages/i18n/locales/es/composer.json",
+      "sha256": "21b4d06fd743c04a9e45c3c090b24f095e10b395743843c5413c9984a5c510fd"
+    },
+    {
+      "path": "packages/i18n/locales/es/composer.source.json",
+      "sha256": "d8352e3b9d0240235113127f4ef708508d1911bfbc5019cacbe5652eabd914c5"
+    },
+    {
+      "path": "packages/i18n/locales/es/files.json",
+      "sha256": "1f005b9199f24124b2ed3e0bdc02fa40e3318180557333c66d52ec03b565afbe"
+    },
+    {
+      "path": "packages/i18n/locales/es/files.source.json",
+      "sha256": "684711be8c9fcf16d6dff21c9b98291baf59cc8127f83dfc7742f6ec5cfee659"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/bots.json",
+      "sha256": "0bc678215c1bce0958a15a0218be67b474e9dfd4f126e9a25a42340ccfb42ad5"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/bots.source.json",
+      "sha256": "269e171661c0cc3a90782766b37d5515d337bfff087f18cf807718d0b6236d50"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/chat.json",
+      "sha256": "e4e2cbb0aef194f717f654a0a6ff48dc05099acdc2acc9668c2198a75614376c"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/chat.source.json",
+      "sha256": "786d78d5e4669edc1d062e25825c3dca267ffcb2e304458f56cbd83843266c28"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/code.json",
+      "sha256": "9bd269715885fe004bec4f0362f6af519efaac55079c5f7d7f0eb4f0beb2871a"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/code.source.json",
+      "sha256": "1e837d86568680543183182cc1cf3a2f9338c3ec669e140f58663c600815e403"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/files.json",
+      "sha256": "36e3c89fe02cece133f61b95535eb354988c7251cb3b0eac146310077e0dfbe2"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/files.source.json",
+      "sha256": "1dbfcbcdc94fb4f3ef162ec055329bbdb49659e8573d69d47d664e4898c3201d"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/shell.json",
+      "sha256": "b0bfc461741c040a38f5dde7e5724713d9114df97095807300b0fafac9df30cd"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/shell.source.json",
+      "sha256": "00566cac2472d935a4c4338a11a73cd6798ed42b45c92275a66c3129e10181c5"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/system.json",
+      "sha256": "17c60991b38efdbbeeec34f7d460ab0a5fc7b404ce9ff84dfbac06a087651954"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/system.source.json",
+      "sha256": "5d039fbbca359213bb4df24ea76ba64a6fd41d397997cb490e18135327baa9be"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/work.json",
+      "sha256": "27987e10e9ecc02e904c86721604843688200cab0692354fcbc8e3cf16ef30ac"
+    },
+    {
+      "path": "packages/i18n/locales/es/fixtures/work.source.json",
+      "sha256": "2b62a8ad3eb58cb23cc5e597cf59928b15dedd908081656e27ca40152536fa8c"
+    },
+    {
+      "path": "packages/i18n/locales/es/gallery.json",
+      "sha256": "412c21e0c57c5b1004159b520cf1a59dd4cea172d3eb3e4518b4fc51f6c3a756"
+    },
+    {
+      "path": "packages/i18n/locales/es/gallery.source.json",
+      "sha256": "dc3f97c5c697fd9944d87ed31d06e9d34152bfbd97fbb263f80b88b207fc3c7e"
+    },
+    {
+      "path": "packages/i18n/locales/es/mascot.json",
+      "sha256": "229caecf8f711964174c4bbd2c38521f3774702d93ec6bf06fe0ce7af5aa6d40"
+    },
+    {
+      "path": "packages/i18n/locales/es/mascot.source.json",
+      "sha256": "ae38b38a2d3b0ec0e722faaa495e7f538667b2ad497d2e03512511d4a4832fe5"
+    },
+    {
+      "path": "packages/i18n/locales/es/menu.json",
+      "sha256": "b27f31b1c636d81bc56ab775058a1494a1e6ee8dbd63c1a1753db817115a1d8e"
+    },
+    {
+      "path": "packages/i18n/locales/es/menu.source.json",
+      "sha256": "11d7562457fb4e3a7263cbeeb74a9003cbefe6c68e80625923855a27b24c8128"
+    },
+    {
+      "path": "packages/i18n/locales/es/shell.json",
+      "sha256": "1ab2c9069a9f505f7b164df30568b3bc9c9e1085bef99bd7f8891e39b6ad10e9"
+    },
+    {
+      "path": "packages/i18n/locales/es/shell.source.json",
+      "sha256": "8ba4529fadc5da8e2a562d19e37788f8dfbb1c697487563c745e9facf9e87c75"
+    },
+    {
+      "path": "packages/i18n/locales/es/system.json",
+      "sha256": "42ff4ba0148e93fd253c93042f63a10b170a17ce0927cfe84223e965a3b40ba3"
+    },
+    {
+      "path": "packages/i18n/locales/es/system.source.json",
+      "sha256": "4c182cc0d90fdff19c465eb4e84039d27848cace4809492624291a661ba50161"
+    },
+    {
+      "path": "packages/i18n/locales/es/work.json",
+      "sha256": "4c2c062ecae0e8d8f76eb25f83311b6c21662a02a62450d6c293c3cb9dba750d"
+    },
+    {
+      "path": "packages/i18n/locales/es/work.source.json",
+      "sha256": "c22d0e5a9bc9ffeaaeae1a6d7c50dcbc2f4afecfa61e1bc17bf50b649f5f05df"
+    },
+    {
+      "path": "packages/i18n/locales/fr/bots.json",
+      "sha256": "04b273e95c79e8028ac2f87722c2090ba06be49d925775b77abb6944bcc4444e"
+    },
+    {
+      "path": "packages/i18n/locales/fr/bots.source.json",
+      "sha256": "c4c5fdb55a243758ffbef0da65ce0747c2dd54ba53812645f196b44492937ddb"
+    },
+    {
+      "path": "packages/i18n/locales/fr/chat.json",
+      "sha256": "d58fcf4c3381cb42a35d28b0d48b64273660cfdbdc6fc31b33350ccc4f7297ed"
+    },
+    {
+      "path": "packages/i18n/locales/fr/chat.source.json",
+      "sha256": "84c06c79f8d02fcc0c445debd38e0063f99a5574cdc4be4e2ed5d6ea153de84a"
+    },
+    {
+      "path": "packages/i18n/locales/fr/code.json",
+      "sha256": "6636d0c3f03cca0fa7c161de49f368e8816caf0a1a9af3c673c2d92314cb7526"
+    },
+    {
+      "path": "packages/i18n/locales/fr/code.source.json",
+      "sha256": "89a7fd4e7965a0fedb4b0de07dcf2a04270201d98ae7eabd3d45be05a4797f88"
+    },
+    {
+      "path": "packages/i18n/locales/fr/common.json",
+      "sha256": "e93295b100a1b2d7b90542126d2edf08f74ca52f6a62e5e1b7373a533628b9af"
+    },
+    {
+      "path": "packages/i18n/locales/fr/common.source.json",
+      "sha256": "bf40defb66ab9c15ce531a1fa102f8941e392e47cfa39cbe8dee3afb6c252056"
+    },
+    {
+      "path": "packages/i18n/locales/fr/components.json",
+      "sha256": "2bd6b6ce9a7f6f1680a6e4c0a8d4275a7ab38ba5cda796008e9d4ef6d819f1ec"
+    },
+    {
+      "path": "packages/i18n/locales/fr/composer.json",
+      "sha256": "92fa54c6d3a7dc88e4e09027ff9341ec61836747951bb88a09c5a6d44fdf6763"
+    },
+    {
+      "path": "packages/i18n/locales/fr/composer.source.json",
+      "sha256": "d8352e3b9d0240235113127f4ef708508d1911bfbc5019cacbe5652eabd914c5"
+    },
+    {
+      "path": "packages/i18n/locales/fr/files.json",
+      "sha256": "727c3c8f95f065b0968683bd304315f7c8f483bb7bd2ea2f47994da4585212d8"
+    },
+    {
+      "path": "packages/i18n/locales/fr/files.source.json",
+      "sha256": "684711be8c9fcf16d6dff21c9b98291baf59cc8127f83dfc7742f6ec5cfee659"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/bots.json",
+      "sha256": "baf08b9d951ca3d5bf8bca9c6c71d63f951f820e133de7d04333abd2e570993b"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/bots.source.json",
+      "sha256": "6c7c439b246a68036d774637a8b6ec981a9b4169f3f0dd10f34a7034dfe7d897"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/chat.json",
+      "sha256": "3f61bb73c132c53f5c15e87821cc5bf35464d09792d961924b9c588e913cc5df"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/chat.source.json",
+      "sha256": "a6a331fa54f84495d77ede779af7e354f981cb1dd16a7e6be07fdbe25826fe2c"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/code.json",
+      "sha256": "257e9835ac7817db68bde63126da99735d6366ba56553504f05d81b568ff5d27"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/code.source.json",
+      "sha256": "c21074ab1f12b4d7e2b69a3e5b64c022af537e40d9b5f481e51ae4da64c9037e"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/files.json",
+      "sha256": "4ab112eb9e43202ebdcd09b541b76686e2d2db84367b5b4df1921510fd7496c5"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/files.source.json",
+      "sha256": "1e50fe829c201281289909cf212e0989951d42a5f0d604e67377c0874b99afbf"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/shell.json",
+      "sha256": "2eebff73c0f22f18c099b4626b1a348e129c9e9120201d6ca318d20eb776e365"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/shell.source.json",
+      "sha256": "327b556c89b79238ddbbcf56c7cbdd511043d597dcab9498f7a7bee75107a2f0"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/system.json",
+      "sha256": "a149a848994f06877fd00eee3d4278539fb06af2f43aee36d990d71315d0aeee"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/system.source.json",
+      "sha256": "9bda8d6fd7e3dbe4fca9e1a45e4f4be09e25bf928c6d21841648992ea6b09d9d"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/work.json",
+      "sha256": "5fa01b54bcd70df8eb1406838c3cb749046541a95d549e40851ed26a7eec9c36"
+    },
+    {
+      "path": "packages/i18n/locales/fr/fixtures/work.source.json",
+      "sha256": "24870bcd0a6427052ca9e39376bb1edcad5cf20f1f6e9d66a380b28e24bdc2b5"
+    },
+    {
+      "path": "packages/i18n/locales/fr/gallery.json",
+      "sha256": "16e50ecb449f3ee2f26baabda1cff26a2c45ee1e7452b579e355b2fa2d91f24e"
+    },
+    {
+      "path": "packages/i18n/locales/fr/gallery.source.json",
+      "sha256": "dc3f97c5c697fd9944d87ed31d06e9d34152bfbd97fbb263f80b88b207fc3c7e"
+    },
+    {
+      "path": "packages/i18n/locales/fr/mascot.json",
+      "sha256": "46dc0765fd89c8e01f9a8f4b41a78476bfd18468bdb0353a5f1a1a32e0c4b690"
+    },
+    {
+      "path": "packages/i18n/locales/fr/mascot.source.json",
+      "sha256": "ae38b38a2d3b0ec0e722faaa495e7f538667b2ad497d2e03512511d4a4832fe5"
+    },
+    {
+      "path": "packages/i18n/locales/fr/menu.json",
+      "sha256": "dae838016aab2de91acb8451d5b44b2a38ed13ae2069444561cd6b2f383a9f6b"
+    },
+    {
+      "path": "packages/i18n/locales/fr/menu.source.json",
+      "sha256": "11d7562457fb4e3a7263cbeeb74a9003cbefe6c68e80625923855a27b24c8128"
+    },
+    {
+      "path": "packages/i18n/locales/fr/shell.json",
+      "sha256": "456d547aee57b2aa143985e429f0800dbf2deed3eab129f9e136821414aa73d9"
+    },
+    {
+      "path": "packages/i18n/locales/fr/shell.source.json",
+      "sha256": "8ba4529fadc5da8e2a562d19e37788f8dfbb1c697487563c745e9facf9e87c75"
+    },
+    {
+      "path": "packages/i18n/locales/fr/system.json",
+      "sha256": "6f7ffa8dd7df0b777d31765fe137adaf6a4cefaed5d2d093ade6085d089eafa4"
+    },
+    {
+      "path": "packages/i18n/locales/fr/system.source.json",
+      "sha256": "4c182cc0d90fdff19c465eb4e84039d27848cace4809492624291a661ba50161"
+    },
+    {
+      "path": "packages/i18n/locales/fr/work.json",
+      "sha256": "6222b8a078107384d90bd548698cebd55c4aeb57838c6bf4c009136887938594"
+    },
+    {
+      "path": "packages/i18n/locales/fr/work.source.json",
+      "sha256": "c22d0e5a9bc9ffeaaeae1a6d7c50dcbc2f4afecfa61e1bc17bf50b649f5f05df"
+    },
+    {
+      "path": "packages/i18n/locales/ja/bots.json",
+      "sha256": "7f618da63fba22af74c99a7fcdade46aeb9e7601eeed2f01c9f884bd71626986"
+    },
+    {
+      "path": "packages/i18n/locales/ja/bots.source.json",
+      "sha256": "c4c5fdb55a243758ffbef0da65ce0747c2dd54ba53812645f196b44492937ddb"
+    },
+    {
+      "path": "packages/i18n/locales/ja/chat.json",
+      "sha256": "21e8dd4a4e4f2fde54da14b5e55b925740ba92b012648649a0ede2425e3426ae"
+    },
+    {
+      "path": "packages/i18n/locales/ja/chat.source.json",
+      "sha256": "84c06c79f8d02fcc0c445debd38e0063f99a5574cdc4be4e2ed5d6ea153de84a"
+    },
+    {
+      "path": "packages/i18n/locales/ja/code.json",
+      "sha256": "afb34f84274df6f73e5c7d445d848d1d18469da4320b2d1e0c0912a6fdb579e1"
+    },
+    {
+      "path": "packages/i18n/locales/ja/code.source.json",
+      "sha256": "89a7fd4e7965a0fedb4b0de07dcf2a04270201d98ae7eabd3d45be05a4797f88"
+    },
+    {
+      "path": "packages/i18n/locales/ja/common.json",
+      "sha256": "eb6b7c0fccb09a1de3ea14f1ea66a08acdf66ad94d9984f219150ec71d491dd0"
+    },
+    {
+      "path": "packages/i18n/locales/ja/common.source.json",
+      "sha256": "bf40defb66ab9c15ce531a1fa102f8941e392e47cfa39cbe8dee3afb6c252056"
+    },
+    {
+      "path": "packages/i18n/locales/ja/components.json",
+      "sha256": "16375a34c46b5738e6a8152b33490466f71b83809ddd753b48c524a8d7b3d47b"
+    },
+    {
+      "path": "packages/i18n/locales/ja/composer.json",
+      "sha256": "33fc462ff9598781719f1b2b46c531fdf012b81597c331bf6b449694979c79c6"
+    },
+    {
+      "path": "packages/i18n/locales/ja/composer.source.json",
+      "sha256": "d8352e3b9d0240235113127f4ef708508d1911bfbc5019cacbe5652eabd914c5"
+    },
+    {
+      "path": "packages/i18n/locales/ja/files.json",
+      "sha256": "8e9211c4eff84ef47690071211291a39835c63b91666b3c5cd774e0c26240ffd"
+    },
+    {
+      "path": "packages/i18n/locales/ja/files.source.json",
+      "sha256": "684711be8c9fcf16d6dff21c9b98291baf59cc8127f83dfc7742f6ec5cfee659"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/bots.json",
+      "sha256": "9ee093a15b50b2aeaa392b1590e929155b0cfcbb98382b5eaf74d0a461d1bed5"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/bots.source.json",
+      "sha256": "269e171661c0cc3a90782766b37d5515d337bfff087f18cf807718d0b6236d50"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/chat.json",
+      "sha256": "982a97848d5b2e993c9e8f14dcf5ca68f33052e6e36f38e8d22bbb2433a75ec3"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/chat.source.json",
+      "sha256": "786d78d5e4669edc1d062e25825c3dca267ffcb2e304458f56cbd83843266c28"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/code.json",
+      "sha256": "db7bfc221cbc176d6192d16ce85e894b617ce53dee50657fd8555001bba3b95a"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/code.source.json",
+      "sha256": "1e837d86568680543183182cc1cf3a2f9338c3ec669e140f58663c600815e403"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/files.json",
+      "sha256": "99ddbc54e2f6a07d3e27c7e20723276b6c0236a30102027f5ba791cb1d11a2b7"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/files.source.json",
+      "sha256": "1dbfcbcdc94fb4f3ef162ec055329bbdb49659e8573d69d47d664e4898c3201d"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/shell.json",
+      "sha256": "b2535a07c9560fa816a266258c6d13d1cabeb17767b32c771af2e7d230201158"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/shell.source.json",
+      "sha256": "00566cac2472d935a4c4338a11a73cd6798ed42b45c92275a66c3129e10181c5"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/system.json",
+      "sha256": "2df31eec1f6109c6ac38a76cad6155646cec247fb6d993bda72d7f5d5e4f605c"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/system.source.json",
+      "sha256": "5d039fbbca359213bb4df24ea76ba64a6fd41d397997cb490e18135327baa9be"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/work.json",
+      "sha256": "4bf89168cd03e783cbe2306718da131da002b5f40aeb2c637982d8946ff68e1d"
+    },
+    {
+      "path": "packages/i18n/locales/ja/fixtures/work.source.json",
+      "sha256": "2b62a8ad3eb58cb23cc5e597cf59928b15dedd908081656e27ca40152536fa8c"
+    },
+    {
+      "path": "packages/i18n/locales/ja/gallery.json",
+      "sha256": "d0ec5f546f44b3ab5a2302141b4aa396b0a47cf16fd9f8a0f9a3cafd4fc30de9"
+    },
+    {
+      "path": "packages/i18n/locales/ja/gallery.source.json",
+      "sha256": "dc3f97c5c697fd9944d87ed31d06e9d34152bfbd97fbb263f80b88b207fc3c7e"
+    },
+    {
+      "path": "packages/i18n/locales/ja/mascot.json",
+      "sha256": "60eb6cfc4d1d4ceef2e07f3c5d557ee61379a856c7aada65ce5da1b62fbf249f"
+    },
+    {
+      "path": "packages/i18n/locales/ja/mascot.source.json",
+      "sha256": "ae38b38a2d3b0ec0e722faaa495e7f538667b2ad497d2e03512511d4a4832fe5"
+    },
+    {
+      "path": "packages/i18n/locales/ja/menu.json",
+      "sha256": "18fcf9c8b8e3d9c3030e5187c83371caae759e2d2407faaa77ec6ebb62fe92ad"
+    },
+    {
+      "path": "packages/i18n/locales/ja/menu.source.json",
+      "sha256": "11d7562457fb4e3a7263cbeeb74a9003cbefe6c68e80625923855a27b24c8128"
+    },
+    {
+      "path": "packages/i18n/locales/ja/shell.json",
+      "sha256": "8887b05f91b4481aac9f902c2952e2197b6b3992f2361f2636d7e79e4dfcb629"
+    },
+    {
+      "path": "packages/i18n/locales/ja/shell.source.json",
+      "sha256": "8ba4529fadc5da8e2a562d19e37788f8dfbb1c697487563c745e9facf9e87c75"
+    },
+    {
+      "path": "packages/i18n/locales/ja/system.json",
+      "sha256": "2d98ffc71f748bafef451cf863a4016261ee93bd04464d3e29333940879b09b5"
+    },
+    {
+      "path": "packages/i18n/locales/ja/system.source.json",
+      "sha256": "4c182cc0d90fdff19c465eb4e84039d27848cace4809492624291a661ba50161"
+    },
+    {
+      "path": "packages/i18n/locales/ja/work.json",
+      "sha256": "5da3b64d559fa175e5838817d8768b9d5fe268da61b1967da9ec61f29dd143ae"
+    },
+    {
+      "path": "packages/i18n/locales/ja/work.source.json",
+      "sha256": "c22d0e5a9bc9ffeaaeae1a6d7c50dcbc2f4afecfa61e1bc17bf50b649f5f05df"
+    },
+    {
+      "path": "packages/i18n/locales/ko/bots.json",
+      "sha256": "f2bc182ca5f775bce137f1178b0e6c5f65301bdce7c4fb2424b8cc92f4d496bb"
+    },
+    {
+      "path": "packages/i18n/locales/ko/bots.source.json",
+      "sha256": "c4c5fdb55a243758ffbef0da65ce0747c2dd54ba53812645f196b44492937ddb"
+    },
+    {
+      "path": "packages/i18n/locales/ko/chat.json",
+      "sha256": "8e45530d85b95dab53cc5383f87fffdefc5a633503fb7832373b20618d8578bc"
+    },
+    {
+      "path": "packages/i18n/locales/ko/chat.source.json",
+      "sha256": "84c06c79f8d02fcc0c445debd38e0063f99a5574cdc4be4e2ed5d6ea153de84a"
+    },
+    {
+      "path": "packages/i18n/locales/ko/code.json",
+      "sha256": "ce034d801d15186c99aced5d0b76ede44cbb3e53a9e7640a10eda1195b61a1f6"
+    },
+    {
+      "path": "packages/i18n/locales/ko/code.source.json",
+      "sha256": "89a7fd4e7965a0fedb4b0de07dcf2a04270201d98ae7eabd3d45be05a4797f88"
+    },
+    {
+      "path": "packages/i18n/locales/ko/common.json",
+      "sha256": "fca99f7af4561a829b0b2847094107ab6a55ca6563649753af76305e6bf7d6bf"
+    },
+    {
+      "path": "packages/i18n/locales/ko/common.source.json",
+      "sha256": "bf40defb66ab9c15ce531a1fa102f8941e392e47cfa39cbe8dee3afb6c252056"
+    },
+    {
+      "path": "packages/i18n/locales/ko/components.json",
+      "sha256": "66c8b72c3ddeccdc5baec8095c7f6246c64528830a7dd838e8db6ff36d8eb55e"
+    },
+    {
+      "path": "packages/i18n/locales/ko/composer.json",
+      "sha256": "1766f8c824fa380355cdcedb0ad46c12f7b302adc2cda09f6a736418a546d283"
+    },
+    {
+      "path": "packages/i18n/locales/ko/composer.source.json",
+      "sha256": "d8352e3b9d0240235113127f4ef708508d1911bfbc5019cacbe5652eabd914c5"
+    },
+    {
+      "path": "packages/i18n/locales/ko/files.json",
+      "sha256": "1a47d0627d83a3d496eae780e1414822d9b9734ab1ee65f65a5f9e74513de23a"
+    },
+    {
+      "path": "packages/i18n/locales/ko/files.source.json",
+      "sha256": "684711be8c9fcf16d6dff21c9b98291baf59cc8127f83dfc7742f6ec5cfee659"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/bots.json",
+      "sha256": "e8155adf6cd800713df77375b995de948b3e071651cbd2ea77eb89e835b24aa0"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/bots.source.json",
+      "sha256": "269e171661c0cc3a90782766b37d5515d337bfff087f18cf807718d0b6236d50"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/chat.json",
+      "sha256": "4fe9ffc389323155754ac01c9c4277a967aa6cf929be106173d73d87c44f5fd2"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/chat.source.json",
+      "sha256": "786d78d5e4669edc1d062e25825c3dca267ffcb2e304458f56cbd83843266c28"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/code.json",
+      "sha256": "74bfadb82da5084ff7c30927c5ff6f5164071b4a323ef3330fae5c4f2771c95e"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/code.source.json",
+      "sha256": "1e837d86568680543183182cc1cf3a2f9338c3ec669e140f58663c600815e403"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/files.json",
+      "sha256": "8fe5873ff8a58327504bd4949c7cc727224794d95f4d3ef226e0cf9036749e1e"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/files.source.json",
+      "sha256": "1dbfcbcdc94fb4f3ef162ec055329bbdb49659e8573d69d47d664e4898c3201d"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/shell.json",
+      "sha256": "80f5218434ab3d9f8aade7b1c5a04703aac503ca668350876517775067e70d1f"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/shell.source.json",
+      "sha256": "00566cac2472d935a4c4338a11a73cd6798ed42b45c92275a66c3129e10181c5"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/system.json",
+      "sha256": "d24acd19d0937b6dc44738dd2f276d805bde2f65db1dd2acdf3753726ef71375"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/system.source.json",
+      "sha256": "5d039fbbca359213bb4df24ea76ba64a6fd41d397997cb490e18135327baa9be"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/work.json",
+      "sha256": "d1ec9d4830c92297182dd5d71d046ed59b1ae5632387683c1ca15b8d0d31422f"
+    },
+    {
+      "path": "packages/i18n/locales/ko/fixtures/work.source.json",
+      "sha256": "2b62a8ad3eb58cb23cc5e597cf59928b15dedd908081656e27ca40152536fa8c"
+    },
+    {
+      "path": "packages/i18n/locales/ko/gallery.json",
+      "sha256": "f1a86908c45e15df80aabdeafcdd4116d578bfd47d5d701b5ab7ec6e3e93a33c"
+    },
+    {
+      "path": "packages/i18n/locales/ko/gallery.source.json",
+      "sha256": "dc3f97c5c697fd9944d87ed31d06e9d34152bfbd97fbb263f80b88b207fc3c7e"
+    },
+    {
+      "path": "packages/i18n/locales/ko/mascot.json",
+      "sha256": "756cfcafd8f0cea8b9acfc797d2b56de64611279bea8b074580179290880957e"
+    },
+    {
+      "path": "packages/i18n/locales/ko/mascot.source.json",
+      "sha256": "ae38b38a2d3b0ec0e722faaa495e7f538667b2ad497d2e03512511d4a4832fe5"
+    },
+    {
+      "path": "packages/i18n/locales/ko/menu.json",
+      "sha256": "121b21a24b6269f33fc6cc922b7ca3c0bd7d6cefccae9c27a304ec0449104ccf"
+    },
+    {
+      "path": "packages/i18n/locales/ko/menu.source.json",
+      "sha256": "11d7562457fb4e3a7263cbeeb74a9003cbefe6c68e80625923855a27b24c8128"
+    },
+    {
+      "path": "packages/i18n/locales/ko/shell.json",
+      "sha256": "9a5e62720380470e171f12af74678f76e8f39166fc4fe5bd1070d1a361190c4b"
+    },
+    {
+      "path": "packages/i18n/locales/ko/shell.source.json",
+      "sha256": "8ba4529fadc5da8e2a562d19e37788f8dfbb1c697487563c745e9facf9e87c75"
+    },
+    {
+      "path": "packages/i18n/locales/ko/system.json",
+      "sha256": "cbec22765b16d4663acd124bb0c52e1d01879eacee74670ce1d565a22eb5e5ef"
+    },
+    {
+      "path": "packages/i18n/locales/ko/system.source.json",
+      "sha256": "4c182cc0d90fdff19c465eb4e84039d27848cace4809492624291a661ba50161"
+    },
+    {
+      "path": "packages/i18n/locales/ko/work.json",
+      "sha256": "c95fa4561878607ef1072646c0cc1424b0db3862f37a4664ade8fe0d5bb58162"
+    },
+    {
+      "path": "packages/i18n/locales/ko/work.source.json",
+      "sha256": "c22d0e5a9bc9ffeaaeae1a6d7c50dcbc2f4afecfa61e1bc17bf50b649f5f05df"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/bots.json",
+      "sha256": "51ae0004e67f5d19bbc2e4be119971554aad7249838fe87da8527bf8bc11f48b"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/bots.source.json",
+      "sha256": "c4c5fdb55a243758ffbef0da65ce0747c2dd54ba53812645f196b44492937ddb"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/chat.json",
+      "sha256": "a55127fce5fe76bb28b0a06a50d87a21440466a0cbfb68190ce0db13a720ed03"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/chat.source.json",
+      "sha256": "84c06c79f8d02fcc0c445debd38e0063f99a5574cdc4be4e2ed5d6ea153de84a"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/code.json",
+      "sha256": "e494aa315fbd229719726e400f6dae75eeca2332980f6346e2332dcb3140825f"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/code.source.json",
+      "sha256": "89a7fd4e7965a0fedb4b0de07dcf2a04270201d98ae7eabd3d45be05a4797f88"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/common.json",
+      "sha256": "ff48e1896ca988e89699ec9ff2429ce2a4c7c01facedeeca9077317b7a61ff86"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/common.source.json",
+      "sha256": "bf40defb66ab9c15ce531a1fa102f8941e392e47cfa39cbe8dee3afb6c252056"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/components.json",
+      "sha256": "3890badc8c983a7e1e7d9f224d0155cc11a8a2ed8719ddb3e286925edcbfbf15"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/composer.json",
+      "sha256": "e983a80f3e569b113268946b4c23e96cec5579b3ffd6f6907972467eacfb41d7"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/composer.source.json",
+      "sha256": "d8352e3b9d0240235113127f4ef708508d1911bfbc5019cacbe5652eabd914c5"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/files.json",
+      "sha256": "93fe9e5dbe81f24a65debd86921f2280f9d3f1748b6cae89a4db6a4888c81aa5"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/files.source.json",
+      "sha256": "684711be8c9fcf16d6dff21c9b98291baf59cc8127f83dfc7742f6ec5cfee659"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/bots.json",
+      "sha256": "f77144b2e051fe77311f3b2df54080116b89a3d764de14b45641bfc4712c340e"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/bots.source.json",
+      "sha256": "269e171661c0cc3a90782766b37d5515d337bfff087f18cf807718d0b6236d50"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/chat.json",
+      "sha256": "144e424eb9b69ced961b5ac947cbffb789cd6fce9aca80202631e50e2ba6e512"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/chat.source.json",
+      "sha256": "786d78d5e4669edc1d062e25825c3dca267ffcb2e304458f56cbd83843266c28"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/code.json",
+      "sha256": "81199cf1de4ecba8ac3b3fdc787d86e10b15e58ff72a9c31a43b735b33f13520"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/code.source.json",
+      "sha256": "1e837d86568680543183182cc1cf3a2f9338c3ec669e140f58663c600815e403"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/files.json",
+      "sha256": "9461100f24648cfe475c80394ff426ed32d9d5ce3f16c66e07492d8fb64f0ad5"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/files.source.json",
+      "sha256": "1dbfcbcdc94fb4f3ef162ec055329bbdb49659e8573d69d47d664e4898c3201d"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/shell.json",
+      "sha256": "dfdad6ef3c4d612703119b70c6ad13af0efd0ac4fdf4577e952cde16d4e32d09"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/shell.source.json",
+      "sha256": "00566cac2472d935a4c4338a11a73cd6798ed42b45c92275a66c3129e10181c5"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/system.json",
+      "sha256": "89c22840e76136db8dfca23231074971f182eae02aa546e15eb202f46833a691"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/system.source.json",
+      "sha256": "5d039fbbca359213bb4df24ea76ba64a6fd41d397997cb490e18135327baa9be"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/work.json",
+      "sha256": "9a73823d2463a5ab86a90854811d01b4fd63856145380535aba26064c80ec320"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/fixtures/work.source.json",
+      "sha256": "2b62a8ad3eb58cb23cc5e597cf59928b15dedd908081656e27ca40152536fa8c"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/gallery.json",
+      "sha256": "8444b90d9462d250d37cf7bc0ccb4506978f67e4af5d8766b0689193acd2ee75"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/gallery.source.json",
+      "sha256": "dc3f97c5c697fd9944d87ed31d06e9d34152bfbd97fbb263f80b88b207fc3c7e"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/mascot.json",
+      "sha256": "586909f5041a0f0b2e9714307b97a4d32d2525e768acbfaeca030ee9700a627a"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/mascot.source.json",
+      "sha256": "ae38b38a2d3b0ec0e722faaa495e7f538667b2ad497d2e03512511d4a4832fe5"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/menu.json",
+      "sha256": "13e8efb5654e7448d35494fa19696193b9c2c95270405b13e08e08aa19cd46b5"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/menu.source.json",
+      "sha256": "11d7562457fb4e3a7263cbeeb74a9003cbefe6c68e80625923855a27b24c8128"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/shell.json",
+      "sha256": "b0c7f27c97ece917c1e4b924950ef3f34e79cfa6dd8ca3889018cb82b67ae0e0"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/shell.source.json",
+      "sha256": "8ba4529fadc5da8e2a562d19e37788f8dfbb1c697487563c745e9facf9e87c75"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/system.json",
+      "sha256": "c948340c14c778ccdc228bd5d05624973b38b8cb363d3d241edf192b37d5b260"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/system.source.json",
+      "sha256": "4c182cc0d90fdff19c465eb4e84039d27848cace4809492624291a661ba50161"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/work.json",
+      "sha256": "538dec7c6c96a26b27f957c02cc133e2293d653b871bb54baf14a2d085c32390"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/work.source.json",
+      "sha256": "c22d0e5a9bc9ffeaaeae1a6d7c50dcbc2f4afecfa61e1bc17bf50b649f5f05df"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/bots.json",
+      "sha256": "6026f342983369aea5561921504e29b1b8fac05fb93e17145325c26d7920ca32"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/bots.source.json",
+      "sha256": "c4c5fdb55a243758ffbef0da65ce0747c2dd54ba53812645f196b44492937ddb"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/chat.json",
+      "sha256": "d90db7fad604920c78aa28707b7ae575fa44b9d3dc4748d86875ae9e554898c3"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/chat.source.json",
+      "sha256": "84c06c79f8d02fcc0c445debd38e0063f99a5574cdc4be4e2ed5d6ea153de84a"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/code.json",
+      "sha256": "b589fbe9670aad43531f3ce765014e876b972758770394cd2a0504d79e4a6dd9"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/code.source.json",
+      "sha256": "89a7fd4e7965a0fedb4b0de07dcf2a04270201d98ae7eabd3d45be05a4797f88"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/common.json",
+      "sha256": "983e69bb6b06828046d0ab7888705cdcdfebd7b010b416894903d95f67c4aa33"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/common.source.json",
+      "sha256": "bf40defb66ab9c15ce531a1fa102f8941e392e47cfa39cbe8dee3afb6c252056"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/components.json",
+      "sha256": "4a38c9b5c76b98aa295cb2959fe0768364c421fb7a2eab93c017e692a356b1fd"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/composer.json",
+      "sha256": "da6dcd6ba1c450a07287949427b5cd7e5220fea5e0db9d70716962e5c0faa3b8"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/composer.source.json",
+      "sha256": "d8352e3b9d0240235113127f4ef708508d1911bfbc5019cacbe5652eabd914c5"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/files.json",
+      "sha256": "bca6c76df5919215e37438e63a28854d699b75a2e4eeaf0d30934c52187c5f7c"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/files.source.json",
+      "sha256": "684711be8c9fcf16d6dff21c9b98291baf59cc8127f83dfc7742f6ec5cfee659"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/bots.json",
+      "sha256": "187d1c161ad83c56603415b4899162d82aaa664058bfeb5f61adc99b67ba6759"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/bots.source.json",
+      "sha256": "269e171661c0cc3a90782766b37d5515d337bfff087f18cf807718d0b6236d50"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/chat.json",
+      "sha256": "04c1bb1d37c26eb3f6fc95ea8450952c6a9a895e2cc3e227e8005fbcbfdc5bba"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/chat.source.json",
+      "sha256": "786d78d5e4669edc1d062e25825c3dca267ffcb2e304458f56cbd83843266c28"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/code.json",
+      "sha256": "2bbe74550978eb76b116827e80666ea3866b5a0df8a92ad41aa7dcd11983f6de"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/code.source.json",
+      "sha256": "1e837d86568680543183182cc1cf3a2f9338c3ec669e140f58663c600815e403"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/files.json",
+      "sha256": "f910696f70484469ff45e81671ddaf14095460033efc5e2605f78528c6ef2759"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/files.source.json",
+      "sha256": "1dbfcbcdc94fb4f3ef162ec055329bbdb49659e8573d69d47d664e4898c3201d"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/shell.json",
+      "sha256": "d4e2e7e74717acda922d6b0f6450bff274033d75b16450ea9efaba5081fcdae3"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/shell.source.json",
+      "sha256": "00566cac2472d935a4c4338a11a73cd6798ed42b45c92275a66c3129e10181c5"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/system.json",
+      "sha256": "79f0317256bb980e4e7fc1fd2a6280cd60f4e7304f5049a3d38738a739fbb517"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/system.source.json",
+      "sha256": "5d039fbbca359213bb4df24ea76ba64a6fd41d397997cb490e18135327baa9be"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/work.json",
+      "sha256": "31b3bc265751a619dea0b9157b33637bb0c1d6a6660848d662846fb0145aa2f8"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/fixtures/work.source.json",
+      "sha256": "2b62a8ad3eb58cb23cc5e597cf59928b15dedd908081656e27ca40152536fa8c"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/gallery.json",
+      "sha256": "0bcb96f4b1102c0a4ef4e31fe1d1bcc843cfad11507f7de3bae4760fbe733676"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/gallery.source.json",
+      "sha256": "dc3f97c5c697fd9944d87ed31d06e9d34152bfbd97fbb263f80b88b207fc3c7e"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/mascot.json",
+      "sha256": "5a68aea5d7bb06873e673157106faeb371d69fd322b438160044b74fe0a2dffd"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/mascot.source.json",
+      "sha256": "ae38b38a2d3b0ec0e722faaa495e7f538667b2ad497d2e03512511d4a4832fe5"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/menu.json",
+      "sha256": "02508ba9127570c92dfeb5a999cf2ff0f2c7b63e597bf39cc78f364bd9a12478"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/menu.source.json",
+      "sha256": "11d7562457fb4e3a7263cbeeb74a9003cbefe6c68e80625923855a27b24c8128"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/shell.json",
+      "sha256": "99944336277257feaf35e0c24ee0a82ed335c2fb80e589019a97d3fe96f12c90"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/shell.source.json",
+      "sha256": "8ba4529fadc5da8e2a562d19e37788f8dfbb1c697487563c745e9facf9e87c75"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/system.json",
+      "sha256": "6e58861ef1eac4edaf06c6ea0afe567fe1e4044a3330174fce7e85a0bf016c70"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/system.source.json",
+      "sha256": "4c182cc0d90fdff19c465eb4e84039d27848cace4809492624291a661ba50161"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/work.json",
+      "sha256": "ab97f698200005891346be581bf6f4cd960b1de1a793b79b199adf7269702415"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/work.source.json",
+      "sha256": "c22d0e5a9bc9ffeaaeae1a6d7c50dcbc2f4afecfa61e1bc17bf50b649f5f05df"
+    },
+    {
+      "path": "packages/i18n/src/index.ts",
+      "sha256": "1c9408e2c49ed28d12280572f26c1c833ffc7bab493eeef2eee9a0d61baf0227"
+    },
+    {
+      "path": "packages/i18n/src/node.ts",
+      "sha256": "ff33f72cf44424f515de87416acf18f5b3da3119d696cdeb8ba48a7c22ee8d6e"
+    },
+    {
+      "path": "packages/i18n/src/vite.ts",
+      "sha256": "b9e67d09c29b6538a99fe24c57eb98ac75df0b227df9536cf88cfdd5ce707807"
+    },
+    {
+      "path": "packages/schema/src/index.ts",
+      "sha256": "36109b67fdee6a6e677bdc47fab5987458920ceed2daccdf5d6e29c3731f3e10"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "1e3737c86dbea1d6621f10f2a92b247cc48b92d159eb212048989d728fb9f05a"
+    }
+  ]
+}

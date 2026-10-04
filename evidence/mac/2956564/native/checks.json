@@ -1,0 +1,516 @@
+{
+  "status": "passed",
+  "audit": "Offline retained native evidence and lossless conversion",
+  "revision": "2956564fbe31f882014d74ff3a7f920e839fd634",
+  "originalManifestSha256": "b436a093245301992d3871ad3e006c2c885284e6a87d8ba5fb92dc53ada9962e",
+  "originalLogSha256": "3b96b40ab0190f4b7032ba52f96414424b4b196a44caacd37c6fdf1dfdaf9a13",
+  "startedAt": "2026-10-03T10:02:16.705Z",
+  "finishedAt": "2026-10-03T10:03:57.898Z",
+  "durationMs": 101193,
+  "durationSeconds": 101.193,
+  "invocation": {
+    "execPath": "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "nodeVersion": "v22.23.3",
+    "argv": [
+      "/tmp/opencode/terminal-state-native.mjs",
+      "/tmp/opencode/terminal-state-native-2956564",
+      "/tmp/opencode/desktop-terminal-state-2956564",
+      "de7b30a5eedc416a1e1b35756e268fc7028f70908564e15b3ef4df9ec9c94d6e",
+      "2956564fbe31f882014d74ff3a7f920e839fd634",
+      "/tmp/opencode/mac-2956564/members.json"
+    ],
+    "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite"
+  },
+  "installedIdentityBeforeAfterExact": true,
+  "identity": {
+    "asarSHA256": "de7b30a5eedc416a1e1b35756e268fc7028f70908564e15b3ef4df9ec9c94d6e",
+    "revision": "2956564fbe31f882014d74ff3a7f920e839fd634",
+    "membersVerified": 90,
+    "pid": 58393,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-2956564",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "96121d2c1c3c4762c0de6faca1245d41ae2dddba356dfefe988795dadcc775b7"
+  },
+  "windowID": 8608,
+  "windowBounds": {
+    "X": 0,
+    "Height": 640,
+    "Y": 30,
+    "Width": 960
+  },
+  "membersManifestSha256": "96121d2c1c3c4762c0de6faca1245d41ae2dddba356dfefe988795dadcc775b7",
+  "buildMemberRowsEqualPackageAndLocalReceipt": 90,
+  "linkedIndependentPackageAudit": {
+    "file": "../package-review.md",
+    "asarFiles": 91,
+    "resources": 105,
+    "inputs": 514,
+    "rendererInputs": 473
+  },
+  "helperHashes": {
+    "terminal-state-native.mjs": "9f6a819fcd44a26c5b61050a51e0c94c9d87a420b5b32b7a27902ebdcb110949",
+    "terminal-state-native-backend.mjs": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "launch-terminal-state-native.py": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "cleanup-terminal-state-native.py": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+  },
+  "captures": 6,
+  "checks": [
+    {
+      "theme": "light",
+      "scenario": "missing-chat",
+      "sessionID": "ses_01a10136fec40000a732b1f0e6b8d366",
+      "emptyDeletedSession": true,
+      "exactCopy": true,
+      "retryAbsent": true,
+      "newChatUIRecovered": true,
+      "inferenceRequests": 0,
+      "direct404Reads": 2,
+      "passiveUi404Reads": 2,
+      "emptyChatSetupOnly": true
+    },
+    {
+      "theme": "light",
+      "scenario": "code-history-and-status",
+      "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+      "failedMessages": 2,
+      "failedParts": 1,
+      "failedReloadedExact": true,
+      "recoveredMessages": 4,
+      "recoveredParts": 6,
+      "partTypesByMessage": [
+        [
+          "text"
+        ],
+        [],
+        [
+          "text"
+        ],
+        [
+          "step-start",
+          "reasoning",
+          "text",
+          "step-finish"
+        ]
+      ],
+      "failedPrefixExact": true,
+      "admissionUserIDs": [
+        "msg_01a101374316000029d025c003edd864",
+        "msg_01a101377f1a00007e501398c47a337c"
+      ],
+      "errorCode": "provider_auth_failed",
+      "failedBadgeBeforeAfterEqual": true,
+      "failedBadge": {
+        "text": "Failed",
+        "className": "badge err",
+        "color": "color(srgb 0.731765 0.239216 0.254902)",
+        "background": "color(srgb 0.898039 0.282353 0.301961 / 0.14)",
+        "rgba": [
+          187,
+          61,
+          65,
+          255
+        ]
+      },
+      "recoveredBadge": {
+        "text": "Ready",
+        "className": "badge ok",
+        "color": "color(srgb 0.154902 0.540196 0.240196)",
+        "background": "color(srgb 0.184314 0.698039 0.298039 / 0.16)",
+        "rgba": [
+          40,
+          138,
+          61,
+          255
+        ]
+      },
+      "observations": [
+        {
+          "theme": "light",
+          "turn": "fail",
+          "samples": [
+            {
+              "text": "Ready",
+              "className": "badge ok"
+            },
+            {
+              "text": "Running",
+              "className": "badge run"
+            },
+            {
+              "text": "Failed",
+              "className": "badge err"
+            }
+          ]
+        },
+        {
+          "theme": "light",
+          "turn": "recover",
+          "samples": [
+            {
+              "text": "Failed",
+              "className": "badge err"
+            },
+            {
+              "text": "Running",
+              "className": "badge run"
+            },
+            {
+              "text": "Ready",
+              "className": "badge ok"
+            }
+          ]
+        }
+      ],
+      "reasoningStoredUiTextOnly": true
+    },
+    {
+      "theme": "dark",
+      "scenario": "missing-chat",
+      "sessionID": "ses_01a10137b50c000049dffacef95673ee",
+      "emptyDeletedSession": true,
+      "exactCopy": true,
+      "retryAbsent": true,
+      "newChatUIRecovered": true,
+      "inferenceRequests": 0,
+      "direct404Reads": 2,
+      "passiveUi404Reads": 2,
+      "emptyChatSetupOnly": true
+    },
+    {
+      "theme": "dark",
+      "scenario": "code-history-and-status",
+      "sessionID": "ses_01a10137e458000082a018e784cfce02",
+      "failedMessages": 2,
+      "failedParts": 1,
+      "failedReloadedExact": true,
+      "recoveredMessages": 4,
+      "recoveredParts": 6,
+      "partTypesByMessage": [
+        [
+          "text"
+        ],
+        [],
+        [
+          "text"
+        ],
+        [
+          "step-start",
+          "reasoning",
+          "text",
+          "step-finish"
+        ]
+      ],
+      "failedPrefixExact": true,
+      "admissionUserIDs": [
+        "msg_01a10137f09300007b3990f8005eb00b",
+        "msg_01a101382d0a00002275e626ab23694d"
+      ],
+      "errorCode": "provider_auth_failed",
+      "failedBadgeBeforeAfterEqual": true,
+      "failedBadge": {
+        "text": "Failed",
+        "className": "badge err",
+        "color": "color(srgb 0.991373 0.501961 0.520784)",
+        "background": "color(srgb 1 0.388235 0.411765 / 0.14)",
+        "rgba": [
+          253,
+          128,
+          133,
+          255
+        ]
+      },
+      "recoveredBadge": {
+        "text": "Ready",
+        "className": "badge ok",
+        "color": "color(srgb 0.403922 0.865686 0.477451)",
+        "background": "color(srgb 0.219608 0.835294 0.317647 / 0.16)",
+        "rgba": [
+          103,
+          221,
+          122,
+          255
+        ]
+      },
+      "observations": [
+        {
+          "theme": "dark",
+          "turn": "fail",
+          "samples": [
+            {
+              "text": "Ready",
+              "className": "badge ok"
+            },
+            {
+              "text": "Running",
+              "className": "badge run"
+            },
+            {
+              "text": "Failed",
+              "className": "badge err"
+            }
+          ]
+        },
+        {
+          "theme": "dark",
+          "turn": "recover",
+          "samples": [
+            {
+              "text": "Failed",
+              "className": "badge err"
+            },
+            {
+              "text": "Running",
+              "className": "badge run"
+            },
+            {
+              "text": "Ready",
+              "className": "badge ok"
+            }
+          ]
+        }
+      ],
+      "reasoningStoredUiTextOnly": true
+    }
+  ],
+  "driverCheckGroups": 6,
+  "passiveUiAdmissions": [
+    {
+      "theme": "light",
+      "turn": "fail",
+      "status": 202,
+      "messageID": "msg_01a101374316000029d025c003edd864"
+    },
+    {
+      "theme": "light",
+      "turn": "recover",
+      "status": 202,
+      "messageID": "msg_01a101377f1a00007e501398c47a337c"
+    },
+    {
+      "theme": "dark",
+      "turn": "fail",
+      "status": 202,
+      "messageID": "msg_01a10137f09300007b3990f8005eb00b"
+    },
+    {
+      "theme": "dark",
+      "turn": "recover",
+      "status": 202,
+      "messageID": "msg_01a101382d0a00002275e626ab23694d"
+    }
+  ],
+  "uniqueUserAdmissions": 4,
+  "uniqueMessages": 8,
+  "uniqueParts": 12,
+  "backendSequence": [
+    {
+      "theme": "light",
+      "turn": "fail",
+      "userTexts": [
+        "Cortex light Code fail."
+      ],
+      "replayAnswers": [],
+      "modelExact": true,
+      "authorizationExact": true,
+      "workingDirectoryExact": true,
+      "toolsAbsent": true,
+      "reasoningOptionFields": [],
+      "httpStatus": 401,
+      "outputFields": [],
+      "completed": true
+    },
+    {
+      "theme": "light",
+      "turn": "recover",
+      "userTexts": [
+        "Cortex light Code fail.",
+        "Cortex light Code recover."
+      ],
+      "replayAnswers": [],
+      "modelExact": true,
+      "authorizationExact": true,
+      "workingDirectoryExact": true,
+      "toolsAbsent": true,
+      "reasoningOptionFields": [],
+      "httpStatus": 200,
+      "outputFields": [
+        "reasoning_content",
+        "content"
+      ],
+      "reasoningText": "Checking light recovery.",
+      "answerText": "Recovered light Code task.",
+      "completed": true
+    },
+    {
+      "theme": "dark",
+      "turn": "fail",
+      "userTexts": [
+        "Cortex dark Code fail."
+      ],
+      "replayAnswers": [],
+      "modelExact": true,
+      "authorizationExact": true,
+      "workingDirectoryExact": true,
+      "toolsAbsent": true,
+      "reasoningOptionFields": [],
+      "httpStatus": 401,
+      "outputFields": [],
+      "completed": true
+    },
+    {
+      "theme": "dark",
+      "turn": "recover",
+      "userTexts": [
+        "Cortex dark Code fail.",
+        "Cortex dark Code recover."
+      ],
+      "replayAnswers": [],
+      "modelExact": true,
+      "authorizationExact": true,
+      "workingDirectoryExact": true,
+      "toolsAbsent": true,
+      "reasoningOptionFields": [],
+      "httpStatus": 200,
+      "outputFields": [
+        "reasoning_content",
+        "content"
+      ],
+      "reasoningText": "Checking dark recovery.",
+      "answerText": "Recovered dark Code task.",
+      "completed": true
+    }
+  ],
+  "noDriverPromptCalls": true,
+  "driverStateCallCount": 57,
+  "pageErrors": 0,
+  "consoleErrors": 0,
+  "rendererHttp": 0,
+  "unexpectedDialogs": 0,
+  "fixtureErrors": 0,
+  "driverCleanup": {
+    "ownedSessionRemoved:ses_01a1013737930000416a7e4d935228e4": true,
+    "ownedSessionRemoved:ses_01a10137e458000082a018e784cfce02": true,
+    "fixtureReceiptRead": true,
+    "providerRestoredKeyRemoved": true,
+    "appearanceRestored": true,
+    "initialRouteRestored": true
+  },
+  "externalCleanup": {
+    "applicationRevision": "2956564fbe31f882014d74ff3a7f920e839fd634",
+    "asarSHA256": "de7b30a5eedc416a1e1b35756e268fc7028f70908564e15b3ef4df9ec9c94d6e",
+    "helpersStopped": [
+      {
+        "file": "backend.pid",
+        "pid": 58390
+      },
+      {
+        "file": "capture.pid",
+        "pid": 58391
+      }
+    ],
+    "ordinaryLaunchServicesOpen": true,
+    "restoredDarkAppearance": true
+  },
+  "portsAndLeaseObservation": {
+    "checkedAt": "2026-10-03T10:05:28.135519+00:00",
+    "method": "TCP connect_ex after helper cleanup",
+    "closed": {
+      "9444": true,
+      "9445": true,
+      "9456": true,
+      "9457": true,
+      "9458": true
+    },
+    "sshForwardingClosed": true,
+    "leaseReleased": true
+  },
+  "references": [
+    {
+      "file": "../members.json",
+      "sha256": "96121d2c1c3c4762c0de6faca1245d41ae2dddba356dfefe988795dadcc775b7"
+    },
+    {
+      "file": "../package.json",
+      "sha256": "1fc1aa6f975f6f7d4876ed2b9f67a00cf208bd790abbfae69925597c2833a47e"
+    },
+    {
+      "file": "../package-review.md",
+      "sha256": "db80cb124cbff954565a92b6ea3ec27795299eccad96d1ff756a88574caf6bce"
+    },
+    {
+      "file": "../package-audit/summary.json",
+      "sha256": "6daf8de5d756b1442295c26c79d0b4a627f0a4fa25581ad9a208aebac93b27d7"
+    },
+    {
+      "file": "../package-audit/review-receipt.json",
+      "sha256": "d13e1c20e716eb2c95c659ae6d16af29a334a6b6c84af92b44a05d627f0186b6"
+    },
+    {
+      "file": "../package-audit/integrity.json",
+      "sha256": "3de5fe3aec1d1eb6e97231fe4d1e03ed4a167e72f40b94bcaf312568c1a19da7"
+    },
+    {
+      "file": "../package-audit/source-hashes.json",
+      "sha256": "a3200ab1fa0faded7751ed8ee5aed26e11f7c71dbe2c283e1b766c717f051b97"
+    },
+    {
+      "file": "../harness-review.md",
+      "sha256": "314cde2cd08e476debefc6f413f921f66997fae39d4cab640ed29d0aa017b04d"
+    },
+    {
+      "file": "../installed.json",
+      "sha256": "683d4b6172d47557b45f61a711308785173b05d1d8922f7781fdc828803927ea"
+    },
+    {
+      "file": "../binding.json",
+      "sha256": "0559dfee662ff5db03ead88535963789c7877044d4f4091de36917b96f9bd7e1"
+    },
+    {
+      "file": "../launch.json",
+      "sha256": "72b0d0bc8dff5c11d0335e60fc932209bcb05434bd71b2df35662049ee171dba"
+    },
+    {
+      "file": "../backend-receipt.json",
+      "sha256": "dbd0ec76e3f346f2bd3cf043fe2ce38283f47609d4773426bce4491d00b968a7"
+    },
+    {
+      "file": "../cleanup.json",
+      "sha256": "409c7d93dabd540791039cfcc2345d3441a582f28e4c69dd2e37ee3fa16838f3"
+    },
+    {
+      "file": "../ports-closed.json",
+      "sha256": "3744d36a7a9609e89f41e43c51128aeeeb92109e169dc33614428b19029392a7"
+    },
+    {
+      "file": "../scripts/hashes.json",
+      "sha256": "95ebfc2f753c23bbd991b792238075b330907836c62efbaf9c45b6463eb596c8"
+    },
+    {
+      "file": "../scripts/terminal-state-native.mjs",
+      "sha256": "9f6a819fcd44a26c5b61050a51e0c94c9d87a420b5b32b7a27902ebdcb110949"
+    },
+    {
+      "file": "../scripts/terminal-state-native-backend.mjs",
+      "sha256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d"
+    },
+    {
+      "file": "../scripts/launch-terminal-state-native.py",
+      "sha256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257"
+    },
+    {
+      "file": "../scripts/cleanup-terminal-state-native.py",
+      "sha256": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+    },
+    {
+      "file": "../scripts/terminal-state-native-runbook.md",
+      "sha256": "45e0cc735357ff92bb346022ad14c12068df6bab560ef6fbbb742f41f90850ba"
+    },
+    {
+      "file": "../scripts/install-recovery-mac.py",
+      "sha256": "6bf25b6d861e73ae9c306b96515674c4f773790d3f61382b58a2dcc37eb120d9"
+    }
+  ],
+  "scope": "Six installed English 960x640 native window captures, two themes; ordinary missing-link and Code failure/recovery only. Reasoning is stored; Code displays text. External OS notifications are outside these window captures."
+}

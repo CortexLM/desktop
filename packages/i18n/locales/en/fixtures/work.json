@@ -1,0 +1,941 @@
+{
+ "main": {
+  "name": "Nova"
+ },
+ "filterBots": [
+  "Margaux",
+  "Inès",
+  "Iris",
+  "Max",
+  "Zoé"
+ ],
+ "tasks": [
+  {
+   "id": "1",
+   "t": "Follow up on quotes with no reply for 7 days",
+   "bot": "Nova",
+   "col": "doing",
+   "meta": "Step 4 of 7",
+   "prog": 57
+  },
+  {
+   "id": "2",
+   "t": "Update Studio Nord’s customer records",
+   "bot": "Margaux",
+   "col": "doing",
+   "meta": "12 of 30 records",
+   "prog": 40
+  },
+  {
+   "id": "3",
+   "t": "Answer ticket #4182 about billing",
+   "bot": "Inès",
+   "col": "doing",
+   "meta": "3 min ago",
+   "prog": 80
+  },
+  {
+   "id": "4",
+   "t": "Prepare the agenda for the 3 pm sync",
+   "bot": "Iris",
+   "col": "todo",
+   "meta": "Today, 14:30"
+  },
+  {
+   "id": "5",
+   "t": "Compare three ceramics suppliers",
+   "bot": "Paul",
+   "col": "todo",
+   "meta": "Monday"
+  },
+  {
+   "id": "6",
+   "t": "Pay the Atelier Morel invoice of €1,240",
+   "bot": "Max",
+   "col": "review",
+   "meta": "Waiting for your approval"
+  },
+  {
+   "id": "7",
+   "t": "Publish the April 14 launch announcement",
+   "bot": "Zoé",
+   "col": "review",
+   "meta": "Draft ready"
+  },
+  {
+   "id": "8",
+   "t": "File September’s expense reports",
+   "bot": "Léo",
+   "col": "done",
+   "meta": "Yesterday, 18:12"
+  },
+  {
+   "id": "9",
+   "t": "Sort the morning inbox",
+   "bot": "Hugo",
+   "col": "done",
+   "meta": "08:14"
+  }
+ ],
+ "computer": {
+  "menu": [
+   "Browser",
+   "File",
+   "View"
+  ],
+  "url": "crm.studionord.fr/devis?statut=sans-reponse",
+  "nav": [
+   "Home",
+   "Contacts",
+   "Quotes",
+   "Invoices",
+   "Reports"
+  ],
+  "navActive": 2,
+  "heading": "Quotes with no reply · 5",
+  "rows": [
+   [
+    "Atelier Morel",
+    "Quote #2291",
+    "12 d"
+   ],
+   [
+    "Studio Nord",
+    "Quote #2287",
+    "9 d"
+   ],
+   [
+    "Céramiques Vidal",
+    "Quote #2279",
+    "8 d"
+   ],
+   [
+    "Maison Arnaud",
+    "Quote #2275",
+    "7 d"
+   ],
+   [
+    "Boulangerie Roux",
+    "Quote #2270",
+    "3 d"
+   ]
+  ]
+ },
+ "task": {
+  "title": "Follow up on unanswered quotes",
+  "site": "crm.studionord.fr",
+  "statusDoing": "Browsing the CRM",
+  "user": "Follow up on every quote with no reply for more than 7 days. Friendly tone, and show me the first one before sending.",
+  "bot1": "On it. I’ll start with the CRM to list the quotes, then prepare the first follow-up for you.",
+  "bot2": "I found 5 quotes with no reply. Here’s the follow-up for Atelier Morel, the oldest one (12 days).",
+  "ev1": {
+   "b": "Opened the CRM",
+   "t": "crm.studionord.fr",
+   "when": "10:38"
+  },
+  "ev2": {
+   "b": "Routine created",
+   "t": "“Quote follow-up” every Monday at 08:00",
+   "when": "10:41"
+  },
+  "steps": [
+   "Read the brief and the tracking file",
+   "Open the Studio Nord CRM",
+   "Filter quotes with no reply for 7 days",
+   "Draft the follow-up for Atelier Morel",
+   "Draft the 4 other follow-ups",
+   "Schedule a check-in in 7 days"
+  ],
+  "mail": {
+   "header": "Email · Quote #2291 follow-up",
+   "to": "Julien Morel · julien@ateliermorel.fr",
+   "subject": "Your renovation quote from September 18",
+   "body": [
+    "Hello Julien,",
+    "I’m following up on quote #2291, sent on September 18. Have you had a chance to look at it? I’m happy to adjust it to your May schedule.",
+    "Best regards,\nCamille Laurent"
+   ],
+   "toastTo": "To Julien Morel",
+   "sentAt": "10:42"
+  },
+  "cred": {
+   "header": "Credentials needed · Supplier portal",
+   "text": "The ventes.ateliermorel.fr portal needs a sign-in to check the quote’s status. {name} never sees your password: it’s used once, then forgotten.",
+   "login": "camille@studionord.fr",
+   "skip": "Skip this quote"
+  },
+  "recap": {
+   "badge": "Done in 2 min 52",
+   "stats": [
+    [
+     "5",
+     "quotes followed up"
+    ],
+    [
+     "1",
+     "routine created"
+    ],
+    [
+     "7 d",
+     "until the check-in"
+    ]
+   ],
+   "files": [
+    [
+     "mail",
+     "5 follow-ups sent",
+     "Atelier Morel, Studio Nord and 3 more"
+    ],
+    [
+     "file",
+     "Quote-tracking-October.xlsx",
+     "Spreadsheet · updated at 10:44"
+    ],
+    [
+     "calendar",
+     "“Quote check-in” reminder",
+     "Monday, October 13, 09:00"
+    ]
+   ]
+  },
+  "fail": {
+   "title": "Lost the connection to the CRM",
+   "text": "The site answered “503” three times in a row.",
+   "bot": "I can’t reach the CRM anymore. The 4 remaining follow-ups are kept as drafts; I can try again now or in 15 minutes."
+  }
+ },
+ "routines": [
+  {
+   "id": "sort",
+   "t": "Morning sort",
+   "bot": "Nova",
+   "trig": "Every day at 08:00",
+   "next": "Tomorrow",
+   "nextSub": "08:00",
+   "runs": [
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "skip",
+    "ok",
+    "ok",
+    "ok"
+   ],
+   "on": true
+  },
+  {
+   "id": "quotes",
+   "t": "Quote follow-up",
+   "bot": "Nova",
+   "trig": "Every Monday at 08:00",
+   "next": "Monday",
+   "nextSub": "08:00",
+   "runs": [
+    "ok",
+    "ok",
+    "ok",
+    "ok"
+   ],
+   "on": true
+  },
+  {
+   "id": "crm",
+   "t": "CRM update",
+   "bot": "Margaux",
+   "trig": "Weekdays at 18:00",
+   "next": "Today",
+   "nextSub": "18:00",
+   "runs": [
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok"
+   ],
+   "on": true
+  },
+  {
+   "id": "ticket",
+   "t": "First pass on tickets",
+   "bot": "Inès",
+   "trig": "On every new ticket",
+   "ev": true,
+   "next": "On event",
+   "nextSub": "Last: 10:31",
+   "runs": [
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok"
+   ],
+   "on": true
+  },
+  {
+   "id": "pr",
+   "t": "Open PR summary",
+   "bot": "Sam",
+   "trig": "On every opened PR",
+   "ev": true,
+   "next": "On event",
+   "nextSub": "Last: yesterday",
+   "runs": [
+    "ok",
+    "ok",
+    "ok",
+    "skip",
+    "ok"
+   ],
+   "on": false
+  },
+  {
+   "id": "watch",
+   "t": "Supplier watch",
+   "bot": "Paul",
+   "trig": "Every 30 min",
+   "next": "In 12 min",
+   "nextSub": "11:00",
+   "runs": [
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok"
+   ],
+   "on": true
+  }
+ ],
+ "history": [
+  [
+   "Today 10:31",
+   "First pass on tickets",
+   "Inès",
+   "ok",
+   "4 s"
+  ],
+  [
+   "Today 10:30",
+   "Supplier watch",
+   "Paul",
+   "ok",
+   "38 s"
+  ],
+  [
+   "Today 08:00",
+   "Morning sort",
+   "Nova",
+   "ok",
+   "1 min 12"
+  ],
+  [
+   "Yesterday 18:00",
+   "CRM update",
+   "Margaux",
+   "ok",
+   "2 min 40"
+  ],
+  [
+   "Monday 08:00",
+   "Quote follow-up",
+   "Nova",
+   "ok",
+   "2 min 52"
+  ]
+ ],
+ "failRoutine": "crm",
+ "failNextSub": "Failed at 18:00",
+ "failHist": [
+  "Yesterday 18:00",
+  "CRM update",
+  "Margaux",
+  "err",
+  "Connection refused"
+ ],
+ "failBanner": {
+  "title": "“CRM update” failed",
+  "text": "Margaux couldn’t sign in to the CRM yesterday at 18:00. Reconnect the CRM, then run it again."
+ },
+ "edit": {
+  "name": "Quote follow-up",
+  "instr": "Follow up on quotes with no reply for more than 7 days, friendly tone. Show me the first one before sending.",
+  "eventName": "First pass on tickets",
+  "eventInstr": "On every new ticket, sort it by urgency, suggest a template answer and let me know if the customer is upset.",
+  "eventBot": "Inès",
+  "bots": [
+   "Margaux",
+   "Inès",
+   "Paul"
+  ],
+  "tz": "Paris time",
+  "sources": {
+   "ticket": "Tickets · “Customer support” queue",
+   "mail": "Email · camille@studionord.fr",
+   "pr": "cortex-web repository"
+  },
+  "eventRate": "About 14 times a day over the last 7 days",
+  "testSteps": [
+   "Read the last 3 tickets",
+   "Sort by urgency",
+   "Draft template answers",
+   "Prepare the summary"
+  ],
+  "testOkTitle": "Test passed in 12 s.",
+  "testOkText": "3 tickets sorted (1 urgent), 3 answers suggested, nothing sent."
+ },
+ "inbox": [
+  {
+   "id": 1,
+   "bot": "Sam",
+   "t": "Credentials needed for the supplier portal",
+   "d": "The ventes.ateliermorel.fr portal has refused access since this morning. Without a sign-in, 3 tickets stay blocked.",
+   "when": "8 min ago",
+   "urg": "now",
+   "act": "Sign in",
+   "to": "work-task:blocked"
+  },
+  {
+   "id": 2,
+   "bot": "Max",
+   "t": "Atelier Morel invoice of €1,240 to pay",
+   "d": "Due tomorrow. The amount matches quote #2291, signed on September 22.",
+   "when": "20 min ago",
+   "urg": "now",
+   "act": "Review",
+   "to": "approvals:detail"
+  },
+  {
+   "id": 3,
+   "bot": "Nova",
+   "t": "First follow-up ready to send",
+   "d": "“Hello Julien, I’m following up on quote #2291…”",
+   "when": "34 min ago",
+   "urg": "today",
+   "act": "Read",
+   "to": "work-task:approval"
+  },
+  {
+   "id": 4,
+   "bot": "Zoé",
+   "t": "Which visual for the April 14 announcement?",
+   "d": "I have two options. B got 18 % more clicks in the preview.",
+   "when": "1 h ago",
+   "urg": "today",
+   "act": "Choose",
+   "to": "approvals:list"
+  },
+  {
+   "id": 5,
+   "bot": "Léo",
+   "t": "2 receipts without a category",
+   "d": "Taxi on September 24 (€32.40) and Studio Nord lunch (€86).",
+   "when": "yesterday",
+   "urg": "later",
+   "act": "Categorize",
+   "to": "work-task:approval"
+  },
+  {
+   "id": 6,
+   "bot": "Paul",
+   "t": "Watch: a supplier cuts prices by 12 %",
+   "d": "Céramiques Vidal announces new rates from November.",
+   "when": "yesterday",
+   "urg": "later",
+   "act": "Read",
+   "to": "activity"
+  }
+ ],
+ "approvals": [
+  {
+   "id": "mail",
+   "bot": "Nova",
+   "icon": "mail",
+   "kind": "Send an email",
+   "t": "Follow-up to Julien Morel",
+   "d": "“Hello Julien, I’m following up on quote #2291, sent on September 18…”",
+   "when": "34 min ago"
+  },
+  {
+   "id": "pay",
+   "bot": "Max",
+   "icon": "key",
+   "kind": "Pay an invoice",
+   "t": "Atelier Morel invoice · €1,240",
+   "d": "Transfer from the Studio Nord business account, due Friday, October 2.",
+   "when": "20 min ago"
+  },
+  {
+   "id": "post",
+   "bot": "Zoé",
+   "icon": "share",
+   "kind": "Publish a post",
+   "t": "April 14 launch announcement",
+   "d": "“Spring is coming to Studio Nord: see you on April 14 for…” · visual B · LinkedIn and Instagram",
+   "when": "1 h ago"
+  }
+ ],
+ "payment": {
+  "bot": "Max",
+  "amount": "1,240.00",
+  "kv": [
+   [
+    "Payee",
+    "Atelier Morel"
+   ],
+   [
+    "IBAN",
+    "FR76 •••• •••• 4821"
+   ],
+   [
+    "Debited account",
+    "Studio Nord · business account"
+   ],
+   [
+    "Due",
+    "Friday, October 2"
+   ],
+   [
+    "Reference",
+    "Invoice F-2026-118"
+   ]
+  ],
+  "check": "The amount matches quote #2291, signed on September 22.",
+  "alwaysRule": "Always allow Max to pay Atelier Morel up to €1,500",
+  "why": "Your current rule: “Payments — Ask”. Every transfer goes through you, whatever the amount.",
+  "okTitle": "Payment approved",
+  "okText": "Max is sending the €1,240 transfer to Atelier Morel. You’ll get the receipt in your inbox.",
+  "noTitle": "Payment declined",
+  "noText": "Max won’t pay this invoice and has told Julien Morel the payment is on hold.",
+  "cancelTransfer": "Cancel the transfer (4 min 52 left)",
+  "invoice": {
+   "vendor": "ATELIER MOREL",
+   "ref": "F-2026-118",
+   "address": "12 rue des Tanneurs, 69001 Lyon",
+   "lines": [
+    [
+     "Workshop renovation · lot 1",
+     "980.00"
+    ],
+    [
+     "Ceramic supplies",
+     "160.00"
+    ],
+    [
+     "Travel",
+     "100.00"
+    ]
+   ],
+   "totalLabel": "Total incl. VAT"
+  }
+ },
+ "activity": [
+  [
+   "Today",
+   [
+    {
+     "bot": "Nova",
+     "icon": "mail",
+     "type": "email",
+     "b": "Sent",
+     "t": " the follow-up to Julien Morel",
+     "when": "10:42"
+    },
+    {
+     "bot": "Nova",
+     "icon": "clock-loop",
+     "type": "routines",
+     "b": "Created the routine",
+     "t": " “Quote follow-up”",
+     "when": "10:41"
+    },
+    {
+     "bot": "Nova",
+     "icon": "globe",
+     "type": "browsing",
+     "b": "Opened",
+     "t": " crm.studionord.fr",
+     "when": "10:38"
+    },
+    {
+     "bot": "Inès",
+     "icon": "check-circle",
+     "type": "tickets",
+     "b": "Resolved",
+     "t": " ticket #4179 “Double billing”",
+     "when": "10:31"
+    },
+    {
+     "bot": "Sam",
+     "icon": "alert-triangle",
+     "type": "errors",
+     "b": "Blocked",
+     "t": ": access denied to the supplier portal",
+     "when": "10:12"
+    },
+    {
+     "bot": "Margaux",
+     "icon": "edit",
+     "type": "crm",
+     "b": "Updated",
+     "t": " 12 Studio Nord customer records",
+     "when": "09:50"
+    },
+    {
+     "bot": "Hugo",
+     "icon": "mail",
+     "type": "email",
+     "b": "Sorted",
+     "t": " 23 emails, spotted 2 quote requests",
+     "when": "08:14"
+    }
+   ]
+  ],
+  [
+   "Yesterday",
+   [
+    {
+     "bot": "Max",
+     "icon": "file",
+     "type": "documents",
+     "b": "Prepared",
+     "t": " the October payslips",
+     "when": "18:30"
+    },
+    {
+     "bot": "Margaux",
+     "icon": "clock-loop",
+     "type": "routines",
+     "b": "Ran",
+     "t": " “CRM update”",
+     "when": "18:00"
+    },
+    {
+     "bot": "Léo",
+     "icon": "check-circle",
+     "type": "documents",
+     "b": "Filed",
+     "t": " 14 September expense reports",
+     "when": "17:12"
+    },
+    {
+     "bot": "Zoé",
+     "icon": "image",
+     "type": "documents",
+     "b": "Suggested",
+     "t": " two visuals for the April 14 announcement",
+     "when": "15:02"
+    }
+   ]
+  ],
+  [
+   "Monday, September 28",
+   [
+    {
+     "bot": "Nova",
+     "icon": "clock-loop",
+     "type": "routines",
+     "b": "Ran",
+     "t": " “Quote follow-up”: 4 follow-ups",
+     "when": "08:00"
+    },
+    {
+     "bot": "Paul",
+     "icon": "globe",
+     "type": "browsing",
+     "b": "Read",
+     "t": " 38 announcements, kept 5 for the watch",
+     "when": "08:00"
+    }
+   ]
+  ]
+ ],
+ "activityBots": [
+  "Margaux",
+  "Inès",
+  "Sam",
+  "Hugo",
+  "Max",
+  "Léo",
+  "Zoé",
+  "Paul"
+ ],
+ "notifications": [
+  {
+   "id": 1,
+   "kind": "bot",
+   "who": "Sam",
+   "t": " is blocked: credentials needed for the supplier portal",
+   "when": "8 min",
+   "to": [
+    "work-task",
+    "blocked"
+   ]
+  },
+  {
+   "id": 2,
+   "kind": "mention",
+   "who": "Julien Mercier",
+   "initials": "JM",
+   "t": " mentioned you in “April 14 launch plan”",
+   "when": "15 min",
+   "to": [
+    "chat"
+   ]
+  },
+  {
+   "id": 3,
+   "kind": "bot",
+   "who": "Max",
+   "t": " is asking you to approve a €1,240 payment",
+   "when": "20 min",
+   "to": [
+    "approvals",
+    "detail"
+   ]
+  },
+  {
+   "id": 4,
+   "kind": "bot",
+   "who": "Nova",
+   "t": " finished “Follow up on unanswered quotes”",
+   "when": "34 min",
+   "to": [
+    "work-task",
+    "done"
+   ]
+  },
+  {
+   "id": 5,
+   "kind": "mention",
+   "who": "Inès Benali",
+   "initials": "IB",
+   "t": " commented on the Q2 launch budget",
+   "when": "1 h",
+   "to": [
+    "file-xlsx"
+   ]
+  },
+  {
+   "id": 6,
+   "kind": "bot",
+   "who": "Margaux",
+   "t": " ran the “CRM update” routine",
+   "when": "yesterday",
+   "to": [
+    "automations"
+   ]
+  }
+ ],
+ "readIds": [
+  5,
+  6
+ ],
+ "connectors": [
+  {
+   "id": "mail",
+   "mono": "Me",
+   "t": "Email",
+   "d": "Read, sort and prepare drafts",
+   "st": "on",
+   "perms": [
+    [
+     "mail",
+     "Read your email",
+     "Subjects, content and attachments"
+    ],
+    [
+     "edit",
+     "Prepare drafts",
+     "Never sent without your approval"
+    ],
+    [
+     "user",
+     "See your contacts",
+     "Names and addresses"
+    ]
+   ]
+  },
+  {
+   "id": "cal",
+   "mono": "Ag",
+   "t": "Calendar",
+   "d": "Suggest slots, prepare meetings",
+   "st": "on",
+   "perms": [
+    [
+     "calendar",
+     "See your events",
+     "Titles, times, attendees"
+    ],
+    [
+     "edit",
+     "Create invitations",
+     "With your approval"
+    ]
+   ]
+  },
+  {
+   "id": "drive",
+   "mono": "Dr",
+   "t": "Drive",
+   "d": "Read and file shared documents",
+   "st": "re",
+   "perms": [
+    [
+     "folder",
+     "See shared folders",
+     "Spring launch, Studio Nord"
+    ],
+    [
+     "file",
+     "Create documents",
+     "In a “Bots” folder"
+    ]
+   ]
+  },
+  {
+   "id": "crm",
+   "mono": "CR",
+   "t": "CRM",
+   "d": "Update contacts, quotes and follow-ups",
+   "st": "err",
+   "perms": [
+    [
+     "user",
+     "Read and edit records",
+     "Contacts, companies, quotes"
+    ],
+    [
+     "history",
+     "See conversation history",
+     "Last 12 months"
+    ]
+   ]
+  },
+  {
+   "id": "tk",
+   "mono": "Tk",
+   "t": "Tickets",
+   "d": "Sort and answer customer requests",
+   "st": "on",
+   "perms": [
+    [
+     "mentions",
+     "Read tickets",
+     "“Customer support” queue"
+    ],
+    [
+     "edit",
+     "Reply to customers",
+     "With your approval"
+    ]
+   ]
+  },
+  {
+   "id": "payroll",
+   "mono": "Pa",
+   "t": "Payroll",
+   "d": "Prepare payslips and transfers",
+   "st": "off",
+   "perms": [
+    [
+     "user",
+     "See employees",
+     "Names, contracts, salaries"
+    ],
+    [
+     "file",
+     "Generate payslips",
+     "Drafts to approve"
+    ],
+    [
+     "key",
+     "Prepare transfers",
+     "Always subject to your approval"
+    ]
+   ]
+  },
+  {
+   "id": "acct",
+   "mono": "Cp",
+   "t": "Accounting",
+   "d": "Reconcile invoices and expenses",
+   "st": "off",
+   "perms": [
+    [
+     "file",
+     "Read invoices",
+     "Purchases and sales"
+    ],
+    [
+     "check-circle",
+     "Categorize expenses",
+     "Expense reports"
+    ]
+   ]
+  },
+  {
+   "id": "chat",
+   "mono": "Ch",
+   "t": "Team chat",
+   "d": "Receive requests, reply in threads",
+   "st": "off",
+   "perms": [
+    [
+     "mentions",
+     "Read threads where you’re mentioned",
+     "Public channels"
+    ],
+    [
+     "edit",
+     "Reply on your behalf",
+     "With your approval"
+    ]
+   ]
+  },
+  {
+   "id": "git",
+   "mono": "Gi",
+   "t": "Code repository",
+   "d": "Summarize PRs, follow reviews",
+   "st": "off",
+   "perms": [
+    [
+     "pull-request",
+     "Read PRs and reviews",
+     "cortex-web, cortex-ios"
+    ],
+    [
+     "mentions",
+     "Comment",
+     "With your approval"
+    ]
+   ]
+  }
+ ],
+ "connError": {
+  "banner": "CRM disconnected",
+  "bannerText": "Margaux and {name} haven’t been able to update quotes since yesterday at 18:00.",
+  "detail": "The access token expired on September 30 at 18:00 (error 401). Data already synced is kept.",
+  "affected": [
+   [
+    "Margaux",
+    "CRM update · 1 failure"
+   ],
+   [
+    "Nova",
+    "Quote follow-up · waiting"
+   ]
+  ]
+ },
+ "connOk": "Your Bots can use it now. Paul suggests a routine: “Prepare payroll on the 25th of each month”."
+}

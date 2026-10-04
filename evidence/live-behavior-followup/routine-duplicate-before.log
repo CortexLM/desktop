@@ -1,0 +1,47 @@
+$ vitest run packages/core/test/scheduler.test.ts -t "duplicate starts"
+
+ RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+ ❯ packages/core/test/scheduler.test.ts (2 tests | 1 failed | 1 skipped) 109ms
+   ❯ scheduled run outcomes (2)
+     ↓ persists interruption as an error instead of a successful routine run
+     × refuses duplicate starts before creating another session or run 107ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/core/test/scheduler.test.ts > scheduled run outcomes > refuses duplicate starts before creating another session or run
+AssertionError: promise resolved "{ …(5) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "id": "run_01a0fea1c9aa0000b699ffffbc61d2b5",
++   "sessionID": "ses_01a0fea1c9aa0001a36dd22961c080e8",
++   "status": "success",
++   "taskID": "tsk_01a0fea1c96700005c43582ad1f21e37",
++   "time": {
++     "end": 1790978410940,
++     "start": 1790978410922,
++   },
+  }
+
+ ❯ packages/core/test/scheduler.test.ts:35:40
+     33|       const sessionID = await asked
+     34|       const duplicate = Promise.resolve().then(() => core.scheduler.ru…
+     35|       const refused = expect(duplicate).rejects.toMatchObject({ code: …
+       |                                        ^
+     36|       await core.sessions.abort(sessionID)
+     37|       await refused
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 skipped (2)
+   Start at  22:00:10
+   Duration  803ms (import 47%, transform 36%, tests 17%, worker 1%)
+
+error: script "test" exited with code 1

@@ -1,0 +1,26 @@
+{
+  "name": "public-types",
+  "command": [
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "/root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-sdk/packages/sdk/node_modules/typescript/bin/tsc",
+    "--ignoreConfig",
+    "--noEmit",
+    "--strict",
+    "--skipLibCheck",
+    "--target",
+    "ES2023",
+    "--module",
+    "NodeNext",
+    "--moduleResolution",
+    "NodeNext",
+    "types.ts",
+    "turn-bodies.mts",
+    "unchanged-and-screenshot.mts"
+  ],
+  "cwd": "/tmp/opencode/desktop-sdk-035-readback/consumer",
+  "elapsed_seconds": 0.916,
+  "exit_code": 0,
+  "timed_out": false,
+  "runtime_binary": "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+  "log": "logs/public-types.log"
+}

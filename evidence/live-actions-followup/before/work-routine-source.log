@@ -1,0 +1,52 @@
+$ playwright test "tests/e2e/work-routine-source.spec.ts" --grep "confirmation — light" "--workers=1" "--output=/tmp/opencode/work-routine-source-before-artifacts"
+
+Running 1 test using 1 worker
+
+  ✘  1 tests/e2e/work-routine-source.spec.ts:47:3 › Work task conversion preserves source context and only creates on confirmation — light (17.2s)
+
+
+  1) tests/e2e/work-routine-source.spec.ts:47:3 › Work task conversion preserves source context and only creates on confirmation — light
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'Task options', exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: 'Task options', exact: true }) with timeout 15000ms
+      - waiting for getByRole('button', { name: 'Task options', exact: true })
+
+
+      37 |   await navigate(page, `#/work-task?id=${source.id}&theme=${theme}`);
+      38 |   await expect(page.locator(".msg-user").first()).toHaveText(prompt);
+    > 39 |   await expect(page.getByRole("button", { name: "Task options", exact: true })).toBeVisible();
+         |                                                                                 ^
+      40 |   await page.getByRole("button", { name: "Task options", exact: true }).click();
+      41 |   await expect(page.getByRole("menuitem", { name: "Turn into a routine", exact: true })).toBeVisible();
+      42 |   await page.getByRole("menuitem", { name: "Turn into a routine", exact: true }).click();
+        at openRoutine (/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/work-routine-source.spec.ts:39:81)
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/work-routine-source.spec.ts:68:7
+
+    attachment #1: work-task-source-light (image/png) ──────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/work-routine-source-before-artifacts/work-routine-source-Work-t-41043-tes-on-confirmation-—-light/attachments/work-task-source-light-74ff13a44550306e1e3bf336c301394d313dd412.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/work-routine-source-before-artifacts/work-routine-source-Work-t-41043-tes-on-confirmation-—-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/work-routine-source-before-artifacts/work-routine-source-Work-t-41043-tes-on-confirmation-—-light/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/work-routine-source-before-artifacts/work-routine-source-Work-t-41043-tes-on-confirmation-—-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/work-routine-source-before-artifacts/work-routine-source-Work-t-41043-tes-on-confirmation-—-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/work-routine-source.spec.ts:47:3 › Work task conversion preserves source context and only creates on confirmation — light
+error: script "test:e2e" exited with code 1

@@ -1,0 +1,72 @@
+{
+  "scope": "historical f5bf305 negative baseline; no current source/build comparison",
+  "applicationRevision": "f5bf305473db12fddfddcda890a01794f02f578f",
+  "documentaryHeadAtRun": "1076c2584941cf054efffaf709a149b4195bc1c4",
+  "hookSnapshot": {
+    "retainedPath": "source/live.f5bf305.ts",
+    "sourcePath": "packages/app/src/state/live.ts",
+    "gitBlob": "1dbb29d2b97224f84be542553da17c2b809c4cc4",
+    "sha256": "4c4ec7ae725dfd250f5102c273deeed827c22a3e70568eaa145435a2970119c7",
+    "retrieval": "git show f5bf305473db12fddfddcda890a01794f02f578f:packages/app/src/state/live.ts"
+  },
+  "testSnapshot": {
+    "retainedPath": "source/live-state.spec.ts",
+    "sourcePath": "tests/e2e/live-state.spec.ts",
+    "sha256": "842804966f6cd584834c728c92c495ccc52ece47bce2dcd128df912f98c83710",
+    "revision": null,
+    "stateAtRun": "new uncommitted test atop application f5bf305/documentary 1076c25; exact bytes retained"
+  },
+  "historicalSourceLinks": [
+    {
+      "path": "packages/app/src/state/live.ts",
+      "revision": "f5bf305473db12fddfddcda890a01794f02f578f",
+      "gitBlob": "1dbb29d2b97224f84be542553da17c2b809c4cc4",
+      "sha256": "4c4ec7ae725dfd250f5102c273deeed827c22a3e70568eaa145435a2970119c7",
+      "url": "https://github.com/CortexLM/desktop/blob/f5bf305473db12fddfddcda890a01794f02f578f/packages/app/src/state/live.ts"
+    },
+    {
+      "path": "tests/e2e/fixtures.ts",
+      "revision": "f5bf305473db12fddfddcda890a01794f02f578f",
+      "gitBlob": "d23a732e7252e3fb0f4a9c16f7f3468790b33760",
+      "sha256": "a9772c5fe4038dd4a260bf1d47d7a6f382ba40ea54eb4cde9ab2048223e2fe03",
+      "url": "https://github.com/CortexLM/desktop/blob/f5bf305473db12fddfddcda890a01794f02f578f/tests/e2e/fixtures.ts"
+    },
+    {
+      "path": "tests/e2e/fake-provider.ts",
+      "revision": "f5bf305473db12fddfddcda890a01794f02f578f",
+      "gitBlob": "40d6499a5d1aaad5a0e1447181d1c03b4130dcf8",
+      "sha256": "2d6e794add17a55a7c70fa72b93f024129a2bd4c1b9bd3d055efca48a11c14ee",
+      "url": "https://github.com/CortexLM/desktop/blob/f5bf305473db12fddfddcda890a01794f02f578f/tests/e2e/fake-provider.ts"
+    },
+    {
+      "path": "packages/core/test/fixtures/catalog.json",
+      "revision": "f5bf305473db12fddfddcda890a01794f02f578f",
+      "gitBlob": "2617c035d548d3f91144aec18dc9c1a167f6f791",
+      "sha256": "1c6fe3acb86c4da727ed66e7fc11880a7057a5d633fe762938e5a35d1d885206",
+      "url": "https://github.com/CortexLM/desktop/blob/f5bf305473db12fddfddcda890a01794f02f578f/packages/core/test/fixtures/catalog.json"
+    }
+  ],
+  "historicalDistVerification": {
+    "sourcePaths": [
+      "/tmp/opencode/live-state-race/baseline-final/integrity-before.json",
+      "/tmp/opencode/live-state-race/baseline-final/integrity-after.json"
+    ],
+    "retainedPath": "raw/integrity.json.gz",
+    "beforeAfterSHA256": "645bf00a47b7509dcac5ee0389e971b0a94b69398a74dd0060d81c92c512008a",
+    "members": 90,
+    "identical": true,
+    "allMatch": true,
+    "missing": [],
+    "unlisted": []
+  },
+  "imageConversion": {
+    "pillow": "12.3.0",
+    "libwebp": "1.6.0",
+    "format": "WebP",
+    "lossless": true,
+    "quality": 100,
+    "method": 6,
+    "exact": true,
+    "comparison": "full-size decoded RGBA bytes; no resizing, tolerance, masking or color adjustment"
+  }
+}

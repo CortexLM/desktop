@@ -1,0 +1,29 @@
+$ vitest run
+
+ RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+ ✓ tests/unit/audit-i18n.test.ts (1 test) 173ms
+ ✓ packages/schema/test/schema.test.ts (3 tests) 21ms
+ ✓ packages/protocol/test/protocol.test.ts (3 tests) 56ms
+ ✓ tests/unit/locales.test.ts (9 tests) 337ms
+ ✓ packages/core/test/computer-use.test.ts (3 tests) 46ms
+ ✓ packages/client/test/client.test.ts (3 tests) 141ms
+ ✓ packages/core/test/capabilities.test.ts (11 tests) 178ms
+ ✓ packages/server/test/server.test.ts (5 tests) 171ms
+ ✓ packages/core/test/services.test.ts (15 tests) 304ms
+ ✓ packages/core/test/catalog.test.ts (6 tests) 430ms
+   ✓ catalog (6)
+     ✓ live: fetches models.dev (skipped offline) 406ms
+ ✓ tests/unit/runtime-copy.test.ts (24 tests) 1437ms
+ ✓ packages/desktop/test/remote.test.ts (45 tests | 1 skipped) 5166ms
+   ✓ remote backend through the Cortex SDK (45)
+     ✓ times out a model listing whose JSON body never completes 5003ms
+ ✓ packages/core/test/session.test.ts (11 tests) 6297ms
+   ✓ session runner (fake OpenAI-compatible SSE) (11)
+     ✓ surfaces provider errors with a neutral code 6012ms
+
+ Test Files  13 passed (13)
+      Tests  138 passed | 1 skipped (139)
+   Start at  19:27:38
+   Duration  7.04s (tests 72%, import 18%, transform 10%)
+

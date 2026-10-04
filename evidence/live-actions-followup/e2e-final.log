@@ -1,0 +1,18 @@
+$ playwright test "tests/e2e/work-routine-source.spec.ts" "tests/e2e/search-bots.spec.ts" "tests/e2e/routines.spec.ts" "--output=/tmp/opencode/live-actions-final-artifacts"
+
+Running 12 tests using 4 workers
+
+  ✓   2 tests/e2e/routines.spec.ts:111:3 › Routine actions retain honest feedback when the engine refuses — light (1.9s)
+  ✓   3 tests/e2e/routines.spec.ts:111:3 › Routine actions retain honest feedback when the engine refuses — dark (1.9s)
+  ✓   1 tests/e2e/routines.spec.ts:46:3 › Routine history reflects running, interruption and latest results — light (2.7s)
+  ✓   4 tests/e2e/routines.spec.ts:46:3 › Routine history reflects running, interruption and latest results — dark (2.8s)
+  ✓   5 tests/e2e/search-bots.spec.ts:26:40 › Search finds persisted Bots by name and persona, preserving grouped keyboard identity — light (2.3s)
+  ✓   7 tests/e2e/search-bots.spec.ts:93:1 › Search reports either source's real request refusal and retries both lists (1.7s)
+  ✓   6 tests/e2e/search-bots.spec.ts:26:40 › Search finds persisted Bots by name and persona, preserving grouped keyboard identity — dark (2.4s)
+  ✓   8 tests/e2e/work-routine-source.spec.ts:48:3 › Work task conversion preserves source context and only creates on confirmation — light (5.0s)
+  ✓  10 tests/e2e/work-routine-source.spec.ts:48:3 › Work task conversion preserves source context and only creates on confirmation — dark (5.3s)
+  ✓  12 tests/e2e/work-routine-source.spec.ts:252:1 › Routine source navigation ignores late source responses and late save completion (3.2s)
+  ✓   9 tests/e2e/work-routine-source.spec.ts:151:3 › Work routine source rejects missing tasks and attachments; reassignment uses the selected Bot — light (8.2s)
+  ✓  11 tests/e2e/work-routine-source.spec.ts:151:3 › Work routine source rejects missing tasks and attachments; reassignment uses the selected Bot — dark (8.2s)
+
+  12 passed (14.0s)

@@ -1,0 +1,60 @@
+[
+  {
+    "case": 1,
+    "theme": "light",
+    "testSHA256": "2bff6928c640ef274363b00e3861027488fa1025d0087135a93ddbee061949ba",
+    "negativeFailureCount": 9,
+    "failureLines": [
+      37,
+      46,
+      47,
+      46,
+      47,
+      55,
+      65,
+      80,
+      80
+    ],
+    "negativeAssertions": [
+      "Error: Appearance has exactly one Tab stop at its selected radio",
+      "Error: ArrowRight: adjacent radio is selected and focused",
+      "Error: ArrowRight: selection is applied and saved",
+      "Error: ArrowLeft: adjacent radio is selected and focused",
+      "Error: ArrowLeft: selection is applied and saved",
+      "Error: Tab exits Appearance's theme group to Language",
+      "Error: Appearance follows the rail's explicit preference",
+      "Error: Appearance keeps System selected under light OS appearance",
+      "Error: Appearance keeps System selected under dark OS appearance"
+    ],
+    "finalErrors": [],
+    "note": "Fresh-hash agreement and post-rail Tab ownership are retained observation checks; the original 17 assertions are unchanged."
+  },
+  {
+    "case": 2,
+    "theme": "dark",
+    "testSHA256": "2bff6928c640ef274363b00e3861027488fa1025d0087135a93ddbee061949ba",
+    "negativeFailureCount": 8,
+    "failureLines": [
+      37,
+      46,
+      47,
+      46,
+      47,
+      65,
+      80,
+      80
+    ],
+    "negativeAssertions": [
+      "Error: Appearance has exactly one Tab stop at its selected radio",
+      "Error: ArrowRight: adjacent radio is selected and focused",
+      "Error: ArrowRight: selection is applied and saved",
+      "Error: ArrowLeft: adjacent radio is selected and focused",
+      "Error: ArrowLeft: selection is applied and saved",
+      "Error: Appearance follows the rail's explicit preference",
+      "Error: Appearance keeps System selected under light OS appearance",
+      "Error: Appearance keeps System selected under dark OS appearance"
+    ],
+    "finalErrors": [],
+    "note": "Fresh-hash agreement and post-rail Tab ownership are retained observation checks; the original 17 assertions are unchanged."
+  }
+]

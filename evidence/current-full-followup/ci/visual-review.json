@@ -1,0 +1,39 @@
+{
+  "run": 37082159189,
+  "method": "Every unique uploaded PNG opened on labeled contact sheets; byte-identical report/attachment copies accounted by SHA-256. Findings and selected positive states opened at original resolution.",
+  "imagesManifest": "images.json",
+  "uploadedPNGFiles": 451,
+  "uniquePNGImages": 151,
+  "contactSheetImagesReviewed": 151,
+  "contactSheetsReviewed": ["contact-e2e-linux-01.png", "contact-e2e-linux-02.png", "contact-e2e-linux-03.png", "contact-e2e-linux-04.png", "contact-e2e-linux-05.png", "contact-e2e-linux-06.png", "contact-e2e-linux-07.png", "contact-macos-01.png", "contact-macos-02.png", "contact-macos-03.png", "contact-macos-04.png", "contact-macos-05.png", "contact-macos-06.png", "contact-macos-07.png"],
+  "fullResolutionImagesReviewed": ["e2e-linux-15", "e2e-linux-16", "e2e-linux-45", "macos-05", "macos-09", "macos-15", "macos-16", "macos-45", "macos-53", "macos-55", "macos-57", "macos-58", "macos-60", "macos-64", "macos-66", "macos-75"],
+  "observations": [
+    {
+      "images": ["e2e-linux-15", "e2e-linux-16", "macos-15", "macos-16", "macos-09"],
+      "finding": "At 960x640 Code's split-pane composer displays only a short draft prefix. In the session-draft images, Message not sent obscures most of the older No model available toast. Attachment-recovery image shows file chip, remove button, model and send controls above/below the toast without obstruction.",
+      "limit": "Captured presentation constraints, not evidence of lost draft or failed recovery. composer-safety.spec.ts asserts exact retained value and trial-clickable controls; code-models.spec.ts verifies the image refusal and actual successful recovery. Full-draft visual readability and expanded-toast behavior are not established by these frames. No new regression attribution."
+    },
+    {
+      "images": ["e2e-linux-45", "macos-45"],
+      "finding": "At 960x640 provider model name wraps; its metadata collapses to 100..., leaving the full context/cost unreadable in this frame. API key label, saved WXYZ hint, entry and Save remain readable. The pane has a vertical scrollbar.",
+      "limit": "Metadata truncation is a scoped visual residual; key-row regression tests pass. No claim that offscreen lower controls are missing."
+    },
+    {
+      "images": ["macos-05", "macos-55", "macos-57", "macos-53", "macos-58"],
+      "finding": "Refused Bot save retains the dialog and visible failure toast. Routine editor shows source text, selected Bot B and Create. Bot-list failure keeps text, disables Create, exposes Try again. File-dependent and missing sources show neutral failure, disabled Create.",
+      "limit": "Long routine name input displays a prefix. Screenshots supplement passing refusal/context assertions; they do not establish exhaustive editing behavior."
+    },
+    {
+      "images": ["macos-60", "macos-64", "macos-75"],
+      "finding": "Routine success history paints Bot B and Succeeded; long table labels wrap. Search shows grouped Chat/Bot matches with accent highlights and selected persona row. Work shows Done with the controlled-provider response.",
+      "limit": "Controlled local provider; no authenticated Cloud/selfhost inference proof."
+    },
+    {
+      "images": ["macos-66"],
+      "finding": "Packaged smoke image is a populated 1440x900 light local Chat home, empty recents, No model, complete visible composer.",
+      "limit": "CDP renderer-only image. Native display capture failed; no native window/menu pixels are established."
+    }
+  ],
+  "overall": "No blank/corrupt uploaded PNG or additional gross overlap found during contact-sheet review. Residuals above prevent treating green assertions as full visual acceptance.",
+  "limits": ["Not every unique image was opened individually at full resolution.", "426 render/copy checks per OS are not 426 saved screenshots per OS.", "No new captures, app launches, builds, tests, CI reruns or Mac operations.", "Coordinator-owned installed native sweep and frozen comparisons are outside this receipt."]
+}

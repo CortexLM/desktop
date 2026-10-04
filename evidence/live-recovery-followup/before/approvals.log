@@ -1,0 +1,84 @@
+
+Running 2 tests using 1 worker
+
+  ✘  1 tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — light (16.2s)
+  ✘  2 tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — dark (16.3s)
+
+
+  1) tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — light
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Couldn’t load this', exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Couldn’t load this', exact: true }) with timeout 15000ms
+      - waiting for getByRole('heading', { name: 'Couldn’t load this', exact: true })
+
+
+      44 |       history.pushState(null, "", location.hash.replace("/home", "/approvals"));
+      45 |     });
+    > 46 |     await expect(page.getByRole("heading", { name: "Couldn’t load this", exact: true })).toBeVisible();
+         |                                                                                          ^
+      47 |     await expect(page.getByText("Nothing to approve", { exact: true })).toHaveCount(0);
+      48 |     await expect(page.getByTestId("approval-allow")).toHaveCount(0);
+      49 |     const retry = page.getByRole("button", { name: "Try again", exact: true });
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/approvals-recovery.spec.ts:46:90
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/approvals-recovery-before/approvals-recovery-Approva-abde6-ntil-Retry-succeeds-—-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/approvals-recovery-before/approvals-recovery-Approva-abde6-ntil-Retry-succeeds-—-light/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/approvals-recovery-before/approvals-recovery-Approva-abde6-ntil-Retry-succeeds-—-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/approvals-recovery-before/approvals-recovery-Approva-abde6-ntil-Retry-succeeds-—-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — dark
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Couldn’t load this', exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Couldn’t load this', exact: true }) with timeout 15000ms
+      - waiting for getByRole('heading', { name: 'Couldn’t load this', exact: true })
+
+
+      44 |       history.pushState(null, "", location.hash.replace("/home", "/approvals"));
+      45 |     });
+    > 46 |     await expect(page.getByRole("heading", { name: "Couldn’t load this", exact: true })).toBeVisible();
+         |                                                                                          ^
+      47 |     await expect(page.getByText("Nothing to approve", { exact: true })).toHaveCount(0);
+      48 |     await expect(page.getByTestId("approval-allow")).toHaveCount(0);
+      49 |     const retry = page.getByRole("button", { name: "Try again", exact: true });
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/approvals-recovery.spec.ts:46:90
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/approvals-recovery-before/approvals-recovery-Approva-c0cfe-until-Retry-succeeds-—-dark/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/approvals-recovery-before/approvals-recovery-Approva-c0cfe-until-Retry-succeeds-—-dark/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/approvals-recovery-before/approvals-recovery-Approva-c0cfe-until-Retry-succeeds-—-dark/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/approvals-recovery-before/approvals-recovery-Approva-c0cfe-until-Retry-succeeds-—-dark/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — light
+    tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — dark

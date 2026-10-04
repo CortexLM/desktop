@@ -1,0 +1,692 @@
+[
+  {
+    "case": 68,
+    "file": "provider-draft.spec.ts",
+    "theme": "light",
+    "stages": [
+      {
+        "stage": "after-disable",
+        "draftPreserved": true,
+        "draftEmpty": false,
+        "stored": {
+          "providerID": "fake",
+          "enabled": false,
+          "hasKey": true,
+          "keyHint": "1111"
+        }
+      },
+      {
+        "stage": "after-enable",
+        "draftPreserved": true,
+        "draftEmpty": false,
+        "stored": {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "1111"
+        }
+      },
+      {
+        "stage": "after-save",
+        "draftPreserved": false,
+        "draftEmpty": true,
+        "stored": {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "2222"
+        }
+      }
+    ],
+    "preparations": [
+      {
+        "stage": "before-enable",
+        "refilled": false
+      },
+      {
+        "stage": "before-save",
+        "refilled": false
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/catalog/search",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/catalog/providers/fake/models",
+        "status": 200
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": false,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": true,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      }
+    ],
+    "httpRequests": 0,
+    "mutationCount": 4,
+    "httpObservationScope": "Main fetch observer installed after launch; zero within that observed interval only"
+  },
+  {
+    "case": 69,
+    "file": "provider-draft.spec.ts",
+    "theme": "dark",
+    "stages": [
+      {
+        "stage": "after-disable",
+        "draftPreserved": true,
+        "draftEmpty": false,
+        "stored": {
+          "providerID": "fake",
+          "enabled": false,
+          "hasKey": true,
+          "keyHint": "1111"
+        }
+      },
+      {
+        "stage": "after-enable",
+        "draftPreserved": true,
+        "draftEmpty": false,
+        "stored": {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "1111"
+        }
+      },
+      {
+        "stage": "after-save",
+        "draftPreserved": false,
+        "draftEmpty": true,
+        "stored": {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "2222"
+        }
+      }
+    ],
+    "preparations": [
+      {
+        "stage": "before-enable",
+        "refilled": false
+      },
+      {
+        "stage": "before-save",
+        "refilled": false
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/catalog/search",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/catalog/providers/fake/models",
+        "status": 200
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": false,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": true,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      }
+    ],
+    "httpRequests": 0,
+    "mutationCount": 4,
+    "httpObservationScope": "Main fetch observer installed after launch; zero within that observed interval only"
+  },
+  {
+    "case": 70,
+    "file": "provider-key-pending.spec.ts",
+    "theme": "light",
+    "putPending": {
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"2222\"}"
+      },
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      },
+      "inputEnabled": true,
+      "newerDraftAccepted": true,
+      "returned": false
+    },
+    "putSettled": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      },
+      "responseUnchanged": true,
+      "newerDraftPreserved": true,
+      "draftLength": 20
+    },
+    "deletePending": {
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+      },
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "inputEnabled": true,
+      "newerDraftAccepted": true,
+      "returned": false
+    },
+    "deleteSettled": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "responseUnchanged": true,
+      "newerDraftPreserved": true,
+      "draftLength": 20
+    },
+    "recovery": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "4444"
+      },
+      "configs": [
+        {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "4444"
+        }
+      ],
+      "writes": [
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"1111\"}"
+          }
+        },
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"2222\"}"
+          }
+        },
+        {
+          "method": "DELETE",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+          }
+        },
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"4444\"}"
+          }
+        }
+      ],
+      "unchangedDraftCleared": true
+    },
+    "refusal": {
+      "response": {
+        "status": 400,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"error\":{\"code\":\"invalid_request\",\"message\":\"Invalid request at key\"}}"
+      },
+      "draftLength": 4097,
+      "draftUnchanged": true,
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "4444"
+      }
+    },
+    "ordinaryRemove": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "draftCleared": true,
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+      }
+    },
+    "errors": [],
+    "rendererHttp": [],
+    "credentialMutationAttempts": 6,
+    "wireEqualityProof": "Unchanged passing test compares held/delivered status, headers and body string; original handler runs before the hold.",
+    "pendingRefills": "Conditional recovery branches remain in source; retained settled values equal C/D, so predicates are false. No refill telemetry field exists."
+  },
+  {
+    "case": 71,
+    "file": "provider-key-pending.spec.ts",
+    "theme": "dark",
+    "putPending": {
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"2222\"}"
+      },
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      },
+      "inputEnabled": true,
+      "newerDraftAccepted": true,
+      "returned": false
+    },
+    "putSettled": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      },
+      "responseUnchanged": true,
+      "newerDraftPreserved": true,
+      "draftLength": 20
+    },
+    "deletePending": {
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+      },
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "inputEnabled": true,
+      "newerDraftAccepted": true,
+      "returned": false
+    },
+    "deleteSettled": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "responseUnchanged": true,
+      "newerDraftPreserved": true,
+      "draftLength": 20
+    },
+    "recovery": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "4444"
+      },
+      "configs": [
+        {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "4444"
+        }
+      ],
+      "writes": [
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"1111\"}"
+          }
+        },
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"2222\"}"
+          }
+        },
+        {
+          "method": "DELETE",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+          }
+        },
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"4444\"}"
+          }
+        }
+      ],
+      "unchangedDraftCleared": true
+    },
+    "refusal": {
+      "response": {
+        "status": 400,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"error\":{\"code\":\"invalid_request\",\"message\":\"Invalid request at key\"}}"
+      },
+      "draftLength": 4097,
+      "draftUnchanged": true,
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "4444"
+      }
+    },
+    "ordinaryRemove": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "draftCleared": true,
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+      }
+    },
+    "errors": [],
+    "rendererHttp": [],
+    "credentialMutationAttempts": 6,
+    "wireEqualityProof": "Unchanged passing test compares held/delivered status, headers and body string; original handler runs before the hold.",
+    "pendingRefills": "Conditional recovery branches remain in source; retained settled values equal C/D, so predicates are false. No refill telemetry field exists."
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "disposition": "positive within retained local artifact scope",
+  "at": "2026-10-03T19:08:22.854506+00:00",
+  "contactsViewed": 16,
+  "uniqueImagesReviewed": 185,
+  "fullsizeActivityOriginals": 16,
+  "fullsizeBreakdown": {
+    "fullRunDarkLocales": 8,
+    "fullRunEnglishLifecycle": 4,
+    "supplementalEnglishLifecycle": 4
+  },
+  "size": "960x640 all targets",
+  "findings": [],
+  "limits": [
+    "Contact-scale review is not full-size inspection of every frame.",
+    "No OS chrome/native verification or new capture.",
+    "Ordinal formatting visible in images; test asserts exact identity via mascot/session, not ordinal strings.",
+    "No frozen-reference comparison performed in this audit."
+  ]
+}

@@ -1,0 +1,902 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/code-models.spec.ts",
+      "tests/e2e/routines.spec.ts",
+      "tests/e2e/composer-safety.spec.ts",
+      "tests/e2e/ui-flows.spec.ts",
+      "--output=/tmp/opencode/live-behavior-final-artifacts"
+    ],
+    "configFile": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/playwright.config.ts",
+    "rootDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/opencode/live-behavior-final-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/e2e.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "code-models.spec.ts",
+      "file": "code-models.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Code sends the chosen model, restores session selection and refuses unavailable models — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4453,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:05.334Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "code-models-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/code-models-Code-sends-the-935b1--unavailable-models-—-light/attachments/code-models-light-cdc29cc43efe79d2f67df05b9d26bcd2f7b60c5c.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0753c1c1729d084849d0-e2f53ddea46bf4859b62",
+          "file": "code-models.spec.ts",
+          "line": 38,
+          "column": 3
+        },
+        {
+          "title": "Code image refusal leaves attachment recovery controls reachable — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3536,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:05.333Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "code-attachment-refusal-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/code-models-Code-image-ref-5cba1--controls-reachable-—-light/attachments/code-attachment-refusal-light-44af71e8ee4991062302041ab37a364aa1421af2.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0753c1c1729d084849d0-5cc99efa227328846a0f",
+          "file": "code-models.spec.ts",
+          "line": 148,
+          "column": 3
+        },
+        {
+          "title": "Code sends the chosen model, restores session selection and refuses unavailable models — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 4398,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:05.351Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "code-models-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/code-models-Code-sends-the-f951d-s-unavailable-models-—-dark/attachments/code-models-dark-9a79aa28ac94108d041504c59ee5292fecf08cdc.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0753c1c1729d084849d0-50ac5a440a35568ee817",
+          "file": "code-models.spec.ts",
+          "line": 38,
+          "column": 3
+        },
+        {
+          "title": "Code image refusal leaves attachment recovery controls reachable — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 3569,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:05.363Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "code-attachment-refusal-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/code-models-Code-image-ref-d7d20-y-controls-reachable-—-dark/attachments/code-attachment-refusal-dark-eed89fe7f3fe8a86a44a3727f5b6727fd4a3cf20.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0753c1c1729d084849d0-57b72fad7532df396db0",
+          "file": "code-models.spec.ts",
+          "line": 148,
+          "column": 3
+        },
+        {
+          "title": "Code keeps unsupported and missing session models instead of falling back",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1492,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:08.916Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0753c1c1729d084849d0-137c7600fcb885a66d19",
+          "file": "code-models.spec.ts",
+          "line": 234,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "composer-safety.spec.ts",
+      "file": "composer-safety.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Code keeps cancelled and no-model drafts, locks pending submits — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2463,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:08.992Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "code-draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/composer-safety-Code-keeps-0729b-cks-pending-submits-—-light/attachments/code-draft-kept-light-4103b523699ff489ccba18b03014a8935877eb87.png"
+                    },
+                    {
+                      "name": "code-session-draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/composer-safety-Code-keeps-0729b-cks-pending-submits-—-light/attachments/code-session-draft-kept-light-750fb7fb75a4637823845e88f3b91940ee2b3dc2.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d406623888ff0196f1b1-4296c74840903afcd598",
+          "file": "composer-safety.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Work and Bot drafts survive engine refusal; accepted sends clear once — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 6686,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:09.808Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "work-draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/composer-safety-Work-and-B-e9acc-ed-sends-clear-once-—-light/attachments/work-draft-kept-light-a1e900f2144e88fd5124a10237693ec391b60cfb.png"
+                    },
+                    {
+                      "name": "work-task-draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/composer-safety-Work-and-B-e9acc-ed-sends-clear-once-—-light/attachments/work-task-draft-kept-light-141d6781361cfa8550f8794ba0706245acf0d0cd.png"
+                    },
+                    {
+                      "name": "bot-draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/composer-safety-Work-and-B-e9acc-ed-sends-clear-once-—-light/attachments/bot-draft-kept-light-6ba573bb804be27435572683034fd86d544baa29.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d406623888ff0196f1b1-408945fc2182dd14fc66",
+          "file": "composer-safety.spec.ts",
+          "line": 85,
+          "column": 3
+        },
+        {
+          "title": "Code keeps cancelled and no-model drafts, locks pending submits — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2446,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:09.853Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "code-draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/composer-safety-Code-keeps-f8c8d-ocks-pending-submits-—-dark/attachments/code-draft-kept-dark-d33bbd24d0f057785c54774ff086d4e29d083034.png"
+                    },
+                    {
+                      "name": "code-session-draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/composer-safety-Code-keeps-f8c8d-ocks-pending-submits-—-dark/attachments/code-session-draft-kept-dark-5ea0582831ce45d8cc2fada9914ac304cf28a879.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d406623888ff0196f1b1-e302f2d2604ad042dd6a",
+          "file": "composer-safety.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Work and Bot drafts survive engine refusal; accepted sends clear once — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6904,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:10.448Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "work-draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/composer-safety-Work-and-B-79456-ted-sends-clear-once-—-dark/attachments/work-draft-kept-dark-cb5bfe92eaaeb9b7d504d65c4a40416052830b3a.png"
+                    },
+                    {
+                      "name": "work-task-draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/composer-safety-Work-and-B-79456-ted-sends-clear-once-—-dark/attachments/work-task-draft-kept-dark-546ee235a99c7964058498adb0aacbdca21c9fef.png"
+                    },
+                    {
+                      "name": "bot-draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/composer-safety-Work-and-B-79456-ted-sends-clear-once-—-dark/attachments/bot-draft-kept-dark-e896f594078f9b88d1779a5a88fcb79407c2b4b9.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d406623888ff0196f1b1-b97195baa1f4f6694571",
+          "file": "composer-safety.spec.ts",
+          "line": 85,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "routines.spec.ts",
+      "file": "routines.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Routine history reflects running, interruption and latest results — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2696,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:11.790Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-running-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/routines-Routine-history-r-71513--and-latest-results-—-light/attachments/routine-running-light-a1c1ca3de96dec60ed58a2a5c1539d98d168b606.png"
+                    },
+                    {
+                      "name": "routine-interrupted-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/routines-Routine-history-r-71513--and-latest-results-—-light/attachments/routine-interrupted-light-4946de31fc147149a9589bf8a5fe6a10c7ab365e.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3926c6d2509f6eec95f-33f1db36955072d9dac5",
+          "file": "routines.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "Routine actions retain honest feedback when the engine refuses — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1949,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:12.626Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-start-refused-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/routines-Routine-actions-r-37a92--the-engine-refuses-—-light/attachments/routine-start-refused-light-6d32179cbd27669c86e0a03ced99ee3fad3ffafa.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3926c6d2509f6eec95f-f236c3973d5817202423",
+          "file": "routines.spec.ts",
+          "line": 111,
+          "column": 3
+        },
+        {
+          "title": "Routine history reflects running, interruption and latest results — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2699,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:14.511Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-running-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/routines-Routine-history-r-3a54b-n-and-latest-results-—-dark/attachments/routine-running-dark-9264f6b80253fd64ffcb2defa05a03a29c31c56d.png"
+                    },
+                    {
+                      "name": "routine-interrupted-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/routines-Routine-history-r-3a54b-n-and-latest-results-—-dark/attachments/routine-interrupted-dark-0644a2bc1b2b3cf8ec27a968f071b13206dd794f.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3926c6d2509f6eec95f-c09d73b90a99ac547c2f",
+          "file": "routines.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "Routine actions retain honest feedback when the engine refuses — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1968,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:14.594Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-start-refused-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/routines-Routine-actions-r-f9f82-n-the-engine-refuses-—-dark/attachments/routine-start-refused-dark-4dd1fd12cb380c9edcddd29e2fb27e4115633e74.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3926c6d2509f6eec95f-4884eca05235741331f1",
+          "file": "routines.spec.ts",
+          "line": 111,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "ui-flows.spec.ts",
+      "file": "ui-flows.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "provider key save, reload and removal stay readable — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 15823,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "960px",
+                      "duration": 4641
+                    },
+                    {
+                      "title": "1024px",
+                      "duration": 4596
+                    },
+                    {
+                      "title": "1440px",
+                      "duration": 4680
+                    }
+                  ],
+                  "startTime": "2026-10-02T22:39:16.522Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "provider-key-960-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/attachments/provider-key-960-light-2f002655731af50d67829f9b17b08e37b70cd927.png"
+                    },
+                    {
+                      "name": "provider-key-1024-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/attachments/provider-key-1024-light-112e5cf9b3eec22573c83c2fc840f2ddc5c1e7ad.png"
+                    },
+                    {
+                      "name": "provider-key-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/attachments/provider-key-1440-light-0789da45a7fb430df4e7fcc93116c1691803511a.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "89147e0413fd998ccfca-fd85eeb7d4209d14c0b5",
+          "file": "ui-flows.spec.ts",
+          "line": 19,
+          "column": 40
+        },
+        {
+          "title": "provider key save, reload and removal stay readable — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15863,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "960px",
+                      "duration": 4653
+                    },
+                    {
+                      "title": "1024px",
+                      "duration": 4576
+                    },
+                    {
+                      "title": "1440px",
+                      "duration": 4687
+                    }
+                  ],
+                  "startTime": "2026-10-02T22:39:16.605Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "provider-key-960-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/attachments/provider-key-960-dark-ec81b8c014c4725515b79a3a1e24cab6e75dfc02.png"
+                    },
+                    {
+                      "name": "provider-key-1024-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/attachments/provider-key-1024-dark-b18e0c1fae3092867e04fb82a2c3cd7043888e41.png"
+                    },
+                    {
+                      "name": "provider-key-1440-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/attachments/provider-key-1440-dark-2755e6732213fdbec1afff1346f9d7efc83261fd.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "89147e0413fd998ccfca-f34a25ff795dd0141df3",
+          "file": "ui-flows.spec.ts",
+          "line": 19,
+          "column": 40
+        },
+        {
+          "title": "streamed exchange with thinking and an image, driven from the composer",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 5294,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:17.251Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "89147e0413fd998ccfca-54dc4f950779af157a0f",
+          "file": "ui-flows.spec.ts",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "rejected sends keep the draft and attachments; retry resends the image",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 12198,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:39:17.380Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/ui-flows-rejected-sends-ke-f168b-nts-retry-resends-the-image/attachments/draft-kept-light-a300894724424ca9efc9e9340a51de88185fdf6d.png"
+                    },
+                    {
+                      "name": "history-image-refusal-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/ui-flows-rejected-sends-ke-f168b-nts-retry-resends-the-image/attachments/history-image-refusal-light-c61c8e079137d181e71d8108e23eb205a4ba4b04.png"
+                    },
+                    {
+                      "name": "chat-draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/ui-flows-rejected-sends-ke-f168b-nts-retry-resends-the-image/attachments/chat-draft-kept-light-df342f9a66eace78ac9bf23fc05f8f4221d3479f.png"
+                    },
+                    {
+                      "name": "draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/ui-flows-rejected-sends-ke-f168b-nts-retry-resends-the-image/attachments/draft-kept-dark-8b23167f9472deb12ec8878937b3bf5d75622912.png"
+                    },
+                    {
+                      "name": "history-image-refusal-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/ui-flows-rejected-sends-ke-f168b-nts-retry-resends-the-image/attachments/history-image-refusal-dark-e793bcf8b32def4245a6cb3041d1b7024d629867.png"
+                    },
+                    {
+                      "name": "chat-draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-final-artifacts/ui-flows-rejected-sends-ke-f168b-nts-retry-resends-the-image/attachments/chat-draft-kept-dark-79015fa4960fbdb9d0921cc431ad5e0570952ed4.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "89147e0413fd998ccfca-78163fb83efa1a3f6e9c",
+          "file": "ui-flows.spec.ts",
+          "line": 127,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-02T22:39:04.271Z",
+    "duration": 28284.599000000002,
+    "expected": 17,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

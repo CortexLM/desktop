@@ -1,0 +1,147 @@
+{
+  "auditStart": "2026-10-03T11:12:58.986516+00:00",
+  "auditEnd": "2026-10-03T11:13:15.512891+00:00",
+  "baseApplication": "2956564fbe31f882014d74ff3a7f920e839fd634",
+  "headAtStart": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "headAtEnd": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "headSourceEquality": {
+    "packages/app/src/screens/system/settings.tsx": true,
+    "tests/e2e/provider-draft.spec.ts": true,
+    "tests/e2e/provider-key-pending.spec.ts": true
+  },
+  "applicationCommit": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "sourcePins": {
+    "packages/app/src/screens/system/settings.tsx": "b859cf9785ada768307e77a2546c02b80576b1491187b6ffa944c1673432eed6",
+    "tests/e2e/provider-draft.spec.ts": "bf57e5cdb18d53f31572ec04ec7727130574a1c33cbdf9cc3b6fcb4733365c3a",
+    "tests/e2e/provider-key-pending.spec.ts": "bcafa61de982af883954f648123c06370021b0dab8c8aca5003a2ec06d3d7477"
+  },
+  "sourceReceipt": "../integrated/source-final.json",
+  "sourceReceiptSHA256": "77b969d1161b90ef037b242c3d622be1eb64d7446f0d155906bdf1219fc3ef81",
+  "buildReceipt": "../integrated/members.json",
+  "buildReceiptSHA256": "21800c1224899235232f091f86fa0a56997d66af84d63f360f5da3d0a31aff30",
+  "buildMembers": 90,
+  "sourceAndBuildStableBeforeAfter": true,
+  "baseInputReceipt": "/tmp/opencode/build-terminal-state-final/pinned-inputs.json",
+  "packageInputs": 514,
+  "rendererInputs": 473,
+  "rendererFingerprint": "5538c5298dbad432d82cf18781b9f7e62b5a861311ad61c6fc518c0cdb6e1ae7",
+  "changedInputs": [
+    "packages/app/src/screens/system/settings.tsx"
+  ],
+  "unexplainedDrift": [],
+  "previousTestsUnchanged": {
+    "tests/e2e/approvals-recovery.spec.ts": "e3c7c13502645f367e9e8e8c6a536c3a7d024e32e41090952b50a095a093c4d9",
+    "tests/e2e/bot-owner.spec.ts": "21af3392fad947945861063d93625d6115675f288ff43273568ea1fe4c50cdff",
+    "tests/e2e/bot-safety.spec.ts": "9b5392038bc929279d34d4cff4f197c501f2ba2f26e40a5c5acb6b4a09f03cbf",
+    "tests/e2e/chat-missing.spec.ts": "a9bdc8e86f3ede94f0b54dc6a5d8b45142a62b98ad9fd0af2515c96bddb3d994",
+    "tests/e2e/chrome.spec.ts": "5b87bf092dd70b958eb07f5d3d81b44e864d2e11f34d0400b5e7ecbe18607d12",
+    "tests/e2e/code-diff-scroll.spec.ts": "e8c0fbad81b573db713031e6c3f769f55f493b08564b48721435479e0f877cd8",
+    "tests/e2e/code-models.spec.ts": "ff1bc7e7e6d08f59d713f0c7fccfb79fa35c02b682a870b804988145ae107ff5",
+    "tests/e2e/components.spec.ts": "8f6642850ee0798f799a8e175e81ebcc9699c5ecf27feaae3b5b439453344364",
+    "tests/e2e/composer-safety.spec.ts": "d186801f45d61f737ff925ac81a4d0b6cb0d64efae4546984ebd78984c0f3c8d",
+    "tests/e2e/engine.spec.ts": "2b36d6cb97386ff8ef64573294d6b20cf2e29e4effc14cfcb204b0a963c42ca2",
+    "tests/e2e/fake-provider.ts": "2d6e794add17a55a7c70fa72b93f024129a2bd4c1b9bd3d055efca48a11c14ee",
+    "tests/e2e/fixtures.ts": "a9772c5fe4038dd4a260bf1d47d7a6f382ba40ea54eb4cde9ab2048223e2fe03",
+    "tests/e2e/frozen-composer.spec.ts": "fa7f8395511de6f6cc232863118ac9e25cd0527387a1254ec5a5000e77397ecd",
+    "tests/e2e/interaction-states.spec.ts": "f352861f51be945ada05398eb2c9e04f13eb1d557e288cfb820fc0631d61efb0",
+    "tests/e2e/keyboard.spec.ts": "6c01d5b008359e5c1612c227e0d7327f32c1ea408d5b16e45ea16770a074ff9a",
+    "tests/e2e/live-state.spec.ts": "842804966f6cd584834c728c92c495ccc52ece47bce2dcd128df912f98c83710",
+    "tests/e2e/memory-safety.spec.ts": "d04b2a96257cc4bba2ea4108ed3d391dda798bd9699121f7aa4d15b61ada561a",
+    "tests/e2e/navigation.spec.ts": "59faac9327ee70fa71750953e089552b97b3507388f391bc22b1ff2434a55f62",
+    "tests/e2e/remote-auth.spec.ts": "653016add38f51d766dfec52c205790de4b941c02739a993315c282469b1b0cb",
+    "tests/e2e/responsive.spec.ts": "3fc7f914e1766f7cd9c8cbfb797b30dceaa9cb93a20e1278a01081f476166fa8",
+    "tests/e2e/routines.spec.ts": "7dfa822ba0e4de2f01a177e65d26afde1904cf67592c5c87753b55fb0b00615f",
+    "tests/e2e/screens.spec.ts": "f55899bf1861cbcd0c8e6c01fa7e87b52dc3a609c1e2268cfad3dbde659ba54c",
+    "tests/e2e/search-bots.spec.ts": "cd6341b92982452ca59a58f7f93422fac326e4b73475e5087a464750b352dbaa",
+    "tests/e2e/terminal-copy.spec.ts": "09fcd77172f157f4d53d14801a7a154107c0ae90dda394366516747e10a04931",
+    "tests/e2e/ui-flows.spec.ts": "86483759ea299f97faa0e09d6210b37876d535af4486651e141f46650cccc36b",
+    "tests/e2e/work-routine-source.spec.ts": "280651afb980c6de939b33865e4d4ec17ea4fc7362420761a66d9044baf43f55",
+    "tests/e2e/work-scroll.spec.ts": "0b2f0c3a9cd73e0e1e7484ea9c7a1f70cd3baf67a751ff627c9ee4b79698379b"
+  },
+  "samePreviousBuildMembers": 88,
+  "newBuildPaths": [
+    "packages/app/dist/assets/index-4DBB9Kor.js"
+  ],
+  "previousBuildPaths": [
+    "packages/app/dist/assets/index-O6tp7Lco.js"
+  ],
+  "changedBuildPaths": [
+    "packages/app/dist/index.html"
+  ],
+  "negativeSources": {
+    "provider-draft.spec.ts": "bf57e5cdb18d53f31572ec04ec7727130574a1c33cbdf9cc3b6fcb4733365c3a",
+    "provider-key-pending.spec.ts": "bcafa61de982af883954f648123c06370021b0dab8c8aca5003a2ec06d3d7477"
+  },
+  "negativeReports": {
+    "provider-draft.spec.ts": {
+      "path": "/tmp/opencode/provider-draft-regression/negative.json",
+      "sha256": "fd2b1bc2b62ba6367d78599e6bcb6b7280f9ef4bd93499b0c0a08e2ce0de1329"
+    },
+    "provider-key-pending.spec.ts": {
+      "path": "/tmp/opencode/provider-key-pending-regression/negative-final/results.json",
+      "sha256": "790dca0e59d94c3277df6f4712f6dbecd11d7b3934ceb9f619f8bc88f6c10107"
+    }
+  },
+  "raw": [
+    {
+      "path": "../integrated/e2e-full.json.gz",
+      "rawSHA256": "3684417b4e88dada81be10cf1160137ef5ba2924cac99a65a12851fe5c2f579d",
+      "gzipSHA256": "725a038d6a7c068a958b886ae811115fe82cdab69a909084cc85a3091fc15c2e"
+    },
+    {
+      "path": "../integrated/e2e-full.log.gz",
+      "rawSHA256": "189ac73b3493ab0c11b26e6dccc468cb484cd2af94e3b42ad9ee4080a13617a4",
+      "gzipSHA256": "f6062fde0de3d59ef92e9a8140cd57f2c505d1710c45ce14dfde15976d1d07f1"
+    },
+    {
+      "path": "../integrated/unit.log.gz",
+      "rawSHA256": "09e91c89299d2a040c4c4464afb0df1a526f5c0213530fb786531346170fd543",
+      "gzipSHA256": "e58bf590ba59fef8256bea86876fe9a29e87cb964c19cada3420e2c607f465b7"
+    },
+    {
+      "path": "../integrated/lint.log.gz",
+      "rawSHA256": "135e9c44a9a41ac4e027d4601ac0ab5a56f77440cb7483090192bfdc0d37fc46",
+      "gzipSHA256": "067dde0dda3154b026b2a33be1b5dd1562850a11cd8dc03f7f8ab778435eaca5"
+    },
+    {
+      "path": "../integrated/typecheck.log.gz",
+      "rawSHA256": "29c5ee0f6b0b20dbb259b99d01276198c3d28190090706394608d4deda6d2c0b",
+      "gzipSHA256": "795726b1741ef3a2491740427a53ab76498562caf657d652ad1a028af68fd86e"
+    },
+    {
+      "path": "../integrated/i18n.log.gz",
+      "rawSHA256": "b114ae43c09b2319d0c164503d29a002948ff967549f56b26dcf54f6ce8d2ccc",
+      "gzipSHA256": "da7a627ba607273036f7416316229730d59ecc147609d90b3dd788848d6f27a6"
+    },
+    {
+      "path": "../integrated/pack.log.gz",
+      "rawSHA256": "e7a78bcee9f9ee3ea278b208d2f5c8d33d3099f1ea110ea5174ea2b372c59624",
+      "gzipSHA256": "d2110d4ebd530c98e57ec35514bd1d3c042662a7259f395cf28b0d23ba4edfe0"
+    },
+    {
+      "path": "../integrated/smoke.log.gz",
+      "rawSHA256": "f602dbc52c839b3d5a90b76d2cc915976ce4c54d2646e2c8c7bff200da2ae2ac",
+      "gzipSHA256": "27226c8b80a4b36d64c42c5b97c9299e05f5c36b617112d355962e570719ed9b"
+    },
+    {
+      "path": "../integrated/build.log.gz",
+      "rawSHA256": "4358d9bbdd91143723494b5c16d5fe4dbe21fa07fe657a680e0c5a416c91ad3e",
+      "gzipSHA256": "500fcd08b6b2382e68067b813bfa6fc32d5f80c9cb6818bb5ad7d3d7ca5d9da2"
+    }
+  ],
+  "packageReceipt": "../integrated/package.json",
+  "package": {
+    "membersVerified": 90,
+    "asarSHA256": "d1e6987ac728723b5c9b1132aa532fc63c3db55d863c9b264c48fdc631eea1f7"
+  },
+  "asarSetAnd90MembersChecked": true,
+  "limit": "Recorded source/build pairing plus exact byte verification; no independent rebuild, app/test execution, CI or native acceptance.",
+  "finalVerification": {
+    "at": "2026-10-03T11:20:13.154298+00:00",
+    "sourcePinsStable": true,
+    "all514InputsMatchApplicationCommit": true,
+    "buildMembersStable": 90,
+    "canonicalRGBAExact": 147,
+    "rawGzipExact": true
+  }
+}

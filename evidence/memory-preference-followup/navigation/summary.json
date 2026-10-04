@@ -1,0 +1,17 @@
+{
+  "testSHA256": "a3749931aa28b459844b9c4ab24bb52d8762a079210a379de524416624acffe8",
+  "initialRenderer": "30ec7f97fb1de75ba4dc66fa81a4dfba0e76cd16008bfa53600d7ca512b810fb",
+  "stats": {
+    "startTime": "2026-10-03T16:58:23.031Z",
+    "duration": 7205.296,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "assertionFailures": 2,
+  "observed": {
+    "GET": "loading without switch after cancelled preview",
+    "PUT": "checked and disabled after engine accepted false"
+  }
+}

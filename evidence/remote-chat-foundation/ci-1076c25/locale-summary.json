@@ -1,0 +1,67 @@
+{
+  "e2e-linux": {
+    "measurementRecords": 80,
+    "primaryStates": 48,
+    "stateCounts": {
+      "option-unavailable": 16,
+      "send-failed": 16,
+      "code_sent": 16,
+      "signed_in": 16,
+      "mfa_enrollment": 16
+    },
+    "copyRows": 384,
+    "keyboardStops": 144,
+    "reachableStops": 144,
+    "allRecordedOpacitiesPass": true,
+    "localeCaptures": 8,
+    "scope": "48 primary state visits inside one Electron case; 8 dark wrong-code captures. Geometry flags do not detect missing glyphs. Zero page/console/backend errors and renderer HTTP enforced by passing pinned assertions, not standalone attached arrays.",
+    "geometryReadableFlagsTrue": 384,
+    "visualGlyphReview": {
+      "passedLocales": [
+        "en",
+        "fr",
+        "es",
+        "de",
+        "pt-BR"
+      ],
+      "failedLocales": [
+        "ja",
+        "ko",
+        "zh-Hans"
+      ],
+      "scope": "Dark wrong-code success captures inspected at full resolution; language accuracy not certified."
+    }
+  },
+  "macos": {
+    "measurementRecords": 80,
+    "primaryStates": 48,
+    "stateCounts": {
+      "option-unavailable": 16,
+      "send-failed": 16,
+      "code_sent": 16,
+      "signed_in": 16,
+      "mfa_enrollment": 16
+    },
+    "copyRows": 384,
+    "keyboardStops": 144,
+    "reachableStops": 144,
+    "allRecordedOpacitiesPass": true,
+    "localeCaptures": 8,
+    "scope": "48 primary state visits inside one Electron case; 8 dark wrong-code captures. Geometry flags do not detect missing glyphs. Zero page/console/backend errors and renderer HTTP enforced by passing pinned assertions, not standalone attached arrays.",
+    "geometryReadableFlagsTrue": 384,
+    "visualGlyphReview": {
+      "passedLocales": [
+        "en",
+        "fr",
+        "es",
+        "de",
+        "ja",
+        "zh-Hans",
+        "pt-BR",
+        "ko"
+      ],
+      "failedLocales": [],
+      "scope": "Dark wrong-code success captures inspected at full resolution; language accuracy not certified."
+    }
+  }
+}

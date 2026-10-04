@@ -1,0 +1,140 @@
+{
+  "stats": {
+    "startTime": "2026-10-03T14:25:54.531Z",
+    "duration": 56659.348,
+    "expected": 16,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "Deleted Chat shows truthful missing-page recovery \u2014 light",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Deleted Chat shows truthful missing-page recovery \u2014 dark",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Late initial Chat history cannot erase a completed stream \u2014 light",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Late initial Chat history cannot revive a deleted session \u2014 light",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Late initial Chat history cannot erase a completed stream \u2014 dark",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Late initial Chat history cannot revive a deleted session \u2014 dark",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion \u2014 light",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion \u2014 dark",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Projects retain newer drafts and isolate late reads/writes across owners",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Email code sign-in retains refusal, submits once, reloads and signs out \u2014 960 light",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Unavailable continuations and cancelled codes stay private; restart clears login \u2014 960 light",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Email code sign-in retains refusal, submits once, reloads and signs out \u2014 960 dark",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Unavailable continuations and cancelled codes stay private; restart clears login \u2014 960 dark",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Mode and origin changes reject late auth replies and never reuse another origin\u2019s credentials",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Initial connection and auth reads protect selection, canonical sign-in and cancellation",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    },
+    {
+      "title": "Live sign-in copy stays readable across eight locales",
+      "status": "expected",
+      "attempts": 1,
+      "statuses": [
+        "passed"
+      ]
+    }
+  ]
+}

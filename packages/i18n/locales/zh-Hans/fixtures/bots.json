@@ -1,0 +1,419 @@
+{
+  "main": {
+    "name": "Nova",
+    "doing": "整理你的邮件"
+  },
+  "team": [
+    {
+      "cfg": {
+        "name": "Iris",
+        "shape": "drop",
+        "color": "#1E7BFF",
+        "eyes": "commas",
+        "mouth": "none",
+        "glasses": "圆形"
+      },
+      "role": "助理",
+      "state": "thinking",
+      "doing": "准备下午3点的同步会议"
+    },
+    {
+      "cfg": {
+        "name": "Margaux",
+        "shape": "squircle",
+        "color": "#FF6A13",
+        "eyes": "ovals",
+        "mouth": "smile",
+        "hat": "cap"
+      },
+      "role": "销售",
+      "state": "working",
+      "doing": "更新12条CRM记录"
+    },
+    {
+      "cfg": {
+        "name": "Sam",
+        "shape": "hexagon",
+        "color": "#12B8A0",
+        "eyes": "commas",
+        "mouth": "none",
+        "symbol": "bug"
+      },
+      "role": "支持",
+      "state": "blocked",
+      "doing": "无法访问供应商门户"
+    },
+    {
+      "cfg": {
+        "name": "Hugo",
+        "shape": "cloud",
+        "color": "#14B85A",
+        "eyes": "commas",
+        "mouth": "none",
+        "symbol": "mail"
+      },
+      "role": "收件箱",
+      "state": "working",
+      "doing": "整理23封新邮件",
+      "lead": "Iris"
+    },
+    {
+      "cfg": {
+        "name": "Léo",
+        "shape": "triangle",
+        "color": "#EE3A97",
+        "eyes": "dots",
+        "mouth": "none"
+      },
+      "role": "费用报销",
+      "state": "waiting",
+      "doing": "等待你批准2张收据",
+      "lead": "Iris"
+    },
+    {
+      "cfg": {
+        "name": "Max",
+        "shape": "round",
+        "color": "#5F6B7E",
+        "eyes": "pixels",
+        "mouth": "none",
+        "glasses": "飞行员款"
+      },
+      "role": "薪资",
+      "state": "done",
+      "doing": "10月工资单已准备好",
+      "lead": "Iris"
+    },
+    {
+      "cfg": {
+        "name": "Zoé",
+        "shape": "pebble",
+        "color": "#F2263F",
+        "eyes": "ovals",
+        "mouth": "o",
+        "hat": "beanie"
+      },
+      "role": "社交媒体",
+      "state": "idle",
+      "doing": "等待Julien的视觉素材",
+      "lead": "Margaux"
+    },
+    {
+      "cfg": {
+        "name": "Paul",
+        "shape": "pill",
+        "color": "#FFAA00",
+        "eyes": "dots",
+        "mouth": "none",
+        "hat": "headphones"
+      },
+      "role": "监控",
+      "state": "asleep",
+      "doing": "已暂停,将于周一08:00恢复",
+      "lead": "Margaux"
+    },
+    {
+      "cfg": {
+        "name": "Inès",
+        "shape": "drop",
+        "color": "#93603A",
+        "eyes": "dots",
+        "mouth": "smile",
+        "extra": "围巾"
+      },
+      "role": "客户工单",
+      "state": "working",
+      "doing": "回复工单 #4182",
+      "lead": "Sam"
+    }
+  ],
+  "page": {
+    "heroTip": "正在整理9:12收到的3封邮件",
+    "hello": "你好,Camille",
+    "summary": "今天早上以来我已处理14项任务。有两项在等待你的决定。",
+    "team": [
+      "Iris",
+      "Hugo",
+      "Léo",
+      "Sam"
+    ],
+    "feed": [
+      [
+        "mail",
+        "已整理3封邮件",
+        "周四前需处理两份报价请求。",
+        "12分钟前"
+      ],
+      [
+        "calendar",
+        "会议已准备就绪",
+        "Studio Nord 下午3点同步会议:笔记与议程已就绪。",
+        "40分钟前"
+      ],
+      [
+        "globe",
+        "本周AI动态追踪",
+        "38条公告中保留5条,摘要已准备好阅读。",
+        "周一08:00"
+      ]
+    ],
+    "approve": {
+      "t": "回复 Atelier Morel",
+      "d": "你好 Julien，感谢你的报价和分享的时间表",
+      "to": "To Julien Morel"
+    },
+    "routines": [
+      [
+        "a",
+        "早间整理",
+        "每天 08:00",
+        true
+      ],
+      [
+        "b",
+        "AI 监控",
+        "每周一 08:00",
+        true
+      ],
+      [
+        "c",
+        "每周回顾",
+        "周五 17:30",
+        false
+      ]
+    ],
+    "memory": [
+      "偏好简短回答，使用法语",
+      "正在推进 4 月 14 日的发布",
+      "周三不安排会议"
+    ]
+  },
+  "roster": {
+    "templates": [
+      [
+        "会计",
+        "核对发票、对账单和费用。",
+        "财务",
+        [
+          "财务",
+          "邮件"
+        ],
+        {
+          "name": "Compta",
+          "shape": "squircle",
+          "color": "#14B85A",
+          "eyes": "dots",
+          "mouth": "none",
+          "glasses": "square"
+        }
+      ],
+      [
+        "招聘专员",
+        "整理申请并安排面试。",
+        "人力资源",
+        [
+          "邮件",
+          "日历"
+        ],
+        {
+          "name": "Recrut",
+          "shape": "round",
+          "color": "#8448FF",
+          "eyes": "ovals",
+          "mouth": "smile",
+          "extra": "bow-tie"
+        }
+      ],
+      [
+        "社群运营",
+        "准备并安排发帖。",
+        "社交媒体",
+        [
+          "Drive"
+        ],
+        {
+          "name": "Social",
+          "shape": "pebble",
+          "color": "#EE3A97",
+          "eyes": "commas",
+          "mouth": "o",
+          "hat": "beanie"
+        }
+      ],
+      [
+        "客服专员",
+        "回复简单工单，升级其余问题。",
+        "支持",
+        [
+          "工单",
+          "CRM"
+        ],
+        {
+          "name": "Support",
+          "shape": "hexagon",
+          "color": "#1E7BFF",
+          "eyes": "dots",
+          "mouth": "none",
+          "hat": "headphones"
+        }
+      ],
+      [
+        "分析师",
+        "制作本周的仪表盘。",
+        "数据",
+        [
+          "Drive",
+          "CRM"
+        ],
+        {
+          "name": "Data",
+          "shape": "pill",
+          "color": "#FFAA00",
+          "eyes": "pixels",
+          "mouth": "none",
+          "glasses": "round"
+        }
+      ],
+      [
+        "监测员",
+        "监控竞争对手、价格和公告。",
+        "监控",
+        [
+          "网络搜索"
+        ],
+        {
+          "name": "Veille",
+          "shape": "triangle",
+          "color": "#12B8A0",
+          "eyes": "commas",
+          "mouth": "none",
+          "hat": "antenna"
+        }
+      ]
+    ],
+    "chiefDoing": "整理你的邮件",
+    "more": "+ 还有 40 个",
+    "moreSub": "其中 12 个未激活"
+  },
+  "settings": {
+    "identity": "幕僚长 · 直接语气 · 创建于 9 月 2 日",
+    "channels": [
+      [
+        "Sl",
+        "Slack",
+        "#studio-nord · 私信",
+        true
+      ],
+      [
+        "Te",
+        "Teams",
+        "Spring launch 团队",
+        false
+      ],
+      [
+        "SM",
+        "SMS",
+        "+33 6 •• •• •• 42 · 仅紧急情况",
+        true
+      ]
+    ],
+    "log": [
+      [
+        "10:42",
+        "已向 Julien Morel 发送跟进邮件",
+        "mail"
+      ],
+      [
+        "10:41",
+        "已创建“报价跟进”例程",
+        "clock-loop"
+      ],
+      [
+        "10:38",
+        "已打开 crm.studionord.fr",
+        "globe"
+      ],
+      [
+        "08:14",
+        "已整理 23 封邮件",
+        "mail"
+      ]
+    ],
+    "rules": [
+      [
+        "mail",
+        "发送邮件",
+        "邮件",
+        "询问"
+      ],
+      [
+        "calendar",
+        "接受邀请",
+        "日历",
+        "允许"
+      ],
+      [
+        "key",
+        "进行付款",
+        "工资单，会计",
+        "询问"
+      ],
+      [
+        "share",
+        "发布社交媒体内容",
+        "社交媒体",
+        "询问"
+      ],
+      [
+        "trash",
+        "删除文件",
+        "云端硬盘",
+        "拒绝"
+      ],
+      [
+        "edit",
+        "编辑 CRM 记录",
+        "CRM",
+        "允许"
+      ],
+      [
+        "globe",
+        "浏览网页",
+        "浏览器",
+        "允许"
+      ]
+    ],
+    "alwaysRules": [
+      [
+        "向 Atelier Morel 支付最多 1,500 欧元",
+        "于 10 月 1 日从“待审批”中添加"
+      ],
+      [
+        "回复 Studio Nord 的邮件",
+        "于 9 月 18 日添加"
+      ]
+    ],
+    "memory": [
+      "偏好简短回答，使用法语",
+      "正在筹备 4 月 14 日的发布",
+      "周三没有会议",
+      "Julien Morel 是 Atelier Morel 的主要联系人",
+      "报价单在 7 天后进行跟进"
+    ],
+    "usage": [
+      [
+        "1,284",
+        "本月的操作次数"
+      ],
+      [
+        "€31.40",
+        "占 {budget} 欧元预算"
+      ],
+      [
+        "47 小时",
+        "节省的工作时间（估计）"
+      ]
+    ],
+    "spent": 31.4
+  }
+}

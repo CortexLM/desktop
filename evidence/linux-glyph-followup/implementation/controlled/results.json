@@ -1,0 +1,452 @@
+{
+  "sourceSHA256": "653016add38f51d766dfec52c205790de4b941c02739a993315c282469b1b0cb",
+  "helperSHA256": "97bc5fa6552790d634e08551368bd6e9907c6995e8e380338a544ce9d6bf9f09",
+  "exactImplementationHelper": true,
+  "newScreenshotCaptures": 0,
+  "results": [
+    {
+      "mode": "without-cjk",
+      "browser": "153.0.8010.12",
+      "requests": 0,
+      "assertions": [
+        {
+          "locale": "ja",
+          "assertionPassed": false,
+          "failure": "ja light glyph coverage at weights 400/500\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false"
+        },
+        {
+          "locale": "ko",
+          "assertionPassed": false,
+          "failure": "ko light glyph coverage at weights 400/500\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false"
+        },
+        {
+          "locale": "zh-Hans",
+          "assertionPassed": false,
+          "failure": "zh-Hans light glyph coverage at weights 400/500\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false"
+        }
+      ],
+      "records": [
+        {
+          "locale": "ja",
+          "theme": "light",
+          "pair": [
+            "あ",
+            "ア"
+          ],
+          "missing": "U+10FFFF",
+          "style": {
+            "family": "Geist, ui-sans-serif, system-ui, sans-serif",
+            "weight": "500",
+            "size": "26px"
+          },
+          "weights": [
+            {
+              "weight": 400,
+              "ink": [
+                true,
+                true
+              ],
+              "distinct": false,
+              "notMissing": [
+                false,
+                false
+              ],
+              "passed": false
+            },
+            {
+              "weight": 500,
+              "ink": [
+                true,
+                true
+              ],
+              "distinct": false,
+              "notMissing": [
+                false,
+                false
+              ],
+              "passed": false
+            }
+          ],
+          "platformFonts": [
+            {
+              "familyName": "Geist",
+              "postScriptName": "Geist-Regular",
+              "isCustomFont": true,
+              "glyphCount": 12
+            }
+          ]
+        },
+        {
+          "locale": "ko",
+          "theme": "light",
+          "pair": [
+            "한",
+            "글"
+          ],
+          "missing": "U+10FFFF",
+          "style": {
+            "family": "Geist, ui-sans-serif, system-ui, sans-serif",
+            "weight": "500",
+            "size": "26px"
+          },
+          "weights": [
+            {
+              "weight": 400,
+              "ink": [
+                true,
+                true
+              ],
+              "distinct": false,
+              "notMissing": [
+                false,
+                false
+              ],
+              "passed": false
+            },
+            {
+              "weight": 500,
+              "ink": [
+                true,
+                true
+              ],
+              "distinct": false,
+              "notMissing": [
+                false,
+                false
+              ],
+              "passed": false
+            }
+          ],
+          "platformFonts": [
+            {
+              "familyName": "Geist",
+              "postScriptName": "Geist-Regular",
+              "isCustomFont": true,
+              "glyphCount": 10
+            }
+          ]
+        },
+        {
+          "locale": "zh-Hans",
+          "theme": "light",
+          "pair": [
+            "汉",
+            "字"
+          ],
+          "missing": "U+10FFFF",
+          "style": {
+            "family": "Geist, ui-sans-serif, system-ui, sans-serif",
+            "weight": "500",
+            "size": "26px"
+          },
+          "weights": [
+            {
+              "weight": 400,
+              "ink": [
+                true,
+                true
+              ],
+              "distinct": false,
+              "notMissing": [
+                false,
+                false
+              ],
+              "passed": false
+            },
+            {
+              "weight": 500,
+              "ink": [
+                true,
+                true
+              ],
+              "distinct": false,
+              "notMissing": [
+                false,
+                false
+              ],
+              "passed": false
+            }
+          ],
+          "platformFonts": [
+            {
+              "familyName": "Geist",
+              "postScriptName": "Geist-Regular",
+              "isCustomFont": true,
+              "glyphCount": 6
+            }
+          ]
+        }
+      ],
+      "attachments": [
+        {
+          "name": "auth-glyph-ja-light-400-0",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-ja-light-400-1",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-ja-light-400-2",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-ja-light-500-0",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-ja-light-500-1",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-ja-light-500-2",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-ko-light-400-0",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-ko-light-400-1",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-ko-light-400-2",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-ko-light-500-0",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-ko-light-500-1",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-ko-light-500-2",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-zh-Hans-light-400-0",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-zh-Hans-light-400-1",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-zh-Hans-light-400-2",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-zh-Hans-light-500-0",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-zh-Hans-light-500-1",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        },
+        {
+          "name": "auth-glyph-zh-Hans-light-500-2",
+          "sha256": "3f73e6105144e804e1e25e5647b52bfa486504c3097b6ed38969390a124c8c63",
+          "bytes": 899
+        }
+      ]
+    },
+    {
+      "mode": "with-system",
+      "browser": "153.0.8010.12",
+      "requests": 0,
+      "assertions": [
+        {
+          "locale": "ja",
+          "assertionPassed": true
+        },
+        {
+          "locale": "ko",
+          "assertionPassed": true
+        },
+        {
+          "locale": "zh-Hans",
+          "assertionPassed": true
+        }
+      ],
+      "records": [
+        {
+          "locale": "ja",
+          "theme": "light",
+          "pair": [
+            "あ",
+            "ア"
+          ],
+          "missing": "U+10FFFF",
+          "style": {
+            "family": "Geist, ui-sans-serif, system-ui, sans-serif",
+            "weight": "500",
+            "size": "26px"
+          },
+          "weights": [
+            {
+              "weight": 400,
+              "ink": [
+                true,
+                true
+              ],
+              "distinct": true,
+              "notMissing": [
+                true,
+                true
+              ],
+              "passed": true
+            },
+            {
+              "weight": 500,
+              "ink": [
+                true,
+                true
+              ],
+              "distinct": true,
+              "notMissing": [
+                true,
+                true
+              ],
+              "passed": true
+            }
+          ],
+          "platformFonts": [
+            {
+              "familyName": "IPAGothic",
+              "postScriptName": "IPAGothic",
+              "isCustomFont": false,
+              "glyphCount": 12
+            }
+          ]
+        },
+        {
+          "locale": "ko",
+          "theme": "light",
+          "pair": [
+            "한",
+            "글"
+          ],
+          "missing": "U+10FFFF",
+          "style": {
+            "family": "Geist, ui-sans-serif, system-ui, sans-serif",
+            "weight": "500",
+            "size": "26px"
+          },
+          "weights": [
+            {
+              "weight": 400,
+              "ink": [
+                true,
+                true
+              ],
+              "distinct": true,
+              "notMissing": [
+                true,
+                true
+              ],
+              "passed": true
+            },
+            {
+              "weight": 500,
+              "ink": [
+                true,
+                true
+              ],
+              "distinct": true,
+              "notMissing": [
+                true,
+                true
+              ],
+              "passed": true
+            }
+          ],
+          "platformFonts": [
+            {
+              "familyName": "Unifont",
+              "postScriptName": "Unifont",
+              "isCustomFont": false,
+              "glyphCount": 9
+            },
+            {
+              "familyName": "Geist",
+              "postScriptName": "Geist-Regular",
+              "isCustomFont": true,
+              "glyphCount": 1
+            }
+          ]
+        },
+        {
+          "locale": "zh-Hans",
+          "theme": "light",
+          "pair": [
+            "汉",
+            "字"
+          ],
+          "missing": "U+10FFFF",
+          "style": {
+            "family": "Geist, ui-sans-serif, system-ui, sans-serif",
+            "weight": "500",
+            "size": "26px"
+          },
+          "weights": [
+            {
+              "weight": 400,
+              "ink": [
+                true,
+                true
+              ],
+              "distinct": true,
+              "notMissing": [
+                true,
+                true
+              ],
+              "passed": true
+            },
+            {
+              "weight": 500,
+              "ink": [
+                true,
+                true
+              ],
+              "distinct": true,
+              "notMissing": [
+                true,
+                true
+              ],
+              "passed": true
+            }
+          ],
+          "platformFonts": [
+            {
+              "familyName": "Unifont",
+              "postScriptName": "Unifont",
+              "isCustomFont": false,
+              "glyphCount": 6
+            }
+          ]
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

@@ -1,0 +1,838 @@
+[
+  {
+    "os": "e2e-linux",
+    "theme": "light",
+    "putPending": {
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"2222\"}"
+      },
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      },
+      "inputEnabled": true,
+      "newerDraftAccepted": true,
+      "returned": false
+    },
+    "putSettled": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      },
+      "responseUnchanged": true,
+      "newerDraftPreserved": true,
+      "draftLength": 20
+    },
+    "deletePending": {
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+      },
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "inputEnabled": true,
+      "newerDraftAccepted": true,
+      "returned": false
+    },
+    "deleteSettled": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "responseUnchanged": true,
+      "newerDraftPreserved": true,
+      "draftLength": 20
+    },
+    "recovery": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "4444"
+      },
+      "configs": [
+        {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "4444"
+        }
+      ],
+      "writes": [
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"1111\"}"
+          }
+        },
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"2222\"}"
+          }
+        },
+        {
+          "method": "DELETE",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+          }
+        },
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"4444\"}"
+          }
+        }
+      ],
+      "unchangedDraftCleared": true
+    },
+    "refusal": {
+      "response": {
+        "status": 400,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"error\":{\"code\":\"invalid_request\",\"message\":\"Invalid request at key\"}}"
+      },
+      "draftLength": 4097,
+      "draftUnchanged": true,
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "4444"
+      }
+    },
+    "ordinaryRemove": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "draftCleared": true,
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+      }
+    },
+    "errors": [],
+    "rendererHttp": [],
+    "writeSequence": [
+      [
+        "PUT",
+        200
+      ],
+      [
+        "PUT",
+        200
+      ],
+      [
+        "DELETE",
+        200
+      ],
+      [
+        "PUT",
+        200
+      ],
+      [
+        "PUT",
+        400
+      ],
+      [
+        "DELETE",
+        200
+      ]
+    ],
+    "totalWrites": 6,
+    "acceptedWrites": 5,
+    "validationRefusals": 1,
+    "originalFailedAssertionsNowPass": 2,
+    "heldDeliveryEquality": "Unchanged passing source lines 81/98 compare held/delivered status, headers and body string by value. Attachment retains held wire plus responseUnchanged flag; no separately retained delivered wire.",
+    "conditionalRefill": "Preserved C/D values prove recovery conditions false; pending test has no refill-counter field."
+  },
+  {
+    "os": "e2e-linux",
+    "theme": "dark",
+    "putPending": {
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"2222\"}"
+      },
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      },
+      "inputEnabled": true,
+      "newerDraftAccepted": true,
+      "returned": false
+    },
+    "putSettled": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      },
+      "responseUnchanged": true,
+      "newerDraftPreserved": true,
+      "draftLength": 20
+    },
+    "deletePending": {
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+      },
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "inputEnabled": true,
+      "newerDraftAccepted": true,
+      "returned": false
+    },
+    "deleteSettled": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "responseUnchanged": true,
+      "newerDraftPreserved": true,
+      "draftLength": 20
+    },
+    "recovery": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "4444"
+      },
+      "configs": [
+        {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "4444"
+        }
+      ],
+      "writes": [
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"1111\"}"
+          }
+        },
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"2222\"}"
+          }
+        },
+        {
+          "method": "DELETE",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+          }
+        },
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"4444\"}"
+          }
+        }
+      ],
+      "unchangedDraftCleared": true
+    },
+    "refusal": {
+      "response": {
+        "status": 400,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"error\":{\"code\":\"invalid_request\",\"message\":\"Invalid request at key\"}}"
+      },
+      "draftLength": 4097,
+      "draftUnchanged": true,
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "4444"
+      }
+    },
+    "ordinaryRemove": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "draftCleared": true,
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+      }
+    },
+    "errors": [],
+    "rendererHttp": [],
+    "writeSequence": [
+      [
+        "PUT",
+        200
+      ],
+      [
+        "PUT",
+        200
+      ],
+      [
+        "DELETE",
+        200
+      ],
+      [
+        "PUT",
+        200
+      ],
+      [
+        "PUT",
+        400
+      ],
+      [
+        "DELETE",
+        200
+      ]
+    ],
+    "totalWrites": 6,
+    "acceptedWrites": 5,
+    "validationRefusals": 1,
+    "originalFailedAssertionsNowPass": 2,
+    "heldDeliveryEquality": "Unchanged passing source lines 81/98 compare held/delivered status, headers and body string by value. Attachment retains held wire plus responseUnchanged flag; no separately retained delivered wire.",
+    "conditionalRefill": "Preserved C/D values prove recovery conditions false; pending test has no refill-counter field."
+  },
+  {
+    "os": "macos",
+    "theme": "light",
+    "putPending": {
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"2222\"}"
+      },
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      },
+      "inputEnabled": true,
+      "newerDraftAccepted": true,
+      "returned": false
+    },
+    "putSettled": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      },
+      "responseUnchanged": true,
+      "newerDraftPreserved": true,
+      "draftLength": 20
+    },
+    "deletePending": {
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+      },
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "inputEnabled": true,
+      "newerDraftAccepted": true,
+      "returned": false
+    },
+    "deleteSettled": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "responseUnchanged": true,
+      "newerDraftPreserved": true,
+      "draftLength": 20
+    },
+    "recovery": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "4444"
+      },
+      "configs": [
+        {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "4444"
+        }
+      ],
+      "writes": [
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"1111\"}"
+          }
+        },
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"2222\"}"
+          }
+        },
+        {
+          "method": "DELETE",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+          }
+        },
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"4444\"}"
+          }
+        }
+      ],
+      "unchangedDraftCleared": true
+    },
+    "refusal": {
+      "response": {
+        "status": 400,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"error\":{\"code\":\"invalid_request\",\"message\":\"Invalid request at key\"}}"
+      },
+      "draftLength": 4097,
+      "draftUnchanged": true,
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "4444"
+      }
+    },
+    "ordinaryRemove": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "draftCleared": true,
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+      }
+    },
+    "errors": [],
+    "rendererHttp": [],
+    "writeSequence": [
+      [
+        "PUT",
+        200
+      ],
+      [
+        "PUT",
+        200
+      ],
+      [
+        "DELETE",
+        200
+      ],
+      [
+        "PUT",
+        200
+      ],
+      [
+        "PUT",
+        400
+      ],
+      [
+        "DELETE",
+        200
+      ]
+    ],
+    "totalWrites": 6,
+    "acceptedWrites": 5,
+    "validationRefusals": 1,
+    "originalFailedAssertionsNowPass": 2,
+    "heldDeliveryEquality": "Unchanged passing source lines 81/98 compare held/delivered status, headers and body string by value. Attachment retains held wire plus responseUnchanged flag; no separately retained delivered wire.",
+    "conditionalRefill": "Preserved C/D values prove recovery conditions false; pending test has no refill-counter field."
+  },
+  {
+    "os": "macos",
+    "theme": "dark",
+    "putPending": {
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"2222\"}"
+      },
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      },
+      "inputEnabled": true,
+      "newerDraftAccepted": true,
+      "returned": false
+    },
+    "putSettled": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      },
+      "responseUnchanged": true,
+      "newerDraftPreserved": true,
+      "draftLength": 20
+    },
+    "deletePending": {
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+      },
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "inputEnabled": true,
+      "newerDraftAccepted": true,
+      "returned": false
+    },
+    "deleteSettled": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "responseUnchanged": true,
+      "newerDraftPreserved": true,
+      "draftLength": 20
+    },
+    "recovery": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "4444"
+      },
+      "configs": [
+        {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "4444"
+        }
+      ],
+      "writes": [
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"1111\"}"
+          }
+        },
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"2222\"}"
+          }
+        },
+        {
+          "method": "DELETE",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+          }
+        },
+        {
+          "method": "PUT",
+          "response": {
+            "status": 200,
+            "headers": [
+              [
+                "content-type",
+                "application/json"
+              ]
+            ],
+            "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":true,\"keyHint\":\"4444\"}"
+          }
+        }
+      ],
+      "unchangedDraftCleared": true
+    },
+    "refusal": {
+      "response": {
+        "status": 400,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"error\":{\"code\":\"invalid_request\",\"message\":\"Invalid request at key\"}}"
+      },
+      "draftLength": 4097,
+      "draftUnchanged": true,
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "4444"
+      }
+    },
+    "ordinaryRemove": {
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": false
+      },
+      "draftCleared": true,
+      "response": {
+        "status": 200,
+        "headers": [
+          [
+            "content-type",
+            "application/json"
+          ]
+        ],
+        "body": "{\"providerID\":\"fake\",\"enabled\":true,\"hasKey\":false}"
+      }
+    },
+    "errors": [],
+    "rendererHttp": [],
+    "writeSequence": [
+      [
+        "PUT",
+        200
+      ],
+      [
+        "PUT",
+        200
+      ],
+      [
+        "DELETE",
+        200
+      ],
+      [
+        "PUT",
+        200
+      ],
+      [
+        "PUT",
+        400
+      ],
+      [
+        "DELETE",
+        200
+      ]
+    ],
+    "totalWrites": 6,
+    "acceptedWrites": 5,
+    "validationRefusals": 1,
+    "originalFailedAssertionsNowPass": 2,
+    "heldDeliveryEquality": "Unchanged passing source lines 81/98 compare held/delivered status, headers and body string by value. Attachment retains held wire plus responseUnchanged flag; no separately retained delivered wire.",
+    "conditionalRefill": "Preserved C/D values prove recovery conditions false; pending test has no refill-counter field."
+  }
+]

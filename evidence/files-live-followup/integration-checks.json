@@ -1,0 +1,29 @@
+{
+  "scope": "Integration of independently completed local image and frozen preview audits; no additional app execution",
+  "localVerifier": {
+    "command": "python3 evidence/files-live-followup/electron-local/verify.py",
+    "exitCode": 0,
+    "logSHA256": "50e8dd727d3949bb9a02f477ad92b22a1541674ba9cbf12683b663d3202f45b4"
+  },
+  "previewHashesVerified": 56,
+  "externalReadbackHashesVerified": 22,
+  "changedDocumentationRelativeLinks": "existing",
+  "retainedSnapshotLinkQualification": "Raw local document snapshots retain their original source-relative links; not rewritten as navigable current documentation.",
+  "ciVerifier": {
+    "command": "python3 evidence/files-live-followup/ci-d20a012/verify.py",
+    "exitCode": 0,
+    "logSHA256": "e272351959ba5d95ad6e3330c5742ec8ea5556684863c82bc2c6c544ee40440e"
+  },
+  "stagedWhitespaceCheck": {
+    "status": "passed except byte-preserved raw Git/diff evidence",
+    "rawEvidenceFiles": 8,
+    "logSHA256": "e747e74e21ac439bd04e7df8006fefd321487a94b5759d9195c5f3e295f1da6f",
+    "rawBytesChanged": false
+  },
+  "nativeCompositeVerifier": {
+    "command": "python3 evidence/mac/d20a012/native-audit/verify.py",
+    "exitCode": 0,
+    "logSHA256": "889fe2945355dc1a3f38036a5cd516256794b45756e5485542165b58df051f29",
+    "verdict": "bounded composite accepted; collector failed; manual GUI sequence coordinator-attested"
+  }
+}

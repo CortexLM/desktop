@@ -1,0 +1,524 @@
+[
+  {
+    "source": "/tmp/opencode/narrow-approvals-fix/baseline.json",
+    "sha256": "fa1fb8ee65d93945bc2613ad3edeb2c6fd1e71660332b7eb283651888f1730fc",
+    "stats": {
+      "startTime": "2026-10-03T04:18:39.020Z",
+      "duration": 9501.466,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 4,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "Code approval descriptions stay clear of controls \u2014 960\u00d7640 light",
+        "status": "failed",
+        "retry": 0,
+        "errors": [
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 78,
+              "line": 38
+            },
+            "message": "Error: Default model: description below title\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  36 |       await test.info().attach(\"approval-description-geometry\", { body: JSON.stringify(geometry, null, 2), contentType: \"application/json\" });\n  37 |       for (const row of geometry) {\n> 38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n     |                                                                              ^\n  39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n  40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n  41 |       }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:38:78"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 81,
+              "line": 39
+            },
+            "message": "Error: Default model: complete description fits\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  37 |       for (const row of geometry) {\n  38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n> 39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n     |                                                                                 ^\n  40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n  41 |       }\n  42 |       await page.locator(\".pg-nav\").getByRole(\"button\", { name: \"Usage\", exact: true }).focus();\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:39:81"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 87,
+              "line": 40
+            },
+            "message": "Error: Default model: description clear of control\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n  39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n> 40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n     |                                                                                       ^\n  41 |       }\n  42 |       await page.locator(\".pg-nav\").getByRole(\"button\", { name: \"Usage\", exact: true }).focus();\n  43 |       for (const control of [rows.getByRole(\"button\", { name: \"Deep code\", exact: true }), rows.getByRole(\"switch\", { name: \"Notify approvals\", exact: true })]) {\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:40:87"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 78,
+              "line": 38
+            },
+            "message": "Error: Notify me when an approval is waiting: description below title\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  36 |       await test.info().attach(\"approval-description-geometry\", { body: JSON.stringify(geometry, null, 2), contentType: \"application/json\" });\n  37 |       for (const row of geometry) {\n> 38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n     |                                                                              ^\n  39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n  40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n  41 |       }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:38:78"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 81,
+              "line": 39
+            },
+            "message": "Error: Notify me when an approval is waiting: complete description fits\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  37 |       for (const row of geometry) {\n  38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n> 39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n     |                                                                                 ^\n  40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n  41 |       }\n  42 |       await page.locator(\".pg-nav\").getByRole(\"button\", { name: \"Usage\", exact: true }).focus();\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:39:81"
+          }
+        ],
+        "attachments": [
+          {
+            "name": "approval-description-geometry",
+            "value": [
+              {
+                "title": "Default model",
+                "titleBottom": 198,
+                "lines": [
+                  {
+                    "left": 668.734375,
+                    "right": 814.15625,
+                    "top": 182,
+                    "bottom": 198
+                  }
+                ],
+                "belowTitle": false,
+                "fitsTextBox": false,
+                "clearOfControl": false
+              },
+              {
+                "title": "Notify me when an approval is waiting",
+                "titleBottom": 255,
+                "lines": [
+                  {
+                    "left": 675.53125,
+                    "right": 846.265625,
+                    "top": 239,
+                    "bottom": 255
+                  }
+                ],
+                "belowTitle": false,
+                "fitsTextBox": false,
+                "clearOfControl": true
+              }
+            ]
+          },
+          {
+            "name": "approval-descriptions",
+            "file": "responsive/baseline-1.png",
+            "sha256": "722b254022f01f7edc1398950dd344ababffc3722474b4d4cc37fbc4ab69ec0d"
+          }
+        ]
+      },
+      {
+        "title": "Code approval descriptions stay clear of controls \u2014 960\u00d7640 dark",
+        "status": "failed",
+        "retry": 0,
+        "errors": [
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 78,
+              "line": 38
+            },
+            "message": "Error: Default model: description below title\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  36 |       await test.info().attach(\"approval-description-geometry\", { body: JSON.stringify(geometry, null, 2), contentType: \"application/json\" });\n  37 |       for (const row of geometry) {\n> 38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n     |                                                                              ^\n  39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n  40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n  41 |       }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:38:78"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 81,
+              "line": 39
+            },
+            "message": "Error: Default model: complete description fits\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  37 |       for (const row of geometry) {\n  38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n> 39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n     |                                                                                 ^\n  40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n  41 |       }\n  42 |       await page.locator(\".pg-nav\").getByRole(\"button\", { name: \"Usage\", exact: true }).focus();\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:39:81"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 87,
+              "line": 40
+            },
+            "message": "Error: Default model: description clear of control\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n  39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n> 40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n     |                                                                                       ^\n  41 |       }\n  42 |       await page.locator(\".pg-nav\").getByRole(\"button\", { name: \"Usage\", exact: true }).focus();\n  43 |       for (const control of [rows.getByRole(\"button\", { name: \"Deep code\", exact: true }), rows.getByRole(\"switch\", { name: \"Notify approvals\", exact: true })]) {\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:40:87"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 78,
+              "line": 38
+            },
+            "message": "Error: Notify me when an approval is waiting: description below title\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  36 |       await test.info().attach(\"approval-description-geometry\", { body: JSON.stringify(geometry, null, 2), contentType: \"application/json\" });\n  37 |       for (const row of geometry) {\n> 38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n     |                                                                              ^\n  39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n  40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n  41 |       }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:38:78"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 81,
+              "line": 39
+            },
+            "message": "Error: Notify me when an approval is waiting: complete description fits\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  37 |       for (const row of geometry) {\n  38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n> 39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n     |                                                                                 ^\n  40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n  41 |       }\n  42 |       await page.locator(\".pg-nav\").getByRole(\"button\", { name: \"Usage\", exact: true }).focus();\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:39:81"
+          }
+        ],
+        "attachments": [
+          {
+            "name": "approval-description-geometry",
+            "value": [
+              {
+                "title": "Default model",
+                "titleBottom": 198,
+                "lines": [
+                  {
+                    "left": 668.734375,
+                    "right": 814.15625,
+                    "top": 182,
+                    "bottom": 198
+                  }
+                ],
+                "belowTitle": false,
+                "fitsTextBox": false,
+                "clearOfControl": false
+              },
+              {
+                "title": "Notify me when an approval is waiting",
+                "titleBottom": 255,
+                "lines": [
+                  {
+                    "left": 675.53125,
+                    "right": 846.265625,
+                    "top": 239,
+                    "bottom": 255
+                  }
+                ],
+                "belowTitle": false,
+                "fitsTextBox": false,
+                "clearOfControl": true
+              }
+            ]
+          },
+          {
+            "name": "approval-descriptions",
+            "file": "responsive/baseline-2.png",
+            "sha256": "e916f3f82c46a77fb85d1e7eb33b2d48985b59d410827434c9e0f5bbbe806af5"
+          }
+        ]
+      },
+      {
+        "title": "Code approval descriptions stay clear of controls \u2014 1024\u00d7686 light",
+        "status": "failed",
+        "retry": 0,
+        "errors": [
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 78,
+              "line": 38
+            },
+            "message": "Error: Default model: description below title\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  36 |       await test.info().attach(\"approval-description-geometry\", { body: JSON.stringify(geometry, null, 2), contentType: \"application/json\" });\n  37 |       for (const row of geometry) {\n> 38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n     |                                                                              ^\n  39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n  40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n  41 |       }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:38:78"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 78,
+              "line": 38
+            },
+            "message": "Error: Notify me when an approval is waiting: description below title\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  36 |       await test.info().attach(\"approval-description-geometry\", { body: JSON.stringify(geometry, null, 2), contentType: \"application/json\" });\n  37 |       for (const row of geometry) {\n> 38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n     |                                                                              ^\n  39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n  40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n  41 |       }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:38:78"
+          }
+        ],
+        "attachments": [
+          {
+            "name": "approval-description-geometry",
+            "value": [
+              {
+                "title": "Default model",
+                "titleBottom": 198,
+                "lines": [
+                  {
+                    "left": 668.734375,
+                    "right": 814.15625,
+                    "top": 182,
+                    "bottom": 198
+                  }
+                ],
+                "belowTitle": false,
+                "fitsTextBox": true,
+                "clearOfControl": true
+              },
+              {
+                "title": "Notify me when an approval is waiting",
+                "titleBottom": 255,
+                "lines": [
+                  {
+                    "left": 675.53125,
+                    "right": 846.265625,
+                    "top": 239,
+                    "bottom": 255
+                  }
+                ],
+                "belowTitle": false,
+                "fitsTextBox": true,
+                "clearOfControl": true
+              }
+            ]
+          },
+          {
+            "name": "approval-descriptions",
+            "file": "responsive/baseline-3.png",
+            "sha256": "b95b041da220b0bafc7f746e31f29ee4fe04d3353c77e4d4181caff141d8e76e"
+          }
+        ]
+      },
+      {
+        "title": "Code approval descriptions stay clear of controls \u2014 1024\u00d7686 dark",
+        "status": "failed",
+        "retry": 0,
+        "errors": [
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 78,
+              "line": 38
+            },
+            "message": "Error: Default model: description below title\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  36 |       await test.info().attach(\"approval-description-geometry\", { body: JSON.stringify(geometry, null, 2), contentType: \"application/json\" });\n  37 |       for (const row of geometry) {\n> 38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n     |                                                                              ^\n  39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n  40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n  41 |       }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:38:78"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts",
+              "column": 78,
+              "line": 38
+            },
+            "message": "Error: Notify me when an approval is waiting: description below title\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  36 |       await test.info().attach(\"approval-description-geometry\", { body: JSON.stringify(geometry, null, 2), contentType: \"application/json\" });\n  37 |       for (const row of geometry) {\n> 38 |         expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);\n     |                                                                              ^\n  39 |         expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);\n  40 |         expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);\n  41 |       }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/responsive.spec.ts:38:78"
+          }
+        ],
+        "attachments": [
+          {
+            "name": "approval-description-geometry",
+            "value": [
+              {
+                "title": "Default model",
+                "titleBottom": 198,
+                "lines": [
+                  {
+                    "left": 668.734375,
+                    "right": 814.15625,
+                    "top": 182,
+                    "bottom": 198
+                  }
+                ],
+                "belowTitle": false,
+                "fitsTextBox": true,
+                "clearOfControl": true
+              },
+              {
+                "title": "Notify me when an approval is waiting",
+                "titleBottom": 255,
+                "lines": [
+                  {
+                    "left": 675.53125,
+                    "right": 846.265625,
+                    "top": 239,
+                    "bottom": 255
+                  }
+                ],
+                "belowTitle": false,
+                "fitsTextBox": true,
+                "clearOfControl": true
+              }
+            ]
+          },
+          {
+            "name": "approval-descriptions",
+            "file": "responsive/baseline-4.png",
+            "sha256": "124339fae7ea79343f3102e3efabcf753c948ed7b8c90b0d8b0419bebee52440"
+          }
+        ]
+      }
+    ],
+    "executedByReviewer": false
+  },
+  {
+    "source": "/tmp/opencode/narrow-approvals-fix/fixed.json",
+    "sha256": "01e320f13dfb7cdbfdab3d5fe3e700737f2c5065455407996076ad7961a6dbce",
+    "stats": {
+      "startTime": "2026-10-03T04:24:30.086Z",
+      "duration": 3847.691,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "Code approval descriptions stay clear of controls \u2014 960\u00d7640 light",
+        "status": "passed",
+        "retry": 0,
+        "errors": [],
+        "attachments": [
+          {
+            "name": "approval-description-geometry",
+            "value": [
+              {
+                "title": "Default model",
+                "titleBottom": 182,
+                "lines": [
+                  {
+                    "left": 631,
+                    "right": 731.609375,
+                    "top": 184,
+                    "bottom": 200
+                  },
+                  {
+                    "left": 631,
+                    "right": 672.8125,
+                    "top": 200,
+                    "bottom": 216
+                  }
+                ],
+                "belowTitle": true,
+                "fitsTextBox": true,
+                "clearOfControl": true
+              },
+              {
+                "title": "Notify me when an approval is waiting",
+                "titleBottom": 273,
+                "lines": [
+                  {
+                    "left": 631,
+                    "right": 801.734375,
+                    "top": 275,
+                    "bottom": 291
+                  }
+                ],
+                "belowTitle": true,
+                "fitsTextBox": true,
+                "clearOfControl": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Code approval descriptions stay clear of controls \u2014 960\u00d7640 dark",
+        "status": "passed",
+        "retry": 0,
+        "errors": [],
+        "attachments": [
+          {
+            "name": "approval-description-geometry",
+            "value": [
+              {
+                "title": "Default model",
+                "titleBottom": 182,
+                "lines": [
+                  {
+                    "left": 631,
+                    "right": 731.609375,
+                    "top": 184,
+                    "bottom": 200
+                  },
+                  {
+                    "left": 631,
+                    "right": 672.8125,
+                    "top": 200,
+                    "bottom": 216
+                  }
+                ],
+                "belowTitle": true,
+                "fitsTextBox": true,
+                "clearOfControl": true
+              },
+              {
+                "title": "Notify me when an approval is waiting",
+                "titleBottom": 273,
+                "lines": [
+                  {
+                    "left": 631,
+                    "right": 801.734375,
+                    "top": 275,
+                    "bottom": 291
+                  }
+                ],
+                "belowTitle": true,
+                "fitsTextBox": true,
+                "clearOfControl": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Code approval descriptions stay clear of controls \u2014 1024\u00d7686 light",
+        "status": "passed",
+        "retry": 0,
+        "errors": [],
+        "attachments": [
+          {
+            "name": "approval-description-geometry",
+            "value": [
+              {
+                "title": "Default model",
+                "titleBottom": 182,
+                "lines": [
+                  {
+                    "left": 631,
+                    "right": 776.421875,
+                    "top": 184,
+                    "bottom": 200
+                  }
+                ],
+                "belowTitle": true,
+                "fitsTextBox": true,
+                "clearOfControl": true
+              },
+              {
+                "title": "Notify me when an approval is waiting",
+                "titleBottom": 241,
+                "lines": [
+                  {
+                    "left": 631,
+                    "right": 801.734375,
+                    "top": 243,
+                    "bottom": 259
+                  }
+                ],
+                "belowTitle": true,
+                "fitsTextBox": true,
+                "clearOfControl": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Code approval descriptions stay clear of controls \u2014 1024\u00d7686 dark",
+        "status": "passed",
+        "retry": 0,
+        "errors": [],
+        "attachments": [
+          {
+            "name": "approval-description-geometry",
+            "value": [
+              {
+                "title": "Default model",
+                "titleBottom": 182,
+                "lines": [
+                  {
+                    "left": 631,
+                    "right": 776.421875,
+                    "top": 184,
+                    "bottom": 200
+                  }
+                ],
+                "belowTitle": true,
+                "fitsTextBox": true,
+                "clearOfControl": true
+              },
+              {
+                "title": "Notify me when an approval is waiting",
+                "titleBottom": 241,
+                "lines": [
+                  {
+                    "left": 631,
+                    "right": 801.734375,
+                    "top": 243,
+                    "bottom": 259
+                  }
+                ],
+                "belowTitle": true,
+                "fitsTextBox": true,
+                "clearOfControl": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "executedByReviewer": false
+  }
+]

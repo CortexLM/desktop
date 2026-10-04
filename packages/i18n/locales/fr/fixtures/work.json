@@ -1,0 +1,941 @@
+{
+  "main": {
+    "name": "Nova"
+  },
+  "filterBots": [
+    "Margaux",
+    "Inès",
+    "Iris",
+    "Max",
+    "Zoé"
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "t": "Relancer les devis sans réponse depuis 7 jours",
+      "bot": "Nova",
+      "col": "doing",
+      "meta": "Étape 4 sur 7",
+      "prog": 57
+    },
+    {
+      "id": "2",
+      "t": "Mettre à jour les fiches clients de Studio Nord",
+      "bot": "Margaux",
+      "col": "doing",
+      "meta": "12 fiches sur 30",
+      "prog": 40
+    },
+    {
+      "id": "3",
+      "t": "Répondre au ticket #4182 sur la facturation",
+      "bot": "Inès",
+      "col": "doing",
+      "meta": "il y a 3 min",
+      "prog": 80
+    },
+    {
+      "id": "4",
+      "t": "Préparer l’ordre du jour du point de 15 h",
+      "bot": "Iris",
+      "col": "todo",
+      "meta": "Aujourd’hui, 14:30"
+    },
+    {
+      "id": "5",
+      "t": "Comparer trois fournisseurs de céramique",
+      "bot": "Paul",
+      "col": "todo",
+      "meta": "Lundi"
+    },
+    {
+      "id": "6",
+      "t": "Payer la facture Atelier Morel de 1 240 €",
+      "bot": "Max",
+      "col": "review",
+      "meta": "Attend ta validation"
+    },
+    {
+      "id": "7",
+      "t": "Publier l’annonce du lancement du 14 avril",
+      "bot": "Zoé",
+      "col": "review",
+      "meta": "Brouillon prêt"
+    },
+    {
+      "id": "8",
+      "t": "Classer les notes de frais de septembre",
+      "bot": "Léo",
+      "col": "done",
+      "meta": "Hier, 18:12"
+    },
+    {
+      "id": "9",
+      "t": "Trier la boîte de réception du matin",
+      "bot": "Hugo",
+      "col": "done",
+      "meta": "08:14"
+    }
+  ],
+  "computer": {
+    "menu": [
+      "Navigateur",
+      "Fichier",
+      "Affichage"
+    ],
+    "url": "crm.studionord.fr/devis?statut=sans-reponse",
+    "nav": [
+      "Accueil",
+      "Contacts",
+      "Devis",
+      "Factures",
+      "Rapports"
+    ],
+    "navActive": 2,
+    "heading": "Devis sans réponse · 5",
+    "rows": [
+      [
+        "Atelier Morel",
+        "Devis #2291",
+        "12 j"
+      ],
+      [
+        "Studio Nord",
+        "Devis #2287",
+        "9 j"
+      ],
+      [
+        "Céramiques Vidal",
+        "Devis #2279",
+        "8 j"
+      ],
+      [
+        "Maison Arnaud",
+        "Devis #2275",
+        "7 j"
+      ],
+      [
+        "Boulangerie Roux",
+        "Devis #2270",
+        "3 j"
+      ]
+    ]
+  },
+  "task": {
+    "title": "Relancer les devis sans réponse",
+    "site": "crm.studionord.fr",
+    "statusDoing": "Navigue dans le CRM",
+    "user": "Relance tous les devis sans réponse depuis plus de 7 jours. Ton cordial, et montre-moi la première avant d’envoyer.",
+    "bot1": "C’est parti. Je commence par le CRM pour lister les devis concernés, puis je te prépare la première relance.",
+    "bot2": "J’ai trouvé 5 devis sans réponse. Voici la relance pour Atelier Morel, le plus ancien (12 jours).",
+    "ev1": {
+      "b": "A ouvert le CRM",
+      "t": "crm.studionord.fr",
+      "when": "10:38"
+    },
+    "ev2": {
+      "b": "Routine créée",
+      "t": "« Relance des devis » chaque lundi à 08:00",
+      "when": "10:41"
+    },
+    "steps": [
+      "Lire la consigne et le fichier de suivi",
+      "Ouvrir le CRM Studio Nord",
+      "Filtrer les devis sans réponse depuis 7 jours",
+      "Rédiger la relance pour Atelier Morel",
+      "Rédiger les 4 autres relances",
+      "Programmer un suivi dans 7 jours"
+    ],
+    "mail": {
+      "header": "E-mail · Relance devis #2291",
+      "to": "Julien Morel · julien@ateliermorel.fr",
+      "subject": "Votre devis de rénovation du 18 septembre",
+      "body": [
+        "Bonjour Julien,",
+        "Je reviens vers vous au sujet du devis #2291 envoyé le 18 septembre. Avez-vous pu en prendre connaissance ? Je reste disponible pour l’ajuster à votre calendrier de mai.",
+        "Bien à vous,\nCamille Laurent"
+      ],
+      "toastTo": "À Julien Morel",
+      "sentAt": "10:42"
+    },
+    "cred": {
+      "header": "Identifiants requis · Portail fournisseur",
+      "text": "Le portail ventes.ateliermorel.fr demande une connexion pour vérifier le statut du devis. {name} ne voit pas ton mot de passe : il est utilisé une fois puis oublié.",
+      "login": "camille@studionord.fr",
+      "skip": "Passer ce devis"
+    },
+    "recap": {
+      "badge": "Terminé en 2 min 52",
+      "stats": [
+        [
+          "5",
+          "devis relancés"
+        ],
+        [
+          "1",
+          "routine créée"
+        ],
+        [
+          "7 j",
+          "avant le suivi"
+        ]
+      ],
+      "files": [
+        [
+          "mail",
+          "5 relances envoyées",
+          "Atelier Morel, Studio Nord et 3 autres"
+        ],
+        [
+          "file",
+          "Suivi-devis-octobre.xlsx",
+          "Tableur · mis à jour à 10:44"
+        ],
+        [
+          "calendar",
+          "Rappel « Point devis »",
+          "Lundi 13 octobre, 09:00"
+        ]
+      ]
+    },
+    "fail": {
+      "title": "Connexion au CRM perdue",
+      "text": "Le site a répondu « 503 » trois fois de suite.",
+      "bot": "Je n’arrive plus à joindre le CRM. Les 4 relances restantes sont gardées en brouillon ; je peux réessayer maintenant ou dans 15 minutes."
+    }
+  },
+  "routines": [
+    {
+      "id": "sort",
+      "t": "Tri du matin",
+      "bot": "Nova",
+      "trig": "Chaque jour à 08:00",
+      "next": "Demain",
+      "nextSub": "08:00",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "skip",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    },
+    {
+      "id": "quotes",
+      "t": "Relance des devis",
+      "bot": "Nova",
+      "trig": "Chaque lundi à 08:00",
+      "next": "Lundi",
+      "nextSub": "08:00",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    },
+    {
+      "id": "crm",
+      "t": "Mise à jour du CRM",
+      "bot": "Margaux",
+      "trig": "Jours ouvrés à 18:00",
+      "next": "Aujourd’hui",
+      "nextSub": "18:00",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    },
+    {
+      "id": "ticket",
+      "t": "Premier tri des tickets",
+      "bot": "Inès",
+      "trig": "À chaque nouveau ticket",
+      "ev": true,
+      "next": "Sur événement",
+      "nextSub": "Dernier : 10:31",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    },
+    {
+      "id": "pr",
+      "t": "Résumé des PR ouvertes",
+      "bot": "Sam",
+      "trig": "À chaque PR ouverte",
+      "ev": true,
+      "next": "Sur événement",
+      "nextSub": "Dernier : hier",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "skip",
+        "ok"
+      ],
+      "on": false
+    },
+    {
+      "id": "watch",
+      "t": "Veille fournisseurs",
+      "bot": "Paul",
+      "trig": "Toutes les 30 min",
+      "next": "Dans 12 min",
+      "nextSub": "11:00",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    }
+  ],
+  "history": [
+    [
+      "Aujourd’hui 10:31",
+      "Premier tri des tickets",
+      "Inès",
+      "ok",
+      "4 s"
+    ],
+    [
+      "Aujourd’hui 10:30",
+      "Veille fournisseurs",
+      "Paul",
+      "ok",
+      "38 s"
+    ],
+    [
+      "Aujourd’hui 08:00",
+      "Tri du matin",
+      "Nova",
+      "ok",
+      "1 min 12"
+    ],
+    [
+      "Hier 18:00",
+      "Mise à jour du CRM",
+      "Margaux",
+      "ok",
+      "2 min 40"
+    ],
+    [
+      "Lundi 08:00",
+      "Relance des devis",
+      "Nova",
+      "ok",
+      "2 min 52"
+    ]
+  ],
+  "failRoutine": "crm",
+  "failNextSub": "Échec à 18:00",
+  "failHist": [
+    "Hier 18:00",
+    "Mise à jour du CRM",
+    "Margaux",
+    "err",
+    "Connexion refusée"
+  ],
+  "failBanner": {
+    "title": "« Mise à jour du CRM » a échoué",
+    "text": "Margaux n’a pas pu se connecter au CRM hier à 18:00. Reconnecte le CRM puis relance."
+  },
+  "edit": {
+    "name": "Relance des devis",
+    "instr": "Relance les devis sans réponse depuis plus de 7 jours, ton cordial. Montre-moi la première avant d’envoyer.",
+    "eventName": "Premier tri des tickets",
+    "eventInstr": "À chaque nouveau ticket, classe-le par urgence, propose une réponse type et préviens-moi si le client est en colère.",
+    "eventBot": "Inès",
+    "bots": [
+      "Margaux",
+      "Inès",
+      "Paul"
+    ],
+    "tz": "heure de Paris",
+    "sources": {
+      "ticket": "Tickets · file « Support clients »",
+      "mail": "Messagerie · camille@studionord.fr",
+      "pr": "Dépôt cortex-web"
+    },
+    "eventRate": "Environ 14 fois par jour ces 7 derniers jours",
+    "testSteps": [
+      "Lire les 3 derniers tickets",
+      "Classer par urgence",
+      "Rédiger les réponses types",
+      "Préparer le résumé"
+    ],
+    "testOkTitle": "Test réussi en 12 s.",
+    "testOkText": "3 tickets classés (1 urgent), 3 réponses proposées, aucune action envoyée."
+  },
+  "inbox": [
+    {
+      "id": 1,
+      "bot": "Sam",
+      "t": "Identifiants requis pour le portail fournisseur",
+      "d": "Le portail ventes.ateliermorel.fr refuse l’accès depuis ce matin. Sans connexion, 3 tickets restent bloqués.",
+      "when": "il y a 8 min",
+      "urg": "now",
+      "act": "Se connecter",
+      "to": "work-task:blocked"
+    },
+    {
+      "id": 2,
+      "bot": "Max",
+      "t": "Facture Atelier Morel de 1 240 € à payer",
+      "d": "Échéance demain. Le montant correspond au devis #2291 signé le 22 septembre.",
+      "when": "il y a 20 min",
+      "urg": "now",
+      "act": "Examiner",
+      "to": "approvals:detail"
+    },
+    {
+      "id": 3,
+      "bot": "Nova",
+      "t": "Première relance prête à envoyer",
+      "d": "« Bonjour Julien, je reviens vers vous au sujet du devis #2291… »",
+      "when": "il y a 34 min",
+      "urg": "today",
+      "act": "Relire",
+      "to": "work-task:approval"
+    },
+    {
+      "id": 4,
+      "bot": "Zoé",
+      "t": "Quel visuel pour l’annonce du 14 avril ?",
+      "d": "J’ai deux propositions. La B a eu 18 % de clics en plus lors de l’avant-première.",
+      "when": "il y a 1 h",
+      "urg": "today",
+      "act": "Choisir",
+      "to": "approvals:list"
+    },
+    {
+      "id": 5,
+      "bot": "Léo",
+      "t": "2 reçus sans catégorie",
+      "d": "Taxi du 24 septembre (32,40 €) et déjeuner Studio Nord (86 €).",
+      "when": "hier",
+      "urg": "later",
+      "act": "Classer",
+      "to": "work-task:approval"
+    },
+    {
+      "id": 6,
+      "bot": "Paul",
+      "t": "Veille : un fournisseur baisse ses prix de 12 %",
+      "d": "Céramiques Vidal annonce de nouveaux tarifs à partir de novembre.",
+      "when": "hier",
+      "urg": "later",
+      "act": "Lire",
+      "to": "activity"
+    }
+  ],
+  "approvals": [
+    {
+      "id": "mail",
+      "bot": "Nova",
+      "icon": "mail",
+      "kind": "Envoyer un e-mail",
+      "t": "Relance à Julien Morel",
+      "d": "« Bonjour Julien, je reviens vers vous au sujet du devis #2291 envoyé le 18 septembre… »",
+      "when": "il y a 34 min"
+    },
+    {
+      "id": "pay",
+      "bot": "Max",
+      "icon": "key",
+      "kind": "Payer une facture",
+      "t": "Facture Atelier Morel · 1 240 €",
+      "d": "Virement depuis le compte pro Studio Nord, échéance vendredi 2 octobre.",
+      "when": "il y a 20 min"
+    },
+    {
+      "id": "post",
+      "bot": "Zoé",
+      "icon": "share",
+      "kind": "Publier un post",
+      "t": "Annonce du lancement du 14 avril",
+      "d": "« Le printemps arrive chez Studio Nord : rendez-vous le 14 avril pour… » · visuel B · LinkedIn et Instagram",
+      "when": "il y a 1 h"
+    }
+  ],
+  "payment": {
+    "bot": "Max",
+    "amount": "1 240,00",
+    "kv": [
+      [
+        "Bénéficiaire",
+        "Atelier Morel"
+      ],
+      [
+        "IBAN",
+        "FR76 •••• •••• 4821"
+      ],
+      [
+        "Compte débité",
+        "Studio Nord · compte pro"
+      ],
+      [
+        "Échéance",
+        "vendredi 2 octobre"
+      ],
+      [
+        "Référence",
+        "Facture F-2026-118"
+      ]
+    ],
+    "check": "Le montant correspond au devis #2291 signé le 22 septembre.",
+    "alwaysRule": "Toujours autoriser Max à payer Atelier Morel jusqu’à 1 500 €",
+    "why": "Ta règle actuelle : « Paiements — Demander ». Tout virement passe par toi, quel que soit le montant.",
+    "okTitle": "Paiement approuvé",
+    "okText": "Max lance le virement de 1 240 € à Atelier Morel. Tu recevras le justificatif dans la boîte de réception.",
+    "noTitle": "Paiement refusé",
+    "noText": "Max ne paiera pas cette facture et a prévenu Julien Morel que le règlement est suspendu.",
+    "cancelTransfer": "Annuler le virement (encore 4 min 52)",
+    "invoice": {
+      "vendor": "ATELIER MOREL",
+      "ref": "F-2026-118",
+      "address": "12 rue des Tanneurs, 69001 Lyon",
+      "lines": [
+        [
+          "Rénovation atelier · lot 1",
+          "980,00"
+        ],
+        [
+          "Fournitures céramique",
+          "160,00"
+        ],
+        [
+          "Déplacement",
+          "100,00"
+        ]
+      ],
+      "totalLabel": "Total TTC"
+    }
+  },
+  "activity": [
+    [
+      "Aujourd’hui",
+      [
+        {
+          "bot": "Nova",
+          "icon": "mail",
+          "type": "email",
+          "b": "A envoyé",
+          "t": " la relance à Julien Morel",
+          "when": "10:42"
+        },
+        {
+          "bot": "Nova",
+          "icon": "clock-loop",
+          "type": "routines",
+          "b": "A créé la routine",
+          "t": " « Relance des devis »",
+          "when": "10:41"
+        },
+        {
+          "bot": "Nova",
+          "icon": "globe",
+          "type": "browsing",
+          "b": "A ouvert",
+          "t": " crm.studionord.fr",
+          "when": "10:38"
+        },
+        {
+          "bot": "Inès",
+          "icon": "check-circle",
+          "type": "tickets",
+          "b": "A résolu",
+          "t": " le ticket #4179 « Double facturation »",
+          "when": "10:31"
+        },
+        {
+          "bot": "Sam",
+          "icon": "alert-triangle",
+          "type": "errors",
+          "b": "Bloqué",
+          "t": " : accès refusé au portail fournisseur",
+          "when": "10:12"
+        },
+        {
+          "bot": "Margaux",
+          "icon": "edit",
+          "type": "crm",
+          "b": "A mis à jour",
+          "t": " 12 fiches clients de Studio Nord",
+          "when": "09:50"
+        },
+        {
+          "bot": "Hugo",
+          "icon": "mail",
+          "type": "email",
+          "b": "A trié",
+          "t": " 23 e-mails, 2 demandes de devis repérées",
+          "when": "08:14"
+        }
+      ]
+    ],
+    [
+      "Hier",
+      [
+        {
+          "bot": "Max",
+          "icon": "file",
+          "type": "documents",
+          "b": "A préparé",
+          "t": " les fiches de paie d’octobre",
+          "when": "18:30"
+        },
+        {
+          "bot": "Margaux",
+          "icon": "clock-loop",
+          "type": "routines",
+          "b": "A exécuté",
+          "t": " « Mise à jour du CRM »",
+          "when": "18:00"
+        },
+        {
+          "bot": "Léo",
+          "icon": "check-circle",
+          "type": "documents",
+          "b": "A classé",
+          "t": " 14 notes de frais de septembre",
+          "when": "17:12"
+        },
+        {
+          "bot": "Zoé",
+          "icon": "image",
+          "type": "documents",
+          "b": "A proposé",
+          "t": " deux visuels pour l’annonce du 14 avril",
+          "when": "15:02"
+        }
+      ]
+    ],
+    [
+      "Lundi 28 septembre",
+      [
+        {
+          "bot": "Nova",
+          "icon": "clock-loop",
+          "type": "routines",
+          "b": "A exécuté",
+          "t": " « Relance des devis » : 4 relances",
+          "when": "08:00"
+        },
+        {
+          "bot": "Paul",
+          "icon": "globe",
+          "type": "browsing",
+          "b": "A lu",
+          "t": " 38 annonces, 5 retenues pour la veille",
+          "when": "08:00"
+        }
+      ]
+    ]
+  ],
+  "activityBots": [
+    "Margaux",
+    "Inès",
+    "Sam",
+    "Hugo",
+    "Max",
+    "Léo",
+    "Zoé",
+    "Paul"
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "kind": "bot",
+      "who": "Sam",
+      "t": " est bloqué : identifiants requis pour le portail fournisseur",
+      "when": "8 min",
+      "to": [
+        "work-task",
+        "blocked"
+      ]
+    },
+    {
+      "id": 2,
+      "kind": "mention",
+      "who": "Julien Mercier",
+      "initials": "JM",
+      "t": " t’a mentionnée dans « Plan de lancement du 14 avril »",
+      "when": "15 min",
+      "to": [
+        "chat"
+      ]
+    },
+    {
+      "id": 3,
+      "kind": "bot",
+      "who": "Max",
+      "t": " demande ta validation pour payer 1 240 €",
+      "when": "20 min",
+      "to": [
+        "approvals",
+        "detail"
+      ]
+    },
+    {
+      "id": 4,
+      "kind": "bot",
+      "who": "Nova",
+      "t": " a terminé « Relancer les devis sans réponse »",
+      "when": "34 min",
+      "to": [
+        "work-task",
+        "done"
+      ]
+    },
+    {
+      "id": 5,
+      "kind": "mention",
+      "who": "Inès Benali",
+      "initials": "IB",
+      "t": " a commenté le budget lancement Q2",
+      "when": "1 h",
+      "to": [
+        "file-xlsx"
+      ]
+    },
+    {
+      "id": 6,
+      "kind": "bot",
+      "who": "Margaux",
+      "t": " a exécuté la routine « Mise à jour du CRM »",
+      "when": "hier",
+      "to": [
+        "automations"
+      ]
+    }
+  ],
+  "readIds": [
+    5,
+    6
+  ],
+  "connectors": [
+    {
+      "id": "mail",
+      "mono": "Me",
+      "t": "Messagerie",
+      "d": "Lire, trier et préparer des brouillons",
+      "st": "on",
+      "perms": [
+        [
+          "mail",
+          "Lire tes e-mails",
+          "Objets, contenus et pièces jointes"
+        ],
+        [
+          "edit",
+          "Préparer des brouillons",
+          "Jamais envoyés sans ta validation"
+        ],
+        [
+          "user",
+          "Voir tes contacts",
+          "Noms et adresses"
+        ]
+      ]
+    },
+    {
+      "id": "cal",
+      "mono": "Ag",
+      "t": "Agenda",
+      "d": "Proposer des créneaux, préparer les réunions",
+      "st": "on",
+      "perms": [
+        [
+          "calendar",
+          "Voir tes événements",
+          "Titres, horaires, participants"
+        ],
+        [
+          "edit",
+          "Créer des invitations",
+          "Avec ta validation"
+        ]
+      ]
+    },
+    {
+      "id": "drive",
+      "mono": "Dr",
+      "t": "Drive",
+      "d": "Lire et classer les documents partagés",
+      "st": "re",
+      "perms": [
+        [
+          "folder",
+          "Voir les dossiers partagés",
+          "Lancement printemps, Studio Nord"
+        ],
+        [
+          "file",
+          "Créer des documents",
+          "Dans un dossier « Bots »"
+        ]
+      ]
+    },
+    {
+      "id": "crm",
+      "mono": "CR",
+      "t": "CRM",
+      "d": "Mettre à jour contacts, devis et relances",
+      "st": "err",
+      "perms": [
+        [
+          "user",
+          "Lire et modifier les fiches",
+          "Contacts, entreprises, devis"
+        ],
+        [
+          "history",
+          "Voir l’historique des échanges",
+          "12 derniers mois"
+        ]
+      ]
+    },
+    {
+      "id": "tk",
+      "mono": "Tk",
+      "t": "Tickets",
+      "d": "Classer et répondre aux demandes clients",
+      "st": "on",
+      "perms": [
+        [
+          "mentions",
+          "Lire les tickets",
+          "File « Support clients »"
+        ],
+        [
+          "edit",
+          "Répondre aux clients",
+          "Avec ta validation"
+        ]
+      ]
+    },
+    {
+      "id": "payroll",
+      "mono": "Pa",
+      "t": "Paie",
+      "d": "Préparer les fiches de paie et virements",
+      "st": "off",
+      "perms": [
+        [
+          "user",
+          "Voir les salariés",
+          "Noms, contrats, salaires"
+        ],
+        [
+          "file",
+          "Générer les fiches de paie",
+          "Brouillons à valider"
+        ],
+        [
+          "key",
+          "Préparer des virements",
+          "Toujours soumis à ta validation"
+        ]
+      ]
+    },
+    {
+      "id": "acct",
+      "mono": "Cp",
+      "t": "Comptabilité",
+      "d": "Rapprocher factures et notes de frais",
+      "st": "off",
+      "perms": [
+        [
+          "file",
+          "Lire les factures",
+          "Achats et ventes"
+        ],
+        [
+          "check-circle",
+          "Catégoriser les dépenses",
+          "Notes de frais"
+        ]
+      ]
+    },
+    {
+      "id": "chat",
+      "mono": "Ch",
+      "t": "Messagerie d’équipe",
+      "d": "Recevoir des demandes, répondre dans les fils",
+      "st": "off",
+      "perms": [
+        [
+          "mentions",
+          "Lire les fils où tu es mentionnée",
+          "Canaux publics"
+        ],
+        [
+          "edit",
+          "Répondre en ton nom",
+          "Avec ta validation"
+        ]
+      ]
+    },
+    {
+      "id": "git",
+      "mono": "Gi",
+      "t": "Dépôt de code",
+      "d": "Résumer les PR, suivre les revues",
+      "st": "off",
+      "perms": [
+        [
+          "pull-request",
+          "Lire les PR et les revues",
+          "cortex-web, cortex-ios"
+        ],
+        [
+          "mentions",
+          "Commenter",
+          "Avec ta validation"
+        ]
+      ]
+    }
+  ],
+  "connError": {
+    "banner": "CRM déconnecté",
+    "bannerText": "Margaux et {name} ne peuvent plus mettre à jour les devis depuis hier 18:00.",
+    "detail": "Le jeton d’accès a expiré le 30 septembre à 18:00 (erreur 401). Les données déjà synchronisées sont conservées.",
+    "affected": [
+      [
+        "Margaux",
+        "Mise à jour du CRM · 1 échec"
+      ],
+      [
+        "Nova",
+        "Relance des devis · en attente"
+      ]
+    ]
+  },
+  "connOk": "Tes Bots peuvent maintenant l’utiliser. Paul suggère une routine : « Préparer la paie le 25 de chaque mois »."
+}

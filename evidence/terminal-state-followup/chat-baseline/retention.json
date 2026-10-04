@@ -1,0 +1,55 @@
+{
+  "archives": [
+    {
+      "originalPaths": [
+        "/tmp/opencode/chat-missing-regression/baseline/results.json"
+      ],
+      "retainedPath": "raw/results.json.gz",
+      "rawBytes": 34642,
+      "rawSHA256": "8d54bbf22483f5a5e77e825a5c8e0982021085dfe0811db40dd428774b403856",
+      "gzipBytes": 5624,
+      "gzipSHA256": "948c8a30735fb70a94320a8f70d1ff77cf44d01783a37576142172d91781fec3",
+      "exactRoundTrip": true
+    },
+    {
+      "originalPaths": [
+        "/tmp/opencode/chat-missing-regression/baseline/run.log"
+      ],
+      "retainedPath": "raw/run.log.gz",
+      "rawBytes": 11103,
+      "rawSHA256": "4a2ba7fe1a9d08319a5b27676109658ed966c2cedbe7e293d2eb9f878fa94aae",
+      "gzipBytes": 1355,
+      "gzipSHA256": "2cd09bf8c8b25154cfc29c1c40688cc40200b6cae8443935dcee384115645d0a",
+      "exactRoundTrip": true
+    },
+    {
+      "originalPaths": [
+        "/tmp/opencode/chat-missing-regression/baseline/integrity-before.json",
+        "/tmp/opencode/chat-missing-regression/baseline/integrity-after.json"
+      ],
+      "retainedPath": "raw/integrity.json.gz",
+      "rawBytes": 31210,
+      "rawSHA256": "7fbe30787a01a13aa9d86a324660e2c19f1703436889bbfafebbc45ee1c767e3",
+      "gzipBytes": 6272,
+      "gzipSHA256": "a92aa7a877d7cbd8a508302611caa67d5ad46a5f205ece3133816aceb93c4b22",
+      "exactRoundTrip": true
+    }
+  ],
+  "imageConversion": {
+    "pillow": "12.3.0",
+    "libwebp": "1.6.0",
+    "lossless": true,
+    "quality": 100,
+    "method": 6,
+    "exact": true,
+    "comparison": "full-size decoded RGBA byte equality"
+  },
+  "originalPNGBytes": 97377,
+  "losslessWebPBytes": 47274,
+  "fullSizeVisualReview": {
+    "images": ["images/deleted-chat-light.webp", "images/deleted-chat-dark.webp"],
+    "dimensions": [960, 640],
+    "observed": "Both show the incorrect Something went wrong. / Your message is kept. Try again in a moment. card, empty transcript and mounted composer; no Retry button."
+  },
+  "noDatabaseProfilesCredentialsArchived": true
+}

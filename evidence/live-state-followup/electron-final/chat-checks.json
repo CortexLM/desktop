@@ -1,0 +1,356 @@
+[
+  {
+    "title": "Late initial Chat history cannot erase a completed stream — light",
+    "snapshots": [
+      {
+        "phase": "setup",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": []
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          ""
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "before-release",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "before-release",
+        "users": [
+          "Earlier saved message must remain.",
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works.",
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "after-release",
+        "users": [
+          "Earlier saved message must remain.",
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works.",
+          "Hello from the streaming test provider. Everything works."
+        ]
+      }
+    ],
+    "eventCounts": {
+      "message.updated": 8,
+      "part.updated": 14,
+      "session.status": 4,
+      "part.delta": 26,
+      "session.updated": 2
+    },
+    "completedAssistantIDs": [
+      "msg_01a100e1154500000956e822c5875e4d",
+      "msg_01a100e119430000e870a10922fb6ae1"
+    ],
+    "noObservedEraseOrRevival": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "title": "Late initial Chat history cannot revive a deleted session — light",
+    "snapshots": [
+      {
+        "phase": "setup",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "before-release",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "after-release",
+        "users": [],
+        "answers": []
+      }
+    ],
+    "eventCounts": {
+      "message.updated": 4,
+      "part.updated": 7,
+      "session.status": 2,
+      "part.delta": 13,
+      "session.updated": 1,
+      "session.deleted": 1
+    },
+    "completedAssistantIDs": [
+      "msg_01a100e1227f00001a976b9a7754527c"
+    ],
+    "noObservedEraseOrRevival": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "title": "Late initial Chat history cannot erase a completed stream — dark",
+    "snapshots": [
+      {
+        "phase": "setup",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": []
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          ""
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "before-release",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "before-release",
+        "users": [
+          "Earlier saved message must remain.",
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works.",
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "after-release",
+        "users": [
+          "Earlier saved message must remain.",
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works.",
+          "Hello from the streaming test provider. Everything works."
+        ]
+      }
+    ],
+    "eventCounts": {
+      "message.updated": 8,
+      "part.updated": 14,
+      "session.status": 4,
+      "part.delta": 26,
+      "session.updated": 2
+    },
+    "completedAssistantIDs": [
+      "msg_01a100e12bcc0000cdd46424df0929f4",
+      "msg_01a100e12f9d0000971d2071583a0b64"
+    ],
+    "noObservedEraseOrRevival": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "title": "Late initial Chat history cannot revive a deleted session — dark",
+    "snapshots": [
+      {
+        "phase": "setup",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "before-release",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "after-release",
+        "users": [],
+        "answers": []
+      }
+    ],
+    "eventCounts": {
+      "message.updated": 4,
+      "part.updated": 7,
+      "session.status": 2,
+      "part.delta": 13,
+      "session.updated": 1,
+      "session.deleted": 1
+    },
+    "completedAssistantIDs": [
+      "msg_01a100e12bd200001d88737a7a665644"
+    ],
+    "noObservedEraseOrRevival": true,
+    "errors": [],
+    "rendererHttp": []
+  }
+]

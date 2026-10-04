@@ -1,0 +1,35 @@
+✖ generated screenshot upload preserves File and Blob bytes and filename (13.371642ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 143.937387
+
+✖ failing tests:
+
+test at test/runtime.test.mjs:383:1
+✖ generated screenshot upload preserves File and Blob bytes and filename (13.371642ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'application/json'
+  - 'application/octet-stream'
+                 ^
+
+      at fetch (file:///root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-sdk/packages/sdk/test/runtime.test.mjs:388:12)
+      at send (file:///root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-sdk/packages/sdk/dist/client.js:88:25)
+      at requestWithAuth (file:///root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-sdk/packages/sdk/dist/client.js:147:27)
+      at async request (file:///root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-sdk/packages/sdk/dist/gen/client/client.gen.js:59:24)
+      at async TestContext.<anonymous> (file:///root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-sdk/packages/sdk/test/runtime.test.mjs:393:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'application/json',
+    expected: 'application/octet-stream',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

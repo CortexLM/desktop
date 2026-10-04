@@ -1,0 +1,46 @@
+
+Running 1 test using 1 worker
+
+[1/1] tests/e2e/search-bots.spec.ts:26:40 › Search finds persisted Bots by name and persona, preserving grouped keyboard identity — light
+  1) tests/e2e/search-bots.spec.ts:26:40 › Search finds persisted Bots by name and persona, preserving grouped keyboard identity — light
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('listbox', { name: 'Results', exact: true }).getByRole('group', { name: 'Bots', exact: true }).getByRole('option')
+    Expected: 2
+    Received: 0
+    Timeout:  2500ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('listbox', { name: 'Results', exact: true }).getByRole('group', { name: 'Bots', exact: true }).getByRole('option') with timeout 2500ms
+      - waiting for getByRole('listbox', { name: 'Results', exact: true }).getByRole('group', { name: 'Bots', exact: true }).getByRole('option')
+        9 × locator resolved to 0 elements
+          - unexpected value "0"
+
+
+      48 |     await expect(results.locator(".systeme-hit .systeme-t")).toHaveText([chat.title]);
+      49 |     await input.fill("cAFE");
+    > 50 |     await expect(results.getByRole("group", { name: "Bots", exact: true }).getByRole("option")).toHaveCount(2, { timeout: 2500 });
+         |                                                                                                 ^
+      51 |     await expect(results.getByRole("group", { name: "Chats", exact: true }).getByRole("option")).toHaveCount(1);
+      52 |     const titles = await options.locator(".systeme-t").allTextContents();
+      53 |     expect(titles[0]).toBe(chat.title);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/search-bots.spec.ts:50:97
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/search-bots-before-artifacts/search-bots-Search-finds-p-8032b-d-keyboard-identity-—-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/search-bots-before-artifacts/search-bots-Search-finds-p-8032b-d-keyboard-identity-—-light/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/search-bots-before-artifacts/search-bots-Search-finds-p-8032b-d-keyboard-identity-—-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/search-bots-before-artifacts/search-bots-Search-finds-p-8032b-d-keyboard-identity-—-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  1 failed
+    tests/e2e/search-bots.spec.ts:26:40 › Search finds persisted Bots by name and persona, preserving grouped keyboard identity — light

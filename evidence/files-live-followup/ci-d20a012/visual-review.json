@@ -1,0 +1,23 @@
+{
+  "application": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "reviewedUTC": "2026-10-03T21:42:59.035281+00:00",
+  "uniqueImages": 391,
+  "pngCopies": 1179,
+  "contacts": 34,
+  "allContactsInspected": true,
+  "primaryFilesFullsize": 28,
+  "supplementalDriftFullsize": 74,
+  "supplementalSmokeFullsize": 1,
+  "totalCurrentFullsize": 103,
+  "verdict": "Scoped pass: no new blocking visual finding in the reviewed Files CI states.",
+  "observations": [
+    "Four lifecycle, eight dark-locale and two long-filename views per OS inspected at original size. All 74 changed prior-alias images also inspected full-size.",
+    "Linux 589 copies/195 unique; macOS 590 copies/196 unique. All 391 decoded RGBA images are distinct across OSes.",
+    "All 16 Activity locale differences are inside right-side time columns: 387–543 changed pixels per frame, 7827 total. Visible Linux times 18:55 versus 21:03; macOS 19:04 versus 21:11 (localized equivalents). No inferred global clock policy.",
+    "Memory sixteen and auth sixteen locale frames are PNG- and RGBA-exact to Activity canonicals; current contact scan performed. No new full-size fluency certification inferred.",
+    "Larger non-Files differences include appearance-card edges, button fills and 5s/6s reasoning-stage content/scrollbars. Original counts/bounds preserved; root causes not independently established.",
+    "Scrollable long filename intentionally shows a bounded portion. Home/End assertions establish scroll movement, not exhaustive visual reading. Two light long-header frames retain Zoom out tooltips without obscured controls.",
+    "Toasts can overlay transcript content; preview motion and scrollport snapshots retain their visible state. Contact-only non-targets receive no blanket full-size approval.",
+    "Fixture solid-color images establish exact dimensions/byte behavior, not photographic color accuracy, EXIF orientation coverage or custom mascot fidelity."
+  ]
+}

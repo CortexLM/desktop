@@ -1,0 +1,23 @@
+[
+  {
+    "run": "full",
+    "calls": 43,
+    "GET200": 36,
+    "GET404": 6,
+    "PATCH200": 1
+  },
+  {
+    "run": "final-targeted",
+    "calls": 43,
+    "GET200": 36,
+    "GET404": 6,
+    "PATCH200": 1
+  },
+  {
+    "run": "targeted",
+    "calls": 43,
+    "GET200": 36,
+    "GET404": 6,
+    "PATCH200": 1
+  }
+]

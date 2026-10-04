@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "scope": "Offline package/source provenance only",
+  "applicationRevision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+  "artifactID": 11269856853,
+  "workflowRunID": 37110253688,
+  "outerBytes": 144676546,
+  "outerSHA256": "257fb7b54e362efae0a7c053183955fd6362228338c0a203874778d4b3d5e1df",
+  "innerSHA256": "18ea195504813772757cbf11e6c0a239cbaad3d671a1e67ba197ae9fcf0fc6c7",
+  "asarSHA256": "bbd6dbddd5103e63d076f0edfd8afe245da1c5b858fc4883d9bd06cc70bcfc0a",
+  "asarRegularFiles": 91,
+  "builtMembers": 90,
+  "localeCatalogs": 104,
+  "localeCounts": {
+    "de": 13,
+    "en": 13,
+    "es": 13,
+    "fr": 13,
+    "ja": 13,
+    "ko": 13,
+    "pt-BR": 13,
+    "zh-Hans": 13
+  },
+  "skills": 1,
+  "packageInputs": 514,
+  "rendererInputs": 473,
+  "rendererFingerprint": "39a06106e8d3545e1131ed64dddf5c60013581ffb2f1465f5c67399892669609",
+  "changedInputsFromF5": [
+    "packages/app/src/screens/bots/bot.tsx",
+    "packages/app/src/state/live.ts"
+  ],
+  "mainWorkspaceSources": 32,
+  "preloadWorkspaceSources": 1,
+  "sdkSources": 16,
+  "apiTypesSources": 16,
+  "mainMapTotalSources": 980,
+  "sameF5DesktopMembers": 4,
+  "noPublicRemoteCaller": true,
+  "linuxAsarReceiptMatches": true,
+  "auditStartedAt": "2026-10-03T08:59:18.499819+00:00",
+  "auditFinishedAt": "2026-10-03T08:59:23.748407+00:00"
+}

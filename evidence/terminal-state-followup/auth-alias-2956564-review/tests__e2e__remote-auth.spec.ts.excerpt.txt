@@ -1,0 +1,56 @@
+9: const EMAIL_PATH = "/v1/auth/magic-auth", CODE_PATH = "/v1/auth/magic-auth/verify";
+10: const LOGOUT_PATH = "/v1/auth/logout";
+11: const CODE = "123456", WRONG_CODE = "000000";
+12: const PRIVATE_ERROR = "test-only-private-auth-detail";
+13: const SESSION_COPY = "Sign-in lasts until Cortex closes. Chats still use your local provider settings.";
+14: const CONTINUATION_COPY = "This sign-in step isn’t available in Cortex yet. Use another address or cancel.";
+15: type Seen = { method: string; path: string; body: Record<string, unknown>; cookie?: string; authorization?: string };
+43:     if (req.method === "POST" && route === CODE_PATH) {
+44:       if (state.holdCode) await new Promise<void>((resolve) => pending.push(resolve));
+45:       state.finishedCodes++;
+46:       if (res.destroyed) return;
+47:       if (body.code !== CODE) return problem(res, 401, "invalid_credential");
+48:       if (body.email === "mfa@example.test") return json(res, {
+49:         status: "mfa_enrollment", pending_authentication_token: privateValues[2], authentication_challenge_id: privateValues[3],
+50:         authentication_factor_id: privateValues[4], qr_code: privateValues[5], totp_secret: privateValues[6],
+51:       });
+52:       if (body.email === "verify@example.test") return json(res, { status: "verify_email", email: body.email, pending_authentication_token: privateValues[2] });
+53:       return session(res);
+98: async function enterCode(page: Page, code = CODE) {
+99:   await page.getByRole("textbox", { name: "6-digit code", exact: true }).fill(code);
+100:   await page.getByRole("button", { name: "Continue", exact: true }).click();
+101: }
+102: async function capture(page: Page, name: string) {
+103:   const file = test.info().outputPath(`${name}.png`);
+104:   await page.screenshot({ path: file, animations: "disabled" });
+105:   await test.info().attach(name, { path: file, contentType: "image/png" });
+106: }
+200:   test(`Unavailable continuations and cancelled codes stay private; restart clears login — 960 ${theme}`, async () => {
+201:     const backend = await authBackend(`continuation-${theme}`);
+202:     const first = await launch({ hash: `#/home?theme=${theme}`, locale: "en", env });
+203:     let app: ElectronApplication | undefined = first.app, page = first.page;
+204:     const errors: string[] = [], rendererHttp: string[] = [];
+205:     watch(page, errors, rendererHttp);
+206:     try {
+207:       await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setSize(960, 640));
+208:       await page.emulateMedia({ reducedMotion: "reduce" });
+209:       await select(page, backend.origin); await show(page, "login", theme);
+210:       await sendEmail(page, "mfa@example.test"); await enterCode(page);
+211:       await expect(page.getByText(CONTINUATION_COPY, { exact: true })).toBeVisible();
+212:       expect(await authState(page)).toMatchObject({ status: "mfa_enrollment", signedIn: false });
+213:       expect((await call<ConnectionMode>(page, "/api/connection")).signedIn).toBe(false);
+214:       await privateStateStaysInMain(app, page, backend.privateValues, rendererHttp);
+215:       await capture(page, `remote-mfa-unavailable-${theme}`);
+216:       await page.getByRole("button", { name: "Use another address", exact: true }).click();
+217:       await expect(page.getByRole("textbox", { name: "Email address", exact: true })).toBeVisible();
+218:       expect((await authState(page)).status).toBe("signed_out");
+219:       await sendEmail(page, "verify@example.test"); await enterCode(page);
+220:       await expect(page.getByText(CONTINUATION_COPY, { exact: true })).toBeVisible();
+221:       expect(await authState(page)).toEqual({ status: "verify_email", signedIn: false, email: "verify@example.test" });
+222:       expect((await call<ConnectionMode>(page, "/api/connection")).signedIn).toBe(false);
+223:       await expect(page.getByRole("textbox", { name: "6-digit code", exact: true })).toHaveCount(0);
+224:       await privateStateStaysInMain(app, page, backend.privateValues, rendererHttp);
+225:       await capture(page, `remote-verification-unavailable-${theme}`);
+226:       await page.getByRole("button", { name: "Use another address", exact: true }).click();
+227:       await expect(page.getByRole("textbox", { name: "Email address", exact: true })).toBeVisible();
+228:       expect((await authState(page)).status).toBe("signed_out");

@@ -1,0 +1,26 @@
+{
+  "completed_at": "2026-10-03T05:51:54.012273+00:00",
+  "result": "PASS; uncommitted correction",
+  "source_hashes": {
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/desktop/src/remote-chat.ts": "036fd37f065c996ecc107200904ff27b37428908172e7c729572083a3c9180ac",
+    "packages/desktop/test/remote-chat.test.ts": "ba1815e856e56c5397de03cf97c1ed1368adcbe5de60c32f281d6de9f33478ad"
+  },
+  "binding_types": "unchanged",
+  "tests": {
+    "Node": "22.23.3",
+    "passed": 25,
+    "remote_chat": 17,
+    "original_auth": 8,
+    "failed": 0,
+    "skipped": 0
+  },
+  "regression_before": "Both high-bit payloads accepted;2 authenticated Library calls; failing test retained",
+  "regression_after": "Both invalid_request;0 Library calls; normal GIF/WebP magic admitted",
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "dist_files_unchanged": 90,
+  "prior_manifest_files_preserved": true,
+  "review_probes": "not modified/rerun; reviewer owns rerun",
+  "report_sha256": "60319ef7d10ba1d7d8192032ab7a8f95a5444f379ed340a732bc9fe57fdb12d8"
+}

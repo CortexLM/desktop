@@ -1,0 +1,30 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x900x24",
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/e2e/bot-owner.spec.ts",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=list,json",
+    "--output=/tmp/opencode/bot-owner-regression/negative/artifacts"
+  ],
+  "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+  "head": "1076c2584941cf054efffaf709a149b4195bc1c4",
+  "nodeVersion": "v22.23.3",
+  "NODE_ENV": "test",
+  "TMPDIR": "/tmp/opencode/bot-owner-regression/negative/temp",
+  "CORTEX_RENDERER_URL": "unset",
+  "sourceSHA256": {
+    "packages/app/src/state/live.ts": "fde8193d44f8e943915b18a5b3dc074ef048dc1f37cd580f25db1f2bfab6ed34",
+    "packages/app/src/screens/bots/bot.tsx": "e721403221a1103b20752f91dffb4512ca021d629d57d3be3fd8153109105969",
+    "packages/desktop/src/remote-chat.ts": "a735975865341bec30fb1981165192f993fbd1235416a3271b947bfb15a4fad6",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "tests/e2e/live-state.spec.ts": "842804966f6cd584834c728c92c495ccc52ece47bce2dcd128df912f98c83710",
+    "tests/e2e/bot-owner.spec.ts": "527d5795431deec263d65fa1b8d02ee684367863348f982df4f52a14bffee0cf"
+  }
+}

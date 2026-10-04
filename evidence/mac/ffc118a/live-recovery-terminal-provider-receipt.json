@@ -1,0 +1,123 @@
+{
+  "protocol": "cortex-terminal-native-v1",
+  "runID": "f5332923-1866-4386-aed1-deb8fded2cd7",
+  "project": "/private/tmp/opencode/desktop-recovery-ffc118a/project",
+  "platform": "darwin",
+  "port": 9456,
+  "startedAt": "2026-10-03T04:15:08.297Z",
+  "requests": [
+    {
+      "index": 1,
+      "theme": "light",
+      "phase": "exit",
+      "toolResultCount": 0,
+      "checks": {
+        "modelExact": true,
+        "exitOutputExact": null,
+        "largeOutputExact": null,
+        "exitMetadataExact": null,
+        "largeMetadataExact": null,
+        "plainReplayExact": null
+      }
+    },
+    {
+      "index": 2,
+      "theme": "light",
+      "phase": "large",
+      "toolResultCount": 1,
+      "checks": {
+        "modelExact": true,
+        "exitOutputExact": true,
+        "largeOutputExact": null,
+        "exitMetadataExact": true,
+        "largeMetadataExact": null,
+        "plainReplayExact": null
+      }
+    },
+    {
+      "index": 3,
+      "theme": "light",
+      "phase": "complete",
+      "toolResultCount": 2,
+      "checks": {
+        "modelExact": true,
+        "exitOutputExact": true,
+        "largeOutputExact": true,
+        "exitMetadataExact": true,
+        "largeMetadataExact": true,
+        "plainReplayExact": null
+      }
+    },
+    {
+      "index": 4,
+      "theme": "light",
+      "phase": "replay",
+      "toolResultCount": 2,
+      "checks": {
+        "modelExact": true,
+        "exitOutputExact": true,
+        "largeOutputExact": true,
+        "exitMetadataExact": null,
+        "largeMetadataExact": null,
+        "plainReplayExact": true
+      }
+    },
+    {
+      "index": 5,
+      "theme": "dark",
+      "phase": "exit",
+      "toolResultCount": 0,
+      "checks": {
+        "modelExact": true,
+        "exitOutputExact": null,
+        "largeOutputExact": null,
+        "exitMetadataExact": null,
+        "largeMetadataExact": null,
+        "plainReplayExact": null
+      }
+    },
+    {
+      "index": 6,
+      "theme": "dark",
+      "phase": "large",
+      "toolResultCount": 1,
+      "checks": {
+        "modelExact": true,
+        "exitOutputExact": true,
+        "largeOutputExact": null,
+        "exitMetadataExact": true,
+        "largeMetadataExact": null,
+        "plainReplayExact": null
+      }
+    },
+    {
+      "index": 7,
+      "theme": "dark",
+      "phase": "complete",
+      "toolResultCount": 2,
+      "checks": {
+        "modelExact": true,
+        "exitOutputExact": true,
+        "largeOutputExact": true,
+        "exitMetadataExact": true,
+        "largeMetadataExact": true,
+        "plainReplayExact": null
+      }
+    },
+    {
+      "index": 8,
+      "theme": "dark",
+      "phase": "replay",
+      "toolResultCount": 2,
+      "checks": {
+        "modelExact": true,
+        "exitOutputExact": true,
+        "largeOutputExact": true,
+        "exitMetadataExact": null,
+        "largeMetadataExact": null,
+        "plainReplayExact": true
+      }
+    }
+  ],
+  "errors": []
+}

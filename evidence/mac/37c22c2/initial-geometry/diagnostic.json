@@ -1,0 +1,2603 @@
+{
+  "scope": "Single native measurement diagnosis; no product/style modification",
+  "checks": [
+    {
+      "tag": "DIV",
+      "text": "API key",
+      "bounds": [
+        631,
+        314,
+        901,
+        330
+      ],
+      "effectiveClip": [
+        617,
+        302,
+        915,
+        518
+      ],
+      "opacity": 1,
+      "disabled": false,
+      "inside": true,
+      "ink": [
+        [
+          631,
+          313,
+          676.265625,
+          330
+        ]
+      ],
+      "visible": true,
+      "hit": true,
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "className": "ttl",
+          "own": true,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            631,
+            314,
+            901,
+            330
+          ],
+          "client": [
+            0,
+            0,
+            270,
+            16
+          ],
+          "effectiveClip": [
+            0,
+            0,
+            960,
+            640
+          ]
+        },
+        {
+          "tag": "SPAN",
+          "className": "grow",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            631,
+            314,
+            901,
+            346
+          ],
+          "client": [
+            0,
+            0,
+            270,
+            32
+          ],
+          "effectiveClip": [
+            0,
+            0,
+            960,
+            640
+          ]
+        },
+        {
+          "tag": "FORM",
+          "className": "li systeme-provider-key",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            617,
+            302,
+            915,
+            404
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            102
+          ],
+          "effectiveClip": [
+            0,
+            0,
+            960,
+            640
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "list",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            617,
+            302,
+            915,
+            518
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            216
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "pg-panel",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            617,
+            104,
+            915,
+            656
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            552
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "pg-set",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            377,
+            104,
+            915,
+            656
+          ],
+          "client": [
+            0,
+            0,
+            538,
+            552
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "page",
+          "own": false,
+          "overflow": [
+            "auto",
+            "auto"
+          ],
+          "box": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            618,
+            535
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "className": "content",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "frame",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "body",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            44,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "window",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "desk",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "BODY",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "HTML",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "DIV",
+      "text": "Saved · 1111",
+      "bounds": [
+        631,
+        330,
+        901,
+        346
+      ],
+      "effectiveClip": [
+        631,
+        330,
+        901,
+        346
+      ],
+      "opacity": 1,
+      "disabled": false,
+      "inside": true,
+      "ink": [
+        [
+          631,
+          330,
+          690.40625,
+          346
+        ]
+      ],
+      "visible": true,
+      "hit": true,
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "className": "sub",
+          "own": true,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            631,
+            330,
+            901,
+            346
+          ],
+          "client": [
+            0,
+            0,
+            270,
+            16
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "SPAN",
+          "className": "grow",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            631,
+            314,
+            901,
+            346
+          ],
+          "client": [
+            0,
+            0,
+            270,
+            32
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "FORM",
+          "className": "li systeme-provider-key",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            617,
+            302,
+            915,
+            404
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            102
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "list",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            617,
+            302,
+            915,
+            518
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            216
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "pg-panel",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            617,
+            104,
+            915,
+            656
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            552
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "pg-set",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            377,
+            104,
+            915,
+            656
+          ],
+          "client": [
+            0,
+            0,
+            538,
+            552
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "page",
+          "own": false,
+          "overflow": [
+            "auto",
+            "auto"
+          ],
+          "box": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            618,
+            535
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "className": "content",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "frame",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "body",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            44,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "window",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "desk",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "BODY",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        },
+        {
+          "tag": "HTML",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            631,
+            330,
+            901,
+            346
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "INPUT",
+      "text": "[password input]",
+      "bounds": [
+        631,
+        358,
+        831,
+        392
+      ],
+      "effectiveClip": [
+        632,
+        359,
+        830,
+        391
+      ],
+      "opacity": 1,
+      "disabled": false,
+      "inside": false,
+      "ink": [],
+      "visible": false,
+      "hit": true,
+      "ancestors": [
+        {
+          "tag": "INPUT",
+          "className": "input",
+          "own": true,
+          "overflow": [
+            "clip",
+            "clip"
+          ],
+          "box": [
+            631,
+            358,
+            831,
+            392
+          ],
+          "client": [
+            1,
+            1,
+            198,
+            32
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "systeme-provider-key-controls",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            631,
+            358,
+            890.71875,
+            392
+          ],
+          "client": [
+            0,
+            0,
+            260,
+            34
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "FORM",
+          "className": "li systeme-provider-key",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            617,
+            302,
+            915,
+            404
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            102
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "list",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            617,
+            302,
+            915,
+            518
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            216
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "pg-panel",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            617,
+            104,
+            915,
+            656
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            552
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "pg-set",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            377,
+            104,
+            915,
+            656
+          ],
+          "client": [
+            0,
+            0,
+            538,
+            552
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "page",
+          "own": false,
+          "overflow": [
+            "auto",
+            "auto"
+          ],
+          "box": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            618,
+            535
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "className": "content",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "frame",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "body",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            44,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "window",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "desk",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "BODY",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        },
+        {
+          "tag": "HTML",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            632,
+            359,
+            830,
+            391
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Save",
+      "bounds": [
+        843,
+        361,
+        890.71875,
+        389
+      ],
+      "effectiveClip": [
+        617,
+        302,
+        915,
+        518
+      ],
+      "opacity": 1,
+      "disabled": false,
+      "inside": true,
+      "ink": [
+        [
+          853,
+          367,
+          880.71875,
+          383
+        ]
+      ],
+      "visible": true,
+      "hit": true,
+      "ancestors": [
+        {
+          "tag": "BUTTON",
+          "className": "btn secondary",
+          "own": true,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            843,
+            361,
+            890.71875,
+            389
+          ],
+          "client": [
+            0,
+            0,
+            48,
+            28
+          ],
+          "effectiveClip": [
+            0,
+            0,
+            960,
+            640
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "systeme-provider-key-controls",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            631,
+            358,
+            890.71875,
+            392
+          ],
+          "client": [
+            0,
+            0,
+            260,
+            34
+          ],
+          "effectiveClip": [
+            0,
+            0,
+            960,
+            640
+          ]
+        },
+        {
+          "tag": "FORM",
+          "className": "li systeme-provider-key",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            617,
+            302,
+            915,
+            404
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            102
+          ],
+          "effectiveClip": [
+            0,
+            0,
+            960,
+            640
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "list",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            617,
+            302,
+            915,
+            518
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            216
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "pg-panel",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            617,
+            104,
+            915,
+            656
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            552
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "pg-set",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            377,
+            104,
+            915,
+            656
+          ],
+          "client": [
+            0,
+            0,
+            538,
+            552
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "page",
+          "own": false,
+          "overflow": [
+            "auto",
+            "auto"
+          ],
+          "box": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            618,
+            535
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "className": "content",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "frame",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "body",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            44,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "window",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "desk",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "BODY",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "HTML",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "DIV",
+      "text": "Enable",
+      "bounds": [
+        631,
+        417,
+        855,
+        433
+      ],
+      "effectiveClip": [
+        617,
+        302,
+        915,
+        518
+      ],
+      "opacity": 1,
+      "disabled": false,
+      "inside": true,
+      "ink": [
+        [
+          631,
+          416,
+          672.609375,
+          433
+        ]
+      ],
+      "visible": true,
+      "hit": true,
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "className": "ttl",
+          "own": true,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            631,
+            417,
+            855,
+            433
+          ],
+          "client": [
+            0,
+            0,
+            224,
+            16
+          ],
+          "effectiveClip": [
+            0,
+            0,
+            960,
+            640
+          ]
+        },
+        {
+          "tag": "SPAN",
+          "className": "grow",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            631,
+            417,
+            855,
+            449
+          ],
+          "client": [
+            0,
+            0,
+            224,
+            32
+          ],
+          "effectiveClip": [
+            0,
+            0,
+            960,
+            640
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "li",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            617,
+            404,
+            915,
+            461
+          ],
+          "client": [
+            0,
+            1,
+            298,
+            56
+          ],
+          "effectiveClip": [
+            0,
+            0,
+            960,
+            640
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "list",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            617,
+            302,
+            915,
+            518
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            216
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "pg-panel",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            617,
+            104,
+            915,
+            656
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            552
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "pg-set",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            377,
+            104,
+            915,
+            656
+          ],
+          "client": [
+            0,
+            0,
+            538,
+            552
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "page",
+          "own": false,
+          "overflow": [
+            "auto",
+            "auto"
+          ],
+          "box": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            618,
+            535
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "className": "content",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "frame",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "body",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            44,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "window",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "desk",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "BODY",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "HTML",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "SPAN",
+      "text": "",
+      "bounds": [
+        867,
+        423,
+        901,
+        443
+      ],
+      "effectiveClip": [
+        617,
+        302,
+        915,
+        518
+      ],
+      "opacity": 1,
+      "disabled": false,
+      "inside": true,
+      "ink": [
+        [
+          883,
+          425,
+          899,
+          441
+        ]
+      ],
+      "visible": true,
+      "hit": true,
+      "ancestors": [
+        {
+          "tag": "SPAN",
+          "className": "switch",
+          "own": true,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            867,
+            423,
+            901,
+            443
+          ],
+          "client": [
+            0,
+            0,
+            34,
+            20
+          ],
+          "effectiveClip": [
+            0,
+            0,
+            960,
+            640
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "li",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            617,
+            404,
+            915,
+            461
+          ],
+          "client": [
+            0,
+            1,
+            298,
+            56
+          ],
+          "effectiveClip": [
+            0,
+            0,
+            960,
+            640
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "list",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            617,
+            302,
+            915,
+            518
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            216
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "pg-panel",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            617,
+            104,
+            915,
+            656
+          ],
+          "client": [
+            0,
+            0,
+            298,
+            552
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "pg-set",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            377,
+            104,
+            915,
+            656
+          ],
+          "client": [
+            0,
+            0,
+            538,
+            552
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "page",
+          "own": false,
+          "overflow": [
+            "auto",
+            "auto"
+          ],
+          "box": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            618,
+            535
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "className": "content",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "frame",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "client": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "body",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            44,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "window",
+          "own": false,
+          "overflow": [
+            "hidden",
+            "hidden"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "desk",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "DIV",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "BODY",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        },
+        {
+          "tag": "HTML",
+          "className": "",
+          "own": false,
+          "overflow": [
+            "visible",
+            "visible"
+          ],
+          "box": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "effectiveClip": [
+            617,
+            302,
+            915,
+            518
+          ]
+        }
+      ]
+    }
+  ],
+  "removed": {
+    "status": 200,
+    "body": {
+      "providerID": "fake",
+      "enabled": true,
+      "hasKey": false
+    }
+  },
+  "restored": {
+    "status": 200,
+    "body": {
+      "providerID": "fake",
+      "enabled": true,
+      "hasKey": false
+    }
+  }
+}

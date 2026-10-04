@@ -1,0 +1,34 @@
+{
+  "head": "1076c2584941cf054efffaf709a149b4195bc1c4",
+  "application": "f5bf305473db12fddfddcda890a01794f02f578f",
+  "checkout": "d74251813ecd9aa67e7125c32d138214e27778cf",
+  "headCheckoutTree": "138c4e5c5104fc30f887d28c340d1f3a744cb74d",
+  "headCheckoutTreeEqual": true,
+  "applicationTree": "cf877d57c2a8dc46d11965c68d7baed72e862a02",
+  "applicationHeadFullTreesEqual": false,
+  "all514ApplicationInputsEqual": true,
+  "frozenBuildMembers": 90,
+  "frozenMainSHA256": "f0fc4522cde726dd8b88dcbb56f4116ba93dc87e1e9e29163502d25e522512c7",
+  "rendererInputs": 473,
+  "rendererFingerprint": "5361c34082a62dfb944d47fc27b11695d3f9826870bb928f74670ba778cc3d9b",
+  "rendererNulFingerprint": "fb6220f8df77bdee09241fb2084417d3e3cc4924c8a1a4fbfa19200e09e96acb",
+  "sdkArchives": [
+    {
+      "path": "vendor/cortex-sdk-0.3.5.tgz",
+      "version": "0.3.5",
+      "bytes": 164809,
+      "sha256": "5c75f212a2669bcd6f5110fe6e5c8862e1ca6eba85a118b350e0ce38694596b8",
+      "integrity": "sha512-09LLUxPEVrQylARmoqdvXvOM0z4fDQT1OHNhsrtcYfGFZdrN+6Lh0ps5D/4p34z3Z2GljB2nWHqWFBFXRid2cA=="
+    },
+    {
+      "path": "vendor/cortex-api-types-0.2.0.tgz",
+      "version": "0.2.0",
+      "bytes": 70243,
+      "sha256": "3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877",
+      "integrity": "sha512-7QSJoj6PW0L1poFu0h8SZK2IISDYb+OENe3uO5FR7BWyTCGcJbqSN3YtMXwLS1XMn5rWXY7OpJIcgvEqB+AMAQ=="
+    }
+  ],
+  "sourcePinCount": 31,
+  "ciBundleOrASARAvailableInTestArtifacts": false,
+  "scope": "Frozen local outputs verified against manifests; CI provenance via merge/head tree equality and frozen installs. CI package members are coordinator-owned, not compared here."
+}

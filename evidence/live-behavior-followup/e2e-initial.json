@@ -1,0 +1,4060 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bin/playwright",
+      "test",
+      "--output=/tmp/opencode/live-behavior-e2e-artifacts"
+    ],
+    "configFile": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/playwright.config.ts",
+    "rootDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/opencode/live-behavior-e2e-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/e2e.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "bot-safety.spec.ts",
+      "file": "bot-safety.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Bot Studio retains refused saves; accepted saves leave once — 960 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2031,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:07.081Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "bot-save-refused-960-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/bot-safety-Bot-Studio-reta-0345e-aves-leave-once-—-960-light/attachments/bot-save-refused-960-light-00a5b0c786f19dfaeab873d75a7a367bf556025c.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-3e357836405f8c076342",
+          "file": "bot-safety.spec.ts",
+          "line": 30,
+          "column": 3
+        },
+        {
+          "title": "Preview Bot shares saved look, draft, pause and activity — 960 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 8508,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:07.108Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preview-bot-shared-960-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/bot-safety-Preview-Bot-sha-3a2c7-se-and-activity-—-960-light/attachments/preview-bot-shared-960-light-547c20ab892650293fca7fb3cc6373cb5c306180.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-9e4e1c678b0bacb4909b",
+          "file": "bot-safety.spec.ts",
+          "line": 102,
+          "column": 3
+        },
+        {
+          "title": "Bot Studio retains refused saves; accepted saves leave once — 960 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1989,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:07.111Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "bot-save-refused-960-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/bot-safety-Bot-Studio-reta-e3468-saves-leave-once-—-960-dark/attachments/bot-save-refused-960-dark-a2e62661b63590a031743321c3ba1a551b564555.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-e4f2f33859e1bb4026ca",
+          "file": "bot-safety.spec.ts",
+          "line": 30,
+          "column": 3
+        },
+        {
+          "title": "Preview Bot shares saved look, draft, pause and activity — 960 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 8544,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:07.089Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preview-bot-shared-960-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/bot-safety-Preview-Bot-sha-7eaf1-use-and-activity-—-960-dark/attachments/preview-bot-shared-960-dark-47ab312a1f76c952925566f4d316fb21c95294a9.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-e3bf6ba1a6c04d0f129b",
+          "file": "bot-safety.spec.ts",
+          "line": 102,
+          "column": 3
+        },
+        {
+          "title": "Bot Studio retains refused saves; accepted saves leave once — 1440 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2079,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:09.141Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "bot-save-refused-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/bot-safety-Bot-Studio-reta-adf70-ves-leave-once-—-1440-light/attachments/bot-save-refused-1440-light-19c30d7062bd59ffb4da4b4f4573e062d9b95955.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-0846e6922dbebe7c0f01",
+          "file": "bot-safety.spec.ts",
+          "line": 30,
+          "column": 3
+        },
+        {
+          "title": "Preview Bot shares saved look, draft, pause and activity — 1440 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8048,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:09.155Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preview-bot-shared-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/bot-safety-Preview-Bot-sha-10441-e-and-activity-—-1440-light/attachments/preview-bot-shared-1440-light-bd31f8a749f0b34a893afd8318e7bd287cb1fa93.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-ab99f50bb6ef840167e4",
+          "file": "bot-safety.spec.ts",
+          "line": 102,
+          "column": 3
+        },
+        {
+          "title": "Bot Studio retains refused saves; accepted saves leave once — 1440 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2108,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:11.241Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "bot-save-refused-1440-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/bot-safety-Bot-Studio-reta-c24c2-aves-leave-once-—-1440-dark/attachments/bot-save-refused-1440-dark-138019eb632b6dbd2d2570b0dcb8539efd4715d6.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-13a502ae96c2eb6499a1",
+          "file": "bot-safety.spec.ts",
+          "line": 30,
+          "column": 3
+        },
+        {
+          "title": "Preview Bot shares saved look, draft, pause and activity — 1440 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 7780,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:13.372Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preview-bot-shared-1440-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/bot-safety-Preview-Bot-sha-3eaa0-se-and-activity-—-1440-dark/attachments/preview-bot-shared-1440-dark-f0032c8208c4045e50ecdf873f2ddd2e554ce6fe.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-f04a079c8e55ba631290",
+          "file": "bot-safety.spec.ts",
+          "line": 102,
+          "column": 3
+        },
+        {
+          "title": "Bot onboarding does not navigate after leaving preview",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1484,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:15.663Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-820bcecd217639221cd5",
+          "file": "bot-safety.spec.ts",
+          "line": 194,
+          "column": 1
+        },
+        {
+          "title": "Preview Bot locale reset and live-mode boundary",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2207,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:15.674Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-be9e70a9c5ef7628af7d",
+          "file": "bot-safety.spec.ts",
+          "line": 211,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "chrome.spec.ts",
+      "file": "chrome.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "native window chrome and en menu",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1193,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:17.180Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8313daad85f7d7cc59-1c6ce7b111b400cddacb",
+          "file": "chrome.spec.ts",
+          "line": 8,
+          "column": 3
+        },
+        {
+          "title": "native window chrome and fr menu",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1214,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:17.224Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8313daad85f7d7cc59-ba8299028bd6f25ea38a",
+          "file": "chrome.spec.ts",
+          "line": 8,
+          "column": 3
+        },
+        {
+          "title": "reduced-motion startup inherits themed text immediately",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 1424,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:17.906Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8313daad85f7d7cc59-3b7dba334e7135dbafd1",
+          "file": "chrome.spec.ts",
+          "line": 42,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "code-models.spec.ts",
+      "file": "code-models.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Code sends the chosen model, restores session selection and refuses unavailable models — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4322,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:18.400Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "code-models-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/code-models-Code-sends-the-935b1--unavailable-models-—-light/attachments/code-models-light-1d8a9bff705ae741cd304d30f18015c6f59201b4.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0753c1c1729d084849d0-e2f53ddea46bf4859b62",
+          "file": "code-models.spec.ts",
+          "line": 37,
+          "column": 3
+        },
+        {
+          "title": "Code sends the chosen model, restores session selection and refuses unavailable models — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4433,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:18.469Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "code-models-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/code-models-Code-sends-the-f951d-s-unavailable-models-—-dark/attachments/code-models-dark-b18a78c306fcf1fc71ab9a8d58285214e2acdb77.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0753c1c1729d084849d0-50ac5a440a35568ee817",
+          "file": "code-models.spec.ts",
+          "line": 37,
+          "column": 3
+        },
+        {
+          "title": "Code keeps unsupported and missing session models instead of falling back",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 1543,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:19.353Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0753c1c1729d084849d0-137c7600fcb885a66d19",
+          "file": "code-models.spec.ts",
+          "line": 148,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "components.spec.ts",
+      "file": "components.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Components catalog: families, variants and three-preview ceiling (light)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 74679,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "voice/connecting",
+                      "duration": 666
+                    },
+                    {
+                      "title": "voice/listening",
+                      "duration": 514
+                    },
+                    {
+                      "title": "voice/talking",
+                      "duration": 515
+                    },
+                    {
+                      "title": "voice/muted",
+                      "duration": 521
+                    },
+                    {
+                      "title": "voice/interrupted",
+                      "duration": 517
+                    },
+                    {
+                      "title": "voice/ended",
+                      "duration": 501
+                    },
+                    {
+                      "title": "tools/sending",
+                      "duration": 730
+                    },
+                    {
+                      "title": "tools/thinking",
+                      "duration": 505
+                    },
+                    {
+                      "title": "tools/streaming",
+                      "duration": 505
+                    },
+                    {
+                      "title": "tools/searching",
+                      "duration": 510
+                    },
+                    {
+                      "title": "tools/sources",
+                      "duration": 572
+                    },
+                    {
+                      "title": "tools/rich",
+                      "duration": 514
+                    },
+                    {
+                      "title": "tools/tool",
+                      "duration": 508
+                    },
+                    {
+                      "title": "tools/attachments",
+                      "duration": 501
+                    },
+                    {
+                      "title": "tools/edited",
+                      "duration": 522
+                    },
+                    {
+                      "title": "tools/regenerating",
+                      "duration": 507
+                    },
+                    {
+                      "title": "tools/error",
+                      "duration": 543
+                    },
+                    {
+                      "title": "tools/limit",
+                      "duration": 528
+                    },
+                    {
+                      "title": "tools/stopped",
+                      "duration": 458
+                    },
+                    {
+                      "title": "tools/long",
+                      "duration": 493
+                    },
+                    {
+                      "title": "tools/feedback",
+                      "duration": 506
+                    },
+                    {
+                      "title": "tools/empty",
+                      "duration": 496
+                    },
+                    {
+                      "title": "canvas/document",
+                      "duration": 250
+                    },
+                    {
+                      "title": "canvas/code",
+                      "duration": 484
+                    },
+                    {
+                      "title": "canvas/selection",
+                      "duration": 521
+                    },
+                    {
+                      "title": "canvas/generation",
+                      "duration": 553
+                    },
+                    {
+                      "title": "canvas/compare",
+                      "duration": 509
+                    },
+                    {
+                      "title": "research/plan",
+                      "duration": 222
+                    },
+                    {
+                      "title": "research/running",
+                      "duration": 520
+                    },
+                    {
+                      "title": "research/done",
+                      "duration": 522
+                    },
+                    {
+                      "title": "research/cancelled",
+                      "duration": 526
+                    },
+                    {
+                      "title": "sources/sending",
+                      "duration": 727
+                    },
+                    {
+                      "title": "sources/thinking",
+                      "duration": 516
+                    },
+                    {
+                      "title": "sources/streaming",
+                      "duration": 532
+                    },
+                    {
+                      "title": "sources/searching",
+                      "duration": 488
+                    },
+                    {
+                      "title": "sources/sources",
+                      "duration": 501
+                    },
+                    {
+                      "title": "sources/rich",
+                      "duration": 523
+                    },
+                    {
+                      "title": "sources/tool",
+                      "duration": 527
+                    },
+                    {
+                      "title": "sources/attachments",
+                      "duration": 516
+                    },
+                    {
+                      "title": "sources/edited",
+                      "duration": 529
+                    },
+                    {
+                      "title": "sources/regenerating",
+                      "duration": 542
+                    },
+                    {
+                      "title": "sources/error",
+                      "duration": 532
+                    },
+                    {
+                      "title": "sources/limit",
+                      "duration": 524
+                    },
+                    {
+                      "title": "sources/stopped",
+                      "duration": 488
+                    },
+                    {
+                      "title": "sources/long",
+                      "duration": 493
+                    },
+                    {
+                      "title": "sources/feedback",
+                      "duration": 483
+                    },
+                    {
+                      "title": "sources/empty",
+                      "duration": 496
+                    },
+                    {
+                      "title": "web/results",
+                      "duration": 214
+                    },
+                    {
+                      "title": "web/loading",
+                      "duration": 598
+                    },
+                    {
+                      "title": "web/empty",
+                      "duration": 536
+                    },
+                    {
+                      "title": "images/generating",
+                      "duration": 576
+                    },
+                    {
+                      "title": "images/results",
+                      "duration": 550
+                    },
+                    {
+                      "title": "images/editing",
+                      "duration": 531
+                    },
+                    {
+                      "title": "images/refused",
+                      "duration": 512
+                    },
+                    {
+                      "title": "routine/schedule",
+                      "duration": 730
+                    },
+                    {
+                      "title": "routine/event",
+                      "duration": 519
+                    },
+                    {
+                      "title": "routine/test",
+                      "duration": 510
+                    },
+                    {
+                      "title": "routine/passed",
+                      "duration": 521
+                    },
+                    {
+                      "title": "connectors/grid",
+                      "duration": 212
+                    },
+                    {
+                      "title": "connectors/connecting",
+                      "duration": 486
+                    },
+                    {
+                      "title": "connectors/permissions",
+                      "duration": 544
+                    },
+                    {
+                      "title": "connectors/error",
+                      "duration": 548
+                    },
+                    {
+                      "title": "computer/running",
+                      "duration": 819
+                    },
+                    {
+                      "title": "computer/computer",
+                      "duration": 526
+                    },
+                    {
+                      "title": "computer/takeover",
+                      "duration": 504
+                    },
+                    {
+                      "title": "computer/approval",
+                      "duration": 514
+                    },
+                    {
+                      "title": "computer/blocked",
+                      "duration": 506
+                    },
+                    {
+                      "title": "computer/done",
+                      "duration": 517
+                    },
+                    {
+                      "title": "computer/failed",
+                      "duration": 491
+                    },
+                    {
+                      "title": "computer/paused",
+                      "duration": 510
+                    },
+                    {
+                      "title": "permissions/general",
+                      "duration": 507
+                    },
+                    {
+                      "title": "permissions/permissions",
+                      "duration": 499
+                    },
+                    {
+                      "title": "permissions/memory",
+                      "duration": 509
+                    },
+                    {
+                      "title": "permissions/usage",
+                      "duration": 522
+                    },
+                    {
+                      "title": "pdf/reading",
+                      "duration": 829
+                    },
+                    {
+                      "title": "pdf/loading",
+                      "duration": 504
+                    },
+                    {
+                      "title": "pdf/search",
+                      "duration": 497
+                    },
+                    {
+                      "title": "pdf/selection",
+                      "duration": 520
+                    },
+                    {
+                      "title": "pdf/summary",
+                      "duration": 510
+                    },
+                    {
+                      "title": "pdf/protected",
+                      "duration": 501
+                    },
+                    {
+                      "title": "pdf/corrupt",
+                      "duration": 535
+                    },
+                    {
+                      "title": "pptx/editing",
+                      "duration": 213
+                    },
+                    {
+                      "title": "pptx/presenting",
+                      "duration": 497
+                    },
+                    {
+                      "title": "pptx/grid",
+                      "duration": 505
+                    },
+                    {
+                      "title": "pptx/converting",
+                      "duration": 545
+                    },
+                    {
+                      "title": "docx/reading",
+                      "duration": 561
+                    },
+                    {
+                      "title": "docx/tracked",
+                      "duration": 550
+                    },
+                    {
+                      "title": "docx/comments",
+                      "duration": 497
+                    },
+                    {
+                      "title": "xlsx/data",
+                      "duration": 685
+                    },
+                    {
+                      "title": "xlsx/range",
+                      "duration": 502
+                    },
+                    {
+                      "title": "xlsx/chart",
+                      "duration": 506
+                    },
+                    {
+                      "title": "xlsx/errors",
+                      "duration": 510
+                    },
+                    {
+                      "title": "image/view",
+                      "duration": 717
+                    },
+                    {
+                      "title": "image/zoom",
+                      "duration": 506
+                    },
+                    {
+                      "title": "image/compare",
+                      "duration": 497
+                    },
+                    {
+                      "title": "code-file/view",
+                      "duration": 201
+                    },
+                    {
+                      "title": "code-file/diff",
+                      "duration": 518
+                    },
+                    {
+                      "title": "audio/playing",
+                      "duration": 209
+                    },
+                    {
+                      "title": "audio/transcribing",
+                      "duration": 494
+                    },
+                    {
+                      "title": "video/playing",
+                      "duration": 713
+                    },
+                    {
+                      "title": "video/paused",
+                      "duration": 487
+                    },
+                    {
+                      "title": "zip/tree",
+                      "duration": 169
+                    },
+                    {
+                      "title": "zip/extracting",
+                      "duration": 501
+                    },
+                    {
+                      "title": "upload/empty",
+                      "duration": 506
+                    },
+                    {
+                      "title": "upload/dragging",
+                      "duration": 517
+                    },
+                    {
+                      "title": "upload/uploading",
+                      "duration": 522
+                    },
+                    {
+                      "title": "upload/done",
+                      "duration": 522
+                    },
+                    {
+                      "title": "upload/errors",
+                      "duration": 500
+                    },
+                    {
+                      "title": "review/review",
+                      "duration": 718
+                    },
+                    {
+                      "title": "review/applied",
+                      "duration": 504
+                    },
+                    {
+                      "title": "review/approved",
+                      "duration": 637
+                    },
+                    {
+                      "title": "diff/unified",
+                      "duration": 710
+                    },
+                    {
+                      "title": "diff/split",
+                      "duration": 477
+                    },
+                    {
+                      "title": "diff/comment",
+                      "duration": 514
+                    },
+                    {
+                      "title": "diff/conflict",
+                      "duration": 519
+                    },
+                    {
+                      "title": "environments/list",
+                      "duration": 197
+                    },
+                    {
+                      "title": "environments/edit",
+                      "duration": 528
+                    },
+                    {
+                      "title": "environments/booting",
+                      "duration": 502
+                    },
+                    {
+                      "title": "environments/error",
+                      "duration": 512
+                    },
+                    {
+                      "title": "secrets/list",
+                      "duration": 697
+                    },
+                    {
+                      "title": "secrets/edit",
+                      "duration": 628
+                    },
+                    {
+                      "title": "secrets/booting",
+                      "duration": 524
+                    },
+                    {
+                      "title": "secrets/error",
+                      "duration": 503
+                    },
+                    {
+                      "title": "projects/grid",
+                      "duration": 693
+                    },
+                    {
+                      "title": "projects/empty",
+                      "duration": 497
+                    },
+                    {
+                      "title": "projects/create",
+                      "duration": 658
+                    },
+                    {
+                      "title": "project/overview",
+                      "duration": 218
+                    },
+                    {
+                      "title": "project/files",
+                      "duration": 644
+                    },
+                    {
+                      "title": "project/instructions",
+                      "duration": 524
+                    },
+                    {
+                      "title": "project/sharing",
+                      "duration": 505
+                    },
+                    {
+                      "title": "memory/list",
+                      "duration": 169
+                    },
+                    {
+                      "title": "memory/off",
+                      "duration": 508
+                    },
+                    {
+                      "title": "memory/empty",
+                      "duration": 478
+                    },
+                    {
+                      "title": "account/profile",
+                      "duration": 144
+                    },
+                    {
+                      "title": "account/security",
+                      "duration": 480
+                    },
+                    {
+                      "title": "account/delete",
+                      "duration": 472
+                    },
+                    {
+                      "title": "payment/plans",
+                      "duration": 716
+                    },
+                    {
+                      "title": "payment/compare",
+                      "duration": 478
+                    },
+                    {
+                      "title": "payment/payment",
+                      "duration": 480
+                    },
+                    {
+                      "title": "payment/confirmed",
+                      "duration": 498
+                    },
+                    {
+                      "title": "update/available",
+                      "duration": 148
+                    },
+                    {
+                      "title": "update/downloading",
+                      "duration": 509
+                    },
+                    {
+                      "title": "update/ready",
+                      "duration": 502
+                    }
+                  ],
+                  "startTime": "2026-10-02T22:24:20.919Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "21914d481cf54b88bd8b-0840bd735cbd02e1bc26",
+          "file": "components.spec.ts",
+          "line": 4,
+          "column": 40
+        },
+        {
+          "title": "Components catalog: families, variants and three-preview ceiling (dark)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 78393,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "voice/connecting",
+                      "duration": 837
+                    },
+                    {
+                      "title": "voice/listening",
+                      "duration": 535
+                    },
+                    {
+                      "title": "voice/talking",
+                      "duration": 517
+                    },
+                    {
+                      "title": "voice/muted",
+                      "duration": 517
+                    },
+                    {
+                      "title": "voice/interrupted",
+                      "duration": 546
+                    },
+                    {
+                      "title": "voice/ended",
+                      "duration": 522
+                    },
+                    {
+                      "title": "tools/sending",
+                      "duration": 706
+                    },
+                    {
+                      "title": "tools/thinking",
+                      "duration": 514
+                    },
+                    {
+                      "title": "tools/streaming",
+                      "duration": 513
+                    },
+                    {
+                      "title": "tools/searching",
+                      "duration": 570
+                    },
+                    {
+                      "title": "tools/sources",
+                      "duration": 569
+                    },
+                    {
+                      "title": "tools/rich",
+                      "duration": 505
+                    },
+                    {
+                      "title": "tools/tool",
+                      "duration": 521
+                    },
+                    {
+                      "title": "tools/attachments",
+                      "duration": 690
+                    },
+                    {
+                      "title": "tools/edited",
+                      "duration": 546
+                    },
+                    {
+                      "title": "tools/regenerating",
+                      "duration": 569
+                    },
+                    {
+                      "title": "tools/error",
+                      "duration": 526
+                    },
+                    {
+                      "title": "tools/limit",
+                      "duration": 598
+                    },
+                    {
+                      "title": "tools/stopped",
+                      "duration": 534
+                    },
+                    {
+                      "title": "tools/long",
+                      "duration": 555
+                    },
+                    {
+                      "title": "tools/feedback",
+                      "duration": 517
+                    },
+                    {
+                      "title": "tools/empty",
+                      "duration": 517
+                    },
+                    {
+                      "title": "canvas/document",
+                      "duration": 192
+                    },
+                    {
+                      "title": "canvas/code",
+                      "duration": 566
+                    },
+                    {
+                      "title": "canvas/selection",
+                      "duration": 593
+                    },
+                    {
+                      "title": "canvas/generation",
+                      "duration": 727
+                    },
+                    {
+                      "title": "canvas/compare",
+                      "duration": 568
+                    },
+                    {
+                      "title": "research/plan",
+                      "duration": 256
+                    },
+                    {
+                      "title": "research/running",
+                      "duration": 572
+                    },
+                    {
+                      "title": "research/done",
+                      "duration": 541
+                    },
+                    {
+                      "title": "research/cancelled",
+                      "duration": 521
+                    },
+                    {
+                      "title": "sources/sending",
+                      "duration": 787
+                    },
+                    {
+                      "title": "sources/thinking",
+                      "duration": 565
+                    },
+                    {
+                      "title": "sources/streaming",
+                      "duration": 575
+                    },
+                    {
+                      "title": "sources/searching",
+                      "duration": 574
+                    },
+                    {
+                      "title": "sources/sources",
+                      "duration": 594
+                    },
+                    {
+                      "title": "sources/rich",
+                      "duration": 550
+                    },
+                    {
+                      "title": "sources/tool",
+                      "duration": 517
+                    },
+                    {
+                      "title": "sources/attachments",
+                      "duration": 531
+                    },
+                    {
+                      "title": "sources/edited",
+                      "duration": 559
+                    },
+                    {
+                      "title": "sources/regenerating",
+                      "duration": 521
+                    },
+                    {
+                      "title": "sources/error",
+                      "duration": 511
+                    },
+                    {
+                      "title": "sources/limit",
+                      "duration": 546
+                    },
+                    {
+                      "title": "sources/stopped",
+                      "duration": 488
+                    },
+                    {
+                      "title": "sources/long",
+                      "duration": 581
+                    },
+                    {
+                      "title": "sources/feedback",
+                      "duration": 560
+                    },
+                    {
+                      "title": "sources/empty",
+                      "duration": 529
+                    },
+                    {
+                      "title": "web/results",
+                      "duration": 279
+                    },
+                    {
+                      "title": "web/loading",
+                      "duration": 526
+                    },
+                    {
+                      "title": "web/empty",
+                      "duration": 536
+                    },
+                    {
+                      "title": "images/generating",
+                      "duration": 547
+                    },
+                    {
+                      "title": "images/results",
+                      "duration": 546
+                    },
+                    {
+                      "title": "images/editing",
+                      "duration": 534
+                    },
+                    {
+                      "title": "images/refused",
+                      "duration": 570
+                    },
+                    {
+                      "title": "routine/schedule",
+                      "duration": 778
+                    },
+                    {
+                      "title": "routine/event",
+                      "duration": 582
+                    },
+                    {
+                      "title": "routine/test",
+                      "duration": 554
+                    },
+                    {
+                      "title": "routine/passed",
+                      "duration": 549
+                    },
+                    {
+                      "title": "connectors/grid",
+                      "duration": 202
+                    },
+                    {
+                      "title": "connectors/connecting",
+                      "duration": 625
+                    },
+                    {
+                      "title": "connectors/permissions",
+                      "duration": 586
+                    },
+                    {
+                      "title": "connectors/error",
+                      "duration": 567
+                    },
+                    {
+                      "title": "computer/running",
+                      "duration": 822
+                    },
+                    {
+                      "title": "computer/computer",
+                      "duration": 528
+                    },
+                    {
+                      "title": "computer/takeover",
+                      "duration": 558
+                    },
+                    {
+                      "title": "computer/approval",
+                      "duration": 525
+                    },
+                    {
+                      "title": "computer/blocked",
+                      "duration": 532
+                    },
+                    {
+                      "title": "computer/done",
+                      "duration": 519
+                    },
+                    {
+                      "title": "computer/failed",
+                      "duration": 511
+                    },
+                    {
+                      "title": "computer/paused",
+                      "duration": 557
+                    },
+                    {
+                      "title": "permissions/general",
+                      "duration": 528
+                    },
+                    {
+                      "title": "permissions/permissions",
+                      "duration": 490
+                    },
+                    {
+                      "title": "permissions/memory",
+                      "duration": 501
+                    },
+                    {
+                      "title": "permissions/usage",
+                      "duration": 492
+                    },
+                    {
+                      "title": "pdf/reading",
+                      "duration": 891
+                    },
+                    {
+                      "title": "pdf/loading",
+                      "duration": 549
+                    },
+                    {
+                      "title": "pdf/search",
+                      "duration": 530
+                    },
+                    {
+                      "title": "pdf/selection",
+                      "duration": 557
+                    },
+                    {
+                      "title": "pdf/summary",
+                      "duration": 510
+                    },
+                    {
+                      "title": "pdf/protected",
+                      "duration": 512
+                    },
+                    {
+                      "title": "pdf/corrupt",
+                      "duration": 532
+                    },
+                    {
+                      "title": "pptx/editing",
+                      "duration": 195
+                    },
+                    {
+                      "title": "pptx/presenting",
+                      "duration": 490
+                    },
+                    {
+                      "title": "pptx/grid",
+                      "duration": 506
+                    },
+                    {
+                      "title": "pptx/converting",
+                      "duration": 515
+                    },
+                    {
+                      "title": "docx/reading",
+                      "duration": 524
+                    },
+                    {
+                      "title": "docx/tracked",
+                      "duration": 514
+                    },
+                    {
+                      "title": "docx/comments",
+                      "duration": 508
+                    },
+                    {
+                      "title": "xlsx/data",
+                      "duration": 718
+                    },
+                    {
+                      "title": "xlsx/range",
+                      "duration": 538
+                    },
+                    {
+                      "title": "xlsx/chart",
+                      "duration": 551
+                    },
+                    {
+                      "title": "xlsx/errors",
+                      "duration": 575
+                    },
+                    {
+                      "title": "image/view",
+                      "duration": 792
+                    },
+                    {
+                      "title": "image/zoom",
+                      "duration": 536
+                    },
+                    {
+                      "title": "image/compare",
+                      "duration": 544
+                    },
+                    {
+                      "title": "code-file/view",
+                      "duration": 245
+                    },
+                    {
+                      "title": "code-file/diff",
+                      "duration": 527
+                    },
+                    {
+                      "title": "audio/playing",
+                      "duration": 209
+                    },
+                    {
+                      "title": "audio/transcribing",
+                      "duration": 734
+                    },
+                    {
+                      "title": "video/playing",
+                      "duration": 716
+                    },
+                    {
+                      "title": "video/paused",
+                      "duration": 527
+                    },
+                    {
+                      "title": "zip/tree",
+                      "duration": 182
+                    },
+                    {
+                      "title": "zip/extracting",
+                      "duration": 541
+                    },
+                    {
+                      "title": "upload/empty",
+                      "duration": 749
+                    },
+                    {
+                      "title": "upload/dragging",
+                      "duration": 530
+                    },
+                    {
+                      "title": "upload/uploading",
+                      "duration": 685
+                    },
+                    {
+                      "title": "upload/done",
+                      "duration": 558
+                    },
+                    {
+                      "title": "upload/errors",
+                      "duration": 491
+                    },
+                    {
+                      "title": "review/review",
+                      "duration": 747
+                    },
+                    {
+                      "title": "review/applied",
+                      "duration": 520
+                    },
+                    {
+                      "title": "review/approved",
+                      "duration": 532
+                    },
+                    {
+                      "title": "diff/unified",
+                      "duration": 696
+                    },
+                    {
+                      "title": "diff/split",
+                      "duration": 531
+                    },
+                    {
+                      "title": "diff/comment",
+                      "duration": 518
+                    },
+                    {
+                      "title": "diff/conflict",
+                      "duration": 524
+                    },
+                    {
+                      "title": "environments/list",
+                      "duration": 191
+                    },
+                    {
+                      "title": "environments/edit",
+                      "duration": 510
+                    },
+                    {
+                      "title": "environments/booting",
+                      "duration": 541
+                    },
+                    {
+                      "title": "environments/error",
+                      "duration": 510
+                    },
+                    {
+                      "title": "secrets/list",
+                      "duration": 517
+                    },
+                    {
+                      "title": "secrets/edit",
+                      "duration": 540
+                    },
+                    {
+                      "title": "secrets/booting",
+                      "duration": 521
+                    },
+                    {
+                      "title": "secrets/error",
+                      "duration": 504
+                    },
+                    {
+                      "title": "projects/grid",
+                      "duration": 751
+                    },
+                    {
+                      "title": "projects/empty",
+                      "duration": 489
+                    },
+                    {
+                      "title": "projects/create",
+                      "duration": 543
+                    },
+                    {
+                      "title": "project/overview",
+                      "duration": 235
+                    },
+                    {
+                      "title": "project/files",
+                      "duration": 537
+                    },
+                    {
+                      "title": "project/instructions",
+                      "duration": 529
+                    },
+                    {
+                      "title": "project/sharing",
+                      "duration": 534
+                    },
+                    {
+                      "title": "memory/list",
+                      "duration": 216
+                    },
+                    {
+                      "title": "memory/off",
+                      "duration": 498
+                    },
+                    {
+                      "title": "memory/empty",
+                      "duration": 558
+                    },
+                    {
+                      "title": "account/profile",
+                      "duration": 197
+                    },
+                    {
+                      "title": "account/security",
+                      "duration": 492
+                    },
+                    {
+                      "title": "account/delete",
+                      "duration": 527
+                    },
+                    {
+                      "title": "payment/plans",
+                      "duration": 865
+                    },
+                    {
+                      "title": "payment/compare",
+                      "duration": 485
+                    },
+                    {
+                      "title": "payment/payment",
+                      "duration": 502
+                    },
+                    {
+                      "title": "payment/confirmed",
+                      "duration": 527
+                    },
+                    {
+                      "title": "update/available",
+                      "duration": 130
+                    },
+                    {
+                      "title": "update/downloading",
+                      "duration": 483
+                    },
+                    {
+                      "title": "update/ready",
+                      "duration": 506
+                    }
+                  ],
+                  "startTime": "2026-10-02T22:24:21.182Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "21914d481cf54b88bd8b-24cbca05f924c87d795f",
+          "file": "components.spec.ts",
+          "line": 4,
+          "column": 40
+        },
+        {
+          "title": "Components catalog: keyboard, clipboard and local demos at minimum window (light)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3441,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:22.742Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "21914d481cf54b88bd8b-2cbd8c9665cdc96cdddb",
+          "file": "components.spec.ts",
+          "line": 63,
+          "column": 40
+        },
+        {
+          "title": "Components catalog: keyboard, clipboard and local demos at minimum window (dark)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3481,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:22.929Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "21914d481cf54b88bd8b-342796587b20f68fa27c",
+          "file": "components.spec.ts",
+          "line": 63,
+          "column": 40
+        }
+      ]
+    },
+    {
+      "title": "composer-safety.spec.ts",
+      "file": "composer-safety.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Code keeps cancelled and no-model drafts, locks pending submits — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2907,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:26.217Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "code-draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/composer-safety-Code-keeps-0729b-cks-pending-submits-—-light/attachments/code-draft-kept-light-2ffd04f43f87911781faa63d070763943bd96a93.png"
+                    },
+                    {
+                      "name": "code-session-draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/composer-safety-Code-keeps-0729b-cks-pending-submits-—-light/attachments/code-session-draft-kept-light-677f349bc4c424f6a26e757d1af321765d98b792.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d406623888ff0196f1b1-4296c74840903afcd598",
+          "file": "composer-safety.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Work and Bot drafts survive engine refusal; accepted sends clear once — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6518,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:26.439Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "work-draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/composer-safety-Work-and-B-e9acc-ed-sends-clear-once-—-light/attachments/work-draft-kept-light-0f245ca6a4d73d0f33ecb89d75f6cb9258a471cc.png"
+                    },
+                    {
+                      "name": "work-task-draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/composer-safety-Work-and-B-e9acc-ed-sends-clear-once-—-light/attachments/work-task-draft-kept-light-73162507f91a02e4ef132d04d7c83b019f91feef.png"
+                    },
+                    {
+                      "name": "bot-draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/composer-safety-Work-and-B-e9acc-ed-sends-clear-once-—-light/attachments/bot-draft-kept-light-2eff27dbcc5aaf0ce00b7557eb6cc31bcd910980.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d406623888ff0196f1b1-408945fc2182dd14fc66",
+          "file": "composer-safety.spec.ts",
+          "line": 85,
+          "column": 3
+        },
+        {
+          "title": "Code keeps cancelled and no-model drafts, locks pending submits — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2492,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:29.141Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "code-draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/composer-safety-Code-keeps-f8c8d-ocks-pending-submits-—-dark/attachments/code-draft-kept-dark-254448577df532a49f273a4590c4c047fcef1b3d.png"
+                    },
+                    {
+                      "name": "code-session-draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/composer-safety-Code-keeps-f8c8d-ocks-pending-submits-—-dark/attachments/code-session-draft-kept-dark-8ea3fe9926c3ffa661ec23db48111231000405ac.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d406623888ff0196f1b1-e302f2d2604ad042dd6a",
+          "file": "composer-safety.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Work and Bot drafts survive engine refusal; accepted sends clear once — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6730,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:31.649Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "work-draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/composer-safety-Work-and-B-79456-ted-sends-clear-once-—-dark/attachments/work-draft-kept-dark-f263d10404a959c54ffdf74d6ba23d4ecdda35d4.png"
+                    },
+                    {
+                      "name": "work-task-draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/composer-safety-Work-and-B-79456-ted-sends-clear-once-—-dark/attachments/work-task-draft-kept-dark-3e86d106203548c4f972ce45b3ad0ef5a6315311.png"
+                    },
+                    {
+                      "name": "bot-draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/composer-safety-Work-and-B-79456-ted-sends-clear-once-—-dark/attachments/bot-draft-kept-dark-b08a5f94c9ac6e905ff6b7005cfe5f543619fd48.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d406623888ff0196f1b1-b97195baa1f4f6694571",
+          "file": "composer-safety.spec.ts",
+          "line": 85,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "engine.spec.ts",
+      "file": "engine.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "MCP connection material stays in main across save, reload and removal",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1259,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:32.978Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "80e453acc87b615b08fa-bff04e3710ab756b87ff",
+          "file": "engine.spec.ts",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "models.dev catalog is listed and searchable through the bridge",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1487,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:34.251Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "80e453acc87b615b08fa-de0f6f8082f71fddedfd",
+          "file": "engine.spec.ts",
+          "line": 38,
+          "column": 1
+        },
+        {
+          "title": "streamed exchange with a thinking- and image-capable model",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2445,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:35.755Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "80e453acc87b615b08fa-7fc9a33898c9e27d9ae8",
+          "file": "engine.spec.ts",
+          "line": 52,
+          "column": 1
+        },
+        {
+          "title": "an image is refused for a model without image input",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1406,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:38.222Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "80e453acc87b615b08fa-aaa7defa587376a3cdd0",
+          "file": "engine.spec.ts",
+          "line": 104,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "frozen-composer.spec.ts",
+      "file": "frozen-composer.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "frozen preview actions and same-URL Chat/Code history — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6258,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:38.409Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "frozen-chat-history-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/frozen-composer-frozen-pre-70df6-L-Chat-Code-history-—-light/attachments/frozen-chat-history-light-7e0a22896c21ea3b8b7b2eb33577540b59277f2a.png"
+                    },
+                    {
+                      "name": "frozen-code-history-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/frozen-composer-frozen-pre-70df6-L-Chat-Code-history-—-light/attachments/frozen-code-history-light-170a36bcbbf036b18dfcc38d79f0e65001e1b249.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d46ce8c84b2c97b6a974-ceb3d29837ba9a86e0a7",
+          "file": "frozen-composer.spec.ts",
+          "line": 24,
+          "column": 3
+        },
+        {
+          "title": "live composer capsule geometry, locale labels and attachment safety — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5549,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:39.659Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "frozen-live-capsule-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/frozen-composer-live-compo-a0c20-d-attachment-safety-—-light/attachments/frozen-live-capsule-light-c0a8916100fb62617aa8b1c6147b32105b37fc86.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d46ce8c84b2c97b6a974-ad16bda3e44476a6647a",
+          "file": "frozen-composer.spec.ts",
+          "line": 147,
+          "column": 3
+        },
+        {
+          "title": "frozen preview actions and same-URL Chat/Code history — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6235,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:44.684Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "frozen-chat-history-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/frozen-composer-frozen-pre-fe0b0-RL-Chat-Code-history-—-dark/attachments/frozen-chat-history-dark-6c74dd733457315a39755e7aac432d16f3823796.png"
+                    },
+                    {
+                      "name": "frozen-code-history-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/frozen-composer-frozen-pre-fe0b0-RL-Chat-Code-history-—-dark/attachments/frozen-code-history-dark-abf4d1ee5facb274c28ebcbe8c9595b8f2863aa1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d46ce8c84b2c97b6a974-23fc3fe4eb52b75ae2cc",
+          "file": "frozen-composer.spec.ts",
+          "line": 24,
+          "column": 3
+        },
+        {
+          "title": "live composer capsule geometry, locale labels and attachment safety — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5649,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:24:45.225Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "frozen-live-capsule-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/frozen-composer-live-compo-3a52f-nd-attachment-safety-—-dark/attachments/frozen-live-capsule-dark-8bc1a3785d3e2e843d256a30beb38deaadb304ba.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d46ce8c84b2c97b6a974-b15f3084749769dac82d",
+          "file": "frozen-composer.spec.ts",
+          "line": 147,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "interaction-states.spec.ts",
+      "file": "interaction-states.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "frozen interaction end states — 960 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11350,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "settings switch changes only its own state",
+                      "duration": 583
+                    },
+                    {
+                      "title": "history delete and Undo preserve every row and its order",
+                      "duration": 1655
+                    },
+                    {
+                      "title": "completed reasoning expands independently and preserves transcript",
+                      "duration": 2240
+                    },
+                    {
+                      "title": "file drop reaches Ready and a second drop preserves the first file",
+                      "duration": 329
+                    },
+                    {
+                      "title": "approval Undo restores the original pending card",
+                      "duration": 2442
+                    },
+                    {
+                      "title": "image comparison retains 25% after pointer release",
+                      "duration": 1013
+                    },
+                    {
+                      "title": "all nine Bot Studio states preserve the chosen appearance",
+                      "duration": 1884,
+                      "steps": [
+                        {
+                          "title": "Idle",
+                          "duration": 487
+                        },
+                        {
+                          "title": "Listening",
+                          "duration": 150
+                        },
+                        {
+                          "title": "Thinking",
+                          "duration": 156
+                        },
+                        {
+                          "title": "Working",
+                          "duration": 198
+                        },
+                        {
+                          "title": "Talking",
+                          "duration": 151
+                        },
+                        {
+                          "title": "Waiting for you",
+                          "duration": 140
+                        },
+                        {
+                          "title": "Blocked",
+                          "duration": 167
+                        },
+                        {
+                          "title": "Done",
+                          "duration": 135
+                        },
+                        {
+                          "title": "Paused",
+                          "duration": 157
+                        }
+                      ]
+                    }
+                  ],
+                  "startTime": "2026-10-02T22:24:50.921Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "reasoning-expanded-960-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/interaction-states-frozen-interaction-end-states-—-960-light/attachments/reasoning-expanded-960-light-8e9498fc9c1c28bc3d0a63351d4a1794028bec7b.png"
+                    },
+                    {
+                      "name": "upload-drop-ready-960-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/interaction-states-frozen-interaction-end-states-—-960-light/attachments/upload-drop-ready-960-light-18d5618a0700e6d01913f231df68534b5aaab844.png"
+                    },
+                    {
+                      "name": "image-compare-quarter-960-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/interaction-states-frozen-interaction-end-states-—-960-light/attachments/image-compare-quarter-960-light-4ab39e0990dd6ed26cad7dbba5d12dde1f92097f.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "577ae52a462b54d76ce9-e5f03cf340ff4bb3294d",
+          "file": "interaction-states.spec.ts",
+          "line": 18,
+          "column": 3
+        },
+        {
+          "title": "frozen interaction end states — 960 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 10814,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "settings switch changes only its own state",
+                      "duration": 473
+                    },
+                    {
+                      "title": "history delete and Undo preserve every row and its order",
+                      "duration": 1637
+                    },
+                    {
+                      "title": "completed reasoning expands independently and preserves transcript",
+                      "duration": 1745
+                    },
+                    {
+                      "title": "file drop reaches Ready and a second drop preserves the first file",
+                      "duration": 417
+                    },
+                    {
+                      "title": "approval Undo restores the original pending card",
+                      "duration": 2394
+                    },
+                    {
+                      "title": "image comparison retains 25% after pointer release",
+                      "duration": 1063
+                    },
+                    {
+                      "title": "all nine Bot Studio states preserve the chosen appearance",
+                      "duration": 1862,
+                      "steps": [
+                        {
+                          "title": "Idle",
+                          "duration": 459
+                        },
+                        {
+                          "title": "Listening",
+                          "duration": 147
+                        },
+                        {
+                          "title": "Thinking",
+                          "duration": 211
+                        },
+                        {
+                          "title": "Working",
+                          "duration": 186
+                        },
+                        {
+                          "title": "Talking",
+                          "duration": 156
+                        },
+                        {
+                          "title": "Waiting for you",
+                          "duration": 134
+                        },
+                        {
+                          "title": "Blocked",
+                          "duration": 145
+                        },
+                        {
+                          "title": "Done",
+                          "duration": 130
+                        },
+                        {
+                          "title": "Paused",
+                          "duration": 144
+                        }
+                      ]
+                    }
+                  ],
+                  "startTime": "2026-10-02T22:24:50.946Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "reasoning-expanded-960-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/interaction-states-frozen-interaction-end-states-—-960-dark/attachments/reasoning-expanded-960-dark-95cf327b13f9a3040e616e64f506afbf744858eb.png"
+                    },
+                    {
+                      "name": "upload-drop-ready-960-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/interaction-states-frozen-interaction-end-states-—-960-dark/attachments/upload-drop-ready-960-dark-a0fdf304e133748c6b3eebff03bd9984913cfc8f.png"
+                    },
+                    {
+                      "name": "image-compare-quarter-960-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/interaction-states-frozen-interaction-end-states-—-960-dark/attachments/image-compare-quarter-960-dark-4e60937547401d304a4c069e3777b3c1cda75a24.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "577ae52a462b54d76ce9-864070d2fd610395f181",
+          "file": "interaction-states.spec.ts",
+          "line": 18,
+          "column": 3
+        },
+        {
+          "title": "frozen interaction end states — 1440 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 12291,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "settings switch changes only its own state",
+                      "duration": 635
+                    },
+                    {
+                      "title": "history delete and Undo preserve every row and its order",
+                      "duration": 1797
+                    },
+                    {
+                      "title": "completed reasoning expands independently and preserves transcript",
+                      "duration": 1667
+                    },
+                    {
+                      "title": "file drop reaches Ready and a second drop preserves the first file",
+                      "duration": 723
+                    },
+                    {
+                      "title": "Kanban pointer drop moves exactly one task to Done",
+                      "duration": 971
+                    },
+                    {
+                      "title": "approval Undo restores the original pending card",
+                      "duration": 2482
+                    },
+                    {
+                      "title": "image comparison retains 25% after pointer release",
+                      "duration": 898
+                    },
+                    {
+                      "title": "all nine Bot Studio states preserve the chosen appearance",
+                      "duration": 1852,
+                      "steps": [
+                        {
+                          "title": "Idle",
+                          "duration": 430
+                        },
+                        {
+                          "title": "Listening",
+                          "duration": 175
+                        },
+                        {
+                          "title": "Thinking",
+                          "duration": 176
+                        },
+                        {
+                          "title": "Working",
+                          "duration": 133
+                        },
+                        {
+                          "title": "Talking",
+                          "duration": 131
+                        },
+                        {
+                          "title": "Waiting for you",
+                          "duration": 143
+                        },
+                        {
+                          "title": "Blocked",
+                          "duration": 124
+                        },
+                        {
+                          "title": "Done",
+                          "duration": 135
+                        },
+                        {
+                          "title": "Paused",
+                          "duration": 144
+                        }
+                      ]
+                    }
+                  ],
+                  "startTime": "2026-10-02T22:25:01.781Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "kanban-dropped-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/interaction-states-frozen--afaf7-ion-end-states-—-1440-light/attachments/kanban-dropped-1440-light-bf2f8c0608665002b92fac9072b99a9b13c7afe4.png"
+                    },
+                    {
+                      "name": "mascot-paused-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/interaction-states-frozen--afaf7-ion-end-states-—-1440-light/attachments/mascot-paused-1440-light-c0a9f452b79d853c5e1ac441119ae9b3353aa95d.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "577ae52a462b54d76ce9-78f87783835db0fdf742",
+          "file": "interaction-states.spec.ts",
+          "line": 18,
+          "column": 3
+        },
+        {
+          "title": "frozen interaction end states — 1440 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12684,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "settings switch changes only its own state",
+                      "duration": 623
+                    },
+                    {
+                      "title": "history delete and Undo preserve every row and its order",
+                      "duration": 1872
+                    },
+                    {
+                      "title": "completed reasoning expands independently and preserves transcript",
+                      "duration": 1657
+                    },
+                    {
+                      "title": "file drop reaches Ready and a second drop preserves the first file",
+                      "duration": 654
+                    },
+                    {
+                      "title": "Kanban pointer drop moves exactly one task to Done",
+                      "duration": 989
+                    },
+                    {
+                      "title": "approval Undo restores the original pending card",
+                      "duration": 2521
+                    },
+                    {
+                      "title": "image comparison retains 25% after pointer release",
+                      "duration": 1158
+                    },
+                    {
+                      "title": "all nine Bot Studio states preserve the chosen appearance",
+                      "duration": 1957,
+                      "steps": [
+                        {
+                          "title": "Idle",
+                          "duration": 487
+                        },
+                        {
+                          "title": "Listening",
+                          "duration": 148
+                        },
+                        {
+                          "title": "Thinking",
+                          "duration": 166
+                        },
+                        {
+                          "title": "Working",
+                          "duration": 146
+                        },
+                        {
+                          "title": "Talking",
+                          "duration": 168
+                        },
+                        {
+                          "title": "Waiting for you",
+                          "duration": 156
+                        },
+                        {
+                          "title": "Blocked",
+                          "duration": 135
+                        },
+                        {
+                          "title": "Done",
+                          "duration": 144
+                        },
+                        {
+                          "title": "Paused",
+                          "duration": 130
+                        }
+                      ]
+                    }
+                  ],
+                  "startTime": "2026-10-02T22:25:02.298Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "kanban-dropped-1440-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/interaction-states-frozen-interaction-end-states-—-1440-dark/attachments/kanban-dropped-1440-dark-12dbc3c38fa8c387e7dc6dbc32ef7949c5e2a5ac.png"
+                    },
+                    {
+                      "name": "mascot-paused-1440-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/interaction-states-frozen-interaction-end-states-—-1440-dark/attachments/mascot-paused-1440-dark-884435a566437b69507a9a6cc46a0e83ec096fbb.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "577ae52a462b54d76ce9-2757d38c2e864a6cbf27",
+          "file": "interaction-states.spec.ts",
+          "line": 18,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "keyboard.spec.ts",
+      "file": "keyboard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "hidden navigation cannot receive focus; theme radios and Undo work from the keyboard",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5138,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:14.101Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "keyboard-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/keyboard-hidden-navigation-4860c-Undo-work-from-the-keyboard/attachments/keyboard-light-daeee88c06f871a776e6fb188e2234f2a0489b8e.png"
+                    },
+                    {
+                      "name": "undo-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/keyboard-hidden-navigation-4860c-Undo-work-from-the-keyboard/attachments/undo-light-316ae8e5e48b78961737db3b5aa0898433bf17f4.png"
+                    },
+                    {
+                      "name": "keyboard-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/keyboard-hidden-navigation-4860c-Undo-work-from-the-keyboard/attachments/keyboard-dark-3406770c363667fa3b33a2bfc353cd3f8ea7b96f.png"
+                    },
+                    {
+                      "name": "undo-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/keyboard-hidden-navigation-4860c-Undo-work-from-the-keyboard/attachments/undo-dark-260309b0a2e10ba2e3a86facecbb73fa459d36cc.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "866d5cea7c69e902a1e2-3127951cf3a10f44ba0b",
+          "file": "keyboard.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "frozen shell motion settles, latest tab wins and hidden menus close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9507,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:15.009Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "frozen-theme-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/keyboard-frozen-shell-moti-289d0-wins-and-hidden-menus-close/attachments/frozen-theme-dark-3c0e47de577a99b0311826c6fd488543a01bdb22.png"
+                    },
+                    {
+                      "name": "frozen-focus-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/keyboard-frozen-shell-moti-289d0-wins-and-hidden-menus-close/attachments/frozen-focus-dark-ffcae17fd4ee087d150af5986375ddd32ec97cc2.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "866d5cea7c69e902a1e2-4852c9f117e54cf6d5ff",
+          "file": "keyboard.spec.ts",
+          "line": 130,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "navigation.spec.ts",
+      "file": "navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Back cancels a pending tab choice even when its label matches an older request",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4233,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:19.270Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-d33299e6687ed5c4e120",
+          "file": "navigation.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "a newer keyboard tab choice survives the previous route commit",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3219,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:23.527Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-0094a07eac1f49d76729",
+          "file": "navigation.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "a pending route commit preserves the outgoing Work tree and restores Bot activity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1403,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:24.533Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-17b5302532fec090cdbd",
+          "file": "navigation.spec.ts",
+          "line": 79,
+          "column": 1
+        },
+        {
+          "title": "anchors, native menus and history preserve routes, variants and chat identities",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13365,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:25.949Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-9cdd731813e713aca897",
+          "file": "navigation.spec.ts",
+          "line": 118,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "responsive.spec.ts",
+      "file": "responsive.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Work board columns and cards remain reachable — 960 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3126,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:26.771Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e0223b006feb3d306446-b17abe8b1a7d63216c98",
+          "file": "responsive.spec.ts",
+          "line": 10,
+          "column": 3
+        },
+        {
+          "title": "Work board columns and cards remain reachable — 960 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3031,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:29.911Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e0223b006feb3d306446-e7308576cfd7e7f06730",
+          "file": "responsive.spec.ts",
+          "line": 10,
+          "column": 3
+        },
+        {
+          "title": "Work board columns and cards remain reachable — 1024 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3113,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:32.958Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e0223b006feb3d306446-e42db15f8994dc506ba3",
+          "file": "responsive.spec.ts",
+          "line": 10,
+          "column": 3
+        },
+        {
+          "title": "Work board columns and cards remain reachable — 1024 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 3033,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:35.634Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e0223b006feb3d306446-b8490f19f11303e1c223",
+          "file": "responsive.spec.ts",
+          "line": 10,
+          "column": 3
+        },
+        {
+          "title": "Work board columns and cards remain reachable — 1440 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2974,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:36.093Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e0223b006feb3d306446-3afc49abd0570d0b9490",
+          "file": "responsive.spec.ts",
+          "line": 10,
+          "column": 3
+        },
+        {
+          "title": "Work board columns and cards remain reachable — 1440 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 3033,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:38.690Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e0223b006feb3d306446-9459946302edd1ddb382",
+          "file": "responsive.spec.ts",
+          "line": 10,
+          "column": 3
+        },
+        {
+          "title": "preview navigation loads fixtures and catches startup URL changes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1487,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:39.084Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e0223b006feb3d306446-6d0096d36f44651f57da",
+          "file": "responsive.spec.ts",
+          "line": 76,
+          "column": 1
+        },
+        {
+          "title": "review, diff, canvas and computer controls remain reachable in small desktop windows",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7293,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "960 light: review suggestion",
+                      "duration": 404
+                    },
+                    {
+                      "title": "960 light: complete split source",
+                      "duration": 336
+                    },
+                    {
+                      "title": "960 light: canvas selection and compare",
+                      "duration": 494
+                    },
+                    {
+                      "title": "960 light: computer actions",
+                      "duration": 381
+                    },
+                    {
+                      "title": "960 dark: review suggestion",
+                      "duration": 281
+                    },
+                    {
+                      "title": "960 dark: complete split source",
+                      "duration": 402
+                    },
+                    {
+                      "title": "960 dark: canvas selection and compare",
+                      "duration": 455
+                    },
+                    {
+                      "title": "960 dark: computer actions",
+                      "duration": 352
+                    },
+                    {
+                      "title": "1024 light: review suggestion",
+                      "duration": 294
+                    },
+                    {
+                      "title": "1024 light: complete split source",
+                      "duration": 410
+                    },
+                    {
+                      "title": "1024 light: canvas selection and compare",
+                      "duration": 469
+                    },
+                    {
+                      "title": "1024 light: computer actions",
+                      "duration": 327
+                    },
+                    {
+                      "title": "1024 dark: review suggestion",
+                      "duration": 285
+                    },
+                    {
+                      "title": "1024 dark: complete split source",
+                      "duration": 387
+                    },
+                    {
+                      "title": "1024 dark: canvas selection and compare",
+                      "duration": 492
+                    },
+                    {
+                      "title": "1024 dark: computer actions",
+                      "duration": 393
+                    }
+                  ],
+                  "startTime": "2026-10-02T22:25:39.335Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e0223b006feb3d306446-05c9e0320471b778e397",
+          "file": "responsive.spec.ts",
+          "line": 108,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "routines.spec.ts",
+      "file": "routines.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Routine history reflects running, interruption and latest results — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2446,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:39.876Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-running-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/routines-Routine-history-r-71513--and-latest-results-—-light/attachments/routine-running-light-19931818897c3c3f718927c40fcb3a33d7fa8070.png"
+                    },
+                    {
+                      "name": "routine-interrupted-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/routines-Routine-history-r-71513--and-latest-results-—-light/attachments/routine-interrupted-light-f3e0438ef78d251d8c10addb9550a11c0800eec8.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3926c6d2509f6eec95f-33f1db36955072d9dac5",
+          "file": "routines.spec.ts",
+          "line": 37,
+          "column": 3
+        },
+        {
+          "title": "Routine actions retain honest feedback when the engine refuses — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1606,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:40.850Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-start-refused-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/routines-Routine-actions-r-37a92--the-engine-refuses-—-light/attachments/routine-start-refused-light-8d2ca70d0456b820dd9db7aad74d280a9adeb69b.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3926c6d2509f6eec95f-f236c3973d5817202423",
+          "file": "routines.spec.ts",
+          "line": 102,
+          "column": 3
+        },
+        {
+          "title": "Routine history reflects running, interruption and latest results — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2276,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:42.047Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-running-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/routines-Routine-history-r-3a54b-n-and-latest-results-—-dark/attachments/routine-running-dark-b13b4ccc69d69785870abbcfccbceff5431baf5e.png"
+                    },
+                    {
+                      "name": "routine-interrupted-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/routines-Routine-history-r-3a54b-n-and-latest-results-—-dark/attachments/routine-interrupted-dark-4d94e006b8b32abcba3d03be0f89d27d113b1c26.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3926c6d2509f6eec95f-c09d73b90a99ac547c2f",
+          "file": "routines.spec.ts",
+          "line": 37,
+          "column": 3
+        },
+        {
+          "title": "Routine actions retain honest feedback when the engine refuses — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1678,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:42.337Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-start-refused-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/routines-Routine-actions-r-f9f82-n-the-engine-refuses-—-dark/attachments/routine-start-refused-dark-52dcb478bafe9bb7c4c93c0bc51b7f0e6928c09a.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3926c6d2509f6eec95f-4884eca05235741331f1",
+          "file": "routines.spec.ts",
+          "line": 102,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "screens.spec.ts",
+      "file": "screens.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "every design screen and state renders",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 1800000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 142370,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "rendered 426 screen states\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:42.471Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2676ef668c5398eed988-bfb2f7738cdc54ad8b6a",
+          "file": "screens.spec.ts",
+          "line": 10,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "ui-flows.spec.ts",
+      "file": "ui-flows.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "provider key save, reload and removal stay readable — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 15750,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "960px",
+                      "duration": 4644
+                    },
+                    {
+                      "title": "1024px",
+                      "duration": 4552
+                    },
+                    {
+                      "title": "1440px",
+                      "duration": 4633
+                    }
+                  ],
+                  "startTime": "2026-10-02T22:25:44.044Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "provider-key-960-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/attachments/provider-key-960-light-af586ddf098bc5a0757262bff7ffc0976113e70c.png"
+                    },
+                    {
+                      "name": "provider-key-1024-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/attachments/provider-key-1024-light-8e1139c5e889716630dddd7ba1beccacb7b43769.png"
+                    },
+                    {
+                      "name": "provider-key-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/attachments/provider-key-1440-light-34cbde427846b17c1d30b0ebaf937108b1b733cb.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "89147e0413fd998ccfca-fd85eeb7d4209d14c0b5",
+          "file": "ui-flows.spec.ts",
+          "line": 19,
+          "column": 40
+        },
+        {
+          "title": "provider key save, reload and removal stay readable — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 15844,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "960px",
+                      "duration": 4654
+                    },
+                    {
+                      "title": "1024px",
+                      "duration": 4569
+                    },
+                    {
+                      "title": "1440px",
+                      "duration": 4646
+                    }
+                  ],
+                  "startTime": "2026-10-02T22:25:44.350Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "provider-key-960-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/attachments/provider-key-960-dark-779a62640c74ecd6d0e5547e917a6fc5c2e64b10.png"
+                    },
+                    {
+                      "name": "provider-key-1024-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/attachments/provider-key-1024-dark-92cec234c0b666b0c2bf0855519a866170939342.png"
+                    },
+                    {
+                      "name": "provider-key-1440-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/attachments/provider-key-1440-dark-5b79e87fd815fe36f8c898d86ad53895acd69319.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "89147e0413fd998ccfca-f34a25ff795dd0141df3",
+          "file": "ui-flows.spec.ts",
+          "line": 19,
+          "column": 40
+        },
+        {
+          "title": "streamed exchange with thinking and an image, driven from the composer",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5313,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:46.655Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "89147e0413fd998ccfca-54dc4f950779af157a0f",
+          "file": "ui-flows.spec.ts",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "rejected sends keep the draft and attachments; retry resends the image",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12385,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T22:25:51.993Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/ui-flows-rejected-sends-ke-f168b-nts-retry-resends-the-image/attachments/draft-kept-light-2b9d7acf6e70203bd85aa63828c64580a79b2745.png"
+                    },
+                    {
+                      "name": "history-image-refusal-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/ui-flows-rejected-sends-ke-f168b-nts-retry-resends-the-image/attachments/history-image-refusal-light-b1731f0b660da237458980a9b29aaddd006c9063.png"
+                    },
+                    {
+                      "name": "chat-draft-kept-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/ui-flows-rejected-sends-ke-f168b-nts-retry-resends-the-image/attachments/chat-draft-kept-light-f2ec876c16fd2eee76bb300e103b120e625344c4.png"
+                    },
+                    {
+                      "name": "draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/ui-flows-rejected-sends-ke-f168b-nts-retry-resends-the-image/attachments/draft-kept-dark-472b5ab6555e1d236ec71d121c0e2365811fb8f7.png"
+                    },
+                    {
+                      "name": "history-image-refusal-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/ui-flows-rejected-sends-ke-f168b-nts-retry-resends-the-image/attachments/history-image-refusal-dark-426308f22ee0944d6a98a1daad9c54a90a30ca46.png"
+                    },
+                    {
+                      "name": "chat-draft-kept-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-behavior-e2e-artifacts/ui-flows-rejected-sends-ke-f168b-nts-retry-resends-the-image/attachments/chat-draft-kept-dark-d3add58fa49f8e912e81fbd9a4c22a79fea101dd.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "89147e0413fd998ccfca-78163fb83efa1a3f6e9c",
+          "file": "ui-flows.spec.ts",
+          "line": 127,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-02T22:24:05.968Z",
+    "duration": 238976.412,
+    "expected": 59,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

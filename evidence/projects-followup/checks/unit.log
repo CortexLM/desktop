@@ -1,0 +1,76 @@
+$ vitest run
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite[39m
+
+ [32m✓[39m packages/desktop/test/credentials.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+ [32m✓[39m packages/schema/test/schema.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m tests/unit/audit-i18n.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 221[2mms[22m[39m
+(node:1209923) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1209922) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1210112) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1209991) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1210049) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1210029) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1209962) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1210042) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1210076) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1210056) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1210024) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ [32m✓[39m packages/protocol/test/protocol.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+(node:1210063) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1209977) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1210084) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1210070) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1209929) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ [32m✓[39m tests/unit/locales.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 377[2mms[22m[39m
+ [32m✓[39m packages/core/test/bus.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m packages/core/test/computer-use.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 45[2mms[22m[39m
+ [32m✓[39m packages/core/test/mcp.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 101[2mms[22m[39m
+ [32m✓[39m packages/core/test/connection.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 85[2mms[22m[39m
+ [32m✓[39m packages/client/test/client.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 175[2mms[22m[39m
+ [32m✓[39m packages/server/test/server.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 210[2mms[22m[39m
+ [32m✓[39m packages/core/test/remote-sessions.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 192[2mms[22m[39m
+ [32m✓[39m packages/core/test/scheduler.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 231[2mms[22m[39m
+ [32m✓[39m packages/core/test/capabilities.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 225[2mms[22m[39m
+ [32m✓[39m packages/desktop/test/remote-core.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 210[2mms[22m[39m
+ [32m✓[39m packages/core/test/services.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 320[2mms[22m[39m
+ [32m✓[39m packages/server/test/projects.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 360[2mms[22m[39m
+ [32m✓[39m packages/core/test/catalog.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 410[2mms[22m[39m
+   [32m✓[39m catalog [2m(6)[22m
+     [33m[2m✓[22m[39m live: fetches models.dev (skipped offline)[33m 382[2mms[22m[39m
+ [32m✓[39m tests/unit/runtime-copy.test.ts [2m([22m[2m34 tests[22m[2m)[22m[33m 3513[2mms[22m[39m
+   [32m✓[39m runtime copy [2m(34)[22m
+     [33m[2m✓[22m[39m localizes only verified terminal suffixes; preserves legacy and lookalikes in fr[33m 314[2mms[22m[39m
+ [32m✓[39m packages/desktop/test/remote.test.ts [2m([22m[2m45 tests[22m[2m | [22m[33m1 skipped[39m[2m)[22m[33m 5204[2mms[22m[39m
+   [32m✓[39m remote backend through the Cortex SDK [2m(45)[22m
+     [33m[2m✓[22m[39m times out a model listing whose JSON body never completes[33m 5003[2mms[22m[39m
+ [32m✓[39m packages/core/test/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 6295[2mms[22m[39m
+   [32m✓[39m session runner (fake OpenAI-compatible SSE) [2m(11)[22m
+     [33m[2m✓[22m[39m surfaces provider errors with a neutral code[33m 6013[2mms[22m[39m
+ [32m✓[39m packages/desktop/test/remote-session.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 10304[2mms[22m[39m
+   [32m✓[39m process-lifetime remote authentication [2m(8)[22m
+     [33m[2m✓[22m[39m rejects duplicate requests and times out an unfinished native authentication body[33m 10015[2mms[22m[39m
+ [32m✓[39m packages/desktop/test/remote-chat.test.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 10898[2mms[22m[39m
+   [32m✓[39m private remote Chat binding [2m(21)[22m
+     [33m[2m✓[22m[39m enforces the real JSON deadline while an SSE body has its separate idle deadline[33m 10052[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m23 passed[39m[22m[90m (23)[39m
+[2m      Tests [22m [1m[32m252 passed[39m[22m[2m | [22m[33m1 skipped[39m[90m (253)[39m
+[2m   Start at [22m 14:13:33
+[2m   Duration [22m 11.99s[2m (tests 71%, import 16%, transform 13%)[22m

@@ -1,0 +1,102 @@
+{
+  "verifiedAt": "2026-10-03T08:25:38.553768+00:00",
+  "scope": "Initial candidate fde8193d; offline image/hash verification after one capture; no recapture",
+  "originals": [
+    {
+      "file": "report.json",
+      "sha256": "92ca3638aa0bec4bff18b480d390f866498deee8e1d5e92fe19253f2b70ea1af",
+      "bytes": 34669,
+      "originalByteExact": true
+    },
+    {
+      "file": "provenance.json",
+      "sha256": "5aa516ecc5a2c0388eb7ccc448f94a4d820ba07467e58819cc4a76e62835733e",
+      "bytes": 19477,
+      "originalByteExact": true
+    },
+    {
+      "file": "comparator-index.html",
+      "sha256": "69c20af775fb4c07783566e0a4c358c11272dc7c56757a4452772a60f81b72ac",
+      "bytes": 10522,
+      "originalByteExact": true
+    }
+  ],
+  "sourceBuildManifestSha256": "8cd71efaf3ccfe295980a5f6b126446a812c83e5a79161f4edea01ba498965c6",
+  "buildBeforeAt": "2026-10-03T07:54:55.449689+00:00",
+  "buildAfterAt": "2026-10-03T07:56:11.185590+00:00",
+  "buildMembersMatchBeforeAfter": 90,
+  "sourcePinsMatchBeforeAfter": 2,
+  "servedResourcesMatchBuild": 20,
+  "currentOriginalPngsVerified": 66,
+  "previousOriginalPngsVerified": 66,
+  "recomputedCurrentDiffBuffers": 22,
+  "mappedImagesSha256Verified": 66,
+  "mappedImagesRgbaExact": 66,
+  "htmlReferencedPathsVerified": 71,
+  "previousMetadata": [
+    {
+      "file": "../../current-full-followup/compare/report.json",
+      "sha256": "75451933436da845d7b57b06be97e6341a5019f8ac63c34a9860fcb24376414c",
+      "bytes": 668996
+    },
+    {
+      "file": "../../current-full-followup/compare/provenance.json",
+      "sha256": "b398fb276074ef9eea8b939c5c48e4435c8e446fdfef8812b1a91f680de8c145",
+      "bytes": 338919
+    }
+  ],
+  "clockRenderReferenceEqualToPrior": true,
+  "newImages": 37,
+  "reusedImages": 29,
+  "newImageBytes": 13360832,
+  "contacts": [
+    {
+      "file": "contacts/triplets-01.webp",
+      "sha256": "d07ad0d5337b585eb7496576d60bdf2ca331d418d0d1b12bed8ed1c58b069c07",
+      "bytes": 375172
+    },
+    {
+      "file": "contacts/triplets-02.webp",
+      "sha256": "584a8bc1c242280d96a970fad93cf146cd5c69437a0b122a8a92cf37cc45ab01",
+      "bytes": 460784
+    },
+    {
+      "file": "contacts/triplets-03.webp",
+      "sha256": "b05471ca0ad39f35e40a499502d71389eb3f7b5136c2e33645e12b609bc2c991",
+      "bytes": 329688
+    },
+    {
+      "file": "contacts/triplets-04.webp",
+      "sha256": "133b9d9d6053cab681bdfe5c4359817570f0016e1239596f337fd1991aca29a9",
+      "bytes": 220002
+    }
+  ],
+  "visualReview": {
+    "currentFullResolutionTriplets": 22,
+    "currentFullResolutionImages": 66,
+    "contactSheets": 4,
+    "additionalPriorFullResolutionAppImages": [
+      "bot-dark",
+      "bot-light",
+      "code-session-light",
+      "work-task~done-dark",
+      "work-task~done-light"
+    ]
+  },
+  "rawMaximumFrozen": {
+    "state": "chat-light",
+    "pixels": 7945,
+    "totalPixels": 5184000,
+    "percentage": 0.15326003086419754
+  },
+  "exactToFrozen": 0,
+  "exactToPrior": 2,
+  "zeroPixelmatchToPrior": 10,
+  "acceptanceTolerance": null,
+  "retentionRecovery": "Initial WebP conversion timed out; one incomplete derived image was regenerated offline. All final mapped RGBA buffers verified; no comparator rerun.",
+  "limits": [
+    "Settled browser-preview fixtures only; timers real.",
+    "No live race, native window, motion, minimum-window or remote-inference acceptance.",
+    "Captured source/build pins refer to the initial candidate; independent logic review is separate."
+  ]
+}

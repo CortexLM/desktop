@@ -1,0 +1,22 @@
+{
+  "os": {
+    "e2e-linux": {
+      "comparableAliases": 175,
+      "rgbaExact": 145,
+      "changed": 30
+    },
+    "macos": {
+      "comparableAliases": 175,
+      "rgbaExact": 157,
+      "changed": 18
+    }
+  },
+  "memoryLocaleExact": 16,
+  "authLocaleExact": 16,
+  "memoryPrimaryExact": 22,
+  "memoryPrimaryCompared": 24,
+  "memoryChanges": "Two Linux light Memory/Privacy frames each differ by six top-chrome pixels at [43,16,57,19]; reopened full-size, visible content unchanged. Cause unknown.",
+  "notableDrift": "Mac reasoning dark shows 6s/three lines, light 5s/two lines; prior sampled states differ. MFA-light button background differs. No causal attribution.",
+  "uniqueImageIncrease": "Mac verification-unavailable attachment is now a separate PNG from MFA-light; preceding Memory run reused one exact image for both aliases. No new test is implied.",
+  "scope": "350 common aliases:302 exact/48 changed; unique-image reuse can match a different verified alias. Not a frozen-reference comparison."
+}

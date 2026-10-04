@@ -1,0 +1,389 @@
+2026-10-03T12:55:11.3120589Z Current runner version: '2.337.0'
+2026-10-03T12:55:11.3153669Z ##[group]Runner Image Provisioner
+2026-10-03T12:55:11.3155078Z Hosted Compute Agent
+2026-10-03T12:55:11.3155958Z Version: 20260901.588
+2026-10-03T12:55:11.3156890Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-03T12:55:11.3158027Z Build Date: 2026-09-01T19:56:44Z
+2026-10-03T12:55:11.3159124Z Worker ID: {2a16ac0e-b5c0-4a84-b19d-af8b18a21e22}
+2026-10-03T12:55:11.3160222Z Azure Region: westus3
+2026-10-03T12:55:11.3161135Z ##[endgroup]
+2026-10-03T12:55:11.3163615Z ##[group]Operating System
+2026-10-03T12:55:11.3164621Z Ubuntu
+2026-10-03T12:55:11.3165384Z 24.04.5
+2026-10-03T12:55:11.3166174Z LTS
+2026-10-03T12:55:11.3166984Z ##[endgroup]
+2026-10-03T12:55:11.3167796Z ##[group]Runner Image
+2026-10-03T12:55:11.3168709Z Image: ubuntu-24.04
+2026-10-03T12:55:11.3169551Z Version: 20260927.320.1
+2026-10-03T12:55:11.3171278Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-03T12:55:11.3173615Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+2026-10-03T12:55:11.3175030Z ##[endgroup]
+2026-10-03T12:55:11.3176769Z ##[group]GITHUB_TOKEN Permissions
+2026-10-03T12:55:11.3179815Z Contents: read
+2026-10-03T12:55:11.3180659Z Metadata: read
+2026-10-03T12:55:11.3181402Z ##[endgroup]
+2026-10-03T12:55:11.3184508Z Secret source: Actions
+2026-10-03T12:55:11.3185913Z Cache mode: write
+2026-10-03T12:55:11.3186944Z Prepare workflow directory
+2026-10-03T12:55:11.3506990Z Prepare all required actions
+2026-10-03T12:55:11.3557026Z Getting action download info
+2026-10-03T12:55:11.6767938Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-03T12:55:11.7746267Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-03T12:55:11.9231836Z Download action repository 'oven-sh/setup-bun@v2' (SHA:0c5077e51419868618aeaa5fe8019c62421857d6)
+2026-10-03T12:55:12.6168128Z Complete job name: Lint, typecheck, unit tests, i18n audit
+2026-10-03T12:55:12.6764033Z ##[group]Run actions/checkout@v4
+2026-10-03T12:55:12.6764850Z with:
+2026-10-03T12:55:12.6765370Z   repository: CortexLM/desktop
+2026-10-03T12:55:12.6769296Z   token: ***
+2026-10-03T12:55:12.6769797Z   ssh-strict: true
+2026-10-03T12:55:12.6770307Z   ssh-user: git
+2026-10-03T12:55:12.6770832Z   persist-credentials: true
+2026-10-03T12:55:12.6771411Z   clean: true
+2026-10-03T12:55:12.6771945Z   sparse-checkout-cone-mode: true
+2026-10-03T12:55:12.6772523Z   fetch-depth: 1
+2026-10-03T12:55:12.6773333Z   fetch-tags: false
+2026-10-03T12:55:12.6773981Z   show-progress: true
+2026-10-03T12:55:12.6774628Z   lfs: false
+2026-10-03T12:55:12.6775172Z   submodules: false
+2026-10-03T12:55:12.6775686Z   set-safe-directory: true
+2026-10-03T12:55:12.6776250Z   allow-unsafe-pr-checkout: false
+2026-10-03T12:55:12.6777057Z ##[endgroup]
+2026-10-03T12:55:12.7752812Z Syncing repository: CortexLM/desktop
+2026-10-03T12:55:12.7755496Z ##[group]Getting Git version info
+2026-10-03T12:55:12.7756461Z Working directory is '/home/runner/work/desktop/desktop'
+2026-10-03T12:55:12.7758068Z [command]/usr/bin/git version
+2026-10-03T12:55:12.7824394Z git version 2.55.0
+2026-10-03T12:55:12.7836038Z ##[endgroup]
+2026-10-03T12:55:12.7845503Z Temporarily overriding HOME='/home/runner/work/_temp/f9c3e728-975b-4084-9697-b8db10a961d3' before making global git config changes
+2026-10-03T12:55:12.7847694Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-03T12:55:12.7849374Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/desktop/desktop
+2026-10-03T12:55:12.7884715Z Deleting the contents of '/home/runner/work/desktop/desktop'
+2026-10-03T12:55:12.7889193Z ##[group]Initializing the repository
+2026-10-03T12:55:12.7893134Z [command]/usr/bin/git init /home/runner/work/desktop/desktop
+2026-10-03T12:55:12.7986021Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-03T12:55:12.7988877Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-03T12:55:12.7990415Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-03T12:55:12.7993152Z hint: call:
+2026-10-03T12:55:12.7994105Z hint:
+2026-10-03T12:55:12.7995096Z hint: 	git config --global init.defaultBranch <name>
+2026-10-03T12:55:12.7996152Z hint:
+2026-10-03T12:55:12.7997045Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-03T12:55:12.7998485Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-03T12:55:12.7999657Z hint:
+2026-10-03T12:55:12.8000437Z hint: 	git branch -m <name>
+2026-10-03T12:55:12.8001315Z hint:
+2026-10-03T12:55:12.8002256Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-03T12:55:12.8004438Z Initialized empty Git repository in /home/runner/work/desktop/desktop/.git/
+2026-10-03T12:55:12.8006995Z [command]/usr/bin/git remote add origin https://github.com/CortexLM/desktop
+2026-10-03T12:55:12.8046878Z ##[endgroup]
+2026-10-03T12:55:12.8048261Z ##[group]Disabling automatic garbage collection
+2026-10-03T12:55:12.8049340Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-03T12:55:12.8072294Z ##[endgroup]
+2026-10-03T12:55:12.8073730Z ##[group]Setting up auth
+2026-10-03T12:55:12.8078283Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-03T12:55:12.8110144Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-03T12:55:12.8396486Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-03T12:55:12.8422098Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-03T12:55:12.8594984Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-03T12:55:12.8614373Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-03T12:55:12.8776431Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-03T12:55:12.8802153Z ##[endgroup]
+2026-10-03T12:55:12.8804347Z ##[group]Fetching the repository
+2026-10-03T12:55:12.8811159Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +6d6cae30fea21f6177832be478a3913e71a3ef69:refs/remotes/pull/36/merge
+2026-10-03T12:55:52.0852755Z From https://github.com/CortexLM/desktop
+2026-10-03T12:55:52.0856076Z  * [new ref]         6d6cae30fea21f6177832be478a3913e71a3ef69 -> pull/36/merge
+2026-10-03T12:55:52.0886603Z ##[endgroup]
+2026-10-03T12:55:52.0887659Z ##[group]Determining the checkout info
+2026-10-03T12:55:52.0889040Z ##[endgroup]
+2026-10-03T12:55:52.0889789Z [command]/usr/bin/git sparse-checkout disable
+2026-10-03T12:55:52.0948632Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-03T12:55:52.0987484Z ##[group]Checking out the ref
+2026-10-03T12:55:52.0988923Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/36/merge
+2026-10-03T12:55:53.1427909Z Updating files:  16% (1331/7944)
+2026-10-03T12:55:53.1781854Z Updating files:  17% (1351/7944)
+2026-10-03T12:55:53.1997755Z Updating files:  18% (1430/7944)
+2026-10-03T12:55:53.2778555Z Updating files:  19% (1510/7944)
+2026-10-03T12:55:53.3647670Z Updating files:  20% (1589/7944)
+2026-10-03T12:55:53.3896675Z Updating files:  21% (1669/7944)
+2026-10-03T12:55:53.4060248Z Updating files:  22% (1748/7944)
+2026-10-03T12:55:53.4187218Z Updating files:  23% (1828/7944)
+2026-10-03T12:55:53.4281653Z Updating files:  24% (1907/7944)
+2026-10-03T12:55:53.4707281Z Updating files:  25% (1986/7944)
+2026-10-03T12:55:53.4790982Z Updating files:  26% (2066/7944)
+2026-10-03T12:55:53.5002107Z Updating files:  27% (2145/7944)
+2026-10-03T12:55:53.5480715Z Updating files:  28% (2225/7944)
+2026-10-03T12:55:53.5644653Z Updating files:  29% (2304/7944)
+2026-10-03T12:55:53.5696061Z Updating files:  30% (2384/7944)
+2026-10-03T12:55:53.5993814Z Updating files:  31% (2463/7944)
+2026-10-03T12:55:53.6123731Z Updating files:  32% (2543/7944)
+2026-10-03T12:55:53.6235023Z Updating files:  33% (2622/7944)
+2026-10-03T12:55:53.6378586Z Updating files:  34% (2701/7944)
+2026-10-03T12:55:53.6500718Z Updating files:  35% (2781/7944)
+2026-10-03T12:55:53.6594847Z Updating files:  36% (2860/7944)
+2026-10-03T12:55:53.6671918Z Updating files:  37% (2940/7944)
+2026-10-03T12:55:53.7013622Z Updating files:  38% (3019/7944)
+2026-10-03T12:55:53.7119288Z Updating files:  39% (3099/7944)
+2026-10-03T12:55:53.7248383Z Updating files:  40% (3178/7944)
+2026-10-03T12:55:53.7369076Z Updating files:  41% (3258/7944)
+2026-10-03T12:55:53.7473797Z Updating files:  42% (3337/7944)
+2026-10-03T12:55:53.7564755Z Updating files:  43% (3416/7944)
+2026-10-03T12:55:53.7619522Z Updating files:  44% (3496/7944)
+2026-10-03T12:55:53.7720661Z Updating files:  45% (3575/7944)
+2026-10-03T12:55:53.7950464Z Updating files:  46% (3655/7944)
+2026-10-03T12:55:53.8094308Z Updating files:  47% (3734/7944)
+2026-10-03T12:55:53.8444615Z Updating files:  48% (3814/7944)
+2026-10-03T12:55:53.8549689Z Updating files:  49% (3893/7944)
+2026-10-03T12:55:53.8665432Z Updating files:  50% (3972/7944)
+2026-10-03T12:55:53.8784352Z Updating files:  51% (4052/7944)
+2026-10-03T12:55:53.8885701Z Updating files:  52% (4131/7944)
+2026-10-03T12:55:53.8993127Z Updating files:  53% (4211/7944)
+2026-10-03T12:55:53.9096113Z Updating files:  54% (4290/7944)
+2026-10-03T12:55:53.9191404Z Updating files:  55% (4370/7944)
+2026-10-03T12:55:53.9362571Z Updating files:  56% (4449/7944)
+2026-10-03T12:55:53.9517754Z Updating files:  57% (4529/7944)
+2026-10-03T12:55:53.9653722Z Updating files:  58% (4608/7944)
+2026-10-03T12:55:53.9783604Z Updating files:  59% (4687/7944)
+2026-10-03T12:55:53.9913436Z Updating files:  60% (4767/7944)
+2026-10-03T12:55:54.0035953Z Updating files:  61% (4846/7944)
+2026-10-03T12:55:54.0196453Z Updating files:  62% (4926/7944)
+2026-10-03T12:55:54.0759950Z Updating files:  63% (5005/7944)
+2026-10-03T12:55:54.0853673Z Updating files:  64% (5085/7944)
+2026-10-03T12:55:54.1011314Z Updating files:  65% (5164/7944)
+2026-10-03T12:55:54.1035021Z Updating files:  66% (5244/7944)
+2026-10-03T12:55:54.1074794Z Updating files:  67% (5323/7944)
+2026-10-03T12:55:54.1468081Z Updating files:  67% (5338/7944)
+2026-10-03T12:55:54.1575465Z Updating files:  68% (5402/7944)
+2026-10-03T12:55:54.1872177Z Updating files:  69% (5482/7944)
+2026-10-03T12:55:54.2188301Z Updating files:  70% (5561/7944)
+2026-10-03T12:55:54.2906088Z Updating files:  71% (5641/7944)
+2026-10-03T12:55:54.3543723Z Updating files:  72% (5720/7944)
+2026-10-03T12:55:54.4383029Z Updating files:  73% (5800/7944)
+2026-10-03T12:55:54.4720535Z Updating files:  74% (5879/7944)
+2026-10-03T12:55:54.4796631Z Updating files:  75% (5958/7944)
+2026-10-03T12:55:54.5150489Z Updating files:  76% (6038/7944)
+2026-10-03T12:55:54.5237858Z Updating files:  77% (6117/7944)
+2026-10-03T12:55:54.5461143Z Updating files:  78% (6197/7944)
+2026-10-03T12:55:54.5491596Z Updating files:  79% (6276/7944)
+2026-10-03T12:55:54.5523462Z Updating files:  80% (6356/7944)
+2026-10-03T12:55:54.5774948Z Updating files:  81% (6435/7944)
+2026-10-03T12:55:54.6564303Z Updating files:  82% (6515/7944)
+2026-10-03T12:55:54.6788963Z Updating files:  83% (6594/7944)
+2026-10-03T12:55:54.7048701Z Updating files:  84% (6673/7944)
+2026-10-03T12:55:54.7349615Z Updating files:  85% (6753/7944)
+2026-10-03T12:55:54.7441662Z Updating files:  86% (6832/7944)
+2026-10-03T12:55:54.7472635Z Updating files:  87% (6912/7944)
+2026-10-03T12:55:54.7819282Z Updating files:  88% (6991/7944)
+2026-10-03T12:55:54.7941472Z Updating files:  89% (7071/7944)
+2026-10-03T12:55:54.8011417Z Updating files:  90% (7150/7944)
+2026-10-03T12:55:54.8159805Z Updating files:  91% (7230/7944)
+2026-10-03T12:55:54.8724870Z Updating files:  92% (7309/7944)
+2026-10-03T12:55:54.8743835Z Updating files:  93% (7388/7944)
+2026-10-03T12:55:54.8799079Z Updating files:  94% (7468/7944)
+2026-10-03T12:55:54.8853167Z Updating files:  95% (7547/7944)
+2026-10-03T12:55:54.8903050Z Updating files:  96% (7627/7944)
+2026-10-03T12:55:54.8949065Z Updating files:  97% (7706/7944)
+2026-10-03T12:55:54.8997780Z Updating files:  98% (7786/7944)
+2026-10-03T12:55:54.9054084Z Updating files:  99% (7865/7944)
+2026-10-03T12:55:54.9055556Z Updating files: 100% (7944/7944)
+2026-10-03T12:55:54.9056220Z Updating files: 100% (7944/7944), done.
+2026-10-03T12:55:54.9127964Z Note: switching to 'refs/remotes/pull/36/merge'.
+2026-10-03T12:55:54.9129183Z
+2026-10-03T12:55:54.9129792Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-03T12:55:54.9130551Z changes and commit them, and you can discard any commits you make in this
+2026-10-03T12:55:54.9131386Z state without impacting any branches by switching back to a branch.
+2026-10-03T12:55:54.9131782Z
+2026-10-03T12:55:54.9132096Z If you want to create a new branch to retain commits you create, you may
+2026-10-03T12:55:54.9132720Z do so (now or later) by using -c with the switch command. Example:
+2026-10-03T12:55:54.9133177Z
+2026-10-03T12:55:54.9133401Z   git switch -c <new-branch-name>
+2026-10-03T12:55:54.9133685Z
+2026-10-03T12:55:54.9133838Z Or undo this operation with:
+2026-10-03T12:55:54.9134164Z
+2026-10-03T12:55:54.9134318Z   git switch -
+2026-10-03T12:55:54.9134807Z
+2026-10-03T12:55:54.9135117Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-03T12:55:54.9135503Z
+2026-10-03T12:55:54.9135967Z HEAD is now at 6d6cae3 Merge 99e3d04a8dab6b51b6cf23bcdae0365624492e0f into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d
+2026-10-03T12:55:54.9217097Z ##[endgroup]
+2026-10-03T12:55:54.9260207Z [command]/usr/bin/git log -1 --format=%H
+2026-10-03T12:55:54.9266980Z 6d6cae30fea21f6177832be478a3913e71a3ef69
+2026-10-03T12:55:54.9518681Z ##[group]Run actions/setup-node@v4
+2026-10-03T12:55:54.9519034Z with:
+2026-10-03T12:55:54.9519310Z   node-version: 22
+2026-10-03T12:55:54.9519563Z   always-auth: false
+2026-10-03T12:55:54.9519809Z   check-latest: false
+2026-10-03T12:55:54.9522162Z   token: ***
+2026-10-03T12:55:54.9522439Z ##[endgroup]
+2026-10-03T12:55:55.0781109Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+2026-10-03T12:55:55.0782608Z (node:1979) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-03T12:55:55.0783992Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-03T12:55:55.0787729Z ##[group]Environment details
+2026-10-03T12:55:55.8428944Z node: v22.23.3
+2026-10-03T12:55:55.8430070Z npm: 10.9.9
+2026-10-03T12:55:55.8430586Z yarn: 1.22.22
+2026-10-03T12:55:55.8432423Z ##[endgroup]
+2026-10-03T12:55:55.8598691Z ##[group]Run oven-sh/setup-bun@v2
+2026-10-03T12:55:55.8599061Z with:
+2026-10-03T12:55:55.8599346Z   bun-version: 1.4.2
+2026-10-03T12:55:55.8599608Z   no-cache: false
+2026-10-03T12:55:55.8601692Z   token: ***
+2026-10-03T12:55:55.8601953Z ##[endgroup]
+2026-10-03T12:55:56.2207162Z Cache hit for: bun-gmoqYqdUbaYsI0KujeXt7Zg/p0I=
+2026-10-03T12:55:57.3770332Z Received 35684133 of 35684133 (100.0%), 36.6 MBs/sec
+2026-10-03T12:55:57.3771011Z Cache Size: ~34 MB (35684133 B)
+2026-10-03T12:55:57.3813497Z [command]/usr/bin/tar -xf /home/runner/work/_temp/782a1d68-d327-4548-a725-f0e4ab34336e/cache.tzst -P -C /home/runner/work/desktop/desktop --use-compress-program unzstd
+2026-10-03T12:55:57.5124383Z Cache restored successfully
+2026-10-03T12:55:57.5154856Z [command]/home/runner/.bun/bin/bun --revision
+2026-10-03T12:55:57.5184135Z 1.4.2+744846f84
+2026-10-03T12:55:57.5184950Z Using a cached version of Bun: 1.4.2+744846f84
+2026-10-03T12:55:57.5467737Z ##[group]Run bun install --frozen-lockfile
+2026-10-03T12:55:57.5468146Z bun install --frozen-lockfile
+2026-10-03T12:55:57.5669880Z shell: /usr/bin/bash -e {0}
+2026-10-03T12:55:57.5670314Z ##[endgroup]
+2026-10-03T12:55:57.5770880Z bun install v1.4.2 (744846f84)
+2026-10-03T12:55:59.3207049Z
+2026-10-03T12:55:59.3207955Z + @ai-sdk/anthropic@4.0.71
+2026-10-03T12:55:59.3208577Z + @ai-sdk/google@4.0.87
+2026-10-03T12:55:59.3209040Z + @ai-sdk/openai@4.0.83
+2026-10-03T12:55:59.3220187Z + @ai-sdk/openai-compatible@3.0.62
+2026-10-03T12:55:59.3220842Z + @babel/parser@7.29.9
+2026-10-03T12:55:59.3221238Z + @babel/traverse@8.0.6
+2026-10-03T12:55:59.3221645Z + @base-ui/react@1.8.0
+2026-10-03T12:55:59.3222011Z + @eslint/js@10.0.1
+2026-10-03T12:55:59.3222422Z + @modelcontextprotocol/sdk@1.31.0
+2026-10-03T12:55:59.3223025Z + @playwright/test@1.63.0
+2026-10-03T12:55:59.3225222Z + @types/node@26.6.4
+2026-10-03T12:55:59.3225910Z + @types/react@19.3.0
+2026-10-03T12:55:59.3226511Z + @types/react-dom@19.3.0
+2026-10-03T12:55:59.3226941Z + @vitejs/plugin-react@6.1.1
+2026-10-03T12:55:59.3227458Z + ai@7.0.127
+2026-10-03T12:55:59.3227897Z + electron@44.5.1
+2026-10-03T12:55:59.3244464Z + electron-builder@26.15.3
+2026-10-03T12:55:59.3245025Z + esbuild@0.28.2
+2026-10-03T12:55:59.3245399Z + eslint@10.11.0
+2026-10-03T12:55:59.3246353Z + eslint-plugin-react-hooks@7.1.1
+2026-10-03T12:55:59.3249913Z + hono@4.13.12
+2026-10-03T12:55:59.3250431Z + pixelmatch@7.2.0
+2026-10-03T12:55:59.3250811Z + playwright@1.63.0
+2026-10-03T12:55:59.3251195Z + pngjs@7.0.0
+2026-10-03T12:55:59.3251537Z + react@19.3.0
+2026-10-03T12:55:59.3251883Z + react-dom@19.3.0
+2026-10-03T12:55:59.3252253Z + typescript@5.9.3
+2026-10-03T12:55:59.3252680Z + typescript-eslint@8.71.0
+2026-10-03T12:55:59.3253780Z + vite@8.3.2
+2026-10-03T12:55:59.3254129Z + vitest@5.0.3
+2026-10-03T12:55:59.3254477Z + zod@4.6.5
+2026-10-03T12:55:59.3254712Z
+2026-10-03T12:55:59.3255001Z 526 packages installed [1.74s]
+2026-10-03T12:55:59.3286610Z ##[group]Run bun run lint
+2026-10-03T12:55:59.3286865Z bun run lint
+2026-10-03T12:55:59.3329469Z shell: /usr/bin/bash -e {0}
+2026-10-03T12:55:59.3329718Z ##[endgroup]
+2026-10-03T12:55:59.3507951Z $ eslint packages scripts tests
+2026-10-03T12:56:06.9017438Z ##[group]Run bun run typecheck
+2026-10-03T12:56:06.9017836Z bun run typecheck
+2026-10-03T12:56:06.9065186Z shell: /usr/bin/bash -e {0}
+2026-10-03T12:56:06.9065452Z ##[endgroup]
+2026-10-03T12:56:06.9155048Z $ tsc -p tsconfig.json
+2026-10-03T12:56:23.1540301Z ##[group]Run bun run test
+2026-10-03T12:56:23.1540705Z bun run test
+2026-10-03T12:56:23.1587876Z shell: /usr/bin/bash -e {0}
+2026-10-03T12:56:23.1588241Z ##[endgroup]
+2026-10-03T12:56:23.1683617Z $ vitest run
+2026-10-03T12:56:23.4143645Z
+2026-10-03T12:56:23.4145098Z  RUN  v5.0.3 /home/runner/work/desktop/desktop
+2026-10-03T12:56:23.4145723Z
+2026-10-03T12:56:23.8185059Z (node:2088) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:56:23.8194168Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:56:34.8538666Z  ✓ packages/desktop/test/remote-chat.test.ts (21 tests) 10735ms
+2026-10-03T12:56:34.8540021Z    ✓ private remote Chat binding (21)
+2026-10-03T12:56:34.8541412Z      ✓ enforces the real JSON deadline while an SSE body has its separate idle deadline 10044ms
+2026-10-03T12:56:35.2778070Z (node:2097) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:56:35.2779068Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:56:35.3870317Z  ✓ packages/core/test/remote-sessions.test.ts (18 tests) 88ms
+2026-10-03T12:56:35.7687056Z (node:2106) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:56:35.7688045Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:56:45.9807904Z  ✓ packages/desktop/test/remote-session.test.ts (8 tests) 10205ms
+2026-10-03T12:56:45.9809897Z    ✓ process-lifetime remote authentication (8)
+2026-10-03T12:56:45.9811126Z      ✓ rejects duplicate requests and times out an unfinished native authentication body 10006ms
+2026-10-03T12:56:46.2967679Z (node:2115) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:56:46.2972564Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:56:46.5877508Z  ✓ packages/core/test/services.test.ts (15 tests) 267ms
+2026-10-03T12:56:46.9167203Z (node:2129) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:56:46.9169013Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:56:53.1384888Z  ✓ packages/core/test/session.test.ts (11 tests) 6220ms
+2026-10-03T12:56:53.1386130Z    ✓ session runner (fake OpenAI-compatible SSE) (11)
+2026-10-03T12:56:53.1387046Z      ✓ surfaces provider errors with a neutral code 6007ms
+2026-10-03T12:56:53.4782232Z (node:2141) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:56:53.4784208Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:56:53.6419823Z  ✓ packages/desktop/test/remote-core.test.ts (3 tests) 156ms
+2026-10-03T12:56:53.9644083Z (node:2151) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:56:53.9646707Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:56:54.0406983Z  ✓ packages/core/test/mcp.test.ts (11 tests) 74ms
+2026-10-03T12:56:57.4429785Z  ✓ tests/unit/runtime-copy.test.ts (34 tests) 2617ms
+2026-10-03T12:57:02.8146680Z  ✓ packages/desktop/test/remote.test.ts (45 tests | 1 skipped) 5167ms
+2026-10-03T12:57:02.8150718Z    ✓ remote backend through the Cortex SDK (45)
+2026-10-03T12:57:02.8154364Z      ✓ times out a model listing whose JSON body never completes 5001ms
+2026-10-03T12:57:03.2294789Z (node:2223) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:57:03.2296597Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:57:03.2727395Z  ✓ packages/core/test/connection.test.ts (5 tests) 42ms
+2026-10-03T12:57:03.4366414Z  ✓ packages/desktop/test/credentials.test.ts (23 tests) 26ms
+2026-10-03T12:57:03.7623459Z (node:2238) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:57:03.7626271Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:57:03.9004806Z  ✓ packages/server/test/server.test.ts (7 tests) 135ms
+2026-10-03T12:57:04.2057120Z (node:2246) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:57:04.2058882Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:57:04.2227836Z  ✓ packages/core/test/bus.test.ts (2 tests) 12ms
+2026-10-03T12:57:04.5456449Z (node:2253) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:57:04.5458293Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:57:04.6644402Z  ✓ packages/core/test/capabilities.test.ts (11 tests) 116ms
+2026-10-03T12:57:04.9874063Z (node:2261) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:57:04.9875764Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:57:05.1173884Z  ✓ packages/core/test/scheduler.test.ts (4 tests) 125ms
+2026-10-03T12:57:05.3749400Z  ✓ tests/unit/audit-i18n.test.ts (1 test) 165ms
+2026-10-03T12:57:05.6987665Z (node:2283) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:57:05.6989403Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:57:05.7949776Z  ✓ packages/client/test/client.test.ts (3 tests) 93ms
+2026-10-03T12:57:06.1029936Z (node:2291) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:57:06.1031614Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:57:06.5888108Z  ✓ packages/core/test/catalog.test.ts (6 tests) 484ms
+2026-10-03T12:57:06.5889032Z    ✓ catalog (6)
+2026-10-03T12:57:06.5895434Z      ✓ live: fetches models.dev (skipped offline) 465ms
+2026-10-03T12:57:06.8925638Z (node:2304) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T12:57:06.8927310Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T12:57:06.9197982Z  ✓ packages/core/test/computer-use.test.ts (3 tests) 26ms
+2026-10-03T12:57:07.2674317Z  ✓ tests/unit/locales.test.ts (9 tests) 245ms
+2026-10-03T12:57:07.4253728Z  ✓ packages/schema/test/schema.test.ts (3 tests) 14ms
+2026-10-03T12:57:07.6079361Z  ✓ packages/protocol/test/protocol.test.ts (3 tests) 33ms
+2026-10-03T12:57:07.6110519Z
+2026-10-03T12:57:07.6124584Z  Test Files  22 passed (22)
+2026-10-03T12:57:07.6125702Z       Tests  245 passed | 1 skipped (246)
+2026-10-03T12:57:07.6128841Z    Start at  12:56:23
+2026-10-03T12:57:07.6129640Z    Duration  44.19s (tests 88%, import 10%, transform 2%)
+2026-10-03T12:57:07.6133967Z
+2026-10-03T12:57:07.6346332Z ##[group]Run bun run audit:i18n
+2026-10-03T12:57:07.6346598Z bun run audit:i18n
+2026-10-03T12:57:07.6380168Z shell: /usr/bin/bash -e {0}
+2026-10-03T12:57:07.6380424Z ##[endgroup]
+2026-10-03T12:57:07.6446311Z $ node scripts/audit-i18n.mjs
+2026-10-03T12:57:08.8844115Z i18n audit: 65 files, 2272 keys used, 3405 keys in en, 0 problem(s)
+2026-10-03T12:57:08.9111957Z Post job cleanup.
+2026-10-03T12:57:09.0468953Z Post job cleanup.
+2026-10-03T12:57:09.1762644Z (node:2350) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-03T12:57:09.1764789Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-03T12:57:09.1853144Z Post job cleanup.
+2026-10-03T12:57:09.2561238Z [command]/usr/bin/git version
+2026-10-03T12:57:09.2591385Z git version 2.55.0
+2026-10-03T12:57:09.2621258Z Temporarily overriding HOME='/home/runner/work/_temp/81b399ce-86ff-4704-a132-d8c4b432091d' before making global git config changes
+2026-10-03T12:57:09.2625819Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-03T12:57:09.2627228Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/desktop/desktop
+2026-10-03T12:57:09.2668821Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-03T12:57:09.2692423Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-03T12:57:09.2869018Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-03T12:57:09.2895216Z http.https://github.com/.extraheader
+2026-10-03T12:57:09.2903241Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-03T12:57:09.2931927Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-03T12:57:09.3094960Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-03T12:57:09.3116823Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-03T12:57:09.3386269Z Cleaning up orphan processes
+2026-10-03T12:57:09.3560065Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

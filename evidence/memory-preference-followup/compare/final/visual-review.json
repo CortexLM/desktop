@@ -1,0 +1,121 @@
+{
+  "reviewedAt": "2026-10-03T17:18:10.267998+00:00",
+  "finalFingerprint": "64a314be9950c61466f8beec1b1ef50aa7f5b60a7f67d67bc3deff805a5800ef",
+  "contacts": [
+    {
+      "file": "contacts/delta-01.jpg",
+      "sha256": "dececffc0832c82f6d9e16af43dce1e1df02449141f2b05f6cd0e4b178783647",
+      "states": [
+        "bot-settings~general-dark",
+        "bot-settings~general-light",
+        "bot-settings~permissions-dark",
+        "bot-settings~permissions-light",
+        "bot-settings~memory-dark",
+        "bot-settings~memory-light",
+        "bot-settings~usage-dark",
+        "bot-settings~usage-light"
+      ],
+      "pairs": 8,
+      "roles": [
+        "initial-app",
+        "final-app"
+      ],
+      "inspected": true
+    },
+    {
+      "file": "contacts/delta-02.jpg",
+      "sha256": "b149c03c139edfa58d805ef183b4014a399b37edc07bdea1c75c267be0838526",
+      "states": [
+        "memory~list-dark",
+        "memory~list-light",
+        "memory~off-dark",
+        "memory~off-light",
+        "memory~empty-dark",
+        "memory~empty-light",
+        "settings~general-dark",
+        "settings~general-light"
+      ],
+      "pairs": 8,
+      "roles": [
+        "initial-app",
+        "final-app"
+      ],
+      "inspected": true
+    },
+    {
+      "file": "contacts/delta-03.jpg",
+      "sha256": "1978c1dc3ecd2387c74bcfb87117ff1150c0b3067f7ee688292d529a127717cc",
+      "states": [
+        "settings~appearance-dark",
+        "settings~appearance-light",
+        "settings~providers-dark",
+        "settings~providers-light",
+        "settings~connection-dark",
+        "settings~connection-light",
+        "settings~bot-dark",
+        "settings~bot-light"
+      ],
+      "pairs": 8,
+      "roles": [
+        "initial-app",
+        "final-app"
+      ],
+      "inspected": true
+    },
+    {
+      "file": "contacts/delta-04.jpg",
+      "sha256": "8d52ef2e58487a0aa006a72d9c3cca5843c696a68c79e87aea8a8496f702401a",
+      "states": [
+        "settings~notifications-dark",
+        "settings~notifications-light",
+        "settings~privacy-dark",
+        "settings~privacy-light",
+        "settings~shortcuts-dark",
+        "settings~shortcuts-light",
+        "settings~account-dark",
+        "settings~account-light"
+      ],
+      "pairs": 8,
+      "roles": [
+        "initial-app",
+        "final-app"
+      ],
+      "inspected": true
+    }
+  ],
+  "fullResolutionOriginals": [
+    {
+      "state": "bot-settings~general-light",
+      "role": "final-app",
+      "path": "/tmp/opencode/memory-preference/compare-final/captures/2026-10-03T17-03-21-517Z-vfh1tI/bot-settings~general-light.app.png",
+      "sha256": "e7ba11d86d5ea41d85979346ddc1d2b6a15511f7f9e14444d9ecce8601002e4c",
+      "inspected": true
+    },
+    {
+      "state": "bot-settings~general-light",
+      "role": "initial-app",
+      "path": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/bot-settings~general-light.app.png",
+      "sha256": "ee30e6f7a228c4bef478808e5332b3bd8f189cd6edbea5a9aefe663cb3a8a2fb",
+      "inspected": true
+    },
+    {
+      "state": "memory~off-dark",
+      "role": "final-app",
+      "path": "/tmp/opencode/memory-preference/compare-final/captures/2026-10-03T17-03-21-517Z-vfh1tI/memory~off-dark.app.png",
+      "sha256": "d39305e6e685f3b44b2a8a3bd1973f4180e779fae87911bc4ac41548827ce8e1",
+      "inspected": true
+    },
+    {
+      "state": "settings~privacy-light",
+      "role": "final-app",
+      "path": "/tmp/opencode/memory-preference/compare-final/captures/2026-10-03T17-03-21-517Z-vfh1tI/settings~privacy-light.app.png",
+      "sha256": "023e96fe1c93627ae5f0cac072f6ff5a3a0c5f23e8c0760a0911132737549e30",
+      "inspected": true
+    }
+  ],
+  "maximumDelta": "Bot General light pair: purple mascot outline/pose changes; identity text, channel rows, log and actions stay aligned. Exact changed-content bounds [1410,362,1510,440] isolate the mascot. No text/layout shift observed.",
+  "memoryOff": "Final dark full-size retains disabled switch, pause/count banner and faded groups. Both themes sampled Memory list/off panels remain RGBA-exact to initial and frozen.",
+  "privacy": "Final light full-size retains Memory-enabled toggle and original three-row preview layout. Both themes entire content region and sampled Memory row equal initial RGBA. Neither has a frozen reference.",
+  "allPairs": "All32 final/initial app pairs inspected on four sheets; no new blocking static layout change found. Twenty-eight content regions exact; four remaining content differences lie in Bot General or Memory-empty mascots. Header/sidebar raster differences and all frozen residuals retained.",
+  "boundary": "Scoped final preview acceptance only. Source guard remains inactive for settled preview; listener change is not a live-race proof. No test/full-suite/new-copy/locale/native/CI/ASAR acceptance."
+}

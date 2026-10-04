@@ -1,0 +1,25 @@
+{
+  "smoke": "process/window/renderer success",
+  "nativeDisplayCapture": "failed",
+  "nativeCaptureCause": "unknown; stderr retained",
+  "nativeDisplayFile": false,
+  "diagnostics": [
+    {
+      "original": "/var/tmp/opencode/ci-37c22c2/macos/out/ExcUserFault_Setup Assistant-2026-03-16-083243.ips",
+      "retained": "logs/ExcUserFault_Setup Assistant-2026-03-16-083243.ips.gz",
+      "rawSHA256": "384ea4db6324dc5b8ab6a0fd5a4594b620e76ec694e0f0bb75495595824f90dd",
+      "rawBytes": 48034,
+      "gzipSHA256": "b51b4824f155dfe860b4b813e4bc08f2adcb46eabd6dec77c82b301dc00633f7",
+      "appName": "Setup Assistant",
+      "timestamp": "2026-03-16 08:32:43.00 -0700",
+      "simulated": true,
+      "exception": "EXC_GUARD",
+      "terminationNamespace": "WEBKIT"
+    }
+  ],
+  "cortexCrashDiagnosticInArtifact": false,
+  "crashFreeClaim": false,
+  "packageDownloaded": false,
+  "ciASARCompared": false,
+  "packageArtifactID": 11272761294
+}

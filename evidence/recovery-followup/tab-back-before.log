@@ -1,0 +1,38 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 tests/e2e/navigation.spec.ts:4:1 › Back cancels a pending tab choice even when its label matches an older request (4.3s)
+
+
+  1) tests/e2e/navigation.spec.ts:4:1 › Back cancels a pending tab choice even when its label matches an older request
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      38 |       nav.removeEventListener("currententrychange", check);
+      39 |       return changed;
+    > 40 |     }, first)).toBe(false);
+         |                ^
+      41 |     await expect(chat).toHaveAttribute("aria-selected", "true");
+      42 |     await commit.dispose();
+      43 |   } finally { await app.close(); }
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:40:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/desktop-tab-back-before/navigation-Back-cancels-a--5aa40-el-matches-an-older-request/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/desktop-tab-back-before/navigation-Back-cancels-a--5aa40-el-matches-an-older-request/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/desktop-tab-back-before/navigation-Back-cancels-a--5aa40-el-matches-an-older-request/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/desktop-tab-back-before/navigation-Back-cancels-a--5aa40-el-matches-an-older-request/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/navigation.spec.ts:4:1 › Back cancels a pending tab choice even when its label matches an older request

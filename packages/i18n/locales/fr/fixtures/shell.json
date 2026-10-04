@@ -1,0 +1,89 @@
+{
+  "user": {
+    "initials": "CL"
+  },
+  "bot": {
+    "name": "Nova",
+    "doing": "trie tes e-mails"
+  },
+  "projects": [
+    {
+      "name": "Lancement printemps",
+      "to": "project",
+      "chats": [
+        {
+          "title": "Plan de lancement du 14 avril",
+          "to": "chat",
+          "active": true
+        },
+        {
+          "title": "Séquence d’e-mails clients",
+          "to": "chat",
+          "dim": true
+        },
+        {
+          "title": "Retours de l’avant-première",
+          "to": "chat",
+          "dim": true
+        },
+        {
+          "title": "Afficher plus",
+          "to": "project",
+          "dim": true
+        }
+      ]
+    },
+    {
+      "name": "Studio Nord",
+      "meta": "3 tâches",
+      "status": "yellow",
+      "to": "project",
+      "chats": []
+    }
+  ],
+  "repos": [
+    {
+      "name": "cortex-web",
+      "tasks": [
+        {
+          "title": "Corriger la pagination des factures",
+          "status": "blue",
+          "to": "code-session"
+        },
+        {
+          "title": "Migrer l’authentification vers les clés d’accès",
+          "meta": "+214 −37",
+          "to": "code-diff"
+        },
+        {
+          "title": "Ajouter les exports CSV",
+          "status": "green",
+          "to": "code-pr"
+        }
+      ]
+    },
+    {
+      "name": "cortex-ios",
+      "tasks": [
+        {
+          "title": "Réparer le crash au réveil",
+          "status": "red",
+          "to": "code-terminal"
+        }
+      ]
+    }
+  ],
+  "envs": [
+    {
+      "name": "Cloud · ubuntu-24",
+      "icon": "cpu",
+      "meta": "prêt",
+      "status": "green"
+    },
+    {
+      "name": "MacBook Pro local",
+      "icon": "terminal",
+      "meta": "hors ligne"
+    }
+  ]
+}

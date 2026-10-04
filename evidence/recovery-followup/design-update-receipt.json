@@ -1,0 +1,159 @@
+{
+  "verifiedAt": "2026-10-02T17:59:41.915676+00:00",
+  "scope": "Read-only reference provenance. Stored browser checks are not rerun or promoted to native/backend/whole-page acceptance.",
+  "desktop5609": {
+    "sourceManifest": "/tmp/opencode/desktop-integration-bd0a487691a4/source.json",
+    "sourceManifestSha256": "64d77e5020d6a1eca7cb42750906448b896cba5c4759c321cf45cb99a0440f5d",
+    "sourceFingerprint": "bd0a487691a4f7c1c52bf71972886a62e0370844fb063af24c688bf9deea8540",
+    "sourceFiles": 163,
+    "receipt": "/tmp/opencode/registered-families-bd0a487691a4-verified/manifest.json",
+    "receiptSha256": "96af7ab9e9985d5a440d4a9cd5f0a58f40e07897a03d0a5bd4af014ddf70247a",
+    "verifiedChecks": 26,
+    "verifiedImages": 18,
+    "routes": 116,
+    "families": 117,
+    "scope": "Historical source-isolated browser prototype, no current-live or Electron approval."
+  },
+  "desktop5610": {
+    "sourceManifest": "/tmp/opencode/public-host-final/source.json",
+    "sourceManifestSha256": "ec367858f2bf87fceba1086139f3157410f12640d1d31baa4130d0e47d1c1098",
+    "sourceFiles": 165,
+    "receipts": [
+      {
+        "manifest": "/tmp/opencode/registered-families-5610/manifest.json",
+        "sha256": "fba490196c4cc2cefd965363efc37dae5b4e5d5eb140d0817f549b5f2319d825",
+        "checkCount": 26,
+        "verifiedImages": 18
+      },
+      {
+        "manifest": "/tmp/opencode/public-host-final-evidence/manifest.json",
+        "sha256": "4745a417b0c55b7138a2555e42db947e98bdae1d879216cd86c3f2d8e03a267c",
+        "checkCount": 16,
+        "verifiedImages": 16
+      }
+    ],
+    "scope": "Later public-host and navigation receipts are independently source-bound; no reattribution of 5609 results."
+  },
+  "desktopAssembly": {
+    "passed": true,
+    "readonly": true,
+    "fingerprint": "d814599e965447346371dbe1f4cb139febf2c6c375fb69c2bdb2fd2968fe8abc",
+    "sourceInputs": 1574,
+    "buildFiles": 1399,
+    "routes": 116,
+    "effectiveStates": 694,
+    "checks": {
+      "navigation": 26,
+      "publicHost": 16,
+      "security": 43,
+      "previews": true
+    },
+    "served": [
+      "assets/index-B9lOSK9s.js",
+      "assets/index-BUNxVbhu.css",
+      "fonts/Geist-Variable.woff2",
+      "fonts/GeistMono-Variable.woff2",
+      "index.html"
+    ],
+    "sourceManifest": "/tmp/opencode/desktop-assembly-2026-10-02/source-manifest.json",
+    "sourceManifestSha256": "5e015d205477a1ed32e46430406d8e0220649a761b5d87b224ad35ca83d43022",
+    "buildManifestSha256": "05a78713c013d5dafc895afa09a33408407bc7971e692c6001b9126f090fc62f",
+    "checkerSha256": "6b0544478351476014a72ab890cef414e4762f2ef1a5895e553fb5667f1c750e",
+    "scope": "Read-only checker verified stored integration results, files and five HTTP assets; no fresh browser journeys/build."
+  },
+  "icons": {
+    "manifest": "/root/design-studies/cortex-app-v3/icons/followup/manifest.json",
+    "manifestSha256": "6cecac6b1bcd7d443b6daf1257abb202ff14d9e7fb7929d33eac377203b62a40",
+    "icons": {
+      "plug-zap": {
+        "creationId": "01a0fcfa-9a08-7d04-80b1-789d48969549",
+        "sha256": "6dd42bf69d9dda4b3df990484b44ef5e8c05243a1f548c751a67594004df1db6",
+        "rawSha256": "d0a52a66bdcde3838542b049f1339a90e636e7856b0e09a3eed9c9bc3daf8fb2"
+      },
+      "settings-2": {
+        "creationId": "01a0fcfa-9988-7c01-ba91-56b411773b1b",
+        "sha256": "cb1e4aa5ba8e24ae60cbd572dc069f22ab60fc3d4a1eae1c93fe5f3618f8c1db",
+        "rawSha256": "def2063cb84377816502f84d9db51750cb0352ce5412b93036e02855e6326ab9"
+      }
+    },
+    "svgFiles": 121,
+    "handKeys": 4,
+    "overrides": [
+      "system"
+    ],
+    "usableNames": 124,
+    "catalogSamples": 125,
+    "verifiedProofImages": 4,
+    "proofSummary": {
+      "generatedIcons": 2,
+      "measuredNewInstances": 64,
+      "measuredContextInstances": 128,
+      "screenshots": 4,
+      "xmlValid": true,
+      "allSourceGeometryAttributesPreserved": true,
+      "distinctNewGeometry": true,
+      "noReferencePathCopied": true,
+      "noRasterOrExternalAssets": true,
+      "normalizedCenter": [
+        12,
+        12
+      ],
+      "geometryLongestSide24": 17,
+      "sourceStrokeWidth24": 1.75,
+      "wrapperGeometryLongestSide24": 20,
+      "wrapperStrokeWidth24": 1.5,
+      "unchangedReferenceHashes": true,
+      "errors": 0
+    },
+    "scope": "Two generated variants, raw/normalized/installed hashes and XML boundaries checked; light/dark DPR1 sheets inspected. No desktop icon integration."
+  },
+  "iosWebReference": {
+    "fingerprint": "bbf640ff95cc73fc848231d5ac35fb6292f422c27ea231b6761639aab9df3480",
+    "routes": 64,
+    "states": 477,
+    "images": 954,
+    "verifiedViews": 3816,
+    "passed": true,
+    "freeze": "/root/cortex-ios-ui-freezes/2026-10-02-bbf640ff95cc/cortex-ios-ui/freeze.json",
+    "freezeSha256": "f257bd308c1179949591c08d9429bd5b699dca7421f86819085292e1133a95df",
+    "checkerSha256": "437fa2ad265b890de780a9d7c6522f49d671fe85ad207da52fc91c64ed546812",
+    "sourceFiles": 278,
+    "buildFiles": 29,
+    "evidenceFiles": 54,
+    "screenshots": {
+      "count": 954,
+      "dimensions": [
+        1179,
+        2556
+      ],
+      "scale": 3,
+      "manifest": "shots/manifest.json",
+      "sha256": "ff2ebae3eab8e85e67d7c87626b6b6129baddc7e2a292296d064d52d94bc1d42"
+    },
+    "independentCorrectionReview": {
+      "path": "review/code-review-confirm/manifest.json",
+      "sha256": "d5a9fa71b613851497cf14ea957d2a67ca9c222fdc5323d148e028ea05229701",
+      "checks": 22,
+      "passed": true,
+      "scope": "Three scoped corrections, not whole-page acceptance."
+    },
+    "scope": "Frozen web reference; 22 checks confirm three scoped corrections. No native iPhone certification, product-wide acceptance or desktop reference replacement.",
+    "independentCorrectionArtifactsVerified": 41,
+    "independentCorrectionCount": 3
+  },
+  "reportHashesAtReadback": {
+    "/root/cortex-ui/review/fixes-chat-system.md": "f6ef895c652fdc3950c0b23d8ca906b0d2b51c9f655abc36af2507c0b00af42b",
+    "/root/cortex-ui/review/fixes-travail.md": "3361d11fcc256f747df6c0c3338da57162d7f08d26df4e0e7618d1d1e750563a",
+    "/root/cortex-ui/review/fixes-readers-code.md": "20f2adf178f54ddb228f7389a0083a45c501819cfecf8621863bdb2c6e27449c",
+    "/root/cortex-ui/review/findings-merged.md": "f66974718b93904b109da4db519891645fd130efec758f2706f5c9b84cba2b74",
+    "/root/cortex-ui/review/confirmation-status.md": "dc30d1130da3dd4f21f8b23e0d2c972742c6e9cff981511bcd08457ea0db7f13",
+    "/root/cortex-ui/review/registered-families.md": "8d1c8ff62283dcd815e469fda0474c7214f10e45687405bfde8c605361a38c21",
+    "/root/cortex-ui/review/integrated-assembly.md": "11d96957363675d6957eaba9052f7f9a9a276693844e393d1d59b1c14aab00f4"
+  },
+  "sdkReadback": {
+    "pr": "https://github.com/CortexLM/backend/pull/447",
+    "remoteHead": "7633f7e2fa4df197a3bd19e5316943be20ec6722",
+    "canonicalSchemaBlob": "d6d46014d1c436b96540529dca2a3005556ae920",
+    "scope": "Remote PR head remains at prior delivery; SDK owner reconciliation/regeneration/runtime completion not inferred."
+  }
+}

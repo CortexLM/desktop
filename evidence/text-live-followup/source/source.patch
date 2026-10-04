@@ -1,0 +1,164 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index f0e54b5..b672e65 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -46,6 +46,8 @@ jobs:
+           dpkg-query -W -f='${Package}\t${Version}\t${Status}\n' xvfb fonts-noto-cjk fontconfig > out/fonts/packages.tsv
+       - run: bun run build
+       - run: xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e
++        env:
++          E2E_WORKERS: 1 # Native clipboard and foreground focus are shared by the X desktop.
+       - uses: actions/upload-artifact@v4
+         if: always()
+         with:
+diff --git a/packages/app/src/screens/chat/chat.css b/packages/app/src/screens/chat/chat.css
+index 4b04d1d..32c862e 100644
+--- a/packages/app/src/screens/chat/chat.css
++++ b/packages/app/src/screens/chat/chat.css
+@@ -425,4 +425,6 @@
+ .chat-thumb { width: 160px; max-height: 160px; border-radius: 12px; object-fit: cover; box-shadow: var(--ring); }
+ .chat-thumb-open { display: inline-flex; max-width: 100%; border-radius: 12px; }
+ .chat-thumb-open .chat-thumb { max-width: 100%; }
++.chat-text-open { text-align: start; }
++.chat-text-open:hover { background: var(--hover); }
+ .chat-mthink .switch { display: inline-block; }
+diff --git a/packages/app/src/screens/chat/live-chat.tsx b/packages/app/src/screens/chat/live-chat.tsx
+index fe504a2..5a35da8 100644
+--- a/packages/app/src/screens/chat/live-chat.tsx
++++ b/packages/app/src/screens/chat/live-chat.tsx
+@@ -14,6 +14,7 @@ import { isPreview, useFixtures, usePreviewBot } from "../../preview";
+ import { Actions, Att, BotRow, Paras, css, useBotCfg, useFx } from "./shared";
+ import { ModelComposer, useModels, type ComposerLeaveGuard, type SendOptions } from "./model-composer";
+ import { readRaster } from "../files/raster";
++import { isTextMime } from "../files/text-data";
+ 
+ const KNOWN_ERRORS = ["model_no_image_input", "model_no_pdf_input", "context_window_exceeded", "model_not_found", "provider_key_missing", "provider_auth_failed",
+   "provider_rate_limited", "provider_error", "provider_disabled", "provider_unsupported", "session_busy", "aborted", "tool_failed", "permission_rejected",
+@@ -208,6 +209,9 @@ function FileThumb({ p, onOpen, blocked }: { p: FilePart; onOpen?: () => void; b
+     setImage({ raster, src, ready: false });
+     return () => URL.revokeObjectURL(src);
+   }, [raster]);
++  if (isTextMime(mime) && onOpen) return <button type="button" className="chat-att chat-text-open" aria-label={t("files.upload.open", { name: p.filename ?? t("chat.att.file") })} onPointerDown={(e) => { if (blocked) e.preventDefault(); }} onClick={onOpen}>
++    <span className="chat-att-ic" aria-hidden><Icon name="file-code" /></span><span className="chat-att-txt"><span className="ttl">{p.filename ?? t("chat.att.file")}</span><span className="sub">{t(mime.toLowerCase() === "text/markdown" ? "files.text.markdownSource" : "files.text.plainText")}</span></span>
++  </button>;
+   if (!image || image.raster !== raster || !raster.ok) return <Att name={p.filename ?? t("chat.att.file")} meta={p.mime} />;
+   const thumbnail = <img className="chat-thumb" src={image.src} alt={p.filename ?? t("chat.att.image")} onLoad={() => setImage((current) => current?.src === image.src && !current.ready ? { ...current, ready: true } : current)} onError={() => { URL.revokeObjectURL(image.src); setImage((current) => current?.src === image.src ? null : current); }} />;
+   return onOpen ? <button type="button" className="chat-thumb-open" disabled={!image.ready} aria-label={t("files.upload.open", { name: p.filename ?? t("chat.att.image") })} onPointerDown={(e) => { if (blocked) e.preventDefault(); }} onClick={onOpen}>{thumbnail}</button> : thumbnail;
+@@ -315,7 +319,7 @@ function LiveChat({ id }: { id: string }) {
+         toast.add({ title: t("files.image.finishDraft"), data: { icon: "info" } }); return;
+       }
+       opening.current = true; setLeaving(true);
+-      try { go("file-image", { session: id, message: m.info.id, part: p.id }); }
++      try { go(isTextMime(p.mime) ? "file-code" : "file-image", { session: id, message: m.info.id, part: p.id }); }
+       catch { opening.current = false; setLeaving(false); composer.current?.resume(); }
+     } : undefined} />;
+   };
+diff --git a/packages/app/src/screens/files/files.css b/packages/app/src/screens/files/files.css
+index 570dfb3..99d7673 100644
+--- a/packages/app/src/screens/files/files.css
++++ b/packages/app/src/screens/files/files.css
+@@ -355,6 +355,21 @@
+ .medias-minimap i[data-d="+"] { background: var(--green); opacity: .9; } .medias-minimap i[data-d="-"] { background: var(--red); opacity: .9; }
+ .medias-minimap .medias-thumb { position: absolute; left: 2px; right: 2px; border-radius: 4px; background: var(--hover); box-shadow: var(--ring); pointer-events: none; transition: top var(--d-micro) linear; }
+ 
++.medias-text-live { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
++.medias-text-live .content-top { height: auto; min-height: 56px; padding-block: 12px; }
++.medias-text-live .medias-top .medias-name { white-space: normal; overflow-wrap: anywhere; max-height: 3lh; overflow: auto; }
++.medias-text-live .medias-body { min-width: 0; }
++.medias-text-live .medias-stage { min-height: 0; }
++.medias-text-live .medias-bar { flex-shrink: 0; flex-wrap: wrap; }
++.medias-text-live .medias-bar .medias-meta { white-space: normal; overflow-wrap: anywhere; }
++.medias-text-status:not(:empty) { flex-basis: 100%; }
++.medias-text-scroll { flex: 1; min-width: 0; min-height: 0; overflow: auto; display: flex; align-items: flex-start; border-radius: var(--r-card); background: var(--code-bg); box-shadow: var(--ring); outline-offset: 2px; }
++.medias-text-scroll pre { flex-shrink: 0; margin: 0; padding-block: 10px; font-family: var(--mono); font-size: 12px; line-height: 20px; white-space: pre; }
++.medias-text-gutter { min-width: 48px; padding-inline: 12px 14px; color: var(--t3); text-align: right; user-select: none; }
++.medias-text-source { padding-right: 14px; user-select: text; }
++.medias-text-empty { min-width: 0; margin: 10px 14px 10px 0; font-size: 12px; line-height: 20px; color: var(--t2); overflow-wrap: anywhere; }
++.medias-text-live .fichiers-state { min-height: 0; overflow: auto; }
++
+ .medias-player { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+ .medias-wave { position: relative; height: 96px; display: flex; align-items: center; gap: 2px; cursor: pointer; border-radius: 8px; outline-offset: 4px; }
+ .medias-wave i { flex: 1; min-width: 2px; border-radius: 2px; background: var(--subtle); transition: background var(--d-micro) linear; }
+diff --git a/packages/app/src/screens/files/index.tsx b/packages/app/src/screens/files/index.tsx
+index ab15a2a..ff3c780 100644
+--- a/packages/app/src/screens/files/index.tsx
++++ b/packages/app/src/screens/files/index.tsx
+@@ -3,11 +3,12 @@ import type * as React from "react";
+ import type { ScreenDef } from "../../registry";
+ import { isPreview } from "../../preview";
+ import { FilePdf, FilePptx, FileDocx, FileXlsx, Upload } from "./docs";
+-import { CodeScreen, AudioScreen, VideoScreen, ZipScreen } from "./media";
++import { AudioScreen, VideoScreen, ZipScreen } from "./media";
+ import { FileImage } from "./image";
++import { FileText } from "./text";
+ import "./files.css";
+ 
+-// ponytail: remaining formats await real readers; saved local Chat rasters use FileImage.
++// ponytail: remaining formats await real readers; saved local Chat rasters and text have live viewers.
+ const viewer = (C: () => React.ReactNode) => () => (isPreview() ? <C /> : <Upload />);
+ const base = { mode: "Cortex" as const, group: "files.group" };
+ 
+@@ -25,7 +26,7 @@ export const SCREENS: ScreenDef[] = [
+     ["empty", "files.variant.empty", "vide"], ["dragging", "files.variant.dragging", "glisser"], ["uploading", "files.variant.uploading", "encours"], ["done", "files.variant.done", "termine"], ["errors", "files.variant.errors", "erreurs"]] },
+   { ...base, id: "file-image", name: "files.screen.file-image", render: () => <FileImage />, variants: [
+     ["view", "files.variant.view", "affichage"], ["zoom", "files.variant.zoom", "zoom"], ["compare", "files.variant.compare", "comparaison"]] },
+-  { ...base, id: "file-code", name: "files.screen.file-code", render: viewer(CodeScreen), variants: [
++  { ...base, id: "file-code", name: "files.screen.file-code", render: () => <FileText />, variants: [
+     ["view", "files.variant.view", "affichage"], ["diff", "files.variant.diff", "diff"]] },
+   { ...base, id: "file-audio", name: "files.screen.file-audio", render: viewer(AudioScreen), variants: [
+     ["playing", "files.variant.playing", "lecture"], ["transcribing", "files.variant.transcribing", "transcription"]] },
+diff --git a/packages/app/src/screens/files/raster.ts b/packages/app/src/screens/files/raster.ts
+index d7fc47f..4ead478 100644
+--- a/packages/app/src/screens/files/raster.ts
++++ b/packages/app/src/screens/files/raster.ts
+@@ -1,7 +1,8 @@
++import { attachmentFilename, readInlineBytes } from "./bytes";
++
+ export type Raster = { bytes: Uint8Array<ArrayBuffer>; mime: "image/png" | "image/jpeg" | "image/webp"; width: number; height: number };
+ type Reason = "unsupported" | "invalid" | "tooLarge";
+ type Size = Pick<Raster, "width" | "height">;
+-const MAX_BYTES = 50_000_000, BASE64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+ const check = (ok: boolean, reason: Reason = "invalid") => { if (!ok) throw reason; };
+ const tag = (b: Uint8Array, p: number) => String.fromCharCode(...b.subarray(p, p + 4));
+ const u24 = (b: Uint8Array, p: number) => b[p] + b[p + 1] * 256 + b[p + 2] * 65536;
+@@ -123,36 +124,14 @@ export function readRaster(input: { mime: string; data?: string; url?: string })
+     check(!!input && typeof input.mime === "string");
+     const mime = input.mime.toLowerCase() as Raster["mime"];
+     check(["image/png", "image/jpeg", "image/webp"].includes(mime), "unsupported");
+-    check((input.data !== undefined) !== (input.url !== undefined), "unsupported");
+-    let payload = input.data;
+-    if (input.url !== undefined) {
+-      check(typeof input.url === "string");
+-      const header = /^data:(image\/(?:png|jpeg|webp));base64,/i.exec(input.url);
+-      check(!!header, "unsupported"); check(header![1].toLowerCase() === mime);
+-      payload = input.url.slice(header![0].length);
+-    }
+-    check(typeof payload === "string");
+-    const text = payload!;
+-    check(text.length <= Math.ceil(MAX_BYTES / 3) * 4, "tooLarge");
+-    const padding = text.endsWith("==") ? 2 : text.endsWith("=") ? 1 : 0, length = text.length - padding, tail = length % 4;
+-    check(length > 0 && tail !== 1 && (!padding || text.length % 4 === 0 && padding === 4 - tail));
+-    check(Math.floor(length * 3 / 4) <= MAX_BYTES, "tooLarge");
+-    check(!/[^A-Za-z0-9+/]/.test(text.slice(0, length)));
+-    const last = BASE64.indexOf(text[length - 1]);
+-    check(tail !== 2 || (last & 15) === 0); check(tail !== 3 || (last & 3) === 0);
+-    const raw = atob(text), bytes = new Uint8Array(raw.length);
+-    for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
++    // Preserve unsupported-header versus supported-MIME-mismatch reasons from raster preflight.
++    if (input.data === undefined && typeof input.url === "string") check(/^data:image\/(?:png|jpeg|webp);base64,/i.test(input.url), "unsupported");
++    const bytes = readInlineBytes(input, mime, 50_000_000);
+     const dimensions = mime === "image/png" ? png(bytes) : mime === "image/jpeg" ? jpeg(bytes) : webp(bytes);
+     return { ok: true, value: { bytes, mime, ...dimensions } };
+   } catch (reason) { return { ok: false, reason: reason === "unsupported" || reason === "tooLarge" ? reason : "invalid" }; }
+ }
+ 
+ export function rasterFilename(name: string | undefined, mime: Raster["mime"]): string {
+-  const original = typeof name === "string" ? name : "";
+-  let stem = original.slice(Math.max(original.lastIndexOf("/"), original.lastIndexOf("\\")) + 1)
+-    .replace(/[\p{Cc}\p{Cf}\p{Zl}\p{Zp}<>:"|?*]/gu, "").replace(/\.[^.]*$/, "").replace(/^[ .]+/, "");
+-  // 60 code points plus the extension fit both 255-byte and 255-UTF-16-unit filename limits.
+-  stem = Array.from(stem.slice(0, 120)).slice(0, 60).join("").replace(/[ .]+$/, "");
+-  if (!stem || /^(con|prn|aux|nul|com[1-9¹²³]|lpt[1-9¹²³])(?:\.|$)/i.test(stem)) stem = "image";
+-  return `${stem}.${mime === "image/jpeg" ? "jpg" : mime.slice(6)}`;
++  return attachmentFilename(name, mime === "image/jpeg" ? "jpg" : mime.slice(6), "image");
+ }

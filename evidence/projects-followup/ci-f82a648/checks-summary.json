@@ -1,0 +1,105 @@
+{
+  "lint": "passed",
+  "typecheck": "passed",
+  "unitPassed": 252,
+  "unitSkipped": 1,
+  "unitFiles": 23,
+  "optionalSkip": "packages/desktop/test/remote.test.ts: lists models from a real backend, conditional on CORTEX_TEST_BACKEND_URL",
+  "i18n": {
+    "files": 65,
+    "usedKeys": 2275,
+    "englishKeys": 3405,
+    "problems": 0
+  },
+  "projectsContractTests": 7,
+  "sourceLogSHA256": "a88c652d139df5cb7e84dd9a9337fc6d2019197bfef13ba6952fed651ec20fa2",
+  "checks": {
+    "completedAt": "2026-10-03T15:14:42Z",
+    "conclusion": "success",
+    "databaseId": 111230003220,
+    "name": "Lint, typecheck, unit tests, i18n audit",
+    "startedAt": "2026-10-03T15:12:30Z",
+    "status": "completed",
+    "steps": [
+      {
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/setup-node@v4",
+        "number": 3,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run oven-sh/setup-bun@v2",
+        "number": 4,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run bun install --frozen-lockfile",
+        "number": 5,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run bun run lint",
+        "number": 6,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run bun run typecheck",
+        "number": 7,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run bun run test",
+        "number": 8,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run bun run audit:i18n",
+        "number": 9,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Post Run oven-sh/setup-bun@v2",
+        "number": 16,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Post Run actions/setup-node@v4",
+        "number": 17,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 18,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 19,
+        "status": "completed"
+      }
+    ],
+    "url": "https://github.com/CortexLM/desktop/actions/runs/37132419774/job/111230003220"
+  }
+}

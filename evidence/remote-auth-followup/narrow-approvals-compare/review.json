@@ -1,0 +1,57 @@
+{
+  "completedAt": "2026-10-03T04:43:36.181946+00:00",
+  "scope": "8 Code Settings wide preview states plus existing four-case narrow before/after reports",
+  "rendered": 8,
+  "frozenReferences": 8,
+  "gaps": 0,
+  "losslessImages": 24,
+  "fullResolutionImagesInspected": 24,
+  "negativeResponsiveImagesInspected": 4,
+  "positiveResponsiveImagesAvailable": 0,
+  "all8AppPngsByteIdenticalToPriorFullRun": true,
+  "approvalRows": {
+    "bothThemes": true,
+    "rectangle": [
+      1368,
+      364,
+      2658,
+      564
+    ],
+    "pixelsPerTheme": 258000,
+    "exactDifferentPixelsVsPrior": 0,
+    "exactDifferentPixelsVsFrozen": 0
+  },
+  "maximum": {
+    "name": "code-settings~approvals-light",
+    "differentPixels": 2444,
+    "rawDiffPct": 0.04714506172839506,
+    "roundedDiffPct": 0.05,
+    "priorRoundedDiffPct": 0.05,
+    "priorApp": {
+      "source": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-settings~approvals-light.app.png",
+        "sha256": "6ebf1b461d85089f9ca8aa7cac1e18a5adbe4b8c42877e9d2271fe71b09dc418",
+        "bytes": 734646
+      },
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  "sourceFingerprint": "71772215cd57c34f683d85aa748e6039af25a187249d50863bc97bf3ff362ccd",
+  "sourceFiles": 473,
+  "captureSdkLock": "0.3.1",
+  "currentSdkIntakeNotCovered": true,
+  "newWideLayoutRegression": false,
+  "reviewConclusion": "Wide preservation verified; four rebuilt narrow report cases pass. Existing frozen residuals retained; no whole-product acceptance.",
+  "noRuntimeBuildCaptureNativeCiCommitByReviewer": true
+}

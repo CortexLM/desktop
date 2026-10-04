@@ -1,0 +1,93 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Lint, typecheck, unit tests, i18n audit
+    runs-on: ${{ startsWith(vars.CORTEX_LINUX_X64_RUNNER, 'codebuild-') && format('{0}-{1}-{2}', vars.CORTEX_LINUX_X64_RUNNER, github.run_id, github.run_attempt) || vars.CORTEX_LINUX_X64_RUNNER || 'ubuntu-latest' }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.2 }
+      - run: bun install --frozen-lockfile
+      - run: bun run lint
+      - run: bun run typecheck
+      - run: bun run test
+      - run: bun run audit:i18n
+
+  e2e:
+    name: E2E (Playwright + Electron, Linux)
+    runs-on: blacksmith-4vcpu-ubuntu-2404
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.2 }
+      - run: bun install --frozen-lockfile && node node_modules/electron/install.js
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb fonts-noto-cjk fontconfig
+          mkdir -p out/fonts
+          fc-list --format '%{file}\t%{index}\t%{family}\t%{postscriptname}\t%{charset}\n' > out/fonts/fontconfig.tsv
+          dpkg-query -W -f='${Package}\t${Version}\t${Status}\n' xvfb fonts-noto-cjk fontconfig > out/fonts/packages.tsv
+      - run: bun run build
+      - run: xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-linux
+          path: |
+            test-results/
+            playwright-report/
+            out/fonts/
+
+  macos:
+    name: macOS build, package, launch
+    runs-on: blacksmith-6vcpu-macos-26
+    timeout-minutes: 40
+    env:
+      CSC_IDENTITY_AUTO_DISCOVERY: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.2 }
+      - run: bun install --frozen-lockfile && node node_modules/electron/install.js
+      - run: bun run build
+      - name: E2E on macOS (source build)
+        run: bun run test:e2e
+      - name: Package (unsigned, arm64)
+        run: npx electron-builder --mac dir zip --arm64 --publish never -c.mac.identity=null -c.mac.notarize=false
+      - name: Packaged smoke test
+        run: node scripts/smoke.mjs mac
+      - name: Crash logs
+        if: always()
+        run: mkdir -p out && cp ~/Library/Logs/DiagnosticReports/*.ips out/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: macos
+          path: |
+            out/
+            test-results/
+            playwright-report/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cortex-mac-arm64-zip
+          path: dist/*.zip
+          retention-days: 7

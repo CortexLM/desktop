@@ -1,0 +1,92 @@
+$ playwright test "tests/e2e/ui-flows.spec.ts" --grep "provider key save"
+
+Running 2 tests using 2 workers
+
+  ✘  2 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark (16.6s)
+  ✘  1 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light (16.7s)
+
+
+  1) tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light › 960px
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.toast')
+    Expected: 0
+    Received: 1
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.toast') with timeout 15000ms
+      - waiting for locator('.toast')
+        34 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      45 |       await expect(form.locator(".sub")).toHaveText(`Saved · ${KEY.slice(-4)}`);
+      46 |       expect(await page.content()).not.toContain(KEY);
+    > 47 |       await expect(page.locator(".toast")).toHaveCount(0);
+         |                                            ^
+      48 |       await form.scrollIntoViewIfNeeded();
+      49 |       await expect.poll(() => form.evaluate((el, width) => {
+      50 |         const issues: string[] = [], row = el.getBoundingClientRect();
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/ui-flows.spec.ts:47:44
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/ui-flows.spec.ts:38:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/artifacts/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/artifacts/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/artifacts/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/artifacts/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark › 960px
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.toast')
+    Expected: 0
+    Received: 1
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.toast') with timeout 15000ms
+      - waiting for locator('.toast')
+        34 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      45 |       await expect(form.locator(".sub")).toHaveText(`Saved · ${KEY.slice(-4)}`);
+      46 |       expect(await page.content()).not.toContain(KEY);
+    > 47 |       await expect(page.locator(".toast")).toHaveCount(0);
+         |                                            ^
+      48 |       await form.scrollIntoViewIfNeeded();
+      49 |       await expect.poll(() => form.evaluate((el, width) => {
+      50 |         const issues: string[] = [], row = el.getBoundingClientRect();
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/ui-flows.spec.ts:47:44
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/ui-flows.spec.ts:38:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/artifacts/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/artifacts/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/artifacts/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/artifacts/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light ─
+    tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark ──
+error: script "test:e2e" exited with code 1

@@ -1,0 +1,314 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/remote-auth.spec.ts",
+      "--workers=2",
+      "--output=/tmp/opencode/remote-auth-e2e-first"
+    ],
+    "configFile": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/playwright.config.ts",
+    "rootDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/opencode/remote-auth-e2e-first",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/e2e.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "remote-auth.spec.ts",
+      "file": "remote-auth.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Email code sign-in retains refusal, submits once, reloads and signs out — 960 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2917,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:03:28.613Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "remote-code-refused-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/remote-auth-e2e-first/remote-auth-Email-code-sig-755f5-s-and-signs-out-—-960-light/attachments/remote-code-refused-light-3ab5189febb7903544a6f43e583871b64834e148.png"
+                    },
+                    {
+                      "name": "remote-signed-in-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/remote-auth-e2e-first/remote-auth-Email-code-sig-755f5-s-and-signs-out-—-960-light/attachments/remote-signed-in-light-df0255f42ba3d89a7a22e12232de3ac6931280f2.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aea179ae34735fbe9a1d-591c5ac58645027b1810",
+          "file": "remote-auth.spec.ts",
+          "line": 135,
+          "column": 3
+        },
+        {
+          "title": "Unavailable continuations and cancelled codes stay private; restart clears login — 960 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4805,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:03:28.589Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "remote-mfa-unavailable-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/remote-auth-e2e-first/remote-auth-Unavailable-co-89071-rt-clears-login-—-960-light/attachments/remote-mfa-unavailable-light-aa165a5779cf0fa02b1876ea1c4d2116458040d6.png"
+                    },
+                    {
+                      "name": "remote-verification-unavailable-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/remote-auth-e2e-first/remote-auth-Unavailable-co-89071-rt-clears-login-—-960-light/attachments/remote-verification-unavailable-light-853389de56a06e22fa5e0ac722ed51f0f1000b4d.png"
+                    },
+                    {
+                      "name": "remote-signed-in-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/remote-auth-e2e-first/remote-auth-Unavailable-co-89071-rt-clears-login-—-960-light/attachments/remote-signed-in-1440-light-78f737485df3f28ddd0a88b5b34dd4d8bca46268.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aea179ae34735fbe9a1d-984b6ece0cb0b45329ce",
+          "file": "remote-auth.spec.ts",
+          "line": 200,
+          "column": 3
+        },
+        {
+          "title": "Email code sign-in retains refusal, submits once, reloads and signs out — 960 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2912,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:03:31.586Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "remote-code-refused-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/remote-auth-e2e-first/remote-auth-Email-code-sig-a8bea-ds-and-signs-out-—-960-dark/attachments/remote-code-refused-dark-84393872719217ae1508849decbafd0e1b46646c.png"
+                    },
+                    {
+                      "name": "remote-signed-in-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/remote-auth-e2e-first/remote-auth-Email-code-sig-a8bea-ds-and-signs-out-—-960-dark/attachments/remote-signed-in-dark-cfe002a9b7e546ebf3a56bf231ad45d9a123437c.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aea179ae34735fbe9a1d-98cba352dc4c9cf26887",
+          "file": "remote-auth.spec.ts",
+          "line": 135,
+          "column": 3
+        },
+        {
+          "title": "Unavailable continuations and cancelled codes stay private; restart clears login — 960 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5484,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:03:33.445Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "remote-mfa-unavailable-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/remote-auth-e2e-first/remote-auth-Unavailable-co-52aca-art-clears-login-—-960-dark/attachments/remote-mfa-unavailable-dark-3c5f01af0b64816c000b38da1ef62f1335edb58a.png"
+                    },
+                    {
+                      "name": "remote-verification-unavailable-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/remote-auth-e2e-first/remote-auth-Unavailable-co-52aca-art-clears-login-—-960-dark/attachments/remote-verification-unavailable-dark-f4d5fbf86d26a1c730129399bb1bf028eca9186b.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aea179ae34735fbe9a1d-0810fbaeb60d49b2fd10",
+          "file": "remote-auth.spec.ts",
+          "line": 200,
+          "column": 3
+        },
+        {
+          "title": "Mode and origin changes reject late auth replies and never reuse another origin’s credentials",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2344,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:03:34.525Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aea179ae34735fbe9a1d-e3c44d2de11f8ff91afc",
+          "file": "remote-auth.spec.ts",
+          "line": 276,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-03T03:03:28.068Z",
+    "duration": 10949.865,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

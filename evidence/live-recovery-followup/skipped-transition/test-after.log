@@ -1,0 +1,13 @@
+$ playwright test "tests/e2e/navigation.spec.ts" "tests/e2e/work-scroll.spec.ts" "--workers=1" "--output=/tmp/opencode/skipped-transition-fix/after"
+
+Running 7 tests using 1 worker
+
+  ✓  1 tests/e2e/navigation.spec.ts:4:1 › skipped native route and theme transitions preserve updates and report callback errors (3.5s)
+  ✓  2 tests/e2e/navigation.spec.ts:85:1 › Back cancels a pending tab choice even when its label matches an older request (4.4s)
+  ✓  3 tests/e2e/navigation.spec.ts:127:1 › a newer keyboard tab choice survives the previous route commit (3.4s)
+  ✓  4 tests/e2e/navigation.spec.ts:160:1 › a pending route commit preserves the outgoing Work tree and restores Bot activity (1.5s)
+  ✓  5 tests/e2e/navigation.spec.ts:199:1 › anchors, native menus and history preserve routes, variants and chat identities (13.4s)
+  ✓  6 tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — light (4.8s)
+  ✓  7 tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — dark (4.8s)
+
+  7 passed (36.7s)

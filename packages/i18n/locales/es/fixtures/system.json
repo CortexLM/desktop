@@ -1,0 +1,597 @@
+{
+  "bot": {
+    "name": "Nova",
+    "doing": "ordena tu correo",
+    "meta": "activo"
+  },
+  "user": {
+    "initials": "CL",
+    "name": "Camille Laurent",
+    "first": "Camille",
+    "last": "Laurent",
+    "email": "camille@studionord.fr",
+    "role": "Directora de arte, Studio Nord",
+    "org": "Studio Nord"
+  },
+  "search": {
+    "hits": [
+      {
+        "kind": "chats",
+        "icon": "compose",
+        "title": "Plan de lanzamiento del 14 de abril",
+        "sub": "… los hitos del lanzamiento de primavera están fijados para el 14 de abril, con una vista previa…",
+        "meta": "hoy",
+        "to": "chat"
+      },
+      {
+        "kind": "chats",
+        "icon": "compose",
+        "title": "Secuencia de correos a clientes",
+        "sub": "Tres correos antes del lanzamiento, uno el día D, y un seguimiento a D+7.",
+        "meta": "ayer",
+        "to": "chat"
+      },
+      {
+        "kind": "chats",
+        "icon": "compose",
+        "title": "Respuesta al presupuesto de Atelier Morel",
+        "sub": "Borrador listo para revisar, 8% de descuento en la cerámica.",
+        "meta": "lunes",
+        "to": "chat"
+      },
+      {
+        "kind": "projects",
+        "icon": "folder",
+        "title": "Lanzamiento de primavera",
+        "sub": "12 chats · 18 archivos · Camille, Julien, Inès",
+        "meta": "hace 2 h",
+        "to": "project",
+        "img": "aube"
+      },
+      {
+        "kind": "projects",
+        "icon": "folder",
+        "title": "Studio Nord",
+        "sub": "Rediseño del sitio web · 7 chats · 9 archivos",
+        "meta": "ayer",
+        "to": "project",
+        "img": "lagon"
+      },
+      {
+        "kind": "files",
+        "icon": "file",
+        "title": "Spring-launch-plan.pdf",
+        "sub": "PDF · 2,4 MB · en Lanzamiento de primavera",
+        "meta": "hace 3 h",
+        "to": "file-pdf"
+      },
+      {
+        "kind": "files",
+        "icon": "file",
+        "title": "Q2 launch budget.xlsx",
+        "sub": "Hoja de cálculo · 312 KB · pestaña “Launch”",
+        "meta": "martes",
+        "to": "file-xlsx"
+      },
+      {
+        "kind": "files",
+        "icon": "image",
+        "title": "Spring poster visual.png",
+        "sub": "Imagen · 3840 × 2160",
+        "meta": "hace 1 sem",
+        "to": "file-image"
+      },
+      {
+        "kind": "bots",
+        "icon": "bot",
+        "title": "Nova",
+        "sub": "Prepara las notas de lanzamiento cada lunes a las 09:00",
+        "meta": "activo",
+        "to": "bot"
+      },
+      {
+        "kind": "settings",
+        "icon": "settings",
+        "title": "Notificaciones · Tarea finalizada",
+        "sub": "Avísame cuando termine una tarea de lanzamiento larga",
+        "meta": "Configuración",
+        "to": "settings"
+      },
+      {
+        "kind": "settings",
+        "icon": "settings",
+        "title": "Memoria",
+        "sub": "Lo que Cortex recuerda de ti entre chats",
+        "meta": "Configuración",
+        "to": "memory"
+      }
+    ],
+    "recent": [
+      [
+        "lanzamiento de primavera",
+        "hace 2 h"
+      ],
+      [
+        "presupuesto de Atelier Morel",
+        "ayer"
+      ],
+      [
+        "presupuesto Q2",
+        "lunes"
+      ],
+      [
+        "resumen de Studio Nord",
+        "hace 1 sem"
+      ]
+    ],
+    "opened": [
+      "Lanzamiento de primavera",
+      "Spring-launch-plan.pdf",
+      "Nova"
+    ],
+    "total": "1,248",
+    "q": {
+      "results": "lanzamiento",
+      "empty": "factura xilófono",
+      "loading": "lanzamiento"
+    }
+  },
+  "cmd": {
+    "recents": [
+      {
+        "label": "Plan de lanzamiento del 14 de abril",
+        "icon": "compose",
+        "to": "chat",
+        "meta": "Lanzamiento de primavera"
+      },
+      {
+        "label": "Lanzamiento de primavera",
+        "icon": "folder",
+        "to": "project",
+        "meta": "Proyecto"
+      },
+      {
+        "label": "Presupuesto lanzamiento T2.xlsx",
+        "icon": "file",
+        "to": "file-xlsx",
+        "meta": "Archivo"
+      }
+    ],
+    "q": {
+      "filtered": "lan",
+      "none": "impresión 3D"
+    }
+  },
+  "projects": [
+    {
+      "name": "Lanzamiento de primavera",
+      "desc": "Plan, hitos y materiales para el lanzamiento del 14 de abril.",
+      "img": "aube",
+      "icon": "rocket",
+      "color": "#FF6A13",
+      "members": [
+        "CL",
+        "JM",
+        "IB"
+      ],
+      "chats": 12,
+      "files": 18
+    },
+    {
+      "name": "Studio Nord",
+      "desc": "Rediseño del sitio web y nuevas guías de marca.",
+      "img": "lagon",
+      "icon": "globe",
+      "color": "#1E7BFF",
+      "members": [
+        "CL",
+        "JM"
+      ],
+      "chats": 7,
+      "files": 9
+    },
+    {
+      "name": "Atelier Morel",
+      "desc": "Presupuestos, correos y el calendario del sitio de mayo.",
+      "img": "atelier",
+      "icon": "calendar",
+      "color": "#93603A",
+      "members": [
+        "CL"
+      ],
+      "chats": 4,
+      "files": 6
+    },
+    {
+      "name": "Estudio de mercado T2",
+      "desc": "Ventas por canal y análisis de la competencia.",
+      "img": "marche",
+      "icon": "bolt",
+      "color": "#12B8A0",
+      "members": [
+        "IB",
+        "CL",
+        "TR",
+        "AM"
+      ],
+      "chats": 9,
+      "files": 23
+    },
+    {
+      "name": "Sesión de verano",
+      "desc": "Búsqueda de locaciones, permisos y calendario de tomas.",
+      "img": "montagne",
+      "icon": "image",
+      "color": "#8448FF",
+      "members": [
+        "JM",
+        "CL"
+      ],
+      "chats": 3,
+      "files": 31
+    }
+  ],
+  "newProject": {
+    "name": "Feria Maison & Objet",
+    "instructions": "Responde en inglés, con tono profesional. Los elementos visuales siguen las guías de Studio Nord."
+  },
+  "project": {
+    "name": "Lanzamiento de primavera",
+    "desc": "Plan, hitos y materiales para el lanzamiento del 14 de abril",
+    "color": "#FF6A13",
+    "icon": "rocket",
+    "members": [
+      "CL",
+      "JM",
+      "IB"
+    ],
+    "chats": 12,
+    "files": 18,
+    "fileList": [
+      [
+        "Plan-lanzamiento-primavera.pdf",
+        "PDF · 2.4 MB",
+        "Camille · hace 3 h",
+        "file-pdf"
+      ],
+      [
+        "Presupuesto lanzamiento T2.xlsx",
+        "Hoja de cálculo · 312 KB",
+        "Inès · martes",
+        "file-xlsx"
+      ],
+      [
+        "Presentación preliminar.pptx",
+        "Presentación · 8.1 MB",
+        "Julien · lunes",
+        "file-pptx"
+      ],
+      [
+        "Nota de prensa.docx",
+        "Documento · 64 KB",
+        "Camille · hace 4 d",
+        "file-docx"
+      ],
+      [
+        "Visual cartel primavera.png",
+        "Imagen · 3.2 MB",
+        "Julien · hace 1 sem",
+        "file-image"
+      ]
+    ],
+    "chatList": [
+      [
+        "Plan de lanzamiento del 14 de abril",
+        "hoy"
+      ],
+      [
+        "Secuencia de correos a clientes",
+        "ayer"
+      ],
+      [
+        "Comentarios de la presentación",
+        "lunes"
+      ],
+      [
+        "Brief fotográfico para el póster",
+        "Hace 5 d"
+      ]
+    ],
+    "people": [
+      [
+        "CL",
+        "Camille Laurent",
+        "camille@studionord.fr",
+        "propietario"
+      ],
+      [
+        "JM",
+        "Julien Mercier",
+        "julien@studionord.fr",
+        "editor"
+      ],
+      [
+        "IB",
+        "Inès Benali",
+        "ines@studionord.fr",
+        "espectador"
+      ]
+    ],
+    "instructions": "Estás apoyando el lanzamiento de primavera de Studio Nord, previsto para el 14 de abril.\n\n• Responde en inglés, con calidez pero con precisión.\n• Los precios siempre están en euros, impuestos incluidos.\n• Básate en Spring-launch-plan.pdf para fechas y responsables.\n• Señala cualquier conflicto de horario con la vista previa del 9 de abril.",
+    "invite": "thomas@studionord.fr",
+    "link": "cortex.app/p/spring-launch-7f3a",
+    "botDoing": "Prepara un resumen cada lunes a las 09:00"
+  },
+  "memory": {
+    "exportFile": "cortex-memory.json",
+    "items": [
+      {
+        "id": 1,
+        "theme": "Work",
+        "text": "Camille es directora artística en Studio Nord, en Lyon.",
+        "src": "Learned March 3 · April 14 launch plan"
+      },
+      {
+        "id": 2,
+        "theme": "Work",
+        "text": "El lanzamiento de primavera está previsto para el 14 de abril, con una vista previa el día 9.",
+        "src": "Learned March 12 · Spring launch"
+      },
+      {
+        "id": 3,
+        "theme": "Work",
+        "text": "Prefiere recibir las notas de las reuniones como listas breves.",
+        "src": "Learned February 20"
+      },
+      {
+        "id": 4,
+        "theme": "Preferences",
+        "text": "Escribe en francés, usa nombres de pila con contactos cercanos.",
+        "src": "Learned February 2"
+      },
+      {
+        "id": 5,
+        "theme": "Preferences",
+        "text": "Los precios siempre se dan en euros, impuestos incluidos.",
+        "src": "Learned March 14 · Q2 launch budget"
+      },
+      {
+        "id": 6,
+        "theme": "Contacts",
+        "text": "Julien Mercier se encarga de la producción de video; Inès Benali, de los números.",
+        "src": "Learned March 8"
+      },
+      {
+        "id": 7,
+        "theme": "Contacts",
+        "text": "Atelier Morel: contacto Paul Morel, presupuesto por aprobar antes del día 30.",
+        "src": "Learned Monday · Reply to the Atelier Morel quote"
+      },
+      {
+        "id": 8,
+        "theme": "Personal",
+        "text": "No programar reuniones los miércoles por la tarde.",
+        "src": "Learned March 1"
+      }
+    ]
+  },
+  "onboarding": {
+    "apps": [
+      [
+        "GM",
+        "Correo",
+        "Leer y redactar respuestas"
+      ],
+      [
+        "CA",
+        "Calendario",
+        "Ver tus espacios libres"
+      ],
+      [
+        "DR",
+        "Almacenamiento en la nube",
+        "Encuentra tus documentos"
+      ],
+      [
+        "SL",
+        "Chat de equipo",
+        "Resume los hilos que importan"
+      ]
+    ],
+    "connectors": 40
+  },
+  "login": {
+    "email": "camille@studionord.fr",
+    "good": "482915",
+    "bad": "482913"
+  },
+  "pricing": {
+    "card": "4970 1012 3456 7890",
+    "exp": "08 / 28"
+  },
+  "profile": {
+    "twofaSince": "12 de enero",
+    "passkeys": "MacBook Pro · iPhone",
+    "codes": [
+      "7KQ2-M9XA",
+      "P4TD-81LZ",
+      "W2RN-6CJE",
+      "B8YF-Q3HS",
+      "N5VE-27KD",
+      "H9LM-4XTP",
+      "C3ZB-J6WQ",
+      "R7GU-5NAY"
+    ],
+    "sessions": [
+      [
+        "system",
+        "MacBook Pro · Cortex 2.8",
+        "Lyon, Francia",
+        "Activo ahora",
+        true
+      ],
+      [
+        "globe",
+        "Navegador · macOS",
+        "Lyon, Francia",
+        "Hace 2 h",
+        false
+      ],
+      [
+        "smartphone",
+        "iPhone · Cortex 2.8",
+        "París, Francia",
+        "ayer",
+        false
+      ]
+    ],
+    "chats": 214,
+    "projects": 5,
+    "memories": 8,
+    "files": 18
+  },
+  "offline": {
+    "title": "Plan de lanzamiento del 14 de abril",
+    "lastSync": "14:32",
+    "user": "¿Puedes definir los hitos del lanzamiento de primavera?",
+    "bot": "Aquí están los hitos propuestos para el 14 de abril: vista previa el 9, comunicado de prensa el 10, apertura de ventas el 14 a las 09:00, seguimiento con clientes a los 7 días.",
+    "queue": [
+      [
+        "compose",
+        "Mensaje · Plan de lanzamiento del 14 de abril",
+        "«Añade el seguimiento de prensa el 10 de abril»"
+      ],
+      [
+        "paperclip",
+        "Archivo · Presupuesto de lanzamiento Q2 v3.xlsx",
+        "312 KB · esperando subida"
+      ],
+      [
+        "bot",
+        "Tarea para Nova",
+        "Preparar el resumen del lunes"
+      ]
+    ]
+  },
+  "error": {
+    "ref": "7F3A-21C9",
+    "project": "Estudio de mercado Q2",
+    "owner": "Inès Benali",
+    "idle": "Inactivo desde hace 12 h",
+    "start": "Martes 05:00",
+    "end": "Martes 06:30",
+    "paused": 2,
+    "back": "06:30"
+  },
+  "update": {
+    "version": "2.9",
+    "current": "2.8.4",
+    "size": 148,
+    "notes": [
+      [
+        "ok",
+        "nuevo",
+        "Paleta de comandos ⌘K: todo Cortex desde el teclado, con submenús."
+      ],
+      [
+        "ok",
+        "nuevo",
+        "Proyectos compartidos: invita a tu equipo y asigna un Bot a un proyecto."
+      ],
+      [
+        "run",
+        "mejorado",
+        "Memoria: edita u olvida cada recuerdo, exporta con un clic."
+      ],
+      [
+        "run",
+        "mejorado",
+        "Inicio un 40% más rápido en Macs con Apple silicon."
+      ],
+      [
+        "wait",
+        "corregido",
+        "Los archivos Excel de más de 50 MB vuelven a abrirse."
+      ]
+    ]
+  },
+  "about": {
+    "version": "2.8.4",
+    "build": "2026.09.18",
+    "os": "macOS 15.4 · Apple M3",
+    "ref": "7F3A-21C9"
+  },
+  "providers": [
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "supported": true,
+      "modelCount": 12,
+      "hasKey": true,
+      "keyHint": "sk-ant-…4f2a",
+      "enabled": true
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "supported": true,
+      "modelCount": 34
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "supported": true,
+      "modelCount": 21
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral",
+      "supported": true,
+      "modelCount": 18
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "supported": true,
+      "modelCount": 0
+    },
+    {
+      "id": "inception",
+      "name": "Inception",
+      "supported": false,
+      "modelCount": 2
+    }
+  ],
+  "models": [
+    {
+      "id": "claude-sonnet-4-5",
+      "name": "Claude Sonnet 4.5",
+      "reasoning": true,
+      "image": true,
+      "tools": true,
+      "context": 200000,
+      "input": 3,
+      "output": 15
+    },
+    {
+      "id": "claude-opus-4-1",
+      "name": "Claude Opus 4.1",
+      "reasoning": true,
+      "image": true,
+      "tools": true,
+      "context": 200000,
+      "input": 15,
+      "output": 75
+    },
+    {
+      "id": "claude-haiku-4-5",
+      "name": "Claude Haiku 4.5",
+      "reasoning": false,
+      "image": true,
+      "tools": true,
+      "context": 200000,
+      "input": 1,
+      "output": 5
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "os": {
+    "e2e-linux": {
+      "comparableAliases": 161,
+      "rgbaExact": 132,
+      "changed": 29
+    },
+    "macos": {
+      "comparableAliases": 161,
+      "rgbaExact": 142,
+      "changed": 19
+    }
+  },
+  "normalProjectImagesExact": 15,
+  "normalProjectImagesCompared": 16,
+  "remainingProjectDrift": "macos project-create-dark: 12 pixels, bounds [263,356,405,382], within color-control area; cause unknown. All labels/controls reviewed full-size.",
+  "nonProjectDrift": "Other changed same-OS aliases retain measured pixels/bounds without assumed cause; contact review is not blanket full-size or frozen-reference acceptance."
+}

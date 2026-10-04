@@ -1,0 +1,72 @@
+✖ turn done preserves same-chunk and delayed image completion before cancelling (18.633058ms)
+✖ pending image IDs settle independently; error and EOF still finish a turn (4.832431ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 154.50194
+
+✖ failing tests:
+
+test at test/runtime.test.mjs:153:1
+✖ turn done preserves same-chunk and delayed image completion before cancelling (18.633058ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + undefined
+  - {
+  -   file_id: 'lbf_image',
+  -   generation_id: 'image',
+  -   status: 'done',
+  -   type: 'image_generation'
+  - }
+
+      at TestContext.<anonymous> (file:///root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-sdk/packages/sdk/test/runtime.test.mjs:174:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { type: 'image_generation', generation_id: 'image', status: 'done', file_id: 'lbf_image' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/runtime.test.mjs:181:1
+✖ pending image IDs settle independently; error and EOF still finish a turn (4.832431ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+
+    [
+      {
+        generation_id: 'a',
+        status: 'queued',
+        type: 'image_generation'
+  ...
+      },
+  -   {
+  -     generation_id: 'a',
+  -     status: 'done',
+  -     type: 'image_generation'
+  -   },
+  -   {
+  -     generation_id: 'b',
+  -     status: 'error',
+  -     type: 'image_generation'
+  -   }
+    ]
+
+      at TestContext.<anonymous> (file:///root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-sdk/packages/sdk/test/runtime.test.mjs:201:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { type: 'image_generation', generation_id: 'a', status: 'queued' }, { type: 'image_generation', generation_id: 'a', status: 'generating' }, { type: 'image_generation', generation_id: 'b', status: 'generating' }, { type: 'done', message_id: 'msg_test', finish_reason: 'stop' } ],
+    expected: [ { type: 'image_generation', generation_id: 'a', status: 'queued' }, { type: 'image_generation', generation_id: 'a', status: 'generating' }, { type: 'image_generation', generation_id: 'b', status: 'generating' }, { type: 'done', message_id: 'msg_test', finish_reason: 'stop' }, { type: 'image_generation', generation_id: 'a', status: 'done' }, { type: 'image_generation', generation_id: 'b', status: 'error' } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

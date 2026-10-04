@@ -1,0 +1,22 @@
+--- activity/packages/app/src/screens/files/files.css
++++ files/packages/app/src/screens/files/files.css
+@@ -309,6 +309,19 @@
+ .medias-mini { position: absolute; right: 12px; bottom: 12px; width: 132px; aspect-ratio: 3 / 2; border-radius: 8px; overflow: hidden; background: var(--pop) center / cover; box-shadow: var(--shadow-float); }
+ .medias-mini i { position: absolute; border: 1.5px solid var(--on-solid); outline: 1px solid var(--solid); border-radius: 3px; }
+ .medias-exif { width: 240px; flex-shrink: 0; padding: 14px; display: flex; flex-direction: column; gap: 2px; overflow: auto; }
++.medias-image-live { flex: 1; min-height: 0; display: flex; flex-direction: column; }
++.medias-image-live .content-top { height: auto; min-height: 56px; padding-block: 12px; }
++.medias-image-live .medias-top .medias-name { white-space: normal; overflow-wrap: anywhere; max-height: 3lh; overflow: auto; }
++.medias-image-live .medias-col { gap: 12px; }
++.medias-image-live .medias-bar { flex-wrap: wrap; }
++.medias-image-live .medias-bar .medias-meta { white-space: normal; }
++.medias-image-live .medias-zoomv { min-width: 0; }
++.medias-image-live .medias-kv { flex-wrap: wrap; overflow-wrap: anywhere; }
++.medias-image-live .fichiers-state { min-height: 0; overflow: auto; }
++@container content (max-width: 760px) {
++  .medias-image-live .medias-imgrow { flex-direction: column; }
++  .medias-image-live .medias-exif { width: auto; max-height: 150px; }
++}
+ .medias-exif h3 { font-size: 12px; font-weight: 500; color: var(--t2); margin: 8px 0 4px; }
+ .medias-exif h3:first-child { margin-top: 0; }
+ .medias-kv { display: flex; justify-content: space-between; gap: 10px; min-height: 26px; align-items: center; font-size: 12px; }

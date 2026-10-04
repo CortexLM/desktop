@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 tests/e2e/navigation.spec.ts:4:1 › a newer keyboard tab choice survives the previous route commit (17.4s)
+
+
+  1) tests/e2e/navigation.spec.ts:4:1 › a newer keyboard tab choice survives the previous route commit
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /#\/work-home\?/
+    Received string:  "cortex://app/index.html#/home?preview=&theme=light"
+    Timeout: 15000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 15000ms
+        33 × locator resolved to <html lang="en" data-theme="light">…</html>
+           - unexpected value "cortex://app/index.html#/home?preview=&theme=light"
+
+
+      27 |     await expect(work).toHaveAttribute("aria-selected", "true");
+      28 |     await commit.evaluate((release) => release());
+    > 29 |     await expect(page).toHaveURL(/#\/work-home\?/);
+         |                        ^
+      30 |     await expect(page.locator(".travail-filters")).toBeVisible();
+      31 |     await expect(work).toHaveAttribute("aria-selected", "true");
+      32 |     await expect(work).toBeFocused();
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:29:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/desktop-tab-before/navigation-a-newer-keyboar-cfd83-s-the-previous-route-commit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/desktop-tab-before/navigation-a-newer-keyboar-cfd83-s-the-previous-route-commit/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/desktop-tab-before/navigation-a-newer-keyboar-cfd83-s-the-previous-route-commit/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/desktop-tab-before/navigation-a-newer-keyboar-cfd83-s-the-previous-route-commit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/navigation.spec.ts:4:1 › a newer keyboard tab choice survives the previous route commit

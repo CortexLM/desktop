@@ -1,0 +1,152 @@
+{
+  "completedAt": "2026-10-03T04:35:45.926126+00:00",
+  "run": 37094538845,
+  "head": "ffc118a2e58df66f430f3078e00f6e931dd910cf",
+  "checkout": "9615aa0ca582aad3ee2395a81fd51832bca9c7f3",
+  "tree": "71ab70b2c16d43d43728ca3bac54fd47ff862a10",
+  "headCheckoutTreeEqual": true,
+  "checks": {
+    "lint": "passed",
+    "typecheck": "passed",
+    "unitFilesPassed": 18,
+    "unitsPassed": 201,
+    "unitsSkipped": 1,
+    "optionalSkip": "lists models from a real backend (CORTEX_TEST_BACKEND_URL)",
+    "i18n": {
+      "files": 64,
+      "usedKeys": 2272,
+      "englishKeys": 3405,
+      "problems": 0
+    }
+  },
+  "e2e": {
+    "e2e-linux": {
+      "tests": 92,
+      "attempts": 92,
+      "passed": 92,
+      "failed": 0,
+      "retries": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "runnerErrors": 0,
+      "renders": 426,
+      "workers": 4,
+      "durationMs": 194748.149,
+      "caseFiles": {
+        "approvals-recovery.spec.ts": 2,
+        "bot-safety.spec.ts": 10,
+        "chrome.spec.ts": 3,
+        "code-diff-scroll.spec.ts": 1,
+        "code-models.spec.ts": 5,
+        "components.spec.ts": 4,
+        "composer-safety.spec.ts": 4,
+        "engine.spec.ts": 4,
+        "frozen-composer.spec.ts": 4,
+        "interaction-states.spec.ts": 4,
+        "keyboard.spec.ts": 2,
+        "memory-safety.spec.ts": 8,
+        "navigation.spec.ts": 6,
+        "remote-auth.spec.ts": 6,
+        "responsive.spec.ts": 8,
+        "routines.spec.ts": 4,
+        "screens.spec.ts": 1,
+        "search-bots.spec.ts": 3,
+        "terminal-copy.spec.ts": 1,
+        "ui-flows.spec.ts": 4,
+        "work-routine-source.spec.ts": 6,
+        "work-scroll.spec.ts": 2
+      },
+      "artifactFiles": 339,
+      "pngCopies": 337,
+      "uniquePNGs": 111,
+      "copyDistribution": {
+        "3": 109,
+        "5": 2
+      },
+      "reportSHA256": "2261b055602acac3b53fa01c6a8ac6ab0f0ca4b6403ff5fdff2baf51eb7fe5dd"
+    },
+    "macos": {
+      "tests": 92,
+      "attempts": 92,
+      "passed": 92,
+      "failed": 0,
+      "retries": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "runnerErrors": 0,
+      "renders": 426,
+      "workers": 1,
+      "durationMs": 534214.323,
+      "caseFiles": {
+        "approvals-recovery.spec.ts": 2,
+        "bot-safety.spec.ts": 10,
+        "chrome.spec.ts": 3,
+        "code-diff-scroll.spec.ts": 1,
+        "code-models.spec.ts": 5,
+        "components.spec.ts": 4,
+        "composer-safety.spec.ts": 4,
+        "engine.spec.ts": 4,
+        "frozen-composer.spec.ts": 4,
+        "interaction-states.spec.ts": 4,
+        "keyboard.spec.ts": 2,
+        "memory-safety.spec.ts": 8,
+        "navigation.spec.ts": 6,
+        "remote-auth.spec.ts": 6,
+        "responsive.spec.ts": 8,
+        "routines.spec.ts": 4,
+        "screens.spec.ts": 1,
+        "search-bots.spec.ts": 3,
+        "terminal-copy.spec.ts": 1,
+        "ui-flows.spec.ts": 4,
+        "work-routine-source.spec.ts": 6,
+        "work-scroll.spec.ts": 2
+      },
+      "artifactFiles": 344,
+      "pngCopies": 339,
+      "uniquePNGs": 113,
+      "copyDistribution": {
+        "3": 111,
+        "5": 1,
+        "1": 1
+      },
+      "reportSHA256": "355b69a48c19bc8802ef3efa8a2c930ce70c077c6bca709520f03e2a3b5fc30f"
+    }
+  },
+  "images": {
+    "uniquePNGs": 224,
+    "pngCopies": 676,
+    "contactSheetsInspected": 20,
+    "fullResolutionOriginalsInspected": 58,
+    "rgbaExactWebPs": 58
+  },
+  "sourcePins": 37,
+  "rendererFingerprint": "da9e8ed2dc6722fb34f27a64f5071e1fe0e5c1b95cb9cae9b9852fedc371cf0d",
+  "packageSmoke": "Passed process/renderer checks; native display capture failed.",
+  "authScope": "Controlled HTTP with real SDK/engine; no credentialed real Cortex Cloud account or remote inference.",
+  "localAuditOperations": [
+    "Read downloaded CI metadata/logs/reports/images",
+    "Read pinned Git objects",
+    "Hash/CRC/decoded-image verification",
+    "Write only assigned evidence and temporary audit paths"
+  ],
+  "applicationTestsBuildsOrRerunsStarted": false,
+  "macAccess": false,
+  "applicationPackageDownloaded": false,
+  "commitCreated": false,
+  "reproduce": "python3 /var/tmp/opencode/ci-ffc118a-review/finalize.py",
+  "scripts": [
+    {
+      "path": "/var/tmp/opencode/ci-ffc118a-review/collect.py",
+      "sha256": "becee7880737ba8d68b5ea48ce008a786b8b1be982540f2e9cc2a32227c169be"
+    },
+    {
+      "path": "/var/tmp/opencode/ci-ffc118a-review/verify.py",
+      "sha256": "d44bde91955648fa71427641a6733be1c02fa8e64f4b450f40f563da7d4bf7c6"
+    },
+    {
+      "path": "/var/tmp/opencode/ci-ffc118a-review/finalize.py",
+      "sha256": "32a47cda174eabc580689be2d874890f17244a35b94708041ce8c12c87484383"
+    }
+  ],
+  "whitespaceCheck": "All retained UTF-8 text checked with git diff --no-index --check; original log bytes are losslessly gzipped."
+}

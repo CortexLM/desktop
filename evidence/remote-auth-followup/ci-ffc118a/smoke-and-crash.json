@@ -1,0 +1,44 @@
+{
+  "packageStep": "success",
+  "packagedSmokeStep": "success",
+  "window": "Cortex cortex://app/index.html",
+  "rendererCapture": "images/macos/smoke-renderer.webp",
+  "nativeCapture": "failed: could not create image from display",
+  "nativeCaptureFilePresent": false,
+  "smokeAssertionScope": "Packaged process/window plus renderer text/liveness and renderer screenshot; native display capture failure caught by smoke script.",
+  "crashFiles": [
+    {
+      "path": "out/ExcUserFault_Setup Assistant-2026-03-16-083243.ips",
+      "sha256": "384ea4db6324dc5b8ab6a0fd5a4594b620e76ec694e0f0bb75495595824f90dd",
+      "bytes": 48034,
+      "appName": "Setup Assistant",
+      "timestamp": "2026-03-16 08:32:43.00 -0700",
+      "simulated": true,
+      "retainedOriginal": "logs/ExcUserFault_Setup Assistant-2026-03-16-083243.ips.gz",
+      "gzipSHA256": "b51b4824f155dfe860b4b813e4bc08f2adcb46eabd6dec77c82b301dc00633f7",
+      "retention": "Lossless gzip; original bytes unchanged."
+    }
+  ],
+  "crashConclusion": "Only a historical simulated Setup Assistant diagnostic present; no Cortex diagnostic in artifact. This is not crash-free proof.",
+  "applicationPackageDownloaded": false,
+  "packageArtifact": {
+    "id": 11263628650,
+    "node_id": "MDg6QXJ0aWZhY3QxMTI2MzYyODY1MA==",
+    "name": "cortex-mac-arm64-zip",
+    "size_in_bytes": 144638433,
+    "url": "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11263628650",
+    "archive_download_url": "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11263628650/zip",
+    "expired": false,
+    "digest": "sha256:eb5c88db8629ba80f1b9da329d429628ec0df1d640fc7cf547f8c510fc633136",
+    "created_at": "2026-10-03T04:01:05Z",
+    "updated_at": "2026-10-03T04:01:05Z",
+    "expires_at": "2026-10-10T04:01:01Z",
+    "workflow_run": {
+      "id": 37094538845,
+      "repository_id": 1336933474,
+      "head_repository_id": 1336933474,
+      "head_branch": "goal/desktop-rewrite",
+      "head_sha": "ffc118a2e58df66f430f3078e00f6e931dd910cf"
+    }
+  }
+}

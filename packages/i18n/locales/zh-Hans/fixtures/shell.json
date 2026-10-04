@@ -1,0 +1,89 @@
+{
+  "user": {
+    "initials": "CL"
+  },
+  "bot": {
+    "name": "Nova",
+    "doing": "正在整理你的邮件"
+  },
+  "projects": [
+    {
+      "name": "春季发布",
+      "to": "project",
+      "chats": [
+        {
+          "title": "4 月 14 日发布计划",
+          "to": "chat",
+          "active": true
+        },
+        {
+          "title": "客户邮件序列",
+          "to": "chat",
+          "dim": true
+        },
+        {
+          "title": "预览反馈",
+          "to": "chat",
+          "dim": true
+        },
+        {
+          "title": "显示更多",
+          "to": "project",
+          "dim": true
+        }
+      ]
+    },
+    {
+      "name": "Studio Nord",
+      "meta": "3 项任务",
+      "status": "yellow",
+      "to": "project",
+      "chats": []
+    }
+  ],
+  "repos": [
+    {
+      "name": "cortex-web",
+      "tasks": [
+        {
+          "title": "修复发票分页问题",
+          "status": "blue",
+          "to": "code-session"
+        },
+        {
+          "title": "将登录方式改为通行密钥",
+          "meta": "+214 −37",
+          "to": "code-diff"
+        },
+        {
+          "title": "添加 CSV 导出",
+          "status": "green",
+          "to": "code-pr"
+        }
+      ]
+    },
+    {
+      "name": "cortex-ios",
+      "tasks": [
+        {
+          "title": "修复唤醒时崩溃的问题",
+          "status": "red",
+          "to": "code-terminal"
+        }
+      ]
+    }
+  ],
+  "envs": [
+    {
+      "name": "云端 · ubuntu-24",
+      "icon": "cpu",
+      "meta": "就绪",
+      "status": "green"
+    },
+    {
+      "name": "本地 MacBook Pro",
+      "icon": "terminal",
+      "meta": "离线"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+$ bun run build:app && bun run build:desktop
+$ cd packages/app && vite build
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 863 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.66 kB │ gzip:   0.38 kB
+dist/assets/index-BLVQW-LL.css    205.33 kB │ gzip:  36.23 kB
+dist/assets/shell-C-itNRLu.js       0.93 kB │ gzip:   0.49 kB
+dist/assets/shell-BCHMvIiL.js       0.96 kB │ gzip:   0.60 kB
+dist/assets/shell-BuotxJKs.js       0.99 kB │ gzip:   0.55 kB
+dist/assets/shell-Yhf1FA3F.js       0.99 kB │ gzip:   0.61 kB
+dist/assets/shell-CmOyaB3c.js       1.02 kB │ gzip:   0.55 kB
+dist/assets/shell-CYBsECV8.js       1.03 kB │ gzip:   0.56 kB
+dist/assets/shell-CwZdhwwk.js       1.04 kB │ gzip:   0.55 kB
+dist/assets/shell-DBev-A7t.js       1.08 kB │ gzip:   0.65 kB
+dist/assets/bots-Bm1-6BNE.js        4.91 kB │ gzip:   2.54 kB
+dist/assets/bots-G-GRUblJ.js        4.91 kB │ gzip:   2.12 kB
+dist/assets/bots-Dhnxap2k.js        5.24 kB │ gzip:   2.28 kB
+dist/assets/bots-C_sEU92Q.js        5.28 kB │ gzip:   2.36 kB
+dist/assets/bots-DEyUUREg.js        5.30 kB │ gzip:   2.29 kB
+dist/assets/bots-Vx_jdXt9.js        5.31 kB │ gzip:   2.52 kB
+dist/assets/bots-XhGdPyli.js        5.33 kB │ gzip:   2.29 kB
+dist/assets/bots-BdqX5oXD.js        5.75 kB │ gzip:   2.69 kB
+dist/assets/system-Dgm-zsfL.js      8.53 kB │ gzip:   3.50 kB
+dist/assets/system-6GOii8V2.js      8.58 kB │ gzip:   4.22 kB
+dist/assets/system-D-v_P-IN.js      9.09 kB │ gzip:   3.86 kB
+dist/assets/system-D9_n4Goj.js      9.12 kB │ gzip:   3.74 kB
+dist/assets/system-CHsH64BV.js      9.21 kB │ gzip:   4.18 kB
+dist/assets/system-D0-Zm1I0.js      9.35 kB │ gzip:   3.81 kB
+dist/assets/system-CUSSAkIm.js      9.36 kB │ gzip:   3.82 kB
+dist/assets/system-CAyEVNFh.js      9.95 kB │ gzip:   4.39 kB
+dist/assets/work-H1mXT1T-.js       13.41 kB │ gzip:   5.15 kB
+dist/assets/work-BFR3EcZv.js       13.47 kB │ gzip:   6.04 kB
+dist/assets/work-CXx4q0-W.js       14.41 kB │ gzip:   5.50 kB
+dist/assets/work-C3sVn7Tw.js       14.69 kB │ gzip:   6.07 kB
+dist/assets/work-DE4UuE7v.js       14.70 kB │ gzip:   5.58 kB
+dist/assets/work-DM-bn9rL.js       14.72 kB │ gzip:   5.62 kB
+dist/assets/work-D7wz_BjB.js       14.76 kB │ gzip:   5.78 kB
+dist/assets/work-EocTYN0P.js       15.94 kB │ gzip:   6.28 kB
+dist/assets/code-D796Wmca.js       16.38 kB │ gzip:   6.34 kB
+dist/assets/code-Dj63_RNm.js       16.92 kB │ gzip:   7.40 kB
+dist/assets/code-cF_R13w2.js       17.11 kB │ gzip:   6.72 kB
+dist/assets/code-1vU-fKss.js       17.25 kB │ gzip:   6.78 kB
+dist/assets/code-D0jaYtvL.js       17.29 kB │ gzip:   6.88 kB
+dist/assets/code-l1ImvW5S.js       17.35 kB │ gzip:   6.71 kB
+dist/assets/code-D17_EVJa.js       17.71 kB │ gzip:   7.47 kB
+dist/assets/chat-CvBJxFqq.js       17.90 kB │ gzip:   8.91 kB
+dist/assets/chat-CpUWRzSs.js       18.59 kB │ gzip:   7.49 kB
+dist/assets/code-D0QB2Ug8.js       18.70 kB │ gzip:   7.62 kB
+dist/assets/chat-C_J9W5h_.js       20.80 kB │ gzip:   8.12 kB
+dist/assets/chat-CGHYpLbL.js       20.84 kB │ gzip:   8.54 kB
+dist/assets/chat-DPP7jha6.js       21.01 kB │ gzip:   8.24 kB
+dist/assets/files-ChUKgMNm.js      21.02 kB │ gzip:  10.13 kB
+dist/assets/chat-DeCdZ0A1.js       21.07 kB │ gzip:   8.14 kB
+dist/assets/chat-Csrcd_Np.js       21.26 kB │ gzip:   8.86 kB
+dist/assets/files-PuBVWCGV.js      21.43 kB │ gzip:   8.58 kB
+dist/assets/chat-BGpNcO0B.js       22.08 kB │ gzip:   9.39 kB
+dist/assets/files-Cg4Cbij3.js      23.33 kB │ gzip:   9.59 kB
+dist/assets/files-8yYH43vb.js      23.62 kB │ gzip:   9.30 kB
+dist/assets/files-DIk1qP8R.js      23.72 kB │ gzip:   9.27 kB
+dist/assets/files-C3wBKb8I.js      23.85 kB │ gzip:   9.31 kB
+dist/assets/files-B0LnTjdG.js      24.10 kB │ gzip:  10.17 kB
+dist/assets/files-k2Mgqtmt.js      25.31 kB │ gzip:  10.63 kB
+dist/assets/index-DjrlTNct.js   2,444.13 kB │ gzip: 724.70 kB
+
+✓ built in 708ms
+$ node packages/desktop/build.mjs
+
+  packages/desktop/dist/main.cjs      3.4mb ⚠️
+  packages/desktop/dist/main.cjs.map  7.5mb
+
+⚡ Done in 320ms
+
+  packages/desktop/dist/preload.cjs      1.9kb
+  packages/desktop/dist/preload.cjs.map  2.3kb
+
+⚡ Done in 3ms

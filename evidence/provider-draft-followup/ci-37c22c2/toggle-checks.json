@@ -1,0 +1,850 @@
+[
+  {
+    "os": "e2e-linux",
+    "theme": "light",
+    "stages": [
+      {
+        "stage": "after-disable",
+        "draftPreserved": true,
+        "draftEmpty": false,
+        "stored": {
+          "providerID": "fake",
+          "enabled": false,
+          "hasKey": true,
+          "keyHint": "1111"
+        }
+      },
+      {
+        "stage": "after-enable",
+        "draftPreserved": true,
+        "draftEmpty": false,
+        "stored": {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "1111"
+        }
+      },
+      {
+        "stage": "after-save",
+        "draftPreserved": false,
+        "draftEmpty": true,
+        "stored": {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "2222"
+        }
+      }
+    ],
+    "preparations": [
+      {
+        "stage": "before-enable",
+        "refilled": false
+      },
+      {
+        "stage": "before-save",
+        "refilled": false
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/catalog/search",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/catalog/providers/fake/models",
+        "status": 200
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": false,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": true,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      }
+    ],
+    "httpRequests": 0,
+    "uiMutations": [
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": false,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": true,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      }
+    ],
+    "originalFailedAssertionsNowPass": 2,
+    "pageErrorAbsence": "Not established; original toggle test has no page-error listener.",
+    "networkScope": "Zero main HTTP fetches observed after probe installation; not a whole-process startup assertion."
+  },
+  {
+    "os": "e2e-linux",
+    "theme": "dark",
+    "stages": [
+      {
+        "stage": "after-disable",
+        "draftPreserved": true,
+        "draftEmpty": false,
+        "stored": {
+          "providerID": "fake",
+          "enabled": false,
+          "hasKey": true,
+          "keyHint": "1111"
+        }
+      },
+      {
+        "stage": "after-enable",
+        "draftPreserved": true,
+        "draftEmpty": false,
+        "stored": {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "1111"
+        }
+      },
+      {
+        "stage": "after-save",
+        "draftPreserved": false,
+        "draftEmpty": true,
+        "stored": {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "2222"
+        }
+      }
+    ],
+    "preparations": [
+      {
+        "stage": "before-enable",
+        "refilled": false
+      },
+      {
+        "stage": "before-save",
+        "refilled": false
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/catalog/search",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/catalog/providers/fake/models",
+        "status": 200
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": false,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": true,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      }
+    ],
+    "httpRequests": 0,
+    "uiMutations": [
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": false,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": true,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      }
+    ],
+    "originalFailedAssertionsNowPass": 2,
+    "pageErrorAbsence": "Not established; original toggle test has no page-error listener.",
+    "networkScope": "Zero main HTTP fetches observed after probe installation; not a whole-process startup assertion."
+  },
+  {
+    "os": "macos",
+    "theme": "light",
+    "stages": [
+      {
+        "stage": "after-disable",
+        "draftPreserved": true,
+        "draftEmpty": false,
+        "stored": {
+          "providerID": "fake",
+          "enabled": false,
+          "hasKey": true,
+          "keyHint": "1111"
+        }
+      },
+      {
+        "stage": "after-enable",
+        "draftPreserved": true,
+        "draftEmpty": false,
+        "stored": {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "1111"
+        }
+      },
+      {
+        "stage": "after-save",
+        "draftPreserved": false,
+        "draftEmpty": true,
+        "stored": {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "2222"
+        }
+      }
+    ],
+    "preparations": [
+      {
+        "stage": "before-enable",
+        "refilled": false
+      },
+      {
+        "stage": "before-save",
+        "refilled": false
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/catalog/search",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/catalog/providers/fake/models",
+        "status": 200
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": false,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": true,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      }
+    ],
+    "httpRequests": 0,
+    "uiMutations": [
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": false,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": true,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      }
+    ],
+    "originalFailedAssertionsNowPass": 2,
+    "pageErrorAbsence": "Not established; original toggle test has no page-error listener.",
+    "networkScope": "Zero main HTTP fetches observed after probe installation; not a whole-process startup assertion."
+  },
+  {
+    "os": "macos",
+    "theme": "dark",
+    "stages": [
+      {
+        "stage": "after-disable",
+        "draftPreserved": true,
+        "draftEmpty": false,
+        "stored": {
+          "providerID": "fake",
+          "enabled": false,
+          "hasKey": true,
+          "keyHint": "1111"
+        }
+      },
+      {
+        "stage": "after-enable",
+        "draftPreserved": true,
+        "draftEmpty": false,
+        "stored": {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "1111"
+        }
+      },
+      {
+        "stage": "after-save",
+        "draftPreserved": false,
+        "draftEmpty": true,
+        "stored": {
+          "providerID": "fake",
+          "enabled": true,
+          "hasKey": true,
+          "keyHint": "2222"
+        }
+      }
+    ],
+    "preparations": [
+      {
+        "stage": "before-enable",
+        "refilled": false
+      },
+      {
+        "stage": "before-save",
+        "refilled": false
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/catalog/search",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/catalog/providers/fake/models",
+        "status": 200
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": false,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": true,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/api/providers/fake",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      }
+    ],
+    "httpRequests": 0,
+    "uiMutations": [
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": false,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake",
+        "enabled": true,
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key",
+        "status": 200,
+        "responseFields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ]
+      }
+    ],
+    "originalFailedAssertionsNowPass": 2,
+    "pageErrorAbsence": "Not established; original toggle test has no page-error listener.",
+    "networkScope": "Zero main HTTP fetches observed after probe installation; not a whole-process startup assertion."
+  }
+]

@@ -1,0 +1,36 @@
+Running 1 test using 1 worker
+
+[1/1] tests/e2e/navigation.spec.ts:316:1 › Work preview departure keeps its context until native live-Code navigation commits
+  1) tests/e2e/navigation.spec.ts:316:1 › Work preview departure keeps its context until native live-Code navigation commits
+
+    TimeoutError: locator.click: Timeout 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Hide sidebar', exact: true })
+
+
+      347 |     await expect(page).toHaveURL(/#\/code$/);
+      348 |     // Force the still-mounted preview to render while URL and committed screen differ.
+    > 349 |     await page.getByRole("button", { name: "Hide sidebar", exact: true }).click();
+          |                                                                           ^
+      350 |     expect(await outgoing!.evaluate((el) => el.isConnected)).toBe(true);
+      351 |     await expect(draft).toHaveValue("Preserve the departing Work draft");
+      352 |     expect(errors).toEqual([]);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:349:75
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/preview-departure-fix/baseline-results/navigation-Work-preview-de-4bc6b-ive-Code-navigation-commits/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/preview-departure-fix/baseline-results/navigation-Work-preview-de-4bc6b-ive-Code-navigation-commits/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/preview-departure-fix/baseline-results/navigation-Work-preview-de-4bc6b-ive-Code-navigation-commits/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/preview-departure-fix/baseline-results/navigation-Work-preview-de-4bc6b-ive-Code-navigation-commits/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  1 failed
+    tests/e2e/navigation.spec.ts:316:1 › Work preview departure keeps its context until native live-Code navigation commits

@@ -21,26 +21,20 @@ disclosure.
 
 | Secret | Where it lives | Where it must not live |
 | --- | --- | --- |
-| Provider API keys | OS keychain via Electron main | Git, renderer, logs, `.env` committed to the repo |
-| Cortex session | Main-process store, never logged | `packages/cortex-api` source, screenshots, issues |
-| SSH / host keys | Server-side only | The client, the renderer, this repository |
-| Paper MCP auth | Local `.env` / MCP config (gitignored) | Commits, docs, CI logs |
-| R2 API token (production desktop feed) | GitHub Environment `production` secrets (`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `CLOUDFLARE_ACCOUNT_ID`) | Git, renderer, repo-wide secrets, workflow logs, Environment `staging` |
-| R2 API token (staging desktop feed) | GitHub Environment `staging` secrets (same names; token must not be able to write `cortex-releases`) | Git, renderer, Environment `production`, workflow logs |
+| Provider API keys | Electron main: `<dataDir>/credentials.json`, mode `0600`, encrypted with `safeStorage` when the OS keychain is available | Git, the renderer, logs, screenshots, issues |
+| Cortex Cloud / self-hosted session | Electron main only (`packages/desktop/src/remote.ts`) | The renderer, logs, this repository |
 
-`.env.example` is example-only. Values there are placeholders.
+There is no `.env.example`; no secret is needed to build or test.
 
 ## Client rules
 
-- The renderer origin is `file://` (desktop) or the Vite origin (web). It
-  never calls provider APIs with a raw key.
-- IPC is allowlisted in `packages/preload`. Do not add an open `invoke`.
-- `nodeIntegration` stays off. `contextIsolation` and `sandbox` stay on.
-- A new IPC channel that carries a secret needs a schema, a test that the
-  value is not read back, and a mention in the PR.
+- The renderer is served from `cortex://app`, sandboxed, with `contextIsolation` on and `nodeIntegration` off.
+  It never sees a provider key: `PUT /api/providers/:id/key` is write-only and `ProviderConfig` carries only `hasKey` and `keyHint`.
+- The preload bridge (`packages/desktop/src/preload.ts`) exposes plain-data methods only; main routes `cortex:fetch` to `/api/*` and nothing else.
+- Navigation is locked to `cortex://app`; only `https://` URLs open externally.
+- A new IPC channel that carries a secret needs a test that the value is not read back, and a mention in the PR.
 
 ## Dependency reports
 
-GitHub Dependabot and `bun audit` / the `security-audit` workflow are the
-routine path for library CVEs. Those are not a substitute for reporting a
+GitHub Dependabot and `bun audit` are the routine path for library CVEs. Those are not a substitute for reporting a
 product bug in Cortex itself.

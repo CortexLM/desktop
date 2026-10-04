@@ -1,0 +1,597 @@
+{
+  "bot": {
+    "name": "Nova",
+    "doing": "メールを整理しています",
+    "meta": "アクティブ"
+  },
+  "user": {
+    "initials": "CL",
+    "name": "Camille Laurent",
+    "first": "Camille",
+    "last": "Laurent",
+    "email": "camille@studionord.fr",
+    "role": "アートディレクター、Studio Nord",
+    "org": "Studio Nord"
+  },
+  "search": {
+    "hits": [
+      {
+        "kind": "chats",
+        "icon": "compose",
+        "title": "4月14日ローンチ計画",
+        "sub": "…春のローンチのマイルストーンは4月14日に設定され、プレビューは…",
+        "meta": "今日",
+        "to": "chat"
+      },
+      {
+        "kind": "chats",
+        "icon": "compose",
+        "title": "顧客向けメールシーケンス",
+        "sub": "ローンチ前に3件、当日に1件、D+7でフォローアップ。",
+        "meta": "昨日",
+        "to": "chat"
+      },
+      {
+        "kind": "chats",
+        "icon": "compose",
+        "title": "Atelier Morel見積もりへの返信",
+        "sub": "下書きは確認可能、陶器は8%オフ。",
+        "meta": "月曜日",
+        "to": "chat"
+      },
+      {
+        "kind": "projects",
+        "icon": "folder",
+        "title": "春のローンチ",
+        "sub": "12件のチャット · 18件のファイル · Camille, Julien, Inès",
+        "meta": "2時間前",
+        "to": "project",
+        "img": "aube"
+      },
+      {
+        "kind": "projects",
+        "icon": "folder",
+        "title": "Studio Nord",
+        "sub": "ウェブサイトリデザイン · 7件のチャット · 9件のファイル",
+        "meta": "昨日",
+        "to": "project",
+        "img": "lagon"
+      },
+      {
+        "kind": "files",
+        "icon": "file",
+        "title": "Spring-launch-plan.pdf",
+        "sub": "PDF · 2.4 MB · 春のローンチ内",
+        "meta": "3時間前",
+        "to": "file-pdf"
+      },
+      {
+        "kind": "files",
+        "icon": "file",
+        "title": "Q2 launch budget.xlsx",
+        "sub": "スプレッドシート · 312 KB · 「Launch」タブ",
+        "meta": "火曜日",
+        "to": "file-xlsx"
+      },
+      {
+        "kind": "files",
+        "icon": "image",
+        "title": "Spring poster visual.png",
+        "sub": "画像 · 3,840 × 2,160",
+        "meta": "1週間前",
+        "to": "file-image"
+      },
+      {
+        "kind": "bots",
+        "icon": "bot",
+        "title": "Nova",
+        "sub": "毎週月曜日の09:00にローンチノートを準備します",
+        "meta": "アクティブ",
+        "to": "bot"
+      },
+      {
+        "kind": "settings",
+        "icon": "settings",
+        "title": "通知 · タスク完了",
+        "sub": "長時間のローンチタスクが完了したら知らせてください",
+        "meta": "設定",
+        "to": "settings"
+      },
+      {
+        "kind": "settings",
+        "icon": "settings",
+        "title": "メモリー",
+        "sub": "Cortexがチャット間であなたについて記憶している内容",
+        "meta": "設定",
+        "to": "memory"
+      }
+    ],
+    "recent": [
+      [
+        "春のローンチ",
+        "2時間前"
+      ],
+      [
+        "Atelier Morel見積もり",
+        "昨日"
+      ],
+      [
+        "Q2予算",
+        "月曜日"
+      ],
+      [
+        "Studio Nordブリーフ",
+        "1週間前"
+      ]
+    ],
+    "opened": [
+      "春のローンチ",
+      "Spring-launch-plan.pdf",
+      "Nova"
+    ],
+    "total": "1,248",
+    "q": {
+      "results": "ローンチ",
+      "empty": "シロフォンの請求書",
+      "loading": "ローンチ"
+    }
+  },
+  "cmd": {
+    "recents": [
+      {
+        "label": "4月14日ローンチ計画",
+        "icon": "compose",
+        "to": "chat",
+        "meta": "春のローンチ"
+      },
+      {
+        "label": "春のローンチ",
+        "icon": "folder",
+        "to": "project",
+        "meta": "プロジェクト"
+      },
+      {
+        "label": "Q2 launch budget.xlsx",
+        "icon": "file",
+        "to": "file-xlsx",
+        "meta": "ファイル"
+      }
+    ],
+    "q": {
+      "filtered": "lau",
+      "none": "3Dプリント"
+    }
+  },
+  "projects": [
+    {
+      "name": "春のローンチ",
+      "desc": "4月14日のリリースに向けた計画、マイルストーン、資料。",
+      "img": "aube",
+      "icon": "rocket",
+      "color": "#FF6A13",
+      "members": [
+        "CL",
+        "JM",
+        "IB"
+      ],
+      "chats": 12,
+      "files": 18
+    },
+    {
+      "name": "Studio Nord",
+      "desc": "ウェブサイトのリデザインと新しいブランドガイドライン。",
+      "img": "lagon",
+      "icon": "globe",
+      "color": "#1E7BFF",
+      "members": [
+        "CL",
+        "JM"
+      ],
+      "chats": 7,
+      "files": 9
+    },
+    {
+      "name": "Atelier Morel",
+      "desc": "見積書、メール、5月の現場スケジュール。",
+      "img": "atelier",
+      "icon": "calendar",
+      "color": "#93603A",
+      "members": [
+        "CL"
+      ],
+      "chats": 4,
+      "files": 6
+    },
+    {
+      "name": "第2四半期市場調査",
+      "desc": "チャネル別売上と競合分析。",
+      "img": "marche",
+      "icon": "bolt",
+      "color": "#12B8A0",
+      "members": [
+        "IB",
+        "CL",
+        "TR",
+        "AM"
+      ],
+      "chats": 9,
+      "files": 23
+    },
+    {
+      "name": "夏の撮影",
+      "desc": "ロケーション探し、許可申請、撮影スケジュール。",
+      "img": "montagne",
+      "icon": "image",
+      "color": "#8448FF",
+      "members": [
+        "JM",
+        "CL"
+      ],
+      "chats": 3,
+      "files": 31
+    }
+  ],
+  "newProject": {
+    "name": "Maison & Objet 見本市",
+    "instructions": "英語で、プロフェッショナルなトーンで回答してください。ビジュアルは Studio Nord のガイドラインに従います。"
+  },
+  "project": {
+    "name": "春のローンチ",
+    "desc": "4月14日のリリースに向けた計画、マイルストーン、資料",
+    "color": "#FF6A13",
+    "icon": "rocket",
+    "members": [
+      "CL",
+      "JM",
+      "IB"
+    ],
+    "chats": 12,
+    "files": 18,
+    "fileList": [
+      [
+        "Spring-launch-plan.pdf",
+        "PDF · 2.4 MB",
+        "Camille · 3時間前",
+        "file-pdf"
+      ],
+      [
+        "Q2 launch budget.xlsx",
+        "スプレッドシート · 312 KB",
+        "Inès · 火曜日",
+        "file-xlsx"
+      ],
+      [
+        "Preview deck.pptx",
+        "プレゼンテーション · 8.1 MB",
+        "Julien · 月曜日",
+        "file-pptx"
+      ],
+      [
+        "Press release.docx",
+        "文書 · 64 KB",
+        "Camille · 4日前",
+        "file-docx"
+      ],
+      [
+        "Spring poster visual.png",
+        "画像 · 3.2 MB",
+        "Julien · 1週間前",
+        "file-image"
+      ]
+    ],
+    "chatList": [
+      [
+        "4月14日ローンチ計画",
+        "今日"
+      ],
+      [
+        "顧客向けメールシーケンス",
+        "昨日"
+      ],
+      [
+        "プレビューのフィードバック",
+        "月曜日"
+      ],
+      [
+        "ポスター用の写真ブリーフ",
+        "5日前"
+      ]
+    ],
+    "people": [
+      [
+        "CL",
+        "Camille Laurent",
+        "camille@studionord.fr",
+        "オーナー"
+      ],
+      [
+        "JM",
+        "Julien Mercier",
+        "julien@studionord.fr",
+        "編集者"
+      ],
+      [
+        "IB",
+        "Inès Benali",
+        "ines@studionord.fr",
+        "閲覧者"
+      ]
+    ],
+    "instructions": "Studio Nordの春の新発売をサポートしています。予定日は4月14日です。\n\n• 英語で、温かみがありつつ正確に回答してください。\n• 価格は常にユーロ、税込みで表示してください。\n• 日付と担当者はSpring-launch-plan.pdfを参照してください。\n• 4月9日のプレビューとの予定の重複があれば指摘してください。",
+    "invite": "thomas@studionord.fr",
+    "link": "cortex.app/p/spring-launch-7f3a",
+    "botDoing": "毎週月曜9:00に要約を作成します"
+  },
+  "memory": {
+    "exportFile": "cortex-memory.json",
+    "items": [
+      {
+        "id": 1,
+        "theme": "Work",
+        "text": "CamilleはリヨンのStudio Nordでアートディレクターをしています。",
+        "src": "Learned March 3 · April 14 launch plan"
+      },
+      {
+        "id": 2,
+        "theme": "Work",
+        "text": "春の新発売は4月14日予定で、9日にプレビューがあります。",
+        "src": "Learned March 12 · Spring launch"
+      },
+      {
+        "id": 3,
+        "theme": "Work",
+        "text": "会議メモは短いリスト形式で受け取るのを好みます。",
+        "src": "Learned February 20"
+      },
+      {
+        "id": 4,
+        "theme": "Preferences",
+        "text": "フランス語で書き、親しい相手には名前(ファーストネーム)で呼びます。",
+        "src": "Learned February 2"
+      },
+      {
+        "id": 5,
+        "theme": "Preferences",
+        "text": "価格は常にユーロ、税込みで表示します。",
+        "src": "Learned March 14 · Q2 launch budget"
+      },
+      {
+        "id": 6,
+        "theme": "Contacts",
+        "text": "Julien Mercierが映像制作を、Inès Benaliが数字関連を担当しています。",
+        "src": "Learned March 8"
+      },
+      {
+        "id": 7,
+        "theme": "Contacts",
+        "text": "Atelier Morel:担当はPaul Morel、見積もりは30日までに承認が必要です。",
+        "src": "Learned Monday · Reply to the Atelier Morel quote"
+      },
+      {
+        "id": 8,
+        "theme": "Personal",
+        "text": "水曜午後は会議を入れないでください。",
+        "src": "Learned March 1"
+      }
+    ]
+  },
+  "onboarding": {
+    "apps": [
+      [
+        "GM",
+        "メール",
+        "返信を読んで作成する"
+      ],
+      [
+        "CA",
+        "カレンダー",
+        "空き時間を確認する"
+      ],
+      [
+        "DR",
+        "クラウドストレージ",
+        "ドキュメントを探す"
+      ],
+      [
+        "SL",
+        "チームチャット",
+        "重要なスレッドを要約する"
+      ]
+    ],
+    "connectors": 40
+  },
+  "login": {
+    "email": "camille@studionord.fr",
+    "good": "482915",
+    "bad": "482913"
+  },
+  "pricing": {
+    "card": "4970 1012 3456 7890",
+    "exp": "08 / 28"
+  },
+  "profile": {
+    "twofaSince": "1月12日",
+    "passkeys": "MacBook Pro・iPhone",
+    "codes": [
+      "7KQ2-M9XA",
+      "P4TD-81LZ",
+      "W2RN-6CJE",
+      "B8YF-Q3HS",
+      "N5VE-27KD",
+      "H9LM-4XTP",
+      "C3ZB-J6WQ",
+      "R7GU-5NAY"
+    ],
+    "sessions": [
+      [
+        "system",
+        "MacBook Pro・Cortex 2.8",
+        "リヨン、フランス",
+        "現在アクティブ",
+        true
+      ],
+      [
+        "globe",
+        "ブラウザ・macOS",
+        "リヨン、フランス",
+        "2時間前",
+        false
+      ],
+      [
+        "smartphone",
+        "iPhone・Cortex 2.8",
+        "フランス、パリ",
+        "昨日",
+        false
+      ]
+    ],
+    "chats": 214,
+    "projects": 5,
+    "memories": 8,
+    "files": 18
+  },
+  "offline": {
+    "title": "4月14日ローンチ計画",
+    "lastSync": "14:32",
+    "user": "春のローンチのマイルストーンを設定してもらえますか？",
+    "bot": "4月14日に向けた提案マイルストーンは以下の通りです：9日にプレビュー、10日にプレスリリース、14日9:00に販売開始、D+7で顧客フォローアップ。",
+    "queue": [
+      [
+        "compose",
+        "メッセージ・4月14日ローンチ計画",
+        "「4月10日にプレスフォローアップを追加」"
+      ],
+      [
+        "paperclip",
+        "ファイル・Q2ローンチ予算v3.xlsx",
+        "312 KB・アップロード待ち"
+      ],
+      [
+        "bot",
+        "Novaへのタスク",
+        "月曜のまとめを準備"
+      ]
+    ]
+  },
+  "error": {
+    "ref": "7F3A-21C9",
+    "project": "Q2市場調査",
+    "owner": "Inès Benali",
+    "idle": "12時間非アクティブ",
+    "start": "火曜 05:00",
+    "end": "火曜 06:30",
+    "paused": 2,
+    "back": "06:30"
+  },
+  "update": {
+    "version": "2.9",
+    "current": "2.8.4",
+    "size": 148,
+    "notes": [
+      [
+        "ok",
+        "新機能",
+        "コマンドパレット⌘K：Cortexのすべての機能をキーボードから、サブメニュー付きで。"
+      ],
+      [
+        "ok",
+        "新機能",
+        "共有プロジェクト：チームを招待し、プロジェクトにBotを割り当てられます。"
+      ],
+      [
+        "run",
+        "改善",
+        "メモリ：各メモリをワンクリックで編集・削除・書き出し。"
+      ],
+      [
+        "run",
+        "改善",
+        "Apple Silicon Macで起動速度が40%向上。"
+      ],
+      [
+        "wait",
+        "修正",
+        "50 MBを超えるExcelファイルが再び開けるようになりました。"
+      ]
+    ]
+  },
+  "about": {
+    "version": "2.8.4",
+    "build": "2026.09.18",
+    "os": "macOS 15.4・Apple M3",
+    "ref": "7F3A-21C9"
+  },
+  "providers": [
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "supported": true,
+      "modelCount": 12,
+      "hasKey": true,
+      "keyHint": "sk-ant-…4f2a",
+      "enabled": true
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "supported": true,
+      "modelCount": 34
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "supported": true,
+      "modelCount": 21
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral",
+      "supported": true,
+      "modelCount": 18
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "supported": true,
+      "modelCount": 0
+    },
+    {
+      "id": "inception",
+      "name": "Inception",
+      "supported": false,
+      "modelCount": 2
+    }
+  ],
+  "models": [
+    {
+      "id": "claude-sonnet-4-5",
+      "name": "Claude Sonnet 4.5",
+      "reasoning": true,
+      "image": true,
+      "tools": true,
+      "context": 200000,
+      "input": 3,
+      "output": 15
+    },
+    {
+      "id": "claude-opus-4-1",
+      "name": "Claude Opus 4.1",
+      "reasoning": true,
+      "image": true,
+      "tools": true,
+      "context": 200000,
+      "input": 15,
+      "output": 75
+    },
+    {
+      "id": "claude-haiku-4-5",
+      "name": "Claude Haiku 4.5",
+      "reasoning": false,
+      "image": true,
+      "tools": true,
+      "context": 200000,
+      "input": 1,
+      "output": 5
+    }
+  ]
+}

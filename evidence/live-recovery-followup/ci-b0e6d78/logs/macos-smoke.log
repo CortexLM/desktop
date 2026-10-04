@@ -1,0 +1,15 @@
+﻿2026-10-03T02:58:15.8629340Z ##[group]Run node scripts/smoke.mjs mac
+2026-10-03T02:58:15.8629570Z node scripts/smoke.mjs mac
+2026-10-03T02:58:15.8657800Z shell: /bin/bash -e {0}
+2026-10-03T02:58:15.8657950Z env:
+2026-10-03T02:58:15.8658080Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T02:58:15.8658250Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 476
+2026-10-03T02:58:15.8658440Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 596
+2026-10-03T02:58:15.8658580Z ##[endgroup]
+2026-10-03T02:58:16.9312720Z window: Cortex cortex://app/index.html
+2026-10-03T02:58:27.2156790Z could not create image from display
+2026-10-03T02:58:27.2159300Z screencapture failed: Command failed: screencapture -x out/smoke-screen.png
+2026-10-03T02:58:27.2159670Z could not create image from display
+2026-10-03T02:58:27.2159780Z
+2026-10-03T02:58:27.2160750Z renderer text: Chat | Work | Cortex | New chat | Create your Bot | Tools | Web search | Documents | Images | Automations | Recents | Your chats will appear here. | Getting started | 0 of 5 | What’s on today? | No model
+2026-10-03T02:58:27.2161240Z SMOKE OK

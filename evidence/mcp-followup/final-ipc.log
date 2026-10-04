@@ -1,0 +1,7 @@
+$ playwright test "tests/e2e/engine.spec.ts" -g MCP
+
+Running 1 test using 1 worker
+
+  ✓  1 tests/e2e/engine.spec.ts:11:1 › MCP connection material stays in main across save, reload and removal (1.2s)
+
+  1 passed (1.8s)

@@ -1,0 +1,135 @@
+$ playwright test "tests/e2e/navigation.spec.ts" --grep "skipped native route" "--workers=1" "--output=/tmp/opencode/skipped-transition-fix/test-before-final-artifacts"
+
+Running 1 test using 1 worker
+
+  ✘  1 tests/e2e/navigation.spec.ts:4:1 › skipped native route and theme transitions preserve updates and report callback errors (3.3s)
+
+
+  1) tests/e2e/navigation.spec.ts:4:1 › skipped native route and theme transitions preserve updates and report callback errors
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 4
+
+      Array [
+        Object {
+          "callbacks": 1,
+          "kind": "route",
+          "native": true,
+    -     "readyError": "AbortError",
+    -     "readyHandled": true,
+    +     "readyError": null,
+    +     "readyHandled": false,
+        },
+        Object {
+          "callbacks": 1,
+          "kind": "theme",
+          "native": true,
+    -     "readyError": "AbortError",
+    -     "readyHandled": true,
+    +     "readyError": null,
+    +     "readyHandled": false,
+        },
+      ]
+
+      61 |     });
+      62 |     await test.info().attach("skipped-native-transitions", { body: JSON.stringify({ ...skipped, errors }, null, 2), contentType: "application/json" });
+    > 63 |     expect.soft(skipped.records).toEqual(["route", "theme"].map((kind) => ({ kind, callbacks: 1, readyHandled: true, readyError: "AbortError", native: true })));
+         |                                  ^
+      64 |     expect.soft(skipped.unhandled).toEqual([]);
+      65 |     expect.soft(errors).toEqual([]);
+      66 |
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:63:34
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 14
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "kind": "route",
+    +     "message": "Transition was skipped",
+    +     "name": "AbortError",
+    +     "source": "ready",
+    +   },
+    +   Object {
+    +     "kind": "theme",
+    +     "message": "Transition was skipped",
+    +     "name": "AbortError",
+    +     "source": "ready",
+    +   },
+    + ]
+
+      62 |     await test.info().attach("skipped-native-transitions", { body: JSON.stringify({ ...skipped, errors }, null, 2), contentType: "application/json" });
+      63 |     expect.soft(skipped.records).toEqual(["route", "theme"].map((kind) => ({ kind, callbacks: 1, readyHandled: true, readyError: "AbortError", native: true })));
+    > 64 |     expect.soft(skipped.unhandled).toEqual([]);
+         |                                    ^
+      65 |     expect.soft(errors).toEqual([]);
+      66 |
+      67 |     // A skipped animation must still expose an asynchronously rejected update callback.
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:64:36
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+    - Array []
+    + Array [
+    +   "Transition was skipped",
+    +   "Transition was skipped",
+    + ]
+
+      63 |     expect.soft(skipped.records).toEqual(["route", "theme"].map((kind) => ({ kind, callbacks: 1, readyHandled: true, readyError: "AbortError", native: true })));
+      64 |     expect.soft(skipped.unhandled).toEqual([]);
+    > 65 |     expect.soft(errors).toEqual([]);
+         |                         ^
+      66 |
+      67 |     // A skipped animation must still expose an asynchronously rejected update callback.
+      68 |     await probe.evaluate((probe) => probe.fail());
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:65:25
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 4
+
+      Array [
+    +   "Transition was skipped",
+    +   "Transition was skipped",
+    +   "Transition was skipped",
+        "Native route callback failed",
+        "Native route callback failed",
+    +   "Transition was skipped",
+        "Native theme callback failed",
+      ]
+
+      77 |     const failed = await probe.evaluate((probe) => probe.read());
+      78 |     await test.info().attach("native-callback-errors", { body: JSON.stringify({ ...failed, errors }, null, 2), contentType: "application/json" });
+    > 79 |     expect(errors).toEqual(["Native route callback failed", "Native route callback failed", "Native theme callback failed"]);
+         |                    ^
+      80 |     expect(failed.records.slice(2)).toEqual(["route", "theme"].map((kind) => ({ kind, callbacks: 1, readyHandled: true, readyError: "AbortError", native: true })));
+      81 |     await probe.dispose();
+      82 |   } finally { await app.close(); }
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:79:20
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/skipped-transition-fix/test-before-final-artifacts/navigation-skipped-native--d30e8--and-report-callback-errors/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/skipped-transition-fix/test-before-final-artifacts/navigation-skipped-native--d30e8--and-report-callback-errors/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/skipped-transition-fix/test-before-final-artifacts/navigation-skipped-native--d30e8--and-report-callback-errors/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/skipped-transition-fix/test-before-final-artifacts/navigation-skipped-native--d30e8--and-report-callback-errors/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/navigation.spec.ts:4:1 › skipped native route and theme transitions preserve updates and report callback errors
+error: script "test:e2e" exited with code 1

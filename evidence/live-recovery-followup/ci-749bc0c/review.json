@@ -1,0 +1,397 @@
+{
+  "completedAt": "2026-10-03T02:38:34.169363+00:00",
+  "run": 37088533094,
+  "attempt": 1,
+  "head": "749bc0c035391d72aeafb4b5ce39cc0aa5342830",
+  "merge": "e12ef51a418176d17f96ec66ef3c5c2c541fc7f9",
+  "conclusion": "failure",
+  "contactReview": {
+    "uniquePNGs": 185,
+    "extractedCopies": 554,
+    "sheets": [
+      "contacts/contact-linux-01.png",
+      "contacts/contact-linux-02.png",
+      "contacts/contact-linux-03.png",
+      "contacts/contact-linux-04.png",
+      "contacts/contact-linux-05.png",
+      "contacts/contact-linux-06.png",
+      "contacts/contact-linux-07.png",
+      "contacts/contact-linux-08.png",
+      "contacts/contact-macos-01.png",
+      "contacts/contact-macos-02.png",
+      "contacts/contact-macos-03.png",
+      "contacts/contact-macos-04.png",
+      "contacts/contact-macos-05.png",
+      "contacts/contact-macos-06.png",
+      "contacts/contact-macos-07.png",
+      "contacts/contact-macos-08.png"
+    ],
+    "reviewed": true
+  },
+  "fullSizeReview": {
+    "count": 43,
+    "images": [
+      {
+        "path": "images/linux/approvals-list-refused-dark.png",
+        "sha256": "4b66639604cd956e032a9bf6f6549cfd33dfaa9dc31424eea9b36b320d6e85a9",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/approvals-list-refused-light.png",
+        "sha256": "4ac4f18ed8fc3d64ea614e842c6ae1bc24eebf117e21fd16c97f4dea7f430bf3",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/code-session-draft-kept-dark.png",
+        "sha256": "8922592d6877f1195044b7e55a30bc5a391a2d6edbd72dc53ac5e523c9e76607",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/code-session-draft-kept-light.png",
+        "sha256": "79d925fd2d154abdd544f4f48740c5741005b7bc38ea3237fbe7ea54dcb523b1",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-add-refused-dark.png",
+        "sha256": "84debeebcf9171cbbf536c23cc12a89dc245af917d8b1f0b8303f3a43f4229b3",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-add-refused-light.png",
+        "sha256": "0e3d9d41bb9ae1d32346c3545830f64928dbc092db3220a16ced23285e4b902f",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-deleted-refresh-pending-dark.png",
+        "sha256": "1434c4f3490c2548e638aadc29008a069c09881cf4db55ea1538fb8fac4acfd4",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-deleted-refresh-pending-light.png",
+        "sha256": "4ca3dfc726c771ec25420a725f025e8920fd83e38214ac6dca64b596c43059f5",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-owner-loading-dark.png",
+        "sha256": "35fb8c52acd0d6f89ceb019c86f2ed80d23f47474dcdba8be938041b14f8c6fd",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-owner-loading-light.png",
+        "sha256": "85d96788dfd98e92d94817b0d9f2498155d60eb0ad403180edd142e1f4a9b08f",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-owner-read-pending-dark.png",
+        "sha256": "d05727aa4731110af9ca2ba53f9ed03549d5600ab7cb9c9d881832913e84714e",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-owner-read-pending-light.png",
+        "sha256": "cdb2ffc711163a6d1926f8a3612d5376abd1aefeabc13de72adee95cfdf175a8",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-single-refused-dark.png",
+        "sha256": "583981858467a61aac806ebad37bbd779bf828e280799bf59d32437e9340890a",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-single-refused-light.png",
+        "sha256": "1a86a31ac73c676676c1d46fd59dc6908330c7c89b6bb2d0574de93c6908073d",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-wipe-partial-dark.png",
+        "sha256": "4805bbcc7e9b7f2c0ad1416cc622d7957d9550f8ac0e7f8f7b7740c81065b28d",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-wipe-partial-light.png",
+        "sha256": "b49c51dcd09cc41b3fd6e2ca8138b6a69781210c5f01e1f2b34a1d0cf34a80b7",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-wipe-refused-dark.png",
+        "sha256": "28ed44a911b9751a94e1911625f3ea5e571ede9aa11b02406c4eeef1ecf75739",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/memory-wipe-refused-light.png",
+        "sha256": "84c559618d88809a347f0cd0b447f4e8cf2e14296c42083afd7faa54da802a2e",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/provider-key-960-dark.png",
+        "sha256": "6422cf666bf7dac23aa9402c7b2038f72bd286e16090621f8a4a0decb82b1e1e",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/provider-key-960-light.png",
+        "sha256": "772f7f3f3bf4d4ea6b9d2a230f09724fdf1321ffd5e159a4d84ac137ca538933",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/linux/terminal-copy-fr.png",
+        "sha256": "f85edf5c0edf2af9ea38014a8b8bcbe4b3b73d813db88fb114c68c6a03d895cf",
+        "size": [
+          1440,
+          900
+        ]
+      },
+      {
+        "path": "images/macos/approvals-list-refused-dark.png",
+        "sha256": "df5843559bf8f0822eb53fca99c0a27ebabc17ee2f6f878a9888bd8a943811f7",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/approvals-list-refused-light.png",
+        "sha256": "bee269de891d3a64d0068ea4e0b1ea29c8f7cf93fc59e1c04a8ed32687f1bcfe",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/code-session-draft-kept-dark.png",
+        "sha256": "ecf6600322f150a4689bd77420a843cd4f44bb2b39920b738492b3d4e1698a0f",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/code-session-draft-kept-light.png",
+        "sha256": "e0df4ad0cdccd78309c10f471d4cb0caa19095c6166af82703c95a16752c6533",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-add-refused-dark.png",
+        "sha256": "e02fc8bb119a59d48f637628941bc16a5505979f181344d1635a32dfe60ee529",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-add-refused-light.png",
+        "sha256": "31e55c8044543b1542a1bd2b4fa3029e42adfe324b96adbbd7926577b42ec25e",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-deleted-refresh-pending-dark.png",
+        "sha256": "c6694e4161d63a00abb8c798d142a11174873c01e8a6390fbbb894eee113aad6",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-deleted-refresh-pending-light.png",
+        "sha256": "4680f8fa83df911f21b3e76c6a1230edbd97797186df233798b5147a66e561f0",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-owner-loading-dark.png",
+        "sha256": "c11d6310186fa1ef50cd2ccdac192816be1202f685f1ca3d8efd1af0c7f55607",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-owner-loading-light.png",
+        "sha256": "5307556036209fe74821fb6279c4a7a206cd68d5ca33e8037927bc72f5a472f4",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-owner-read-pending-dark.png",
+        "sha256": "668d346ecf16ee06437f0c8f327805c5d3896049d7262ebb72ac1a41546d9966",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-owner-read-pending-light.png",
+        "sha256": "48057547b9e239d413c895eee8bedf8222f2e921a3ddf000ed2bc42d51f0e97d",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-single-refused-dark.png",
+        "sha256": "fe3fa09ccfe303a92d0a713c333b19d3d2c8605fcf64350217629b52405a477b",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-single-refused-light.png",
+        "sha256": "e365009f28544e9c7b49965077f928ceb1fae9edf7e87715763a1c513632d00b",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-wipe-partial-dark.png",
+        "sha256": "14c6000d1c3173d84d2346c90e3b2366aed1299f0d80dfefb329209e9131722c",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-wipe-partial-light.png",
+        "sha256": "dccfd61ef077e8be8befbde5ce57a83883ae938ee4708bf54649f69e8bf9dee8",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-wipe-refused-dark.png",
+        "sha256": "d3f4606217681ef23db48121ef45840d8459137f98f6246bd47f1ad866f4b54d",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/memory-wipe-refused-light.png",
+        "sha256": "7a06127f07d2a1e29e3e4cedb651a192fdf4bd51bcce7b3446f13ce9275e9e1a",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/provider-key-960-dark.png",
+        "sha256": "05943f8c287c6b554f1e025167eb3665705676e232ab411ea76eb90c76934e17",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/provider-key-960-light.png",
+        "sha256": "79e403b6fbafee3f84364f8a52453bf5cd53d39ca715545d15af97e2a655135a",
+        "size": [
+          960,
+          640
+        ]
+      },
+      {
+        "path": "images/macos/terminal-copy-fr.png",
+        "sha256": "ae666c3eea647bce4f0c71fa657a7457b5826ff395ec04f469a89a916296ec41",
+        "size": [
+          1440,
+          900
+        ]
+      },
+      {
+        "path": "images/macos/test-failed-1.png",
+        "sha256": "a849d4f0f46183f5636054960a87b7fc01c2daad4b9fff9c1ddda08b58f6fec5",
+        "size": [
+          1360,
+          840
+        ]
+      }
+    ],
+    "reviewed": true
+  },
+  "originalImageBytesUnchanged": true,
+  "retainedVisualIssues": [
+    "Failed Work frame overlaps board/task content; duration and application rejection emitter unproven.",
+    "Pending owner has incomplete labels; wipe helper text ellipsizes.",
+    "Code draft prefix has narrow presentation; stacked toasts overlap."
+  ],
+  "limits": [
+    "No new Mac package or smoke proof from this run.",
+    "Mac outer artifact ZIP download hash unverified; cached members hashed, API/upload digests match.",
+    "No crash-free claim from absent Cortex diagnostics.",
+    "426 renders per OS are state/theme and copy checks, not retained screenshots or full interaction/visual approval.",
+    "Installed-Mac native full review is a separate pending lot at handoff.",
+    "Later application transition correction requires a separate revision-bound receipt."
+  ],
+  "verification": "Existing report, trace, source-pin, member/image hash and receipt consistency assertions passed; no application tests/builds/CI rerun/Mac operations.",
+  "repositoryWriteScope": "evidence/live-recovery-followup/ci-749bc0c/**"
+}

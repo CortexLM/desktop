@@ -1,0 +1,87 @@
+{
+  "stats": {
+    "startTime": "2026-10-03T03:13:02.097Z",
+    "duration": 247495.453,
+    "expected": 90,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "report_errors": [],
+  "case_count": 90,
+  "result_count": 90,
+  "case_status": {
+    "expected": 90
+  },
+  "result_status": {
+    "passed": 90
+  },
+  "retries": {
+    "0": 90
+  },
+  "result_errors": [],
+  "attachments": {
+    "image/png": 104,
+    "application/json": 10
+  },
+  "image_path_count": 104,
+  "auth_case_count": 6,
+  "auth_captures": 12,
+  "auth_unique_sha256": 10,
+  "auth_missing": 0,
+  "auth_titles": [
+    "Email code sign-in retains refusal, submits once, reloads and signs out \u2014 960 light",
+    "Unavailable continuations and cancelled codes stay private; restart clears login \u2014 960 light",
+    "Email code sign-in retains refusal, submits once, reloads and signs out \u2014 960 dark",
+    "Unavailable continuations and cancelled codes stay private; restart clears login \u2014 960 dark",
+    "Mode and origin changes reject late auth replies and never reuse another origin\u2019s credentials",
+    "Initial connection and auth reads protect selection, canonical sign-in and cancellation"
+  ],
+  "screen_cases": [
+    {
+      "file": "screens.spec.ts",
+      "title": "every design screen and state renders",
+      "line": 10,
+      "ok": true,
+      "expected": "passed",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "workerIndex": 2,
+          "parallelIndex": 2,
+          "status": "passed",
+          "duration": 138707,
+          "errors": [],
+          "stdout": [
+            {
+              "text": "rendered 426 screen states\n"
+            }
+          ],
+          "stderr": [],
+          "retry": 0,
+          "startTime": "2026-10-03T03:14:50.801Z",
+          "annotations": [],
+          "attachments": []
+        }
+      ]
+    }
+  ],
+  "report_sha256": "c89c312e324fb2557fd39354c72f8b0cdbe9f4fb62b8145a633aed9619f625b1",
+  "dist_member_count": 90,
+  "dist_manifest_sha256": "900a5e548f3e5de24dbb0e2324ea12a9a2f649e3e872a7c00f00057ca71801e6",
+  "head": "b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874",
+  "all_attachment_count": 114,
+  "all_png_unique_sha256": 102,
+  "all_png_dimensions": {
+    "(960, 640)": 88,
+    "(1440, 900)": 14,
+    "(1024, 640)": 2
+  },
+  "missing_attachment_count": 0,
+  "attachment_writes_after_report_end": [],
+  "auth_existing_matching_reference_count": 9,
+  "auth_new_unique_copies": 2,
+  "full_run_end": "2026-10-03T03:17:09.592453+00:00",
+  "inline_json_count": 10
+}

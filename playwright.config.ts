@@ -1,62 +1,13 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from "@playwright/test";
 
-/**
- * Playwright E2E Test Configuration for Cortex IDE (Electron)
- */
 export default defineConfig({
-  testDir: './tests/e2e',
-  testMatch: '**/*.spec.ts',
-  
-  // Fixture setup includes Electron launch + firstWindow (each up to 60s).
-  // 60s for the whole test is why CI reported "timeout while setting up
-  // electronApp" even when the binary was only slow to paint.
-  timeout: 120000,
-  expect: {
-    timeout: 10000
-  },
-
-  // Run tests in parallel
+  testDir: "tests/e2e",
+  timeout: 120_000,
+  expect: { timeout: 15_000 },
+  // Default to one macOS GUI test at a time to limit foreground-app contention.
+  workers: Number(process.env.E2E_WORKERS ?? (process.platform === "darwin" ? 1 : 4)),
   fullyParallel: true,
-  workers: process.env.CI ? 2 : 4,
-  
-  // Retry configuration
-  retries: process.env.CI ? 2 : 0,
-  
-  // Reporter configuration
-  reporter: [
-    ['html', { outputFolder: 'test-results/html-report', open: 'never' }],
-    ['json', { outputFile: 'test-results/results.json' }],
-    ['list']
-  ],
-
-  // Global setup/teardown
-  globalSetup: './tests/e2e/global-setup.ts',
-  globalTeardown: './tests/e2e/global-teardown.ts',
-
-  use: {
-    // Base URL for the app (not used for Electron but kept for consistency)
-    baseURL: 'http://localhost:5173',
-    
-    // Capture screenshots and videos on failure
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-    trace: 'retain-on-failure',
-    
-    // Viewport (overridden by Electron window size)
-    viewport: { width: 1400, height: 900 }
-  },
-
-  // Projects for test organization
-  projects: [
-    {
-      name: 'electron-main',
-      testMatch: '**/*.spec.ts',
-      use: {
-        ...devices['Desktop Chrome']
-      }
-    }
-  ],
-
-  // Output directory
-  outputDir: 'test-results/artifacts'
+  reporter: [["list"], ["html", { open: "never", outputFolder: "playwright-report" }], ["json", { outputFile: "test-results/e2e.json" }]],
+  use: { trace: "retain-on-failure", screenshot: "only-on-failure" },
+  outputDir: "test-results/artifacts",
 });

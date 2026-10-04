@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-03T14:22:11.088859+00:00",
+  "base": "0597848cdbdec362e1441b44c67bf74c525feefa",
+  "dirty": true,
+  "manifest": "/tmp/opencode/build-projects-final/pinned-inputs.json",
+  "packageInputs": 515,
+  "buildMembers": 90,
+  "initialUnits": {
+    "passed": 252,
+    "optionalSkipped": 1
+  },
+  "initialElectron": {
+    "passed": 2,
+    "failed": 1
+  },
+  "correctedRace": {
+    "passed": 1,
+    "durationSeconds": 4.3
+  },
+  "i18n": {
+    "files": 65,
+    "usedKeys": 2275,
+    "englishKeys": 3405,
+    "findings": 0
+  }
+}

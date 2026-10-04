@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "/tmp/opencode/remote-chat-replay-review/vitest.config.mjs",
+    "--reporter=verbose",
+    "--reporter=json",
+    "--outputFile.json=/tmp/opencode/remote-chat-replay-review/probes.json"
+  ],
+  "nodeVersion": "v22.23.3",
+  "exitCode": 1,
+  "elapsedSeconds": 1.351,
+  "timedOut": false,
+  "scope": "Captured actual main source; real tarball SDK; controlled Fetch; only probes.test.ts"
+}

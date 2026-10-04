@@ -1,0 +1,5 @@
+{
+  "event": "Initial offline helper rejected equality of threshold-100 text masks",
+  "finding": "Eight thresholded pixels differ; text bounds are equal. Threshold-18 text cores are identical (76 pixels). Full-size visual review and pinned source show the same label.",
+  "correction": "Record exact differences instead of claiming text pixels are identical. No product or test execution."
+}

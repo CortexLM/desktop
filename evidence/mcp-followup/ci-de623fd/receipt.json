@@ -1,0 +1,205 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-10-02T21:15:38.368606+00:00",
+  "run": {
+    "id": 37063183382,
+    "url": "https://github.com/CortexLM/desktop/actions/runs/37063183382",
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "success",
+    "attempt": 1,
+    "check_suite_id": 100396055201,
+    "head_branch": "goal/desktop-rewrite",
+    "head_sha": "de623fdb18551b634f1c388fda7fe1481c9563a8",
+    "created_at": "2026-10-02T20:50:54Z",
+    "updated_at": "2026-10-02T20:58:06Z"
+  },
+  "source": {
+    "head": "de623fdb18551b634f1c388fda7fe1481c9563a8",
+    "base": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+    "checkout_merge": "44c9ead8c77ce2cf52fb3e8ba430ea7d36fbaf70",
+    "merge_parents": ["9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d", "de623fdb18551b634f1c388fda7fe1481c9563a8"],
+    "head_and_merge_tree": "e95f4f337a94d10335d1fb69cb55f66d2f56be83",
+    "compared_previous_head": "ca0828276ea6897cef00a4a376b0176ef87b5e2d",
+    "unchanged_git_objects": {
+      "packages": "850f6dd5da7bf7720a58dc64cc74bbf305e06a96",
+      "packages/app": "88dabd4a20c969d8b18b8a115618b20356fa13ce",
+      "tests": "ec1557fad812713e4b2ad015dd6cb6ce1115325e",
+      "scripts": "f39da28b4a71684f1c2f2fd364e0a92c323dd539",
+      "vendor": "f195d130092da03c4299a5fb5b4c7dbf85066bbf",
+      "bun.lock": "e7a6699315e0b1540076dcb8c059dacd51fa677a",
+      "package.json": "cc1f8aa0296f9ee43e68d20ee45d8017c6fd436f",
+      ".github/workflows/ci.yml": "864e36efa34d7efd1b4198d504703eb87698729f"
+    },
+    "playwright_config": {
+      "previous_blob": "1e33e66a51eff29dee834ff33786159c83b129e8",
+      "head_blob": "daaa65b2f9f9e45abd4b300c8ed076679b8a38a6",
+      "change": "Default workers 4 to darwin ? 1 : 4; E2E_WORKERS override retained. Assertions, timeouts and screenshot requirements unchanged."
+    },
+    "other_changed_paths_scope": "Documentation and evidence only; checked with git diff --name-only.",
+    "main_ref_at_review": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+  },
+  "jobs": [
+    {
+      "id": 111024490649,
+      "name": "E2E (Playwright + Electron, Linux)",
+      "url": "https://github.com/CortexLM/desktop/actions/runs/37063183382/job/111024490649",
+      "status": "completed",
+      "job_and_check_run_conclusion": "success",
+      "head_sha": "de623fdb18551b634f1c388fda7fe1481c9563a8",
+      "started_at": "2026-10-02T20:51:06Z",
+      "completed_at": "2026-10-02T20:54:55Z",
+      "runner_label": "blacksmith-4vcpu-ubuntu-2404",
+      "successful_steps": ["Run bun run build", "Run xvfb-run -a -s \"-screen 0 1920x1080x24\" bun run test:e2e"]
+    },
+    {
+      "id": 111024490837,
+      "name": "macOS build, package, launch",
+      "url": "https://github.com/CortexLM/desktop/actions/runs/37063183382/job/111024490837",
+      "status": "completed",
+      "job_and_check_run_conclusion": "success",
+      "head_sha": "de623fdb18551b634f1c388fda7fe1481c9563a8",
+      "started_at": "2026-10-02T20:51:12Z",
+      "completed_at": "2026-10-02T20:58:05Z",
+      "runner_label": "blacksmith-6vcpu-macos-26",
+      "successful_steps": ["Run bun run build", "E2E on macOS (source build)", "Package (unsigned, arm64)", "Packaged smoke test", "Crash logs"]
+    },
+    {
+      "id": 111024490963,
+      "name": "Lint, typecheck, unit tests, i18n audit",
+      "url": "https://github.com/CortexLM/desktop/actions/runs/37063183382/job/111024490963",
+      "status": "completed",
+      "job_and_check_run_conclusion": "success",
+      "head_sha": "de623fdb18551b634f1c388fda7fe1481c9563a8",
+      "started_at": "2026-10-02T20:50:59Z",
+      "completed_at": "2026-10-02T20:52:02Z",
+      "runner_label": "ubuntu-latest",
+      "successful_steps": ["Run bun run lint", "Run bun run typecheck", "Run bun run test", "Run bun run audit:i18n"]
+    }
+  ],
+  "check_annotations": {
+    "failure_count": 0,
+    "warnings": "All three jobs: Node.js 20 actions forced to Node.js 24 (checkout/setup-node; E2E/macOS also upload-artifact).",
+    "notice": "Checks job: ubuntu-latest migration to Ubuntu 26 begins October 19, 2026."
+  },
+  "e2e": {
+    "e2e-linux": {
+      "report_member": "test-results/e2e.json",
+      "report_sha256": "3679af3019a9488713020a9ecaac355fef3b87c5c1bd76102e8fd14565f71f56",
+      "report_bytes": 336799,
+      "checkout": "44c9ead8c77ce2cf52fb3e8ba430ea7d36fbaf70",
+      "playwright_version": "1.63.0",
+      "configured_and_actual_workers": 4,
+      "configured_retries": 0,
+      "stats": {"startTime": "2026-10-02T20:51:44.145Z", "duration": 183635.343, "expected": 51, "skipped": 0, "unexpected": 0, "flaky": 0},
+      "passed_results": 51,
+      "retry_count": 0,
+      "report_errors": [],
+      "result_error_count": 0,
+      "stderr_entries": 0,
+      "screen_state_renders": 426,
+      "attached_png_count": 46
+    },
+    "macos": {
+      "report_member": "test-results/e2e.json",
+      "report_sha256": "76a4f5e6672c081835aa4d75583a0873104958f281acedbcc19584fafd244bcf",
+      "report_bytes": 336826,
+      "checkout": "44c9ead8c77ce2cf52fb3e8ba430ea7d36fbaf70",
+      "playwright_version": "1.63.0",
+      "configured_and_actual_workers": 1,
+      "configured_retries": 0,
+      "stats": {"startTime": "2026-10-02T20:51:25.437Z", "duration": 364694.069, "expected": 51, "skipped": 0, "unexpected": 0, "flaky": 0},
+      "passed_results": 51,
+      "retry_count": 0,
+      "report_errors": [],
+      "result_error_count": 0,
+      "stderr_entries": 0,
+      "screen_state_renders": 426,
+      "attached_png_count": 46
+    }
+  },
+  "checks": {
+    "unit_files_passed": 15,
+    "unit_passed": 173,
+    "unit_skipped": 1,
+    "unit_skip": {"file": "packages/desktop/test/remote.test.ts:177", "name": "lists models from a real backend", "condition": "it.skipIf(!process.env.CORTEX_TEST_BACKEND_URL)"},
+    "lint": "success",
+    "typecheck": "success",
+    "i18n": {"files": 63, "used_keys": 2265, "english_keys": 3395, "problems": 0}
+  },
+  "artifacts": [
+    {"id": 11251700388, "name": "e2e-linux", "bytes": 13099405, "sha256": "c1825e5988d8aeb2864afdba0ed5f21457ed30b505b1de83e0dc0278d0d12f8b", "created_at": "2026-10-02T20:54:50Z", "expires_at": "2026-12-31T20:50:55Z", "download_digest_verified": true, "all_extracted_members_verified": 140},
+    {"id": 11251573733, "name": "cortex-mac-arm64-zip", "bytes": 144611320, "sha256": "ba41da3c4733f9cc91cd75ad6ec66e80cb6c0f4d48459b03e667e368966c6bdb", "created_at": "2026-10-02T20:58:02Z", "expires_at": "2026-10-09T20:57:59Z", "download_digest_verified": true, "all_extracted_members_verified": 1},
+    {"id": 11251109181, "name": "macos", "bytes": 12680597, "sha256": "32d33f2481c1568782264408b33965fc2ada5d291fa98a1817bc88e4915e4c88", "created_at": "2026-10-02T20:57:59Z", "expires_at": "2026-12-31T20:50:55Z", "download_digest_verified": true, "all_extracted_members_verified": 144}
+  ],
+  "package": {
+    "artifact": "cortex-mac-arm64-zip",
+    "member": "Cortex-0.2.0-arm64-mac.zip",
+    "bytes": 144904538,
+    "sha256": "2a55a0a4b363d0ccfe7524e71c23dcd06e960785bb20015fc8697dfbaf954058",
+    "member_sha256": {
+      "Cortex.app/Contents/MacOS/Cortex": "ca7e3290800255f5018160cff99cf6ecc58eae299c66148de1374a70e2715c83",
+      "Cortex.app/Contents/Resources/app.asar": "ab3f0dbe97805964e4f86e73e0de923723f459db70aef861e7de0a3698aa5d5a",
+      "Cortex.app/Contents/Info.plist": "64dc7649da9fafe89ea6dd74c96a8a592ac27bc58b4adebc58083a35177867a5"
+    },
+    "platform": "darwin",
+    "arch": "arm64",
+    "electron": "44.5.1",
+    "unsigned": true,
+    "notarized": false,
+    "published": false,
+    "command": "npx electron-builder --mac dir zip --arm64 --publish never -c.mac.identity=null -c.mac.notarize=false",
+    "smoke": "SMOKE OK",
+    "window": "Cortex cortex://app/index.html",
+    "process_survival_seconds": 10,
+    "renderer_capture": "macos/out/smoke-renderer.png",
+    "renderer_capture_sha256": "bb69536bf3b15ff6bd53db88c9c3197711ef1a5cae4ac36e2036e35deb0651da",
+    "native_capture": "failed",
+    "native_capture_error": "could not create image from display; screencapture failed: Command failed: screencapture -x out/smoke-screen.png",
+    "native_capture_failure_is_nonfatal_in_script": true,
+    "packaging_note": "default Electron icon is used; application icon is not set"
+  },
+  "visual_review": {
+    "png_files_in_artifacts": 277,
+    "distinct_e2e_pngs": 92,
+    "distinct_e2e_pngs_per_os": 46,
+    "byte_identical_copies_per_e2e_png": 3,
+    "contact_sheets_reviewed": 8,
+    "full_size_e2e_pngs_reviewed": 19,
+    "full_size_smoke_pngs_reviewed": 1,
+    "manifest": "screenshots.tsv",
+    "provider_settings_and_navigation_tests_have_png_attachments": false,
+    "verdict": "No new blocking renderer defect identified in reviewed captures. Toasts overlap transcript content but leave checked composer controls visible; Code input is narrow at 960px. Native chrome pixels and complete visual fidelity remain unverified here."
+  },
+  "crash_review": {
+    "uploaded_reports": 1,
+    "member": "macos/out/ExcUserFault_Setup Assistant-2026-03-16-083243.ips",
+    "sha256": "384ea4db6324dc5b8ab6a0fd5a4594b620e76ec694e0f0bb75495595824f90dd",
+    "bytes": 48034,
+    "app_name": "Setup Assistant",
+    "bundle_id": "com.apple.SetupAssistant",
+    "timestamp": "2026-03-16 08:32:43.00 -0700",
+    "is_simulated": 1,
+    "process_path": "/System/Library/CoreServices/Setup Assistant.app/Contents/MacOS/Setup Assistant",
+    "exception_type": "EXC_GUARD",
+    "exception_subtype": "GUARD_TYPE_USER",
+    "termination_namespace": "WEBKIT",
+    "cortex_or_electron_mentions": 0,
+    "disposition": "Pre-existing simulated Setup Assistant report; no Cortex incident in uploaded reports. Absence does not prove no crash or hang."
+  },
+  "scope_verdict": "PASS for this revision: Linux/macOS source E2E, MCP main-only save/reload/removal, checks and unsigned macOS packaged renderer launch. Native packaged screen capture unavailable. Not full rewrite/product/design/remote-inference acceptance.",
+  "historical_failures": [
+    {"head": "1e91a43fb2e88e4c4b721c70b521f5e83403e495", "run_id": 37057583278, "macos_passed": 49, "macos_failed": 1, "failure": "frozen-theme page.screenshot timeout", "disposition": "Remains failed; root cause unproven."},
+    {"head": "ca0828276ea6897cef00a4a376b0176ef87b5e2d", "run_id": 37061251022, "macos_passed": 50, "macos_failed": 1, "failure": "Navigation second chat locator.click stability wait timeout", "disposition": "Remains failed; root cause unproven."}
+  ],
+  "causality": "Current green run after one-worker macOS scheduling does not establish the cause or resolution mechanism of either historical failure.",
+  "verification_method": "Existing run/API/log/ZIP/report/source inspection only; no app tests, builds, CI reruns or Mac access during this evidence review.",
+  "input_sha256": [
+    {"name": "desktop-mcp-serial-run.json", "bytes": 12333, "sha256": "8de4d3c8ac80f576c5fc96bdc4ce32e23806d9e19e318e468f1b492c35d9844f"},
+    {"name": "desktop-mcp-serial-checks.json", "bytes": 10564, "sha256": "10a5e8fc9225f97e749882d637b5c40cc3521c4758157af05749dfd17909aeb5"},
+    {"name": "desktop-mcp-serial-jobs-api.json", "bytes": 10557, "sha256": "94a645ef1ad86e92e83493f250b5069153e23cf17c2de548977857034719d904"},
+    {"name": "desktop-mcp-serial-merge.json", "bytes": 2629, "sha256": "026f7d6730409933d8dce3faffe951de18174c8a200cbccd17fdae853a1db9d3"},
+    {"name": "desktop-mcp-serial-artifacts.json", "bytes": 2103, "sha256": "951dfe07d67af9fd2b670c5f4dd3a3afb2b3bb801a9ad980fac8d0cc084a4def"},
+    {"name": "desktop-mcp-serial-ci.log", "bytes": 192625, "sha256": "c80e27919c47a81f343a59c3358b55d553810364179f1b1d26efccf08d095291"}
+  ]
+}

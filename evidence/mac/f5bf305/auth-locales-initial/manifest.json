@@ -1,0 +1,145 @@
+{
+  "status": "failed",
+  "startedAt": "2026-10-03T07:34:13.444Z",
+  "expectedAsar": "d34d6d8609045f56851a6004f5c7bb185108cd743732ff8b79d6e3689df7f14c",
+  "expectedRevision": "f5bf305473db12fddfddcda890a01794f02f578f",
+  "revisionBinding": "Coordinator-provided artifact/source receipt; not inferred from app metadata",
+  "scriptSHA256": "50948d030e3577698323c978252e38545b88d79e31c0bc13c8ef756e70162494",
+  "views": [],
+  "captures": [],
+  "errors": [],
+  "rendererHttp": [],
+  "dialogs": 0,
+  "cleanup": {
+    "connectionRestoredSignedOut": true,
+    "routeLocaleThemeRestored": true
+  },
+  "inputsBefore": {
+    "frozenRevision": "f5bf305473db12fddfddcda890a01794f02f578f",
+    "members": 90,
+    "memberReceiptSHA256": "2c61108618990000b1bf6bab3857533aca9ed6ccd671e0fffdf025843da4f441",
+    "inputReceiptSHA256": "90829d2273ec886601ddf8b51e445bde4850301f4fca4b7b24423ae34c0cd753",
+    "catalogs": {
+      "packages/i18n/locales/en/system.json": "18dff6afda09dc67df5091b5a2440fc1f6b3e1d439230cd9fda6967f6be7b10a",
+      "packages/i18n/locales/en/common.json": "69f0e0e8b334dfbc9b796b095acf6e8fe610becdb7d8a7aa6abb5489edc2f8c5",
+      "packages/i18n/locales/fr/system.json": "c63761c3053604f5fd206e3f09bc728c40015abf220c3cd0be777c6193309bdc",
+      "packages/i18n/locales/fr/common.json": "e93295b100a1b2d7b90542126d2edf08f74ca52f6a62e5e1b7373a533628b9af",
+      "packages/i18n/locales/es/system.json": "71c7a154c0cff9049ceeeb07696d701ec44ccf53160a5d3b3d4c96d7d54ff63b",
+      "packages/i18n/locales/es/common.json": "21e780a16640e1596cd7a6761d98cebd88517e056832b65c6ce58f7575495fbe",
+      "packages/i18n/locales/de/system.json": "cacaffee5a71bcca8b544f40a9d6fbbead5da1695ff2fdc0ba634c91e5b49e74",
+      "packages/i18n/locales/de/common.json": "a1004240418e3ceb69d675cd01d8439a9aeba1e8fc5001c14b3321b49e81f3bb",
+      "packages/i18n/locales/ja/system.json": "0b86eb32b546ac0e342bab729d9e3990a944fae9c02b694bf8d095475f0fbad7",
+      "packages/i18n/locales/ja/common.json": "eb6b7c0fccb09a1de3ea14f1ea66a08acdf66ad94d9984f219150ec71d491dd0",
+      "packages/i18n/locales/zh-Hans/system.json": "3e95eeaf1470b830351ae8b36332f35cf6cf1ce44ca5e2de869bef1ccd874043",
+      "packages/i18n/locales/zh-Hans/common.json": "983e69bb6b06828046d0ab7888705cdcdfebd7b010b416894903d95f67c4aa33",
+      "packages/i18n/locales/pt-BR/system.json": "bb28de8fa8ee1028d7d2a717ed049bdeb0dca42a04e2c9d901b520bb39d2c82b",
+      "packages/i18n/locales/pt-BR/common.json": "ff48e1896ca988e89699ec9ff2429ce2a4c7c01facedeeca9077317b7a61ff86",
+      "packages/i18n/locales/ko/system.json": "c404abfe396c950ee8da904eb5d21d23a34fa090ace1bf5898426757efa93801",
+      "packages/i18n/locales/ko/common.json": "fca99f7af4561a829b0b2847094107ab6a55ca6563649753af76305e6bf7d6bf",
+      "packages/app/src/screens/system/account.tsx": "7d6946caefc5f0333267c41fb472d321a8f62358023933c7e2fcd2c6674f0a36"
+    }
+  },
+  "installedBefore": {
+    "pids": [
+      52666
+    ],
+    "asarSHA256": "d34d6d8609045f56851a6004f5c7bb185108cd743732ff8b79d6e3689df7f14c",
+    "engineIsolated": true,
+    "rendererIsolated": true,
+    "localeEnglish": true,
+    "controlledCatalog": true
+  },
+  "backendBefore": {
+    "protocol": "cortex-remote-auth-native-v1",
+    "runID": "75a4e3fc-33f9-456a-a944-c443df353866",
+    "root": "/private/tmp/opencode/desktop-remote-auth-f5bf305",
+    "platform": "darwin",
+    "port": 9457,
+    "startedAt": "2026-10-03T07:21:41.488Z",
+    "scriptSHA256": "22b6d8cb958db2c7d749b737329f169894435d995ca67e6e929cd96eec79ee65",
+    "counts": {
+      "email": 6,
+      "code": 8,
+      "finishedCode": 8,
+      "wrongCode": 2,
+      "session": 2,
+      "enrollment": 2,
+      "logout": 0,
+      "abortedReply": 2,
+      "discovery": 0,
+      "inspections": 10,
+      "inspectionsPassed": 10,
+      "errors": 0
+    },
+    "holdCode": false,
+    "held": 0,
+    "freshRequestsCredentialFree": true
+  },
+  "failure": {
+    "stage": "installed-identity",
+    "sha256": "70037f2fdb56c2ff07870443aeea8c3c8ce1c4200b32c54cfe5030907a44ef33"
+  },
+  "backendAfterCleanup": {
+    "protocol": "cortex-remote-auth-native-v1",
+    "runID": "75a4e3fc-33f9-456a-a944-c443df353866",
+    "root": "/private/tmp/opencode/desktop-remote-auth-f5bf305",
+    "platform": "darwin",
+    "port": 9457,
+    "startedAt": "2026-10-03T07:21:41.488Z",
+    "scriptSHA256": "22b6d8cb958db2c7d749b737329f169894435d995ca67e6e929cd96eec79ee65",
+    "counts": {
+      "email": 6,
+      "code": 8,
+      "finishedCode": 8,
+      "wrongCode": 2,
+      "session": 2,
+      "enrollment": 2,
+      "logout": 0,
+      "abortedReply": 2,
+      "discovery": 0,
+      "inspections": 10,
+      "inspectionsPassed": 10,
+      "errors": 0
+    },
+    "holdCode": false,
+    "held": 0,
+    "freshRequestsCredentialFree": true
+  },
+  "inputsAfter": {
+    "frozenRevision": "f5bf305473db12fddfddcda890a01794f02f578f",
+    "members": 90,
+    "memberReceiptSHA256": "2c61108618990000b1bf6bab3857533aca9ed6ccd671e0fffdf025843da4f441",
+    "inputReceiptSHA256": "90829d2273ec886601ddf8b51e445bde4850301f4fca4b7b24423ae34c0cd753",
+    "catalogs": {
+      "packages/i18n/locales/en/system.json": "18dff6afda09dc67df5091b5a2440fc1f6b3e1d439230cd9fda6967f6be7b10a",
+      "packages/i18n/locales/en/common.json": "69f0e0e8b334dfbc9b796b095acf6e8fe610becdb7d8a7aa6abb5489edc2f8c5",
+      "packages/i18n/locales/fr/system.json": "c63761c3053604f5fd206e3f09bc728c40015abf220c3cd0be777c6193309bdc",
+      "packages/i18n/locales/fr/common.json": "e93295b100a1b2d7b90542126d2edf08f74ca52f6a62e5e1b7373a533628b9af",
+      "packages/i18n/locales/es/system.json": "71c7a154c0cff9049ceeeb07696d701ec44ccf53160a5d3b3d4c96d7d54ff63b",
+      "packages/i18n/locales/es/common.json": "21e780a16640e1596cd7a6761d98cebd88517e056832b65c6ce58f7575495fbe",
+      "packages/i18n/locales/de/system.json": "cacaffee5a71bcca8b544f40a9d6fbbead5da1695ff2fdc0ba634c91e5b49e74",
+      "packages/i18n/locales/de/common.json": "a1004240418e3ceb69d675cd01d8439a9aeba1e8fc5001c14b3321b49e81f3bb",
+      "packages/i18n/locales/ja/system.json": "0b86eb32b546ac0e342bab729d9e3990a944fae9c02b694bf8d095475f0fbad7",
+      "packages/i18n/locales/ja/common.json": "eb6b7c0fccb09a1de3ea14f1ea66a08acdf66ad94d9984f219150ec71d491dd0",
+      "packages/i18n/locales/zh-Hans/system.json": "3e95eeaf1470b830351ae8b36332f35cf6cf1ce44ca5e2de869bef1ccd874043",
+      "packages/i18n/locales/zh-Hans/common.json": "983e69bb6b06828046d0ab7888705cdcdfebd7b010b416894903d95f67c4aa33",
+      "packages/i18n/locales/pt-BR/system.json": "bb28de8fa8ee1028d7d2a717ed049bdeb0dca42a04e2c9d901b520bb39d2c82b",
+      "packages/i18n/locales/pt-BR/common.json": "ff48e1896ca988e89699ec9ff2429ce2a4c7c01facedeeca9077317b7a61ff86",
+      "packages/i18n/locales/ko/system.json": "c404abfe396c950ee8da904eb5d21d23a34fa090ace1bf5898426757efa93801",
+      "packages/i18n/locales/ko/common.json": "fca99f7af4561a829b0b2847094107ab6a55ca6563649753af76305e6bf7d6bf",
+      "packages/app/src/screens/system/account.tsx": "7d6946caefc5f0333267c41fb472d321a8f62358023933c7e2fcd2c6674f0a36"
+    }
+  },
+  "installedAfter": {
+    "pids": [
+      52666
+    ],
+    "asarSHA256": "d34d6d8609045f56851a6004f5c7bb185108cd743732ff8b79d6e3689df7f14c",
+    "engineIsolated": true,
+    "rendererIsolated": true,
+    "localeEnglish": true,
+    "controlledCatalog": true
+  },
+  "finishedAt": "2026-10-03T07:34:23.673Z",
+  "scope": "16 native wrong-code captures; 48 native-locale primary geometries/144 Tab stops; controlled SDK auth only. Artifact admission and image review remain coordinator-owned."
+}

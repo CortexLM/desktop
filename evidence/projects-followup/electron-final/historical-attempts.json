@@ -1,0 +1,52 @@
+{
+  "initialTargeted": {
+    "passed": 2,
+    "failed": 1,
+    "rawJsonAvailable": false,
+    "rawLog": "../initial/targeted.log.gz",
+    "failure": "Library one-shot read refusal; could be consumed by pending sidebar refresh",
+    "separateRaceConfirmation": {
+      "passed": 1,
+      "durationSeconds": 4.3,
+      "log": "../checks/race-confirm.log"
+    }
+  },
+  "initialFull": {
+    "passed": 109,
+    "failed": 7,
+    "rawJsonAvailable": false,
+    "rawLog": "../initial/full.log.gz",
+    "artifactDirectory": "/tmp/opencode/projects-integrated/full-artifacts",
+    "buildEnvironment": "NODE_ENV=test",
+    "failureCategories": {
+      "oneReadHistoryGates": 4,
+      "authReadGate": 1,
+      "BaseUIWarnings": 2
+    }
+  },
+  "laterTestStrengthening": "../test-review.md",
+  "sourceDeltasFromInitial": [
+    {
+      "path": "packages/app/src/shell/shell.tsx",
+      "initial": "6ad04c18e21af3345e6f6c845efb9449629d54505a8da2600b4a97cff7183c1d",
+      "final": "96cd8f48c55e4f02849ca83939875c5976267743d7b1294dd429176fc548b9e2"
+    },
+    {
+      "path": "tests/e2e/projects.spec.ts",
+      "initial": "d13d607861c3ad3e06e03d4207ea3979e4eb92fccc5a8382ffa6aacb0a7d7d63",
+      "final": "a2d30f707d733e1dff8302404f3b2f01860da7fcf491bf75dc031058c09d8c9d"
+    }
+  ],
+  "originalsUnmodified": true,
+  "auditCollectorAttempts": [
+    {
+      "issue": "120-second inventory/compression timeout",
+      "testOrApplicationFailure": false
+    },
+    {
+      "issue": "Four inline PNG attachments absent from filesystem-only inventory",
+      "resolution": "Decoded original report bytes; included in 155 full-run images",
+      "testOrApplicationFailure": false
+    }
+  ]
+}

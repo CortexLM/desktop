@@ -1,0 +1,61 @@
+{
+  "result": [
+    {
+      "source": "ready",
+      "kind": "route",
+      "name": "AbortError",
+      "message": "Transition was skipped"
+    },
+    {
+      "source": "updateCallbackDone",
+      "kind": "route",
+      "name": "Error",
+      "message": "route callback failure"
+    },
+    {
+      "source": "finished",
+      "kind": "route",
+      "name": "Error",
+      "message": "route callback failure"
+    },
+    {
+      "source": "ready",
+      "kind": "theme",
+      "name": "AbortError",
+      "message": "Transition was skipped"
+    },
+    {
+      "source": "updateCallbackDone",
+      "kind": "theme",
+      "name": "Error",
+      "message": "theme callback failure"
+    }
+  ],
+  "errors": [
+    {
+      "name": "AbortError",
+      "message": "Transition was skipped",
+      "stack": ""
+    },
+    {
+      "name": "Error",
+      "message": "route callback failure",
+      "stack": "Error: route callback failure\n    at eval (eval at evaluate (:311:30), <anonymous>:12:17)"
+    },
+    {
+      "name": "Error",
+      "message": "route callback failure",
+      "stack": "Error: route callback failure\n    at eval (eval at evaluate (:311:30), <anonymous>:12:17)"
+    },
+    {
+      "name": "AbortError",
+      "message": "Transition was skipped",
+      "stack": ""
+    },
+    {
+      "name": "Error",
+      "message": "theme callback failure",
+      "stack": "Error: theme callback failure\n    at eval (eval at evaluate (:311:30), <anonymous>:12:17)"
+    }
+  ]
+}

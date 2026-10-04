@@ -1,0 +1,61 @@
+{
+  "testSHA256": "899a1ae786d68645117d4bd0c9d6d1be413850a3b5bc3f2ab195f9abe319eef3",
+  "sameTestFromNegativeToBothCIPasses": true,
+  "originalBaseline": {
+    "cases": 2,
+    "failed": 2,
+    "errors": 8,
+    "perTheme": [
+      "preview width",
+      "Overview heading/instructions width",
+      "Instructions heading/instructions width",
+      "hard main-surface overflow at capture"
+    ]
+  },
+  "firstCorrection": {
+    "passed": 3,
+    "failed": 2,
+    "errors": 2,
+    "remaining": "Hard main-surface overflow at line31/capture396; original failure images show Project created toast description escaping right edge."
+  },
+  "finalCI": {
+    "os": [
+      "e2e-linux",
+      "macos"
+    ],
+    "projectCasesPassedPerOS": 5,
+    "longInputCasesPassedPerOS": 2,
+    "attemptsPerCase": 1
+  },
+  "firstCorrectionToFinal": "Only toast body min-width/overflow-wrap; system.css and tests exact.",
+  "coverageAfterFormerStop": "Both current OS runs reach grid line399, Library line402 and exact stored instructions line403; earlier failed runs stopped at capture396.",
+  "priorAssertions": "Original 363-line test prefix unchanged, existing three cases pass both OSes.",
+  "negatives": "negative-results.jsonl",
+  "initialImages": [
+    {
+      "path": "../wrapping/initial/baseline-light.webp",
+      "sha256": "17517fdfed4d2c52543cf41cd65b90b89ef24a1db792eda0874e734edf4b8d9a",
+      "inspected": true
+    },
+    {
+      "path": "../wrapping/initial/baseline-dark.webp",
+      "sha256": "c937021b3d57f52079f0e2b485a96ee2e5af5d878b9726f673ac854d92c885d8",
+      "inspected": true
+    },
+    {
+      "path": "../wrapping/initial/first-correction-light.webp",
+      "sha256": "50123dfade34420379d23bc197b3598f71a1601403c7033b45172bb4936a2f01",
+      "inspected": true
+    },
+    {
+      "path": "../wrapping/initial/first-correction-dark.webp",
+      "sha256": "9778c7ec1c3fcc9e8cef3e321edfb63656e35b671662993fe5d304c7c61c4ab8",
+      "inspected": true
+    }
+  ],
+  "limits": [
+    "Only horizontal containment is measured; entire 4000-character instruction is not simultaneously visible.",
+    "Toast containment is proven by aggregate main-surface overflow plus captured wrap, not a dedicated toast text-node assertion.",
+    "CI long-input frames show Instructions only; long-name creation/grid/Library exercised by assertions, no separate frames."
+  ]
+}

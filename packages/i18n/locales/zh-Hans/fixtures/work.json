@@ -1,0 +1,941 @@
+{
+  "main": {
+    "name": "Nova"
+  },
+  "filterBots": [
+    "Margaux",
+    "Inès",
+    "Iris",
+    "Max",
+    "Zoé"
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "t": "跟进 7 天未回复的报价单",
+      "bot": "Nova",
+      "col": "doing",
+      "meta": "第 4 步，共 7 步",
+      "prog": 57
+    },
+    {
+      "id": "2",
+      "t": "更新 Studio Nord 的客户记录",
+      "bot": "Margaux",
+      "col": "doing",
+      "meta": "30 条记录中的第 12 条",
+      "prog": 40
+    },
+    {
+      "id": "3",
+      "t": "回复关于账单的工单 #4182",
+      "bot": "Inès",
+      "col": "doing",
+      "meta": "3 分钟前",
+      "prog": 80
+    },
+    {
+      "id": "4",
+      "t": "准备下午 3 点同步会议的议程",
+      "bot": "Iris",
+      "col": "todo",
+      "meta": "今天 14:30"
+    },
+    {
+      "id": "5",
+      "t": "比较三家陶瓷供应商",
+      "bot": "Paul",
+      "col": "todo",
+      "meta": "周一"
+    },
+    {
+      "id": "6",
+      "t": "支付 Atelier Morel 的 1,240 欧元发票",
+      "bot": "Max",
+      "col": "review",
+      "meta": "等待您的批准"
+    },
+    {
+      "id": "7",
+      "t": "发布 4 月 14 日的发布公告",
+      "bot": "Zoé",
+      "col": "review",
+      "meta": "草稿已就绪"
+    },
+    {
+      "id": "8",
+      "t": "提交 9 月的报销单",
+      "bot": "Léo",
+      "col": "done",
+      "meta": "昨天 18:12"
+    },
+    {
+      "id": "9",
+      "t": "整理早间收件箱",
+      "bot": "Hugo",
+      "col": "done",
+      "meta": "08:14"
+    }
+  ],
+  "computer": {
+    "menu": [
+      "浏览器",
+      "文件",
+      "视图"
+    ],
+    "url": "crm.studionord.fr/devis?statut=sans-reponse",
+    "nav": [
+      "首页",
+      "联系人",
+      "报价单",
+      "发票",
+      "报表"
+    ],
+    "navActive": 2,
+    "heading": "未回复的报价单 · 5",
+    "rows": [
+      [
+        "Atelier Morel",
+        "报价单 #2291",
+        "12 天"
+      ],
+      [
+        "Studio Nord",
+        "报价单 #2287",
+        "9 天"
+      ],
+      [
+        "Céramiques Vidal",
+        "报价单 #2279",
+        "8 天"
+      ],
+      [
+        "Maison Arnaud",
+        "报价单 #2275",
+        "7 天"
+      ],
+      [
+        "Boulangerie Roux",
+        "报价单 #2270",
+        "3 天"
+      ]
+    ]
+  },
+  "task": {
+    "title": "跟进未回复的报价单",
+    "site": "crm.studionord.fr",
+    "statusDoing": "正在浏览 CRM",
+    "user": "跟进所有超过7天未回复的报价单。语气要友好，发送前先给我看第一份。",
+    "bot1": "好的。我先打开CRM列出报价单，然后为你准备第一份跟进邮件。",
+    "bot2": "我找到了5份未回复的报价单。这是给Atelier Morel的跟进邮件，这是最早的一份（12天前）。",
+    "ev1": {
+      "b": "打开了CRM",
+      "t": "crm.studionord.fr",
+      "when": "10:38"
+    },
+    "ev2": {
+      "b": "已创建例程",
+      "t": "“报价跟进”每周一08:00",
+      "when": "10:41"
+    },
+    "steps": [
+      "阅读简报和跟踪文件",
+      "打开Studio Nord CRM",
+      "筛选出7天未回复的报价单",
+      "为Atelier Morel草拟跟进邮件",
+      "为另外4份草拟跟进邮件",
+      "安排7天后的检查提醒"
+    ],
+    "mail": {
+      "header": "邮件 · 报价单#2291跟进",
+      "to": "Julien Morel · julien@ateliermorel.fr",
+      "subject": "你9月18日的装修报价单",
+      "body": [
+        "你好Julien，",
+        "我想跟进一下9月18日发送的报价单#2291。你有机会看过了吗？如果需要调整以配合你5月的计划，我很乐意配合。",
+        "祝好，\nCamille Laurent"
+      ],
+      "toastTo": "收件人 Julien Morel",
+      "sentAt": "10:42"
+    },
+    "cred": {
+      "header": "需要凭据 · 供应商门户",
+      "text": "ventes.ateliermorel.fr门户需要登录才能查看报价单状态。{name}不会看到你的密码：仅使用一次，用后即忘。",
+      "login": "camille@studionord.fr",
+      "skip": "跳过此报价单"
+    },
+    "recap": {
+      "badge": "用时2分52秒完成",
+      "stats": [
+        [
+          "5",
+          "份报价单已跟进"
+        ],
+        [
+          "1",
+          "个例程已创建"
+        ],
+        [
+          "7天",
+          "后进行检查"
+        ]
+      ],
+      "files": [
+        [
+          "邮件",
+          "已发送5份跟进邮件",
+          "Atelier Morel、Studio Nord等共5个"
+        ],
+        [
+          "文件",
+          "Quote-tracking-October.xlsx",
+          "电子表格 · 10:44更新"
+        ],
+        [
+          "日历",
+          "“报价检查”提醒",
+          "10月13日星期一，09:00"
+        ]
+      ]
+    },
+    "fail": {
+      "title": "与CRM的连接已断开",
+      "text": "该站点连续三次返回“503”错误。",
+      "bot": "我无法再连接到CRM了。剩余4份跟进邮件已保存为草稿；我可以现在重试，或15分钟后再试。"
+    }
+  },
+  "routines": [
+    {
+      "id": "sort",
+      "t": "早晨整理",
+      "bot": "Nova",
+      "trig": "每天08:00",
+      "next": "明天",
+      "nextSub": "08:00",
+      "runs": [
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "跳过",
+        "成功",
+        "成功",
+        "成功"
+      ],
+      "on": true
+    },
+    {
+      "id": "quotes",
+      "t": "报价跟进",
+      "bot": "Nova",
+      "trig": "每周一08:00",
+      "next": "周一",
+      "nextSub": "08:00",
+      "runs": [
+        "成功",
+        "成功",
+        "成功",
+        "成功"
+      ],
+      "on": true
+    },
+    {
+      "id": "crm",
+      "t": "CRM 更新",
+      "bot": "Margaux",
+      "trig": "工作日 18:00",
+      "next": "今天",
+      "nextSub": "18:00",
+      "runs": [
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "成功"
+      ],
+      "on": true
+    },
+    {
+      "id": "ticket",
+      "t": "工单初步处理",
+      "bot": "Inès",
+      "trig": "每个新工单触发",
+      "ev": true,
+      "next": "按事件触发",
+      "nextSub": "上次：10:31",
+      "runs": [
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "成功"
+      ],
+      "on": true
+    },
+    {
+      "id": "pr",
+      "t": "PR 开启摘要",
+      "bot": "Sam",
+      "trig": "每个新开 PR 触发",
+      "ev": true,
+      "next": "按事件触发",
+      "nextSub": "上次：昨天",
+      "runs": [
+        "成功",
+        "成功",
+        "成功",
+        "跳过",
+        "成功"
+      ],
+      "on": false
+    },
+    {
+      "id": "watch",
+      "t": "供应商监控",
+      "bot": "Paul",
+      "trig": "每 30 分钟",
+      "next": "12 分钟后",
+      "nextSub": "11:00",
+      "runs": [
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "成功",
+        "成功"
+      ],
+      "on": true
+    }
+  ],
+  "history": [
+    [
+      "今天 10:31",
+      "工单初步处理",
+      "Inès",
+      "成功",
+      "4 秒"
+    ],
+    [
+      "今天 10:30",
+      "供应商监控",
+      "Paul",
+      "成功",
+      "38 秒"
+    ],
+    [
+      "今天 08:00",
+      "早间分类",
+      "Nova",
+      "成功",
+      "1 分 12 秒"
+    ],
+    [
+      "昨天 18:00",
+      "CRM 更新",
+      "Margaux",
+      "成功",
+      "2 分 40 秒"
+    ],
+    [
+      "周一 08:00",
+      "报价跟进",
+      "Nova",
+      "成功",
+      "2 分 52 秒"
+    ]
+  ],
+  "failRoutine": "crm",
+  "failNextSub": "18:00 失败",
+  "failHist": [
+    "昨天 18:00",
+    "CRM 更新",
+    "Margaux",
+    "错误",
+    "连接被拒绝"
+  ],
+  "failBanner": {
+    "title": "“CRM 更新”失败",
+    "text": "Margaux 昨天 18:00 未能登录 CRM。请重新连接 CRM，然后再次运行。"
+  },
+  "edit": {
+    "name": "报价跟进",
+    "instr": "跟进超过 7 天未回复的报价，语气友好。发送前先给我看第一条。",
+    "eventName": "工单初步处理",
+    "eventInstr": "每次收到新工单时，按紧急程度排序，建议一份模板回复，并告诉我客户是否不满。",
+    "eventBot": "Inès",
+    "bots": [
+      "Margaux",
+      "Inès",
+      "Paul"
+    ],
+    "tz": "巴黎时间",
+    "sources": {
+      "ticket": "工单 · “客户支持”队列",
+      "mail": "邮件 · camille@studionord.fr",
+      "pr": "cortex-web 仓库"
+    },
+    "eventRate": "过去 7 天平均每天约 14 次",
+    "testSteps": [
+      "读取最近 3 条工单",
+      "按紧急程度排序",
+      "草拟模板回复",
+      "准备摘要"
+    ],
+    "testOkTitle": "测试在 12 秒内通过。",
+    "testOkText": "已排序 3 条工单（1 条紧急），建议 3 条回复，未发送任何内容。"
+  },
+  "inbox": [
+    {
+      "id": 1,
+      "bot": "Sam",
+      "t": "需要供应商门户的登录凭证",
+      "d": "ventes.ateliermorel.fr 门户从今天早上起拒绝访问。没有登录凭证，3 个工单无法处理。",
+      "when": "8 分钟前",
+      "urg": "now",
+      "act": "登录",
+      "to": "work-task:blocked"
+    },
+    {
+      "id": 2,
+      "bot": "Max",
+      "t": "需支付 Atelier Morel 发票，金额 €1,240",
+      "d": "明天到期。金额与 9 月 22 日签署的报价单 #2291 一致。",
+      "when": "20 分钟前",
+      "urg": "now",
+      "act": "查看",
+      "to": "approvals:detail"
+    },
+    {
+      "id": 3,
+      "bot": "Nova",
+      "t": "首次跟进已准备发送",
+      "d": "“您好 Julien，关于报价单 #2291 我来跟进一下……”",
+      "when": "34 分钟前",
+      "urg": "today",
+      "act": "阅读",
+      "to": "work-task:approval"
+    },
+    {
+      "id": 4,
+      "bot": "Zoé",
+      "t": "4 月 14 日公告用哪张视觉图？",
+      "d": "有两个方案。B 在预览中的点击率高出 18%。",
+      "when": "1 小时前",
+      "urg": "today",
+      "act": "选择",
+      "to": "approvals:list"
+    },
+    {
+      "id": 5,
+      "bot": "Léo",
+      "t": "2 张收据未分类",
+      "d": "9 月 24 日的出租车费（€32.40）和 Studio Nord 的午餐（€86）。",
+      "when": "昨天",
+      "urg": "later",
+      "act": "分类",
+      "to": "work-task:approval"
+    },
+    {
+      "id": 6,
+      "bot": "Paul",
+      "t": "关注：一家供应商降价 12%",
+      "d": "Céramiques Vidal 宣布从 11 月起实行新价格。",
+      "when": "昨天",
+      "urg": "later",
+      "act": "阅读",
+      "to": "activity"
+    }
+  ],
+  "approvals": [
+    {
+      "id": "mail",
+      "bot": "Nova",
+      "icon": "mail",
+      "kind": "Send an email",
+      "t": "给 Julien Morel 的跟进邮件",
+      "d": "“你好 Julien，我想跟进一下 9 月 18 日发送的报价单 #2291……”",
+      "when": "34 分钟前"
+    },
+    {
+      "id": "pay",
+      "bot": "Max",
+      "icon": "key",
+      "kind": "Pay an invoice",
+      "t": "Atelier Morel 发票 · €1,240",
+      "d": "从 Studio Nord 对公账户转账，10 月 2 日（星期五）到期。",
+      "when": "20 分钟前"
+    },
+    {
+      "id": "post",
+      "bot": "Zoé",
+      "icon": "share",
+      "kind": "Publish a post",
+      "t": "4 月 14 日的上线公告",
+      "d": "“春天即将来到 Studio Nord：4 月 14 日见……” · 版式 B · LinkedIn 和 Instagram",
+      "when": "1 小时前"
+    }
+  ],
+  "payment": {
+    "bot": "Max",
+    "amount": "1,240.00",
+    "kv": [
+      [
+        "收款人",
+        "Atelier Morel"
+      ],
+      [
+        "IBAN",
+        "FR76 •••• •••• 4821"
+      ],
+      [
+        "扣款账户",
+        "Studio Nord · 对公账户"
+      ],
+      [
+        "到期日",
+        "10 月 2 日，星期五"
+      ],
+      [
+        "参考编号",
+        "发票 F-2026-118"
+      ]
+    ],
+    "check": "金额与 9 月 22 日签署的报价单 #2291 一致。",
+    "alwaysRule": "始终允许 Max 向 Atelier Morel 支付最高 €1,500",
+    "why": "你当前的规则：“付款 — 询问”。所有转账都需经过你确认，不论金额大小。",
+    "okTitle": "付款已批准",
+    "okText": "Max 正在向 Atelier Morel 发送 €1,240 的转账。收据将发送到你的收件箱。",
+    "noTitle": "付款已拒绝",
+    "noText": "Max 不会支付此发票，并已告知 Julien Morel 付款已暂停。",
+    "cancelTransfer": "取消转账（剩余 4 分 52 秒）",
+    "invoice": {
+      "vendor": "ATELIER MOREL",
+      "ref": "F-2026-118",
+      "address": "12 rue des Tanneurs, 69001 Lyon",
+      "lines": [
+        [
+          "工作室翻新 · 第 1 批",
+          "980.00"
+        ],
+        [
+          "陶瓷材料",
+          "160.00"
+        ],
+        [
+          "出行费用",
+          "100.00"
+        ]
+      ],
+      "totalLabel": "含税总额"
+    }
+  },
+  "activity": [
+    [
+      "今天",
+      [
+        {
+          "bot": "Nova",
+          "icon": "mail",
+          "type": "email",
+          "b": "已发送",
+          "t": " 给 Julien Morel 的跟进邮件",
+          "when": "10:42"
+        },
+        {
+          "bot": "Nova",
+          "icon": "clock-loop",
+          "type": "routines",
+          "b": "已创建流程",
+          "t": " “报价单跟进”",
+          "when": "10:41"
+        },
+        {
+          "bot": "Nova",
+          "icon": "globe",
+          "type": "browsing",
+          "b": "已打开",
+          "t": " crm.studionord.fr",
+          "when": "10:38"
+        },
+        {
+          "bot": "Inès",
+          "icon": "check-circle",
+          "type": "tickets",
+          "b": "已解决",
+          "t": " 工单 #4179“重复计费”",
+          "when": "10:31"
+        },
+        {
+          "bot": "Sam",
+          "icon": "alert-triangle",
+          "type": "errors",
+          "b": "已阻塞",
+          "t": ":供应商门户访问被拒",
+          "when": "10:12"
+        },
+        {
+          "bot": "Margaux",
+          "icon": "edit",
+          "type": "crm",
+          "b": "已更新",
+          "t": " 12 条 Studio Nord 客户记录",
+          "when": "09:50"
+        },
+        {
+          "bot": "Hugo",
+          "icon": "mail",
+          "type": "email",
+          "b": "已整理",
+          "t": " 23 封邮件,发现 2 个报价请求",
+          "when": "08:14"
+        }
+      ]
+    ],
+    [
+      "昨天",
+      [
+        {
+          "bot": "Max",
+          "icon": "file",
+          "type": "documents",
+          "b": "已准备",
+          "t": " 10 月工资单",
+          "when": "18:30"
+        },
+        {
+          "bot": "Margaux",
+          "icon": "clock-loop",
+          "type": "routines",
+          "b": "已运行",
+          "t": "“CRM 更新”",
+          "when": "18:00"
+        },
+        {
+          "bot": "Léo",
+          "icon": "check-circle",
+          "type": "documents",
+          "b": "已归档",
+          "t": " 14 份 9 月报销单",
+          "when": "17:12"
+        },
+        {
+          "bot": "Zoé",
+          "icon": "image",
+          "type": "documents",
+          "b": "已建议",
+          "t": " 4 月 14 日公告的两张视觉图",
+          "when": "15:02"
+        }
+      ]
+    ],
+    [
+      "9 月 28 日,星期一",
+      [
+        {
+          "bot": "Nova",
+          "icon": "clock-loop",
+          "type": "routines",
+          "b": "已运行",
+          "t": "“报价跟进”:4 次跟进",
+          "when": "08:00"
+        },
+        {
+          "bot": "Paul",
+          "icon": "globe",
+          "type": "browsing",
+          "b": "已阅读",
+          "t": " 38 条公告,保留 5 条待关注",
+          "when": "08:00"
+        }
+      ]
+    ]
+  ],
+  "activityBots": [
+    "Margaux",
+    "Inès",
+    "Sam",
+    "Hugo",
+    "Max",
+    "Léo",
+    "Zoé",
+    "Paul"
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "kind": "bot",
+      "who": "Sam",
+      "t": " 已被阻塞:供应商门户需要凭据",
+      "when": "8 分钟",
+      "to": [
+        "work-task",
+        "blocked"
+      ]
+    },
+    {
+      "id": 2,
+      "kind": "mention",
+      "who": "Julien Mercier",
+      "initials": "JM",
+      "t": " 在“4 月 14 日发布计划”中提到了你",
+      "when": "15 分钟",
+      "to": [
+        "chat"
+      ]
+    },
+    {
+      "id": 3,
+      "kind": "bot",
+      "who": "Max",
+      "t": " 请求你批准一笔 1,240 欧元的付款",
+      "when": "20 分钟",
+      "to": [
+        "approvals",
+        "detail"
+      ]
+    },
+    {
+      "id": 4,
+      "kind": "bot",
+      "who": "Nova",
+      "t": " 已完成“跟进未回复的报价”",
+      "when": "34 分钟",
+      "to": [
+        "work-task",
+        "done"
+      ]
+    },
+    {
+      "id": 5,
+      "kind": "mention",
+      "who": "Inès Benali",
+      "initials": "IB",
+      "t": "对Q2启动预算发表了评论",
+      "when": "1 小时前",
+      "to": [
+        "file-xlsx"
+      ]
+    },
+    {
+      "id": 6,
+      "kind": "bot",
+      "who": "Margaux",
+      "t": "运行了“CRM 更新”流程",
+      "when": "昨天",
+      "to": [
+        "automations"
+      ]
+    }
+  ],
+  "readIds": [
+    5,
+    6
+  ],
+  "connectors": [
+    {
+      "id": "mail",
+      "mono": "Me",
+      "t": "邮件",
+      "d": "读取、整理并准备草稿",
+      "st": "on",
+      "perms": [
+        [
+          "mail",
+          "读取您的邮件",
+          "主题、内容和附件"
+        ],
+        [
+          "edit",
+          "准备草稿",
+          "未经您批准绝不发送"
+        ],
+        [
+          "user",
+          "查看您的联系人",
+          "姓名和地址"
+        ]
+      ]
+    },
+    {
+      "id": "cal",
+      "mono": "Ag",
+      "t": "日历",
+      "d": "建议时间段，准备会议",
+      "st": "on",
+      "perms": [
+        [
+          "calendar",
+          "查看您的活动",
+          "标题、时间、参与者"
+        ],
+        [
+          "edit",
+          "创建邀请",
+          "需经您批准"
+        ]
+      ]
+    },
+    {
+      "id": "drive",
+      "mono": "Dr",
+      "t": "云端硬盘",
+      "d": "读取并归档共享文档",
+      "st": "re",
+      "perms": [
+        [
+          "folder",
+          "查看共享文件夹",
+          "Spring launch、Studio Nord"
+        ],
+        [
+          "file",
+          "创建文档",
+          "在“Bots”文件夹中"
+        ]
+      ]
+    },
+    {
+      "id": "crm",
+      "mono": "CR",
+      "t": "CRM",
+      "d": "更新联系人、报价和跟进事项",
+      "st": "err",
+      "perms": [
+        [
+          "user",
+          "读取并编辑记录",
+          "联系人、公司、报价"
+        ],
+        [
+          "history",
+          "查看对话历史",
+          "最近12个月"
+        ]
+      ]
+    },
+    {
+      "id": "tk",
+      "mono": "Tk",
+      "t": "工单",
+      "d": "整理并回复客户请求",
+      "st": "on",
+      "perms": [
+        [
+          "mentions",
+          "读取工单",
+          "“客户支持”队列"
+        ],
+        [
+          "edit",
+          "回复客户",
+          "需经您批准"
+        ]
+      ]
+    },
+    {
+      "id": "payroll",
+      "mono": "Pa",
+      "t": "薪资",
+      "d": "准备工资单和转账",
+      "st": "off",
+      "perms": [
+        [
+          "user",
+          "查看员工",
+          "姓名、合同、薪资"
+        ],
+        [
+          "file",
+          "生成工资单",
+          "草稿待批准"
+        ],
+        [
+          "key",
+          "准备转账",
+          "始终需要您的批准"
+        ]
+      ]
+    },
+    {
+      "id": "acct",
+      "mono": "Cp",
+      "t": "会计",
+      "d": "核对发票和支出",
+      "st": "off",
+      "perms": [
+        [
+          "file",
+          "读取发票",
+          "采购与销售"
+        ],
+        [
+          "check-circle",
+          "分类支出",
+          "支出报告"
+        ]
+      ]
+    },
+    {
+      "id": "chat",
+      "mono": "Ch",
+      "t": "团队聊天",
+      "d": "接收请求，在话题中回复",
+      "st": "off",
+      "perms": [
+        [
+          "mentions",
+          "读取您被提及的话题",
+          "公开频道"
+        ],
+        [
+          "edit",
+          "代表您回复",
+          "需经您批准"
+        ]
+      ]
+    },
+    {
+      "id": "git",
+      "mono": "Gi",
+      "t": "代码仓库",
+      "d": "总结 PR，跟进审查",
+      "st": "off",
+      "perms": [
+        [
+          "pull-request",
+          "读取 PR 和审查",
+          "cortex-web, cortex-ios"
+        ],
+        [
+          "mentions",
+          "评论",
+          "需经您批准"
+        ]
+      ]
+    }
+  ],
+  "connError": {
+    "banner": "CRM 已断开连接",
+    "bannerText": "Margaux 和 {name} 自昨天 18:00 起一直无法更新报价。",
+    "detail": "访问令牌已于 9 月 30 日 18:00 过期（错误 401）。已同步的数据保持不变。",
+    "affected": [
+      [
+        "Margaux",
+        "CRM 更新 · 1 次失败"
+      ],
+      [
+        "Nova",
+        "报价跟进 · 等待中"
+      ]
+    ]
+  },
+  "connOk": "您的 Bot 现在可以使用它了。Paul 建议设置一个例程：“每月 25 日准备工资单”。"
+}

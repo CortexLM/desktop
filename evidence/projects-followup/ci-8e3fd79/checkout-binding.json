@@ -1,0 +1,96 @@
+{
+  "head": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+  "checkout": "f8751ae242704b9b9d679ec9f5e1d842fbc6730e",
+  "headTree": "c32c6daa99b56d5936c08bf05b5404847c58c84b",
+  "checkoutTree": null,
+  "headCheckoutTreesEqual": null,
+  "checkoutObjectAvailable": false,
+  "checkoutProbeError": "fatal: Not a valid object name f8751ae242704b9b9d679ec9f5e1d842fbc6730e",
+  "checkoutLogLines": [
+    {
+      "line": 92,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T14:36:42.4098704Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f8751ae242704b9b9d679ec9f5e1d842fbc6730e:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 94,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T14:37:19.1643785Z  * [new ref]         f8751ae242704b9b9d679ec9f5e1d842fbc6730e -> pull/36/merge"
+    },
+    {
+      "line": 204,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T14:37:21.9659078Z HEAD is now at f8751ae Merge 8e3fd795b699c8ff07357544421d00f34dc2823c into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 206,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T14:37:21.9773579Z [command]/usr/bin/git log -1 --format=%H"
+    },
+    {
+      "line": 207,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T14:37:21.9796677Z f8751ae242704b9b9d679ec9f5e1d842fbc6730e"
+    },
+    {
+      "line": 508,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T14:36:50.6592993Z [command]/usr/local/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f8751ae242704b9b9d679ec9f5e1d842fbc6730e:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 510,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T14:37:33.9629171Z  * [new ref]         f8751ae242704b9b9d679ec9f5e1d842fbc6730e -> pull/36/merge"
+    },
+    {
+      "line": 619,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T14:37:36.5771061Z HEAD is now at f8751ae Merge 8e3fd795b699c8ff07357544421d00f34dc2823c into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 621,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T14:37:36.5945919Z [command]/usr/local/bin/git log -1 --format=%H"
+    },
+    {
+      "line": 622,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T14:37:36.5964706Z f8751ae242704b9b9d679ec9f5e1d842fbc6730e"
+    },
+    {
+      "line": 1206,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T14:37:01.2854990Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f8751ae242704b9b9d679ec9f5e1d842fbc6730e:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 1208,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T14:37:32.1098290Z  * [new ref]         f8751ae242704b9b9d679ec9f5e1d842fbc6730e -> pull/36/merge"
+    },
+    {
+      "line": 1287,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T14:37:34.3186780Z HEAD is now at f8751ae Merge 8e3fd795b699c8ff07357544421d00f34dc2823c into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 1289,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T14:37:34.3299730Z [command]/opt/homebrew/bin/git log -1 --format=%H"
+    },
+    {
+      "line": 1290,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T14:37:34.3373830Z f8751ae242704b9b9d679ec9f5e1d842fbc6730e"
+    }
+  ],
+  "inputs": 515,
+  "rendererInputs": 473,
+  "rendererComparatorFingerprint": "6070fc3282e019c04a29f6a2a68f36f029c56e7813c4aecd84cba46f071a5bb4",
+  "frozenBuildMembers": 90,
+  "frozenBuildFileSetAndBytesVerified": true,
+  "sourceInputsMatchApplicationCommit": true,
+  "frozenMainSHA256": "e838b642a59244b22296ab2f2506c4d02aa6d6b8fd59c9675f8ec655273203f7",
+  "frozenPreloadSHA256": "0c0dea24ae0345641c19ebc41af763ce8462f961a984fa530960a4b187831bb0",
+  "ciASAROrMainCompared": false,
+  "scope": "Source receipts and frozen local build verified offline. CI report/log checkout agrees. Missing merge object prevents exact checkout-tree equality proof; coordinator can supply it. CI package equality and installed-native acceptance remain coordinator-owned."
+}

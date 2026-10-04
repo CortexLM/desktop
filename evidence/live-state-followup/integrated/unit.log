@@ -1,0 +1,69 @@
+RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+ ✓ packages/desktop/test/credentials.test.ts (23 tests) 40ms
+ ✓ tests/unit/audit-i18n.test.ts (1 test) 212ms
+ ✓ packages/schema/test/schema.test.ts (3 tests) 20ms
+(node:2579257) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579125) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579165) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579187) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579151) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579195) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579126) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579201) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ packages/protocol/test/protocol.test.ts (3 tests) 41ms
+(node:2579216) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579208) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579132) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579228) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579173) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579222) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2579236) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/unit/locales.test.ts (9 tests) 389ms
+ ✓ packages/core/test/bus.test.ts (2 tests) 31ms
+ ✓ packages/core/test/computer-use.test.ts (3 tests) 53ms
+ ✓ packages/core/test/connection.test.ts (5 tests) 74ms
+ ✓ packages/core/test/mcp.test.ts (11 tests) 134ms
+ ✓ packages/core/test/remote-sessions.test.ts (18 tests) 131ms
+ ✓ packages/client/test/client.test.ts (3 tests) 159ms
+ ✓ packages/server/test/server.test.ts (7 tests) 193ms
+ ✓ packages/core/test/scheduler.test.ts (4 tests) 226ms
+ ✓ packages/core/test/capabilities.test.ts (11 tests) 197ms
+ ✓ packages/desktop/test/remote-core.test.ts (3 tests) 215ms
+ ✓ packages/core/test/services.test.ts (15 tests) 350ms
+ ✓ packages/core/test/catalog.test.ts (6 tests) 366ms
+   ✓ catalog (6)
+     ✓ live: fetches models.dev (skipped offline) 345ms
+ ✓ tests/unit/runtime-copy.test.ts (34 tests) 3638ms
+ ✓ packages/desktop/test/remote.test.ts (45 tests | 1 skipped) 5188ms
+   ✓ remote backend through the Cortex SDK (45)
+     ✓ times out a model listing whose JSON body never completes 5004ms
+ ✓ packages/core/test/session.test.ts (11 tests) 6365ms
+   ✓ session runner (fake OpenAI-compatible SSE) (11)
+     ✓ surfaces provider errors with a neutral code 6016ms
+ ✓ packages/desktop/test/remote-session.test.ts (8 tests) 10292ms
+   ✓ process-lifetime remote authentication (8)
+     ✓ rejects duplicate requests and times out an unfinished native authentication body 10013ms
+ ✓ packages/desktop/test/remote-chat.test.ts (21 tests) 10858ms
+   ✓ private remote Chat binding (21)
+     ✓ enforces the real JSON deadline while an SSE body has its separate idle deadline 10056ms
+
+ Test Files  22 passed (22)
+      Tests  245 passed | 1 skipped (246)
+   Start at  07:39:15
+   Duration  11.94s (tests 73%, import 15%, transform 12%)

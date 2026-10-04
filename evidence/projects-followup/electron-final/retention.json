@@ -1,0 +1,85 @@
+[
+  {
+    "raw": "/tmp/opencode/projects-integrated/production-full.json",
+    "retained": "../production/full.json.gz",
+    "rawSHA256": "84095b438c35f0d78c699e7d288aec8620fe83e38cdd6332656e6200f6a7bda8",
+    "retainedSHA256": "a61202eff9c3d3f4be97adf32d642df3daac772190683ede214dbafd9af58416",
+    "contentMatches": true
+  },
+  {
+    "raw": "/tmp/opencode/projects-integrated/production-targeted.json",
+    "retained": "../production/targeted.json.gz",
+    "rawSHA256": "b3a6278132f5f11263eab6dcd846a13b7bbdb3dd2e93c6b9a42bdf81e246735c",
+    "retainedSHA256": "866ece8ef95640a2184b12fdab6e1d9cc97d90092dc6f1c36854d36d40b705cf",
+    "contentMatches": true
+  },
+  {
+    "raw": "/tmp/opencode/projects-integrated/production-full.log",
+    "retained": "../production/full.log",
+    "rawSHA256": "c7d633c1636aebf7c81d5d7be5e0d36ce93f4a09983caf5279bd5bca52402c13",
+    "retainedSHA256": "c7d633c1636aebf7c81d5d7be5e0d36ce93f4a09983caf5279bd5bca52402c13",
+    "contentMatches": true
+  },
+  {
+    "raw": "/tmp/opencode/projects-integrated/production-targeted.log",
+    "retained": "../production/production-targeted.log",
+    "rawSHA256": "a51408b209c2e9b0d59071a6005f511c878d2922306a8a1e359f217d7e496cbf",
+    "retainedSHA256": "a51408b209c2e9b0d59071a6005f511c878d2922306a8a1e359f217d7e496cbf",
+    "contentMatches": true
+  },
+  {
+    "raw": "/tmp/opencode/projects-integrated/unit.log",
+    "retained": "../checks/unit.log",
+    "rawSHA256": "3aee855f88ee736e1bae3a54b8a475bdcb258014bc916311a0e0280556311852",
+    "retainedSHA256": "efc8abc81eb8128e641beab2c989967ed864326b82b0366ffbcc7a4a4d7bc757",
+    "contentMatches": false,
+    "difference": "Surrounding whitespace normalization in existing documentary copy; exact raw gzip also retained.",
+    "exactRawRetained": "source/unit.log.gz",
+    "exactRawGzipSHA256": "fb13580a85302f91348e23b97e035dd67122f1e85e719fc9fc41e44bd4023b18"
+  },
+  {
+    "raw": "/tmp/opencode/projects-integrated/i18n-final.log",
+    "retained": "../production/i18n.log",
+    "rawSHA256": "c22e04f038922c2f20c56e11f378ced54c126574c4266331fd8845d1528a6157",
+    "retainedSHA256": "c22e04f038922c2f20c56e11f378ced54c126574c4266331fd8845d1528a6157",
+    "contentMatches": true
+  },
+  {
+    "raw": "/tmp/opencode/projects-integrated/lint-final.log",
+    "retained": "../production/lint-final.log",
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "retainedSHA256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "contentMatches": false,
+    "difference": "Surrounding whitespace normalization in existing documentary copy; exact raw gzip also retained.",
+    "exactRawRetained": "source/lint-final.log.gz",
+    "exactRawGzipSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+  },
+  {
+    "raw": "/tmp/opencode/projects-integrated/typecheck-final.log",
+    "retained": "../production/typecheck-final.log",
+    "rawSHA256": "29c5ee0f6b0b20dbb259b99d01276198c3d28190090706394608d4deda6d2c0b",
+    "retainedSHA256": "29c5ee0f6b0b20dbb259b99d01276198c3d28190090706394608d4deda6d2c0b",
+    "contentMatches": true
+  },
+  {
+    "raw": "/tmp/opencode/projects-integrated/build-production.log",
+    "retained": "../production/build-production.log",
+    "rawSHA256": "82dfe8796ca99c621b79b40ac78c9f681dddac70b5d1406b60eef7f237bc6143",
+    "retainedSHA256": "82dfe8796ca99c621b79b40ac78c9f681dddac70b5d1406b60eef7f237bc6143",
+    "contentMatches": true
+  },
+  {
+    "raw": "/tmp/opencode/projects-integrated/package-production.log",
+    "retained": "../production/package-production.log",
+    "rawSHA256": "e7a78bcee9f9ee3ea278b208d2f5c8d33d3099f1ea110ea5174ea2b372c59624",
+    "retainedSHA256": "e7a78bcee9f9ee3ea278b208d2f5c8d33d3099f1ea110ea5174ea2b372c59624",
+    "contentMatches": true
+  },
+  {
+    "raw": "/tmp/opencode/projects-integrated/smoke-production.log",
+    "retained": "../production/smoke-production.log",
+    "rawSHA256": "fd7ce454f1cf010eeb7e5831256ed59ec415bb3fa4b29e696397a07f8573bc11",
+    "retainedSHA256": "fd7ce454f1cf010eeb7e5831256ed59ec415bb3fa4b29e696397a07f8573bc11",
+    "contentMatches": true
+  }
+]

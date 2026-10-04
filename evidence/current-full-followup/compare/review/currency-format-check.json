@@ -1,0 +1,201 @@
+{
+  "examples": [
+    {
+      "n": 0,
+      "app": "0 €",
+      "appCodepoints": [
+        "30",
+        "a0",
+        "20ac"
+      ],
+      "ref": "0 €",
+      "refCodepoints": [
+        "30",
+        "202f",
+        "20ac"
+      ]
+    },
+    {
+      "n": 300,
+      "app": "300 €",
+      "appCodepoints": [
+        "33",
+        "30",
+        "30",
+        "a0",
+        "20ac"
+      ],
+      "ref": "300 €",
+      "refCodepoints": [
+        "33",
+        "30",
+        "30",
+        "202f",
+        "20ac"
+      ]
+    },
+    {
+      "n": 7800,
+      "app": "7 800 €",
+      "appCodepoints": [
+        "37",
+        "202f",
+        "38",
+        "30",
+        "30",
+        "a0",
+        "20ac"
+      ],
+      "ref": "7 800 €",
+      "refCodepoints": [
+        "37",
+        "202f",
+        "38",
+        "30",
+        "30",
+        "202f",
+        "20ac"
+      ]
+    },
+    {
+      "n": -550,
+      "app": "-550 €",
+      "appCodepoints": [
+        "2d",
+        "35",
+        "35",
+        "30",
+        "a0",
+        "20ac"
+      ],
+      "ref": "-550 €",
+      "refCodepoints": [
+        "2d",
+        "35",
+        "35",
+        "30",
+        "202f",
+        "20ac"
+      ]
+    },
+    {
+      "n": 72520,
+      "app": "72 520 €",
+      "appCodepoints": [
+        "37",
+        "32",
+        "202f",
+        "35",
+        "32",
+        "30",
+        "a0",
+        "20ac"
+      ],
+      "ref": "72 520 €",
+      "refCodepoints": [
+        "37",
+        "32",
+        "202f",
+        "35",
+        "32",
+        "30",
+        "202f",
+        "20ac"
+      ]
+    }
+  ],
+  "budgetFixture": {
+    "name": "Budget",
+    "head": [
+      "Poste",
+      "Prévu",
+      "Engagé",
+      "Écart",
+      "Responsable",
+      "Statut"
+    ],
+    "rows": [
+      [
+        "Identité visuelle",
+        7800,
+        7800,
+        0,
+        "Studio Nord",
+        "Payé"
+      ],
+      [
+        "Shooting produit",
+        9400,
+        9950,
+        -550,
+        "Studio Nord",
+        "Engagé"
+      ],
+      [
+        "Vidéos courtes",
+        4400,
+        4100,
+        300,
+        "Studio Nord",
+        "Engagé"
+      ],
+      [
+        "Avant-première",
+        5200,
+        6100,
+        -900,
+        "Léa Fontaine",
+        "Engagé"
+      ],
+      [
+        "Salon Maison & Objet",
+        4600,
+        0,
+        4600,
+        "Hugo Bernard",
+        "À venir"
+      ],
+      [
+        "Relations presse",
+        2800,
+        2650,
+        150,
+        "Inès Morel",
+        "Payé"
+      ],
+      [
+        "Échantillons",
+        1900,
+        2240,
+        -340,
+        "Atelier Morel",
+        "Payé"
+      ],
+      [
+        "Publicité en ligne",
+        2400,
+        1180,
+        1220,
+        "Camille Laurent",
+        "En cours"
+      ],
+      [
+        "Total",
+        38500,
+        34020,
+        4480,
+        "",
+        ""
+      ]
+    ],
+    "f": {
+      "B10": "=SOMME(B2:B9)",
+      "C10": "=SOMME(C2:C9)",
+      "D10": "=SOMME(D2:D9)",
+      "D2": "=B2-C2",
+      "D3": "=B3-C3",
+      "D4": "=B4-C4",
+      "D5": "=B5-C5"
+    }
+  }
+}

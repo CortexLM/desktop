@@ -1,0 +1,39 @@
+10: const VerifyEmail = z.object({
+11:   status: z.literal("verify_email"), email: z.string().email().max(254), pending_authentication_token: Secret,
+12: }).strict();
+13: const Challenge = z.object({
+14:   status: z.literal("mfa_challenge"), pending_authentication_token: Secret,
+15:   authentication_challenge_id: Secret, authentication_factor_id: Secret,
+16: }).strict();
+17: const Enrollment = Challenge.extend({
+18:   status: z.literal("mfa_enrollment"), qr_code: z.string().min(1), totp_secret: Secret,
+19: });
+20: const Interactive = z.discriminatedUnion("status", [Session, VerifyEmail, Challenge, Enrollment]);
+88:   state(origin: string): RemoteAuthState {
+89:     const parsed = ConnectionUrl.safeParse(origin);
+90:     if (!parsed.success) throw new CortexError("invalid_request", "Invalid connection origin");
+91:     const normalized = new URL(parsed.data).origin;
+92:     if (normalized !== this.#origin) { this.clear(); this.#origin = normalized; }
+93:     if (this.#active?.expiresAt !== undefined && this.#active.expiresAt <= Date.now()) {
+94:       this.#active.lifetime.abort();
+95:       this.#active = undefined;
+96:     }
+97:     const candidate = this.#candidate;
+98:     if (candidate?.pending) return { status: candidate.pending.status, signedIn: !!this.#active, email: candidate.email };
+99:     return this.#active
+100:       ? { status: "signed_in", signedIn: true, email: this.#active.email }
+101:       : { status: "signed_out", signedIn: false };
+102:   }
+103:
+166:         this.#watchExpiry(candidate);
+167:       } else if (result?.status === "verify_email") {
+168:         candidate.email = result.email;
+169:         candidate.pending = { status: result.status, token: result.pending_authentication_token };
+170:       } else if (result) {
+171:         // ponytail: enrollment is status-only until approved UI handles QR/TOTP material.
+172:         candidate.pending = { status: result.status, token: result.pending_authentication_token, challengeID: result.authentication_challenge_id };
+173:       } else {
+174:         candidate.pending = { status: "code_sent" };
+175:       }
+176:       return this.state(origin);
+177:     } catch {

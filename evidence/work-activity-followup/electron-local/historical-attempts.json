@@ -1,0 +1,47 @@
+{
+  "baselineApplication": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "behaviorBaseline": {
+    "failed": 6,
+    "missingPopulatedRows": 5,
+    "missingRecovery": 1,
+    "test": "0166d765dd10a8c332da09563af8c2418ea995cfd2ee07bcdd19b7438a347851",
+    "laterAssertionsReached": false
+  },
+  "localeBaseline": {
+    "failed": 1,
+    "test": "d40d9be095b26db813fe442233f139d67228aa036971f081f5974238d68fd0fc",
+    "geometryMeasurements": 0,
+    "failure": "first missing scope label"
+  },
+  "initialTarget": {
+    "passed": 5,
+    "failed": 2,
+    "reason": "innerText snapshot compared against default textContent",
+    "failureLine": 109,
+    "applicationChangeRequired": false
+  },
+  "correction": {
+    "test": "5740841a75bda4c688f5407122b870bda049698c1b5e80c6746ce55b82ba4af0",
+    "change": "three useInnerText:true options; exact string equality retained",
+    "lifecyclePassed": 2,
+    "durationMs": 5161.413,
+    "fullRunPassed": 132
+  },
+  "intermediateRace": {
+    "test": "3cf71b7c5a2ce730ffdbef866c9555758f4974a11844621c8429abc2460be9ff",
+    "passed": 1,
+    "durationMs": 3188.593,
+    "limit": "pathname-only /api/sessions hold could select sidebar chat read; cannot prove Activity-owned refresh held. Source hash from coordinator/independent review; no reconstructed source claimed."
+  },
+  "finalTarget": {
+    "test": "d98c9205c5dbddfe349a06a4271b4a2a1c135248cf84817705b6d81e11916744",
+    "passed": 6,
+    "durationMs": 7286.332,
+    "strengthening": [
+      "clear filter after stale successful snapshot release",
+      "immediate retirement while exact /api/sessions?kind=bot reply held, with heldURL assertion",
+      "Activity-owned header plus actual preview URL during cancelled navigation"
+    ]
+  },
+  "sourceAttribution": "Raw JSON contains case IDs/line locations, not source bytes; archival source/receipt binding retained per run. Never apply final d98 assertions to earlier132 run."
+}

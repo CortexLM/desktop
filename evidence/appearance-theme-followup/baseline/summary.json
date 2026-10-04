@@ -1,0 +1,57 @@
+{
+  "stats": {
+    "startTime": "2026-10-03T12:22:52.284Z",
+    "duration": 19624.306,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  },
+  "failedCases": 2,
+  "failedAssertions": 17,
+  "cases": [
+    {
+      "title": "Appearance theme keyboard and rail synchronization \u2014 960 light",
+      "startTheme": "light",
+      "status": "failed",
+      "durationMs": 9762,
+      "failedAssertionCount": 9,
+      "failedAssertions": [
+        "Error: Appearance has exactly one Tab stop at its selected radio",
+        "Error: ArrowRight: adjacent radio is selected and focused",
+        "Error: ArrowRight: selection is applied and saved",
+        "Error: ArrowLeft: adjacent radio is selected and focused",
+        "Error: ArrowLeft: selection is applied and saved",
+        "Error: Tab exits Appearance's theme group to Language",
+        "Error: Appearance follows the rail's explicit preference",
+        "Error: Appearance keeps System selected under light OS appearance",
+        "Error: Appearance keeps System selected under dark OS appearance"
+      ],
+      "observationStages": 9,
+      "pageErrors": [],
+      "capture": "images/dark.webp",
+      "captureResolvedTheme": "dark"
+    },
+    {
+      "title": "Appearance theme keyboard and rail synchronization \u2014 960 dark",
+      "startTheme": "dark",
+      "status": "failed",
+      "durationMs": 8642,
+      "failedAssertionCount": 8,
+      "failedAssertions": [
+        "Error: Appearance has exactly one Tab stop at its selected radio",
+        "Error: ArrowRight: adjacent radio is selected and focused",
+        "Error: ArrowRight: selection is applied and saved",
+        "Error: ArrowLeft: adjacent radio is selected and focused",
+        "Error: ArrowLeft: selection is applied and saved",
+        "Error: Appearance follows the rail's explicit preference",
+        "Error: Appearance keeps System selected under light OS appearance",
+        "Error: Appearance keeps System selected under dark OS appearance"
+      ],
+      "observationStages": 9,
+      "pageErrors": [],
+      "capture": "images/light.webp",
+      "captureResolvedTheme": "light"
+    }
+  ]
+}

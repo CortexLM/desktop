@@ -1,0 +1,367 @@
+{
+  "status": "passed",
+  "expectedAsar": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+  "startedAt": "2026-10-03T04:21:50.025Z",
+  "captures": [
+    {
+      "file": "terminal-exit-light.png",
+      "theme": "light",
+      "windowID": 8228,
+      "pid": 47638,
+      "bounds": {
+        "X": 0,
+        "Height": 685,
+        "Y": 30,
+        "Width": 1024
+      },
+      "width": 1024,
+      "height": 685,
+      "sha256": "90f8266492199dc70b3f5d2b2e40f2c6b2d1c3958d6ad1db3f42373f416bc44b",
+      "localizedAnnotationVisible": true,
+      "route": "#/code-session?id=ses_01a0ffff47ef0000529c42235bdc2f07&theme=light"
+    },
+    {
+      "file": "terminal-omitted-light.png",
+      "theme": "light",
+      "windowID": 8228,
+      "pid": 47638,
+      "bounds": {
+        "X": 0,
+        "Height": 685,
+        "Y": 30,
+        "Width": 1024
+      },
+      "width": 1024,
+      "height": 685,
+      "sha256": "3f285ef9a24173a3ed912eeec348ae2135b1835d7d08ea7f720b774eaff95c30",
+      "localizedAnnotationVisible": true,
+      "route": "#/code-session?id=ses_01a0ffff47ef0000529c42235bdc2f07&theme=light"
+    },
+    {
+      "file": "terminal-exit-dark.png",
+      "theme": "dark",
+      "windowID": 8228,
+      "pid": 47638,
+      "bounds": {
+        "X": 0,
+        "Height": 685,
+        "Y": 30,
+        "Width": 1024
+      },
+      "width": 1024,
+      "height": 685,
+      "sha256": "49f9cca8232f7bf0b68d828b15a73d3846c9fd9d917b69b14a35b6d6dba445b1",
+      "localizedAnnotationVisible": true,
+      "route": "#/code-session?id=ses_01a0ffff7b86000024c548d70d9efefc&theme=dark"
+    },
+    {
+      "file": "terminal-omitted-dark.png",
+      "theme": "dark",
+      "windowID": 8228,
+      "pid": 47638,
+      "bounds": {
+        "X": 0,
+        "Height": 685,
+        "Y": 30,
+        "Width": 1024
+      },
+      "width": 1024,
+      "height": 685,
+      "sha256": "ab5521e3895b7beaed61fc53813e72c053abf0d15e056c916529b60fbe3d98d9",
+      "localizedAnnotationVisible": true,
+      "route": "#/code-session?id=ses_01a0ffff7b86000024c548d70d9efefc&theme=dark"
+    }
+  ],
+  "checks": [
+    {
+      "theme": "light",
+      "sessionID": "ses_01a0ffff47ef0000529c42235bdc2f07",
+      "exitOutputExact": true,
+      "exitMetadataExact": true,
+      "largeOutputExact": true,
+      "largeMetadataExact": true,
+      "lookalikeTextPreserved": true,
+      "reloadExact": true,
+      "liveEnvelopeAndReplayExact": true,
+      "providerRows": [
+        {
+          "index": 1,
+          "theme": "light",
+          "phase": "exit",
+          "toolResultCount": 0,
+          "checks": {
+            "modelExact": true,
+            "exitOutputExact": null,
+            "largeOutputExact": null,
+            "exitMetadataExact": null,
+            "largeMetadataExact": null,
+            "plainReplayExact": null
+          }
+        },
+        {
+          "index": 2,
+          "theme": "light",
+          "phase": "large",
+          "toolResultCount": 1,
+          "checks": {
+            "modelExact": true,
+            "exitOutputExact": true,
+            "largeOutputExact": null,
+            "exitMetadataExact": true,
+            "largeMetadataExact": null,
+            "plainReplayExact": null
+          }
+        },
+        {
+          "index": 3,
+          "theme": "light",
+          "phase": "complete",
+          "toolResultCount": 2,
+          "checks": {
+            "modelExact": true,
+            "exitOutputExact": true,
+            "largeOutputExact": true,
+            "exitMetadataExact": true,
+            "largeMetadataExact": true,
+            "plainReplayExact": null
+          }
+        },
+        {
+          "index": 4,
+          "theme": "light",
+          "phase": "replay",
+          "toolResultCount": 2,
+          "checks": {
+            "modelExact": true,
+            "exitOutputExact": true,
+            "largeOutputExact": true,
+            "exitMetadataExact": null,
+            "largeMetadataExact": null,
+            "plainReplayExact": true
+          }
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "sessionID": "ses_01a0ffff7b86000024c548d70d9efefc",
+      "exitOutputExact": true,
+      "exitMetadataExact": true,
+      "largeOutputExact": true,
+      "largeMetadataExact": true,
+      "lookalikeTextPreserved": true,
+      "reloadExact": true,
+      "liveEnvelopeAndReplayExact": true,
+      "providerRows": [
+        {
+          "index": 5,
+          "theme": "dark",
+          "phase": "exit",
+          "toolResultCount": 0,
+          "checks": {
+            "modelExact": true,
+            "exitOutputExact": null,
+            "largeOutputExact": null,
+            "exitMetadataExact": null,
+            "largeMetadataExact": null,
+            "plainReplayExact": null
+          }
+        },
+        {
+          "index": 6,
+          "theme": "dark",
+          "phase": "large",
+          "toolResultCount": 1,
+          "checks": {
+            "modelExact": true,
+            "exitOutputExact": true,
+            "largeOutputExact": null,
+            "exitMetadataExact": true,
+            "largeMetadataExact": null,
+            "plainReplayExact": null
+          }
+        },
+        {
+          "index": 7,
+          "theme": "dark",
+          "phase": "complete",
+          "toolResultCount": 2,
+          "checks": {
+            "modelExact": true,
+            "exitOutputExact": true,
+            "largeOutputExact": true,
+            "exitMetadataExact": true,
+            "largeMetadataExact": true,
+            "plainReplayExact": null
+          }
+        },
+        {
+          "index": 8,
+          "theme": "dark",
+          "phase": "replay",
+          "toolResultCount": 2,
+          "checks": {
+            "modelExact": true,
+            "exitOutputExact": true,
+            "largeOutputExact": true,
+            "exitMetadataExact": null,
+            "largeMetadataExact": null,
+            "plainReplayExact": true
+          }
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "cleanup": {
+    "providerRestored": true,
+    "localeResetToEnglish": true
+  },
+  "asarBefore": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+  "windowBefore": {
+    "pid": 47638,
+    "id": 8228,
+    "active": true,
+    "bounds": {
+      "X": 0,
+      "Height": 640,
+      "Y": 30,
+      "Width": 960
+    }
+  },
+  "provider": {
+    "protocol": "cortex-terminal-native-v1",
+    "runID": "f5332923-1866-4386-aed1-deb8fded2cd7",
+    "project": "/private/tmp/opencode/desktop-recovery-ffc118a/project",
+    "platform": "darwin",
+    "port": 9456,
+    "startedAt": "2026-10-03T04:15:08.297Z"
+  },
+  "providerReceipt": {
+    "protocol": "cortex-terminal-native-v1",
+    "runID": "f5332923-1866-4386-aed1-deb8fded2cd7",
+    "project": "/private/tmp/opencode/desktop-recovery-ffc118a/project",
+    "platform": "darwin",
+    "port": 9456,
+    "startedAt": "2026-10-03T04:15:08.297Z",
+    "requests": [
+      {
+        "index": 1,
+        "theme": "light",
+        "phase": "exit",
+        "toolResultCount": 0,
+        "checks": {
+          "modelExact": true,
+          "exitOutputExact": null,
+          "largeOutputExact": null,
+          "exitMetadataExact": null,
+          "largeMetadataExact": null,
+          "plainReplayExact": null
+        }
+      },
+      {
+        "index": 2,
+        "theme": "light",
+        "phase": "large",
+        "toolResultCount": 1,
+        "checks": {
+          "modelExact": true,
+          "exitOutputExact": true,
+          "largeOutputExact": null,
+          "exitMetadataExact": true,
+          "largeMetadataExact": null,
+          "plainReplayExact": null
+        }
+      },
+      {
+        "index": 3,
+        "theme": "light",
+        "phase": "complete",
+        "toolResultCount": 2,
+        "checks": {
+          "modelExact": true,
+          "exitOutputExact": true,
+          "largeOutputExact": true,
+          "exitMetadataExact": true,
+          "largeMetadataExact": true,
+          "plainReplayExact": null
+        }
+      },
+      {
+        "index": 4,
+        "theme": "light",
+        "phase": "replay",
+        "toolResultCount": 2,
+        "checks": {
+          "modelExact": true,
+          "exitOutputExact": true,
+          "largeOutputExact": true,
+          "exitMetadataExact": null,
+          "largeMetadataExact": null,
+          "plainReplayExact": true
+        }
+      },
+      {
+        "index": 5,
+        "theme": "dark",
+        "phase": "exit",
+        "toolResultCount": 0,
+        "checks": {
+          "modelExact": true,
+          "exitOutputExact": null,
+          "largeOutputExact": null,
+          "exitMetadataExact": null,
+          "largeMetadataExact": null,
+          "plainReplayExact": null
+        }
+      },
+      {
+        "index": 6,
+        "theme": "dark",
+        "phase": "large",
+        "toolResultCount": 1,
+        "checks": {
+          "modelExact": true,
+          "exitOutputExact": true,
+          "largeOutputExact": null,
+          "exitMetadataExact": true,
+          "largeMetadataExact": null,
+          "plainReplayExact": null
+        }
+      },
+      {
+        "index": 7,
+        "theme": "dark",
+        "phase": "complete",
+        "toolResultCount": 2,
+        "checks": {
+          "modelExact": true,
+          "exitOutputExact": true,
+          "largeOutputExact": true,
+          "exitMetadataExact": true,
+          "largeMetadataExact": true,
+          "plainReplayExact": null
+        }
+      },
+      {
+        "index": 8,
+        "theme": "dark",
+        "phase": "replay",
+        "toolResultCount": 2,
+        "checks": {
+          "modelExact": true,
+          "exitOutputExact": true,
+          "largeOutputExact": true,
+          "exitMetadataExact": null,
+          "largeMetadataExact": null,
+          "plainReplayExact": true
+        }
+      }
+    ],
+    "errors": []
+  },
+  "asarAfter": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+  "finishedAt": "2026-10-03T04:22:22.497Z",
+  "scope": "Installed-app IPC and real bash; controlled local inference; native helper captures. ASAR checked on disk before/after; fresh LaunchServices launch/artifact provenance remains coordinator-owned. No legacy migration or full-product acceptance."
+}

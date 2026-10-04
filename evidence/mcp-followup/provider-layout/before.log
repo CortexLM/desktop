@@ -1,0 +1,102 @@
+$ playwright test "tests/e2e/ui-flows.spec.ts" --grep "provider key save, reload and removal" "--workers=1" "--reporter=list" "--output=/tmp/opencode/provider-key-layout-before"
+
+Running 2 tests using 1 worker
+
+  ✘  1 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light (15.7s)
+  ✘  2 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark (15.9s)
+
+
+  1) tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light › 960px
+
+    Error: 960px light: key label, saved hint and controls remain readable
+
+    960px light: key label, saved hint and controls remain readable
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+    - Array []
+    + Array [
+    +   "API key: text is clipped or covered",
+    +   "Saved · WXYZ: text is clipped or covered",
+    +   "Row item 0 escapes its row or viewport",
+    + ]
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      69 |         }
+      70 |         return issues;
+    > 71 |       }, width), { message: `${width}px ${theme}: key label, saved hint and controls remain readable` }).toEqual([]);
+         |                                                                                                          ^
+      72 |     });
+      73 |
+      74 |     await page.getByRole("button", { name: "Remove", exact: true }).click();
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/ui-flows.spec.ts:71:106
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/ui-flows.spec.ts:38:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/provider-key-layout-before/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/provider-key-layout-before/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/provider-key-layout-before/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/provider-key-layout-before/ui-flows-provider-key-save-0b34e-moval-stay-readable-—-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark › 960px
+
+    Error: 960px dark: key label, saved hint and controls remain readable
+
+    960px dark: key label, saved hint and controls remain readable
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+    - Array []
+    + Array [
+    +   "API key: text is clipped or covered",
+    +   "Saved · WXYZ: text is clipped or covered",
+    +   "Row item 0 escapes its row or viewport",
+    + ]
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      69 |         }
+      70 |         return issues;
+    > 71 |       }, width), { message: `${width}px ${theme}: key label, saved hint and controls remain readable` }).toEqual([]);
+         |                                                                                                          ^
+      72 |     });
+      73 |
+      74 |     await page.getByRole("button", { name: "Remove", exact: true }).click();
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/ui-flows.spec.ts:71:106
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/ui-flows.spec.ts:38:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/provider-key-layout-before/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/provider-key-layout-before/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/provider-key-layout-before/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/provider-key-layout-before/ui-flows-provider-key-save-468c9-emoval-stay-readable-—-dark/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light ─
+    tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark ──
+error: script "test:e2e" exited with code 1

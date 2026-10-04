@@ -1,0 +1,30 @@
+{
+  "e2e-linux": {
+    "terminalTailRecords": 6,
+    "diffHeaderRecords": 12,
+    "approvalDescriptionRecords": 8,
+    "allRecordedFlagsPass": true,
+    "expectedInjectedCallbackErrors": [
+      "Native route callback failed",
+      "Native route callback failed",
+      "Native theme callback failed"
+    ],
+    "previewDepartureErrors": [],
+    "workColdWarmSettledGap": 0,
+    "userWheelGapPreserved": 163
+  },
+  "macos": {
+    "terminalTailRecords": 6,
+    "diffHeaderRecords": 12,
+    "approvalDescriptionRecords": 8,
+    "allRecordedFlagsPass": true,
+    "expectedInjectedCallbackErrors": [
+      "Native route callback failed",
+      "Native route callback failed",
+      "Native theme callback failed"
+    ],
+    "previewDepartureErrors": [],
+    "workColdWarmSettledGap": 0,
+    "userWheelGapPreserved": 162
+  }
+}

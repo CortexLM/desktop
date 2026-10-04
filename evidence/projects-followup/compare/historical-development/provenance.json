@@ -1,0 +1,611 @@
+{
+  "version": 1,
+  "capturedAt": "2026-10-03T14:22:12.418Z",
+  "clock": {
+    "mode": "fixed",
+    "source": "cli",
+    "time": "2026-10-02T12:00:00.000Z",
+    "timezone": "UTC",
+    "timers": "real"
+  },
+  "reference": {
+    "root": "/root/cortex-ui-freezes/2026-10-02-7b388e2d9674",
+    "shots": "/root/cortex-ui-freezes/2026-10-02-7b388e2d9674/shots",
+    "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+    "sourceFileCount": 106,
+    "freezeSha256": "f05453f8776c681217a3e386d4e04e59908e0fad2170745ad58b63ecaedc7253",
+    "manifestSha256": "3e215fb4b16115a89d12010a7432cb81f174b1b8292c02981aa18dc56f28bfa1",
+    "registrySha256": "a1f8e68bb0431fde8056ff150d5c2b003838dc7f2173706d0faa8a640f2faac5",
+    "coverageSha256": "71519590059226b8c3c9cc9328864b2106abe5449085837f77728a649c7e993c",
+    "motionIndexSha256": "1d291913221ad1b97511b52630e5af7bc0a63e581c4fc3a8c87c6a3e04471d79"
+  },
+  "application": {
+    "revision": "0597848cdbdec362e1441b44c67bf74c525feefa",
+    "sourceFingerprint": "a2890f737406ca9a02e61c56652ffb8aff4b1ae6f7c4a82c85dd5088d67b54fe",
+    "sourceFileCount": 473,
+    "sourcePaths": [
+      "packages/app/src",
+      "packages/app/public",
+      "packages/app/index.html",
+      "packages/app/vite.config.ts",
+      "packages/app/package.json",
+      "packages/i18n/src",
+      "packages/i18n/locales",
+      "packages/client/src",
+      "packages/schema/src",
+      "package.json",
+      "bun.lock",
+      "tsconfig.json"
+    ]
+  },
+  "comparatorSha256": "838bbacffef18907c15505745189b4ecd18590e71cc99256f93a8e50835eadc6",
+  "render": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 2,
+    "locale": "fr-FR",
+    "catalogLocale": "fr",
+    "pixelmatchThreshold": 0.15
+  },
+  "counts": {
+    "registered": 426,
+    "optionalInteractions": 5,
+    "capturedThisRun": 38,
+    "retainedRows": 38,
+    "compared": 36,
+    "noDesignShot": 2
+  },
+  "runs": [
+    {
+      "id": "2026-10-03T14-20-05-067Z-ywVf00",
+      "capturedAt": "2026-10-03T14:22:12.418Z",
+      "clock": {
+        "mode": "fixed",
+        "source": "cli",
+        "time": "2026-10-02T12:00:00.000Z",
+        "timezone": "UTC",
+        "timers": "real"
+      },
+      "applicationRevision": "0597848cdbdec362e1441b44c67bf74c525feefa",
+      "baseUrl": "http://127.0.0.1:5430/",
+      "jobCount": 38,
+      "only": [
+        "projects",
+        "project",
+        "library",
+        "chat",
+        "home",
+        "search",
+        "command"
+      ],
+      "build": {
+        "sha256": "b231e780f81ab4c7068ba777b2ae2e0a0aede9a50c6a333ebf1c73c2a0aeede7",
+        "files": [
+          {
+            "url": "http://127.0.0.1:5430/",
+            "sha256": "961cb88c1deebcd1ce3310b9f8b4ee2d899349c5b827299a4f1c2b753935a959",
+            "bytes": 664
+          },
+          {
+            "url": "http://127.0.0.1:5430/assets/bots-Dhnxap2k.js",
+            "sha256": "472f7870a1372c099a1913fd1f439e8497dfb47ba57ec4dbc2c48b54e431a2dd",
+            "bytes": 5242
+          },
+          {
+            "url": "http://127.0.0.1:5430/assets/chat-DPP7jha6.js",
+            "sha256": "6fc31d57f4cc8ff64b8c6f708ec31e4b7bbc99ab9f004307ed02a5d61f01c469",
+            "bytes": 21015
+          },
+          {
+            "url": "http://127.0.0.1:5430/assets/code-l1ImvW5S.js",
+            "sha256": "b21a98aa82ac8bff27fbf930cde91d7108210ccc3e3cecee978ffd987cb6342d",
+            "bytes": 17357
+          },
+          {
+            "url": "http://127.0.0.1:5430/assets/files-DIk1qP8R.js",
+            "sha256": "5320181b308c6ac2fe096cff72c639e630aa8df488d7268cef0892e08bea9843",
+            "bytes": 23724
+          },
+          {
+            "url": "http://127.0.0.1:5430/assets/index-B1JJKMHQ.js",
+            "sha256": "9fcef686e7298ed1c6dd12ac9db4e8082aeb4a671e98de093875e5d13a3baf3c",
+            "bytes": 3098968
+          },
+          {
+            "url": "http://127.0.0.1:5430/assets/index-BLVQW-LL.css",
+            "sha256": "44540a26450648a7745ce4c75c36ec0b7a90d3e12f029dd4bdf9f74f2395ecbf",
+            "bytes": 205331
+          },
+          {
+            "url": "http://127.0.0.1:5430/assets/shell-CYBsECV8.js",
+            "sha256": "03ef195ca05a5dc15af65a82fc56d40d161cb420426be5f1fa1cac82db8d9365",
+            "bytes": 1030
+          },
+          {
+            "url": "http://127.0.0.1:5430/assets/system-D9_n4Goj.js",
+            "sha256": "39bacc77f2cda2bd2b349df6cf7cc555a7273915c508b6ae4b9259e28a889026",
+            "bytes": 9120
+          },
+          {
+            "url": "http://127.0.0.1:5430/assets/work-CXx4q0-W.js",
+            "sha256": "bcbba512ee7c0aaa1903ac485c3e195c982137262c92024e076f0557cd86e367",
+            "bytes": 14410
+          },
+          {
+            "url": "http://127.0.0.1:5430/fonts/Geist-Variable.woff2",
+            "sha256": "a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8",
+            "bytes": 69652
+          },
+          {
+            "url": "http://127.0.0.1:5430/fonts/GeistMono-Variable.woff2",
+            "sha256": "fba8f577f38a2bbcbe818efa6348dd58f36303a10b8737c42fefad275be563ab",
+            "bytes": 71368
+          },
+          {
+            "url": "http://127.0.0.1:5430/gel/automatisations.png",
+            "sha256": "6b2d3e9f7ebd52a02640c57b796a7ca7e5ad9099021f45651933f8676e81781c",
+            "bytes": 77526
+          },
+          {
+            "url": "http://127.0.0.1:5430/gel/bot.png",
+            "sha256": "88faf8abeaf30cece620e5c0bfe23129ce2bf3baa01ced547df8451c7ad1ee06",
+            "bytes": 74415
+          },
+          {
+            "url": "http://127.0.0.1:5430/gel/documents.png",
+            "sha256": "239f547be46bdaf6c94fda5ba53941c4a9d8e8376f55a71b763232b7d18fe885",
+            "bytes": 75789
+          },
+          {
+            "url": "http://127.0.0.1:5430/gel/images.png",
+            "sha256": "5723c419048c27c7863f29ffbe82bdca7f1be5dd585de5b8426704de771f0785",
+            "bytes": 77289
+          },
+          {
+            "url": "http://127.0.0.1:5430/gel/recherche-web.png",
+            "sha256": "fc976ecaa29cfe2f47765bcc16bbdde5bae7dd3a775d791e4f12f0931929715d",
+            "bytes": 81327
+          },
+          {
+            "url": "http://127.0.0.1:5430/img/atelier.png",
+            "sha256": "c52a6832e8112485d6d2f9b4e765af272f964b0b18067e3ce3c8fd74c7825b4e",
+            "bytes": 1660374
+          },
+          {
+            "url": "http://127.0.0.1:5430/img/aube.png",
+            "sha256": "2743b253211c84075187ea2f7ffaa3011d5b44daa6b368049dc3153427d16662",
+            "bytes": 1405580
+          },
+          {
+            "url": "http://127.0.0.1:5430/img/ceramique.png",
+            "sha256": "3339e692a943d3e27a64e63e71c9d9894c23ad59f124223808743ad08263f4cd",
+            "bytes": 1509736
+          },
+          {
+            "url": "http://127.0.0.1:5430/img/crepuscule.png",
+            "sha256": "e723124b4ede2e2ad9f8f64d20b718a6854bd01df3c00ecac20cd936ae89d3aa",
+            "bytes": 1405004
+          },
+          {
+            "url": "http://127.0.0.1:5430/img/lagon.png",
+            "sha256": "f8f863d35c5ebc00e3a8946111577a3e79d3473e6d05adc153c8f992cbd7fbdd",
+            "bytes": 1246039
+          },
+          {
+            "url": "http://127.0.0.1:5430/img/marche.png",
+            "sha256": "0c063b8f49cf5345d191ca9b501b35f70922b508f9752546cd1572b1ccab601f",
+            "bytes": 2223442
+          },
+          {
+            "url": "http://127.0.0.1:5430/img/montagne.png",
+            "sha256": "e16a210f3867a9023acc0f61cdcb0ae19aada457fa7f8af7cddbd992980f8d3c",
+            "bytes": 1777869
+          },
+          {
+            "url": "http://127.0.0.1:5430/img/prairie.png",
+            "sha256": "ce9fd320c8c98ed73f40b3787366e09ff8c665d6930014b2b2d1c20da3801968",
+            "bytes": 1242519
+          }
+        ],
+        "httpCache": "disabled via context.route"
+      },
+      "ignoredPreviewApiErrors": [
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "url": "http://127.0.0.1:5430/api/projects",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ]
+    }
+  ],
+  "reportSha256": "52139a4147db65813ec5dc8ec5451196b5f07c2466d911de2830f262bc2ae05c",
+  "limits": [
+    "Browser preview fixtures, not native or live-engine acceptance.",
+    "Settled frames, not motion or exhaustive interaction coverage.",
+    "Browser Date/timezone are caller-selected overrides; reference capturedAt does not attest the original browser timezone or Date at mount. Timers remain real.",
+    "Reference fingerprint covers src only, excluding public assets, configuration and dependencies.",
+    "Working-tree source hash and served main-frame asset hashes are separate provenance; no build-to-source attestation.",
+    "Missing reference states are explicit gaps, never comparisons; frozen coverage metadata does not establish application motion coverage or design approval."
+  ]
+}

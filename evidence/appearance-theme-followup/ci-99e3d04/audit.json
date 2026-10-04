@@ -1,0 +1,383 @@
+{
+  "run": 37124432902,
+  "head": "99e3d04a8dab6b51b6cf23bcdae0365624492e0f",
+  "checkout": "6d6cae30fea21f6177832be478a3913e71a3ef69",
+  "tree": "648b60cffa6abe3255358766cb347ce0d6b16bd9",
+  "reviewedAt": "2026-10-03T13:24:25.320569+00:00",
+  "conclusion": "Scoped pass: two unchanged Appearance cases and all 17 original failed assertions pass per OS. Native CI display capture fails.",
+  "checks": {
+    "lint": "pass",
+    "types": "pass",
+    "unitPassed": 245,
+    "unitSkipped": 1,
+    "unitFiles": 22,
+    "unitFileCounts": [
+      {
+        "path": "packages/desktop/test/remote-chat.test.ts",
+        "total": 21,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/remote-sessions.test.ts",
+        "total": 18,
+        "skipped": 0
+      },
+      {
+        "path": "packages/desktop/test/remote-session.test.ts",
+        "total": 8,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/services.test.ts",
+        "total": 15,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/session.test.ts",
+        "total": 11,
+        "skipped": 0
+      },
+      {
+        "path": "packages/desktop/test/remote-core.test.ts",
+        "total": 3,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/mcp.test.ts",
+        "total": 11,
+        "skipped": 0
+      },
+      {
+        "path": "tests/unit/runtime-copy.test.ts",
+        "total": 34,
+        "skipped": 0
+      },
+      {
+        "path": "packages/desktop/test/remote.test.ts",
+        "total": 45,
+        "skipped": 1
+      },
+      {
+        "path": "packages/core/test/connection.test.ts",
+        "total": 5,
+        "skipped": 0
+      },
+      {
+        "path": "packages/desktop/test/credentials.test.ts",
+        "total": 23,
+        "skipped": 0
+      },
+      {
+        "path": "packages/server/test/server.test.ts",
+        "total": 7,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/bus.test.ts",
+        "total": 2,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/capabilities.test.ts",
+        "total": 11,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/scheduler.test.ts",
+        "total": 4,
+        "skipped": 0
+      },
+      {
+        "path": "tests/unit/audit-i18n.test.ts",
+        "total": 1,
+        "skipped": 0
+      },
+      {
+        "path": "packages/client/test/client.test.ts",
+        "total": 3,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/catalog.test.ts",
+        "total": 6,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/computer-use.test.ts",
+        "total": 3,
+        "skipped": 0
+      },
+      {
+        "path": "tests/unit/locales.test.ts",
+        "total": 9,
+        "skipped": 0
+      },
+      {
+        "path": "packages/schema/test/schema.test.ts",
+        "total": 3,
+        "skipped": 0
+      },
+      {
+        "path": "packages/protocol/test/protocol.test.ts",
+        "total": 3,
+        "skipped": 0
+      }
+    ],
+    "optionalSkip": "lists models from a real backend; CORTEX_TEST_BACKEND_URL guard",
+    "i18n": {
+      "files": 65,
+      "usedKeys": 2272,
+      "englishKeys": 3405,
+      "problems": 0
+    },
+    "nodeVersions": {
+      "0_Lint, typecheck, unit tests, i18n audit.txt": [
+        "22.23.3"
+      ],
+      "1_E2E (Playwright + Electron, Linux).txt": [
+        "22.22.0"
+      ],
+      "2_macOS build, package, launch.txt": [
+        "22.22.3"
+      ]
+    },
+    "bun": "1.4.2",
+    "electron": "44.5.1",
+    "macOSUnitSuiteExecuted": false
+  },
+  "e2e": {
+    "e2e-linux": {
+      "cases": 113,
+      "attempts": 113,
+      "passed": 113,
+      "retries": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "unexpected": 0,
+      "runnerErrors": 0,
+      "registeredRenderVisits": 426,
+      "workers": 4,
+      "startTime": "2026-10-03T12:56:15.586Z",
+      "durationMs": 208985.39299999998,
+      "caseFiles": {
+        "appearance-theme.spec.ts": 2,
+        "approvals-recovery.spec.ts": 2,
+        "bot-owner.spec.ts": 2,
+        "bot-safety.spec.ts": 10,
+        "chat-missing.spec.ts": 2,
+        "chrome.spec.ts": 3,
+        "code-diff-scroll.spec.ts": 1,
+        "code-models.spec.ts": 7,
+        "components.spec.ts": 4,
+        "composer-safety.spec.ts": 4,
+        "engine.spec.ts": 4,
+        "frozen-composer.spec.ts": 4,
+        "interaction-states.spec.ts": 4,
+        "keyboard.spec.ts": 2,
+        "live-state.spec.ts": 4,
+        "memory-safety.spec.ts": 8,
+        "navigation.spec.ts": 6,
+        "provider-draft.spec.ts": 2,
+        "provider-key-pending.spec.ts": 2,
+        "remote-auth.spec.ts": 7,
+        "responsive.spec.ts": 12,
+        "routines.spec.ts": 4,
+        "screens.spec.ts": 1,
+        "search-bots.spec.ts": 3,
+        "terminal-copy.spec.ts": 1,
+        "ui-flows.spec.ts": 4,
+        "work-routine-source.spec.ts": 6,
+        "work-scroll.spec.ts": 2
+      },
+      "diskPngFiles": 447,
+      "uniquePNGs": 149,
+      "reportSHA256": "3f2ab414a4017d165890811fe59289db11d07acce8c201553efe77ff5e30ec68",
+      "metadata": {
+        "ci": {
+          "commitHref": "https://github.com/CortexLM/desktop/commit/6d6cae30fea21f6177832be478a3913e71a3ef69",
+          "commitHash": "6d6cae30fea21f6177832be478a3913e71a3ef69",
+          "prHref": "https://github.com/CortexLM/desktop/pull/36",
+          "prTitle": "feat: rewrite Cortex desktop with a local agent engine",
+          "prBaseHash": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+          "buildHref": "https://github.com/CortexLM/desktop/actions/runs/37124432902"
+        },
+        "gitCommit": {
+          "shortHash": "6d6cae3",
+          "hash": "6d6cae30fea21f6177832be478a3913e71a3ef69",
+          "subject": "Merge 99e3d04a8dab6b51b6cf23bcdae0365624492e0f into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+          "body": "Merge 99e3d04a8dab6b51b6cf23bcdae0365624492e0f into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d\n",
+          "author": {
+            "name": "Mathis",
+            "email": "154886644+echobt@users.noreply.github.com",
+            "time": 1791032103000
+          },
+          "committer": {
+            "name": "GitHub",
+            "email": "noreply@github.com",
+            "time": 1791032103000
+          },
+          "branch": "HEAD"
+        },
+        "actualWorkers": 4
+      },
+      "noMainBundleOrASARInArtifact": true
+    },
+    "macos": {
+      "cases": 113,
+      "attempts": 113,
+      "passed": 113,
+      "retries": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "unexpected": 0,
+      "runnerErrors": 0,
+      "registeredRenderVisits": 426,
+      "workers": 1,
+      "startTime": "2026-10-03T12:56:05.141Z",
+      "durationMs": 624904.701,
+      "caseFiles": {
+        "appearance-theme.spec.ts": 2,
+        "approvals-recovery.spec.ts": 2,
+        "bot-owner.spec.ts": 2,
+        "bot-safety.spec.ts": 10,
+        "chat-missing.spec.ts": 2,
+        "chrome.spec.ts": 3,
+        "code-diff-scroll.spec.ts": 1,
+        "code-models.spec.ts": 7,
+        "components.spec.ts": 4,
+        "composer-safety.spec.ts": 4,
+        "engine.spec.ts": 4,
+        "frozen-composer.spec.ts": 4,
+        "interaction-states.spec.ts": 4,
+        "keyboard.spec.ts": 2,
+        "live-state.spec.ts": 4,
+        "memory-safety.spec.ts": 8,
+        "navigation.spec.ts": 6,
+        "provider-draft.spec.ts": 2,
+        "provider-key-pending.spec.ts": 2,
+        "remote-auth.spec.ts": 7,
+        "responsive.spec.ts": 12,
+        "routines.spec.ts": 4,
+        "screens.spec.ts": 1,
+        "search-bots.spec.ts": 3,
+        "terminal-copy.spec.ts": 1,
+        "ui-flows.spec.ts": 4,
+        "work-routine-source.spec.ts": 6,
+        "work-scroll.spec.ts": 2
+      },
+      "diskPngFiles": 449,
+      "uniquePNGs": 151,
+      "reportSHA256": "a5521b6d6947ded8b4eb7b035e3ba5f1a08c85bf788b2771b3622e0cd3957ed2",
+      "metadata": {
+        "ci": {
+          "commitHref": "https://github.com/CortexLM/desktop/commit/6d6cae30fea21f6177832be478a3913e71a3ef69",
+          "commitHash": "6d6cae30fea21f6177832be478a3913e71a3ef69",
+          "prHref": "https://github.com/CortexLM/desktop/pull/36",
+          "prTitle": "feat: rewrite Cortex desktop with a local agent engine",
+          "prBaseHash": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+          "buildHref": "https://github.com/CortexLM/desktop/actions/runs/37124432902"
+        },
+        "gitCommit": {
+          "shortHash": "6d6cae3",
+          "hash": "6d6cae30fea21f6177832be478a3913e71a3ef69",
+          "subject": "Merge 99e3d04a8dab6b51b6cf23bcdae0365624492e0f into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+          "body": "Merge 99e3d04a8dab6b51b6cf23bcdae0365624492e0f into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d\n",
+          "author": {
+            "name": "Mathis",
+            "email": "154886644+echobt@users.noreply.github.com",
+            "time": 1791032103000
+          },
+          "committer": {
+            "name": "GitHub",
+            "email": "noreply@github.com",
+            "time": 1791032103000
+          },
+          "branch": "HEAD"
+        },
+        "actualWorkers": 1
+      },
+      "noMainBundleOrASARInArtifact": true
+    }
+  },
+  "locale": {
+    "e2e-linux": {
+      "primaryStates": 48,
+      "measurementRecords": 80,
+      "textRows": 384,
+      "keyboardStops": 144,
+      "fontRecords": 6,
+      "passingWeightChecks": 12,
+      "glyphFailurePNGs": 0,
+      "localeCaptures": 8
+    },
+    "macos": {
+      "primaryStates": 48,
+      "measurementRecords": 80,
+      "textRows": 384,
+      "keyboardStops": 144,
+      "fontRecords": 6,
+      "passingWeightChecks": 12,
+      "glyphFailurePNGs": 0,
+      "localeCaptures": 8
+    }
+  },
+  "binding": {
+    "head": "99e3d04a8dab6b51b6cf23bcdae0365624492e0f",
+    "checkout": "6d6cae30fea21f6177832be478a3913e71a3ef69",
+    "tree": "648b60cffa6abe3255358766cb347ce0d6b16bd9",
+    "headCheckoutTreesEqual": true,
+    "inputs": 514,
+    "rendererInputs": 473,
+    "rendererComparatorFingerprint": "474405faaf26dba6319cb1c139f0b32ef04adf2b7e600d6edee37f72b4fabf44",
+    "frozenBuildMembers": 90,
+    "frozenMainSHA256": "f0fc4522cde726dd8b88dcbb56f4116ba93dc87e1e9e29163502d25e522512c7",
+    "inputDeltaFrom37c22c2": [
+      "packages/app/src/screens/system/settings.tsx",
+      "packages/app/src/shell/nav.tsx",
+      "packages/app/src/shell/shell.tsx"
+    ],
+    "originalSixRegressionTestsUnchanged": true,
+    "ciASAROrMainCompared": false,
+    "scope": "CI checkout matches source tree. Frozen local build receipt verified, not rebuilt. Test artifacts have no main bundle or ASAR; package/native receipt is coordinator-owned."
+  },
+  "visual": {
+    "images": 300,
+    "uniquePNG": 300,
+    "uniqueRGBA": 300,
+    "pngCopies": 896,
+    "retention": {
+      "existing RGBA-exact canonical": 261,
+      "new RGBA-exact lossless WebP": 39
+    },
+    "contacts": 26,
+    "fullSizeViews": 20,
+    "uniqueFullSize": 20
+  },
+  "originalNegativeAssertions": 17,
+  "assertionsPassingAcrossBothOSes": 34,
+  "initialHashObservationCountedAsFailure": false,
+  "nativeDisplayCapture": "failed; cause unknown",
+  "packageArtifactDownloaded": false,
+  "ciASARCompared": false,
+  "macOSPrivateCoreUnitSuite": false,
+  "realCloudInferenceAcceptance": false,
+  "applicationOrTestRerun": false,
+  "applicationEdits": false,
+  "MacOperations": false,
+  "commits": false,
+  "runnableOfflineVerification": "python3 /tmp/opencode/ci-99e3d04/finalize.py",
+  "helpers": [
+    {
+      "path": "/var/tmp/opencode/ci-99e3d04/collect.py",
+      "sha256": "c6e34c73b1e23ef438eff7f0ef91127fd31d35d6f6169ab0bc8568ce9e5e64c2"
+    },
+    {
+      "path": "/var/tmp/opencode/ci-99e3d04/audit.py",
+      "sha256": "29fa28bd94887297bda164d2fa624cd804a69cac09385c7b6092c1366673b85d"
+    },
+    {
+      "path": "/var/tmp/opencode/ci-99e3d04/finalize.py",
+      "sha256": "d892a9e501ff1f8aa9e2762bd5d0289eadec0ceff656b39ad038f4a8b3770b55"
+    }
+  ]
+}

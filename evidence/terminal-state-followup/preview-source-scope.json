@@ -1,0 +1,20 @@
+{
+  "baseApplication": "760c4a0",
+  "scope": "Static source comparison only; existing preview markup/logic unchanged, not a new pixel comparison",
+  "checks": [
+    {
+      "file": "packages/app/src/screens/chat/live-chat.tsx",
+      "previewFunction": "function PreviewChat",
+      "bytes": 7033,
+      "sha256": "9b9601a28e6f88cb2b3d3bc5f0be4e079c2e9a1b39d3832c9ce8f05c71c31e49",
+      "unchanged": true
+    },
+    {
+      "file": "packages/app/src/screens/code/code.tsx",
+      "previewFunction": "function SessionPreview",
+      "bytes": 4848,
+      "sha256": "7c5f24d69bca1a5245a6acb640c22c34992d80cd0d911c314f7d5b29c6a9d040",
+      "unchanged": true
+    }
+  ]
+}

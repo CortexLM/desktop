@@ -1,0 +1,982 @@
+{
+  "status": "passed",
+  "revision": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "expectedAsar": "d1e6987ac728723b5c9b1132aa532fc63c3db55d863c9b264c48fdc631eea1f7",
+  "membersSHA256": "d1236d99e1dab70eb5dce10e32660910ade8fc896ff21ff3ad8faae4477d3348",
+  "helperHashes": {
+    "provider-draft-native.mjs": "c84743eeed5d8a5cda6f873269fcd0a247d8fcf467962fa6e6e7001bd9c0ad73",
+    "terminal-state-native-backend.mjs": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "launch-terminal-state-native.py": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "cleanup-terminal-state-native.py": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+  },
+  "startedAt": "2026-10-03T11:35:59.406Z",
+  "invocation": {
+    "execPath": "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "nodeVersion": "v22.23.3",
+    "argv": [
+      "/tmp/opencode/provider-draft-native.mjs",
+      "/tmp/opencode/provider-draft-native-37c22c2-confirm",
+      "/tmp/opencode/desktop-terminal-state-provider-draft-37c22c2-confirm",
+      "d1e6987ac728723b5c9b1132aa532fc63c3db55d863c9b264c48fdc631eea1f7",
+      "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+      "/tmp/opencode/mac-37c22c2/members.json"
+    ],
+    "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite"
+  },
+  "captures": [
+    {
+      "file": "draft-preserved-light.png",
+      "theme": "light",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "id": 8728,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "pid": 60977,
+      "active": true,
+      "sha256": "9ef863461ed409886c8f1289a1ea0b0c99d124a80e8323cd7e97735df413e108",
+      "boxes": [
+        {
+          "text": "API key",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            314,
+            901,
+            330
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Saved · 1111",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            330,
+            901,
+            346
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            358,
+            831,
+            392
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Save",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            843,
+            361,
+            890.71875,
+            389
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Enable",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            417,
+            855,
+            433
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            867,
+            423,
+            901,
+            443
+          ],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "keyHint": "1111",
+      "masked": true,
+      "draftPreserved": true,
+      "draftEmpty": false
+    },
+    {
+      "file": "replacement-saved-light.png",
+      "theme": "light",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "active": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "id": 8728,
+      "pid": 60977,
+      "sha256": "1a816df193f01abe107d33282b02115417de609d9c707669a5f4260f70ef9845",
+      "boxes": [
+        {
+          "text": "API key",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            314,
+            901,
+            330
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Saved · 2222",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            330,
+            901,
+            346
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            358,
+            831,
+            392
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Save",
+          "opacity": 0.4,
+          "disabled": true,
+          "bounds": [
+            843,
+            361,
+            890.71875,
+            389
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Enable",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            417,
+            855,
+            433
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            867,
+            423,
+            901,
+            443
+          ],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "keyHint": "2222",
+      "masked": true,
+      "draftPreserved": false,
+      "draftEmpty": true
+    },
+    {
+      "file": "draft-preserved-dark.png",
+      "theme": "dark",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "active": true,
+      "pid": 60977,
+      "id": 8728,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "sha256": "ec5e60fa61646f1bdcdbccfc8c1757f41156a0ac3bfdfd48e01b64ebf7adfc45",
+      "boxes": [
+        {
+          "text": "API key",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            314,
+            901,
+            330
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Saved · 1111",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            330,
+            901,
+            346
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            358,
+            831,
+            392
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Save",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            843,
+            361,
+            890.71875,
+            389
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Enable",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            417,
+            855,
+            433
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            867,
+            423,
+            901,
+            443
+          ],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "keyHint": "1111",
+      "masked": true,
+      "draftPreserved": true,
+      "draftEmpty": false
+    },
+    {
+      "file": "replacement-saved-dark.png",
+      "theme": "dark",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "pid": 60977,
+      "active": true,
+      "id": 8728,
+      "sha256": "3fca1f64021fcfb09494ea9382f5e9374e9692599aa1e4dde2ebb57a5cae4609",
+      "boxes": [
+        {
+          "text": "API key",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            314,
+            901,
+            330
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Saved · 2222",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            330,
+            901,
+            346
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            358,
+            831,
+            392
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Save",
+          "opacity": 0.4,
+          "disabled": true,
+          "bounds": [
+            843,
+            361,
+            890.71875,
+            389
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Enable",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            631,
+            417,
+            855,
+            433
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "disabled": false,
+          "bounds": [
+            867,
+            423,
+            901,
+            443
+          ],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "keyHint": "2222",
+      "masked": true,
+      "draftPreserved": false,
+      "draftEmpty": true
+    }
+  ],
+  "themes": [
+    {
+      "theme": "light",
+      "checks": [
+        {
+          "stage": "save-A",
+          "stored": {
+            "providerID": "fake",
+            "enabled": true,
+            "hasKey": true,
+            "keyHint": "1111"
+          },
+          "draftEmpty": true
+        },
+        {
+          "stage": "disable",
+          "stored": {
+            "providerID": "fake",
+            "enabled": false,
+            "hasKey": true,
+            "keyHint": "1111"
+          },
+          "draftPreserved": true,
+          "noExtraPUT": true
+        },
+        {
+          "stage": "enable",
+          "stored": {
+            "providerID": "fake",
+            "enabled": true,
+            "hasKey": true,
+            "keyHint": "1111"
+          },
+          "draftPreserved": true,
+          "noExtraPUT": true
+        },
+        {
+          "stage": "save-B",
+          "stored": {
+            "providerID": "fake",
+            "enabled": true,
+            "hasKey": true,
+            "keyHint": "2222"
+          },
+          "draftEmpty": true
+        }
+      ],
+      "observation": {
+        "requests": [
+          {
+            "method": "PUT",
+            "path": "/api/providers/fake/key"
+          },
+          {
+            "method": "PATCH",
+            "path": "/api/providers/fake"
+          },
+          {
+            "method": "PATCH",
+            "path": "/api/providers/fake"
+          },
+          {
+            "method": "PUT",
+            "path": "/api/providers/fake/key"
+          }
+        ],
+        "responses": [
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": true,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "1111",
+            "keyEchoAbsent": true
+          },
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": false,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "1111",
+            "keyEchoAbsent": true
+          },
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": true,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "1111",
+            "keyEchoAbsent": true
+          },
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": true,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "2222",
+            "keyEchoAbsent": true
+          }
+        ]
+      }
+    },
+    {
+      "theme": "dark",
+      "checks": [
+        {
+          "stage": "save-A",
+          "stored": {
+            "providerID": "fake",
+            "enabled": true,
+            "hasKey": true,
+            "keyHint": "1111"
+          },
+          "draftEmpty": true
+        },
+        {
+          "stage": "disable",
+          "stored": {
+            "providerID": "fake",
+            "enabled": false,
+            "hasKey": true,
+            "keyHint": "1111"
+          },
+          "draftPreserved": true,
+          "noExtraPUT": true
+        },
+        {
+          "stage": "enable",
+          "stored": {
+            "providerID": "fake",
+            "enabled": true,
+            "hasKey": true,
+            "keyHint": "1111"
+          },
+          "draftPreserved": true,
+          "noExtraPUT": true
+        },
+        {
+          "stage": "save-B",
+          "stored": {
+            "providerID": "fake",
+            "enabled": true,
+            "hasKey": true,
+            "keyHint": "2222"
+          },
+          "draftEmpty": true
+        }
+      ],
+      "observation": {
+        "requests": [
+          {
+            "method": "PUT",
+            "path": "/api/providers/fake/key"
+          },
+          {
+            "method": "PATCH",
+            "path": "/api/providers/fake"
+          },
+          {
+            "method": "PATCH",
+            "path": "/api/providers/fake"
+          },
+          {
+            "method": "PUT",
+            "path": "/api/providers/fake/key"
+          }
+        ],
+        "responses": [
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": true,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "1111",
+            "keyEchoAbsent": true
+          },
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": false,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "1111",
+            "keyEchoAbsent": true
+          },
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": true,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "1111",
+            "keyEchoAbsent": true
+          },
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": true,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "2222",
+            "keyEchoAbsent": true
+          }
+        ]
+      }
+    }
+  ],
+  "stateCalls": [
+    {
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/catalog/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake/key",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200
+    },
+    {
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "rendererHttp": [],
+  "unexpectedDialogs": 0,
+  "cleanup": {
+    "observationRetained": true,
+    "providerRestoredKeyRemoved": true,
+    "providerDetailReset": true,
+    "localEngineEmpty": true,
+    "zeroInference": true,
+    "appearanceRestored": true,
+    "initialRouteRestored": true
+  },
+  "installedBefore": {
+    "asarSHA256": "d1e6987ac728723b5c9b1132aa532fc63c3db55d863c9b264c48fdc631eea1f7",
+    "revision": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+    "membersVerified": 90,
+    "pid": 60977,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-provider-draft-37c22c2-confirm",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "d1236d99e1dab70eb5dce10e32660910ade8fc896ff21ff3ad8faae4477d3348"
+  },
+  "backend": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-provider-draft-37c22c2-confirm",
+    "runID": "7bfc4fd1-b8a3-48f3-9d00-5e0c16f4d6ca",
+    "pid": 60974,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d"
+  },
+  "backendReceipt": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-provider-draft-37c22c2-confirm",
+    "runID": "7bfc4fd1-b8a3-48f3-9d00-5e0c16f4d6ca",
+    "pid": 60974,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "counts": {
+      "catalog": 1,
+      "health": 2,
+      "receipt": 7,
+      "errors": 0
+    },
+    "requests": [],
+    "failures": []
+  },
+  "installedAfter": {
+    "asarSHA256": "d1e6987ac728723b5c9b1132aa532fc63c3db55d863c9b264c48fdc631eea1f7",
+    "revision": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+    "membersVerified": 90,
+    "pid": 60977,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-provider-draft-37c22c2-confirm",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "d1236d99e1dab70eb5dce10e32660910ade8fc896ff21ff3ad8faae4477d3348"
+  },
+  "lastObservation": {
+    "requests": [
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key"
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake"
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/providers/fake"
+      },
+      {
+        "method": "PUT",
+        "path": "/api/providers/fake/key"
+      }
+    ],
+    "responses": [
+      {
+        "status": 200,
+        "fields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ],
+        "enabled": true,
+        "hasKey": true,
+        "providerID": "fake",
+        "keyHint": "1111",
+        "keyEchoAbsent": true
+      },
+      {
+        "status": 200,
+        "fields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ],
+        "enabled": false,
+        "hasKey": true,
+        "providerID": "fake",
+        "keyHint": "1111",
+        "keyEchoAbsent": true
+      },
+      {
+        "status": 200,
+        "fields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ],
+        "enabled": true,
+        "hasKey": true,
+        "providerID": "fake",
+        "keyHint": "1111",
+        "keyEchoAbsent": true
+      },
+      {
+        "status": 200,
+        "fields": [
+          "enabled",
+          "hasKey",
+          "keyHint",
+          "providerID"
+        ],
+        "enabled": true,
+        "hasKey": true,
+        "providerID": "fake",
+        "keyHint": "2222",
+        "keyEchoAbsent": true
+      }
+    ]
+  },
+  "restoredProvider": {
+    "providerID": "fake",
+    "enabled": true,
+    "hasKey": false
+  },
+  "finishedAt": "2026-10-03T11:37:33.606Z",
+  "durationMs": 94200,
+  "scope": "Installed English Settings, both themes, ordinary sequential provider toggles and explicit key saves. Passive method/config observation; no held IPC, main-handler replacement or inference. Prepared source requires independent review and future native pixel acceptance."
+}

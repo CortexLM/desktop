@@ -1,0 +1,29 @@
+HTTP/2.0 200 OK
+Access-Control-Allow-Origin: *
+Access-Control-Expose-Headers: ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset, Warning
+Cache-Control: private, max-age=60, s-maxage=60
+Content-Security-Policy: default-src 'none'
+Content-Type: application/json; charset=utf-8
+Date: Sat, 03 Oct 2026 08:51:28 GMT
+Etag: W/"5b212a3935e0cfa5037e261209400de3a5b674dc60aeaf5b832c444e09717901"
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Server: github.com
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+Vary: Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With
+X-Accepted-Oauth-Scopes:
+X-Content-Type-Options: nosniff
+X-Frame-Options: deny
+X-Github-Api-Version-Selected: 2022-11-28
+X-Github-Edge-Region: iad
+X-Github-Media-Type: github.v3; format=json
+X-Github-Request-Id: A824:234765:D37CFB:2C08C47:6AC0C210
+X-Oauth-Client-Id: 178c6fc778ccc68e1d6a
+X-Oauth-Scopes: admin:org, gist, repo, workflow
+X-Ratelimit-Limit: 5000
+X-Ratelimit-Remaining: 4378
+X-Ratelimit-Reset: 1791017505
+X-Ratelimit-Resource: core
+X-Ratelimit-Used: 622
+X-Xss-Protection: 0
+
+{"total_count":3,"artifacts":[{"id":11269856853,"node_id":"MDg6QXJ0aWZhY3QxMTI2OTg1Njg1Mw==","name":"cortex-mac-arm64-zip","size_in_bytes":144676546,"url":"https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11269856853","archive_download_url":"https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11269856853/zip","expired":false,"digest":"sha256:257fb7b54e362efae0a7c053183955fd6362228338c0a203874778d4b3d5e1df","created_at":"2026-10-03T08:47:15Z","updated_at":"2026-10-03T08:47:15Z","expires_at":"2026-10-10T08:47:12Z","workflow_run":{"id":37110253688,"repository_id":1336933474,"head_repository_id":1336933474,"head_branch":"goal/desktop-rewrite","head_sha":"760c4a046ce454bc8b0ab2fd85c941fec321c3ea"}},{"id":11269637206,"node_id":"MDg6QXJ0aWZhY3QxMTI2OTYzNzIwNg==","name":"macos","size_in_bytes":28542049,"url":"https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11269637206","archive_download_url":"https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11269637206/zip","expired":false,"digest":"sha256:90f474aa0476ca8956508875be825317bf06fd844c6c95f4496b9f3b6737d45b","created_at":"2026-10-03T08:47:11Z","updated_at":"2026-10-03T08:47:11Z","expires_at":"2027-01-01T08:36:04Z","workflow_run":{"id":37110253688,"repository_id":1336933474,"head_repository_id":1336933474,"head_branch":"goal/desktop-rewrite","head_sha":"760c4a046ce454bc8b0ab2fd85c941fec321c3ea"}},{"id":11269436951,"node_id":"MDg6QXJ0aWZhY3QxMTI2OTQzNjk1MQ==","name":"e2e-linux","size_in_bytes":29519419,"url":"https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11269436951","archive_download_url":"https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11269436951/zip","expired":false,"digest":"sha256:6bbf9091a1d2362b62b47ab76fef0d8b2f38af47b9ace81b0d0557b850117323","created_at":"2026-10-03T08:41:19Z","updated_at":"2026-10-03T08:41:19Z","expires_at":"2027-01-01T08:36:04Z","workflow_run":{"id":37110253688,"repository_id":1336933474,"head_repository_id":1336933474,"head_branch":"goal/desktop-rewrite","head_sha":"760c4a046ce454bc8b0ab2fd85c941fec321c3ea"}}]}

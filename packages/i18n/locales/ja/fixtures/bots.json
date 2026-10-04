@@ -1,0 +1,419 @@
+{
+  "main": {
+    "name": "Nova",
+    "doing": "メールを整理中"
+  },
+  "team": [
+    {
+      "cfg": {
+        "name": "Iris",
+        "shape": "drop",
+        "color": "#1E7BFF",
+        "eyes": "commas",
+        "mouth": "none",
+        "glasses": "round"
+      },
+      "role": "アシスタント",
+      "state": "thinking",
+      "doing": "15時の打ち合わせを準備中"
+    },
+    {
+      "cfg": {
+        "name": "Margaux",
+        "shape": "squircle",
+        "color": "#FF6A13",
+        "eyes": "ovals",
+        "mouth": "smile",
+        "hat": "cap"
+      },
+      "role": "セールス",
+      "state": "working",
+      "doing": "CRMレコードを12件更新中"
+    },
+    {
+      "cfg": {
+        "name": "Sam",
+        "shape": "hexagon",
+        "color": "#12B8A0",
+        "eyes": "commas",
+        "mouth": "none",
+        "symbol": "bug"
+      },
+      "role": "サポート",
+      "state": "blocked",
+      "doing": "サプライヤーポータルへのアクセスが拒否されました"
+    },
+    {
+      "cfg": {
+        "name": "Hugo",
+        "shape": "cloud",
+        "color": "#14B85A",
+        "eyes": "commas",
+        "mouth": "none",
+        "symbol": "mail"
+      },
+      "role": "受信箱",
+      "state": "working",
+      "doing": "新着メール23件を整理中",
+      "lead": "Iris"
+    },
+    {
+      "cfg": {
+        "name": "Léo",
+        "shape": "triangle",
+        "color": "#EE3A97",
+        "eyes": "dots",
+        "mouth": "none"
+      },
+      "role": "経費",
+      "state": "waiting",
+      "doing": "レシート2件の承認待ち",
+      "lead": "Iris"
+    },
+    {
+      "cfg": {
+        "name": "Max",
+        "shape": "round",
+        "color": "#5F6B7E",
+        "eyes": "pixels",
+        "mouth": "none",
+        "glasses": "aviator"
+      },
+      "role": "給与",
+      "state": "done",
+      "doing": "10月分の給与明細が準備完了",
+      "lead": "Iris"
+    },
+    {
+      "cfg": {
+        "name": "Zoé",
+        "shape": "pebble",
+        "color": "#F2263F",
+        "eyes": "ovals",
+        "mouth": "o",
+        "hat": "beanie"
+      },
+      "role": "ソーシャルメディア",
+      "state": "idle",
+      "doing": "Julienのビジュアルを待機中",
+      "lead": "Margaux"
+    },
+    {
+      "cfg": {
+        "name": "Paul",
+        "shape": "pill",
+        "color": "#FFAA00",
+        "eyes": "dots",
+        "mouth": "none",
+        "hat": "headphones"
+      },
+      "role": "ウォッチ",
+      "state": "asleep",
+      "doing": "月曜8:00まで一時停止中",
+      "lead": "Margaux"
+    },
+    {
+      "cfg": {
+        "name": "Inès",
+        "shape": "drop",
+        "color": "#93603A",
+        "eyes": "dots",
+        "mouth": "smile",
+        "extra": "scarf"
+      },
+      "role": "カスタマーチケット",
+      "state": "working",
+      "doing": "チケット#4182に対応中",
+      "lead": "Sam"
+    }
+  ],
+  "page": {
+    "heroTip": "9:12受信の3件のメールを整理中",
+    "hello": "こんにちは、Camilleさん",
+    "summary": "今朝から14件の対応を完了しました。2件があなたの判断待ちです。",
+    "team": [
+      "Iris",
+      "Hugo",
+      "Léo",
+      "Sam"
+    ],
+    "feed": [
+      [
+        "mail",
+        "メール3件を整理済み",
+        "木曜までに対応すべき見積依頼が2件あります。",
+        "12分前"
+      ],
+      [
+        "calendar",
+        "会議の準備完了",
+        "Studio Nordとの15時の打ち合わせ：メモと議題を準備済み。",
+        "40分前"
+      ],
+      [
+        "globe",
+        "今週のAIウォッチ",
+        "38件中5件の発表を厳選、要約を読む準備完了。",
+        "月曜8:00"
+      ]
+    ],
+    "approve": {
+      "t": "Atelier Morelへの返信",
+      "d": "ジュリアンさん、お見積りと共有いただいたスケジュールをありがとうございます",
+      "to": "To Julien Morel"
+    },
+    "routines": [
+      [
+        "a",
+        "朝の整理",
+        "毎日 08:00",
+        true
+      ],
+      [
+        "b",
+        "AIウォッチ",
+        "毎週月曜日 08:00",
+        true
+      ],
+      [
+        "c",
+        "週次レビュー",
+        "金曜日 17:30",
+        false
+      ]
+    ],
+    "memory": [
+      "短い回答、フランス語を好む",
+      "4月14日のローンチに取り組んでいる",
+      "水曜日は会議なし"
+    ]
+  },
+  "roster": {
+    "templates": [
+      [
+        "会計担当",
+        "請求書、取引明細、経費を照合します。",
+        "会計",
+        [
+          "会計",
+          "メール"
+        ],
+        {
+          "name": "Compta",
+          "shape": "squircle",
+          "color": "#14B85A",
+          "eyes": "dots",
+          "mouth": "none",
+          "glasses": "square"
+        }
+      ],
+      [
+        "リクルーター",
+        "応募を仕分けし、面接を調整します。",
+        "人事",
+        [
+          "メール",
+          "カレンダー"
+        ],
+        {
+          "name": "Recrut",
+          "shape": "round",
+          "color": "#8448FF",
+          "eyes": "ovals",
+          "mouth": "smile",
+          "extra": "bow-tie"
+        }
+      ],
+      [
+        "コミュニティマネージャー",
+        "投稿を準備し、予約します。",
+        "ソーシャルメディア",
+        [
+          "Drive"
+        ],
+        {
+          "name": "Social",
+          "shape": "pebble",
+          "color": "#EE3A97",
+          "eyes": "commas",
+          "mouth": "o",
+          "hat": "beanie"
+        }
+      ],
+      [
+        "サポート担当",
+        "簡単な問い合わせに回答し、それ以外はエスカレーションします。",
+        "サポート",
+        [
+          "チケット",
+          "CRM"
+        ],
+        {
+          "name": "Support",
+          "shape": "hexagon",
+          "color": "#1E7BFF",
+          "eyes": "dots",
+          "mouth": "none",
+          "hat": "headphones"
+        }
+      ],
+      [
+        "アナリスト",
+        "週間ダッシュボードを作成します。",
+        "データ",
+        [
+          "Drive",
+          "CRM"
+        ],
+        {
+          "name": "Data",
+          "shape": "pill",
+          "color": "#FFAA00",
+          "eyes": "pixels",
+          "mouth": "none",
+          "glasses": "round"
+        }
+      ],
+      [
+        "ウォッチャー",
+        "競合、価格、発表を監視します。",
+        "ウォッチ",
+        [
+          "Web検索"
+        ],
+        {
+          "name": "Veille",
+          "shape": "triangle",
+          "color": "#12B8A0",
+          "eyes": "commas",
+          "mouth": "none",
+          "hat": "antenna"
+        }
+      ]
+    ],
+    "chiefDoing": "あなたのメールを整理中",
+    "more": "+ 他40件",
+    "moreSub": "そのうち12件は非アクティブ"
+  },
+  "settings": {
+    "identity": "Chief of Staff・ダイレクトな口調・9月2日作成",
+    "channels": [
+      [
+        "Sl",
+        "Slack",
+        "#studio-nord・ダイレクトメッセージ",
+        true
+      ],
+      [
+        "Te",
+        "Teams",
+        "Spring launchチーム",
+        false
+      ],
+      [
+        "SM",
+        "SMS",
+        "+33 6 •• •• •• 42・緊急時のみ",
+        true
+      ]
+    ],
+    "log": [
+      [
+        "10:42",
+        "Julien Morelにフォローアップを送信しました",
+        "mail"
+      ],
+      [
+        "10:41",
+        "「見積りフォローアップ」ルーチンを作成しました",
+        "clock-loop"
+      ],
+      [
+        "10:38",
+        "crm.studionord.frを開きました",
+        "globe"
+      ],
+      [
+        "08:14",
+        "23件のメールを整理しました",
+        "mail"
+      ]
+    ],
+    "rules": [
+      [
+        "mail",
+        "メールを送信する",
+        "Email",
+        "ask"
+      ],
+      [
+        "calendar",
+        "招待を承諾する",
+        "Calendar",
+        "allow"
+      ],
+      [
+        "key",
+        "支払いを行う",
+        "Payroll, Accounting",
+        "ask"
+      ],
+      [
+        "share",
+        "ソーシャルメディアに投稿する",
+        "Social media",
+        "ask"
+      ],
+      [
+        "trash",
+        "ファイルを削除する",
+        "Drive",
+        "deny"
+      ],
+      [
+        "edit",
+        "CRMレコードを編集する",
+        "CRM",
+        "allow"
+      ],
+      [
+        "globe",
+        "ウェブを閲覧する",
+        "Browser",
+        "allow"
+      ]
+    ],
+    "alwaysRules": [
+      [
+        "Atelier Morelへ最大1,500€まで支払う",
+        "10月1日に「承認待ち」から追加"
+      ],
+      [
+        "Studio Nordのメールに返信する",
+        "9月18日に追加"
+      ]
+    ],
+    "memory": [
+      "短い回答を好む（フランス語で）",
+      "4月14日のローンチに取り組んでいる",
+      "水曜日は会議なし",
+      "Julien MorelがAtelier Morelの主な担当者",
+      "見積りは7日後にフォローアップする"
+    ],
+    "usage": [
+      [
+        "1,284",
+        "今月のアクション数"
+      ],
+      [
+        "€31.40",
+        "予算{budget}€のうち"
+      ],
+      [
+        "47時間",
+        "節約した作業時間（推定）"
+      ]
+    ],
+    "spent": 31.4
+  }
+}

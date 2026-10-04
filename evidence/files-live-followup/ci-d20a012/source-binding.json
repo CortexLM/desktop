@@ -1,0 +1,59 @@
+{
+  "application": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "checkout": "72b43406c8092c54c1683f8d0c53bed2e24b5923",
+  "tree": "b17a4b9a71398b511253044a159ef0ebb558d4ef",
+  "headCheckoutTreesEqual": true,
+  "reconstructedCheckoutSHA1": "72b43406c8092c54c1683f8d0c53bed2e24b5923",
+  "reconstructedCheckoutSHA256": "4f2b9ab4562fbd14e508bc310e28527a2b8a8e2058f34e5a557fd6d580f8eb7e",
+  "localHeadSHA1": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "inputFileSetExact": true,
+  "frozenSourceFileSetExact": true,
+  "all520FrozenAndWorkingFilesMatchGit": true,
+  "rendererFileSetExact": true,
+  "inputs": 520,
+  "rendererInputs": 478,
+  "buildMembers": 90,
+  "rendererSourcePaths": [
+    "packages/app/src",
+    "packages/app/public",
+    "packages/app/index.html",
+    "packages/app/vite.config.ts",
+    "packages/app/package.json",
+    "packages/i18n/src",
+    "packages/i18n/locales",
+    "packages/client/src",
+    "packages/schema/src",
+    "package.json",
+    "bun.lock",
+    "tsconfig.json"
+  ],
+  "rendererFingerprint": "087587293bfb7c2ccf85176cece73982ae75db48318e1c381270caa5196a0d73",
+  "originalDirtyProductionReceipts": [
+    {
+      "path": "provenance/original-dirty-pinned-inputs.json.gz",
+      "bytes": 20120,
+      "sha256": "b3d3b1d1ac580f0ee321ec65e7e05b6e484964710f6e04437a400bb5b83c4b38",
+      "rawBytes": 79876,
+      "rawSHA256": "4112892a4cb9215ba1bfb37d2e5c977d9756dd7e1982f695dcb9c0ef6464d34a"
+    },
+    {
+      "path": "provenance/original-dirty-renderer-inputs.json.gz",
+      "bytes": 18121,
+      "sha256": "751add8f96071f1ec35f3c9a89c88f9aca80d84ba2c4e0d01c6bea0a75b2df17",
+      "rawBytes": 74027,
+      "rawSHA256": "fae7a66c7eec37edd7b521f1749938662b3427c545c7efd5b2ea4708b0df36ce"
+    },
+    {
+      "path": "provenance/original-dirty-members.json.gz",
+      "bytes": 4759,
+      "sha256": "e9150f9934870afa6348e25f0a4a5fc53077e8d9df3082126082fc398facfe3c",
+      "rawBytes": 13868,
+      "rawSHA256": "9c610cbde3caa906800641563b15ee06968579dd1b05b63ca27b5b14249c3d15"
+    }
+  ],
+  "originalDirtyBase": "d390cce590600cf5896fa19acf0ddd44d7057e2c",
+  "laterCommitBindingPreservesOriginals": true,
+  "signatureScope": "API reports valid checkout signature; reconstructed exact Git object hash verified offline. GPG cryptographic signature not independently validated.",
+  "packageScope": "Local frozen build only; CI package/ASAR and installed native checks separately owned.",
+  "observedUTC": "2026-10-03T21:23:01.521250+00:00"
+}

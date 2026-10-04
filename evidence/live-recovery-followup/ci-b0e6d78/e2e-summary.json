@@ -1,0 +1,94 @@
+{
+  "linux": {
+    "reportSha256": "443fb710d2fa4ebc3d0db4d1cbe7fed214892cf854aeb193b5e8cc3e631a35f7",
+    "stats": {
+      "startTime": "2026-10-03T02:49:46.014Z",
+      "duration": 193459.418,
+      "expected": 84,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "errors": [],
+    "cases": 84,
+    "attempts": 84,
+    "retries": 0,
+    "workers": 4,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/CortexLM/desktop/commit/c2e737a4a47feed85a3f7be5a858708a5473e500",
+        "commitHash": "c2e737a4a47feed85a3f7be5a858708a5473e500",
+        "prHref": "https://github.com/CortexLM/desktop/pull/36",
+        "prTitle": "feat: rewrite Cortex desktop with a local agent engine",
+        "prBaseHash": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+        "buildHref": "https://github.com/CortexLM/desktop/actions/runs/37091082338"
+      },
+      "gitCommit": {
+        "shortHash": "c2e737a",
+        "hash": "c2e737a4a47feed85a3f7be5a858708a5473e500",
+        "subject": "Merge b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+        "body": "Merge b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d\n",
+        "author": {
+          "name": "Mathis",
+          "email": "154886644+echobt@users.noreply.github.com",
+          "time": 1790995720000
+        },
+        "committer": {
+          "name": "GitHub",
+          "email": "noreply@github.com",
+          "time": 1790995720000
+        },
+        "branch": "HEAD"
+      },
+      "actualWorkers": 4
+    },
+    "pngCopies": 276,
+    "uniquePngs": 92
+  },
+  "macos": {
+    "reportSha256": "fd48f11f2752dc207e274b3d08b118d00cc2c9063a0ea7d0e2010277eb99f09a",
+    "stats": {
+      "startTime": "2026-10-03T02:49:40.573Z",
+      "duration": 499404.184,
+      "expected": 84,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "errors": [],
+    "cases": 84,
+    "attempts": 84,
+    "retries": 0,
+    "workers": 1,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/CortexLM/desktop/commit/c2e737a4a47feed85a3f7be5a858708a5473e500",
+        "commitHash": "c2e737a4a47feed85a3f7be5a858708a5473e500",
+        "prHref": "https://github.com/CortexLM/desktop/pull/36",
+        "prTitle": "feat: rewrite Cortex desktop with a local agent engine",
+        "prBaseHash": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+        "buildHref": "https://github.com/CortexLM/desktop/actions/runs/37091082338"
+      },
+      "gitCommit": {
+        "shortHash": "c2e737a",
+        "hash": "c2e737a4a47feed85a3f7be5a858708a5473e500",
+        "subject": "Merge b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+        "body": "Merge b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d\n",
+        "author": {
+          "name": "Mathis",
+          "email": "154886644+echobt@users.noreply.github.com",
+          "time": 1790995720000
+        },
+        "committer": {
+          "name": "GitHub",
+          "email": "noreply@github.com",
+          "time": 1790995720000
+        },
+        "branch": "HEAD"
+      },
+      "actualWorkers": 1
+    },
+    "pngCopies": 277,
+    "uniquePngs": 93
+  }
+}

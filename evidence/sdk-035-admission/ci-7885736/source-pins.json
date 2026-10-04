@@ -1,0 +1,276 @@
+{
+  "revision": "78857365a509d78af10ebdda5b52348a2e50e961",
+  "previous": "ffc118a2e58df66f430f3078e00f6e931dd910cf",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 2803,
+      "sha256": "5daf1215067f335ce04fd4ce012911e0f58686f53fc1cd5ba578b7e823f88874",
+      "gitBlob": "864e36efa34d7efd1b4198d504703eb87698729f"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 23541,
+      "sha256": "02b34ea3451d46c56809cf59427b2eb7bc4c59ec54148e9ae56160f2d86839bd",
+      "gitBlob": "1d768e78fb99c3fd364d494a461e738c1c9d807b"
+    },
+    {
+      "path": "bun.lock",
+      "bytes": 143415,
+      "sha256": "dada4e8c730bd0514dd0506c7ee7b453ac1f698bd509561a8ad43367b796f8a6",
+      "gitBlob": "cde80f33d8e9e3336c6e6cd286d9862832041b6e"
+    },
+    {
+      "path": "electron-builder.yml",
+      "bytes": 2091,
+      "sha256": "2644b0beafd7707145e05f25f7a4564d4562880a5c24608051346f88f9c5e2d7",
+      "gitBlob": "9288e98af5e6da2ed3ef98f6293e354eaeefad50"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2188,
+      "sha256": "8a271456a70e06095c307033c36a9a7017cba19b99484bf8108fcd8770b98233",
+      "gitBlob": "cc1f8aa0296f9ee43e68d20ee45d8017c6fd436f"
+    },
+    {
+      "path": "packages/app/src/App.tsx",
+      "bytes": 3787,
+      "sha256": "b48dcc43f2142029197d451c749713dfd94c47742785ebb094900ca7517c6518",
+      "gitBlob": "63bb71f9c223df3b12f1a692dae547177c1462da"
+    },
+    {
+      "path": "packages/app/src/kit/styles.css",
+      "bytes": 50311,
+      "sha256": "8f2caecacb1574f931e2113be8bd7cfef039fc0105a776ef5a66bc6e867cd730",
+      "gitBlob": "2c1bde1b6821a319e709f74a064da139490adc60"
+    },
+    {
+      "path": "packages/app/src/preview.tsx",
+      "bytes": 4457,
+      "sha256": "5734b59643af8811a75159c651ee23bf3c766b5abe5d428cbef34b8f70873629",
+      "gitBlob": "0895e988d3bb8de7b054d973498d4ee8aea46c49"
+    },
+    {
+      "path": "packages/app/src/screens/code/lot-code.css",
+      "bytes": 29395,
+      "sha256": "dd0c1bb34e70c558058451e381ed9a4ccd8a87208315f3ff949e13d7db660f00",
+      "gitBlob": "cb32c1b0f191af8d366607f43be53958f4cf462f"
+    },
+    {
+      "path": "packages/app/src/screens/code/lot-code.tsx",
+      "bytes": 74862,
+      "sha256": "c60639ed760972d48291bd0afcdbb601ca8cc0a7b831655dfca7194fdd4a0e7c",
+      "gitBlob": "6b9771817167a50a6fcc2f84050ce994a4693913"
+    },
+    {
+      "path": "packages/app/src/screens/system/account.tsx",
+      "bytes": 34516,
+      "sha256": "7d6946caefc5f0333267c41fb472d321a8f62358023933c7e2fcd2c6674f0a36",
+      "gitBlob": "4cca1ba2a851863c33ca2b046a39051f1ac6c772"
+    },
+    {
+      "path": "packages/app/src/screens/system/settings.tsx",
+      "bytes": 24327,
+      "sha256": "54e9b65e6f37710d6235e64f720e75f0ed03ec647cd1f0dd1bda63aca544285d",
+      "gitBlob": "24b2292445f9d14b9cd336c96731add7285fb1a2"
+    },
+    {
+      "path": "packages/app/src/screens/work/home.tsx",
+      "bytes": 37536,
+      "sha256": "61e37805bd9591619ce82e1e0e73af39fcf79b76ac0277bbf6b531a311cfd5b8",
+      "gitBlob": "45f8e40ef14540766636ce3409cbc1f6a58e40c5"
+    },
+    {
+      "path": "packages/client/src/index.ts",
+      "bytes": 10100,
+      "sha256": "0faa61a96ffb009edd1fd6d321d38d805625eb385c9d912c7a184bc1467367e7",
+      "gitBlob": "7ea35a8b8f363a51e0c1660b4e16052cd4a23ec0"
+    },
+    {
+      "path": "packages/core/src/connection.ts",
+      "bytes": 3734,
+      "sha256": "47eb2ba5d2ef920c067f2af881d506e97152cae246964d76d50681810cbf68d6",
+      "gitBlob": "19f88883c8ae3996737815dd4e801a75b84b65e1"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "bytes": 4906,
+      "sha256": "45d4fd4b3639b7f51ad9b1e9bf7cc40f8a51411fb0bd7290f536457efd16c15a",
+      "gitBlob": "40e0cdfabbfb12ed02ba15616b4a8d65660c5b43"
+    },
+    {
+      "path": "packages/core/test/connection.test.ts",
+      "bytes": 9323,
+      "sha256": "1ecfe909a81d147aab811c5ffa0a25b56be7c877ed4ca698d3ae4f4377a19399",
+      "gitBlob": "3b7c653bbd559d60c9e3333b5f8108e3bfae14b8"
+    },
+    {
+      "path": "packages/desktop/build.mjs",
+      "bytes": 693,
+      "sha256": "b3d2e78cf3b2b1461427f555e68442e6c190a501238f41817367dbfedb3e5e76",
+      "gitBlob": "d7b1631e8c035e52acb6760686cb6fcfc98ecfe2"
+    },
+    {
+      "path": "packages/desktop/package.json",
+      "bytes": 395,
+      "sha256": "10cec19edd7ddd59fe5a52bf72abd98a3228f64647a6f5ceaf2583a95dbcc4dd",
+      "gitBlob": "efac985b0b477c35b4fe01536c065f94f46ee05f"
+    },
+    {
+      "path": "packages/desktop/src/main.ts",
+      "bytes": 6220,
+      "sha256": "449c9737cc04f49d1c8a5b91901cf0821028feb59fec93169f76dfadb200d38d",
+      "gitBlob": "5c9c43e74de804114bd579c7456ae56f1572a5a6"
+    },
+    {
+      "path": "packages/desktop/src/remote-session.ts",
+      "bytes": 11526,
+      "sha256": "4c4229c388a4bed9373f450b0012dd08511d22cba7bfced4cd7ea3218c279566",
+      "gitBlob": "ee9704e3f41c4c3c4fc8098da405e2de3cbb0a4a"
+    },
+    {
+      "path": "packages/desktop/src/remote.ts",
+      "bytes": 4218,
+      "sha256": "9d08fb8acabc6dd2384acabee49d969c707258e676065b2639fb0b492ad34a51",
+      "gitBlob": "2c80c0f31d2e464650bdf4a6b19e3f1840662ea4"
+    },
+    {
+      "path": "packages/desktop/test/remote-session.test.ts",
+      "bytes": 18836,
+      "sha256": "29c8e4a175495f1ee2c87a70d489f68167911d333aa9200114f59cb9fc50c0f4",
+      "gitBlob": "ef8782b0de66d166cc984d5e2921233fe3bad7e1"
+    },
+    {
+      "path": "packages/desktop/test/remote.test.ts",
+      "bytes": 9894,
+      "sha256": "c7a9b3ffcc6da477552ab83ff73fb207b866e975893178158a0b3f131ab56bc4",
+      "gitBlob": "2145ee0e557a9a816e1020184b653ecf8743926f"
+    },
+    {
+      "path": "packages/i18n/locales/en/system.json",
+      "bytes": 35302,
+      "sha256": "18dff6afda09dc67df5091b5a2440fc1f6b3e1d439230cd9fda6967f6be7b10a",
+      "gitBlob": "b834ac95815641f50025c8087b3dfcf712e354fd"
+    },
+    {
+      "path": "packages/protocol/src/index.ts",
+      "bytes": 9049,
+      "sha256": "8c91ead8ab678b0bfab39799bb03e0b4d60612632bfd5aa65f74bf8b21669e69",
+      "gitBlob": "0732cd96e6afa9ce20ea024e855aa9b01af67d74"
+    },
+    {
+      "path": "packages/schema/src/index.ts",
+      "bytes": 19359,
+      "sha256": "e184483c0e9ad99eb99585282fb4e7d526df3851212fa197fc5bc66110e9236b",
+      "gitBlob": "8f6878c78a58c29ca29f07cb15ebca78061dbd9e"
+    },
+    {
+      "path": "packages/server/src/index.ts",
+      "bytes": 8335,
+      "sha256": "7585be3574f67ba1280e7f4f0e1423413b9d697be4e7423ac8ca3941aa783037",
+      "gitBlob": "07445f9c7cdb35382540d85600d63b3b91fc0487"
+    },
+    {
+      "path": "playwright.config.ts",
+      "bytes": 598,
+      "sha256": "71d48d4d40ea1950d9f95d1e3fef79704984d3faf21592793d0860b26b71d707",
+      "gitBlob": "daaa65b2f9f9e45abd4b300c8ed076679b8a38a6"
+    },
+    {
+      "path": "scripts/compare-shots.mjs",
+      "bytes": 21902,
+      "sha256": "838bbacffef18907c15505745189b4ecd18590e71cc99256f93a8e50835eadc6",
+      "gitBlob": "cd03f92a69fe7b2db6a823efcfa887256847f168"
+    },
+    {
+      "path": "scripts/smoke.mjs",
+      "bytes": 2539,
+      "sha256": "804b6a1aa619c14f5c477de1e6589692a1365c7a448e96eeb68a88c27df3592c",
+      "gitBlob": "7f0f1446fae57f6f8b4d60e3087e800727f8e4cb"
+    },
+    {
+      "path": "tests/e2e/bot-safety.spec.ts",
+      "bytes": 16514,
+      "sha256": "9b5392038bc929279d34d4cff4f197c501f2ba2f26e40a5c5acb6b4a09f03cbf",
+      "gitBlob": "e2f653303f9c7129731531f75717f6a35db2d9cb"
+    },
+    {
+      "path": "tests/e2e/code-diff-scroll.spec.ts",
+      "bytes": 5246,
+      "sha256": "e8c0fbad81b573db713031e6c3f769f55f493b08564b48721435479e0f877cd8",
+      "gitBlob": "9ad1d6337ce43e070fcde0c31ae84cb8388f216d"
+    },
+    {
+      "path": "tests/e2e/composer-safety.spec.ts",
+      "bytes": 12928,
+      "sha256": "d186801f45d61f737ff925ac81a4d0b6cb0d64efae4546984ebd78984c0f3c8d",
+      "gitBlob": "eedbd2a0bc50b8ebb2095307bd221b734080d8e9"
+    },
+    {
+      "path": "tests/e2e/fixtures.ts",
+      "bytes": 1413,
+      "sha256": "a9772c5fe4038dd4a260bf1d47d7a6f382ba40ea54eb4cde9ab2048223e2fe03",
+      "gitBlob": "d23a732e7252e3fb0f4a9c16f7f3468790b33760"
+    },
+    {
+      "path": "tests/e2e/navigation.spec.ts",
+      "bytes": 23440,
+      "sha256": "59faac9327ee70fa71750953e089552b97b3507388f391bc22b1ff2434a55f62",
+      "gitBlob": "a4c413e73ce45cc3ec431baafa46973859e34bb1"
+    },
+    {
+      "path": "tests/e2e/remote-auth.spec.ts",
+      "bytes": 29330,
+      "sha256": "3ee2c7d40f1e9002d0c0669d121810e849b6838fd3f6fc40ab1309de19986250",
+      "gitBlob": "a6fee55f28f44d01ee73032f216d48d612b4e708"
+    },
+    {
+      "path": "tests/e2e/responsive.spec.ts",
+      "bytes": 14914,
+      "sha256": "3fc7f914e1766f7cd9c8cbfb797b30dceaa9cb93a20e1278a01081f476166fa8",
+      "gitBlob": "ecd8f390cf32cf2781c6af5ada092ad03a7c28c9"
+    },
+    {
+      "path": "tests/e2e/screens.spec.ts",
+      "bytes": 2636,
+      "sha256": "f55899bf1861cbcd0c8e6c01fa7e87b52dc3a609c1e2268cfad3dbde659ba54c",
+      "gitBlob": "f3a0cfce1a1afcca3755d341e32442debe5aa3b8"
+    },
+    {
+      "path": "tests/e2e/terminal-copy.spec.ts",
+      "bytes": 8339,
+      "sha256": "09fcd77172f157f4d53d14801a7a154107c0ae90dda394366516747e10a04931",
+      "gitBlob": "9e0036464c3dceda20c929a1b2fb9a3bc2f18012"
+    },
+    {
+      "path": "tests/e2e/work-routine-source.spec.ts",
+      "bytes": 27487,
+      "sha256": "280651afb980c6de939b33865e4d4ec17ea4fc7362420761a66d9044baf43f55",
+      "gitBlob": "bada1d6dbcb9898ed25677fbb9eff668aab4a3a4"
+    },
+    {
+      "path": "tests/e2e/work-scroll.spec.ts",
+      "bytes": 7541,
+      "sha256": "0b2f0c3a9cd73e0e1e7484ea9c7a1f70cd3baf67a751ff627c9ee4b79698379b",
+      "gitBlob": "65e6f8fd35087ccbee2d9994a194583a28362852"
+    },
+    {
+      "path": "vendor/README.md",
+      "bytes": 3593,
+      "sha256": "ddd49a8742b61b14b436d8f20fcb8a754251b146c76d95b471a0be64823bd138",
+      "gitBlob": "fca16bfc1c04af2d071e44db38ed4ce7c7aa017e"
+    },
+    {
+      "path": "vendor/cortex-api-types-0.2.0.tgz",
+      "bytes": 70243,
+      "sha256": "3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877",
+      "gitBlob": "815b6f4e5c5ee6568bed2e0cea0ea7896b09e92d"
+    },
+    {
+      "path": "vendor/cortex-sdk-0.3.5.tgz",
+      "bytes": 164809,
+      "sha256": "5c75f212a2669bcd6f5110fe6e5c8862e1ca6eba85a118b350e0ce38694596b8",
+      "gitBlob": "c389a249a6ef4aa0396e51ed9cd33de15d1d52d4"
+    }
+  ]
+}

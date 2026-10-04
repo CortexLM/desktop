@@ -1,0 +1,16 @@
+{
+  "source_sha": "f8782e5e6eb25c4799b96b793db3db3a330b80bc",
+  "outcome": "incomplete_minimum_runtime_process_hang",
+  "checks_completed": 9,
+  "detail": "Isolated Node20.9 emitted32 passing subtests but retained active process for12minutes; scoped child process terminated by coordinator. Final receipt has no completed_at; do not treat as a passing pair delivery. Independent diagnosis underway; final package harness receives60s bound.",
+  "artifacts_retained": [
+    {
+      "file": "cortex-sdk-0.3.4.tgz",
+      "sha256": "82a8464f586b6632d0c7518c45a47bc101f59d967bf6d112d8156ad8ba8ca2b3"
+    },
+    {
+      "file": "cortex-api-types-0.2.0.tgz",
+      "sha256": "3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877"
+    }
+  ]
+}

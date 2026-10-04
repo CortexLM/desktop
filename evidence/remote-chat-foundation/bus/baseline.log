@@ -1,0 +1,763 @@
+RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+(node:2124108) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ × packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works 36ms
+   → expected [ [ 1, 1, +0, +0 ], …(6) ] to deeply equal [ [ +0, +0, +0, +0 ], …(6) ]
+   → expected [ 5, +0, +0, +0 ] to deeply equal [ +0, +0, +0, +0 ]
+   → expected [ …(7) ] to deeply equal []
+   → expected [ undefined, undefined, …(5) ] to deeply equal [ 'remote', 'remote', 'remote', …(4) ]
+   → expected [ undefined ] to deeply equal [ 'remote' ]
+   → expected [ …(14) ] to deeply equal [ …(7) ]
+   → expected [ undefined, undefined, …(12) ] to deeply equal [ 'remote', 'remote', 'remote', …(11) ]
+   → expected [ undefined, undefined ] to deeply equal [ 'remote', 'local' ]
+   → expected [ [ 6, 1, +0, +0 ], …(6) ] to deeply equal [ [ 1, 1, +0, +0 ], …(6) ]
+   → expected [ [ 1, 1, +0, +0 ], …(13) ] to deeply equal [ [ 1, 1, +0, +0 ], …(6) ]
+   → expected [ { seq: 1, …(2) }, …(4) ] to deeply equal []
+   → expected [ 10, +0, +0, +0 ] to deeply equal [ 5, +0, +0, +0 ]
+ ✓ packages/core/test/bus.test.ts > isolates listener faults and snapshots publisher data after committing default-local events 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works
+AssertionError: expected [ [ 1, 1, +0, +0 ], …(6) ] to deeply equal [ [ +0, +0, +0, +0 ], …(6) ]
+
+- Expected
++ Received
+
+  [
+    [
+-     0,
+-     0,
++     1,
++     1,
+      0,
+      0,
+    ],
+    [
+-     0,
+-     0,
++     2,
++     1,
+      0,
+      0,
+    ],
+    [
+-     0,
+-     0,
+-     0,
++     3,
++     1,
++     1,
+      0,
+    ],
+    [
+-     0,
+-     0,
+-     0,
+-     0,
++     4,
++     1,
++     1,
++     1,
+    ],
+    [
+-     0,
+-     0,
+-     0,
+-     0,
++     4,
++     1,
++     1,
++     1,
+    ],
+    [
+-     0,
+-     0,
+-     0,
+-     0,
++     4,
++     1,
++     1,
++     1,
+    ],
+    [
+-     0,
++     5,
+      0,
+      0,
+      0,
+    ],
+  ]
+
+ ❯ packages/core/test/bus.test.ts:43:33
+     41|     expect(live).toEqual(safeEvents)
+     42|     expect(JSON.parse(JSON.stringify(live))).toEqual(safeEvents)
+     43|     expect.soft(rowsAtDelivery).toEqual(safeEvents.map(() => [0, 0, 0,…
+       |                                 ^
+     44|     expect.soft(rowCounts()).toEqual([0, 0, 0, 0])
+     45|     expect.soft(pluginEvents).toEqual([])
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works
+AssertionError: expected [ 5, +0, +0, +0 ] to deeply equal [ +0, +0, +0, +0 ]
+
+- Expected
++ Received
+
+  [
+-   0,
++   5,
+    0,
+    0,
+    0,
+  ]
+
+ ❯ packages/core/test/bus.test.ts:44:30
+     42|     expect(JSON.parse(JSON.stringify(live))).toEqual(safeEvents)
+     43|     expect.soft(rowsAtDelivery).toEqual(safeEvents.map(() => [0, 0, 0,…
+     44|     expect.soft(rowCounts()).toEqual([0, 0, 0, 0])
+       |                              ^
+     45|     expect.soft(pluginEvents).toEqual([])
+     46|     expect.soft(sources).toEqual(Array(7).fill("remote"))
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works
+AssertionError: expected [ …(7) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "properties": {
++       "session": {
++         "agent": "build",
++         "id": "remote-session",
++         "kind": "chat",
++         "model": {
++           "modelID": "test",
++           "providerID": "test",
++         },
++         "time": {
++           "created": 1,
++           "updated": 1,
++         },
++         "title": "Remote conversation",
++       },
++     },
++     "type": "session.created",
++   },
++   {
++     "properties": {
++       "session": {
++         "agent": "build",
++         "id": "remote-session",
++         "kind": "chat",
++         "model": {
++           "modelID": "test",
++           "providerID": "test",
++         },
++         "time": {
++           "created": 1,
++           "updated": 1,
++         },
++         "title": "Renamed remote conversation",
++       },
++     },
++     "type": "session.updated",
++   },
++   {
++     "properties": {
++       "message": {
++         "id": "remote-message",
++         "model": {
++           "modelID": "test",
++           "providerID": "test",
++         },
++         "role": "assistant",
++         "sessionID": "remote-session",
++         "time": {
++           "created": 1,
++         },
++         "usage": {
++           "cost": 0,
++           "input": 0,
++           "output": 0,
++           "reasoning": 0,
++         },
++       },
++     },
++     "type": "message.updated",
++   },
++   {
++     "properties": {
++       "part": {
++         "id": "remote-part",
++         "messageID": "remote-message",
++         "sessionID": "remote-session",
++         "text": "Remote response",
++         "type": "text",
++       },
++     },
++     "type": "part.updated",
++   },
++   {
++     "properties": {
++       "delta": " more remote text",
++       "field": "text",
++       "messageID": "remote-message",
++       "partID": "remote-part",
++       "sessionID": "remote-session",
++     },
++     "type": "part.delta",
++   },
++   {
++     "properties": {
++       "sessionID": "remote-session",
++       "status": {
++         "type": "busy",
++       },
++     },
++     "type": "session.status",
++   },
++   {
++     "properties": {
++       "sessionID": "remote-session",
++     },
++     "type": "session.deleted",
++   },
++ ]
+
+ ❯ packages/core/test/bus.test.ts:45:31
+     43|     expect.soft(rowsAtDelivery).toEqual(safeEvents.map(() => [0, 0, 0,…
+     44|     expect.soft(rowCounts()).toEqual([0, 0, 0, 0])
+     45|     expect.soft(pluginEvents).toEqual([])
+       |                               ^
+     46|     expect.soft(sources).toEqual(Array(7).fill("remote"))
+     47|     expect.soft(deltaSources).toEqual(["remote"])
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works
+AssertionError: expected [ undefined, undefined, …(5) ] to deeply equal [ 'remote', 'remote', 'remote', …(4) ]
+
+- Expected
++ Received
+
+  [
+-   "remote",
+-   "remote",
+-   "remote",
+-   "remote",
+-   "remote",
+-   "remote",
+-   "remote",
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
+  ]
+
+ ❯ packages/core/test/bus.test.ts:46:26
+     44|     expect.soft(rowCounts()).toEqual([0, 0, 0, 0])
+     45|     expect.soft(pluginEvents).toEqual([])
+     46|     expect.soft(sources).toEqual(Array(7).fill("remote"))
+       |                          ^
+     47|     expect.soft(deltaSources).toEqual(["remote"])
+     48|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+ FAIL  packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works
+AssertionError: expected [ undefined ] to deeply equal [ 'remote' ]
+
+- Expected
++ Received
+
+  [
+-   "remote",
++   undefined,
+  ]
+
+ ❯ packages/core/test/bus.test.ts:47:31
+     45|     expect.soft(pluginEvents).toEqual([])
+     46|     expect.soft(sources).toEqual(Array(7).fill("remote"))
+     47|     expect.soft(deltaSources).toEqual(["remote"])
+       |                               ^
+     48|
+     49|     const local = core.sessions.create({ title: "Local conversation", …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/12]⎯
+
+ FAIL  packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works
+AssertionError: expected [ …(14) ] to deeply equal [ …(7) ]
+
+- Expected
++ Received
+
+@@ -1,10 +1,108 @@
+  [
+    {
+      "properties": {
+        "session": {
+          "agent": "build",
++         "id": "remote-session",
++         "kind": "chat",
++         "model": {
++           "modelID": "test",
++           "providerID": "test",
++         },
++         "time": {
++           "created": 1,
++           "updated": 1,
++         },
++         "title": "Remote conversation",
++       },
++     },
++     "type": "session.created",
++   },
++   {
++     "properties": {
++       "session": {
++         "agent": "build",
++         "id": "remote-session",
++         "kind": "chat",
++         "model": {
++           "modelID": "test",
++           "providerID": "test",
++         },
++         "time": {
++           "created": 1,
++           "updated": 1,
++         },
++         "title": "Renamed remote conversation",
++       },
++     },
++     "type": "session.updated",
++   },
++   {
++     "properties": {
++       "message": {
++         "id": "remote-message",
++         "model": {
++           "modelID": "test",
++           "providerID": "test",
++         },
++         "role": "assistant",
++         "sessionID": "remote-session",
++         "time": {
++           "created": 1,
++         },
++         "usage": {
++           "cost": 0,
++           "input": 0,
++           "output": 0,
++           "reasoning": 0,
++         },
++       },
++     },
++     "type": "message.updated",
++   },
++   {
++     "properties": {
++       "part": {
++         "id": "remote-part",
++         "messageID": "remote-message",
++         "sessionID": "remote-session",
++         "text": "Remote response",
++         "type": "text",
++       },
++     },
++     "type": "part.updated",
++   },
++   {
++     "properties": {
++       "delta": " more remote text",
++       "field": "text",
++       "messageID": "remote-message",
++       "partID": "remote-part",
++       "sessionID": "remote-session",
++     },
++     "type": "part.delta",
++   },
++   {
++     "properties": {
++       "sessionID": "remote-session",
++       "status": {
++         "type": "busy",
++       },
++     },
++     "type": "session.status",
++   },
++   {
++     "properties": {
++       "sessionID": "remote-session",
++     },
++     "type": "session.deleted",
++   },
++   {
++     "properties": {
++       "session": {
++         "agent": "build",
+          "botID": undefined,
+          "directory": undefined,
+          "id": "ses_01a100311cff0000572ff864bef77489",
+          "kind": "chat",
+          "model": {
+
+ ❯ packages/core/test/bus.test.ts:74:31
+     72|     ]
+     73|     expect(live).toEqual([...safeEvents, ...localEvents])
+     74|     expect.soft(pluginEvents).toEqual(localEvents)
+       |                               ^
+     75|     expect.soft(sources).toEqual([...Array(7).fill("remote"), ...Array…
+     76|     expect.soft(deltaSources).toEqual(["remote", "local"])
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/12]⎯
+
+ FAIL  packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works
+AssertionError: expected [ undefined, undefined, …(12) ] to deeply equal [ 'remote', 'remote', 'remote', …(11) ]
+
+- Expected
++ Received
+
+  [
+-   "remote",
+-   "remote",
+-   "remote",
+-   "remote",
+-   "remote",
+-   "remote",
+-   "remote",
+-   "local",
+-   "local",
+-   "local",
+-   "local",
+-   "local",
+-   "local",
+-   "local",
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
++   undefined,
+  ]
+
+ ❯ packages/core/test/bus.test.ts:75:26
+     73|     expect(live).toEqual([...safeEvents, ...localEvents])
+     74|     expect.soft(pluginEvents).toEqual(localEvents)
+     75|     expect.soft(sources).toEqual([...Array(7).fill("remote"), ...Array…
+       |                          ^
+     76|     expect.soft(deltaSources).toEqual(["remote", "local"])
+     77|     const localCounts = [[1, 1, 0, 0], [2, 1, 0, 0], [3, 1, 1, 0], [4,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/12]⎯
+
+ FAIL  packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works
+AssertionError: expected [ undefined, undefined ] to deeply equal [ 'remote', 'local' ]
+
+- Expected
++ Received
+
+  [
+-   "remote",
+-   "local",
++   undefined,
++   undefined,
+  ]
+
+ ❯ packages/core/test/bus.test.ts:76:31
+     74|     expect.soft(pluginEvents).toEqual(localEvents)
+     75|     expect.soft(sources).toEqual([...Array(7).fill("remote"), ...Array…
+     76|     expect.soft(deltaSources).toEqual(["remote", "local"])
+       |                               ^
+     77|     const localCounts = [[1, 1, 0, 0], [2, 1, 0, 0], [3, 1, 1, 0], [4,…
+     78|     expect.soft(rowsAtDelivery.slice(7)).toEqual(localCounts)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/12]⎯
+
+ FAIL  packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works
+AssertionError: expected [ [ 6, 1, +0, +0 ], …(6) ] to deeply equal [ [ 1, 1, +0, +0 ], …(6) ]
+
+- Expected
++ Received
+
+  [
+    [
++     6,
+      1,
+-     1,
+      0,
+      0,
+    ],
+    [
+-     2,
++     7,
+      1,
+      0,
+      0,
+    ],
+    [
+-     3,
++     8,
+      1,
+      1,
+      0,
+    ],
+    [
+-     4,
++     9,
+      1,
+      1,
+      1,
+    ],
+    [
+-     4,
++     9,
+      1,
+      1,
+      1,
+    ],
+    [
+-     4,
++     9,
+      1,
+      1,
+      1,
+    ],
+    [
+-     5,
++     10,
+      0,
+      0,
+      0,
+    ],
+  ]
+
+ ❯ packages/core/test/bus.test.ts:78:42
+     76|     expect.soft(deltaSources).toEqual(["remote", "local"])
+     77|     const localCounts = [[1, 1, 0, 0], [2, 1, 0, 0], [3, 1, 1, 0], [4,…
+     78|     expect.soft(rowsAtDelivery.slice(7)).toEqual(localCounts)
+       |                                          ^
+     79|     expect.soft(rowsAtPlugin).toEqual(localCounts)
+     80|     expect(core.storage.events(local.id)).toEqual(localEvents.filter((…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/12]⎯
+
+ FAIL  packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works
+AssertionError: expected [ [ 1, 1, +0, +0 ], …(13) ] to deeply equal [ [ 1, 1, +0, +0 ], …(6) ]
+
+- Expected
++ Received
+
+@@ -39,6 +39,48 @@
+      5,
+      0,
+      0,
+      0,
+    ],
++   [
++     6,
++     1,
++     0,
++     0,
++   ],
++   [
++     7,
++     1,
++     0,
++     0,
++   ],
++   [
++     8,
++     1,
++     1,
++     0,
++   ],
++   [
++     9,
++     1,
++     1,
++     1,
++   ],
++   [
++     9,
++     1,
++     1,
++     1,
++   ],
++   [
++     9,
++     1,
++     1,
++     1,
++   ],
++   [
++     10,
++     0,
++     0,
++     0,
++   ],
+  ]
+
+ ❯ packages/core/test/bus.test.ts:79:31
+     77|     const localCounts = [[1, 1, 0, 0], [2, 1, 0, 0], [3, 1, 1, 0], [4,…
+     78|     expect.soft(rowsAtDelivery.slice(7)).toEqual(localCounts)
+     79|     expect.soft(rowsAtPlugin).toEqual(localCounts)
+       |                               ^
+     80|     expect(core.storage.events(local.id)).toEqual(localEvents.filter((…
+     81|       .map((e, i) => ({ seq: i + 1, type: e.type, data: JSON.parse(JSO…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/12]⎯
+
+ FAIL  packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works
+AssertionError: expected [ { seq: 1, …(2) }, …(4) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "data": {
++       "session": {
++         "agent": "build",
++         "id": "remote-session",
++         "kind": "chat",
++         "model": {
++           "modelID": "test",
++           "providerID": "test",
++         },
++         "time": {
++           "created": 1,
++           "updated": 1,
++         },
++         "title": "Remote conversation",
++       },
++     },
++     "seq": 1,
++     "type": "session.created",
++   },
++   {
++     "data": {
++       "session": {
++         "agent": "build",
++         "id": "remote-session",
++         "kind": "chat",
++         "model": {
++           "modelID": "test",
++           "providerID": "test",
++         },
++         "time": {
++           "created": 1,
++           "updated": 1,
++         },
++         "title": "Renamed remote conversation",
++       },
++     },
++     "seq": 2,
++     "type": "session.updated",
++   },
++   {
++     "data": {
++       "message": {
++         "id": "remote-message",
++         "model": {
++           "modelID": "test",
++           "providerID": "test",
++         },
++         "role": "assistant",
++         "sessionID": "remote-session",
++         "time": {
++           "created": 1,
++         },
++         "usage": {
++           "cost": 0,
++           "input": 0,
++           "output": 0,
++           "reasoning": 0,
++         },
++       },
++     },
++     "seq": 3,
++     "type": "message.updated",
++   },
++   {
++     "data": {
++       "part": {
++         "id": "remote-part",
++         "messageID": "remote-message",
++         "sessionID": "remote-session",
++         "text": "Remote response",
++         "type": "text",
++       },
++     },
++     "seq": 4,
++     "type": "part.updated",
++   },
++   {
++     "data": {
++       "sessionID": "remote-session",
++     },
++     "seq": 5,
++     "type": "session.deleted",
++   },
++ ]
+
+ ❯ packages/core/test/bus.test.ts:82:50
+     80|     expect(core.storage.events(local.id)).toEqual(localEvents.filter((…
+     81|       .map((e, i) => ({ seq: i + 1, type: e.type, data: JSON.parse(JSO…
+     82|     expect.soft(core.storage.events(session.id)).toEqual([])
+       |                                                  ^
+     83|     expect.soft(rowCounts()).toEqual([5, 0, 0, 0])
+     84|   } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/12]⎯
+
+ FAIL  packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works
+AssertionError: expected [ 10, +0, +0, +0 ] to deeply equal [ 5, +0, +0, +0 ]
+
+- Expected
++ Received
+
+  [
+-   5,
++   10,
+    0,
+    0,
+    0,
+  ]
+
+ ❯ packages/core/test/bus.test.ts:83:30
+     81|       .map((e, i) => ({ seq: i + 1, type: e.type, data: JSON.parse(JSO…
+     82|     expect.soft(core.storage.events(session.id)).toEqual([])
+     83|     expect.soft(rowCounts()).toEqual([5, 0, 0, 0])
+       |                              ^
+     84|   } finally {
+     85|     await core.close()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/12]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  05:16:20
+   Duration  748ms (import 51%, transform 41%, tests 7%, worker 1%)
+
+JSON report written to /tmp/opencode/remote-bus-prerequisite/baseline.json

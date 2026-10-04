@@ -1,0 +1,457 @@
+{
+  "total_count": 3,
+  "jobs": [
+    {
+      "id": 111177042007,
+      "run_id": 37113961621,
+      "workflow_name": "CI",
+      "head_branch": "goal/desktop-rewrite",
+      "run_url": "https://api.github.com/repos/CortexLM/desktop/actions/runs/37113961621",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOT6_8Ys8AAAAZ4qsIVw",
+      "head_sha": "2956564fbe31f882014d74ff3a7f920e839fd634",
+      "url": "https://api.github.com/repos/CortexLM/desktop/actions/jobs/111177042007",
+      "html_url": "https://github.com/CortexLM/desktop/actions/runs/37113961621/job/111177042007",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-03T09:42:38Z",
+      "started_at": "2026-10-03T09:42:40Z",
+      "completed_at": "2026-10-03T09:44:28Z",
+      "name": "Lint, typecheck, unit tests, i18n audit",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-03T09:42:41Z",
+          "completed_at": "2026-10-03T09:42:42Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-03T09:42:42Z",
+          "completed_at": "2026-10-03T09:43:19Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-03T09:43:19Z",
+          "completed_at": "2026-10-03T09:43:20Z"
+        },
+        {
+          "name": "Run oven-sh/setup-bun@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-03T09:43:20Z",
+          "completed_at": "2026-10-03T09:43:22Z"
+        },
+        {
+          "name": "Run bun install --frozen-lockfile",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-03T09:43:22Z",
+          "completed_at": "2026-10-03T09:43:23Z"
+        },
+        {
+          "name": "Run bun run lint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-03T09:43:23Z",
+          "completed_at": "2026-10-03T09:43:30Z"
+        },
+        {
+          "name": "Run bun run typecheck",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-03T09:43:30Z",
+          "completed_at": "2026-10-03T09:43:43Z"
+        },
+        {
+          "name": "Run bun run test",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-03T09:43:43Z",
+          "completed_at": "2026-10-03T09:44:24Z"
+        },
+        {
+          "name": "Run bun run audit:i18n",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-03T09:44:24Z",
+          "completed_at": "2026-10-03T09:44:25Z"
+        },
+        {
+          "name": "Post Run oven-sh/setup-bun@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-03T09:44:25Z",
+          "completed_at": "2026-10-03T09:44:25Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-03T09:44:25Z",
+          "completed_at": "2026-10-03T09:44:25Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-03T09:44:25Z",
+          "completed_at": "2026-10-03T09:44:26Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-03T09:44:26Z",
+          "completed_at": "2026-10-03T09:44:26Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/CortexLM/desktop/check-runs/111177042007",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000047388,
+      "runner_name": "GitHub Actions 1000047388",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 111177042147,
+      "run_id": 37113961621,
+      "workflow_name": "CI",
+      "head_branch": "goal/desktop-rewrite",
+      "run_url": "https://api.github.com/repos/CortexLM/desktop/actions/runs/37113961621",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOT6_8Ys8AAAAZ4qsI4w",
+      "head_sha": "2956564fbe31f882014d74ff3a7f920e839fd634",
+      "url": "https://api.github.com/repos/CortexLM/desktop/actions/jobs/111177042147",
+      "html_url": "https://github.com/CortexLM/desktop/actions/runs/37113961621/job/111177042147",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-03T09:42:38Z",
+      "started_at": "2026-10-03T09:42:58Z",
+      "completed_at": "2026-10-03T09:54:26Z",
+      "name": "macOS build, package, launch",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-03T09:43:00Z",
+          "completed_at": "2026-10-03T09:43:02Z"
+        },
+        {
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-03T09:43:02Z",
+          "completed_at": "2026-10-03T09:43:02Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-03T09:43:02Z",
+          "completed_at": "2026-10-03T09:43:33Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-03T09:43:33Z",
+          "completed_at": "2026-10-03T09:43:33Z"
+        },
+        {
+          "name": "Run oven-sh/setup-bun@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-03T09:43:33Z",
+          "completed_at": "2026-10-03T09:43:34Z"
+        },
+        {
+          "name": "Run bun install --frozen-lockfile && node node_modules/electron/install.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-03T09:43:34Z",
+          "completed_at": "2026-10-03T09:43:37Z"
+        },
+        {
+          "name": "Run bun run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-03T09:43:37Z",
+          "completed_at": "2026-10-03T09:43:38Z"
+        },
+        {
+          "name": "E2E on macOS (source build)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-03T09:43:38Z",
+          "completed_at": "2026-10-03T09:53:50Z"
+        },
+        {
+          "name": "Package (unsigned, arm64)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-03T09:53:50Z",
+          "completed_at": "2026-10-03T09:54:05Z"
+        },
+        {
+          "name": "Packaged smoke test",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-03T09:54:05Z",
+          "completed_at": "2026-10-03T09:54:17Z"
+        },
+        {
+          "name": "Crash logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-03T09:54:17Z",
+          "completed_at": "2026-10-03T09:54:17Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-03T09:54:17Z",
+          "completed_at": "2026-10-03T09:54:19Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-03T09:54:19Z",
+          "completed_at": "2026-10-03T09:54:22Z"
+        },
+        {
+          "name": "Post Run oven-sh/setup-bun@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-03T09:54:22Z",
+          "completed_at": "2026-10-03T09:54:22Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-10-03T09:54:22Z",
+          "completed_at": "2026-10-03T09:54:22Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-03T09:54:22Z",
+          "completed_at": "2026-10-03T09:54:23Z"
+        },
+        {
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-03T09:54:23Z",
+          "completed_at": "2026-10-03T09:54:23Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-03T09:54:23Z",
+          "completed_at": "2026-10-03T09:54:24Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/CortexLM/desktop/check-runs/111177042147",
+      "labels": [
+        "blacksmith-6vcpu-macos-26"
+      ],
+      "runner_id": 170894,
+      "runner_name": "blacksmith-6vcpu-macos-26-Runner-734679d0a4",
+      "runner_group_id": 12,
+      "runner_group_name": "blacksmith scale sets - blacksmith-6vcpu-macos-26"
+    },
+    {
+      "id": 111177042167,
+      "run_id": 37113961621,
+      "workflow_name": "CI",
+      "head_branch": "goal/desktop-rewrite",
+      "run_url": "https://api.github.com/repos/CortexLM/desktop/actions/runs/37113961621",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOT6_8Ys8AAAAZ4qsI9w",
+      "head_sha": "2956564fbe31f882014d74ff3a7f920e839fd634",
+      "url": "https://api.github.com/repos/CortexLM/desktop/actions/jobs/111177042167",
+      "html_url": "https://github.com/CortexLM/desktop/actions/runs/37113961621/job/111177042167",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-03T09:42:38Z",
+      "started_at": "2026-10-03T09:42:48Z",
+      "completed_at": "2026-10-03T09:47:43Z",
+      "name": "E2E (Playwright + Electron, Linux)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-03T09:42:49Z",
+          "completed_at": "2026-10-03T09:42:50Z"
+        },
+        {
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-03T09:42:50Z",
+          "completed_at": "2026-10-03T09:42:50Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-03T09:42:50Z",
+          "completed_at": "2026-10-03T09:43:48Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-03T09:43:48Z",
+          "completed_at": "2026-10-03T09:43:49Z"
+        },
+        {
+          "name": "Run oven-sh/setup-bun@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-03T09:43:49Z",
+          "completed_at": "2026-10-03T09:43:49Z"
+        },
+        {
+          "name": "Run bun install --frozen-lockfile && node node_modules/electron/install.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-03T09:43:49Z",
+          "completed_at": "2026-10-03T09:43:59Z"
+        },
+        {
+          "name": "Run sudo apt-get update",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-03T09:43:59Z",
+          "completed_at": "2026-10-03T09:44:06Z"
+        },
+        {
+          "name": "Run bun run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-03T09:44:06Z",
+          "completed_at": "2026-10-03T09:44:07Z"
+        },
+        {
+          "name": "Run xvfb-run -a -s \"-screen 0 1920x1080x24\" bun run test:e2e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-03T09:44:07Z",
+          "completed_at": "2026-10-03T09:47:36Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-03T09:47:36Z",
+          "completed_at": "2026-10-03T09:47:39Z"
+        },
+        {
+          "name": "Post Run oven-sh/setup-bun@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-03T09:47:39Z",
+          "completed_at": "2026-10-03T09:47:39Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-03T09:47:39Z",
+          "completed_at": "2026-10-03T09:47:40Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-03T09:47:40Z",
+          "completed_at": "2026-10-03T09:47:40Z"
+        },
+        {
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-03T09:47:40Z",
+          "completed_at": "2026-10-03T09:47:40Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-03T09:47:40Z",
+          "completed_at": "2026-10-03T09:47:40Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/CortexLM/desktop/check-runs/111177042167",
+      "labels": [
+        "blacksmith-4vcpu-ubuntu-2404"
+      ],
+      "runner_id": 170893,
+      "runner_name": "blacksmith-4vcpu-ubuntu-2404-Runner-bc73961610",
+      "runner_group_id": 6,
+      "runner_group_name": "blacksmith scale sets - blacksmith-4vcpu-ubuntu-2404"
+    }
+  ]
+}

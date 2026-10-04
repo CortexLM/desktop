@@ -1,0 +1,11 @@
+
+Running 6 tests using 4 workers
+
+  ✓  3 tests/e2e/navigation.spec.ts:46:1 › a newer keyboard tab choice survives the previous route commit (3.3s)
+  ✓  2 tests/e2e/navigation.spec.ts:4:1 › Back cancels a pending tab choice even when its label matches an older request (4.1s)
+  ✓  5 tests/e2e/navigation.spec.ts:79:1 › a pending route commit preserves the outgoing Work tree and restores Bot activity (1.4s)
+  ✓  4 tests/e2e/keyboard.spec.ts:4:1 › hidden navigation cannot receive focus; theme radios and Undo work from the keyboard (5.2s)
+  ✓  1 tests/e2e/keyboard.spec.ts:130:1 › frozen shell motion settles, latest tab wins and hidden menus close (8.9s)
+  ✓  6 tests/e2e/navigation.spec.ts:118:1 › anchors, native menus and history preserve routes, variants and chat identities (13.7s)
+
+  6 passed (18.5s)

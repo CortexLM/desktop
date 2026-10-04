@@ -1,0 +1,22 @@
+$ playwright test "tests/e2e/projects.spec.ts" "tests/e2e/chat-missing.spec.ts" "tests/e2e/live-state.spec.ts" "tests/e2e/remote-auth.spec.ts" "--workers=4" "--output=/tmp/opencode/projects-integrated/production-targeted-artifacts"
+
+Running 16 tests using 4 workers
+
+  ✓   2 tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot revive a deleted session — light (2.4s)
+  ✓   1 tests/e2e/chat-missing.spec.ts:18:40 › Deleted Chat shows truthful missing-page recovery — light (2.6s)
+  ✓   3 tests/e2e/chat-missing.spec.ts:18:40 › Deleted Chat shows truthful missing-page recovery — dark (2.7s)
+  ✓   4 tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot erase a completed stream — light (3.3s)
+  ✓   6 tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot revive a deleted session — dark (2.4s)
+  ✓   5 tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot erase a completed stream — dark (3.4s)
+  ✓   9 tests/e2e/projects.spec.ts:239:1 › Projects retain newer drafts and isolate late reads/writes across owners (3.2s)
+  ✓  10 tests/e2e/remote-auth.spec.ts:135:3 › Email code sign-in retains refusal, submits once, reloads and signs out — 960 light (2.9s)
+  ✓  12 tests/e2e/remote-auth.spec.ts:135:3 › Email code sign-in retains refusal, submits once, reloads and signs out — 960 dark (2.9s)
+  ✓  11 tests/e2e/remote-auth.spec.ts:200:3 › Unavailable continuations and cancelled codes stay private; restart clears login — 960 light (5.5s)
+  ✓   7 tests/e2e/projects.spec.ts:75:40 › Projects persist through two restarts, route exact identities and preserve chats on deletion — light (13.3s)
+  ✓  14 tests/e2e/remote-auth.spec.ts:276:1 › Mode and origin changes reject late auth replies and never reuse another origin’s credentials (2.3s)
+  ✓   8 tests/e2e/projects.spec.ts:75:40 › Projects persist through two restarts, route exact identities and preserve chats on deletion — dark (13.5s)
+  ✓  13 tests/e2e/remote-auth.spec.ts:200:3 › Unavailable continuations and cancelled codes stay private; restart clears login — 960 dark (5.1s)
+  ✓  15 tests/e2e/remote-auth.spec.ts:319:1 › Initial connection and auth reads protect selection, canonical sign-in and cancellation (2.5s)
+  ✓  16 tests/e2e/remote-auth.spec.ts:409:1 › Live sign-in copy stays readable across eight locales (39.6s)
+
+  16 passed (56.7s)

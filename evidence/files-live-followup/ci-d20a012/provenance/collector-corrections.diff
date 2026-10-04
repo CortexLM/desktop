@@ -1,0 +1,67 @@
+--- negative-5ef6cf52
++++ final-a7bd52db
+@@ -157,12 +157,12 @@
+   await expect(viewer(page).getByText("90 × 180", { exact: true })).toBeVisible(); await expect(viewer(page).getByText(`${Buffer.from(jpeg.split(",")[1], "base64").length.toLocaleString("en")} bytes`, { exact: true })).toBeVisible();
+   const stage = viewer(page).locator(".medias-view"); await stage.focus(); await page.keyboard.press("+"); await expect(viewer(page).locator(".medias-zoomv")).toContainText("150%");
+   const miniature = (await viewer(page).locator(".medias-mini").boundingBox())!; expect(miniature.width / miniature.height).toBeCloseTo(0.5, 1);
+-  await page.keyboard.press("ArrowDown"); await expect.poll(() => image(page).evaluate((img: HTMLImageElement) => img.style.translate)).not.toBe("0px 0px");
++  const beforeKeyPan = await image(page).evaluate((img: HTMLImageElement) => img.style.translate); await page.keyboard.press("ArrowDown"); await expect.poll(() => image(page).evaluate((img: HTMLImageElement) => img.style.translate)).not.toBe(beforeKeyPan);
+   await viewer(page).getByRole("button", { name: copy["zoom.out"], exact: true }).click(); await expect(viewer(page).locator(".medias-zoomv")).toContainText("100%");
+   await stage.focus(); await page.keyboard.press("+"); await viewer(page).getByRole("button", { name: copy["image.fit"], exact: true }).click(); await expect(viewer(page).locator(".medias-zoomv")).toContainText("100%");
+   await expect(viewer(page)).not.toContainText(copy["head.ask"]); await capture(page, `files-portrait-${theme}`);
+   await show(page, route(saved), theme); await ready(page); await viewer(page).getByRole("button", { name: copy["zoom.in"], exact: true }).click();
+-  const box = (await image(page).boundingBox())!; await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2); await page.mouse.down(); await page.mouse.move(box.x + box.width / 2 + 30, box.y + box.height / 2 + 20); await page.mouse.up(); await expect.poll(() => image(page).evaluate((img: HTMLImageElement) => img.style.translate)).not.toBe("0px 0px");
++  const beforeDrag = await image(page).evaluate((img: HTMLImageElement) => img.style.translate), box = (await image(page).boundingBox())!; await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2); await page.mouse.down(); await page.mouse.move(box.x + box.width / 2 + 30, box.y + box.height / 2 + 20); await page.mouse.up(); await expect.poll(() => image(page).evaluate((img: HTMLImageElement) => img.style.translate)).not.toBe(beforeDrag);
+   await c.app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setContentSize(1440, 900)); await viewer(page).getByRole("button", { name: "Fit", exact: true }).click(); await ready(page); await capture(page, `files-fit-${theme}`);
+   await show(page, route(saved, 2), theme); await ready(page, 180, 90);
+   const files = await downloads(c.app, dataDir); c.cleanup.push(files.close); await download(page).click(); await expect.poll(async () => (await files.rows())[0]?.state).toBe("completed");
+@@ -170,15 +170,14 @@
+   await page.reload(); await ready(page, 180, 90); await c.app.close();
+   c.app = await electron.launch({ args: [path.join(root, "packages/desktop/dist/main.cjs"), `--user-data-dir=${path.join(dataDir, "renderer")}`, ...(process.platform === "linux" ? ["--no-sandbox"] : [])], env: { ...process.env, ...env, CORTEX_DATA_DIR: dataDir, CORTEX_START_HASH: `#/${route(saved, 2)}&theme=${theme}`, CORTEX_LOCALE: "en" } as Record<string, string> });
+   c.page = page = await c.app.firstWindow(); page.on("pageerror", (error) => c.errors.push(error.message)); await page.waitForFunction(() => "__bridgeFetch" in window); await page.emulateMedia({ reducedMotion: "reduce" }); await ready(page, 180, 90);
+-  expect((await histories(page, saved.session.id)).find((m) => m.info.id === saved.message)?.parts.filter((p) => p.type === "file")).toEqual(saved.parts); expect(fake.requests).toHaveLength(count);
+-});
+-
+-// Independent malformed fixtures: preserve chunk framing/CRC, change the declared dimensions or payload.
++  expect((await call<{ enabled: boolean }>(page, "/api/providers/fake")).enabled).toBe(false); expect((await histories(page, saved.session.id)).find((m) => m.info.id === saved.message)?.parts.filter((p) => p.type === "file")).toEqual(saved.parts); expect(fake.requests).toHaveLength(count);
++});
++
++// Independent oversized fixture: preserve chunk framing/CRC, change the declared dimensions.
+ function crc(bytes: Uint8Array) { let n = 0xffffffff; for (const b of bytes) { n ^= b; for (let i = 0; i < 8; i++) n = (n >>> 1) ^ (n & 1 ? 0xedb88320 : 0); } return (n ^ 0xffffffff) >>> 0; }
+-function damaged(png: string, oversized: boolean) {
++function oversized(png: string) {
+   const b = Buffer.from(png.split(",")[1], "base64");
+-  if (oversized) { b.writeUInt32BE(10000, 16); b.writeUInt32BE(5000, 20); b.writeUInt32BE(crc(b.subarray(12, 29)), 29); }
+-  else for (let at = 8; at + 12 <= b.length; at += b.readUInt32BE(at) + 12) if (b.toString("ascii", at + 4, at + 8) === "IDAT") { const size = b.readUInt32BE(at); b[at + 8] ^= 0xff; b.writeUInt32BE(crc(b.subarray(at + 4, at + 8 + size)), at + 8 + size); break; }
++  b.writeUInt32BE(10000, 16); b.writeUInt32BE(5000, 20); b.writeUInt32BE(crc(b.subarray(12, 29)), 29);
+   return b.toString("base64");
+ }
+ function animated(png: string) {
+@@ -195,7 +194,7 @@
+     { part: { type: "file", mime: "image/jpeg", data: png.split(",")[1] }, title: copy["image.invalidTitle"] },
+     { part: { type: "file", mime: "image/svg+xml", data: Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" onload="window.FILE_EXECUTED=1"/>').toString("base64") }, title: copy["image.unsupportedTitle"] },
+     { part: { type: "file", mime: "text/html", data: Buffer.from("<script>window.FILE_EXECUTED=1</script>").toString("base64") }, title: copy["image.unsupportedTitle"] },
+-    { part: { type: "file", mime: "image/png", data: damaged(png, true) }, title: copy["image.tooLargeTitle"] },
++    { part: { type: "file", mime: "image/png", data: oversized(png) }, title: copy["image.tooLargeTitle"] },
+     { part: { type: "file", mime: "image/png", data: animated(png) }, title: copy["image.unsupportedTitle"] },
+   ];
+   const saved = await save(page, inputs.map(({ part }, i) => ({ ...part, filename: `unsafe-${i}.png` }))), good = await save(page, [{ type: "file", mime: "image/png", url: png }]);
+@@ -207,7 +206,8 @@
+     await show(page, invalid); await fence(page); await expect(viewer(page).getByText(copy["image.unavailableTitle"], { exact: true })).toBeVisible(); await expect(image(page)).toHaveCount(0);
+   }
+   const code = await save(page, [{ type: "file", mime: "image/png", url: png }], "code"); await show(page, route(code)); await expect(viewer(page).getByText(copy["image.unavailableTitle"], { exact: true })).toBeVisible();
+-  const corrupt = await save(page, [{ type: "file", mime: "image/png", data: damaged(png, false) }]), decoded = (await probe.state()).decoded.length; await show(page, route(corrupt)); await expect(viewer(page).getByText(copy["image.invalidTitle"], { exact: true })).toBeVisible(); await expect(image(page)).toHaveCount(0); expect((await probe.state()).decoded.length).toBeGreaterThan(decoded);
++  // Retained VP8 dimensions, missing pixel payload: native decode rejects this independently verified fixture.
++  const corrupt = await save(page, [{ type: "file", mime: "image/webp", data: "UklGRhYAAABXRUJQVlA4IAoAAAAQCgCdASrwAHgA" }]), decoded = (await probe.state()).decoded.length; await show(page, route(corrupt)); await expect(viewer(page).getByText(copy["image.invalidTitle"], { exact: true })).toBeVisible(); await expect(image(page)).toHaveCount(0); expect((await probe.state()).decoded.length).toBeGreaterThan(decoded);
+   await show(page, "file-image"); await expect(page.getByTestId("upload-dropzone")).toBeVisible();
+ });
+ 
+@@ -272,7 +272,7 @@
+   const ipc = await gate(c.app, page); c.cleanup.push(ipc.close); const source = `/api/sessions/${saved.session.id}/prompt`; await ipc.arm(source, "POST"); await page.getByTestId("composer-send").click(); await ipc.waiting(source, "POST"); await blocked(); await expect(input).toHaveValue("Refused draft"); await ipc.release(); await expect(input).toHaveValue("");
+   await expect.poll(async () => (await histories(page, saved.session.id)).filter((m) => m.info.role === "assistant" && m.info.time.completed !== undefined).length).toBe(2);
+   await restoreRead(); c.cleanup.splice(c.cleanup.indexOf(restoreRead), 1);
+-  await call(page, "/api/providers/fake", "PATCH", { enabled: false }); await expect(page.getByTestId("model-trigger")).toHaveText("No model"); await input.fill("No-model draft"); await page.getByTestId("composer-send").click(); await expect(page.getByText("No model is set up.", { exact: true })).toBeVisible(); await blocked(); await expect(input).toHaveValue("No-model draft"); await input.fill("");
++  await expect(page.locator(".chat-attach .ttl")).toHaveCount(0); await call(page, "/api/providers/fake", "PATCH", { enabled: false }); await page.reload(); await expect(page.getByTestId("model-trigger")).toHaveText("No model"); await input.fill("No-model draft"); await page.getByTestId("composer-send").click(); await expect(page.getByText("No model is set up.", { exact: true })).toBeVisible(); await blocked(); await expect(input).toHaveValue("No-model draft"); await input.fill("");
+   const transition = await transitions(page); c.cleanup.push(transition.close); await open(page, "saved.png").click(); await expect.poll(() => transition.handle.evaluate((h) => h.pending.length)).toBe(1);
+   await expect(input).toBeDisabled(); await page.evaluate(() => history.back()); await expect.poll(() => page.url()).toBe(url); await expect.poll(() => transition.handle.evaluate((h) => h.pending.length)).toBe(2);
+   await transition.handle.evaluate(async (h) => { for (const p of [...h.pending].reverse()) { p.release(); await p.done; } h.restore(); }); await expect(input).toBeEnabled(); await input.fill("Recovered after canceled Open"); await expect(input).toHaveValue("Recovered after canceled Open");

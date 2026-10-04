@@ -1,0 +1,941 @@
+{
+  "main": {
+    "name": "Nova"
+  },
+  "filterBots": [
+    "Margaux",
+    "Inès",
+    "Iris",
+    "Max",
+    "Zoé"
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "t": "Angebote nachfassen, die seit 7 Tagen unbeantwortet sind",
+      "bot": "Nova",
+      "col": "doing",
+      "meta": "Schritt 4 von 7",
+      "prog": 57
+    },
+    {
+      "id": "2",
+      "t": "Kundendaten von Studio Nord aktualisieren",
+      "bot": "Margaux",
+      "col": "doing",
+      "meta": "12 von 30 Datensätzen",
+      "prog": 40
+    },
+    {
+      "id": "3",
+      "t": "Ticket #4182 zur Rechnungsstellung beantworten",
+      "bot": "Inès",
+      "col": "doing",
+      "meta": "vor 3 Minuten",
+      "prog": 80
+    },
+    {
+      "id": "4",
+      "t": "Agenda für das 15-Uhr-Meeting vorbereiten",
+      "bot": "Iris",
+      "col": "todo",
+      "meta": "Heute, 14:30"
+    },
+    {
+      "id": "5",
+      "t": "Drei Keramiklieferanten vergleichen",
+      "bot": "Paul",
+      "col": "todo",
+      "meta": "Montag"
+    },
+    {
+      "id": "6",
+      "t": "Rechnung von Atelier Morel über 1.240 € bezahlen",
+      "bot": "Max",
+      "col": "review",
+      "meta": "Wartet auf deine Freigabe"
+    },
+    {
+      "id": "7",
+      "t": "Launch-Ankündigung vom 14. April veröffentlichen",
+      "bot": "Zoé",
+      "col": "review",
+      "meta": "Entwurf fertig"
+    },
+    {
+      "id": "8",
+      "t": "Spesenabrechnungen für September einreichen",
+      "bot": "Léo",
+      "col": "done",
+      "meta": "Gestern, 18:12"
+    },
+    {
+      "id": "9",
+      "t": "Posteingang vom Morgen sortieren",
+      "bot": "Hugo",
+      "col": "done",
+      "meta": "08:14"
+    }
+  ],
+  "computer": {
+    "menu": [
+      "Browser",
+      "Datei",
+      "Ansicht"
+    ],
+    "url": "crm.studionord.fr/devis?statut=sans-reponse",
+    "nav": [
+      "Start",
+      "Kontakte",
+      "Angebote",
+      "Rechnungen",
+      "Berichte"
+    ],
+    "navActive": 2,
+    "heading": "Unbeantwortete Angebote · 5",
+    "rows": [
+      [
+        "Atelier Morel",
+        "Angebot #2291",
+        "12 T"
+      ],
+      [
+        "Studio Nord",
+        "Angebot #2287",
+        "9 T"
+      ],
+      [
+        "Céramiques Vidal",
+        "Angebot #2279",
+        "8 T"
+      ],
+      [
+        "Maison Arnaud",
+        "Angebot #2275",
+        "7 T"
+      ],
+      [
+        "Boulangerie Roux",
+        "Angebot #2270",
+        "3 T"
+      ]
+    ]
+  },
+  "task": {
+    "title": "Unbeantwortete Angebote nachfassen",
+    "site": "crm.studionord.fr",
+    "statusDoing": "Durchsucht das CRM",
+    "user": "Hake jedes Angebot ab, auf das seit mehr als 7 Tagen keine Antwort kam. Freundlicher Ton, und zeig mir das erste, bevor du es sendest.",
+    "bot1": "Bin dran. Ich starte mit dem CRM, um die Angebote aufzulisten, und bereite dann die erste Nachfrage für dich vor.",
+    "bot2": "Ich habe 5 Angebote ohne Antwort gefunden. Hier ist die Nachfrage für Atelier Morel, das älteste (12 Tage).",
+    "ev1": {
+      "b": "CRM geöffnet",
+      "t": "crm.studionord.fr",
+      "when": "10:38"
+    },
+    "ev2": {
+      "b": "Routine erstellt",
+      "t": "„Angebotsnachfrage“ jeden Montag um 08:00",
+      "when": "10:41"
+    },
+    "steps": [
+      "Auftrag und Tracking-Datei gelesen",
+      "CRM von Studio Nord geöffnet",
+      "Angebote ohne Antwort seit 7 Tagen gefiltert",
+      "Nachfrage für Atelier Morel entworfen",
+      "Die 4 weiteren Nachfragen entworfen",
+      "Erinnerung in 7 Tagen eingeplant"
+    ],
+    "mail": {
+      "header": "E-Mail · Nachfrage zu Angebot Nr. 2291",
+      "to": "Julien Morel · julien@ateliermorel.fr",
+      "subject": "Ihr Renovierungsangebot vom 18. September",
+      "body": [
+        "Hallo Julien,",
+        "ich melde mich wegen Angebot Nr. 2291, das am 18. September verschickt wurde. Hattest du schon Gelegenheit, es anzusehen? Ich passe es gerne an deinen Zeitplan im Mai an.",
+        "Beste Grüße,\nCamille Laurent"
+      ],
+      "toastTo": "An Julien Morel",
+      "sentAt": "10:42"
+    },
+    "cred": {
+      "header": "Zugangsdaten erforderlich · Lieferantenportal",
+      "text": "Das Portal ventes.ateliermorel.fr erfordert eine Anmeldung, um den Status des Angebots zu prüfen. {name} sieht dein Passwort nie: Es wird einmal verwendet und danach vergessen.",
+      "login": "camille@studionord.fr",
+      "skip": "Dieses Angebot überspringen"
+    },
+    "recap": {
+      "badge": "Erledigt in 2 Min. 52",
+      "stats": [
+        [
+          "5",
+          "Angebote nachgefasst"
+        ],
+        [
+          "1",
+          "Routine erstellt"
+        ],
+        [
+          "7 T",
+          "bis zur Erinnerung"
+        ]
+      ],
+      "files": [
+        [
+          "mail",
+          "5 Nachfragen gesendet",
+          "Atelier Morel, Studio Nord und 3 weitere"
+        ],
+        [
+          "file",
+          "Quote-tracking-October.xlsx",
+          "Tabelle · aktualisiert um 10:44"
+        ],
+        [
+          "calendar",
+          "Erinnerung „Angebots-Check-in“",
+          "Montag, 13. Oktober, 09:00"
+        ]
+      ]
+    },
+    "fail": {
+      "title": "Verbindung zum CRM verloren",
+      "text": "Die Website antwortete dreimal hintereinander mit „503“.",
+      "bot": "Ich kann das CRM nicht mehr erreichen. Die 4 verbleibenden Nachfragen bleiben als Entwürfe gespeichert; ich kann es jetzt oder in 15 Minuten erneut versuchen."
+    }
+  },
+  "routines": [
+    {
+      "id": "sort",
+      "t": "Morgendliche Sortierung",
+      "bot": "Nova",
+      "trig": "Täglich um 08:00",
+      "next": "Morgen",
+      "nextSub": "08:00",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "übersprungen",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    },
+    {
+      "id": "quotes",
+      "t": "Angebotsnachfrage",
+      "bot": "Nova",
+      "trig": "Jeden Montag um 08:00",
+      "next": "Montag",
+      "nextSub": "08:00",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    },
+    {
+      "id": "crm",
+      "t": "CRM-Update",
+      "bot": "Margaux",
+      "trig": "Wochentags um 18:00",
+      "next": "Heute",
+      "nextSub": "18:00",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    },
+    {
+      "id": "ticket",
+      "t": "Erste Durchsicht der Tickets",
+      "bot": "Inès",
+      "trig": "Bei jedem neuen Ticket",
+      "ev": true,
+      "next": "Bei Ereignis",
+      "nextSub": "Zuletzt: 10:31",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    },
+    {
+      "id": "pr",
+      "t": "Zusammenfassung offener PRs",
+      "bot": "Sam",
+      "trig": "Bei jedem geöffneten PR",
+      "ev": true,
+      "next": "Bei Ereignis",
+      "nextSub": "Zuletzt: gestern",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "übersprungen",
+        "ok"
+      ],
+      "on": false
+    },
+    {
+      "id": "watch",
+      "t": "Lieferantenüberwachung",
+      "bot": "Paul",
+      "trig": "Alle 30 Min.",
+      "next": "In 12 Min.",
+      "nextSub": "11:00",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    }
+  ],
+  "history": [
+    [
+      "Heute 10:31",
+      "Erste Durchsicht der Tickets",
+      "Inès",
+      "ok",
+      "4 s"
+    ],
+    [
+      "Heute 10:30",
+      "Lieferantenüberwachung",
+      "Paul",
+      "ok",
+      "38 s"
+    ],
+    [
+      "Heute 08:00",
+      "Morgen-Sortierung",
+      "Nova",
+      "ok",
+      "1 Min. 12"
+    ],
+    [
+      "Gestern 18:00",
+      "CRM-Update",
+      "Margaux",
+      "ok",
+      "2 Min. 40"
+    ],
+    [
+      "Montag 08:00",
+      "Angebots-Follow-up",
+      "Nova",
+      "ok",
+      "2 Min. 52"
+    ]
+  ],
+  "failRoutine": "crm",
+  "failNextSub": "Fehlgeschlagen um 18:00",
+  "failHist": [
+    "Gestern 18:00",
+    "CRM-Update",
+    "Margaux",
+    "err",
+    "Verbindung abgelehnt"
+  ],
+  "failBanner": {
+    "title": "„CRM-Update“ fehlgeschlagen",
+    "text": "Margaux konnte sich gestern um 18:00 nicht beim CRM anmelden. Verbinde das CRM erneut und führe die Routine noch einmal aus."
+  },
+  "edit": {
+    "name": "Angebots-Follow-up",
+    "instr": "Hake bei Angeboten nach, auf die seit mehr als 7 Tagen keine Antwort kam, in freundlichem Ton. Zeig mir das erste, bevor es gesendet wird.",
+    "eventName": "Erste Durchsicht der Tickets",
+    "eventInstr": "Sortiere jedes neue Ticket nach Dringlichkeit, schlage eine Vorlagenantwort vor und sag mir, ob der Kunde verärgert ist.",
+    "eventBot": "Inès",
+    "bots": [
+      "Margaux",
+      "Inès",
+      "Paul"
+    ],
+    "tz": "Pariser Zeit",
+    "sources": {
+      "ticket": "Tickets · Warteschlange „Kundensupport“",
+      "mail": "E-Mail · camille@studionord.fr",
+      "pr": "Repository cortex-web"
+    },
+    "eventRate": "Etwa 14-mal pro Tag in den letzten 7 Tagen",
+    "testSteps": [
+      "Die letzten 3 Tickets lesen",
+      "Nach Dringlichkeit sortieren",
+      "Vorlagenantworten entwerfen",
+      "Die Zusammenfassung vorbereiten"
+    ],
+    "testOkTitle": "Test in 12 s bestanden.",
+    "testOkText": "3 Tickets sortiert (1 dringend), 3 Antworten vorgeschlagen, nichts gesendet."
+  },
+  "inbox": [
+    {
+      "id": 1,
+      "bot": "Sam",
+      "t": "Zugangsdaten für das Lieferantenportal benötigt",
+      "d": "Das Portal ventes.ateliermorel.fr verweigert seit heute Morgen den Zugriff. Ohne Anmeldung bleiben 3 Tickets blockiert.",
+      "when": "vor 8 Min.",
+      "urg": "now",
+      "act": "Anmelden",
+      "to": "work-task:blocked"
+    },
+    {
+      "id": 2,
+      "bot": "Max",
+      "t": "Rechnung von Atelier Morel über 1.240 € zu zahlen",
+      "d": "Fällig morgen. Der Betrag stimmt mit Angebot #2291 überein, unterzeichnet am 22. September.",
+      "when": "vor 20 Min.",
+      "urg": "now",
+      "act": "Prüfen",
+      "to": "approvals:detail"
+    },
+    {
+      "id": 3,
+      "bot": "Nova",
+      "t": "Erste Nachfrage bereit zum Senden",
+      "d": "„Hallo Julien, ich melde mich wegen Angebot #2291…“",
+      "when": "vor 34 Min.",
+      "urg": "today",
+      "act": "Lesen",
+      "to": "work-task:approval"
+    },
+    {
+      "id": 4,
+      "bot": "Zoé",
+      "t": "Welches Visual für die Ankündigung am 14. April?",
+      "d": "Ich habe zwei Optionen. B erhielt in der Vorschau 18 % mehr Klicks.",
+      "when": "vor 1 Std.",
+      "urg": "today",
+      "act": "Auswählen",
+      "to": "approvals:list"
+    },
+    {
+      "id": 5,
+      "bot": "Léo",
+      "t": "2 Belege ohne Kategorie",
+      "d": "Taxi am 24. September (32,40 €) und Mittagessen Studio Nord (86 €).",
+      "when": "gestern",
+      "urg": "later",
+      "act": "Kategorisieren",
+      "to": "work-task:approval"
+    },
+    {
+      "id": 6,
+      "bot": "Paul",
+      "t": "Beobachten: Lieferant senkt Preise um 12 %",
+      "d": "Céramiques Vidal kündigt neue Tarife ab November an.",
+      "when": "gestern",
+      "urg": "later",
+      "act": "Lesen",
+      "to": "activity"
+    }
+  ],
+  "approvals": [
+    {
+      "id": "mail",
+      "bot": "Nova",
+      "icon": "mail",
+      "kind": "Send an email",
+      "t": "Follow-up an Julien Morel",
+      "d": "„Hallo Julien, ich melde mich wegen Angebot #2291, gesendet am 18. September…“",
+      "when": "vor 34 Min."
+    },
+    {
+      "id": "pay",
+      "bot": "Max",
+      "icon": "key",
+      "kind": "Pay an invoice",
+      "t": "Rechnung Atelier Morel · 1.240 €",
+      "d": "Überweisung vom Geschäftskonto von Studio Nord, fällig Freitag, 2. Oktober.",
+      "when": "vor 20 Min."
+    },
+    {
+      "id": "post",
+      "bot": "Zoé",
+      "icon": "share",
+      "kind": "Publish a post",
+      "t": "Ankündigung zum Launch am 14. April",
+      "d": "„Der Frühling kommt ins Studio Nord: wir sehen uns am 14. April zu…“ · Visual B · LinkedIn und Instagram",
+      "when": "vor 1 Std."
+    }
+  ],
+  "payment": {
+    "bot": "Max",
+    "amount": "1,240.00",
+    "kv": [
+      [
+        "Zahlungsempfänger",
+        "Atelier Morel"
+      ],
+      [
+        "IBAN",
+        "FR76 •••• •••• 4821"
+      ],
+      [
+        "Belastetes Konto",
+        "Studio Nord · Geschäftskonto"
+      ],
+      [
+        "Fällig",
+        "Freitag, 2. Oktober"
+      ],
+      [
+        "Referenz",
+        "Rechnung F-2026-118"
+      ]
+    ],
+    "check": "Der Betrag stimmt mit Angebot #2291 überein, unterzeichnet am 22. September.",
+    "alwaysRule": "Max immer erlauben, Atelier Morel bis zu 1.500 € zu bezahlen",
+    "why": "Deine aktuelle Regel: „Zahlungen — Nachfragen“. Jede Überweisung geht über dich, unabhängig vom Betrag.",
+    "okTitle": "Zahlung genehmigt",
+    "okText": "Max sendet die Überweisung von 1.240 € an Atelier Morel. Du erhältst den Beleg in deinem Posteingang.",
+    "noTitle": "Zahlung abgelehnt",
+    "noText": "Max wird diese Rechnung nicht bezahlen und hat Julien Morel mitgeteilt, dass die Zahlung zurückgestellt ist.",
+    "cancelTransfer": "Überweisung stornieren (noch 4 Min. 52 Sek.)",
+    "invoice": {
+      "vendor": "ATELIER MOREL",
+      "ref": "F-2026-118",
+      "address": "12 rue des Tanneurs, 69001 Lyon",
+      "lines": [
+        [
+          "Renovierung der Werkstatt · Posten 1",
+          "980.00"
+        ],
+        [
+          "Keramikmaterial",
+          "160.00"
+        ],
+        [
+          "Reisekosten",
+          "100.00"
+        ]
+      ],
+      "totalLabel": "Gesamt inkl. MwSt."
+    }
+  },
+  "activity": [
+    [
+      "Heute",
+      [
+        {
+          "bot": "Nova",
+          "icon": "mail",
+          "type": "email",
+          "b": "Gesendet",
+          "t": " die Follow-up-Nachricht an Julien Morel",
+          "when": "10:42"
+        },
+        {
+          "bot": "Nova",
+          "icon": "clock-loop",
+          "type": "routines",
+          "b": "Routine erstellt",
+          "t": " „Angebots-Follow-up“",
+          "when": "10:41"
+        },
+        {
+          "bot": "Nova",
+          "icon": "globe",
+          "type": "browsing",
+          "b": "Geöffnet",
+          "t": " crm.studionord.fr",
+          "when": "10:38"
+        },
+        {
+          "bot": "Inès",
+          "icon": "check-circle",
+          "type": "tickets",
+          "b": "Gelöst",
+          "t": " Ticket #4179 „Doppelte Abrechnung“",
+          "when": "10:31"
+        },
+        {
+          "bot": "Sam",
+          "icon": "alert-triangle",
+          "type": "errors",
+          "b": "Blockiert",
+          "t": ": Zugriff auf das Lieferantenportal verweigert",
+          "when": "10:12"
+        },
+        {
+          "bot": "Margaux",
+          "icon": "edit",
+          "type": "crm",
+          "b": "Aktualisiert",
+          "t": " 12 Kundendatensätze von Studio Nord",
+          "when": "09:50"
+        },
+        {
+          "bot": "Hugo",
+          "icon": "mail",
+          "type": "email",
+          "b": "Sortiert",
+          "t": " 23 E-Mails, 2 Angebotsanfragen erkannt",
+          "when": "08:14"
+        }
+      ]
+    ],
+    [
+      "Gestern",
+      [
+        {
+          "bot": "Max",
+          "icon": "file",
+          "type": "documents",
+          "b": "Vorbereitet",
+          "t": " die Gehaltsabrechnungen für Oktober",
+          "when": "18:30"
+        },
+        {
+          "bot": "Margaux",
+          "icon": "clock-loop",
+          "type": "routines",
+          "b": "Ausgeführt",
+          "t": " „CRM-Aktualisierung“",
+          "when": "18:00"
+        },
+        {
+          "bot": "Léo",
+          "icon": "check-circle",
+          "type": "documents",
+          "b": "Abgelegt",
+          "t": " 14 Spesenabrechnungen für September",
+          "when": "17:12"
+        },
+        {
+          "bot": "Zoé",
+          "icon": "image",
+          "type": "documents",
+          "b": "Vorgeschlagen",
+          "t": " zwei Visuals für die Ankündigung am 14. April",
+          "when": "15:02"
+        }
+      ]
+    ],
+    [
+      "Montag, 28. September",
+      [
+        {
+          "bot": "Nova",
+          "icon": "clock-loop",
+          "type": "routines",
+          "b": "Ausgeführt",
+          "t": " „Angebots-Follow-up“: 4 Nachfassaktionen",
+          "when": "08:00"
+        },
+        {
+          "bot": "Paul",
+          "icon": "globe",
+          "type": "browsing",
+          "b": "Gelesen",
+          "t": " 38 Ankündigungen, 5 zur Beobachtung behalten",
+          "when": "08:00"
+        }
+      ]
+    ]
+  ],
+  "activityBots": [
+    "Margaux",
+    "Inès",
+    "Sam",
+    "Hugo",
+    "Max",
+    "Léo",
+    "Zoé",
+    "Paul"
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "kind": "bot",
+      "who": "Sam",
+      "t": " ist blockiert: Zugangsdaten für das Lieferantenportal benötigt",
+      "when": "8 Min.",
+      "to": [
+        "work-task",
+        "blocked"
+      ]
+    },
+    {
+      "id": 2,
+      "kind": "mention",
+      "who": "Julien Mercier",
+      "initials": "JM",
+      "t": " hat Sie in „Startplan 14. April“ erwähnt",
+      "when": "15 Min.",
+      "to": [
+        "chat"
+      ]
+    },
+    {
+      "id": 3,
+      "kind": "bot",
+      "who": "Max",
+      "t": " bittet Sie, eine Zahlung von 1.240 € zu genehmigen",
+      "when": "20 Min.",
+      "to": [
+        "approvals",
+        "detail"
+      ]
+    },
+    {
+      "id": 4,
+      "kind": "bot",
+      "who": "Nova",
+      "t": " hat „Unbeantwortete Angebote nachfassen“ abgeschlossen",
+      "when": "34 Min.",
+      "to": [
+        "work-task",
+        "done"
+      ]
+    },
+    {
+      "id": 5,
+      "kind": "mention",
+      "who": "Inès Benali",
+      "initials": "IB",
+      "t": " hat das Q2-Launch-Budget kommentiert",
+      "when": "vor 1 Std.",
+      "to": [
+        "file-xlsx"
+      ]
+    },
+    {
+      "id": 6,
+      "kind": "bot",
+      "who": "Margaux",
+      "t": " hat die Routine „CRM-Update“ ausgeführt",
+      "when": "gestern",
+      "to": [
+        "automations"
+      ]
+    }
+  ],
+  "readIds": [
+    5,
+    6
+  ],
+  "connectors": [
+    {
+      "id": "mail",
+      "mono": "Me",
+      "t": "E-Mail",
+      "d": "Entwürfe lesen, sortieren und vorbereiten",
+      "st": "on",
+      "perms": [
+        [
+          "mail",
+          "Ihre E-Mails lesen",
+          "Betreff, Inhalt und Anhänge"
+        ],
+        [
+          "edit",
+          "Entwürfe vorbereiten",
+          "Wird nie ohne Ihre Zustimmung gesendet"
+        ],
+        [
+          "user",
+          "Ihre Kontakte sehen",
+          "Namen und Adressen"
+        ]
+      ]
+    },
+    {
+      "id": "cal",
+      "mono": "Ag",
+      "t": "Kalender",
+      "d": "Termine vorschlagen, Meetings vorbereiten",
+      "st": "on",
+      "perms": [
+        [
+          "calendar",
+          "Ihre Termine sehen",
+          "Titel, Zeiten, Teilnehmer"
+        ],
+        [
+          "edit",
+          "Einladungen erstellen",
+          "Mit Ihrer Zustimmung"
+        ]
+      ]
+    },
+    {
+      "id": "drive",
+      "mono": "Dr",
+      "t": "Drive",
+      "d": "Geteilte Dokumente lesen und ablegen",
+      "st": "re",
+      "perms": [
+        [
+          "folder",
+          "Geteilte Ordner sehen",
+          "Spring Launch, Studio Nord"
+        ],
+        [
+          "file",
+          "Dokumente erstellen",
+          "In einem Ordner „Bots“"
+        ]
+      ]
+    },
+    {
+      "id": "crm",
+      "mono": "CR",
+      "t": "CRM",
+      "d": "Kontakte, Angebote und Follow-ups aktualisieren",
+      "st": "err",
+      "perms": [
+        [
+          "user",
+          "Einträge lesen und bearbeiten",
+          "Kontakte, Unternehmen, Angebote"
+        ],
+        [
+          "history",
+          "Gesprächsverlauf sehen",
+          "Letzte 12 Monate"
+        ]
+      ]
+    },
+    {
+      "id": "tk",
+      "mono": "Tk",
+      "t": "Tickets",
+      "d": "Kundenanfragen sortieren und beantworten",
+      "st": "on",
+      "perms": [
+        [
+          "mentions",
+          "Tickets lesen",
+          "Warteschlange „Kundensupport“"
+        ],
+        [
+          "edit",
+          "Kunden antworten",
+          "Mit Ihrer Zustimmung"
+        ]
+      ]
+    },
+    {
+      "id": "payroll",
+      "mono": "Pa",
+      "t": "Gehaltsabrechnung",
+      "d": "Gehaltsabrechnungen und Überweisungen vorbereiten",
+      "st": "off",
+      "perms": [
+        [
+          "user",
+          "Mitarbeiter sehen",
+          "Namen, Verträge, Gehälter"
+        ],
+        [
+          "file",
+          "Gehaltsabrechnungen erstellen",
+          "Zu genehmigende Entwürfe"
+        ],
+        [
+          "key",
+          "Überweisungen vorbereiten",
+          "Immer nach Ihrer Freigabe"
+        ]
+      ]
+    },
+    {
+      "id": "acct",
+      "mono": "Cp",
+      "t": "Buchhaltung",
+      "d": "Rechnungen und Ausgaben abgleichen",
+      "st": "off",
+      "perms": [
+        [
+          "file",
+          "Rechnungen lesen",
+          "Käufe und Verkäufe"
+        ],
+        [
+          "check-circle",
+          "Ausgaben kategorisieren",
+          "Spesenabrechnungen"
+        ]
+      ]
+    },
+    {
+      "id": "chat",
+      "mono": "Ch",
+      "t": "Team-Chat",
+      "d": "Anfragen erhalten, in Threads antworten",
+      "st": "off",
+      "perms": [
+        [
+          "mentions",
+          "Threads lesen, in denen Sie erwähnt werden",
+          "Öffentliche Kanäle"
+        ],
+        [
+          "edit",
+          "Im Ihrem Namen antworten",
+          "Mit Ihrer Freigabe"
+        ]
+      ]
+    },
+    {
+      "id": "git",
+      "mono": "Gi",
+      "t": "Code-Repository",
+      "d": "Pull Requests zusammenfassen, Reviews verfolgen",
+      "st": "off",
+      "perms": [
+        [
+          "pull-request",
+          "Pull Requests und Reviews lesen",
+          "cortex-web, cortex-ios"
+        ],
+        [
+          "mentions",
+          "Kommentieren",
+          "Mit Ihrer Freigabe"
+        ]
+      ]
+    }
+  ],
+  "connError": {
+    "banner": "CRM getrennt",
+    "bannerText": "Margaux und {name} konnten seit gestern 18:00 Uhr keine Angebote mehr aktualisieren.",
+    "detail": "Das Zugriffstoken ist am 30. September um 18:00 Uhr abgelaufen (Fehler 401). Bereits synchronisierte Daten bleiben erhalten.",
+    "affected": [
+      [
+        "Margaux",
+        "CRM-Update · 1 Fehler"
+      ],
+      [
+        "Nova",
+        "Angebots-Follow-up · wartet"
+      ]
+    ]
+  },
+  "connOk": "Ihre Bots können es jetzt nutzen. Paul schlägt eine Routine vor: „Gehaltsabrechnung am 25. jeden Monats vorbereiten“."
+}

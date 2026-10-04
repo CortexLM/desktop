@@ -1,0 +1,194 @@
+
+Running 1 test using 1 worker
+
+[1/1] tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 light
+  1) tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 light
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('button', { name: 'Add', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  1000ms
+
+    Call log:
+      - Expect "soft toBeDisabled" getByRole('button', { name: 'Add', exact: true }) with timeout 1000ms
+      - waiting for getByRole('button', { name: 'Add', exact: true })
+        11 × locator resolved to <button class="btn secondary">…</button>
+           - unexpected value "enabled"
+
+
+      112 |       const wipe = page.getByRole("button", { name: "Forget everything", exact: true });
+      113 |       await expect.poll(() => heldReads(app, "/api/bots")).toBeGreaterThan(0);
+    > 114 |       await expect.soft(add).toBeDisabled({ timeout: 1000 });
+          |                              ^
+      115 |       await add.evaluate((el: HTMLButtonElement) => el.click());
+      116 |       await expect.soft(input).toHaveCount(0, { timeout: 1000 });
+      117 |       await capture(page, `memory-owner-loading-${theme}`);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/memory-safety.spec.ts:114:30
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByPlaceholder('New memory…', { exact: true })
+    Expected: 0
+    Received: 1
+    Timeout:  1000ms
+
+    Call log:
+      - Expect "soft toHaveCount" getByPlaceholder('New memory…', { exact: true }) with timeout 1000ms
+      - waiting for getByPlaceholder('New memory…', { exact: true })
+        12 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      114 |       await expect.soft(add).toBeDisabled({ timeout: 1000 });
+      115 |       await add.evaluate((el: HTMLButtonElement) => el.click());
+    > 116 |       await expect.soft(input).toHaveCount(0, { timeout: 1000 });
+          |                                ^
+      117 |       await capture(page, `memory-owner-loading-${theme}`);
+      118 |       await releaseRead(app, "/api/bots");
+      119 |       await expect(page.getByRole("textbox", { name: "Memory 1", exact: true })).toHaveValue(aMemory.content);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/memory-safety.spec.ts:116:32
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.pg-panel input[readonly]')
+    Expected: 0
+    Received: 1
+    Timeout:  1000ms
+
+    Call log:
+      - Expect "soft toHaveCount" locator('.pg-panel input[readonly]') with timeout 1000ms
+      - waiting for locator('.pg-panel input[readonly]')
+        12 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      130 |       await expect(page.locator(".content-top .title")).toHaveText("Second memory owner settings");
+      131 |       await expect.poll(() => heldReads(app, bPath)).toBe(1);
+    > 132 |       await expect.soft(rows).toHaveCount(0, { timeout: 1000 });
+          |                               ^
+      133 |       await expect.soft(wipe).toBeDisabled({ timeout: 1000 });
+      134 |       await expect.soft(page.getByText("Empty memory", { exact: true })).toHaveCount(0, { timeout: 1000 });
+      135 |       await capture(page, `memory-owner-read-pending-${theme}`);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/memory-safety.spec.ts:132:31
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('button', { name: 'Forget everything', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  1000ms
+
+    Call log:
+      - Expect "soft toBeDisabled" getByRole('button', { name: 'Forget everything', exact: true }) with timeout 1000ms
+      - waiting for getByRole('button', { name: 'Forget everything', exact: true })
+        11 × locator resolved to <button class="btn secondary pg-danger">Forget everything</button>
+           - unexpected value "enabled"
+
+
+      131 |       await expect.poll(() => heldReads(app, bPath)).toBe(1);
+      132 |       await expect.soft(rows).toHaveCount(0, { timeout: 1000 });
+    > 133 |       await expect.soft(wipe).toBeDisabled({ timeout: 1000 });
+          |                               ^
+      134 |       await expect.soft(page.getByText("Empty memory", { exact: true })).toHaveCount(0, { timeout: 1000 });
+      135 |       await capture(page, `memory-owner-read-pending-${theme}`);
+      136 |       await releaseRead(app, bPath);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/memory-safety.spec.ts:133:31
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.pg-panel input[readonly]')
+    Expected: 0
+    Received: 1
+    Timeout:  1000ms
+
+    Call log:
+      - Expect "soft toHaveCount" locator('.pg-panel input[readonly]') with timeout 1000ms
+      - waiting for locator('.pg-panel input[readonly]')
+        11 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      142 |       await expect.poll(() => heldReads(app, bPath)).toBe(1);
+      143 |       expect(await requests(app)).toEqual([{ method: "DELETE", id: bMemory.id, status: 200 }]);
+    > 144 |       await expect.soft(rows).toHaveCount(0, { timeout: 1000 });
+          |                               ^
+      145 |       await expect.soft(wipe).toBeDisabled({ timeout: 1000 });
+      146 |       await capture(page, `memory-deleted-refresh-pending-${theme}`);
+      147 |       await releaseRead(app, bPath);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/memory-safety.spec.ts:144:31
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('button', { name: 'Forget everything', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  1000ms
+
+    Call log:
+      - Expect "soft toBeDisabled" getByRole('button', { name: 'Forget everything', exact: true }) with timeout 1000ms
+      - waiting for getByRole('button', { name: 'Forget everything', exact: true })
+        11 × locator resolved to <button class="btn secondary pg-danger">Forget everything</button>
+           - unexpected value "enabled"
+
+
+      143 |       expect(await requests(app)).toEqual([{ method: "DELETE", id: bMemory.id, status: 200 }]);
+      144 |       await expect.soft(rows).toHaveCount(0, { timeout: 1000 });
+    > 145 |       await expect.soft(wipe).toBeDisabled({ timeout: 1000 });
+          |                               ^
+      146 |       await capture(page, `memory-deleted-refresh-pending-${theme}`);
+      147 |       await releaseRead(app, bPath);
+      148 |       await expect(rows).toHaveCount(0);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/memory-safety.spec.ts:145:31
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Couldn’t load this', exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Couldn’t load this', exact: true }) with timeout 15000ms
+      - waiting for getByRole('heading', { name: 'Couldn’t load this', exact: true })
+
+
+      154 |       await expect.poll(() => heldReads(app, bPath)).toBe(1);
+      155 |       await releaseRead(app, bPath);
+    > 156 |       await expect(page.getByRole("heading", { name: "Couldn’t load this", exact: true })).toBeVisible();
+          |                                                                                            ^
+      157 |       await expect(page.getByText("Empty memory", { exact: true })).toHaveCount(0);
+      158 |       await page.getByRole("button", { name: "Try again", exact: true }).click();
+      159 |       await expect(page.getByText("Empty memory", { exact: true })).toBeVisible();
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/memory-safety.spec.ts:156:92
+
+    attachment #1: memory-owner-loading-light (image/png) ──────────────────────────────────────────
+    ../../../../../../../tmp/opencode/memory-live-repro/read-race-baseline/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/attachments/memory-owner-loading-light-de3fc7af21368330f5eb22ecc0603b9d78f19a4d.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: memory-owner-read-pending-light (image/png) ─────────────────────────────────────
+    ../../../../../../../tmp/opencode/memory-live-repro/read-race-baseline/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/attachments/memory-owner-read-pending-light-5d6e2f0566f19873e29abfaec4a178c11aae9de7.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: memory-deleted-refresh-pending-light (image/png) ────────────────────────────────
+    ../../../../../../../tmp/opencode/memory-live-repro/read-race-baseline/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/attachments/memory-deleted-refresh-pending-light-c8f888618b64e2d2ac36d1c67ee2d795d9c747f0.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/memory-live-repro/read-race-baseline/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/memory-live-repro/read-race-baseline/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/error-context.md
+
+    attachment #6: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/memory-live-repro/read-race-baseline/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/memory-live-repro/read-race-baseline/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  1 failed
+    tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 light

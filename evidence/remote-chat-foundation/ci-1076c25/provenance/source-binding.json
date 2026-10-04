@@ -1,0 +1,434 @@
+{
+  "application": "f5bf305473db12fddfddcda890a01794f02f578f",
+  "documentary": "1076c2584941cf054efffaf709a149b4195bc1c4",
+  "sourcePins": [
+    {
+      "path": "packages/core/README.md",
+      "sha256": "39a910f75f794c27f56188b7b39dcdf624fa309757b9953a77b4fa402c5d2dee",
+      "bytes": 5381,
+      "gitBlob": "2d0d5ccddb17fc34c177903eb9177ed31c0e61f7"
+    },
+    {
+      "path": "packages/core/src/bus.ts",
+      "sha256": "5e75b98b548cb4adc8f7eb98d23ee89bea86705c45eee485b494632a8ec0bb53",
+      "bytes": 1232,
+      "gitBlob": "86d4dc21955525fe1152123c3dde3013096810bc"
+    },
+    {
+      "path": "packages/core/src/connection.ts",
+      "sha256": "2dabb6fec133d599733a6c6961ed52532dd4fde9c0356543507d78c9f973015b",
+      "bytes": 3912,
+      "gitBlob": "c02d55fb5a87260dca7243a8beec48e30b44a32d"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "f95a508dc024fbbd2f4b5c4bab77fb4ee5efd06294801fd5de31c5abd19386bd",
+      "bytes": 5217,
+      "gitBlob": "883fe53752f53b1917cc5330b7d9eb1327a29d9a"
+    },
+    {
+      "path": "packages/core/src/remote-sessions.ts",
+      "sha256": "72bd7be91cf5ad99734a58300617da17e4bb782a631da3acbbbdfb8ca049decb",
+      "bytes": 24709,
+      "gitBlob": "12270ce922acb8963f8c8ef4ed66f344a89604df"
+    },
+    {
+      "path": "packages/core/test/bus.test.ts",
+      "sha256": "8b48277d38f1a6a0d05e2505835852bf744fb27fc34b178d33cb060af7d05018",
+      "bytes": 6726,
+      "gitBlob": "fbdb21d42fd240ca4e8fddef743c58e8969793f7"
+    },
+    {
+      "path": "packages/core/test/remote-sessions.test.ts",
+      "sha256": "e1f07e07e106d6d8f1312bfb4c93bcd4beb958c49801f6c28655beec3229e301",
+      "bytes": 29527,
+      "gitBlob": "e3eaea0a6962dddc2aff370d9228865176e7c4ba"
+    },
+    {
+      "path": "packages/desktop/src/main.ts",
+      "sha256": "d33d466e1a16b45ac124fb2c72b28a3ae632960e6575d0ebf4d90eb6f076396c",
+      "bytes": 6269,
+      "gitBlob": "b40664a1be950d2b1654f9eac0c6d60cfa45f5ab"
+    },
+    {
+      "path": "packages/desktop/src/remote-chat.ts",
+      "sha256": "a735975865341bec30fb1981165192f993fbd1235416a3271b947bfb15a4fad6",
+      "bytes": 25074,
+      "gitBlob": "3aabb7cf901ac213b854669e0e20725fd67d9a93"
+    },
+    {
+      "path": "packages/desktop/src/remote-session.ts",
+      "sha256": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+      "bytes": 13947,
+      "gitBlob": "4e102f455b09fd0241f5354cb880161c8528e341"
+    },
+    {
+      "path": "packages/desktop/test/remote-chat.test.ts",
+      "sha256": "d6447e76b5b75af5b09f9226f66490483dddf89d9ff8326451b837d225e307d9",
+      "bytes": 43880,
+      "gitBlob": "2ed1d0a80ca22ab193068352a6e3de7367b3f1b3"
+    },
+    {
+      "path": "packages/desktop/test/remote-core.test.ts",
+      "sha256": "72208fc330d490feff9ff6083b39622ab1102b0eefd28a8913e83ed9d6696427",
+      "bytes": 14189,
+      "gitBlob": "e708b60777e606cf9becc7725752727a27d661fa"
+    },
+    {
+      "path": "packages/schema/src/index.ts",
+      "sha256": "0403846e16c38e7f06c077d7980a9c375898ba413f5aa5f93cf863d7229f5361",
+      "bytes": 25084,
+      "gitBlob": "0508b19df14324677e3da0f1b335178576145a76"
+    },
+    {
+      "path": "tests/e2e/remote-auth.spec.ts",
+      "sha256": "7973cd05ffb32367de7afa8254e4d0002bd91a27b64df8fec645b44f24684062",
+      "bytes": 37782,
+      "gitBlob": "074495e4e2d69ea8bce73d7d1419a38c49cbeb12"
+    }
+  ],
+  "runtimeSourcesEmbedded": [
+    {
+      "path": "packages/core/src/bus.ts",
+      "sha256": "5e75b98b548cb4adc8f7eb98d23ee89bea86705c45eee485b494632a8ec0bb53",
+      "bytes": 1232,
+      "gitBlob": "86d4dc21955525fe1152123c3dde3013096810bc"
+    },
+    {
+      "path": "packages/core/src/connection.ts",
+      "sha256": "2dabb6fec133d599733a6c6961ed52532dd4fde9c0356543507d78c9f973015b",
+      "bytes": 3912,
+      "gitBlob": "c02d55fb5a87260dca7243a8beec48e30b44a32d"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "f95a508dc024fbbd2f4b5c4bab77fb4ee5efd06294801fd5de31c5abd19386bd",
+      "bytes": 5217,
+      "gitBlob": "883fe53752f53b1917cc5330b7d9eb1327a29d9a"
+    },
+    {
+      "path": "packages/core/src/remote-sessions.ts",
+      "sha256": "72bd7be91cf5ad99734a58300617da17e4bb782a631da3acbbbdfb8ca049decb",
+      "bytes": 24709,
+      "gitBlob": "12270ce922acb8963f8c8ef4ed66f344a89604df"
+    },
+    {
+      "path": "packages/desktop/src/main.ts",
+      "sha256": "d33d466e1a16b45ac124fb2c72b28a3ae632960e6575d0ebf4d90eb6f076396c",
+      "bytes": 6269,
+      "gitBlob": "b40664a1be950d2b1654f9eac0c6d60cfa45f5ab"
+    },
+    {
+      "path": "packages/desktop/src/remote-chat.ts",
+      "sha256": "a735975865341bec30fb1981165192f993fbd1235416a3271b947bfb15a4fad6",
+      "bytes": 25074,
+      "gitBlob": "3aabb7cf901ac213b854669e0e20725fd67d9a93"
+    },
+    {
+      "path": "packages/desktop/src/remote-session.ts",
+      "sha256": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+      "bytes": 13947,
+      "gitBlob": "4e102f455b09fd0241f5354cb880161c8528e341"
+    },
+    {
+      "path": "packages/schema/src/index.ts",
+      "sha256": "0403846e16c38e7f06c077d7980a9c375898ba413f5aa5f93cf863d7229f5361",
+      "bytes": 25084,
+      "gitBlob": "0508b19df14324677e3da0f1b335178576145a76"
+    }
+  ],
+  "sourceMapCount": 980,
+  "workspaceSourcesEmbedded": [
+    {
+      "path": "packages/desktop/src/main.ts",
+      "sha256": "d33d466e1a16b45ac124fb2c72b28a3ae632960e6575d0ebf4d90eb6f076396c",
+      "gitBlob": "b40664a1be950d2b1654f9eac0c6d60cfa45f5ab"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "f95a508dc024fbbd2f4b5c4bab77fb4ee5efd06294801fd5de31c5abd19386bd",
+      "gitBlob": "883fe53752f53b1917cc5330b7d9eb1327a29d9a"
+    },
+    {
+      "path": "packages/schema/src/index.ts",
+      "sha256": "0403846e16c38e7f06c077d7980a9c375898ba413f5aa5f93cf863d7229f5361",
+      "gitBlob": "0508b19df14324677e3da0f1b335178576145a76"
+    },
+    {
+      "path": "packages/core/src/agent.ts",
+      "sha256": "7358c388614b14b6fb150f14062c407a4db55eaf478b7a1bd4e0636ab3424748",
+      "gitBlob": "3e213a8ac2813bba957cf0c03eed7ca26a5ea32a"
+    },
+    {
+      "path": "packages/core/src/permission.ts",
+      "sha256": "25b054dac80e490bd05193f6f2e7995dbf6c5a89ac81343d6397353d885dd993",
+      "gitBlob": "c72a34c36931f040047314b6c1f1ae127ea02366"
+    },
+    {
+      "path": "packages/core/src/computer-use.ts",
+      "sha256": "bdeaa1fa9054424318051b9b067e0dd54064b6626b899aa2568388bcc96758c7",
+      "gitBlob": "7d575031b5090d266364078280157e0178444563"
+    },
+    {
+      "path": "packages/core/src/error.ts",
+      "sha256": "9205502b45ddbdab79a212385af3141940158e6a68f1439391241b0a571572a2",
+      "gitBlob": "48b90301be5a06c1855e13f15d73fdad59b3012e"
+    },
+    {
+      "path": "packages/core/src/bot.ts",
+      "sha256": "3f99c03f2b6093735ec80571cdfb9651cd36a03e2ed46da06df87a202e13938d",
+      "gitBlob": "0740fc162f1daa3e8735ac4374cc9421a618b51b"
+    },
+    {
+      "path": "packages/core/src/bus.ts",
+      "sha256": "5e75b98b548cb4adc8f7eb98d23ee89bea86705c45eee485b494632a8ec0bb53",
+      "gitBlob": "86d4dc21955525fe1152123c3dde3013096810bc"
+    },
+    {
+      "path": "packages/core/src/storage.ts",
+      "sha256": "1c56b82e24b89b68733e7cf5ba38a7d241f11f66e7a3857e0561ec3728bff255",
+      "gitBlob": "11d953236b7c023bbd2c1dde0934eed347ed3216"
+    },
+    {
+      "path": "packages/core/src/catalog.ts",
+      "sha256": "21a075c1916f3e975d86c198bb2548d01dca6a3809a159419c171835c65f88ce",
+      "gitBlob": "a86ab15a4db723674df4d33df2927a6b32dd4820"
+    },
+    {
+      "path": "packages/core/src/provider.ts",
+      "sha256": "ded605cbdf58d2ed7352d302ac365067fcd6b33b4ab33bacc67af1de8a536e07",
+      "gitBlob": "506cdc0daf58a490107ef1791c6b114cef4c3d23"
+    },
+    {
+      "path": "packages/core/src/connection.ts",
+      "sha256": "2dabb6fec133d599733a6c6961ed52532dd4fde9c0356543507d78c9f973015b",
+      "gitBlob": "c02d55fb5a87260dca7243a8beec48e30b44a32d"
+    },
+    {
+      "path": "packages/core/src/mcp.ts",
+      "sha256": "9b40fcb025b6e5e021529e33278b4f64e39d25c9fb364775ebe6a15f83034306",
+      "gitBlob": "9264d34257842d346bf55b751a96c80a8d57de96"
+    },
+    {
+      "path": "packages/core/src/plugin.ts",
+      "sha256": "241a1cfcc39bf3e2995a6f9d4d4188dfd96d90e535db9daf4c19489aaac9c0c0",
+      "gitBlob": "4a6824502eacb17ae1867296368e205ad33303d5"
+    },
+    {
+      "path": "packages/core/src/scheduler.ts",
+      "sha256": "1895f074ff79ab029d304f3c363fe9ff120fbd7322139e3f98ab27ddf759a2ea",
+      "gitBlob": "e01715f5b8cbe3abefa0f703bb1c14de6157088c"
+    },
+    {
+      "path": "packages/core/src/cron.ts",
+      "sha256": "46ad3593474fb884b575ae9d38ba9df3e02093a7c29a96bc83c7211a79f9682c",
+      "gitBlob": "c83dfbca7f590ad4e03fcf00ead19cc3adf9391a"
+    },
+    {
+      "path": "packages/core/src/session.ts",
+      "sha256": "8bdaadc276264e3e755c73df44bd894b884826875a6e582149dccc69086b81d4",
+      "gitBlob": "7b3b8b26ea0dc060c909b77cba414984aedb2aa3"
+    },
+    {
+      "path": "packages/core/src/llm.ts",
+      "sha256": "ea942621374f065a53804ebd3639f38a7a0f3355767adfcecdd4fc84f73074df",
+      "gitBlob": "1ed24f782dbb7cc2b1533831d710388a141e05a6"
+    },
+    {
+      "path": "packages/core/src/tool.ts",
+      "sha256": "cad95f16b627366bbe15bf42b68cc534467973f68e1c808a73e94a98e069ec60",
+      "gitBlob": "b550f7004cef301dcacf97b81523aaae9f18ebfb"
+    },
+    {
+      "path": "packages/core/src/remote-sessions.ts",
+      "sha256": "72bd7be91cf5ad99734a58300617da17e4bb782a631da3acbbbdfb8ca049decb",
+      "gitBlob": "12270ce922acb8963f8c8ef4ed66f344a89604df"
+    },
+    {
+      "path": "packages/core/src/skill.ts",
+      "sha256": "1efed8d7a5c9a49d288f985c68dd1a8455089da1c2638d12e368e7cae8391ab0",
+      "gitBlob": "d6d5673ad52d7df8aa32025580355a98f717eed7"
+    },
+    {
+      "path": "packages/core/src/space.ts",
+      "sha256": "7def89a713297632e4ac7aaab63318960a4e8fb723944c38f65125b63ba3449c",
+      "gitBlob": "f697285896a382a95391352c4e49008fdddd285f"
+    },
+    {
+      "path": "packages/server/src/index.ts",
+      "sha256": "7585be3574f67ba1280e7f4f0e1423413b9d697be4e7423ac8ca3941aa783037",
+      "gitBlob": "07445f9c7cdb35382540d85600d63b3b91fc0487"
+    },
+    {
+      "path": "packages/protocol/src/index.ts",
+      "sha256": "8c91ead8ab678b0bfab39799bb03e0b4d60612632bfd5aa65f74bf8b21669e69",
+      "gitBlob": "0732cd96e6afa9ce20ea024e855aa9b01af67d74"
+    },
+    {
+      "path": "packages/i18n/src/index.ts",
+      "sha256": "1c9408e2c49ed28d12280572f26c1c833ffc7bab493eeef2eee9a0d61baf0227",
+      "gitBlob": "b59680334e2dac4ba9b53596f43363442024f42a"
+    },
+    {
+      "path": "packages/i18n/src/node.ts",
+      "sha256": "ff33f72cf44424f515de87416acf18f5b3da3119d696cdeb8ba48a7c22ee8d6e",
+      "gitBlob": "0a959787852f3e365ae8aa90a69171c02e85b124"
+    },
+    {
+      "path": "packages/desktop/src/credentials.ts",
+      "sha256": "8a40785b287e585252b0918df6d634b90e65a8bdf0927c1f13a0353724a57fab",
+      "gitBlob": "8a58dfb7d17b248ea55f41becb2474f4af87fe74"
+    },
+    {
+      "path": "packages/desktop/src/menu.ts",
+      "sha256": "891e5e16507892c01b5c26727c324d18f86267ab7b78418bf446d14727c4791b",
+      "gitBlob": "41a9602c6951306156d8ca753151c69ffc4f9d56"
+    },
+    {
+      "path": "packages/desktop/src/remote.ts",
+      "sha256": "9d08fb8acabc6dd2384acabee49d969c707258e676065b2639fb0b492ad34a51",
+      "gitBlob": "2c80c0f31d2e464650bdf4a6b19e3f1840662ea4"
+    },
+    {
+      "path": "packages/desktop/src/remote-session.ts",
+      "sha256": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+      "gitBlob": "4e102f455b09fd0241f5354cb880161c8528e341"
+    },
+    {
+      "path": "packages/desktop/src/remote-chat.ts",
+      "sha256": "a735975865341bec30fb1981165192f993fbd1235416a3271b947bfb15a4fad6",
+      "gitBlob": "3aabb7cf901ac213b854669e0e20725fd67d9a93"
+    }
+  ],
+  "sdkSourcesEmbedded": [
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/index.js",
+      "archivePath": "package/dist/index.js",
+      "sha256": "212ce1de59dc8ad46bec29288419aceab9385d21b9b18154fecf2b1c4ed7da0c"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/client.js",
+      "archivePath": "package/dist/client.js",
+      "sha256": "1ce99a211aa7e1f03b3606dde05bce48826d2be98eaa26153526d17609c85b09"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/client/index.js",
+      "archivePath": "package/dist/gen/client/index.js",
+      "sha256": "94e300244308b6b55a56aa3f8433b82e00ca62fe034da102349d90e654eba42d"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/bodySerializer.gen.js",
+      "archivePath": "package/dist/gen/core/bodySerializer.gen.js",
+      "sha256": "85f6abdc0ad36c810a635e0a24fa7a05cf1fd40b1aa4638d5128055178aac467"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/params.gen.js",
+      "archivePath": "package/dist/gen/core/params.gen.js",
+      "sha256": "25ddaaae0571f0efa0821d47f3ab963e82097a08e05fcb6f6ecf0ca48dbfd11c"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/queryKeySerializer.gen.js",
+      "archivePath": "package/dist/gen/core/queryKeySerializer.gen.js",
+      "sha256": "759a91074785c0e7f6161c98d0a2f055ac1755e101ca2bcb548cefc84113dd00"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/client/client.gen.js",
+      "archivePath": "package/dist/gen/client/client.gen.js",
+      "sha256": "9999322e691ee1641417f19ceb419d279206ac32125baaa5d5622bdf4fef6fc1"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/serverSentEvents.gen.js",
+      "archivePath": "package/dist/gen/core/serverSentEvents.gen.js",
+      "sha256": "4780677988fd572a52ff91e8c3d99db8bfce87dece796b605441e10fe17cb38e"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/utils.gen.js",
+      "archivePath": "package/dist/gen/core/utils.gen.js",
+      "sha256": "cf3731ed79b03412088cbf6645246ba32cc8ba415485c5591943db07174c4afd"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/pathSerializer.gen.js",
+      "archivePath": "package/dist/gen/core/pathSerializer.gen.js",
+      "sha256": "a1ad57fbaeb6331c3e3d811cbfdb1c16f9884b4d6b93658a6c73f2882088d994"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/client/utils.gen.js",
+      "archivePath": "package/dist/gen/client/utils.gen.js",
+      "sha256": "db566eed102fcfa07f8266f261c119e510b70f9a1cae094bfeb51816bff7ffdf"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/auth.gen.js",
+      "archivePath": "package/dist/gen/core/auth.gen.js",
+      "sha256": "a8a8faa4b1c7383a3f8570b9e74849cd77c4ee59406bf00b9e00ff2f0c89321d"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/sdk.gen.js",
+      "archivePath": "package/dist/gen/sdk.gen.js",
+      "sha256": "198a35018b1d77ffcaae646a31ef5baebaf5be8f913ac94ab31cacf6ef6d7bbf"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/client.gen.js",
+      "archivePath": "package/dist/gen/client.gen.js",
+      "sha256": "19885ec371016ec370fe2a6d13d254a5daf9438044d9d3c58f57223d19c15039"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/stream.js",
+      "archivePath": "package/dist/stream.js",
+      "sha256": "a0de50114ee306815041d338f0b119c189bbf28a2330229c1d2c04f48c330ab0"
+    },
+    {
+      "sourceMapPath": "../../../node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/index.js",
+      "archivePath": "package/dist/gen/index.js",
+      "sha256": "0ad3d326a04654ed518ee0e68c7bf2be7ad0f97a3e37872162859c0e652986ea"
+    }
+  ],
+  "vendorArchives": [
+    {
+      "path": "vendor/cortex-sdk-0.3.5.tgz",
+      "sha256": "5c75f212a2669bcd6f5110fe6e5c8862e1ca6eba85a118b350e0ce38694596b8",
+      "gitBlob": "c389a249a6ef4aa0396e51ed9cd33de15d1d52d4",
+      "name": "@cortex/sdk",
+      "version": "0.3.5",
+      "unchangedSince": "78857365a509d78af10ebdda5b52348a2e50e961",
+      "includedIn514InputManifest": false
+    },
+    {
+      "path": "vendor/cortex-api-types-0.2.0.tgz",
+      "sha256": "3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877",
+      "gitBlob": "815b6f4e5c5ee6568bed2e0cea0ea7896b09e92d",
+      "name": "@cortex/api-types",
+      "version": "0.2.0",
+      "unchangedSince": "78857365a509d78af10ebdda5b52348a2e50e961",
+      "includedIn514InputManifest": false
+    }
+  ],
+  "missingThirdPartySourcesContent": [
+    "../../../node_modules/.bun/@workflow+serde@4.1.0/node_modules/@workflow/serde/src/index.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/client/index.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/shared/protocol.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/server/zod-compat.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/types.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/experimental/tasks/interfaces.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/server/zod-json-schema-compat.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/validation/ajv-provider.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/experimental/tasks/client.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/experimental/tasks/helpers.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/client/stdio.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/shared/stdio.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/client/streamableHttp.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/shared/mediaType.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/shared/transport.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/client/auth.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/shared/auth.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/shared/auth-utils.ts",
+    "../../../node_modules/.bun/@modelcontextprotocol+sdk@1.31.0+759ce506b1ed1a42/node_modules/@modelcontextprotocol/sdk/src/server/auth/errors.ts"
+  ],
+  "generatedSourceMapContent": [
+    {
+      "source": "<define:import.meta.env>",
+      "content": "{}"
+    }
+  ],
+  "privateImplementationCompiled": true,
+  "publicRemoteUIExecutionEstablished": false
+}

@@ -1,0 +1,149 @@
+{
+  "stats": {
+    "startTime": "2026-10-03T02:05:53.043Z",
+    "duration": 509698.56100000005,
+    "expected": 82,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "stepResults": [
+    {
+      "title": "cold fonts finish at the actual bottom",
+      "start": 506951.566,
+      "end": 507826.177,
+      "error": null
+    },
+    {
+      "title": "warm-font remount still opens at the bottom",
+      "start": 507826.261,
+      "end": 508331.279,
+      "error": null
+    },
+    {
+      "title": "wheel intent before font readiness keeps the user's reading position",
+      "start": 508331.38,
+      "end": 508873.337,
+      "error": null
+    },
+    {
+      "title": "a new variant cancels the old pending bottom scroll",
+      "start": 508873.461,
+      "end": 509410.005,
+      "error": null
+    },
+    {
+      "title": "leaving the task cancels its pending scroll",
+      "start": 509410.09,
+      "end": 509672.333,
+      "error": null
+    }
+  ],
+  "failed": [
+    {
+      "title": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+      "status": "unexpected",
+      "results": [
+        {
+          "workerIndex": 0,
+          "parallelIndex": 0,
+          "status": "failed",
+          "duration": 3505,
+          "error": {
+            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts:139:22",
+            "location": {
+              "file": "/Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts",
+              "column": 22,
+              "line": 139
+            },
+            "snippet": "\u001b[0m \u001b[90m 137 |\u001b[39m         expect((\u001b[36mawait\u001b[39m metrics(page))\u001b[33m.\u001b[39mtop)\u001b[33m.\u001b[39mtoBe(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 138 |\u001b[39m       })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 139 |\u001b[39m       expect(errors)\u001b[33m.\u001b[39mtoEqual([])\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 140 |\u001b[39m     } \u001b[36mfinally\u001b[39m {\n \u001b[90m 141 |\u001b[39m       release()\u001b[33m;\u001b[39m\n \u001b[90m 142 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39munrouteAll({ behavior\u001b[33m:\u001b[39m \u001b[32m\"wait\"\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+          },
+          "errors": [
+            {
+              "location": {
+                "file": "/Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts",
+                "column": 22,
+                "line": 139
+              },
+              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  137 |         expect((await metrics(page)).top).toBe(0);\n  138 |       });\n> 139 |       expect(errors).toEqual([]);\n      |                      ^\n  140 |     } finally {\n  141 |       release();\n  142 |       await page.unrouteAll({ behavior: \"wait\" });\n    at /Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts:139:22"
+            }
+          ],
+          "stdout": [],
+          "stderr": [],
+          "retry": 0,
+          "steps": [
+            {
+              "title": "cold fonts finish at the actual bottom",
+              "duration": 874
+            },
+            {
+              "title": "warm-font remount still opens at the bottom",
+              "duration": 505
+            },
+            {
+              "title": "wheel intent before font readiness keeps the user's reading position",
+              "duration": 542
+            },
+            {
+              "title": "a new variant cancels the old pending bottom scroll",
+              "duration": 536
+            },
+            {
+              "title": "leaving the task cancels its pending scroll",
+              "duration": 262
+            }
+          ],
+          "startTime": "2026-10-03T02:14:19.204Z",
+          "annotations": [],
+          "attachments": [
+            {
+              "name": "cold-fonts-dark",
+              "contentType": "application/json",
+              "body": "ewogICJyZXF1ZXN0cyI6IFsKICAgICJjb3J0ZXg6Ly9hcHAvZm9udHMvR2Vpc3QtVmFyaWFibGUud29mZjIiLAogICAgImNvcnRleDovL2FwcC9mb250cy9HZWlzdE1vbm8tVmFyaWFibGUud29mZjIiCiAgXSwKICAiYmVmb3JlIjogewogICAgInRvcCI6IDQxMCwKICAgICJoZWlnaHQiOiAxMDY5LAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDAsCiAgICAiZm9udHMiOiAibG9hZGluZyIKICB9LAogICJhZnRlciI6IHsKICAgICJ0b3AiOiAzOTIsCiAgICAiaGVpZ2h0IjogMTA1MSwKICAgICJ2aWV3cG9ydCI6IDY1OSwKICAgICJnYXAiOiAwLAogICAgImZvbnRzIjogImxvYWRlZCIKICB9Cn0="
+            },
+            {
+              "name": "warm-fonts-dark",
+              "contentType": "application/json",
+              "body": "ewogICJyZXF1ZXN0cyI6IFsKICAgICJjb3J0ZXg6Ly9hcHAvZm9udHMvR2Vpc3QtVmFyaWFibGUud29mZjIiLAogICAgImNvcnRleDovL2FwcC9mb250cy9HZWlzdE1vbm8tVmFyaWFibGUud29mZjIiCiAgXSwKICAiYmVmb3JlIjogewogICAgInRvcCI6IDM5MiwKICAgICJoZWlnaHQiOiAxMDUxLAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDAsCiAgICAiZm9udHMiOiAibG9hZGVkIgogIH0sCiAgImFmdGVyIjogewogICAgInRvcCI6IDM5MiwKICAgICJoZWlnaHQiOiAxMDUxLAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDAsCiAgICAiZm9udHMiOiAibG9hZGVkIgogIH0KfQ=="
+            },
+            {
+              "name": "user-wheel-dark",
+              "contentType": "application/json",
+              "body": "ewogICJyZXF1ZXN0cyI6IFsKICAgICJjb3J0ZXg6Ly9hcHAvZm9udHMvR2Vpc3QtVmFyaWFibGUud29mZjIiLAogICAgImNvcnRleDovL2FwcC9mb250cy9HZWlzdE1vbm8tVmFyaWFibGUud29mZjIiCiAgXSwKICAiYmVmb3JlIjogewogICAgInRvcCI6IDIzMCwKICAgICJoZWlnaHQiOiAxMDY5LAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDE4MCwKICAgICJmb250cyI6ICJsb2FkaW5nIgogIH0sCiAgImFmdGVyIjogewogICAgInRvcCI6IDIzMCwKICAgICJoZWlnaHQiOiAxMDUxLAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDE2MiwKICAgICJmb250cyI6ICJsb2FkZWQiCiAgfQp9"
+            },
+            {
+              "name": "variant-change-dark",
+              "contentType": "application/json",
+              "body": "ewogICJyZXF1ZXN0cyI6IFsKICAgICJjb3J0ZXg6Ly9hcHAvZm9udHMvR2Vpc3QtVmFyaWFibGUud29mZjIiLAogICAgImNvcnRleDovL2FwcC9mb250cy9HZWlzdE1vbm8tVmFyaWFibGUud29mZjIiCiAgXSwKICAiYmVmb3JlIjogewogICAgInRvcCI6IDE3OSwKICAgICJoZWlnaHQiOiA3ODYsCiAgICAidmlld3BvcnQiOiA2MDcsCiAgICAiZ2FwIjogMCwKICAgICJmb250cyI6ICJsb2FkaW5nIgogIH0sCiAgImFmdGVyIjogewogICAgInRvcCI6IDE2MiwKICAgICJoZWlnaHQiOiA3NjksCiAgICAidmlld3BvcnQiOiA2MDcsCiAgICAiZ2FwIjogMCwKICAgICJmb250cyI6ICJsb2FkZWQiCiAgfQp9"
+            },
+            {
+              "name": "screenshot",
+              "contentType": "image/png",
+              "path": "/Users/runner/_work/desktop/desktop/test-results/artifacts/work-scroll-Work-initial-s-7206c-ng-back-user-control-\u2014-dark/test-failed-1.png"
+            },
+            {
+              "name": "error-context",
+              "contentType": "text/markdown",
+              "path": "/Users/runner/_work/desktop/desktop/test-results/artifacts/work-scroll-Work-initial-s-7206c-ng-back-user-control-\u2014-dark/error-context.md"
+            },
+            {
+              "name": "trace",
+              "contentType": "application/zip",
+              "path": "/Users/runner/_work/desktop/desktop/test-results/artifacts/work-scroll-Work-initial-s-7206c-ng-back-user-control-\u2014-dark/trace.zip"
+            }
+          ],
+          "errorLocation": {
+            "file": "/Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts",
+            "column": 22,
+            "line": 139
+          }
+        }
+      ]
+    }
+  ],
+  "traceFiles": [
+    "test.trace"
+  ],
+  "rendererStackAvailable": false
+}

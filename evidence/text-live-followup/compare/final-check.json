@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "checkedUTC": "2026-10-04T00:07:19.940695+00:00",
+  "immutableInputsRechecked": 1199,
+  "allImmutableInputsStable": true,
+  "capturedSourceInputs": 524,
+  "currentInputsStillEqual": 524,
+  "currentSourceDelta": [],
+  "originalReportAndProvenanceUnchanged": true,
+  "retainedRGBAReverified": 25,
+  "relativeImageLinksValid": true,
+  "readmeLines": 51,
+  "helperCorrection": "First finalizer checked links before writing summary.json; stopped at that missing generated target. Moved link validation after output generation; no capture, metric or application change.",
+  "laterSourcePolicy": "Any later source change requires separate build attribution; this capture remains attached to the immutable dirty receipts."
+}

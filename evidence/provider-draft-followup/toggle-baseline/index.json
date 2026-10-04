@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "compressedAndObservedArtifacts": [
+    {
+      "path": "bindings/before-hashes.json.gz",
+      "sha256": "19a72835af8a36aa382dbab707653acd4e7bac6136be304db8763f9ea7ddf265",
+      "bytes": 23462,
+      "source": "/tmp/opencode/provider-draft-regression/before-hashes.json",
+      "sourceSHA256": "8e8b98718b7676be3ae59fd140fe0f0f38a2d497fb2a057f0fd64882fea5bba3",
+      "sourceBytes": 92897,
+      "transform": "gzip level=9 mtime=0; exact decompressed bytes"
+    },
+    {
+      "path": "bindings/after-hashes.json.gz",
+      "sha256": "0ec720e7c8f9e0d2af3397863f0b1fabf79ac8bb9bb70e6a98da257416fed6cc",
+      "bytes": 23595,
+      "source": "/tmp/opencode/provider-draft-regression/after-hashes.json",
+      "sourceSHA256": "bc58187b9400b69b0878d51748413f66804472e01c75e4fef976833a573e3980",
+      "sourceBytes": 93155,
+      "transform": "gzip level=9 mtime=0; exact decompressed bytes"
+    },
+    {
+      "path": "source/provider-draft.spec.ts.gz",
+      "sha256": "da8ed7770c57133d5a529a16f33c62444a7db0c8692aa99464c7f8ee35cdf793",
+      "bytes": 2705,
+      "source": "Executed source frozen before retention; matched final summary SHA256",
+      "sourceSHA256": "bf57e5cdb18d53f31572ec04ec7727130574a1c33cbdf9cc3b6fcb4733365c3a",
+      "sourceBytes": 7924,
+      "transform": "gzip level=9 mtime=0; exact decompressed bytes"
+    },
+    {
+      "path": "final/report.json.gz",
+      "sha256": "5d404f08854b7fba21e3e639b2b429d70c5d9c13c0ee6ea209d54a8e50f65758",
+      "bytes": 3379,
+      "source": "/tmp/opencode/provider-draft-regression/negative.json",
+      "sourceSHA256": "fd2b1bc2b62ba6367d78599e6bcb6b7280f9ef4bd93499b0c0a08e2ce0de1329",
+      "sourceBytes": 34083,
+      "transform": "gzip level=9 mtime=0; exact decompressed bytes"
+    },
+    {
+      "path": "final/log.txt.gz",
+      "sha256": "6615f89a556a56fa1ca9714151912a8821f73c30c1b9cda75ff3b80465946954",
+      "bytes": 920,
+      "source": "/tmp/opencode/provider-draft-regression/negative.log",
+      "sourceSHA256": "40af280749d836c6e69bc92f510a00c09ec9a446e4562d5cb83b7302857e3754",
+      "sourceBytes": 9403,
+      "transform": "gzip level=9 mtime=0; exact decompressed bytes"
+    },
+    {
+      "path": "final/run.json",
+      "sha256": "9b195bc18ce39ee229016fb82769495590e5fa557f211630ee32d9b5f658298f",
+      "bytes": 559,
+      "source": "/tmp/opencode/provider-draft-regression/run.json",
+      "sourceSHA256": "9b195bc18ce39ee229016fb82769495590e5fa557f211630ee32d9b5f658298f",
+      "sourceBytes": 559
+    },
+    {
+      "path": "final/checks.json",
+      "sha256": "015a3f2cee5cf550911347e95c0a61d841a0f793d4f3ded3d485fbc85799fc9c",
+      "bytes": 485,
+      "source": "/tmp/opencode/provider-draft-regression/checks.json",
+      "sourceSHA256": "015a3f2cee5cf550911347e95c0a61d841a0f793d4f3ded3d485fbc85799fc9c",
+      "sourceBytes": 485
+    },
+    {
+      "path": "final/lint.log.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 20,
+      "source": "/tmp/opencode/provider-draft-regression/lint.log",
+      "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "transform": "gzip level=9 mtime=0; exact decompressed bytes"
+    },
+    {
+      "path": "final/types.log.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 20,
+      "source": "/tmp/opencode/provider-draft-regression/types.log",
+      "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "transform": "gzip level=9 mtime=0; exact decompressed bytes"
+    },
+    {
+      "path": "history/empty-renderer-url/report.json.gz",
+      "sha256": "86088b14b02a1212cec8b7044d8985f1fcebbb36385a20c961e1706a375df2c4",
+      "bytes": 1371,
+      "source": "/tmp/opencode/provider-draft-regression/setup-attempt-empty-renderer-url/negative.json",
+      "sourceSHA256": "96ce4a33cdb11e12c136a28856e2209c79409e41dc05e651a0578dcd01935193",
+      "sourceBytes": 6442,
+      "transform": "gzip level=9 mtime=0; exact decompressed bytes"
+    },
+    {
+      "path": "history/empty-renderer-url/log.txt.gz",
+      "sha256": "9a9684ee0fe2066336ee6acb54e8f5a204c4a0c9cf94f79884f898e5297a4910",
+      "bytes": 417,
+      "source": "/tmp/opencode/provider-draft-regression/setup-attempt-empty-renderer-url/negative.log",
+      "sourceSHA256": "94bb3932e2a4eaa7b616c07ffd53131832b749500e89ea8f285f1ca558d778c6",
+      "sourceBytes": 2908,
+      "transform": "gzip level=9 mtime=0; exact decompressed bytes"
+    },
+    {
+      "path": "history/empty-renderer-url/run.json",
+      "sha256": "0e9e7d0d6aadddb040f5999bf52ce7fbdb0268942e8996961323c600be09498a",
+      "bytes": 559,
+      "source": "/tmp/opencode/provider-draft-regression/setup-attempt-empty-renderer-url/run.json",
+      "sourceSHA256": "0e9e7d0d6aadddb040f5999bf52ce7fbdb0268942e8996961323c600be09498a",
+      "sourceBytes": 559
+    },
+    {
+      "path": "history/obscured-capture/report.json.gz",
+      "sha256": "5be24c11e6202f40a40038b17208787a89463d94e39304808d42ebdc8423eea9",
+      "bytes": 3367,
+      "source": "/tmp/opencode/provider-draft-regression/negative-attempt-obscured-capture/negative.json",
+      "sourceSHA256": "9498a2d420aa67e43512fc9105439711719ab883b88aabdbcbfab7507021d161",
+      "sourceBytes": 34000,
+      "transform": "gzip level=9 mtime=0; exact decompressed bytes"
+    },
+    {
+      "path": "history/obscured-capture/log.txt.gz",
+      "sha256": "f385c288c4ccfbeab5e04f089ba7da0d5c09f7e09216f40954037d74f1605d5a",
+      "bytes": 919,
+      "source": "/tmp/opencode/provider-draft-regression/negative-attempt-obscured-capture/negative.log",
+      "sourceSHA256": "3e5e7c40a357e9c7ccc581b580521b0f0706d66af2732de231487b908a0aabf0",
+      "sourceBytes": 9375,
+      "transform": "gzip level=9 mtime=0; exact decompressed bytes"
+    },
+    {
+      "path": "history/obscured-capture/run.json",
+      "sha256": "5af42956fea5e83555341ad707373513854e57e0300f13f0aa8222ed8538b412",
+      "bytes": 559,
+      "source": "/tmp/opencode/provider-draft-regression/negative-attempt-obscured-capture/run.json",
+      "sourceSHA256": "5af42956fea5e83555341ad707373513854e57e0300f13f0aa8222ed8538b412",
+      "sourceBytes": 559
+    },
+    {
+      "path": "observations/light.json",
+      "sha256": "a2fd0c3e1be68e3b70e16d546fe9d1d5568b3684bf2a3baf928c49db500c8580",
+      "bytes": 2983,
+      "source": "/tmp/opencode/provider-draft-regression/observation-light.json",
+      "sourceSHA256": "a2fd0c3e1be68e3b70e16d546fe9d1d5568b3684bf2a3baf928c49db500c8580",
+      "sourceBytes": 2983
+    },
+    {
+      "path": "observations/dark.json",
+      "sha256": "b997e4437c43c2aac617eef25071dd80273db45b9000e0a85a520cb06f5b969f",
+      "bytes": 2982,
+      "source": "/tmp/opencode/provider-draft-regression/observation-dark.json",
+      "sourceSHA256": "b997e4437c43c2aac617eef25071dd80273db45b9000e0a85a520cb06f5b969f",
+      "sourceBytes": 2982
+    }
+  ],
+  "images": [
+    {
+      "path": "images/light.webp",
+      "sha256": "b2ca2d1b0b71d5ba5442915dc7b5d2be3d6407986387c84b3fa4ef9f55c32a9f",
+      "bytes": 37102,
+      "source": "/tmp/opencode/provider-draft-regression/artifacts/provider-draft-provider-av-c7b41-replacement-key-\u2014-960-light/provider-draft-light.png",
+      "sourceSHA256": "22a4b88e0c8baafa4c70e8c8b68cdaff79921aa13c363a293b3dcfb026640eb0",
+      "sourceBytes": 74874,
+      "sourceMode": "RGB",
+      "width": 960,
+      "height": 640,
+      "canonicalPixelFormat": "top-to-bottom row-major RGBA8, width*height*4 bytes; no resize/crop/color conversion beyond RGBA expansion",
+      "sourceRGBASHA256": "fbca5f7926577e9f4453278042b33bb3c70c51f2a302bacd7d2afd9eeeb75edb",
+      "retainedRGBASHA256": "fbca5f7926577e9f4453278042b33bb3c70c51f2a302bacd7d2afd9eeeb75edb"
+    },
+    {
+      "path": "images/dark.webp",
+      "sha256": "4873b717b7c20271d559a53894ac740ae843168ae816fbcdd1e334b7769f1e0f",
+      "bytes": 37234,
+      "source": "/tmp/opencode/provider-draft-regression/artifacts/provider-draft-provider-av-bab6b--replacement-key-\u2014-960-dark/provider-draft-dark.png",
+      "sourceSHA256": "09d8d080fb47504b096a3f5babd8b8f6372b5ffffc883f9fa4603cd8068e5e37",
+      "sourceBytes": 74221,
+      "sourceMode": "RGB",
+      "width": 960,
+      "height": 640,
+      "canonicalPixelFormat": "top-to-bottom row-major RGBA8, width*height*4 bytes; no resize/crop/color conversion beyond RGBA expansion",
+      "sourceRGBASHA256": "c7d8cb9cbc54e6635a3ce78681f1c4e66848c45be8429eb0a8350ed90181f0b8",
+      "retainedRGBASHA256": "c7d8cb9cbc54e6635a3ce78681f1c4e66848c45be8429eb0a8350ed90181f0b8"
+    }
+  ],
+  "transformation": {
+    "library": "Pillow",
+    "pillowVersion": "12.3.0",
+    "webpVersion": "1.6.0",
+    "parameters": {
+      "format": "WEBP",
+      "lossless": true,
+      "quality": 100,
+      "method": 6,
+      "exact": true
+    },
+    "script": "/tmp/opencode/provider-draft-retention/retain.py",
+    "scriptSHA256": "b1deaf051dbf2d0c8b1d2096ad2714522dc6e10a2353257d165737470bcdb9c4",
+    "offlineVerifier": "/tmp/opencode/provider-draft-retention/verify.py",
+    "offlineVerifierSHA256": "6f36381ba136b6d0ac882a347e444e8cf09918e64a97a33c0e44b5ba421cfb7e"
+  }
+}

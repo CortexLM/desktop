@@ -1,0 +1,2794 @@
+{
+  "status": "failed",
+  "revision": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+  "expectedAsar": "a6d3c4f59d10b3d3fd16e7309441ebb6aff1dd670e11ff06a57362eca805f422",
+  "startedAt": "2026-10-03T15:46:29.485Z",
+  "invocation": {
+    "execPath": "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "nodeVersion": "v22.23.3",
+    "argv": [
+      "/tmp/opencode/projects-native.mjs",
+      "/tmp/opencode/projects-native-f82a648-pointer",
+      "/tmp/opencode/desktop-terminal-state-projects-f82a648-pointer",
+      "a6d3c4f59d10b3d3fd16e7309441ebb6aff1dd670e11ff06a57362eca805f422",
+      "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+      "/tmp/opencode/projects-mac-package-f82a648/members.json"
+    ],
+    "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite"
+  },
+  "budget": {
+    "captureRequests": 4,
+    "bytesPerOriginal": 8388608,
+    "originalBytesTotal": 33554432,
+    "flowMs": 120000
+  },
+  "captureRequests": 4,
+  "captures": [
+    {
+      "file": "project-create-light.png",
+      "theme": "light",
+      "native": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "active": true,
+      "pid": 67608,
+      "id": 8902,
+      "viewport": [
+        960,
+        640
+      ],
+      "boxes": [
+        {
+          "text": "New project",
+          "tag": "H2",
+          "bounds": [
+            262,
+            74,
+            698,
+            90
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              72,
+              346.9375,
+              91
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "A project brings chats, files and shared instructions together.",
+          "tag": "P",
+          "bounds": [
+            262,
+            96,
+            698,
+            112
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              96,
+              593.796875,
+              112
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Native light project",
+          "tag": "B",
+          "bounds": [
+            318,
+            140,
+            424.46875,
+            156
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              318,
+              140,
+              424.46875,
+              156
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Name",
+          "tag": "LABEL",
+          "bounds": [
+            262,
+            198,
+            698,
+            214
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              198,
+              294.953125,
+              214
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Native light project",
+          "tag": "INPUT",
+          "bounds": [
+            262,
+            220,
+            698,
+            254
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Icon",
+          "tag": "LABEL",
+          "bounds": [
+            262,
+            266,
+            698,
+            282
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              266,
+              285.921875,
+              282
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "tag": "BUTTON",
+          "bounds": [
+            302,
+            288,
+            336,
+            322
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              311,
+              297,
+              327,
+              313
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Color",
+          "tag": "LABEL",
+          "bounds": [
+            262,
+            334,
+            698,
+            350
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              334,
+              292.4375,
+              350
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "tag": "BUTTON",
+          "bounds": [
+            364,
+            356,
+            390,
+            382
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Instructions",
+          "tag": "LABEL",
+          "bounds": [
+            262,
+            394,
+            698,
+            410
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              394,
+              329.3125,
+              410
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Use light project notes.",
+          "tag": "TEXTAREA",
+          "bounds": [
+            262,
+            416,
+            698,
+            496
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex follows them in every chat in the project.",
+          "tag": "SPAN",
+          "bounds": [
+            262,
+            502,
+            698,
+            518
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              503,
+              501.890625,
+              517
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cancel",
+          "tag": "BUTTON",
+          "bounds": [
+            514.859375,
+            534,
+            581.921875,
+            566
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              528.859375,
+              542,
+              567.921875,
+              558
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Create project",
+          "tag": "BUTTON",
+          "bounds": [
+            589.921875,
+            534,
+            698,
+            566
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              603.921875,
+              542,
+              684,
+              558
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "focus": {
+        "name": "Create project",
+        "visible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(59, 130, 246)",
+        "boxShadow": "none"
+      },
+      "status": "passed",
+      "httpStatus": 200,
+      "bytes": 92047,
+      "sha256": "5ba7f1c686b177f670375233a813b1c949753ba8f959ddf700a6502b38d77b4b",
+      "pixels": [
+        960,
+        640
+      ]
+    },
+    {
+      "file": "project-overview-light.png",
+      "theme": "light",
+      "native": true,
+      "active": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "id": 8902,
+      "pid": 67608,
+      "viewport": [
+        960,
+        640
+      ],
+      "boxes": [
+        {
+          "text": "Native light project",
+          "tag": "H1",
+          "bounds": [
+            435,
+            111,
+            797.984375,
+            137
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              435,
+              111,
+              608.453125,
+              137
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "1 chat",
+          "tag": "DIV",
+          "bounds": [
+            435,
+            137,
+            797.984375,
+            153
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              435,
+              137,
+              466.609375,
+              153
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "New chat",
+          "tag": "BUTTON",
+          "bounds": [
+            811.984375,
+            116,
+            915,
+            148
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              825.984375,
+              124,
+              841.984375,
+              140
+            ],
+            [
+              847.984375,
+              124,
+              901,
+              140
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Overview",
+          "tag": "BUTTON",
+          "bounds": [
+            377,
+            172,
+            453.546875,
+            208
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              389,
+              182,
+              441.546875,
+              198
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Files",
+          "tag": "BUTTON",
+          "bounds": [
+            455.546875,
+            172,
+            505.984375,
+            208
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              467.546875,
+              182,
+              493.984375,
+              198
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Instructions",
+          "tag": "BUTTON",
+          "bounds": [
+            507.984375,
+            172,
+            599.296875,
+            208
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              519.984375,
+              182,
+              587.296875,
+              198
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Sharing",
+          "tag": "BUTTON",
+          "bounds": [
+            601.296875,
+            172,
+            668.765625,
+            208
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              613.296875,
+              182,
+              656.765625,
+              198
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Native light chatthis minute",
+          "tag": "BUTTON",
+          "bounds": [
+            377,
+            267,
+            915,
+            323
+          ],
+          "clip": [
+            377,
+            267,
+            915,
+            323
+          ],
+          "ink": [
+            [
+              391,
+              279,
+              423,
+              311
+            ],
+            [
+              435,
+              287,
+              827.484375,
+              303
+            ],
+            [
+              435,
+              286,
+              534.15625,
+              303
+            ],
+            [
+              839.484375,
+              287,
+              901,
+              303
+            ],
+            [
+              839.484375,
+              287,
+              901,
+              303
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Instructions",
+          "tag": "H3",
+          "bounds": [
+            393,
+            531,
+            863,
+            547
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              393,
+              531,
+              460.3125,
+              547
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Use revised light project notes.",
+          "tag": "P",
+          "bounds": [
+            393,
+            563,
+            899,
+            581
+          ],
+          "clip": [
+            393,
+            563,
+            899,
+            581
+          ],
+          "ink": [
+            [
+              393,
+              564,
+              561.078125,
+              580
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "tag": "BUTTON",
+          "bounds": [
+            871,
+            525,
+            899,
+            553
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              877,
+              531,
+              893,
+              547
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Native light project",
+          "tag": "BUTTON",
+          "bounds": [
+            65,
+            406,
+            325,
+            438
+          ],
+          "clip": [
+            53,
+            122,
+            336,
+            579
+          ],
+          "ink": [
+            [
+              78,
+              414,
+              94,
+              430
+            ],
+            [
+              104,
+              414,
+              315,
+              430
+            ],
+            [
+              104,
+              414,
+              210.46875,
+              430
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Native light chat",
+          "tag": "DIV",
+          "bounds": [
+            65,
+            440,
+            325,
+            472
+          ],
+          "clip": [
+            65,
+            440,
+            325,
+            506
+          ],
+          "ink": [
+            [
+              104,
+              448,
+              315,
+              464
+            ],
+            [
+              104,
+              448,
+              193.046875,
+              464
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "See all",
+          "tag": "DIV",
+          "bounds": [
+            65,
+            474,
+            325,
+            506
+          ],
+          "clip": [
+            65,
+            440,
+            325,
+            506
+          ],
+          "ink": [
+            [
+              104,
+              482,
+              315,
+              498
+            ],
+            [
+              104,
+              482,
+              140.984375,
+              498
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "focus": {
+        "name": "Overview",
+        "visible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(59, 130, 246)",
+        "boxShadow": "none"
+      },
+      "status": "passed",
+      "httpStatus": 200,
+      "bytes": 73263,
+      "sha256": "1ce3650802bed23bb0e2667921855b1bbd96d10809e30f0ed585f36371a027ee",
+      "pixels": [
+        960,
+        640
+      ]
+    },
+    {
+      "file": "project-create-dark.png",
+      "theme": "dark",
+      "native": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "id": 8902,
+      "active": true,
+      "pid": 67608,
+      "viewport": [
+        960,
+        640
+      ],
+      "boxes": [
+        {
+          "text": "New project",
+          "tag": "H2",
+          "bounds": [
+            262,
+            74,
+            698,
+            90
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              72,
+              346.9375,
+              91
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "A project brings chats, files and shared instructions together.",
+          "tag": "P",
+          "bounds": [
+            262,
+            96,
+            698,
+            112
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              96,
+              593.796875,
+              112
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Native dark project",
+          "tag": "B",
+          "bounds": [
+            318,
+            140,
+            425.171875,
+            156
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              318,
+              140,
+              425.171875,
+              156
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Name",
+          "tag": "LABEL",
+          "bounds": [
+            262,
+            198,
+            698,
+            214
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              198,
+              294.953125,
+              214
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Native dark project",
+          "tag": "INPUT",
+          "bounds": [
+            262,
+            220,
+            698,
+            254
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Icon",
+          "tag": "LABEL",
+          "bounds": [
+            262,
+            266,
+            698,
+            282
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              266,
+              285.921875,
+              282
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "tag": "BUTTON",
+          "bounds": [
+            302,
+            288,
+            336,
+            322
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              311,
+              297,
+              327,
+              313
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Color",
+          "tag": "LABEL",
+          "bounds": [
+            262,
+            334,
+            698,
+            350
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              334,
+              292.4375,
+              350
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "tag": "BUTTON",
+          "bounds": [
+            330,
+            356,
+            356,
+            382
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Instructions",
+          "tag": "LABEL",
+          "bounds": [
+            262,
+            394,
+            698,
+            410
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              394,
+              329.3125,
+              410
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Use dark project notes.",
+          "tag": "TEXTAREA",
+          "bounds": [
+            262,
+            416,
+            698,
+            496
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex follows them in every chat in the project.",
+          "tag": "SPAN",
+          "bounds": [
+            262,
+            502,
+            698,
+            518
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              262,
+              503,
+              501.890625,
+              517
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cancel",
+          "tag": "BUTTON",
+          "bounds": [
+            514.859375,
+            534,
+            581.921875,
+            566
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              528.859375,
+              542,
+              567.921875,
+              558
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Create project",
+          "tag": "BUTTON",
+          "bounds": [
+            589.921875,
+            534,
+            698,
+            566
+          ],
+          "clip": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "ink": [
+            [
+              603.921875,
+              542,
+              684,
+              558
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "focus": {
+        "name": "Create project",
+        "visible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(91, 155, 255)",
+        "boxShadow": "none"
+      },
+      "status": "passed",
+      "httpStatus": 200,
+      "bytes": 90820,
+      "sha256": "062094cc1116515835a60f824d8ffbed439419f9d93e941ac3c7975485ee4789",
+      "pixels": [
+        960,
+        640
+      ]
+    },
+    {
+      "file": "project-overview-dark.png",
+      "theme": "dark",
+      "native": true,
+      "id": 8902,
+      "pid": 67608,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "active": true,
+      "viewport": [
+        960,
+        640
+      ],
+      "boxes": [
+        {
+          "text": "Native dark project",
+          "tag": "H1",
+          "bounds": [
+            435,
+            111,
+            797.984375,
+            137
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              435,
+              111,
+              609.828125,
+              137
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "1 chat",
+          "tag": "DIV",
+          "bounds": [
+            435,
+            137,
+            797.984375,
+            153
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              435,
+              137,
+              466.609375,
+              153
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "New chat",
+          "tag": "BUTTON",
+          "bounds": [
+            811.984375,
+            116,
+            915,
+            148
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              825.984375,
+              124,
+              841.984375,
+              140
+            ],
+            [
+              847.984375,
+              124,
+              901,
+              140
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Overview",
+          "tag": "BUTTON",
+          "bounds": [
+            377,
+            172,
+            453.546875,
+            208
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              389,
+              182,
+              441.546875,
+              198
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Files",
+          "tag": "BUTTON",
+          "bounds": [
+            455.546875,
+            172,
+            505.984375,
+            208
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              467.546875,
+              182,
+              493.984375,
+              198
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Instructions",
+          "tag": "BUTTON",
+          "bounds": [
+            507.984375,
+            172,
+            599.296875,
+            208
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              519.984375,
+              182,
+              587.296875,
+              198
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Sharing",
+          "tag": "BUTTON",
+          "bounds": [
+            601.296875,
+            172,
+            668.765625,
+            208
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              613.296875,
+              182,
+              656.765625,
+              198
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Native dark chatthis minute",
+          "tag": "BUTTON",
+          "bounds": [
+            377,
+            267,
+            915,
+            323
+          ],
+          "clip": [
+            377,
+            267,
+            915,
+            323
+          ],
+          "ink": [
+            [
+              391,
+              279,
+              423,
+              311
+            ],
+            [
+              435,
+              287,
+              827.484375,
+              303
+            ],
+            [
+              435,
+              286,
+              534.921875,
+              303
+            ],
+            [
+              839.484375,
+              287,
+              901,
+              303
+            ],
+            [
+              839.484375,
+              287,
+              901,
+              303
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Instructions",
+          "tag": "H3",
+          "bounds": [
+            393,
+            531,
+            863,
+            547
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              393,
+              531,
+              460.3125,
+              547
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Use revised dark project notes.",
+          "tag": "P",
+          "bounds": [
+            393,
+            563,
+            899,
+            581
+          ],
+          "clip": [
+            393,
+            563,
+            899,
+            581
+          ],
+          "ink": [
+            [
+              393,
+              564,
+              561.875,
+              580
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "tag": "BUTTON",
+          "bounds": [
+            871,
+            525,
+            899,
+            553
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              877,
+              531,
+              893,
+              547
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Native dark project",
+          "tag": "BUTTON",
+          "bounds": [
+            65,
+            406,
+            325,
+            438
+          ],
+          "clip": [
+            53,
+            122,
+            336,
+            579
+          ],
+          "ink": [
+            [
+              78,
+              414,
+              94,
+              430
+            ],
+            [
+              104,
+              414,
+              315,
+              430
+            ],
+            [
+              104,
+              414,
+              211.171875,
+              430
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Native dark chat",
+          "tag": "DIV",
+          "bounds": [
+            65,
+            440,
+            325,
+            472
+          ],
+          "clip": [
+            65,
+            440,
+            325,
+            506
+          ],
+          "ink": [
+            [
+              104,
+              448,
+              315,
+              464
+            ],
+            [
+              104,
+              448,
+              193.84375,
+              464
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "See all",
+          "tag": "DIV",
+          "bounds": [
+            65,
+            474,
+            325,
+            506
+          ],
+          "clip": [
+            65,
+            440,
+            325,
+            506
+          ],
+          "ink": [
+            [
+              104,
+              482,
+              315,
+              498
+            ],
+            [
+              104,
+              482,
+              140.984375,
+              498
+            ]
+          ],
+          "opacity": 1,
+          "fieldFits": true,
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "focus": {
+        "name": "Overview",
+        "visible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(91, 155, 255)",
+        "boxShadow": "none"
+      },
+      "status": "passed",
+      "httpStatus": 200,
+      "bytes": 72926,
+      "sha256": "0a3ca58b7a959228cbe1afae44ca41a5294d2a475bb4490f72c105243df080b4",
+      "pixels": [
+        960,
+        640
+      ]
+    }
+  ],
+  "themes": [
+    {
+      "theme": "light",
+      "expected": {
+        "name": "Native light project",
+        "instructions": "Use light project notes.",
+        "icon": "rocket",
+        "color": "#FF6A13"
+      },
+      "editedInstructions": "Use revised light project notes.",
+      "title": "Native light chat",
+      "longInputChecks": {
+        "creation": {
+          "widths": [
+            {
+              "tag": "DIV",
+              "className": "systeme-preview",
+              "width": 436,
+              "contentWidth": 436,
+              "left": 262,
+              "right": 698,
+              "fits": true
+            },
+            {
+              "tag": "SPAN",
+              "className": "",
+              "width": 370,
+              "contentWidth": 370,
+              "left": 318,
+              "right": 688,
+              "fits": true
+            }
+          ],
+          "nameLength": 48,
+          "instructionsLength": 4000,
+          "nameSHA256": "32847103e52a5867a787d347a8d62d27867cf2217b2670ca147d348ebd2bef5f",
+          "instructionsSHA256": "20454669c0beba7ede6d3cc9fdca85e733c7853df586c67b7be44ec798be1ca5",
+          "valuesUnchanged": true
+        },
+        "savedInstructions": {
+          "widths": [
+            {
+              "tag": "MAIN",
+              "className": "content",
+              "width": 618,
+              "contentWidth": 618,
+              "left": 337,
+              "right": 955,
+              "fits": true
+            },
+            {
+              "tag": "DIV",
+              "className": "page",
+              "width": 618,
+              "contentWidth": 618,
+              "left": 337,
+              "right": 955,
+              "fits": true
+            },
+            {
+              "tag": "P",
+              "className": "systeme-instr",
+              "width": 506,
+              "contentWidth": 506,
+              "left": 393,
+              "right": 899,
+              "fits": true
+            }
+          ],
+          "renderedLength": 4000,
+          "savedLength": 4000,
+          "savedSHA256": "20454669c0beba7ede6d3cc9fdca85e733c7853df586c67b7be44ec798be1ca5",
+          "valueUnchanged": true
+        }
+      },
+      "radios": [
+        {
+          "id": "systeme-pi",
+          "roots": [
+            {
+              "name": "Folder",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Rocket",
+              "checked": "true",
+              "tabIndex": 0,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Calendar",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Image",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Mail",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Globe",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Code",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Bolt",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            }
+          ],
+          "inputs": [
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            }
+          ]
+        },
+        {
+          "id": "systeme-pc",
+          "roots": [
+            {
+              "name": "Violet",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Blue",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Teal",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Orange",
+              "checked": "true",
+              "tabIndex": 0,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Pink",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Slate",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            }
+          ],
+          "inputs": [
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            }
+          ]
+        }
+      ],
+      "createSubmitted": true,
+      "projectID": "prj_01a102728ef000006a633892fe2b9670",
+      "created": {
+        "id": "prj_01a102728ef000006a633892fe2b9670",
+        "name": "Native light project",
+        "icon": "rocket",
+        "color": "#FF6A13",
+        "instructions": "Use light project notes.",
+        "time": {
+          "created": 1791042424561,
+          "updated": 1791042424561
+        }
+      },
+      "edited": {
+        "id": "prj_01a102728ef000006a633892fe2b9670",
+        "name": "Native light project",
+        "icon": "rocket",
+        "color": "#FF6A13",
+        "instructions": "Use revised light project notes.",
+        "time": {
+          "created": 1791042424561,
+          "updated": 1791042434376
+        }
+      },
+      "sessionIntent": {
+        "kind": "chat",
+        "agent": "build",
+        "title": "Native light chat",
+        "model": {
+          "providerID": "native-project",
+          "modelID": "reasoner"
+        },
+        "projectID": "prj_01a102728ef000006a633892fe2b9670"
+      },
+      "sessionID": "ses_01a10272b6ab000032cb7e613f2115e1",
+      "session": {
+        "id": "ses_01a10272b6ab000032cb7e613f2115e1",
+        "title": "Native light chat",
+        "agent": "build",
+        "model": {
+          "providerID": "native-project",
+          "modelID": "reasoner"
+        },
+        "kind": "chat",
+        "projectID": "prj_01a102728ef000006a633892fe2b9670",
+        "time": {
+          "created": 1791042434731,
+          "updated": 1791042434731
+        }
+      },
+      "sidebarLinkVerified": true,
+      "projectDeleted": true,
+      "detached": {
+        "id": "ses_01a10272b6ab000032cb7e613f2115e1",
+        "title": "Native light chat",
+        "agent": "build",
+        "model": {
+          "providerID": "native-project",
+          "modelID": "reasoner"
+        },
+        "kind": "chat",
+        "time": {
+          "created": 1791042434731,
+          "updated": 1791042434731
+        }
+      },
+      "emptyMessagesPreserved": true,
+      "sessionDeleted": true
+    },
+    {
+      "theme": "dark",
+      "expected": {
+        "name": "Native dark project",
+        "instructions": "Use dark project notes.",
+        "icon": "rocket",
+        "color": "#12B8A0"
+      },
+      "editedInstructions": "Use revised dark project notes.",
+      "title": "Native dark chat",
+      "longInputChecks": {
+        "creation": {
+          "widths": [
+            {
+              "tag": "DIV",
+              "className": "systeme-preview",
+              "width": 436,
+              "contentWidth": 436,
+              "left": 262,
+              "right": 698,
+              "fits": true
+            },
+            {
+              "tag": "SPAN",
+              "className": "",
+              "width": 370,
+              "contentWidth": 370,
+              "left": 318,
+              "right": 688,
+              "fits": true
+            }
+          ],
+          "nameLength": 48,
+          "instructionsLength": 4000,
+          "nameSHA256": "32847103e52a5867a787d347a8d62d27867cf2217b2670ca147d348ebd2bef5f",
+          "instructionsSHA256": "20454669c0beba7ede6d3cc9fdca85e733c7853df586c67b7be44ec798be1ca5",
+          "valuesUnchanged": true
+        },
+        "savedInstructions": {
+          "widths": [
+            {
+              "tag": "MAIN",
+              "className": "content",
+              "width": 618,
+              "contentWidth": 618,
+              "left": 337,
+              "right": 955,
+              "fits": true
+            },
+            {
+              "tag": "DIV",
+              "className": "page",
+              "width": 618,
+              "contentWidth": 618,
+              "left": 337,
+              "right": 955,
+              "fits": true
+            },
+            {
+              "tag": "P",
+              "className": "systeme-instr",
+              "width": 506,
+              "contentWidth": 506,
+              "left": 393,
+              "right": 899,
+              "fits": true
+            }
+          ],
+          "renderedLength": 4000,
+          "savedLength": 4000,
+          "savedSHA256": "20454669c0beba7ede6d3cc9fdca85e733c7853df586c67b7be44ec798be1ca5",
+          "valueUnchanged": true
+        }
+      },
+      "radios": [
+        {
+          "id": "systeme-pi",
+          "roots": [
+            {
+              "name": "Folder",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Rocket",
+              "checked": "true",
+              "tabIndex": 0,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Calendar",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Image",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Mail",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Globe",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Code",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Bolt",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            }
+          ],
+          "inputs": [
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            }
+          ]
+        },
+        {
+          "id": "systeme-pc",
+          "roots": [
+            {
+              "name": "Violet",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Blue",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Teal",
+              "checked": "true",
+              "tabIndex": 0,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Orange",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Pink",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            },
+            {
+              "name": "Slate",
+              "checked": "false",
+              "tabIndex": -1,
+              "tag": "BUTTON"
+            }
+          ],
+          "inputs": [
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            },
+            {
+              "type": "radio",
+              "hidden": "true",
+              "tabIndex": -1
+            }
+          ]
+        }
+      ],
+      "createSubmitted": true,
+      "projectID": "prj_01a102737550000064e706ae00b714a6",
+      "created": {
+        "id": "prj_01a102737550000064e706ae00b714a6",
+        "name": "Native dark project",
+        "icon": "rocket",
+        "color": "#12B8A0",
+        "instructions": "Use dark project notes.",
+        "time": {
+          "created": 1791042483536,
+          "updated": 1791042483536
+        }
+      },
+      "edited": {
+        "id": "prj_01a102737550000064e706ae00b714a6",
+        "name": "Native dark project",
+        "icon": "rocket",
+        "color": "#12B8A0",
+        "instructions": "Use revised dark project notes.",
+        "time": {
+          "created": 1791042483536,
+          "updated": 1791042493336
+        }
+      },
+      "sessionIntent": {
+        "kind": "chat",
+        "agent": "build",
+        "title": "Native dark chat",
+        "model": {
+          "providerID": "native-project",
+          "modelID": "reasoner"
+        },
+        "projectID": "prj_01a102737550000064e706ae00b714a6"
+      },
+      "sessionID": "ses_01a102739d180000f2845fff4739bcdc",
+      "session": {
+        "id": "ses_01a102739d180000f2845fff4739bcdc",
+        "title": "Native dark chat",
+        "agent": "build",
+        "model": {
+          "providerID": "native-project",
+          "modelID": "reasoner"
+        },
+        "kind": "chat",
+        "projectID": "prj_01a102737550000064e706ae00b714a6",
+        "time": {
+          "created": 1791042493720,
+          "updated": 1791042493720
+        }
+      },
+      "sidebarLinkVerified": true
+    }
+  ],
+  "stateCalls": [
+    {
+      "stage": "fresh-engine",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-engine",
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-engine",
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-engine",
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-engine",
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-engine",
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-engine",
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-engine",
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:create-accepted",
+      "route": "/api/projects/prj_01a102728ef000006a633892fe2b9670",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:create-accepted",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "light:long-instructions-save",
+      "route": "/api/projects/prj_01a102728ef000006a633892fe2b9670",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:instructions-save",
+      "route": "/api/projects/prj_01a102728ef000006a633892fe2b9670",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:keyless-chat-fixture",
+      "route": "/api/sessions",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "stage": "light:keyless-chat-fixture",
+      "route": "/api/sessions/ses_01a10272b6ab000032cb7e613f2115e1/messages",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "light:sidebar-exact-link",
+      "route": "/api/sessions/ses_01a10272b6ab000032cb7e613f2115e1",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/projects/prj_01a102728ef000006a633892fe2b9670",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/sessions/ses_01a10272b6ab000032cb7e613f2115e1",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/sessions/ses_01a10272b6ab000032cb7e613f2115e1/messages",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/sessions/ses_01a10272b6ab000032cb7e613f2115e1",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "light:delete-project-ui",
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:create-accepted",
+      "route": "/api/projects/prj_01a102737550000064e706ae00b714a6",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:create-accepted",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "dark:long-instructions-save",
+      "route": "/api/projects/prj_01a102737550000064e706ae00b714a6",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:instructions-save",
+      "route": "/api/projects/prj_01a102737550000064e706ae00b714a6",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:keyless-chat-fixture",
+      "route": "/api/sessions",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "stage": "dark:keyless-chat-fixture",
+      "route": "/api/sessions/ses_01a102739d180000f2845fff4739bcdc/messages",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "dark:sidebar-exact-link",
+      "route": "/api/sessions/ses_01a102739d180000f2845fff4739bcdc",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:delete-project-ui",
+      "route": "/api/projects/prj_01a102737550000064e706ae00b714a6",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "stage": "dark:delete-project-ui",
+      "route": "/api/sessions/ses_01a102739d180000f2845fff4739bcdc",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "stage": "dark:delete-project-ui",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "dark:delete-project-ui",
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "dark:delete-project-ui",
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "dark:delete-project-ui",
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "dark:delete-project-ui",
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "dark:delete-project-ui",
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "dark:delete-project-ui",
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "dark:delete-project-ui",
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "rendererHttp": [],
+  "unexpectedDialogs": 0,
+  "cleanup": {
+    "dark:ownedProjectRemoved": true,
+    "dark:ownedSessionRemoved": true,
+    "appearanceRestored": true,
+    "preferenceRestored": true,
+    "initialRouteRestored": true,
+    "localEngineEmpty": true,
+    "zeroInference": true
+  },
+  "helperHashes": {
+    "projects-native.mjs": "d5f261e5ea8ebb5ccb278a4a9cc4c4f4fe93679a300fe375ed087c10c986cc2c",
+    "terminal-state-native-backend.mjs": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "launch-terminal-state-native.py": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "cleanup-terminal-state-native.py": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+  },
+  "membersSHA256": "7516cb61de528e30b3ce4b3719c8f0cadb86401caf9b569dfd5f6985dd32257a",
+  "memberCount": 90,
+  "stage": "dark:delete-project-ui",
+  "installedBefore": {
+    "asarSHA256": "a6d3c4f59d10b3d3fd16e7309441ebb6aff1dd670e11ff06a57362eca805f422",
+    "revision": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+    "membersVerified": 90,
+    "pid": 67608,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-projects-f82a648-pointer",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "7516cb61de528e30b3ce4b3719c8f0cadb86401caf9b569dfd5f6985dd32257a"
+  },
+  "rootHelperHashes": {
+    "terminal-state-native-backend.mjs": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "launch-terminal-state-native.py": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "cleanup-terminal-state-native.py": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+  },
+  "backend": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-projects-f82a648-pointer",
+    "runID": "d4067f70-c084-473c-91e8-fbe0e719c791",
+    "pid": 67602,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d"
+  },
+  "backendReceipt": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-projects-f82a648-pointer",
+    "runID": "d4067f70-c084-473c-91e8-fbe0e719c791",
+    "pid": 67602,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "counts": {
+      "catalog": 0,
+      "health": 2,
+      "receipt": 7,
+      "errors": 0
+    },
+    "requests": [],
+    "failures": []
+  },
+  "previousPreference": {
+    "stored": null,
+    "theme": "dark",
+    "pref": "system"
+  },
+  "previousNativeDark": "true",
+  "initialURL": "cortex://app/index.html#/home",
+  "failure": {
+    "stage": "dark:delete-project-ui",
+    "diagnostic": "AssertionError [ERR_ASSERTION]: Native flow exceeded its 120-second budget\n    at mark (file:///var/tmp/opencode/projects-native.mjs:27:67)\n    at file:///var/tmp/opencode/projects-native.mjs:106:5"
+  },
+  "finishedAt": "2026-10-03T15:48:38.285Z",
+  "durationMs": 128800,
+  "scope": "Installed English Projects at 960x640 in actual OS light/dark: screenshot-free 48-character creation-name preview and 4000-character draft/saved-instructions checks, UI create/edit/delete, exact sidebar Chat link, keyless IPC-created root Chat, preserved empty messages/model/times on project deletion. Four original short-text window captures. No inference, process-restart, busy-refusal, pixel-reference or broader product acceptance."
+}

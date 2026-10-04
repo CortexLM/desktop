@@ -1,0 +1,33 @@
+{
+  "baselineMembers": 90,
+  "baselineMembersMatchActivityFreeze": true,
+  "initialManifests": [
+    {
+      "manifest": "../initial-production/pinned-inputs.json",
+      "manifestSHA256": "29bbac524f1f89e04188a54cb6d23b35696c0b3c1eae2488f874b9acc0a215dd",
+      "count": 520,
+      "pathsAndHashesMatchRetainedInitial": true
+    },
+    {
+      "manifest": "../initial-production/renderer-inputs.json",
+      "manifestSHA256": "4c4401194f874fe3f1ac94def8fe3a8227d372db52fa77fd58c566bdbdfaccc9",
+      "count": 478,
+      "pathsAndHashesMatchRetainedInitial": true
+    },
+    {
+      "manifest": "../initial-production/members.json",
+      "manifestSHA256": "fb6e39efc059340deb0bbb96f5853317b0b2da72ca9beb85aafa1e5ac1f6e4a5",
+      "count": 90,
+      "pathsAndHashesMatchRetainedInitial": true
+    }
+  ],
+  "initialProvenance": {
+    "frozenAfterRun": true,
+    "rasterSourcesReconstructedFromDocumentedMinimalDelta": true,
+    "rasterAuthorOriginalHashesVerified": true,
+    "description": "Initial first-build inputs retained; raster.ts and its unit source reconstructed by reversing the sole later filename-review correction, matching author SHA256. This is not a contemporaneous clean-source capture."
+  },
+  "appendedSourceProvenance": {
+    "scope": "Negative source snapshots reconstructed from frozen original eight cases plus unchanged appended regression blocks; hashes match author handoffs. Not claimed as contemporaneous copies."
+  }
+}

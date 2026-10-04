@@ -1,0 +1,52 @@
+{
+  "cosmeticBaseline": {
+    "revision": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+    "receipt": "../baseline/receipt.json",
+    "observed": {
+      "privacyOffSaved": "false",
+      "memoryAfterPrivacyOff": true,
+      "memoryAfterReload": true
+    },
+    "limit": "Collector verifies UI/localStorage mismatch and remount reset; it does not send a provider turn. Initial accessible-name failure retained separately."
+  },
+  "newTestsAgainstOldBuild": {
+    "report": "../checks/baseline.json.gz",
+    "casesFailed": 5,
+    "categories": {
+      "GETsettings404": 2,
+      "cosmeticQueryVariantUnchecked": 1,
+      "missingEngineWriteGateTimeout": 2
+    },
+    "limit": "Do not call these five equivalent reproductions of the cosmetic defect."
+  },
+  "initialGreen": {
+    "renderer": "30ec7f97fb1de75ba4dc66fa81a4dfba0e76cd16008bfa53600d7ca512b810fb",
+    "targetedCases": 14,
+    "fullCases": 124,
+    "renderVisits": 426,
+    "laterRegressionAbsent": true
+  },
+  "sameTestNavigationRegression": {
+    "caseFailures": 1,
+    "assertionFailures": 2,
+    "testSHA256": "a3749931aa28b459844b9c4ab24bb52d8762a079210a379de524416624acffe8",
+    "hookCorrection": {
+      "added": 18,
+      "removed": 10
+    },
+    "finalCasePasses": 2,
+    "passScopes": [
+      "boundary-targeted",
+      "final-full"
+    ]
+  },
+  "rawReportsPreserved": true,
+  "testWasAppendOnly": {
+    "initialSHA256": "47b4b17adc8222565e8513db3880cf49fdbdec1be35f743816662a77e7d03580",
+    "finalAndNavigationBaselineSHA256": "a3749931aa28b459844b9c4ab24bb52d8762a079210a379de524416624acffe8",
+    "initialLines": 218,
+    "finalLines": 278,
+    "appendOnly": true
+  },
+  "auditCollectorNotes": "First offline image pass emitted a Pillow getdata deprecation warning; inventory completed. No application test failure or retry."
+}

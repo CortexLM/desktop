@@ -1,0 +1,1239 @@
+{
+  "bot": "Nova",
+  "pdf": {
+    "name": "Étude de marché T2.pdf",
+    "meta": "PDF · 12 pages · 2,4 Mo",
+    "kicker": "Studio Nord · julio de 2026",
+    "pages": [
+      {
+        "h": "Estudio de mercado T2 2026",
+        "p": [
+          "El mercado de la cerámica y la vajilla en Francia — un resumen preparado para el proyecto «Lanzamiento de primavera».",
+          "Redactado por Camille Laurent con el apoyo de Studio Nord. Cifras a 30 de junio de 2026."
+        ]
+      },
+      {
+        "h": "1. Resumen",
+        "p": [
+          "El mercado de la vajilla creció un 6,8% interanual, impulsado por las ventas directas y las tiendas independientes.",
+          "El margen bruto medio de los talleres alcanzó el 41%, dos puntos más gracias a la bajada de los costes energéticos.",
+          "Los clientes de 25 a 40 años representan ahora el 38% de las compras en línea."
+        ]
+      },
+      {
+        "h": "2. Tamaño del mercado",
+        "p": [
+          "Los ingresos del segmento alcanzaron los 1.600 millones de euros en el segundo trimestre, un crecimiento del 6,8% respecto al T2 2025.",
+          "Las ventas en línea representan el 27% del total, frente al 21% de hace dos años. Las ferias comerciales siguen siendo el principal canal de adquisición para el 61% de los talleres."
+        ],
+        "chart": [
+          42,
+          48,
+          51,
+          57,
+          63,
+          71
+        ]
+      },
+      {
+        "h": "3. Competencia",
+        "p": [
+          "Tres actores dominan la distribución: dos cadenas de tiendas y un mercado especializado.",
+          "Atelier Morel destaca con un margen 6 puntos por encima de la media, gracias a la producción en lotes pequeños."
+        ]
+      },
+      {
+        "h": "4. Clientes",
+        "p": [
+          "El ticket medio es de 86 €, un 9% más. Los regalos representan el 44% de las ventas del trimestre.",
+          "La fidelidad va en aumento: el 31% de los clientes compra al menos dos veces al año."
+        ]
+      },
+      {
+        "h": "5. Precios y margen",
+        "p": [
+          "Los precios de catálogo subieron un 3,2% de media, sin efecto visible en los volúmenes.",
+          "El margen bruto sigue bajo presión en las piezas esmaltadas, cuyo coste de cocción se ha duplicado desde 2023."
+        ],
+        "chart": [
+          36,
+          38,
+          39,
+          41,
+          40,
+          41
+        ]
+      },
+      {
+        "h": "6. Canales de venta",
+        "p": [
+          "Las tiendas independientes siguen siendo el principal canal, por delante de las ventas en línea y las ferias comerciales.",
+          "Las ventas en línea crecen sobre todo por la tarde y los fines de semana; el 64% se realiza desde el móvil."
+        ]
+      },
+      {
+        "h": "7. Estacionalidad",
+        "p": [
+          "La primavera representa el 28% de las ventas anuales, justo por detrás de la temporada de fiestas.",
+          "Un lanzamiento a finales de marzo coincide con el Día de la Madre y las listas de boda."
+        ]
+      },
+      {
+        "h": "8. Riesgos",
+        "p": [
+          "Los costes de las materias primas podrían subir en el segundo semestre.",
+          "Plazos de entrega de los hornos: hasta 14 semanas en los principales fabricantes."
+        ]
+      },
+      {
+        "h": "9. Recomendaciones",
+        "p": [
+          "Lanzar la colección a finales de marzo, con una vista previa anticipada para los clientes fieles.",
+          "Proteger el margen manteniendo los artículos esmaltados en el 30% de la gama."
+        ]
+      },
+      {
+        "h": "10. Metodología",
+        "p": [
+          "Encuesta en línea a 1.240 clientes y entrevistas con 22 talleres, del 2 al 26 de junio de 2026.",
+          "Las cifras de mercado proceden del observatorio francés de la artesanía y del instituto nacional de estadística."
+        ]
+      },
+      {
+        "h": "Anexos",
+        "p": [
+          "Tablas detalladas por región, el cuestionario completo y la lista de talleres entrevistados.",
+          "Contacto: Camille Laurent, responsable del proyecto, camille.laurent@studionord.fr."
+        ]
+      }
+    ],
+    "months": [
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun"
+    ],
+    "search": "margen",
+    "selection": "El margen bruto medio de los talleres alcanzó el 41%",
+    "notes": {
+      "2": [
+        {
+          "y": "38%",
+          "who": "Léa Fontaine",
+          "t": "Reutilizar esto en la presentación, diapositiva 4."
+        }
+      ],
+      "4": [
+        {
+          "y": "30%",
+          "who": "Camille Laurent",
+          "t": "Verificar esta cifra con Atelier Morel antes de compartirla."
+        }
+      ]
+    },
+    "ask": {
+      "sugg": [
+        "Resume el informe en 5 puntos",
+        "¿Cuál es el margen bruto medio?",
+        "¿Cuáles son los riesgos del lanzamiento?",
+        "Haz una tabla con las cifras clave"
+      ],
+      "answers": [
+        {
+          "re": "margen",
+          "a": "El margen bruto medio de los talleres es del 41% (página 2), dos puntos más. Atelier Morel lo hace 6 puntos mejor (página 4)."
+        },
+        {
+          "re": "riesgo",
+          "a": "Dos riesgos principales (página 9): mayores costos de materiales en el segundo semestre y plazos de entrega del horno de hasta 14 semanas."
+        }
+      ],
+      "fallback": "En resumen: mercado +6,8%, margen del 41%, ventas online en 27%, primavera = 28% de las ventas anuales. Recomendación: lanzamiento a fines de marzo (página 10)."
+    },
+    "summary": [
+      {
+        "u": "Resume el informe en 5 puntos"
+      },
+      {
+        "st": "talking",
+        "b": "Aquí está lo esencial de las 12 páginas:\n1. El mercado creció un 6,8% interanual (p. 3).\n2. El margen bruto medio es del 41% (p. 2).\n3. Las ventas online representan el 27% de las ventas, el 64% desde móvil (p. 7).\n4. La primavera representa el 28% de las ventas anuales (p. 8).\n5. Recomendación: lanzar a fines de marzo y limitar las piezas esmaltadas al 30% de la gama (p. 10)."
+      }
+    ],
+    "summaryPoints": [
+      "Mercado +6,8% interanual",
+      "Margen bruto medio del 41%",
+      "Lanzamiento recomendado para fines de marzo"
+    ],
+    "act": {
+      "explain": "El margen bruto es el ingreso menos el costo de las piezas vendidas (arcilla, esmalte, cocción). Con un 41%, un cuenco vendido a 30 € deja 12,30 € para pagar el taller, el alquiler y los salarios.",
+      "summarize": "Los talleres conservan en promedio 41 céntimos de margen bruto por euro vendido, dos puntos mejor que en 2025.",
+      "quote": "«El margen bruto medio de los talleres alcanzó el 41%, dos puntos más.» — Estudio de mercado del segundo trimestre de 2026, p. 2."
+    },
+    "protectedBody": "Introduce la contraseña que te envió Studio Nord para abrirlo. Cortex no la conserva."
+  },
+  "pptx": {
+    "name": "Spring launch.pptx",
+    "meta": "Presentación · 18 diapositivas · 8,1 MB",
+    "slides": [
+      {
+        "k": "cover",
+        "t": "Lanzamiento de primavera",
+        "s": "Colección de cerámica 2027 · Atelier Morel × Studio Nord",
+        "img": "ceramique",
+        "n": "Dar la bienvenida al equipo y reiterar el objetivo: aprobar el plan de lanzamiento antes del 14 de abril."
+      },
+      {
+        "k": "bullets",
+        "t": "Agenda",
+        "b": [
+          "El mercado en 3 cifras",
+          "La colección",
+          "El plan de lanzamiento",
+          "Presupuesto y calendario"
+        ],
+        "n": "20 minutos de presentación, 10 de preguntas."
+      },
+      {
+        "k": "stat",
+        "t": "El mercado está creciendo",
+        "s": "+6,8% interanual",
+        "b": [
+          "1.600 M€ en el segundo trimestre",
+          "27% de las ventas online",
+          "Primavera: 28% de las ventas anuales"
+        ],
+        "n": "Fuente: estudio de mercado del segundo trimestre, página 3."
+      },
+      {
+        "k": "img",
+        "t": "La colección",
+        "s": "24 piezas, 3 esmaltes, hechas a mano",
+        "img": "atelier",
+        "n": "Resaltar la producción en pequeños lotes."
+      },
+      {
+        "k": "split",
+        "t": "Nuestro cliente",
+        "b": [
+          "25–40 años, urbano",
+          "Compra online por la noche",
+          "Compra regalos a menudo: 44%"
+        ],
+        "img": "marche",
+        "n": "Perfil elaborado a partir de 1.240 respuestas."
+      },
+      {
+        "k": "bullets",
+        "t": "Posicionamiento",
+        "b": [
+          "Piezas duraderas, precio justo",
+          "Hecho en Francia, en Limoges",
+          "Una edición limitada cada temporada"
+        ]
+      },
+      {
+        "k": "img",
+        "t": "Universo visual",
+        "s": "Luz del amanecer, materiales en bruto, colores pastel",
+        "img": "aube"
+      },
+      {
+        "k": "bullets",
+        "t": "Canales",
+        "b": [
+          "Tienda online",
+          "18 minoristas independientes",
+          "Feria Maison & Objet en septiembre"
+        ]
+      },
+      {
+        "k": "stat",
+        "t": "Objetivo de ventas",
+        "s": "4.800 piezas",
+        "b": [
+          "En el primer trimestre",
+          "Ticket medio objetivo: 92 €"
+        ]
+      },
+      {
+        "k": "bullets",
+        "t": "Vista previa anticipada",
+        "b": [
+          "Para nuestros 600 clientes fieles",
+          "21 de marzo, 48 h antes de la apertura",
+          "Una secuencia de tres correos"
+        ]
+      },
+      {
+        "k": "split",
+        "t": "Campaña",
+        "b": [
+          "Sesión con luz natural",
+          "Seis vídeos cortos",
+          "Colaboración con dos creadores"
+        ],
+        "img": "lagon"
+      },
+      {
+        "k": "bullets",
+        "t": "Relaciones con la prensa",
+        "b": [
+          "Kit de prensa el 3 de marzo",
+          "12 revistas de interiorismo seleccionadas",
+          "Muestras enviadas"
+        ]
+      },
+      {
+        "k": "stat",
+        "t": "Presupuesto",
+        "s": "€38,500",
+        "b": [
+          "Incluye 14.200 € de producción",
+          "Incluye 9.800 € de eventos"
+        ]
+      },
+      {
+        "k": "bullets",
+        "t": "Cronograma",
+        "b": [
+          "3 de marzo: prensa",
+          "21 de marzo: vista previa anticipada",
+          "24 de marzo: apertura",
+          "14 de abril: primera reseña"
+        ]
+      },
+      {
+        "k": "bullets",
+        "t": "Riesgos",
+        "b": [
+          "Retrasos en la cocción",
+          "Agotamiento del esmalte azul",
+          "Retrasos del transportista"
+        ]
+      },
+      {
+        "k": "bullets",
+        "t": "Métricas",
+        "b": [
+          "Tasa de conversión ≥ 2,4%",
+          "Valoración de clientes ≥ 4,6/5",
+          "Margen bruto ≥ 41%"
+        ]
+      },
+      {
+        "k": "img",
+        "t": "Gracias al equipo",
+        "s": "Camille, Léa, Hugo, Inès y todo el taller",
+        "img": "prairie"
+      },
+      {
+        "k": "end",
+        "t": "¿Preguntas?",
+        "s": "camille.laurent@studionord.fr"
+      }
+    ],
+    "ask": {
+      "sugg": [
+        "Resume la presentación en una frase",
+        "¿Qué diapositiva no está clara?",
+        "Escribe las notas para la diapositiva 6",
+        "Traduce la presentación al francés"
+      ],
+      "answers": [
+        {
+          "re": "clear|unclear",
+          "a": "La diapositiva 8 “Canales” enumera tres canales sin cifras. Añade la cuota de ventas esperada por canal, por ejemplo 55% en línea."
+        },
+        {
+          "re": "notes",
+          "a": "Sugerencia para la diapositiva 6: “Nuestra promesa se resume en tres palabras: duradero, justo, francés. Cada temporada, una edición limitada marca la fecha.”"
+        }
+      ],
+      "fallback": "Atelier Morel lanza una colección de 24 piezas a finales de marzo por 38.500 €, con el objetivo de vender 4.800 piezas en el primer trimestre."
+    }
+  },
+  "docx": {
+    "name": "Brief de la agencia Studio Nord.docx",
+    "meta": "Documento · 4 páginas · 312 KB · editado por Léa Fontaine",
+    "author": "Léa Fontaine",
+    "comments": [
+      {
+        "id": 1,
+        "who": "Léa Fontaine",
+        "at": "Ayer, 16:42",
+        "t": "¿Podemos adelantar la entrega de la maqueta al 10 de febrero? La imprenta necesita tres semanas."
+      },
+      {
+        "id": 2,
+        "who": "Hugo Bernard",
+        "at": "Hoy, 9:15",
+        "t": "Añade el formato vertical para los vídeos cortos."
+      },
+      {
+        "id": 3,
+        "who": "Camille Laurent",
+        "at": "Hoy, 10:02",
+        "t": "Presupuesto aprobado por Atelier Morel, podemos bloquear esta tabla."
+      }
+    ],
+    "ask": {
+      "sugg": [
+        "Resumir el brief en 3 líneas",
+        "Listar los entregables y sus fechas",
+        "Aceptar los cambios de Léa",
+        "Redactar una respuesta para Hugo"
+      ],
+      "answers": [
+        {
+          "re": "deliverable|date",
+          "a": "Tres entregables: identidad visual el 14 de febrero, sesión de fotos el 28 de febrero, kit de redes sociales el 7 de marzo. El total es de 21.600 € sin impuestos."
+        },
+        {
+          "re": "hugo|reply",
+          "a": "Sugerencia: «Buena idea, Hugo: estoy añadiendo el formato 9:16 al kit de redes sociales, sin coste adicional según el presupuesto de Studio Nord»."
+        }
+      ],
+      "fallback": "Atelier Morel contrata a Studio Nord para la identidad y campaña del lanzamiento de primavera: tres entregables entre el 14 de febrero y el 7 de marzo, por 21.600 € sin impuestos."
+    },
+    "doc": {
+      "kicker": "Atelier Morel · Brief creativo · v3",
+      "title": "Brief de agencia — Lanzamiento de primavera",
+      "intro": "Este brief establece las expectativas de Atelier Morel para la identidad y la campaña de la colección de primavera. Es la referencia de Studio Nord hasta la entrega.",
+      "h1": "1. Objetivos",
+      "h2": "2. Entregables",
+      "h3": "3. Presupuesto",
+      "obj": [
+        "Dar a conocer la colección a personas de 25 a 40 años",
+        "Vender 4.800 piezas en el primer trimestre",
+        {
+          "pre": "Conseguir ",
+          "del": "2,000",
+          "ins": "3,000",
+          "post": " suscriptores al boletín"
+        }
+      ],
+      "deliv": [
+        "Identidad visual de la colección: logo, paleta, tipografía",
+        {
+          "pre": "Sesión de fotos de producto y estilo de vida, entregada el ",
+          "del": "14 de febrero",
+          "ins": "10 de febrero"
+        },
+        {
+          "text": "Kit de redes sociales: 12 piezas visuales y 6 vídeos cortos",
+          "ins": ", en formato vertical"
+        }
+      ],
+      "table": {
+        "head": [
+          "Elemento",
+          "Responsable",
+          "Importe sin impuestos"
+        ],
+        "rows": [
+          [
+            "Identidad visual",
+            "Studio Nord",
+            7800
+          ],
+          [
+            "Sesión de fotos",
+            "Studio Nord",
+            9400
+          ],
+          [
+            "Kit de redes sociales",
+            "Studio Nord",
+            4400
+          ]
+        ],
+        "total": "Total"
+      },
+      "contact": "Contacto: Camille Laurent, jefa de proyecto. Aprobación final: Inès Morel."
+    }
+  },
+  "xlsx": {
+    "name": "Presupuesto lanzamiento primavera.xlsx",
+    "meta": "Hoja de cálculo · 3 hojas · 184 KB",
+    "sheets": [
+      {
+        "name": "Presupuesto",
+        "head": [
+          "Elemento",
+          "Previsto",
+          "Comprometido",
+          "Variación",
+          "Responsable",
+          "Estado"
+        ],
+        "rows": [
+          [
+            "Identidad visual",
+            7800,
+            7800,
+            0,
+            "Studio Nord",
+            "Pagado"
+          ],
+          [
+            "Sesión de producto",
+            9400,
+            9950,
+            -550,
+            "Studio Nord",
+            "Comprometido"
+          ],
+          [
+            "Vídeos cortos",
+            4400,
+            4100,
+            300,
+            "Studio Nord",
+            "Comprometido"
+          ],
+          [
+            "Vista previa anticipada",
+            5200,
+            6100,
+            -900,
+            "Léa Fontaine",
+            "Comprometido"
+          ],
+          [
+            "Feria Maison & Objet",
+            4600,
+            0,
+            4600,
+            "Hugo Bernard",
+            "Próximo"
+          ],
+          [
+            "Relaciones con la prensa",
+            2800,
+            2650,
+            150,
+            "Inès Morel",
+            "Pagado"
+          ],
+          [
+            "Muestras",
+            1900,
+            2240,
+            -340,
+            "Atelier Morel",
+            "Pagado"
+          ],
+          [
+            "Anuncios en línea",
+            2400,
+            1180,
+            1220,
+            "Camille Laurent",
+            "En curso"
+          ],
+          [
+            "Total",
+            38500,
+            34020,
+            4480,
+            "",
+            ""
+          ]
+        ],
+        "f": {
+          "B10": "=SUM(B2:B9)",
+          "C10": "=SUM(C2:C9)",
+          "D10": "=SUM(D2:D9)",
+          "D2": "=B2-C2",
+          "D3": "=B3-C3",
+          "D4": "=B4-C4",
+          "D5": "=B5-C5"
+        }
+      },
+      {
+        "name": "Ventas",
+        "head": [
+          "Semana",
+          "En línea",
+          "Minoristas",
+          "Total",
+          "Objetivo",
+          "Alcanzado"
+        ],
+        "rows": [
+          [
+            "S12",
+            312,
+            140,
+            452,
+            400,
+            "113%"
+          ],
+          [
+            "S13",
+            288,
+            176,
+            464,
+            400,
+            "116%"
+          ],
+          [
+            "S14",
+            241,
+            198,
+            439,
+            400,
+            "110%"
+          ],
+          [
+            "S15",
+            205,
+            160,
+            365,
+            400,
+            "91%"
+          ],
+          [
+            "S16",
+            230,
+            151,
+            381,
+            400,
+            "95%"
+          ],
+          [
+            "S17",
+            266,
+            172,
+            438,
+            400,
+            "110%"
+          ]
+        ],
+        "f": {
+          "D2": "=B2+C2",
+          "F2": "=D2/E2"
+        }
+      },
+      {
+        "name": "Cronograma",
+        "head": [
+          "Fecha",
+          "Etapa",
+          "Responsable",
+          "Estado",
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "03/03/2027",
+            "Kit de prensa",
+            "Inès Morel",
+            "Planificado",
+            "",
+            ""
+          ],
+          [
+            "03/21/2027",
+            "Vista previa anticipada",
+            "Léa Fontaine",
+            "Planificado",
+            "",
+            ""
+          ],
+          [
+            "03/24/2027",
+            "Apertura de ventas",
+            "Camille Laurent",
+            "Planificado",
+            "",
+            ""
+          ],
+          [
+            "04/14/2027",
+            "Primera revisión",
+            "Camille Laurent",
+            "Planificado",
+            "",
+            ""
+          ]
+        ]
+      }
+    ],
+    "errs": {
+      "C5": "El texto “6 1OO” fue convertido: se leyó la letra O en lugar de un cero.",
+      "B6": "La fecha “31/02/2027” es imposible, la celda se dejó vacía.",
+      "D8": "#REF!: la fórmula apuntaba a una hoja eliminada."
+    },
+    "ask": {
+      "sugg": [
+        "¿Qué partidas superan el presupuesto?",
+        "Crear un gráfico planificado / comprometido",
+        "¿Cuánto queda por comprometer?",
+        "Corregir los errores de importación"
+      ],
+      "answers": [
+        {
+          "re": "superan",
+          "a": "Tres partidas superan el presupuesto: la vista previa anticipada (−900 €, C5), la sesión de fotos (−550 €, C3) y las muestras (−340 €, C8). Exceso total: 1.790 €."
+        },
+        {
+          "re": "queda",
+          "a": "Quedan 4.480 € por comprometer (D10), incluidos 4.600 € para la feria Maison & Objet, que aún no tiene nada comprometido."
+        }
+      ],
+      "fallback": "Hecho: añadí un gráfico de barras de previsto/comprometido junto a la tabla, del rango A2:C9."
+    }
+  },
+  "upload": {
+    "project": "Lanzamiento de primavera",
+    "demo": [
+      {
+        "name": "Estudio de mercado T2.pdf",
+        "size": 2400000,
+        "pct": 100
+      },
+      {
+        "name": "Lanzamiento de primavera.pptx",
+        "size": 8100000,
+        "pct": 64
+      },
+      {
+        "name": "Presupuesto lanzamiento primavera.xlsx",
+        "size": 184000,
+        "pct": 100
+      },
+      {
+        "name": "Brief agencia Studio Nord.docx",
+        "size": 312000,
+        "pct": 22
+      },
+      {
+        "name": "workshop-shoot-03.jpg",
+        "size": 4700000,
+        "pct": 0
+      }
+    ],
+    "errors": [
+      {
+        "name": "Estudio de mercado T2.pdf",
+        "size": 2400000,
+        "pct": 100
+      },
+      {
+        "name": "Instalador Cortex.dmg",
+        "size": 96000000,
+        "pct": 0,
+        "err": "type"
+      },
+      {
+        "name": "raw-video-rushes.mp4",
+        "size": 1800000000,
+        "pct": 0,
+        "err": "size"
+      },
+      {
+        "name": "Comentarios avance preliminar.docx",
+        "size": 220000,
+        "pct": 38,
+        "err": "connection"
+      }
+    ],
+    "drive": [
+      {
+        "name": "Calendario de rodaje.xlsx",
+        "size": 96000
+      },
+      {
+        "name": "Moodboard primavera.pdf",
+        "size": 6200000
+      }
+    ]
+  },
+  "image": {
+    "name": "atelier-morel-window.png",
+    "size": "4.2 MB",
+    "type": "PNG image",
+    "alt": "Escaparate del Atelier Morel",
+    "exif": [
+      [
+        "Archivo",
+        [
+          [
+            "Dimensiones",
+            "4032 × 2688"
+          ],
+          [
+            "Resolución",
+            "300 ppp"
+          ],
+          [
+            "Perfil",
+            "Display P3"
+          ],
+          [
+            "Creado",
+            "12 de marzo de 2026, 8:14"
+          ]
+        ]
+      ],
+      [
+        "Captura",
+        [
+          [
+            "Cámara",
+            "Cuerpo sin espejo X-T5"
+          ],
+          [
+            "Objetivo",
+            "23 mm f/1.4"
+          ],
+          [
+            "Apertura",
+            "f/2.8"
+          ],
+          [
+            "Exposición",
+            "1/125 s"
+          ],
+          [
+            "ISO",
+            "400"
+          ],
+          [
+            "Distancia focal",
+            "23 mm"
+          ]
+        ]
+      ],
+      [
+        "Ubicación",
+        [
+          [
+            "Ciudad",
+            "Lyon, 1.er distrito"
+          ],
+          [
+            "Coordenadas",
+            "45,767 N · 4,834 E"
+          ]
+        ]
+      ]
+    ],
+    "ask": {
+      "sugg": [
+        "Describir esta imagen",
+        "Sugerir texto alternativo",
+        "¿Qué ediciones sugerirías?"
+      ],
+      "answers": [
+        "La foto muestra el escaparate del Atelier Morel a primera hora de la mañana: cerámica en tres estantes, luz cálida procedente de la izquierda.",
+        "Texto alternativo: «Escaparate de taller de cerámica, cuencos y jarrones esmaltados en azul y arena sobre estantes de roble».",
+        "Enderezaría el horizonte 1,5°, aclararía las sombras un 20% y recortaría a 4:5 para Instagram."
+      ]
+    }
+  },
+  "code": {
+    "name": "cart.ts",
+    "size": "3.1 KB",
+    "type": "TypeScript",
+    "src": "// Atelier Morel shop cart: totals, discounts and shipping.\nimport { round, type Item } from \"./price\";\n\nexport const FREE_SHIPPING_THRESHOLD = 80;\nconst SHIPPING_FEE = 6.9;\n\nexport type Line = { item: Item; quantity: number };\n\nexport function subtotal(lines: Line[]): number {\n  return lines.reduce((s, l) => s + l.item.price * l.quantity, 0);\n}\n\n// “Spring” discount: 10% from three ceramic pieces.\nexport function discount(lines: Line[]): number {\n  const pieces = lines.filter((l) => l.item.category === \"ceramics\");\n  const n = pieces.reduce((s, l) => s + l.quantity, 0);\n  return n >= 3 ? subtotal(pieces) * 0.1 : 0;\n}\n\nexport function shippingFee(total: number): number {\n  return total >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;\n}\n\nexport function total(lines: Line[]) {\n  const st = subtotal(lines);\n  const r = discount(lines);\n  const shipping = shippingFee(st - r);\n  return {\n    subtotal: round(st),\n    discount: round(r),\n    shipping,\n    total: round(st - r + shipping),\n  };\n}\n\nexport function addItem(lines: Line[], item: Item): Line[] {\n  const i = lines.findIndex((l) => l.item.id === item.id);\n  if (i === -1) return [...lines, { item, quantity: 1 }];\n  return lines.map((l, j) => (j === i ? { ...l, quantity: l.quantity + 1 } : l));\n}\n\nexport function removeItem(lines: Line[], id: string): Line[] {\n  return lines.filter((l) => l.item.id !== id);\n}",
+    "diff": [
+      [
+        " ",
+        "export function shippingFee(total: number): number {"
+      ],
+      [
+        "-",
+        "  return total >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;"
+      ],
+      [
+        "+",
+        "  if (total <= 0) return 0;"
+      ],
+      [
+        "+",
+        "  return total >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;"
+      ],
+      [
+        " ",
+        "}"
+      ],
+      [
+        " ",
+        ""
+      ],
+      [
+        " ",
+        "export function total(lines: Line[]) {"
+      ],
+      [
+        " ",
+        "  const st = subtotal(lines);"
+      ],
+      [
+        "-",
+        "  const r = discount(lines);"
+      ],
+      [
+        "+",
+        "  const r = Math.min(discount(lines), st);"
+      ],
+      [
+        " ",
+        "  const shipping = shippingFee(st - r);"
+      ],
+      [
+        " ",
+        "  return {"
+      ],
+      [
+        " ",
+        "    subtotal: round(st),"
+      ],
+      [
+        " ",
+        "    discount: round(r),"
+      ],
+      [
+        " ",
+        "    shipping,"
+      ],
+      [
+        " ",
+        "    total: round(st - r + shipping),"
+      ],
+      [
+        " ",
+        "  };"
+      ],
+      [
+        " ",
+        "}"
+      ],
+      [
+        " ",
+        ""
+      ],
+      [
+        " ",
+        "export function addItem(lines: Line[], item: Item): Line[] {"
+      ],
+      [
+        "-",
+        "  const i = lines.findIndex((l) => l.item.id === item.id);"
+      ],
+      [
+        "-",
+        "  if (i === -1) return [...lines, { item, quantity: 1 }];"
+      ],
+      [
+        "-",
+        "  return lines.map((l, j) => (j === i ? { ...l, quantity: l.quantity + 1 } : l));"
+      ],
+      [
+        "+",
+        "  const exists = lines.some((l) => l.item.id === item.id);"
+      ],
+      [
+        "+",
+        "  if (!exists) return [...lines, { item, quantity: 1 }];"
+      ],
+      [
+        "+",
+        "  return lines.map((l) => (l.item.id === item.id ? { ...l, quantity: l.quantity + 1 } : l));"
+      ],
+      [
+        " ",
+        "}"
+      ]
+    ],
+    "diffMeta": "Cambios de Camille Laurent · hace 2 h · comparado con la versión del 10 de marzo",
+    "ask": {
+      "sugg": [
+        "Explicar este archivo",
+        "Buscar posibles errores",
+        "Escribir pruebas para total()"
+      ],
+      "answers": [
+        "Este módulo calcula el carrito de compra: subtotal, un descuento de primavera del 10% para tres piezas de cerámica, y envío gratis por encima de 80 €.",
+        "Dos riesgos: el descuento puede superar el subtotal si los precios son negativos, y shippingFee cobra 6,90 € por un carrito vacío.",
+        "Sugiero tres casos: carrito vacío, dos cerámicas sin descuento, y tres cerámicas de 30 € con envío gratis."
+      ]
+    }
+  },
+  "audio": {
+    "name": "spring-launch-meeting.m4a",
+    "size": "18.6 MB",
+    "type": "M4A audio · 24:12",
+    "lang": "Francés",
+    "speakers": [
+      [
+        "Camille Laurent",
+        "CL",
+        "blue"
+      ],
+      [
+        "Julien Morel",
+        "JM",
+        "green"
+      ],
+      [
+        "Inès Garnier",
+        "IG",
+        "yellow"
+      ]
+    ],
+    "segs": [
+      {
+        "t": 0,
+        "who": 0,
+        "text": "Hola a todos, gracias por venir. Repasemos el lanzamiento de primavera: calendario, stand y presupuesto."
+      },
+      {
+        "t": 74,
+        "who": 1,
+        "text": "En cuanto al taller, las 120 piezas de la colección “Lagon” estarán listas el 2 de abril, esmaltado incluido."
+      },
+      {
+        "t": 161,
+        "who": 2,
+        "text": "Studio Nord nos envió el presupuesto del stand: 9.800 € sin IVA, montaje incluido. Son 600 € por encima del presupuesto."
+      },
+      {
+        "t": 248,
+        "who": 0,
+        "text": "Podemos compensarlo eliminando la iluminación extra. Julien, ¿estás de acuerdo?"
+      },
+      {
+        "t": 312,
+        "who": 1,
+        "text": "Sí, la iluminación del pabellón es suficiente si mantenemos las estanterías de roble claro."
+      },
+      {
+        "t": 405,
+        "who": 2,
+        "text": "Para la comunicación, propongo tres publicaciones por semana a partir del 24 de marzo, con las fotos de Camille."
+      },
+      {
+        "t": 538,
+        "who": 0,
+        "text": "Decisión: lanzamiento el 14 de abril, stand aprobado sin iluminación, Inès se encarga del calendario de publicaciones."
+      },
+      {
+        "t": 640,
+        "who": 1,
+        "text": "Enviaré los visuales del escaparate el viernes."
+      },
+      {
+        "t": 702,
+        "who": 2,
+        "text": "Próxima reunión el 21 de marzo a las 10 AM, misma sala."
+      }
+    ],
+    "ask": {
+      "sugg": [
+        "Resumir la reunión",
+        "Listar las decisiones tomadas",
+        "¿Quién hace qué?"
+      ],
+      "answers": [
+        "Reunión del 14 de marzo sobre el lanzamiento de primavera: colección lista el 2 de abril, stand de Studio Nord aprobado sin iluminación extra, comunicación a partir del 24 de marzo.",
+        "Tres decisiones: lanzamiento el 14 de abril, presupuesto del stand aceptado en 9.800 € sin IVA sin iluminación, Inès se encarga de las publicaciones.",
+        "Julien envía los visuales del escaparate el viernes, Inès prepara el calendario, Camille aporta las fotos. Próxima reunión el 21 de marzo."
+      ]
+    }
+  },
+  "video": {
+    "name": "atelier-morel-film.mp4",
+    "size": "212 MB",
+    "type": "MP4 video · 1080p · 6:40",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "El taller al amanecer",
+        "img": "montagne"
+      },
+      {
+        "t": 62,
+        "title": "El torneado de la arcilla",
+        "img": "atelier"
+      },
+      {
+        "t": 148,
+        "title": "Esmaltes y cocción",
+        "img": "ceramique"
+      },
+      {
+        "t": 236,
+        "title": "El mercado de Croix-Rousse",
+        "img": "marche"
+      },
+      {
+        "t": 318,
+        "title": "La colección “Lagon”",
+        "img": "lagon"
+      }
+    ],
+    "segs": [
+      {
+        "t": 8,
+        "who": 1,
+        "text": "Llego al taller alrededor de las seis, antes de que cambie la luz."
+      },
+      {
+        "t": 66,
+        "who": 1,
+        "text": "Cada bol se torna a mano; tarda unos doce minutos por pieza."
+      },
+      {
+        "t": 151,
+        "who": 2,
+        "text": "El esmalte azul proviene de una receta de gres que Julien perfeccionó en 2019."
+      },
+      {
+        "t": 240,
+        "who": 0,
+        "text": "Los sábados vendemos directamente en el mercado: ahí probamos las formas nuevas."
+      },
+      {
+        "t": 322,
+        "who": 1,
+        "text": "“Lagon” es el mar visto desde arriba. Cuarenta piezas, ninguna igual a otra."
+      }
+    ],
+    "ask": {
+      "sugg": [
+        "Resumir el video",
+        "Extraer las citas",
+        "Sugerir cortes para Instagram"
+      ],
+      "answers": [
+        "Un video de 6 min 40 sobre Atelier Morel en cinco capítulos: el taller, el torneado, los esmaltes, el mercado y la colección “Lagon”.",
+        "“Lagon es el mar visto desde arriba” (5:22) y “Cada cuenco se tornea a mano” (1:06) son las más potentes.",
+        "Tres clips de 30 s: de 1:02 a 1:32 (torneado), de 2:28 a 2:58 (esmaltes), de 5:18 a 5:48 (colección)."
+      ]
+    }
+  },
+  "zip": {
+    "name": "spring-launch-deliverables.zip",
+    "size": "31.8 MB",
+    "type": "ZIP archive · 16 files",
+    "extractedTo": "Documentos › spring-launch-deliverables",
+    "extractingFile": "02-photos/raw/DSCF40",
+    "tree": [
+      {
+        "name": "01-identity",
+        "kids": [
+          {
+            "name": "atelier-morel-logo.svg",
+            "kb": 24
+          },
+          {
+            "name": "color-guide.pdf",
+            "kb": 1840
+          },
+          {
+            "name": "typography.txt",
+            "kb": 1,
+            "text": "Títulos: Geist 500, −0.02 em\nCuerpo: Geist 400, 13/20\nNúmeros: Geist Mono\n\nNo usar un peso inferior a 400."
+          }
+        ]
+      },
+      {
+        "name": "02-photos",
+        "kids": [
+          {
+            "name": "window-morning.png",
+            "kb": 4310,
+            "img": "ceramique"
+          },
+          {
+            "name": "workshop-wheel.png",
+            "kb": 3980,
+            "img": "atelier"
+          },
+          {
+            "name": "croix-rousse-market.png",
+            "kb": 4120,
+            "img": "marche"
+          },
+          {
+            "name": "lagon-collection.png",
+            "kb": 3750,
+            "img": "lagon"
+          },
+          {
+            "name": "raw",
+            "kids": [
+              {
+                "name": "DSCF4021.raf",
+                "kb": 9100
+              },
+              {
+                "name": "DSCF4022.raf",
+                "kb": 9240
+              },
+              {
+                "name": "DSCF4030.raf",
+                "kb": 8870
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "03-booth",
+        "kids": [
+          {
+            "name": "studio-nord-quote.pdf",
+            "kb": 312
+          },
+          {
+            "name": "booth-plan-v3.pdf",
+            "kb": 2480
+          },
+          {
+            "name": "equipment-list.csv",
+            "kb": 3,
+            "text": "artículo;cantidad;proveedor\nEstante de roble claro 180 cm;6;Studio Nord\nPeana blanca 40 × 40;4;Studio Nord\nMantel de lino natural;2;Atelier Morel\nTerminal de pago;1;Banco\nBolsas de kraft;300;Durand Packaging"
+          }
+        ]
+      },
+      {
+        "name": "04-communication",
+        "kids": [
+          {
+            "name": "posting-schedule.xlsx",
+            "kb": 48
+          },
+          {
+            "name": "instagram-copy.md",
+            "kb": 6,
+            "text": "# Semana del 24 de marzo\n\n## Lunes\nYa está aquí la colección “Lagon”. Cuarenta piezas, ninguna igual a otra.\n\n## Jueves\nEn el taller, cada cuenco tarda doce minutos en el torno. Y una noche en el horno.\n\n## Sábado\nEncuéntranos en el mercado de Croix-Rousse, de 8 a 13 h."
+          }
+        ]
+      },
+      {
+        "name": "README.txt",
+        "kb": 2,
+        "text": "Entregables del lanzamiento de primavera — Atelier Morel\nPreparado por Camille Laurent, 14 de marzo de 2026.\n\n01: identidad visual\n02: fotos editadas y archivos raw\n03: stand de Studio Nord\n04: calendario y textos de comunicación\n\nPreguntas: camille@ateliermorel.fr"
+      }
+    ],
+    "ask": {
+      "sugg": [
+        "¿Qué hay en este archivo?",
+        "¿Hay archivos duplicados?",
+        "Resumir el presupuesto del stand"
+      ],
+      "answers": [
+        "Cuatro carpetas de entregables del lanzamiento de primavera: identidad, fotos, stand y comunicación, además de un README.",
+        "No hay duplicados exactos. Los tres archivos .raf son los originales de las fotos editadas: pesan 26 MB por sí solos.",
+        "Presupuesto de Studio Nord: 9800 € sin IVA, montaje incluido, entrega el día antes de la apertura, seis estantes de roble claro."
+      ]
+    }
+  }
+}

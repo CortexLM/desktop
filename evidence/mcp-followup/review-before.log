@@ -1,0 +1,86 @@
+$ vitest run packages/core/test/mcp.test.ts -t "reconnect waiting|removal waiting|refuses redirects"
+
+ RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+ ❯ packages/core/test/mcp.test.ts (10 tests | 3 failed | 7 skipped) 85ms
+   ❯ main-only MCP connection configuration (10)
+     ↓ refuses persistent MCP writes without a host credential store
+     ↓ returns metadata only and keeps complete connection material out of SQLite across reopen
+     ↓ preserves prior configuration when its replacement cannot be stored
+     ↓ retains the old connection when the metadata write fails
+     ↓ migrates legacy configuration only after credential persistence succeeds
+     ↓ does not publish a connection after it was removed during credential lookup
+     ↓ does not restore a removed configuration when a pending replacement finishes
+     × a reconnect waiting for the old transport cannot override a newer disable 36ms
+     × a removal waiting for transport close preserves a newly saved replacement 6ms
+     × refuses redirects before custom authentication headers reach another endpoint 40ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/core/test/mcp.test.ts > main-only MCP connection configuration > a reconnect waiting for the old transport cannot override a newer disable
+AssertionError: expected 'failed' to be 'disabled' // Object.is equality
+
+Expected: "disabled"
+Received: "failed"
+
+ ❯ packages/core/test/mcp.test.ts:175:44
+    173|       release()
+    174|       await reconnect
+    175|       expect(core.mcp.get("slow")?.status).toBe("disabled")
+       |                                            ^
+    176|       expect(core.mcp.tools()).toEqual([])
+    177|       expect(transports).toBe(1)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  packages/core/test/mcp.test.ts > main-only MCP connection configuration > a removal waiting for transport close preserves a newly saved replacement
+AssertionError: expected undefined to deeply equal { name: 'slow', type: 'remote', …(3) }
+
+- Expected:
+{
+  "enabled": false,
+  "name": "slow",
+  "status": "disabled",
+  "tools": [],
+  "type": "remote",
+}
+
++ Received:
+undefined
+
+ ❯ packages/core/test/mcp.test.ts:200:36
+    198|       release()
+    199|       await removing
+    200|       expect(core.mcp.get("slow")).toEqual({ name: "slow", type: "remo…
+       |                                    ^
+    201|     } finally { release(); await core.close() }
+    202|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  packages/core/test/mcp.test.ts > main-only MCP connection configuration > refuses redirects before custom authentication headers reach another endpoint
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ packages/core/test/mcp.test.ts:215:24
+    213|       const info = await core.mcp.add({ name: "redirect", type: "remot…
+    214|       expect(info.status).toBe("failed")
+    215|       expect(received).toBe(0)
+       |                        ^
+    216|     } finally {
+    217|       await core.close()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 7 skipped (10)
+   Start at  20:21:07
+   Duration  823ms (import 48%, transform 39%, tests 13%, worker 1%)
+
+error: script "test" exited with code 1

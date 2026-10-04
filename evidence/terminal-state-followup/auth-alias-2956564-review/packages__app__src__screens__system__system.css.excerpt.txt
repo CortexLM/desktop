@@ -1,0 +1,9 @@
+185: /* ---------- Sign-in ---------- */
+186: .systeme-login { width: 100%; max-width: 360px; display: flex; flex-direction: column; align-items: stretch; text-align: center; }
+187: .systeme-login > * { animation: rise 380ms var(--ease-out) both; }
+188: .systeme-login > :nth-child(2) { animation-delay: 45ms; } .systeme-login > :nth-child(3) { animation-delay: 90ms; } .systeme-login > :nth-child(4) { animation-delay: 135ms; } .systeme-login > :nth-child(5) { animation-delay: 180ms; }
+189: .systeme-login h1 { margin: 14px 0 4px; font-size: 26px; line-height: 32px; font-weight: 500; letter-spacing: -0.02em; }
+190: .systeme-login .systeme-lead { margin: 0 0 22px; color: var(--t2); font-size: 13px; line-height: 20px; }
+191: .systeme-login .field { text-align: left; }
+192: .systeme-login .input { height: 40px; font-size: 13px; }
+193: .systeme-logo { width: 44px; height: 44px; border-radius: 14px; margin: 0 auto; background: center/cover url(/img/lagon.png); box-shadow: var(--ring); }

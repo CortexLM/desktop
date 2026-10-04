@@ -1,0 +1,165 @@
+{
+  "reviewedAt": "2026-10-03T19:03:15.755026+00:00",
+  "contacts": [
+    {
+      "file": "contacts/pairs-01.jpg",
+      "sha256": "d0001e200754d9b39e28f19643ae4e9ab440d7db4938deabb85e5d1ba937e6fc",
+      "pairs": 8,
+      "states": [
+        "work-task~running-dark",
+        "work-task~running-light",
+        "work-task~computer-dark",
+        "work-task~computer-light",
+        "work-task~takeover-dark",
+        "work-task~takeover-light",
+        "work-task~approval-dark",
+        "work-task~approval-light"
+      ],
+      "inspected": true
+    },
+    {
+      "file": "contacts/pairs-02.jpg",
+      "sha256": "052c0becfbab57ac6263f03b4a00fff949cba388a848ce60af0d3c127610522e",
+      "pairs": 8,
+      "states": [
+        "work-task~blocked-dark",
+        "work-task~blocked-light",
+        "work-task~done-dark",
+        "work-task~done-light",
+        "work-task~failed-dark",
+        "work-task~failed-light",
+        "work-task~paused-dark",
+        "work-task~paused-light"
+      ],
+      "inspected": true
+    },
+    {
+      "file": "contacts/pairs-03.jpg",
+      "sha256": "6927f64372b06422ac2437dd90f859e5474ee54c6c188be0afff4adc899b02e8",
+      "pairs": 6,
+      "states": [
+        "activity~timeline-dark",
+        "activity~timeline-light",
+        "activity~filtered-dark",
+        "activity~filtered-light",
+        "activity~loading-dark",
+        "activity~loading-light"
+      ],
+      "inspected": true
+    }
+  ],
+  "fullSizeTargets": [
+    "activity~timeline-dark",
+    "activity~timeline-light",
+    "activity~filtered-dark",
+    "activity~filtered-light",
+    "work-task~done-dark",
+    "work-task~done-light",
+    "work-task~blocked-light"
+  ],
+  "fullResolutionOriginals": [
+    {
+      "state": "activity~timeline-dark",
+      "kind": "app",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/activity~timeline-dark.app.png",
+      "sha256": "f38f0145a9992393718a111c8736a77e5c5952b466e56bf9b6eca71eaf1e963d",
+      "inspected": true
+    },
+    {
+      "state": "activity~timeline-dark",
+      "kind": "design",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/activity~timeline-dark.design.png",
+      "sha256": "ae0018c1504e80d7f27df692c41032e29faaff0e3b9861d8128cabe88714eb44",
+      "inspected": true
+    },
+    {
+      "state": "activity~timeline-light",
+      "kind": "app",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/activity~timeline-light.app.png",
+      "sha256": "023761fbd0d5d533011390ecf1259e7323b2b496adf23433a207859ad855f3c0",
+      "inspected": true
+    },
+    {
+      "state": "activity~timeline-light",
+      "kind": "design",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/activity~timeline-light.design.png",
+      "sha256": "8e09c7f53ab90f703f3153778f36ea54d00d74df5b1b9a7f280a3b8a3e5053ee",
+      "inspected": true
+    },
+    {
+      "state": "activity~filtered-dark",
+      "kind": "app",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/activity~filtered-dark.app.png",
+      "sha256": "6f8b24920d0771363f99db84d6277e43edd7b13fc3626c0e98b340e93c850f64",
+      "inspected": true
+    },
+    {
+      "state": "activity~filtered-dark",
+      "kind": "design",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/activity~filtered-dark.design.png",
+      "sha256": "5b241b20c94180b504dc113edc095c032a2a81c87104c1fb8ac5fa76978ad52d",
+      "inspected": true
+    },
+    {
+      "state": "activity~filtered-light",
+      "kind": "app",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/activity~filtered-light.app.png",
+      "sha256": "22bdd473a5de8dc7a1c61a8984cccdb02b49585c43721fe513815540ab63a24e",
+      "inspected": true
+    },
+    {
+      "state": "activity~filtered-light",
+      "kind": "design",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/activity~filtered-light.design.png",
+      "sha256": "b56ed77910e52646040df81faec5b534e99babe10bb22c68a9a2114c511de74b",
+      "inspected": true
+    },
+    {
+      "state": "work-task~done-dark",
+      "kind": "app",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/work-task~done-dark.app.png",
+      "sha256": "cccef98587876a63c8e038932281ec1aa5aa8178bca4dd7d16184ff5060c8916",
+      "inspected": true
+    },
+    {
+      "state": "work-task~done-dark",
+      "kind": "design",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/work-task~done-dark.design.png",
+      "sha256": "52871588544e6658034f0ab67f7dbbe817b3649acb2fa19aa29a0c1cceef0341",
+      "inspected": true
+    },
+    {
+      "state": "work-task~done-light",
+      "kind": "app",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/work-task~done-light.app.png",
+      "sha256": "9ff883219aa3acc035402c67c4f590a43177ba34a64874b8f6829b1c5660a9f9",
+      "inspected": true
+    },
+    {
+      "state": "work-task~done-light",
+      "kind": "design",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/work-task~done-light.design.png",
+      "sha256": "4aa37ded3a69122b5a54036d1209395a4397cfc64945b7fd5b259a99614be317",
+      "inspected": true
+    },
+    {
+      "state": "work-task~blocked-light",
+      "kind": "app",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/work-task~blocked-light.app.png",
+      "sha256": "820f067c5cf0c93344f1a492d28a35fbd0d50e62edba202d4b797b5af686dc04",
+      "inspected": true
+    },
+    {
+      "state": "work-task~blocked-light",
+      "kind": "design",
+      "original": "/tmp/opencode/work-activity/compare/captures/2026-10-03T18-45-11-552Z-TtIMVL/work-task~blocked-light.design.png",
+      "sha256": "b8281f05aaa7fb6731c60e11d46b77ce4212584df3068661db7f207ce16b6f1f",
+      "inspected": true
+    }
+  ],
+  "activity": "Timeline dark/light preserves all thirteen visible fixture events, day groups, eight type chips, Bot picker and export. Filtered dark/light preserves one email event, selected Bot/type and Clear filters. Event text/icons/timestamps are pixel-exact to frozen and prior app; mascots differ. Filter summary says 1 action versus frozen 1 actions, with corresponding Clear-button displacement; exact to prior app.",
+  "workDone": "Both themes retain routine record, six completed steps, summary tiles/output list and composer. Transcript crop equals frozen and the later transcript-correction app at identical coordinates. Earlier full-run crop matches only with +2 device-pixel sampling offset; historical score is preserved.",
+  "maximum": "Blocked light pair retains credential card, fields, explanatory copy and disabled transmit action. This current full app frame is RGBA-identical to prior6d96535. The frozen 1930-pixel discrepancy is inherited, not new Activity drift.",
+  "allPairs": "All22 frozen/app pairs inspected on three sheets. Other Work states retain panels, controls and wrapping at contact scale. Loading skeleton samples have nonzero raw pixels despite zero content threshold differences; no claim of deterministic animation.",
+  "scope": "Settled browser preview only; source selects ActivityPreview from committed preview/shot parameters. Live Activity rows, permissions/security promises, exact live Bot identity, keyboard, runtime and native results need separate evidence. No new blocking static layout regression found in inspected scope."
+}

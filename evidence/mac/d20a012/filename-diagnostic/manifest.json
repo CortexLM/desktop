@@ -1,0 +1,8203 @@
+{
+  "status": "observed",
+  "baseCollectorSHA256": "9548b41317d5afd545dc086bf8b3ac463b3d477ade19a1075855202ffb05e009",
+  "diagnosticOnly": true,
+  "revision": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "asar": "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+  "startedAt": "2026-10-03T22:28:01.853Z",
+  "invocation": {
+    "argv": [
+      "/tmp/opencode/files-name-diagnostic.mjs",
+      "/tmp/opencode/files-native-name-probe-d20a012-1",
+      "/tmp/opencode/desktop-files-native-d20a012-name-probe-1",
+      "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+      "d20a012fbb774aa9b348fe1913f85d3476430098",
+      "/tmp/opencode/files-mac-package-d20a012/members.json"
+    ],
+    "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+    "nodeVersion": "v22.23.3"
+  },
+  "budget": {
+    "flowMs": 150000,
+    "cleanupMs": 45000,
+    "absoluteMs": 195000,
+    "rawOperationMs": 10000,
+    "captures": 2,
+    "nativeSamples": 4,
+    "originalBytes": 3145728,
+    "totalBytes": 6291456,
+    "manifestBytes": 409600,
+    "ipcCalls": 100,
+    "downloads": 0
+  },
+  "capturesRequested": 2,
+  "captures": [
+    {
+      "file": "name-clipped-light.png",
+      "requestedAt": "2026-10-03T22:28:22.789Z",
+      "theme": "light",
+      "native": true,
+      "diagnosticOnly": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "id": 9092,
+      "active": true,
+      "pid": 77857,
+      "osDark": false,
+      "boxes": [
+        {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                389,
+                64,
+                545,
+                80
+              ],
+              "visible": false
+            }
+          ],
+          "visible": false,
+          "hit": true
+        },
+        {
+          "text": "−100% of Fit+Fit200%Scroll or + / − to zoom",
+          "bounds": [
+            353,
+            100,
+            939,
+            132
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                362.828125,
+                105,
+                371.15625,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                387,
+                108,
+                466.203125,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                481.734375,
+                105,
+                490.671875,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                516.203125,
+                108,
+                530.6875,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                556.6875,
+                108,
+                590.25,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                828.109375,
+                109,
+                939,
+                123
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native portrait.png, zoom 100% of Fit",
+          "bounds": [
+            353,
+            144,
+            939,
+            475
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Image details",
+          "bounds": [
+            353,
+            487,
+            939,
+            619
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                367,
+                501,
+                442.5625,
+                517
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                367,
+                528,
+                486.375,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                869.765625,
+                528,
+                925,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                367,
+                556,
+                405.671875,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                900.28125,
+                556,
+                925,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                367,
+                584,
+                411.265625,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                870.03125,
+                584,
+                925,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Download",
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "imageSample": {
+        "dimensions": [
+          120,
+          180
+        ],
+        "complete": true,
+        "protocol": "blob:",
+        "scale": "1",
+        "translate": "0px",
+        "rgba": [
+          [
+            216,
+            76,
+            55,
+            255
+          ],
+          [
+            33,
+            116,
+            176,
+            255
+          ],
+          [
+            216,
+            76,
+            55,
+            255
+          ]
+        ]
+      },
+      "nameSample": {
+        "text": "Cortex native portrait.png",
+        "owner": true,
+        "style": null,
+        "computed": {
+          "display": "block",
+          "font": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+          "font-family": "Geist, ui-sans-serif, system-ui, sans-serif",
+          "font-size": "13px",
+          "font-weight": "500",
+          "font-style": "normal",
+          "font-stretch": "100%",
+          "line-height": "16px",
+          "letter-spacing": "normal",
+          "font-kerning": "auto",
+          "font-feature-settings": "normal",
+          "font-variation-settings": "normal",
+          "font-variant-ligatures": "normal",
+          "font-optical-sizing": "auto",
+          "text-rendering": "auto",
+          "-webkit-font-smoothing": "antialiased",
+          "color": "rgb(17, 17, 17)",
+          "text-shadow": "none",
+          "direction": "ltr",
+          "writing-mode": "horizontal-tb",
+          "vertical-align": "baseline",
+          "white-space": "normal",
+          "overflow": "auto",
+          "overflow-x": "auto",
+          "overflow-y": "auto",
+          "max-height": "48px"
+        },
+        "bounds": [
+          389,
+          64,
+          544.96875,
+          80
+        ],
+        "offset": [
+          52,
+          20,
+          156,
+          16
+        ],
+        "client": [
+          0,
+          0,
+          156,
+          16
+        ],
+        "scroll": [
+          0,
+          0,
+          156,
+          16
+        ],
+        "ranges": [
+          [
+            389,
+            63,
+            544.96875,
+            80
+          ]
+        ],
+        "clipChain": [
+          {
+            "tag": "SPAN",
+            "className": "medias-name",
+            "bounds": [
+              389,
+              64,
+              544.96875,
+              80
+            ],
+            "display": "block",
+            "overflowX": "auto",
+            "overflowY": "auto",
+            "client": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "scroll": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "SPAN",
+            "className": "title",
+            "bounds": [
+              389,
+              64,
+              544.96875,
+              80
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "scroll": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "content-top medias-top",
+            "bounds": [
+              337,
+              44,
+              955,
+              100
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              618,
+              56
+            ],
+            "scroll": [
+              0,
+              0,
+              618,
+              56
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "medias-image-live",
+            "bounds": [
+              337,
+              44,
+              955,
+              635
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "scroll": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "MAIN",
+            "className": "content",
+            "bounds": [
+              337,
+              44,
+              955,
+              635
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "scroll": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "frame",
+            "bounds": [
+              53,
+              44,
+              955,
+              635
+            ],
+            "display": "flex",
+            "overflowX": "hidden",
+            "overflowY": "hidden",
+            "client": [
+              0,
+              0,
+              902,
+              591
+            ],
+            "scroll": [
+              0,
+              0,
+              902,
+              591
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "body",
+            "bounds": [
+              0,
+              44,
+              960,
+              640
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              596
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              596
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "window",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "flex",
+            "overflowX": "hidden",
+            "overflowY": "hidden",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "desk",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "grid",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "BODY",
+            "className": "",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "HTML",
+            "className": "",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          }
+        ],
+        "canvas": {
+          "requestedFont": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+          "resolvedFont": "500 13px Geist, ui-sans-serif, system-ui, sans-serif",
+          "letterSpacing": "0px",
+          "baseline": "alphabetic",
+          "metrics": {
+            "width": 155.96365356445312,
+            "actualBoundingBoxLeft": -0.5720000267028809,
+            "actualBoundingBoxRight": 154.98605346679688,
+            "actualBoundingBoxAscent": 9.437999725341797,
+            "actualBoundingBoxDescent": 2.1059999465942383,
+            "fontBoundingBoxAscent": 13,
+            "fontBoundingBoxDescent": 4,
+            "emHeightAscent": null,
+            "emHeightDescent": null,
+            "alphabeticBaseline": 0
+          }
+        },
+        "viewport": [
+          960,
+          640,
+          1
+        ],
+        "layoutSHA256": "10c27872e0f5f0d529f93d77737ddd94b00552230a31be20ba6d26aaca2c9bcc",
+        "layoutNodes": 265,
+        "geometry": {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                389,
+                64,
+                545,
+                80
+              ],
+              "visible": false
+            }
+          ],
+          "visible": false,
+          "hit": true
+        }
+      },
+      "focus": {
+        "visible": true,
+        "outline": "rgb(59, 130, 246) solid 2px",
+        "boxShadow": "rgba(0, 0, 0, 0.06) 0px 0px 0px 1px"
+      },
+      "status": "observed",
+      "httpStatus": 200,
+      "bytes": 65221,
+      "sha256": "f1152f2820297bf2d0764fbbc0687e39bd063f5e7da0eee55f68209506aeba8f",
+      "pixels": [
+        960,
+        640
+      ],
+      "afterBoxes": [
+        {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                389,
+                64,
+                545,
+                80
+              ],
+              "visible": false
+            }
+          ],
+          "visible": false,
+          "hit": true
+        },
+        {
+          "text": "−100% of Fit+Fit200%Scroll or + / − to zoom",
+          "bounds": [
+            353,
+            100,
+            939,
+            132
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                362.828125,
+                105,
+                371.15625,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                387,
+                108,
+                466.203125,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                481.734375,
+                105,
+                490.671875,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                516.203125,
+                108,
+                530.6875,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                556.6875,
+                108,
+                590.25,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                828.109375,
+                109,
+                939,
+                123
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native portrait.png, zoom 100% of Fit",
+          "bounds": [
+            353,
+            144,
+            939,
+            475
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Image details",
+          "bounds": [
+            353,
+            487,
+            939,
+            619
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                367,
+                501,
+                442.5625,
+                517
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                367,
+                528,
+                486.375,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                869.765625,
+                528,
+                925,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                367,
+                556,
+                405.671875,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                900.28125,
+                556,
+                925,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                367,
+                584,
+                411.265625,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                870.03125,
+                584,
+                925,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Download",
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "afterName": {
+        "text": "Cortex native portrait.png",
+        "owner": true,
+        "style": null,
+        "computed": {
+          "display": "block",
+          "font": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+          "font-family": "Geist, ui-sans-serif, system-ui, sans-serif",
+          "font-size": "13px",
+          "font-weight": "500",
+          "font-style": "normal",
+          "font-stretch": "100%",
+          "line-height": "16px",
+          "letter-spacing": "normal",
+          "font-kerning": "auto",
+          "font-feature-settings": "normal",
+          "font-variation-settings": "normal",
+          "font-variant-ligatures": "normal",
+          "font-optical-sizing": "auto",
+          "text-rendering": "auto",
+          "-webkit-font-smoothing": "antialiased",
+          "color": "rgb(17, 17, 17)",
+          "text-shadow": "none",
+          "direction": "ltr",
+          "writing-mode": "horizontal-tb",
+          "vertical-align": "baseline",
+          "white-space": "normal",
+          "overflow": "auto",
+          "overflow-x": "auto",
+          "overflow-y": "auto",
+          "max-height": "48px"
+        },
+        "bounds": [
+          389,
+          64,
+          544.96875,
+          80
+        ],
+        "offset": [
+          52,
+          20,
+          156,
+          16
+        ],
+        "client": [
+          0,
+          0,
+          156,
+          16
+        ],
+        "scroll": [
+          0,
+          0,
+          156,
+          16
+        ],
+        "ranges": [
+          [
+            389,
+            63,
+            544.96875,
+            80
+          ]
+        ],
+        "clipChain": [
+          {
+            "tag": "SPAN",
+            "className": "medias-name",
+            "bounds": [
+              389,
+              64,
+              544.96875,
+              80
+            ],
+            "display": "block",
+            "overflowX": "auto",
+            "overflowY": "auto",
+            "client": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "scroll": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "SPAN",
+            "className": "title",
+            "bounds": [
+              389,
+              64,
+              544.96875,
+              80
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "scroll": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "content-top medias-top",
+            "bounds": [
+              337,
+              44,
+              955,
+              100
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              618,
+              56
+            ],
+            "scroll": [
+              0,
+              0,
+              618,
+              56
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "medias-image-live",
+            "bounds": [
+              337,
+              44,
+              955,
+              635
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "scroll": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "MAIN",
+            "className": "content",
+            "bounds": [
+              337,
+              44,
+              955,
+              635
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "scroll": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "frame",
+            "bounds": [
+              53,
+              44,
+              955,
+              635
+            ],
+            "display": "flex",
+            "overflowX": "hidden",
+            "overflowY": "hidden",
+            "client": [
+              0,
+              0,
+              902,
+              591
+            ],
+            "scroll": [
+              0,
+              0,
+              902,
+              591
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "body",
+            "bounds": [
+              0,
+              44,
+              960,
+              640
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              596
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              596
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "window",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "flex",
+            "overflowX": "hidden",
+            "overflowY": "hidden",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "desk",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "grid",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "BODY",
+            "className": "",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "HTML",
+            "className": "",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          }
+        ],
+        "canvas": {
+          "requestedFont": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+          "resolvedFont": "500 13px Geist, ui-sans-serif, system-ui, sans-serif",
+          "letterSpacing": "0px",
+          "baseline": "alphabetic",
+          "metrics": {
+            "width": 155.96365356445312,
+            "actualBoundingBoxLeft": -0.5720000267028809,
+            "actualBoundingBoxRight": 154.98605346679688,
+            "actualBoundingBoxAscent": 9.437999725341797,
+            "actualBoundingBoxDescent": 2.1059999465942383,
+            "fontBoundingBoxAscent": 13,
+            "fontBoundingBoxDescent": 4,
+            "emHeightAscent": null,
+            "emHeightDescent": null,
+            "alphabeticBaseline": 0
+          }
+        },
+        "viewport": [
+          960,
+          640,
+          1
+        ],
+        "layoutSHA256": "10c27872e0f5f0d529f93d77737ddd94b00552230a31be20ba6d26aaca2c9bcc",
+        "layoutNodes": 265,
+        "geometry": {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                389,
+                64,
+                545,
+                80
+              ],
+              "visible": false
+            }
+          ],
+          "visible": false,
+          "hit": true
+        }
+      },
+      "finishedAt": "2026-10-03T22:28:28.110Z"
+    },
+    {
+      "file": "name-unclipped-light.png",
+      "requestedAt": "2026-10-03T22:28:33.317Z",
+      "theme": "light",
+      "native": true,
+      "diagnosticOnly": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "id": 9092,
+      "active": true,
+      "pid": 77857,
+      "osDark": false,
+      "boxes": [
+        {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "−100% of Fit+Fit200%Scroll or + / − to zoom",
+          "bounds": [
+            353,
+            100,
+            939,
+            132
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                362.828125,
+                105,
+                371.15625,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                387,
+                108,
+                466.203125,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                481.734375,
+                105,
+                490.671875,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                516.203125,
+                108,
+                530.6875,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                556.6875,
+                108,
+                590.25,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                828.109375,
+                109,
+                939,
+                123
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native portrait.png, zoom 100% of Fit",
+          "bounds": [
+            353,
+            144,
+            939,
+            475
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Image details",
+          "bounds": [
+            353,
+            487,
+            939,
+            619
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                367,
+                501,
+                442.5625,
+                517
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                367,
+                528,
+                486.375,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                869.765625,
+                528,
+                925,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                367,
+                556,
+                405.671875,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                900.28125,
+                556,
+                925,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                367,
+                584,
+                411.265625,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                870.03125,
+                584,
+                925,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Download",
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "imageSample": {
+        "dimensions": [
+          120,
+          180
+        ],
+        "complete": true,
+        "protocol": "blob:",
+        "scale": "1",
+        "translate": "0px",
+        "rgba": [
+          [
+            216,
+            76,
+            55,
+            255
+          ],
+          [
+            33,
+            116,
+            176,
+            255
+          ],
+          [
+            216,
+            76,
+            55,
+            255
+          ]
+        ]
+      },
+      "nameSample": {
+        "text": "Cortex native portrait.png",
+        "owner": true,
+        "style": "overflow: visible;",
+        "computed": {
+          "display": "block",
+          "font": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+          "font-family": "Geist, ui-sans-serif, system-ui, sans-serif",
+          "font-size": "13px",
+          "font-weight": "500",
+          "font-style": "normal",
+          "font-stretch": "100%",
+          "line-height": "16px",
+          "letter-spacing": "normal",
+          "font-kerning": "auto",
+          "font-feature-settings": "normal",
+          "font-variation-settings": "normal",
+          "font-variant-ligatures": "normal",
+          "font-optical-sizing": "auto",
+          "text-rendering": "auto",
+          "-webkit-font-smoothing": "antialiased",
+          "color": "rgb(17, 17, 17)",
+          "text-shadow": "none",
+          "direction": "ltr",
+          "writing-mode": "horizontal-tb",
+          "vertical-align": "baseline",
+          "white-space": "normal",
+          "overflow": "visible",
+          "overflow-x": "visible",
+          "overflow-y": "visible",
+          "max-height": "48px"
+        },
+        "bounds": [
+          389,
+          64,
+          544.96875,
+          80
+        ],
+        "offset": [
+          52,
+          20,
+          156,
+          16
+        ],
+        "client": [
+          0,
+          0,
+          156,
+          16
+        ],
+        "scroll": [
+          0,
+          0,
+          156,
+          16
+        ],
+        "ranges": [
+          [
+            389,
+            63,
+            544.96875,
+            80
+          ]
+        ],
+        "clipChain": [
+          {
+            "tag": "SPAN",
+            "className": "medias-name",
+            "bounds": [
+              389,
+              64,
+              544.96875,
+              80
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "scroll": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "SPAN",
+            "className": "title",
+            "bounds": [
+              389,
+              64,
+              544.96875,
+              80
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "scroll": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "content-top medias-top",
+            "bounds": [
+              337,
+              44,
+              955,
+              100
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              618,
+              56
+            ],
+            "scroll": [
+              0,
+              0,
+              618,
+              56
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "medias-image-live",
+            "bounds": [
+              337,
+              44,
+              955,
+              635
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "scroll": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "MAIN",
+            "className": "content",
+            "bounds": [
+              337,
+              44,
+              955,
+              635
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "scroll": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "frame",
+            "bounds": [
+              53,
+              44,
+              955,
+              635
+            ],
+            "display": "flex",
+            "overflowX": "hidden",
+            "overflowY": "hidden",
+            "client": [
+              0,
+              0,
+              902,
+              591
+            ],
+            "scroll": [
+              0,
+              0,
+              902,
+              591
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "body",
+            "bounds": [
+              0,
+              44,
+              960,
+              640
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              596
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              596
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "window",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "flex",
+            "overflowX": "hidden",
+            "overflowY": "hidden",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "desk",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "grid",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "BODY",
+            "className": "",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "HTML",
+            "className": "",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          }
+        ],
+        "canvas": {
+          "requestedFont": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+          "resolvedFont": "500 13px Geist, ui-sans-serif, system-ui, sans-serif",
+          "letterSpacing": "0px",
+          "baseline": "alphabetic",
+          "metrics": {
+            "width": 155.96365356445312,
+            "actualBoundingBoxLeft": -0.5720000267028809,
+            "actualBoundingBoxRight": 154.98605346679688,
+            "actualBoundingBoxAscent": 9.437999725341797,
+            "actualBoundingBoxDescent": 2.1059999465942383,
+            "fontBoundingBoxAscent": 13,
+            "fontBoundingBoxDescent": 4,
+            "emHeightAscent": null,
+            "emHeightDescent": null,
+            "alphabeticBaseline": 0
+          }
+        },
+        "viewport": [
+          960,
+          640,
+          1
+        ],
+        "layoutSHA256": "10c27872e0f5f0d529f93d77737ddd94b00552230a31be20ba6d26aaca2c9bcc",
+        "layoutNodes": 265,
+        "geometry": {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        }
+      },
+      "focus": {
+        "visible": true,
+        "outline": "rgb(59, 130, 246) solid 2px",
+        "boxShadow": "rgba(0, 0, 0, 0.06) 0px 0px 0px 1px"
+      },
+      "status": "observed",
+      "httpStatus": 200,
+      "bytes": 65221,
+      "sha256": "f1152f2820297bf2d0764fbbc0687e39bd063f5e7da0eee55f68209506aeba8f",
+      "pixels": [
+        960,
+        640
+      ],
+      "afterBoxes": [
+        {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "−100% of Fit+Fit200%Scroll or + / − to zoom",
+          "bounds": [
+            353,
+            100,
+            939,
+            132
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                362.828125,
+                105,
+                371.15625,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                387,
+                108,
+                466.203125,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                481.734375,
+                105,
+                490.671875,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                516.203125,
+                108,
+                530.6875,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                556.6875,
+                108,
+                590.25,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                828.109375,
+                109,
+                939,
+                123
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native portrait.png, zoom 100% of Fit",
+          "bounds": [
+            353,
+            144,
+            939,
+            475
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Image details",
+          "bounds": [
+            353,
+            487,
+            939,
+            619
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                367,
+                501,
+                442.5625,
+                517
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                367,
+                528,
+                486.375,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                869.765625,
+                528,
+                925,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                367,
+                556,
+                405.671875,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                900.28125,
+                556,
+                925,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                367,
+                584,
+                411.265625,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            },
+            {
+              "bounds": [
+                870.03125,
+                584,
+                925,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Download",
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "afterName": {
+        "text": "Cortex native portrait.png",
+        "owner": true,
+        "style": "overflow: visible;",
+        "computed": {
+          "display": "block",
+          "font": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+          "font-family": "Geist, ui-sans-serif, system-ui, sans-serif",
+          "font-size": "13px",
+          "font-weight": "500",
+          "font-style": "normal",
+          "font-stretch": "100%",
+          "line-height": "16px",
+          "letter-spacing": "normal",
+          "font-kerning": "auto",
+          "font-feature-settings": "normal",
+          "font-variation-settings": "normal",
+          "font-variant-ligatures": "normal",
+          "font-optical-sizing": "auto",
+          "text-rendering": "auto",
+          "-webkit-font-smoothing": "antialiased",
+          "color": "rgb(17, 17, 17)",
+          "text-shadow": "none",
+          "direction": "ltr",
+          "writing-mode": "horizontal-tb",
+          "vertical-align": "baseline",
+          "white-space": "normal",
+          "overflow": "visible",
+          "overflow-x": "visible",
+          "overflow-y": "visible",
+          "max-height": "48px"
+        },
+        "bounds": [
+          389,
+          64,
+          544.96875,
+          80
+        ],
+        "offset": [
+          52,
+          20,
+          156,
+          16
+        ],
+        "client": [
+          0,
+          0,
+          156,
+          16
+        ],
+        "scroll": [
+          0,
+          0,
+          156,
+          16
+        ],
+        "ranges": [
+          [
+            389,
+            63,
+            544.96875,
+            80
+          ]
+        ],
+        "clipChain": [
+          {
+            "tag": "SPAN",
+            "className": "medias-name",
+            "bounds": [
+              389,
+              64,
+              544.96875,
+              80
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "scroll": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "SPAN",
+            "className": "title",
+            "bounds": [
+              389,
+              64,
+              544.96875,
+              80
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "scroll": [
+              0,
+              0,
+              156,
+              16
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "content-top medias-top",
+            "bounds": [
+              337,
+              44,
+              955,
+              100
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              618,
+              56
+            ],
+            "scroll": [
+              0,
+              0,
+              618,
+              56
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "medias-image-live",
+            "bounds": [
+              337,
+              44,
+              955,
+              635
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "scroll": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "MAIN",
+            "className": "content",
+            "bounds": [
+              337,
+              44,
+              955,
+              635
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "scroll": [
+              0,
+              0,
+              618,
+              591
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "frame",
+            "bounds": [
+              53,
+              44,
+              955,
+              635
+            ],
+            "display": "flex",
+            "overflowX": "hidden",
+            "overflowY": "hidden",
+            "client": [
+              0,
+              0,
+              902,
+              591
+            ],
+            "scroll": [
+              0,
+              0,
+              902,
+              591
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "body",
+            "bounds": [
+              0,
+              44,
+              960,
+              640
+            ],
+            "display": "flex",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              596
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              596
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "window",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "flex",
+            "overflowX": "hidden",
+            "overflowY": "hidden",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "desk",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "grid",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "DIV",
+            "className": "",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "BODY",
+            "className": "",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          },
+          {
+            "tag": "HTML",
+            "className": "",
+            "bounds": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "display": "block",
+            "overflowX": "visible",
+            "overflowY": "visible",
+            "client": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "scroll": [
+              0,
+              0,
+              960,
+              640
+            ],
+            "clipPath": "none",
+            "transform": "none",
+            "zoom": "1",
+            "opacity": "1",
+            "visibility": "visible"
+          }
+        ],
+        "canvas": {
+          "requestedFont": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+          "resolvedFont": "500 13px Geist, ui-sans-serif, system-ui, sans-serif",
+          "letterSpacing": "0px",
+          "baseline": "alphabetic",
+          "metrics": {
+            "width": 155.96365356445312,
+            "actualBoundingBoxLeft": -0.5720000267028809,
+            "actualBoundingBoxRight": 154.98605346679688,
+            "actualBoundingBoxAscent": 9.437999725341797,
+            "actualBoundingBoxDescent": 2.1059999465942383,
+            "fontBoundingBoxAscent": 13,
+            "fontBoundingBoxDescent": 4,
+            "emHeightAscent": null,
+            "emHeightDescent": null,
+            "alphabeticBaseline": 0
+          }
+        },
+        "viewport": [
+          960,
+          640,
+          1
+        ],
+        "layoutSHA256": "10c27872e0f5f0d529f93d77737ddd94b00552230a31be20ba6d26aaca2c9bcc",
+        "layoutNodes": 265,
+        "geometry": {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        }
+      },
+      "finishedAt": "2026-10-03T22:28:38.528Z"
+    }
+  ],
+  "nativeChecks": [
+    {
+      "stage": "light:name-clipped:capture",
+      "theme": "light",
+      "point": "before",
+      "measuredAt": "2026-10-03T22:28:22.717Z",
+      "rows": [
+        {
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "id": 9092,
+          "active": true,
+          "pid": 77857
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "false\n"
+    },
+    {
+      "stage": "light:name-clipped:capture",
+      "theme": "light",
+      "point": "after",
+      "measuredAt": "2026-10-03T22:28:28.048Z",
+      "rows": [
+        {
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "id": 9092,
+          "active": true,
+          "pid": 77857
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "false\n"
+    },
+    {
+      "stage": "light:name-unclipped:capture",
+      "theme": "light",
+      "point": "before",
+      "measuredAt": "2026-10-03T22:28:33.258Z",
+      "rows": [
+        {
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "id": 9092,
+          "active": true,
+          "pid": 77857
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "false\n"
+    },
+    {
+      "stage": "light:name-unclipped:capture",
+      "theme": "light",
+      "point": "after",
+      "measuredAt": "2026-10-03T22:28:38.464Z",
+      "rows": [
+        {
+          "id": 9092,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "active": true,
+          "pid": 77857
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "false\n"
+    }
+  ],
+  "checks": [],
+  "calls": [
+    {
+      "stage": "fresh-profile",
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/catalog/providers",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 1
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/catalog/providers/fake/models",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 1
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/providers/fake/key",
+      "method": "PUT",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions",
+      "method": "POST",
+      "status": 201,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions/ses_01a103e1bbf100008f5a94285e4726c9/prompt",
+      "method": "POST",
+      "status": 202,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions/ses_01a103e1bbf100008f5a94285e4726c9/messages",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 2
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions/ses_01a103e1bbf100008f5a94285e4726c9",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "light:open-saved-image",
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "read-only-viewer",
+      "route": "/api/sessions/ses_01a103e1bbf100008f5a94285e4726c9/messages",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 2
+    },
+    {
+      "stage": "read-only-viewer",
+      "route": "/api/sessions/ses_01a103e1bbf100008f5a94285e4726c9",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "read-only-viewer",
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/sessions/ses_01a103e1bbf100008f5a94285e4726c9",
+      "method": "DELETE",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/providers/fake/key",
+      "method": "DELETE",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 1
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    }
+  ],
+  "errors": [],
+  "cleanup": {
+    "nameStyleRestored": true,
+    "ownedChatRemoved": true,
+    "fixtureKeyRemoved": true,
+    "providerValuesRestored": true,
+    "nativeAppearanceRestored": true,
+    "themePreferenceRestored": true,
+    "routeRestored": true,
+    "controlledListsRestored": true,
+    "controlledInferenceOnly": true,
+    "installedAfter": true
+  },
+  "helperHashes": {
+    "files-name-diagnostic.mjs": "dc10c6bd12a89aa2b59bef403d8ead5a810c6388047042d77114f670d7dd1cdf",
+    "files-native-backend.mjs": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "launch-files-native.py": "7d4fdba05afe52d09a79e7775f2f1e0c234ab12ec28cda42e45be0474eae339b"
+  },
+  "fixture": {
+    "bytes": 393,
+    "width": 120,
+    "height": 180,
+    "sha256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+    "rgb": [
+      [
+        216,
+        76,
+        55
+      ],
+      [
+        33,
+        116,
+        176
+      ],
+      [
+        216,
+        76,
+        55
+      ]
+    ]
+  },
+  "membersSHA256": "3d3406d4a184b0d8346c3b3ff9a241cc2a88bed0faf472015edc66b7c6a1e33c",
+  "memberCount": 90,
+  "rootHelperHashes": {
+    "files-native-backend.mjs": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "launch-files-native.py": "7d4fdba05afe52d09a79e7775f2f1e0c234ab12ec28cda42e45be0474eae339b"
+  },
+  "stage": "flow-complete",
+  "installedBefore": {
+    "asarSHA256": "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+    "revision": "d20a012fbb774aa9b348fe1913f85d3476430098",
+    "membersVerified": 90,
+    "pid": 77857,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-name-probe-1",
+    "inspectorSHA256": "7d4fdba05afe52d09a79e7775f2f1e0c234ab12ec28cda42e45be0474eae339b",
+    "membersSHA256": "3d3406d4a184b0d8346c3b3ff9a241cc2a88bed0faf472015edc66b7c6a1e33c"
+  },
+  "backend": {
+    "protocol": "cortex-files-native-v1",
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-name-probe-1",
+    "runID": "9b4d4be2-85a0-40cc-90ec-28d98a54a8cb",
+    "pid": 77852,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "fixture": {
+      "bytes": 393,
+      "width": 120,
+      "height": 180,
+      "sha256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+      "rgb": [
+        [
+          216,
+          76,
+          55
+        ],
+        [
+          33,
+          116,
+          176
+        ],
+        [
+          216,
+          76,
+          55
+        ]
+      ]
+    }
+  },
+  "backendReceipt": {
+    "protocol": "cortex-files-native-v1",
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-name-probe-1",
+    "runID": "9b4d4be2-85a0-40cc-90ec-28d98a54a8cb",
+    "pid": 77852,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "fixture": {
+      "bytes": 393,
+      "width": 120,
+      "height": 180,
+      "sha256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+      "rgb": [
+        [
+          216,
+          76,
+          55
+        ],
+        [
+          33,
+          116,
+          176
+        ],
+        [
+          216,
+          76,
+          55
+        ]
+      ]
+    },
+    "counts": {
+      "catalog": 1,
+      "health": 2,
+      "receipt": 3,
+      "inference": 1,
+      "errors": 0
+    },
+    "requests": [
+      {
+        "imageSHA256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+        "imageBytes": 393,
+        "modelExact": true,
+        "authorizationExact": true,
+        "messagesExact": true,
+        "toolsAbsent": true,
+        "httpStatus": 200,
+        "completed": true
+      }
+    ],
+    "failures": []
+  },
+  "playwrightVersion": "1.63.0",
+  "nativeDownloadOverrides": "none; connectOverCDP noDefaults:true",
+  "previous": {
+    "stored": null,
+    "pref": "system",
+    "theme": "dark",
+    "nativeDark": "true",
+    "hash": "#/home"
+  },
+  "session": {
+    "id": "ses_01a103e1bbf100008f5a94285e4726c9",
+    "title": "Native saved image",
+    "agent": "build",
+    "model": {
+      "providerID": "fake",
+      "modelID": "reasoner"
+    },
+    "kind": "chat",
+    "time": {
+      "created": 1791066487793,
+      "updated": 1791066487793
+    }
+  },
+  "savedImage": {
+    "sessionID": "ses_01a103e1bbf100008f5a94285e4726c9",
+    "messageID": "msg_01a103e1bc330000ebe81b7f3ae95126",
+    "partID": "prt_01a103e1bc3300029e033f05c07f46fd",
+    "historySHA256": "30d6af0f14727116fd3bc6608a7c932a3d738e8412ea1a34d6264fdefdfac056",
+    "fileSHA256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf"
+  },
+  "originalNameOverflow": {
+    "style": null,
+    "value": "",
+    "priority": "",
+    "x": "auto",
+    "y": "auto"
+  },
+  "nameSamples": [
+    {
+      "text": "Cortex native portrait.png",
+      "owner": true,
+      "style": null,
+      "computed": {
+        "display": "block",
+        "font": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+        "font-family": "Geist, ui-sans-serif, system-ui, sans-serif",
+        "font-size": "13px",
+        "font-weight": "500",
+        "font-style": "normal",
+        "font-stretch": "100%",
+        "line-height": "16px",
+        "letter-spacing": "normal",
+        "font-kerning": "auto",
+        "font-feature-settings": "normal",
+        "font-variation-settings": "normal",
+        "font-variant-ligatures": "normal",
+        "font-optical-sizing": "auto",
+        "text-rendering": "auto",
+        "-webkit-font-smoothing": "antialiased",
+        "color": "rgb(17, 17, 17)",
+        "text-shadow": "none",
+        "direction": "ltr",
+        "writing-mode": "horizontal-tb",
+        "vertical-align": "baseline",
+        "white-space": "normal",
+        "overflow": "auto",
+        "overflow-x": "auto",
+        "overflow-y": "auto",
+        "max-height": "48px"
+      },
+      "bounds": [
+        389,
+        64,
+        544.96875,
+        80
+      ],
+      "offset": [
+        52,
+        20,
+        156,
+        16
+      ],
+      "client": [
+        0,
+        0,
+        156,
+        16
+      ],
+      "scroll": [
+        0,
+        0,
+        156,
+        16
+      ],
+      "ranges": [
+        [
+          389,
+          63,
+          544.96875,
+          80
+        ]
+      ],
+      "clipChain": [
+        {
+          "tag": "SPAN",
+          "className": "medias-name",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "display": "block",
+          "overflowX": "auto",
+          "overflowY": "auto",
+          "client": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "scroll": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "SPAN",
+          "className": "title",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "scroll": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "content-top medias-top",
+          "bounds": [
+            337,
+            44,
+            955,
+            100
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            618,
+            56
+          ],
+          "scroll": [
+            0,
+            0,
+            618,
+            56
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "medias-image-live",
+          "bounds": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "scroll": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "MAIN",
+          "className": "content",
+          "bounds": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "scroll": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "frame",
+          "bounds": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "display": "flex",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "client": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "scroll": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "body",
+          "bounds": [
+            0,
+            44,
+            960,
+            640
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "window",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "flex",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "desk",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "grid",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "BODY",
+          "className": "",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "HTML",
+          "className": "",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        }
+      ],
+      "canvas": {
+        "requestedFont": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+        "resolvedFont": "500 13px Geist, ui-sans-serif, system-ui, sans-serif",
+        "letterSpacing": "0px",
+        "baseline": "alphabetic",
+        "metrics": {
+          "width": 155.96365356445312,
+          "actualBoundingBoxLeft": -0.5720000267028809,
+          "actualBoundingBoxRight": 154.98605346679688,
+          "actualBoundingBoxAscent": 9.437999725341797,
+          "actualBoundingBoxDescent": 2.1059999465942383,
+          "fontBoundingBoxAscent": 13,
+          "fontBoundingBoxDescent": 4,
+          "emHeightAscent": null,
+          "emHeightDescent": null,
+          "alphabeticBaseline": 0
+        }
+      },
+      "viewport": [
+        960,
+        640,
+        1
+      ],
+      "layoutSHA256": "10c27872e0f5f0d529f93d77737ddd94b00552230a31be20ba6d26aaca2c9bcc",
+      "layoutNodes": 265,
+      "geometry": {
+        "text": "Cortex native portrait.png",
+        "bounds": [
+          389,
+          64,
+          544.96875,
+          80
+        ],
+        "clip": [
+          53,
+          44,
+          955,
+          635
+        ],
+        "ink": [
+          {
+            "bounds": [
+              389,
+              63,
+              544.96875,
+              80
+            ],
+            "clip": [
+              389,
+              64,
+              545,
+              80
+            ],
+            "visible": false
+          }
+        ],
+        "visible": false,
+        "hit": true
+      }
+    },
+    {
+      "text": "Cortex native portrait.png",
+      "owner": true,
+      "style": null,
+      "computed": {
+        "display": "block",
+        "font": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+        "font-family": "Geist, ui-sans-serif, system-ui, sans-serif",
+        "font-size": "13px",
+        "font-weight": "500",
+        "font-style": "normal",
+        "font-stretch": "100%",
+        "line-height": "16px",
+        "letter-spacing": "normal",
+        "font-kerning": "auto",
+        "font-feature-settings": "normal",
+        "font-variation-settings": "normal",
+        "font-variant-ligatures": "normal",
+        "font-optical-sizing": "auto",
+        "text-rendering": "auto",
+        "-webkit-font-smoothing": "antialiased",
+        "color": "rgb(17, 17, 17)",
+        "text-shadow": "none",
+        "direction": "ltr",
+        "writing-mode": "horizontal-tb",
+        "vertical-align": "baseline",
+        "white-space": "normal",
+        "overflow": "auto",
+        "overflow-x": "auto",
+        "overflow-y": "auto",
+        "max-height": "48px"
+      },
+      "bounds": [
+        389,
+        64,
+        544.96875,
+        80
+      ],
+      "offset": [
+        52,
+        20,
+        156,
+        16
+      ],
+      "client": [
+        0,
+        0,
+        156,
+        16
+      ],
+      "scroll": [
+        0,
+        0,
+        156,
+        16
+      ],
+      "ranges": [
+        [
+          389,
+          63,
+          544.96875,
+          80
+        ]
+      ],
+      "clipChain": [
+        {
+          "tag": "SPAN",
+          "className": "medias-name",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "display": "block",
+          "overflowX": "auto",
+          "overflowY": "auto",
+          "client": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "scroll": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "SPAN",
+          "className": "title",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "scroll": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "content-top medias-top",
+          "bounds": [
+            337,
+            44,
+            955,
+            100
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            618,
+            56
+          ],
+          "scroll": [
+            0,
+            0,
+            618,
+            56
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "medias-image-live",
+          "bounds": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "scroll": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "MAIN",
+          "className": "content",
+          "bounds": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "scroll": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "frame",
+          "bounds": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "display": "flex",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "client": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "scroll": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "body",
+          "bounds": [
+            0,
+            44,
+            960,
+            640
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "window",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "flex",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "desk",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "grid",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "BODY",
+          "className": "",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "HTML",
+          "className": "",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        }
+      ],
+      "canvas": {
+        "requestedFont": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+        "resolvedFont": "500 13px Geist, ui-sans-serif, system-ui, sans-serif",
+        "letterSpacing": "0px",
+        "baseline": "alphabetic",
+        "metrics": {
+          "width": 155.96365356445312,
+          "actualBoundingBoxLeft": -0.5720000267028809,
+          "actualBoundingBoxRight": 154.98605346679688,
+          "actualBoundingBoxAscent": 9.437999725341797,
+          "actualBoundingBoxDescent": 2.1059999465942383,
+          "fontBoundingBoxAscent": 13,
+          "fontBoundingBoxDescent": 4,
+          "emHeightAscent": null,
+          "emHeightDescent": null,
+          "alphabeticBaseline": 0
+        }
+      },
+      "viewport": [
+        960,
+        640,
+        1
+      ],
+      "layoutSHA256": "10c27872e0f5f0d529f93d77737ddd94b00552230a31be20ba6d26aaca2c9bcc",
+      "layoutNodes": 265,
+      "geometry": {
+        "text": "Cortex native portrait.png",
+        "bounds": [
+          389,
+          64,
+          544.96875,
+          80
+        ],
+        "clip": [
+          53,
+          44,
+          955,
+          635
+        ],
+        "ink": [
+          {
+            "bounds": [
+              389,
+              63,
+              544.96875,
+              80
+            ],
+            "clip": [
+              389,
+              64,
+              545,
+              80
+            ],
+            "visible": false
+          }
+        ],
+        "visible": false,
+        "hit": true
+      }
+    },
+    {
+      "text": "Cortex native portrait.png",
+      "owner": true,
+      "style": "overflow: visible;",
+      "computed": {
+        "display": "block",
+        "font": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+        "font-family": "Geist, ui-sans-serif, system-ui, sans-serif",
+        "font-size": "13px",
+        "font-weight": "500",
+        "font-style": "normal",
+        "font-stretch": "100%",
+        "line-height": "16px",
+        "letter-spacing": "normal",
+        "font-kerning": "auto",
+        "font-feature-settings": "normal",
+        "font-variation-settings": "normal",
+        "font-variant-ligatures": "normal",
+        "font-optical-sizing": "auto",
+        "text-rendering": "auto",
+        "-webkit-font-smoothing": "antialiased",
+        "color": "rgb(17, 17, 17)",
+        "text-shadow": "none",
+        "direction": "ltr",
+        "writing-mode": "horizontal-tb",
+        "vertical-align": "baseline",
+        "white-space": "normal",
+        "overflow": "visible",
+        "overflow-x": "visible",
+        "overflow-y": "visible",
+        "max-height": "48px"
+      },
+      "bounds": [
+        389,
+        64,
+        544.96875,
+        80
+      ],
+      "offset": [
+        52,
+        20,
+        156,
+        16
+      ],
+      "client": [
+        0,
+        0,
+        156,
+        16
+      ],
+      "scroll": [
+        0,
+        0,
+        156,
+        16
+      ],
+      "ranges": [
+        [
+          389,
+          63,
+          544.96875,
+          80
+        ]
+      ],
+      "clipChain": [
+        {
+          "tag": "SPAN",
+          "className": "medias-name",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "scroll": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "SPAN",
+          "className": "title",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "scroll": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "content-top medias-top",
+          "bounds": [
+            337,
+            44,
+            955,
+            100
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            618,
+            56
+          ],
+          "scroll": [
+            0,
+            0,
+            618,
+            56
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "medias-image-live",
+          "bounds": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "scroll": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "MAIN",
+          "className": "content",
+          "bounds": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "scroll": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "frame",
+          "bounds": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "display": "flex",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "client": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "scroll": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "body",
+          "bounds": [
+            0,
+            44,
+            960,
+            640
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "window",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "flex",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "desk",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "grid",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "BODY",
+          "className": "",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "HTML",
+          "className": "",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        }
+      ],
+      "canvas": {
+        "requestedFont": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+        "resolvedFont": "500 13px Geist, ui-sans-serif, system-ui, sans-serif",
+        "letterSpacing": "0px",
+        "baseline": "alphabetic",
+        "metrics": {
+          "width": 155.96365356445312,
+          "actualBoundingBoxLeft": -0.5720000267028809,
+          "actualBoundingBoxRight": 154.98605346679688,
+          "actualBoundingBoxAscent": 9.437999725341797,
+          "actualBoundingBoxDescent": 2.1059999465942383,
+          "fontBoundingBoxAscent": 13,
+          "fontBoundingBoxDescent": 4,
+          "emHeightAscent": null,
+          "emHeightDescent": null,
+          "alphabeticBaseline": 0
+        }
+      },
+      "viewport": [
+        960,
+        640,
+        1
+      ],
+      "layoutSHA256": "10c27872e0f5f0d529f93d77737ddd94b00552230a31be20ba6d26aaca2c9bcc",
+      "layoutNodes": 265,
+      "geometry": {
+        "text": "Cortex native portrait.png",
+        "bounds": [
+          389,
+          64,
+          544.96875,
+          80
+        ],
+        "clip": [
+          53,
+          44,
+          955,
+          635
+        ],
+        "ink": [
+          {
+            "bounds": [
+              389,
+              63,
+              544.96875,
+              80
+            ],
+            "clip": [
+              53,
+              44,
+              955,
+              635
+            ],
+            "visible": true
+          }
+        ],
+        "visible": true,
+        "hit": true
+      }
+    },
+    {
+      "text": "Cortex native portrait.png",
+      "owner": true,
+      "style": "overflow: visible;",
+      "computed": {
+        "display": "block",
+        "font": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+        "font-family": "Geist, ui-sans-serif, system-ui, sans-serif",
+        "font-size": "13px",
+        "font-weight": "500",
+        "font-style": "normal",
+        "font-stretch": "100%",
+        "line-height": "16px",
+        "letter-spacing": "normal",
+        "font-kerning": "auto",
+        "font-feature-settings": "normal",
+        "font-variation-settings": "normal",
+        "font-variant-ligatures": "normal",
+        "font-optical-sizing": "auto",
+        "text-rendering": "auto",
+        "-webkit-font-smoothing": "antialiased",
+        "color": "rgb(17, 17, 17)",
+        "text-shadow": "none",
+        "direction": "ltr",
+        "writing-mode": "horizontal-tb",
+        "vertical-align": "baseline",
+        "white-space": "normal",
+        "overflow": "visible",
+        "overflow-x": "visible",
+        "overflow-y": "visible",
+        "max-height": "48px"
+      },
+      "bounds": [
+        389,
+        64,
+        544.96875,
+        80
+      ],
+      "offset": [
+        52,
+        20,
+        156,
+        16
+      ],
+      "client": [
+        0,
+        0,
+        156,
+        16
+      ],
+      "scroll": [
+        0,
+        0,
+        156,
+        16
+      ],
+      "ranges": [
+        [
+          389,
+          63,
+          544.96875,
+          80
+        ]
+      ],
+      "clipChain": [
+        {
+          "tag": "SPAN",
+          "className": "medias-name",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "scroll": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "SPAN",
+          "className": "title",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "scroll": [
+            0,
+            0,
+            156,
+            16
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "content-top medias-top",
+          "bounds": [
+            337,
+            44,
+            955,
+            100
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            618,
+            56
+          ],
+          "scroll": [
+            0,
+            0,
+            618,
+            56
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "medias-image-live",
+          "bounds": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "scroll": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "MAIN",
+          "className": "content",
+          "bounds": [
+            337,
+            44,
+            955,
+            635
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "scroll": [
+            0,
+            0,
+            618,
+            591
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "frame",
+          "bounds": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "display": "flex",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "client": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "scroll": [
+            0,
+            0,
+            902,
+            591
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "body",
+          "bounds": [
+            0,
+            44,
+            960,
+            640
+          ],
+          "display": "flex",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            596
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "window",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "flex",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "desk",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "grid",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "className": "",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "BODY",
+          "className": "",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "tag": "HTML",
+          "className": "",
+          "bounds": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "display": "block",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "client": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            960,
+            640
+          ],
+          "clipPath": "none",
+          "transform": "none",
+          "zoom": "1",
+          "opacity": "1",
+          "visibility": "visible"
+        }
+      ],
+      "canvas": {
+        "requestedFont": "500 13px / 16px Geist, ui-sans-serif, system-ui, sans-serif",
+        "resolvedFont": "500 13px Geist, ui-sans-serif, system-ui, sans-serif",
+        "letterSpacing": "0px",
+        "baseline": "alphabetic",
+        "metrics": {
+          "width": 155.96365356445312,
+          "actualBoundingBoxLeft": -0.5720000267028809,
+          "actualBoundingBoxRight": 154.98605346679688,
+          "actualBoundingBoxAscent": 9.437999725341797,
+          "actualBoundingBoxDescent": 2.1059999465942383,
+          "fontBoundingBoxAscent": 13,
+          "fontBoundingBoxDescent": 4,
+          "emHeightAscent": null,
+          "emHeightDescent": null,
+          "alphabeticBaseline": 0
+        }
+      },
+      "viewport": [
+        960,
+        640,
+        1
+      ],
+      "layoutSHA256": "10c27872e0f5f0d529f93d77737ddd94b00552230a31be20ba6d26aaca2c9bcc",
+      "layoutNodes": 265,
+      "geometry": {
+        "text": "Cortex native portrait.png",
+        "bounds": [
+          389,
+          64,
+          544.96875,
+          80
+        ],
+        "clip": [
+          53,
+          44,
+          955,
+          635
+        ],
+        "ink": [
+          {
+            "bounds": [
+              389,
+              63,
+              544.96875,
+              80
+            ],
+            "clip": [
+              53,
+              44,
+              955,
+              635
+            ],
+            "visible": true
+          }
+        ],
+        "visible": true,
+        "hit": true
+      }
+    }
+  ],
+  "baselineLayout": [
+    [
+      "DIV",
+      [
+        0,
+        0,
+        960,
+        640
+      ]
+    ],
+    [
+      "DIV",
+      [
+        0,
+        0,
+        960,
+        640
+      ]
+    ],
+    [
+      "DIV",
+      [
+        0,
+        0,
+        960,
+        640
+      ]
+    ],
+    [
+      "DIV",
+      [
+        0,
+        0,
+        960,
+        44
+      ]
+    ],
+    [
+      "DIV",
+      [
+        20,
+        8,
+        480,
+        36
+      ]
+    ],
+    [
+      "DIV",
+      [
+        20,
+        15,
+        81,
+        29
+      ]
+    ],
+    [
+      "DIV",
+      [
+        97,
+        8,
+        193,
+        36
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        97,
+        8,
+        125,
+        36
+      ]
+    ],
+    [
+      "svg",
+      [
+        103,
+        14,
+        119,
+        30
+      ]
+    ],
+    [
+      "rect",
+      [
+        104.33333587646484,
+        16,
+        117.66666412353516,
+        28
+      ]
+    ],
+    [
+      "path",
+      [
+        109,
+        16,
+        109,
+        28
+      ]
+    ],
+    [
+      "path",
+      [
+        111.83333587646484,
+        20.33333396911621,
+        113.5,
+        23.666667938232422
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        131,
+        8,
+        159,
+        36
+      ]
+    ],
+    [
+      "svg",
+      [
+        137,
+        14,
+        153,
+        30
+      ]
+    ],
+    [
+      "g",
+      [
+        139.1681365966797,
+        17.759445190429688,
+        150.87535095214844,
+        26.234691619873047
+      ]
+    ],
+    [
+      "g",
+      [
+        139.1681365966797,
+        17.759445190429688,
+        150.87535095214844,
+        26.234691619873047
+      ]
+    ],
+    [
+      "path",
+      [
+        139.1681365966797,
+        17.759445190429688,
+        143.733154296875,
+        26.234691619873047
+      ]
+    ],
+    [
+      "path",
+      [
+        142.80743408203125,
+        21.98208999633789,
+        150.87535095214844,
+        22.025482177734375
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        165,
+        8,
+        193,
+        36
+      ]
+    ],
+    [
+      "svg",
+      [
+        171,
+        14,
+        187,
+        30
+      ]
+    ],
+    [
+      "g",
+      [
+        173.12449645996094,
+        17.5606746673584,
+        184.8723602294922,
+        26.425464630126953
+      ]
+    ],
+    [
+      "g",
+      [
+        173.12449645996094,
+        17.5606746673584,
+        184.8723602294922,
+        26.425464630126953
+      ]
+    ],
+    [
+      "path",
+      [
+        173.12449645996094,
+        21.958520889282227,
+        184.45059204101562,
+        21.958520889282227
+      ]
+    ],
+    [
+      "path",
+      [
+        180.5504150390625,
+        17.5606746673584,
+        184.8723602294922,
+        26.425464630126953
+      ]
+    ],
+    [
+      "DIV",
+      [
+        480,
+        22,
+        480,
+        22
+      ]
+    ],
+    [
+      "DIV",
+      [
+        480,
+        8,
+        940,
+        36
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        880,
+        8,
+        908,
+        36
+      ]
+    ],
+    [
+      "svg",
+      [
+        886,
+        14,
+        902,
+        30
+      ]
+    ],
+    [
+      "g",
+      [
+        888.0227661132812,
+        15.34213638305664,
+        899.9645385742188,
+        28.652080535888672
+      ]
+    ],
+    [
+      "g",
+      [
+        888.0227661132812,
+        15.34213638305664,
+        899.9645385742188,
+        28.652080535888672
+      ]
+    ],
+    [
+      "path",
+      [
+        888.0227661132812,
+        20.05533790588379,
+        899.9645385742188,
+        28.652080535888672
+      ]
+    ],
+    [
+      "path",
+      [
+        891.28515625,
+        15.34213638305664,
+        896.543701171875,
+        17.945898056030273
+      ]
+    ],
+    [
+      "path",
+      [
+        893.8746948242188,
+        15.62927532196045,
+        893.8746948242188,
+        22.027070999145508
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        912,
+        8,
+        940,
+        36
+      ]
+    ],
+    [
+      "svg",
+      [
+        918,
+        14,
+        934,
+        30
+      ]
+    ],
+    [
+      "g",
+      [
+        919.7073364257812,
+        15.333687782287598,
+        932.2952270507812,
+        28.645774841308594
+      ]
+    ],
+    [
+      "g",
+      [
+        919.7073364257812,
+        15.333687782287598,
+        932.2952270507812,
+        28.645774841308594
+      ]
+    ],
+    [
+      "path",
+      [
+        919.7073364257812,
+        15.333687782287598,
+        922.9466552734375,
+        18.79286003112793
+      ]
+    ],
+    [
+      "path",
+      [
+        929.0053100585938,
+        15.362334251403809,
+        932.2552490234375,
+        18.752361297607422
+      ]
+    ],
+    [
+      "path",
+      [
+        919.720703125,
+        25.21624755859375,
+        922.921630859375,
+        28.645774841308594
+      ]
+    ],
+    [
+      "path",
+      [
+        929.0173950195312,
+        25.18773651123047,
+        932.2952270507812,
+        28.614227294921875
+      ]
+    ],
+    [
+      "circle",
+      [
+        925.1392822265625,
+        21.108875274658203,
+        926.789794921875,
+        22.759353637695312
+      ]
+    ],
+    [
+      "DIV",
+      [
+        0,
+        44,
+        960,
+        640
+      ]
+    ],
+    [
+      "NAV",
+      [
+        0,
+        44,
+        53,
+        640
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        8.5,
+        44,
+        44.5,
+        80
+      ]
+    ],
+    [
+      "svg",
+      [
+        17.5,
+        53,
+        35.5,
+        71
+      ]
+    ],
+    [
+      "g",
+      [
+        19.480676651000977,
+        54.54701614379883,
+        33.524436950683594,
+        69.48491668701172
+      ]
+    ],
+    [
+      "g",
+      [
+        19.480676651000977,
+        54.54701614379883,
+        33.524436950683594,
+        69.48491668701172
+      ]
+    ],
+    [
+      "path",
+      [
+        19.480676651000977,
+        54.54701614379883,
+        33.524436950683594,
+        69.48491668701172
+      ]
+    ],
+    [
+      "path",
+      [
+        23.85721778869629,
+        65.56893157958984,
+        29.174236297607422,
+        65.59751892089844
+      ]
+    ],
+    [
+      "DIV",
+      [
+        18.5,
+        88,
+        34.5,
+        89
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        8.5,
+        97,
+        44.5,
+        133
+      ]
+    ],
+    [
+      "svg",
+      [
+        17.5,
+        106,
+        35.5,
+        124
+      ]
+    ],
+    [
+      "g",
+      [
+        19.011581420898438,
+        108.68836975097656,
+        33.98162841796875,
+        121.31773376464844
+      ]
+    ],
+    [
+      "g",
+      [
+        19.011581420898438,
+        108.68836975097656,
+        33.98162841796875,
+        121.31773376464844
+      ]
+    ],
+    [
+      "path",
+      [
+        21.862499237060547,
+        108.68836975097656,
+        31.138427734375,
+        108.75968933105469
+      ]
+    ],
+    [
+      "path",
+      [
+        19.011581420898438,
+        111.09398651123047,
+        33.98162841796875,
+        121.3177261352539
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        8.5,
+        141,
+        44.5,
+        177
+      ]
+    ],
+    [
+      "svg",
+      [
+        17.5,
+        150,
+        35.5,
+        168
+      ]
+    ],
+    [
+      "g",
+      [
+        19.02550506591797,
+        152.17068481445312,
+        33.99679183959961,
+        165.84744262695312
+      ]
+    ],
+    [
+      "g",
+      [
+        19.02550506591797,
+        152.17068481445312,
+        33.99679183959961,
+        165.84744262695312
+      ]
+    ],
+    [
+      "path",
+      [
+        20.450716018676758,
+        152.17068481445312,
+        33.99679183959961,
+        165.84744262695312
+      ]
+    ],
+    [
+      "path",
+      [
+        19.02550506591797,
+        156.9993896484375,
+        21.83039093017578,
+        158.880859375
+      ]
+    ],
+    [
+      "path",
+      [
+        27.112380981445312,
+        155.55288696289062,
+        29.824819564819336,
+        160.37673950195312
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        8.5,
+        185,
+        44.5,
+        221
+      ]
+    ],
+    [
+      "svg",
+      [
+        17.5,
+        194,
+        35.5,
+        212
+      ]
+    ],
+    [
+      "g",
+      [
+        19.018529891967773,
+        196.26507568359375,
+        33.97193145751953,
+        209.71054077148438
+      ]
+    ],
+    [
+      "g",
+      [
+        19.018529891967773,
+        196.26507568359375,
+        33.97193145751953,
+        209.71054077148438
+      ]
+    ],
+    [
+      "path",
+      [
+        25.423057556152344,
+        196.26507568359375,
+        33.97193145751953,
+        204.85476684570312
+      ]
+    ],
+    [
+      "path",
+      [
+        19.018529891967773,
+        199.3360137939453,
+        29.503223419189453,
+        209.71054077148438
+      ]
+    ],
+    [
+      "path",
+      [
+        22.47654151916504,
+        204.03292846679688,
+        22.88229751586914,
+        205.1306915283203
+      ]
+    ],
+    [
+      "path",
+      [
+        25.533126831054688,
+        203.60997009277344,
+        25.85586166381836,
+        204.71656799316406
+      ]
+    ],
+    [
+      "path",
+      [
+        28.696731567382812,
+        199.4097900390625,
+        28.96418571472168,
+        199.8155517578125
+      ]
+    ],
+    [
+      "path",
+      [
+        30.85396957397461,
+        200.23016357421875,
+        31.315101623535156,
+        200.82958984375
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        8.5,
+        229,
+        44.5,
+        265
+      ]
+    ],
+    [
+      "svg",
+      [
+        17.5,
+        238,
+        35.5,
+        256
+      ]
+    ],
+    [
+      "g",
+      [
+        19.441293716430664,
+        239.9649658203125,
+        33.562110900878906,
+        254.0584259033203
+      ]
+    ],
+    [
+      "g",
+      [
+        19.441293716430664,
+        239.9649658203125,
+        33.562110900878906,
+        254.0584259033203
+      ]
+    ],
+    [
+      "path",
+      [
+        19.441293716430664,
+        239.9649658203125,
+        33.562110900878906,
+        254.0584259033203
+      ]
+    ],
+    [
+      "path",
+      [
+        23.342329025268555,
+        243.93670654296875,
+        28.896320343017578,
+        250.23377990722656
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        8.5,
+        273,
+        44.5,
+        309
+      ]
+    ],
+    [
+      "svg",
+      [
+        17.5,
+        282,
+        35.5,
+        300
+      ]
+    ],
+    [
+      "circle",
+      [
+        20.649999618530273,
+        290.0249938964844,
+        22.600000381469727,
+        291.9750061035156
+      ]
+    ],
+    [
+      "circle",
+      [
+        25.524999618530273,
+        290.0249938964844,
+        27.474998474121094,
+        291.9750061035156
+      ]
+    ],
+    [
+      "circle",
+      [
+        30.400001525878906,
+        290.0249938964844,
+        32.349998474121094,
+        291.9750061035156
+      ]
+    ],
+    [
+      "DIV",
+      [
+        26.5,
+        317,
+        26.5,
+        502
+      ]
+    ],
+    [
+      "DIV",
+      [
+        8.5,
+        510,
+        44.5,
+        546
+      ]
+    ],
+    [
+      "DIV",
+      [
+        8.5,
+        510,
+        44.5,
+        546
+      ]
+    ],
+    [
+      "DIV",
+      [
+        8.5,
+        434,
+        44.5,
+        546
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        8.5,
+        434,
+        44.5,
+        470
+      ]
+    ],
+    [
+      "svg",
+      [
+        17.5,
+        443,
+        35.5,
+        461
+      ]
+    ],
+    [
+      "g",
+      [
+        20.307525634765625,
+        444.5107727050781,
+        32.6722526550293,
+        459.4674377441406
+      ]
+    ],
+    [
+      "g",
+      [
+        20.307525634765625,
+        444.5107727050781,
+        32.6722526550293,
+        459.4674377441406
+      ]
+    ],
+    [
+      "path",
+      [
+        20.307525634765625,
+        444.5107727050781,
+        32.6722526550293,
+        459.4674377441406
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        8.5,
+        472,
+        44.5,
+        508
+      ]
+    ],
+    [
+      "svg",
+      [
+        17.5,
+        481,
+        35.5,
+        499
+      ]
+    ],
+    [
+      "g",
+      [
+        19.022775650024414,
+        482.59454345703125,
+        33.97984313964844,
+        497.37774658203125
+      ]
+    ],
+    [
+      "g",
+      [
+        19.022775650024414,
+        482.59454345703125,
+        33.97984313964844,
+        497.37774658203125
+      ]
+    ],
+    [
+      "path",
+      [
+        22.86602020263672,
+        486.2855224609375,
+        30.227506637573242,
+        493.7515563964844
+      ]
+    ],
+    [
+      "path",
+      [
+        26.547046661376953,
+        482.59454345703125,
+        26.5683536529541,
+        484.1468505859375
+      ]
+    ],
+    [
+      "path",
+      [
+        21.134174346923828,
+        484.6957092285156,
+        22.283056259155273,
+        485.8068542480469
+      ]
+    ],
+    [
+      "path",
+      [
+        30.828651428222656,
+        484.71160888671875,
+        31.98889923095703,
+        485.84197998046875
+      ]
+    ],
+    [
+      "path",
+      [
+        19.022775650024414,
+        490.0628356933594,
+        20.587574005126953,
+        490.0703125
+      ]
+    ],
+    [
+      "path",
+      [
+        32.443450927734375,
+        490.02874755859375,
+        33.97984313964844,
+        490.03668212890625
+      ]
+    ],
+    [
+      "path",
+      [
+        21.083036422729492,
+        494.15631103515625,
+        22.248966217041016,
+        495.2674865722656
+      ]
+    ],
+    [
+      "path",
+      [
+        30.818424224853516,
+        494.1765441894531,
+        31.928558349609375,
+        495.2706604003906
+      ]
+    ],
+    [
+      "path",
+      [
+        26.494678497314453,
+        495.91522216796875,
+        26.51153564453125,
+        497.37774658203125
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        8.5,
+        510,
+        44.5,
+        546
+      ]
+    ],
+    [
+      "svg",
+      [
+        17.5,
+        519,
+        35.5,
+        537
+      ]
+    ],
+    [
+      "path",
+      [
+        19.375,
+        521.625,
+        34,
+        534.375
+      ]
+    ],
+    [
+      "path",
+      [
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    [
+      "g",
+      [
+        28,
+        520.125,
+        34,
+        526.125
+      ]
+    ],
+    [
+      "circle",
+      [
+        29.799999237060547,
+        521.9249877929688,
+        32.20000076293945,
+        524.3250122070312
+      ]
+    ],
+    [
+      "path",
+      [
+        28,
+        520.125,
+        34,
+        526.125
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        8.5,
+        554,
+        44.5,
+        590
+      ]
+    ],
+    [
+      "svg",
+      [
+        17.5,
+        563,
+        35.5,
+        581
+      ]
+    ],
+    [
+      "g",
+      [
+        19.70521354675293,
+        564.5159912109375,
+        33.312095642089844,
+        579.493896484375
+      ]
+    ],
+    [
+      "g",
+      [
+        19.70521354675293,
+        564.5159912109375,
+        33.312095642089844,
+        579.493896484375
+      ]
+    ],
+    [
+      "path",
+      [
+        19.70521354675293,
+        564.5159912109375,
+        33.312095642089844,
+        579.493896484375
+      ]
+    ],
+    [
+      "DIV",
+      [
+        14.5,
+        602,
+        38.5,
+        626
+      ]
+    ],
+    [
+      "svg",
+      [
+        19.5,
+        607,
+        33.5,
+        621
+      ]
+    ],
+    [
+      "g",
+      [
+        21.331863403320312,
+        608.1768798828125,
+        31.670230865478516,
+        619.8238525390625
+      ]
+    ],
+    [
+      "g",
+      [
+        21.331863403320312,
+        608.1768798828125,
+        31.670230865478516,
+        619.8238525390625
+      ]
+    ],
+    [
+      "circle",
+      [
+        23.36191177368164,
+        608.1768798828125,
+        29.648311614990234,
+        614.4632568359375
+      ]
+    ],
+    [
+      "path",
+      [
+        21.331863403320312,
+        615.7306518554688,
+        31.670230865478516,
+        619.8238525390625
+      ]
+    ],
+    [
+      "DIV",
+      [
+        53,
+        44,
+        955,
+        635
+      ]
+    ],
+    [
+      "ASIDE",
+      [
+        53,
+        44,
+        337,
+        635
+      ]
+    ],
+    [
+      "DIV",
+      [
+        53,
+        44,
+        337,
+        635
+      ]
+    ],
+    [
+      "DIV",
+      [
+        53,
+        44,
+        337,
+        122
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        65,
+        63,
+        190.34375,
+        103
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        75,
+        67,
+        107,
+        99
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        117,
+        73,
+        164.34375,
+        93
+      ]
+    ],
+    [
+      "svg",
+      [
+        170.34375,
+        77,
+        182.34375,
+        89
+      ]
+    ],
+    [
+      "g",
+      [
+        173.69384765625,
+        81.82901763916016,
+        178.99295043945312,
+        84.15215301513672
+      ]
+    ],
+    [
+      "g",
+      [
+        173.69384765625,
+        81.82901763916016,
+        178.99295043945312,
+        84.15215301513672
+      ]
+    ],
+    [
+      "path",
+      [
+        173.69384765625,
+        81.82901763916016,
+        178.99295043945312,
+        84.15215301513672
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        75,
+        67,
+        107,
+        99
+      ]
+    ],
+    [
+      "DIV",
+      [
+        190.34375,
+        83,
+        269,
+        83
+      ]
+    ],
+    [
+      "DIV",
+      [
+        269,
+        69,
+        325,
+        97
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        269,
+        69,
+        297,
+        97
+      ]
+    ],
+    [
+      "svg",
+      [
+        275,
+        75,
+        291,
+        91
+      ]
+    ],
+    [
+      "g",
+      [
+        277.4949951171875,
+        76.37010192871094,
+        288.5213317871094,
+        89.64705657958984
+      ]
+    ],
+    [
+      "g",
+      [
+        277.4949951171875,
+        76.37010192871094,
+        288.5213317871094,
+        89.64705657958984
+      ]
+    ],
+    [
+      "path",
+      [
+        277.4949951171875,
+        76.37010192871094,
+        288.5213317871094,
+        87.25314331054688
+      ]
+    ],
+    [
+      "path",
+      [
+        280.2488708496094,
+        79.90980529785156,
+        281.2974548339844,
+        81.64705657958984
+      ]
+    ],
+    [
+      "path",
+      [
+        281.2945251464844,
+        88.4431381225586,
+        284.53961181640625,
+        89.64705657958984
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        297,
+        69,
+        325,
+        97
+      ]
+    ],
+    [
+      "svg",
+      [
+        303,
+        75,
+        319,
+        91
+      ]
+    ],
+    [
+      "g",
+      [
+        304.3664855957031,
+        76.3854751586914,
+        317.65997314453125,
+        89.64071655273438
+      ]
+    ],
+    [
+      "g",
+      [
+        304.3664855957031,
+        76.3854751586914,
+        317.65997314453125,
+        89.64071655273438
+      ]
+    ],
+    [
+      "ellipse",
+      [
+        304.3664855957031,
+        76.3854751586914,
+        314.8204650878906,
+        86.93852233886719
+      ]
+    ],
+    [
+      "path",
+      [
+        313.0371398925781,
+        84.8135757446289,
+        317.65997314453125,
+        89.64071655273438
+      ]
+    ],
+    [
+      "DIV",
+      [
+        53,
+        122,
+        337,
+        579
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        122,
+        325,
+        188
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        122,
+        325,
+        154
+      ]
+    ],
+    [
+      "svg",
+      [
+        78,
+        130,
+        94,
+        146
+      ]
+    ],
+    [
+      "g",
+      [
+        79.493896484375,
+        131.333984375,
+        92.48070526123047,
+        144.67083740234375
+      ]
+    ],
+    [
+      "g",
+      [
+        79.493896484375,
+        131.333984375,
+        92.48070526123047,
+        144.67083740234375
+      ]
+    ],
+    [
+      "path",
+      [
+        79.493896484375,
+        133.8721466064453,
+        91.2224349975586,
+        144.67083740234375
+      ]
+    ],
+    [
+      "path",
+      [
+        89.59671020507812,
+        132.59840393066406,
+        91.53095245361328,
+        134.13809204101562
+      ]
+    ],
+    [
+      "path",
+      [
+        86.33890533447266,
+        131.333984375,
+        92.48070526123047,
+        138.2569580078125
+      ]
+    ],
+    [
+      "path",
+      [
+        81.36432647705078,
+        136.0861358642578,
+        82.62560272216797,
+        137.81613159179688
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        104,
+        130,
+        315,
+        146
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        156,
+        325,
+        188
+      ]
+    ],
+    [
+      "svg",
+      [
+        78,
+        164,
+        94,
+        180
+      ]
+    ],
+    [
+      "g",
+      [
+        80.60034942626953,
+        166.53561401367188,
+        91.4137954711914,
+        177.4805908203125
+      ]
+    ],
+    [
+      "g",
+      [
+        80.60034942626953,
+        166.53561401367188,
+        91.4137954711914,
+        177.4805908203125
+      ]
+    ],
+    [
+      "path",
+      [
+        86.00589752197266,
+        166.53561401367188,
+        86.00589752197266,
+        177.4805908203125
+      ]
+    ],
+    [
+      "path",
+      [
+        80.60034942626953,
+        172.06446838378906,
+        91.4137954711914,
+        172.06446838378906
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        104,
+        164,
+        315,
+        180
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        188,
+        325,
+        364
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        198,
+        325,
+        228
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        78,
+        205,
+        325,
+        221
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        230,
+        325,
+        262
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        78,
+        238,
+        94,
+        254
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        104,
+        238,
+        315,
+        254
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        264,
+        325,
+        296
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        78,
+        272,
+        94,
+        288
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        104,
+        272,
+        315,
+        288
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        298,
+        325,
+        330
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        78,
+        306,
+        94,
+        322
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        104,
+        306,
+        315,
+        322
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        332,
+        325,
+        364
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        78,
+        340,
+        94,
+        356
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        104,
+        340,
+        315,
+        356
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        364,
+        325,
+        438
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        374,
+        325,
+        404
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        78,
+        381,
+        297,
+        397
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        297,
+        375,
+        325,
+        403
+      ]
+    ],
+    [
+      "svg",
+      [
+        303,
+        381,
+        319,
+        397
+      ]
+    ],
+    [
+      "g",
+      [
+        305.600341796875,
+        383.5356140136719,
+        316.4137878417969,
+        394.4805908203125
+      ]
+    ],
+    [
+      "g",
+      [
+        305.600341796875,
+        383.5356140136719,
+        316.4137878417969,
+        394.4805908203125
+      ]
+    ],
+    [
+      "path",
+      [
+        311.0058898925781,
+        383.5356140136719,
+        311.0058898925781,
+        394.4805908203125
+      ]
+    ],
+    [
+      "path",
+      [
+        305.600341796875,
+        389.064453125,
+        316.4137878417969,
+        389.064453125
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        406,
+        325,
+        438
+      ]
+    ],
+    [
+      "svg",
+      [
+        78,
+        414,
+        94,
+        430
+      ]
+    ],
+    [
+      "g",
+      [
+        79.34801483154297,
+        416.5863952636719,
+        92.62857055664062,
+        427.38751220703125
+      ]
+    ],
+    [
+      "g",
+      [
+        79.34801483154297,
+        416.5863952636719,
+        92.62857055664062,
+        427.38751220703125
+      ]
+    ],
+    [
+      "path",
+      [
+        79.34801483154297,
+        416.5863952636719,
+        92.62857055664062,
+        427.38751220703125
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        104,
+        414,
+        315,
+        430
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        438,
+        325,
+        512
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        448,
+        325,
+        478
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        78,
+        455,
+        297,
+        471
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        297,
+        449,
+        325,
+        477
+      ]
+    ],
+    [
+      "svg",
+      [
+        303,
+        455,
+        319,
+        471
+      ]
+    ],
+    [
+      "g",
+      [
+        305.600341796875,
+        457.5356140136719,
+        316.4137878417969,
+        468.4805908203125
+      ]
+    ],
+    [
+      "g",
+      [
+        305.600341796875,
+        457.5356140136719,
+        316.4137878417969,
+        468.4805908203125
+      ]
+    ],
+    [
+      "path",
+      [
+        311.0058898925781,
+        457.5356140136719,
+        311.0058898925781,
+        468.4805908203125
+      ]
+    ],
+    [
+      "path",
+      [
+        305.600341796875,
+        463.064453125,
+        316.4137878417969,
+        463.064453125
+      ]
+    ],
+    [
+      "DIV",
+      [
+        65,
+        480,
+        325,
+        512
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        104,
+        488,
+        315,
+        504
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        65,
+        579,
+        325,
+        623
+      ]
+    ],
+    [
+      "svg",
+      [
+        78,
+        593,
+        94,
+        609
+      ]
+    ],
+    [
+      "circle",
+      [
+        79.77777862548828,
+        594.7777709960938,
+        92.22222137451172,
+        607.2222290039062
+      ]
+    ],
+    [
+      "circle",
+      [
+        79.77777862548828,
+        594.7777709960938,
+        92.22222137451172,
+        607.2222290039062
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        104,
+        593,
+        188.828125,
+        609
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        285,
+        593,
+        315,
+        609
+      ]
+    ],
+    [
+      "MAIN",
+      [
+        337,
+        44,
+        955,
+        635
+      ]
+    ],
+    [
+      "DIV",
+      [
+        337,
+        44,
+        955,
+        635
+      ]
+    ],
+    [
+      "DIV",
+      [
+        337,
+        44,
+        955,
+        100
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        356,
+        60,
+        380,
+        84
+      ]
+    ],
+    [
+      "svg",
+      [
+        360,
+        64,
+        376,
+        80
+      ]
+    ],
+    [
+      "g",
+      [
+        361.33905029296875,
+        66.26472473144531,
+        374.6676025390625,
+        77.7405776977539
+      ]
+    ],
+    [
+      "g",
+      [
+        361.33905029296875,
+        66.26472473144531,
+        374.6676025390625,
+        77.7405776977539
+      ]
+    ],
+    [
+      "path",
+      [
+        361.33905029296875,
+        66.26472473144531,
+        374.6676025390625,
+        77.7405776977539
+      ]
+    ],
+    [
+      "path",
+      [
+        363.1607360839844,
+        72.01148986816406,
+        372.9808654785156,
+        75.48193359375
+      ]
+    ],
+    [
+      "circle",
+      [
+        364.4370422363281,
+        68.56303405761719,
+        366.9527282714844,
+        71.0787124633789
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        389,
+        64,
+        544.96875,
+        80
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        389,
+        64,
+        544.96875,
+        80
+      ]
+    ],
+    [
+      "DIV",
+      [
+        548.96875,
+        72,
+        908,
+        72
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        912,
+        58,
+        940,
+        86
+      ]
+    ],
+    [
+      "svg",
+      [
+        918,
+        64,
+        934,
+        80
+      ]
+    ],
+    [
+      "g",
+      [
+        919.3715209960938,
+        66.07205200195312,
+        932.6450805664062,
+        77.94557189941406
+      ]
+    ],
+    [
+      "g",
+      [
+        919.3715209960938,
+        66.07205200195312,
+        932.6450805664062,
+        77.94557189941406
+      ]
+    ],
+    [
+      "path",
+      [
+        926.0201416015625,
+        66.07205200195312,
+        926.0201416015625,
+        74.00021362304688
+      ]
+    ],
+    [
+      "path",
+      [
+        922.648193359375,
+        71.21493530273438,
+        929.280517578125,
+        74.20145416259766
+      ]
+    ],
+    [
+      "path",
+      [
+        919.3715209960938,
+        73.42344665527344,
+        932.6450805664062,
+        77.94557189941406
+      ]
+    ],
+    [
+      "DIV",
+      [
+        337,
+        100,
+        955,
+        635
+      ]
+    ],
+    [
+      "DIV",
+      [
+        337,
+        100,
+        955,
+        635
+      ]
+    ],
+    [
+      "DIV",
+      [
+        353,
+        100,
+        939,
+        619
+      ]
+    ],
+    [
+      "DIV",
+      [
+        353,
+        100,
+        939,
+        475
+      ]
+    ],
+    [
+      "DIV",
+      [
+        353,
+        100,
+        939,
+        132
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        353,
+        102,
+        381,
+        130
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        387,
+        108,
+        466.203125,
+        124
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        472.203125,
+        102,
+        500.203125,
+        130
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        506.203125,
+        102,
+        540.6875,
+        130
+      ]
+    ],
+    [
+      "BUTTON",
+      [
+        546.6875,
+        102,
+        600.25,
+        130
+      ]
+    ],
+    [
+      "DIV",
+      [
+        606.25,
+        116,
+        822.109375,
+        116
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        828.109375,
+        109,
+        939,
+        123
+      ]
+    ],
+    [
+      "DIV",
+      [
+        353,
+        144,
+        939,
+        475
+      ]
+    ],
+    [
+      "IMG",
+      [
+        353,
+        144,
+        939,
+        475
+      ]
+    ],
+    [
+      "ASIDE",
+      [
+        353,
+        487,
+        939,
+        619
+      ]
+    ],
+    [
+      "H3",
+      [
+        367,
+        501,
+        925,
+        517
+      ]
+    ],
+    [
+      "DIV",
+      [
+        367,
+        523,
+        925,
+        549
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        367,
+        528,
+        486.375,
+        544
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        869.765625,
+        528,
+        925,
+        544
+      ]
+    ],
+    [
+      "DIV",
+      [
+        367,
+        551,
+        925,
+        577
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        367,
+        556,
+        405.671875,
+        572
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        900.28125,
+        556,
+        925,
+        572
+      ]
+    ],
+    [
+      "DIV",
+      [
+        367,
+        579,
+        925,
+        605
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        367,
+        584,
+        411.265625,
+        600
+      ]
+    ],
+    [
+      "SPAN",
+      [
+        870.03125,
+        584,
+        925,
+        600
+      ]
+    ],
+    [
+      "I",
+      [
+        0,
+        0,
+        36,
+        36
+      ]
+    ],
+    [
+      "DIV",
+      [
+        0,
+        640,
+        960,
+        640
+      ]
+    ],
+    [
+      "DIV",
+      [
+        596,
+        616,
+        936,
+        616
+      ]
+    ]
+  ],
+  "mutation": {
+    "property": "overflow",
+    "value": "visible",
+    "diagnosticOnly": true
+  },
+  "flowDurationMs": 36883,
+  "cleanupStartedAt": "2026-10-03T22:28:38.736Z",
+  "cleanupDeadline": "2026-10-03T22:29:23.736Z",
+  "nameRestored": {
+    "style": null,
+    "value": "",
+    "priority": "",
+    "x": "auto",
+    "y": "auto"
+  },
+  "providerDocumentRetained": true,
+  "installedAfter": {
+    "asarSHA256": "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+    "revision": "d20a012fbb774aa9b348fe1913f85d3476430098",
+    "membersVerified": 90,
+    "pid": 77857,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-name-probe-1",
+    "inspectorSHA256": "7d4fdba05afe52d09a79e7775f2f1e0c234ab12ec28cda42e45be0474eae339b",
+    "membersSHA256": "3d3406d4a184b0d8346c3b3ff9a241cc2a88bed0faf472015edc66b7c6a1e33c"
+  },
+  "finishedAt": "2026-10-03T22:28:42.133Z",
+  "durationMs": 40280,
+  "scope": "Diagnostic only: two light native filename originals, baseline then temporary overflow:visible. Nominal Range visibility recorded without acceptance or tolerance change. Coordinator pixel comparison determines glyph clipping; canvas metrics imply no CSS baseline. No Save/dark/zoom/app changes."
+}

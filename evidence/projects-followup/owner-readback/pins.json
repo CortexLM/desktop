@@ -1,0 +1,123 @@
+{
+  "taskLabelUTC": "2026-10-03T14:35:00Z",
+  "networkObservedUTC": "2026-10-03T14:47:00Z",
+  "finalLocalPinObservedUTC": "2026-10-03T14:51:24.917800Z",
+  "newVisibleDependencyHandoff": false,
+  "scope": "Current bounded issue-comment/document readback. Owner source/archive/runtime pins below are transcribed baseline declarations, not a new archive intake or runtime verification.",
+  "g2": {
+    "pullRequest": "https://github.com/CortexLM/backend/pull/446",
+    "sourceCommit": "70a3056f7223a7eb9257d984848d4d33fee7ec12",
+    "lastExplicitLocalOwnerEntry": {"file": "/root/cortex-goals/COORDINATION.md", "line": 168, "statedTimeUTC": "2026-10-02T17:30:00Z"},
+    "schemaBlob": "d6d46014d1c436b96540529dca2a3005556ae920",
+    "schemaSHA256": "93806bd0f31a0499b6bded99a25b319a90cd5afc011b70021ba921ed12107724",
+    "baselineDelivery": {"commentID": 5957830534, "url": "https://github.com/CortexLM/backend/pull/446#issuecomment-5957830534"},
+    "baselineRuntimeReceipt": {
+      "path": "/tmp/opencode/selfhost-docker-70a3056f-padk3hm_/evidence.json",
+      "sha256": "97a24364c4c15f0174eb6642fc3a18c4331c9938c00614456c19aab3fbfec0a2",
+      "scope": "Owner-declared isolated Docker Compose/controlled-provider acceptance, not the public Cloud deployment. Not rehashed or executed in this readback."
+    },
+    "outstandingVisibleFollowups": [
+      {"contract": "Precise legacy DTOs and stable account identity", "commentID": 5964672492, "url": "https://github.com/CortexLM/backend/pull/446#issuecomment-5964672492"},
+      {"contract": "Unambiguous replay cursor or authoritative full history", "commentID": 5966307621, "url": "https://github.com/CortexLM/backend/pull/446#issuecomment-5966307621"},
+      {"contract": "Historical image pixel hydration", "commentID": 5966488098, "url": "https://github.com/CortexLM/backend/pull/446#issuecomment-5966488098"},
+      {"contract": "Instance and eligible model deployment", "commentID": 5966017500, "url": "https://github.com/CortexLM/backend/pull/446#issuecomment-5966017500"}
+    ]
+  },
+  "g3": {
+    "pullRequest": "https://github.com/CortexLM/backend/pull/447",
+    "lastExplicitLocalOwnerEntry": {"file": "/root/cortex-goals/COORDINATION.md", "line": 239},
+    "sdkVersion": "0.3.5",
+    "apiTypesVersion": "0.2.0",
+    "sourceCommit": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+    "schemaSourceCommit": "af36085cc96b182950ca4bf15161dcf2c3951da1",
+    "schemaBlob": "c8f6a7f0257858306a885c71202c13420f40725f",
+    "schemaSHA256": "b2495d1d8ec631d143c5dcc5d200aeb0d288f69beae31ba671b3a7856f663d5b",
+    "immutableReleaseDirectory": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/",
+    "archives": [
+      {"name": "cortex-sdk-0.3.5.tgz", "sha256": "5c75f212a2669bcd6f5110fe6e5c8862e1ca6eba85a118b350e0ce38694596b8"},
+      {"name": "cortex-api-types-0.2.0.tgz", "sha256": "3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877"}
+    ],
+    "baselineDelivery": {"commentID": 5965356215, "url": "https://github.com/CortexLM/backend/pull/447#issuecomment-5965356215"},
+    "baselineRuntimeReceipt": {
+      "sha256": "6bb1af0ae2412b00e7415ad76b259951ee0460449cbe46b96e8b00afffd93aba",
+      "ownerReportedReleaseChecks": 10,
+      "ownerReportedRuntimeCasesPerIsolatedInstallation": 34,
+      "ownerReportedNodeVersions": ["20.9", "22"],
+      "scope": "Retained exact-pair owner receipt; not rerun/rehashed. Does not establish onDiscardedFrame visibility, precise account/history DTOs, or real remote account/inference."
+    },
+    "successorVisible": false,
+    "discardFollowup": {"commentID": 5966461570, "url": "https://github.com/CortexLM/backend/pull/447#issuecomment-5966461570", "requestedCallback": "onDiscardedFrame"},
+    "priorConsumerAdoption": {
+      "commentID": 5968782320,
+      "url": "https://github.com/CortexLM/backend/pull/447#issuecomment-5968782320",
+      "createdAtUTC": "2026-10-03T11:36:56Z",
+      "updatedAtUTC": "2026-10-03T11:36:56Z",
+      "consumerCommit": "02cba721",
+      "source": "/tmp/opencode/g1-owner-readback-1200/observations.json",
+      "scope": "Existing-pair G4 adoption, not a new G3 release; historical body not refetched."
+    }
+  },
+  "design": {
+    "owner": "DESIGN completes five states; G1 owns desktop branch/PR integration and native verification",
+    "ownershipSource": "/root/cortex-goals/COORDINATION.md:315",
+    "newNamedG1ProductImportPermissionVisible": false,
+    "states": [
+      {"name": "Stored-thread model and effort", "proposedLabel": "remote-followup-stored"},
+      {"name": "One-off model", "proposedLabel": "remote-one-off"},
+      {"name": "Limited history", "proposedLabel": "remote-history-limited"},
+      {"name": "Image-history refusal", "proposedLabel": "remote-image-history-refused"},
+      {"name": "Origin/account continuation ownership", "proposedLabel": "auth-context-expired/refused"}
+    ],
+    "labelsAreApprovedRouteStateIDs": false,
+    "codeSupplement": {"prototypeIntegrationAuthorized": true, "productImportAuthorized": false},
+    "botSupplement": {"prototypeIntegrationAuthorized": true, "productImportAuthorized": false},
+    "projectRequest106": "Existing Rename editor reuse and Archive/restore lifecycle disposition requested; no new composition or prototype import permitted.",
+    "laterG4SourceDelivery": "80e8747fb46e8521492f35c4de7ab49d488d3139"
+  },
+  "publicCapabilities": {
+    "sourceBody": "public-models.body",
+    "total": 3,
+    "chat": 2,
+    "reasoningChat": 2,
+    "visionChat": 0,
+    "eligibleVisionReasoningChat": 0,
+    "hasMore": false,
+    "models": [
+      {"slug": "cortex-1-mini", "kind": "chat", "supports_reasoning": true, "supports_vision": false},
+      {"slug": "cortex-teutonic-1", "kind": "chat", "supports_reasoning": true, "supports_vision": false},
+      {"slug": "cortex-image-1", "kind": "image", "supports_reasoning": false, "supports_vision": false}
+    ]
+  },
+  "environmentObservation": {
+    "source": "observations.json:environmentPresenceOnly",
+    "predicate": "bool(os.environ.get(name)); false means unset or empty; values not retained",
+    "CORTEX_REAL_BASE_URL": false,
+    "CORTEX_REAL_API_KEY": false,
+    "CORTEX_TEST_BACKEND_URL": false
+  },
+  "localPinsAt145124UTC": [
+    {"path": "/root/cortex-goals/COORDINATION.md", "sha256": "c2942b85f1f3db488f8205cdf164c24a5c4013137fe96597ad98aac70eddd254", "lines": 407, "latestG1Line": 407, "latestG2Line": 168, "latestG3Line": 239},
+    {"path": "/root/cortex-ui/review/ACTIVE-DIRECTION.md", "sha256": "8efe9828ff22fe7d501795858de2c4a584392c8f48e757f29392646858dfbe9a", "lines": 25, "sameAs1207": true},
+    {"path": "/root/cortex-ui/DESIGN-REQUESTS.md", "sha256": "77ca8dd1525133a1c8c754c97a391fa6953349485f90a929dbaa96d610ea02df", "lines": 108},
+    {"path": "/root/cortex-ui/review/code-supplement-accepted.json", "sha256": "2e783316e118c4dc96031ae1b2c480e47a3a058001bfed7c7f75b51fb3741fe4", "lines": 39},
+    {"path": "/root/cortex-ui/review/bot-supplement-adoption.json", "sha256": "b148e7d93ef31d3d24e42bee695e1982cb6b9e05444c95d7c88e3ed3881af266", "lines": 46},
+    {"path": "/tmp/opencode/product-design-reuse-map-20261003/REPORT.md", "sha256": "de5c2408b6984123d4556f67b004dfc8aa0e6560ed85b26bb085da2aacca679f", "lines": 53},
+    {"path": "vendor/README.md", "sha256": "6156e466d689b665e35714811d8090044a1f6123da60b4a85d84b119db86f151", "lines": 62}
+  ],
+  "projectsOwnerReported": {
+    "sourceCommit": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+    "localElectronCases": 116,
+    "registeredRenders": 426,
+    "unitPasses": 252,
+    "optionalSkips": 1,
+    "coordinatorOwnedCI": "37130209247",
+    "queriedCI": false
+  },
+  "limits": [
+    "No new issue comments in the specified feeds/cutoff; no exhaustive claim about review threads, unannounced branches, private work or later updates.",
+    "Public instance hash differs from prior normalized receipt; prior raw body unavailable, so field-level cause not established.",
+    "No new SDK archives installed/rehash, build/runtime/CI/native checks, auth, accounts, OTP, inference or credential acquisition.",
+    "Local live Files, Work feeds, dedicated Code work and remaining Project controls are still incomplete; missing Space/Scheduled/Plugins import inputs do not block local Projects.",
+    "All writes confined to /tmp/opencode/g1-owner-readback-1435/."
+  ]
+}

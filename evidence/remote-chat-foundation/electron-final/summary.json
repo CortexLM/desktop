@@ -1,0 +1,73 @@
+{
+  "scope": "Final corrected build; targeted auth and engine rerun only",
+  "stats": {
+    "startTime": "2026-10-03T06:49:49.937Z",
+    "duration": 45849.892,
+    "expected": 11,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "caseCount": 11,
+  "authCases": 7,
+  "engineCases": 4,
+  "attemptsPerCase": 1,
+  "workers": 4,
+  "localeCaseDurationMs": 38765,
+  "geometry": {
+    "primaryStates": 48,
+    "allMeasurements": 80,
+    "stateCounts": {
+      "option-unavailable": 16,
+      "send-failed": 16,
+      "code_sent": 16,
+      "signed_in": 16,
+      "mfa_enrollment": 16
+    },
+    "tabStops": 144,
+    "textRows": 384,
+    "allTextReadable": true,
+    "allFocusTargetsReachable": true,
+    "opacityPass": true,
+    "identicalToInitialGeometry": true,
+    "errorsAndRendererHTTP": "Zero enforced by hash-pinned passing assertions; no separately attached arrays."
+  },
+  "images": {
+    "fileCopies": 40,
+    "attachments": 20,
+    "uniquePNGs": 18,
+    "sameBytesAsInitial": 15,
+    "sameRGBAAsInitial": 15,
+    "newCanonicalFiles": 1,
+    "reusedCanonicalFiles": 17,
+    "uniformityCandidates": [],
+    "blankImagesObserved": 0
+  },
+  "reviewStatus": "complete",
+  "rawReceipts": [
+    {
+      "path": "../integrated/source-final.json",
+      "sha256": "8ecdce2c18a2586ad2a2321bd3784d97211cfb5a306c213e7a731cb1bb22ff3a"
+    },
+    {
+      "path": "../integrated/build-final.json",
+      "sha256": "86802723e928fc5ed0039dcf77f3d73a4afab8854b9c055316c0096816e26af7"
+    },
+    {
+      "path": "../integrated/e2e-final-targeted.json.gz",
+      "sha256": "f8c5425225399b819c88049c3d334d018db6e9b6bfc670bf9e4c3fcc353fa9b5",
+      "rawSHA256": "1c6b69562dbf66353c5af5721c38f6a0dea3f0721c8e8f615511b87aff60676b",
+      "rawBytes": 306943
+    },
+    {
+      "path": "../integrated/e2e-final-targeted.log.gz",
+      "sha256": "005159e7f35ae5b4d91306baa86f342ec7a5e845496b79fcd30866685cfd4af6",
+      "rawSHA256": "9168b949a1f216067db98bf67577f76370b6cab633e5a409783ad80a74f54f40",
+      "rawBytes": 1503
+    }
+  ],
+  "initialBroadRun": "../electron-initial/README.md",
+  "registeredRenderChecksThisRun": 0,
+  "fullSizeFinalImagesReviewed": 18,
+  "buildAndSourceMatchedBeforeAfter": true
+}

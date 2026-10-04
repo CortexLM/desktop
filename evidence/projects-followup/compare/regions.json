@@ -1,0 +1,117 @@
+{
+  "policy": "Device-pixel rectangles sampled from existing originals; no translation, new render, tolerance or causal attribution.",
+  "regions": [
+    {
+      "state": "projects~create-dark",
+      "region": "Dialog interior including title, inputs, icon/color rows, instructions and actions",
+      "devicePixelRect": [
+        995,
+        390,
+        1880,
+        1415
+      ],
+      "appRGBA": "6d59ed15527038e5c3ca57d746120842045d6abc2d6dee4a1d7bbca9285b2c53",
+      "referenceRGBA": "6d59ed15527038e5c3ca57d746120842045d6abc2d6dee4a1d7bbca9285b2c53",
+      "exactRGBA": true,
+      "rawChangedPixels": 0
+    },
+    {
+      "state": "project~overview-dark",
+      "region": "Chat/file list column",
+      "devicePixelRect": [
+        850,
+        500,
+        2050,
+        1515
+      ],
+      "appRGBA": "ffff758749ea10a4281f895bdf7bf524aa1c42102cabe4edc6d63c301a5bc247",
+      "referenceRGBA": "ffff758749ea10a4281f895bdf7bf524aa1c42102cabe4edc6d63c301a5bc247",
+      "exactRGBA": true,
+      "rawChangedPixels": 0
+    },
+    {
+      "state": "project~overview-dark",
+      "region": "Instructions card",
+      "devicePixelRect": [
+        2090,
+        505,
+        2700,
+        885
+      ],
+      "appRGBA": "6b420a419ecc7df6198d9086c216684800c0deddb548fa1370ed3a69cb3ea66e",
+      "referenceRGBA": "6b420a419ecc7df6198d9086c216684800c0deddb548fa1370ed3a69cb3ea66e",
+      "exactRGBA": true,
+      "rawChangedPixels": 0
+    },
+    {
+      "state": "projects~create-light",
+      "region": "Dialog interior including title, inputs, icon/color rows, instructions and actions",
+      "devicePixelRect": [
+        995,
+        390,
+        1880,
+        1415
+      ],
+      "appRGBA": "bff665e6f0f236ac610a13305e7b121d26c9bd026f90e224a600395a46f142cd",
+      "referenceRGBA": "bff665e6f0f236ac610a13305e7b121d26c9bd026f90e224a600395a46f142cd",
+      "exactRGBA": true,
+      "rawChangedPixels": 0
+    },
+    {
+      "state": "project~overview-light",
+      "region": "Chat/file list column",
+      "devicePixelRect": [
+        850,
+        500,
+        2050,
+        1515
+      ],
+      "appRGBA": "0597cc3ebd10b363d6e699ad2455391d3c393aa44fc82edbee4dd947892739e5",
+      "referenceRGBA": "0597cc3ebd10b363d6e699ad2455391d3c393aa44fc82edbee4dd947892739e5",
+      "exactRGBA": true,
+      "rawChangedPixels": 0
+    },
+    {
+      "state": "project~overview-light",
+      "region": "Instructions card",
+      "devicePixelRect": [
+        2090,
+        505,
+        2700,
+        885
+      ],
+      "appRGBA": "5396da419e84d813b3750a57ad4757d82fab3edd271fdd588406e9764e26bb9f",
+      "referenceRGBA": "5396da419e84d813b3750a57ad4757d82fab3edd271fdd588406e9764e26bb9f",
+      "exactRGBA": true,
+      "rawChangedPixels": 0
+    },
+    {
+      "state": "chat-dark",
+      "region": "Historical prose/code comparison region",
+      "devicePixelRect": [
+        1140,
+        440,
+        2460,
+        1490
+      ],
+      "appRGBA": "9750978c935e68f9431c7e393613712c41fafc1a56e1810685880852cc8d0c71",
+      "referenceRGBA": "ceb5154be5deb40d9a7f6de5369afdd7e7a6ac962ea8d88d2b6d5155e5ef03a5",
+      "exactRGBA": false,
+      "rawChangedPixels": 18788
+    },
+    {
+      "state": "chat-light",
+      "region": "Historical prose/code comparison region",
+      "devicePixelRect": [
+        1140,
+        440,
+        2460,
+        1490
+      ],
+      "appRGBA": "938643e17acc324fce00a1acb9fb45c496554e984c6e4082bf8869c00831a105",
+      "referenceRGBA": "491bb6122c6fc3d86f3dfb9e86ea49c93b6fd56da73e5107f41cde246bc58339",
+      "exactRGBA": false,
+      "rawChangedPixels": 18794
+    }
+  ]
+}

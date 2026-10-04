@@ -1,0 +1,265 @@
+{
+  "status": "scoped-static-pass",
+  "reviewedUTC": "2026-10-04T00:07:17.371332+00:00",
+  "contactSheetsInspected": 2,
+  "fullSizeApplicationViews": 13,
+  "fullSizeReferenceViews": 12,
+  "totalOriginalViews": 25,
+  "rows": [
+    {
+      "name": "chat-dark",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/chat-dark.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/chat-dark.app.png",
+          "originalSHA256": "217e9f587778a0f54d9bea64b707a9d0941cd12c136107417160af148e47631f"
+        },
+        {
+          "kind": "design",
+          "file": "../../compare-7b388e2d9674/selected/chat-dark.design.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/chat-dark.design.png",
+          "originalSHA256": "8df08514fb95847abf2588a02c98b00888978588758c0f092cc56bb48dbabce8"
+        }
+      ],
+      "finding": "French transcript, code block, composer and shell retain the reference layout in both themes. Inherited punctuation-space differences remain; prior transcript crop is RGBA-exact. No newly clipped text or overlap observed.",
+      "blockingP2": false,
+      "status": "scoped-static-pass"
+    },
+    {
+      "name": "chat-light",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/chat-light.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/chat-light.app.png",
+          "originalSHA256": "0ea3ccf99371cb251f33e2c9aff613389509c81e6f78d3ff76a7ed6116e2939c"
+        },
+        {
+          "kind": "design",
+          "file": "../../compare-7b388e2d9674/selected/chat-light.design.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/chat-light.design.png",
+          "originalSHA256": "367f1215b83a7d80a89588a1bb90eda8d228beafec0a3fc75f3721c2dbd70957"
+        }
+      ],
+      "finding": "French transcript, code block, composer and shell retain the reference layout in both themes. Inherited punctuation-space differences remain; prior transcript crop is RGBA-exact. No newly clipped text or overlap observed.",
+      "blockingP2": false,
+      "status": "scoped-static-pass"
+    },
+    {
+      "name": "file-image~view-dark",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/file-image~view-dark.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image~view-dark.app.png",
+          "originalSHA256": "20aae279e560313dcc653a9fb732c27b975fa6d7c36067872d5e2191a91d8ae4"
+        },
+        {
+          "kind": "design",
+          "file": "../../files-live-followup/compare/images/file-image~view-dark.design.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image~view-dark.design.png",
+          "originalSHA256": "c515e99b7d356c38290db1789e97113c136878747d41c495899443b1af36b387"
+        }
+      ],
+      "finding": "Image, zoom controls and metadata panel retain placement in both themes. Main-content RGBA equals the prior image delivery; no blank image, missing control or new clipping observed.",
+      "blockingP2": false,
+      "status": "scoped-static-pass"
+    },
+    {
+      "name": "file-image~view-light",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/file-image~view-light.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image~view-light.app.png",
+          "originalSHA256": "44ef81e7dc722dbe69ae012ac7a2180ebcbd8e7216b6d51f21bb1e88a7726457"
+        },
+        {
+          "kind": "design",
+          "file": "../../files-live-followup/compare/images/file-image~view-light.design.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image~view-light.design.png",
+          "originalSHA256": "41cb245345e442f5176ef29c31d644a1528c1871f79365bb5032ee439013bf2d"
+        }
+      ],
+      "finding": "Image, zoom controls and metadata panel retain placement in both themes. Main-content RGBA equals the prior image delivery; no blank image, missing control or new clipping observed.",
+      "blockingP2": false,
+      "status": "scoped-static-pass"
+    },
+    {
+      "name": "file-image~zoom-dark",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/file-image~zoom-dark.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image~zoom-dark.app.png",
+          "originalSHA256": "2823b67934bcd08a22a62118a743306dd880d60ed438f0e268810a1e34673c7a"
+        },
+        {
+          "kind": "design",
+          "file": "../../files-live-followup/compare/images/file-image~zoom-dark.design.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image~zoom-dark.design.png",
+          "originalSHA256": "bc776bafa1deda67870d389dca587c28e772fc501f9c4c09b5819583c9f5b531"
+        }
+      ],
+      "finding": "Enlarged image, minimap and metadata remain positioned consistently in both themes. Main-content RGBA equals the prior image delivery; frozen zoom residuals remain explicit.",
+      "blockingP2": false,
+      "status": "scoped-static-pass"
+    },
+    {
+      "name": "file-image~zoom-light",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/file-image~zoom-light.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image~zoom-light.app.png",
+          "originalSHA256": "829e088552bda82bc70d1e1a0ac0646657cad1843048ffd647d48dfecbc76ec6"
+        },
+        {
+          "kind": "design",
+          "file": "../../files-live-followup/compare/images/file-image~zoom-light.design.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image~zoom-light.design.png",
+          "originalSHA256": "8cf670e69e9dda2d2976522d97711983a4fd2ba60660dfe5c13ef94faf77d0a3"
+        }
+      ],
+      "finding": "Enlarged image, minimap and metadata remain positioned consistently in both themes. Main-content RGBA equals the prior image delivery; frozen zoom residuals remain explicit.",
+      "blockingP2": false,
+      "status": "scoped-static-pass"
+    },
+    {
+      "name": "file-image~compare-dark",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/file-image~compare-dark.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image~compare-dark.app.png",
+          "originalSHA256": "d8ce295dc13c6de9492e7e939df1efb047717b195957428493831a803a47f01a"
+        },
+        {
+          "kind": "design",
+          "file": "../../files-live-followup/compare/images/file-image~compare-dark.design.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image~compare-dark.design.png",
+          "originalSHA256": "f9c2dd813d9afd1f2cf1f8f236126df5c245cb40424641d73ccae9cb8c5eaa6c"
+        }
+      ],
+      "finding": "Before/after image split, handle, labels and retouch actions retain their layout in both themes. Main-content RGBA equals the prior delivery; inherited retouch punctuation/residuals remain.",
+      "blockingP2": false,
+      "status": "scoped-static-pass"
+    },
+    {
+      "name": "file-image~compare-light",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/file-image~compare-light.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image~compare-light.app.png",
+          "originalSHA256": "ffc15cf692d5e394334cf0866b170f0a20dd6c2d4282dc2774c7add98a949f1e"
+        },
+        {
+          "kind": "design",
+          "file": "../../files-live-followup/compare/images/file-image~compare-light.design.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image~compare-light.design.png",
+          "originalSHA256": "da62d24360b59b2009f057cfcb2f380a41429c83067f928884ce869fbe02523e"
+        }
+      ],
+      "finding": "Before/after image split, handle, labels and retouch actions retain their layout in both themes. Main-content RGBA equals the prior delivery; inherited retouch punctuation/residuals remain.",
+      "blockingP2": false,
+      "status": "scoped-static-pass"
+    },
+    {
+      "name": "file-code~view-dark",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/file-code~view-dark.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-code~view-dark.app.png",
+          "originalSHA256": "30a9538cb3a28a050df1f719e1ba7eb103fd5aa15b9236e15d1bb66f48dc6ba2"
+        },
+        {
+          "kind": "design",
+          "file": "images/file-code~view-dark.design.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-code~view-dark.design.png",
+          "originalSHA256": "ed6a958bdf49be7300b0d15e041e824cbc84f1ad11a2586f400825ed00750263"
+        }
+      ],
+      "finding": "panier.ts header, 44-line metadata, monospace rows, gutter, highlighting, minimap and toolbar retain the supplied approved reference layout. Main interior is RGBA-exact to frozen.",
+      "blockingP2": false,
+      "status": "scoped-static-pass"
+    },
+    {
+      "name": "file-code~view-light",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/file-code~view-light.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-code~view-light.app.png",
+          "originalSHA256": "548a5f6dfe032f4b3d43d731dd22c254918d00b8fe16a3c2989b9bb53db545d5"
+        },
+        {
+          "kind": "design",
+          "file": "images/file-code~view-light.design.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-code~view-light.design.png",
+          "originalSHA256": "f5cbdd5df0f5fb3f796d41bf425661d38d4925b08d2b70ff8714fbc9ede4a6bb"
+        }
+      ],
+      "finding": "panier.ts header, 44-line metadata, monospace rows, gutter, highlighting, minimap and toolbar retain the supplied approved reference layout. Main interior is RGBA-exact to frozen.",
+      "blockingP2": false,
+      "status": "scoped-static-pass"
+    },
+    {
+      "name": "file-code~diff-dark",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/file-code~diff-dark.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-code~diff-dark.app.png",
+          "originalSHA256": "d04956e5da1df6abb08fbd84a6583dc142e7d71d996359a51be6de9183794f12"
+        },
+        {
+          "kind": "design",
+          "file": "images/file-code~diff-dark.design.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-code~diff-dark.design.png",
+          "originalSHA256": "8b515e4c2e81d7b128d8179e9af9f99145ae9a7b11d512a08245e830051c0c66"
+        }
+      ],
+      "finding": "Diff badges, numbered rows, red/green bands, minimap and toolbar retain reference alignment in both themes. Main interior is RGBA-exact to frozen; rounded zero is not whole-frame equality.",
+      "blockingP2": false,
+      "status": "scoped-static-pass"
+    },
+    {
+      "name": "file-code~diff-light",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/file-code~diff-light.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-code~diff-light.app.png",
+          "originalSHA256": "28a2455ed6911847cc60e253771fdb07e158331b718f48e7441e6ff28f0b3e06"
+        },
+        {
+          "kind": "design",
+          "file": "images/file-code~diff-light.design.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-code~diff-light.design.png",
+          "originalSHA256": "322a61522de005a7b11aebc703b28963d776487c0abe7df3ca57d5c24401673b"
+        }
+      ],
+      "finding": "Diff badges, numbered rows, red/green bands, minimap and toolbar retain reference alignment in both themes. Main interior is RGBA-exact to frozen; rounded zero is not whole-frame equality.",
+      "blockingP2": false,
+      "status": "scoped-static-pass"
+    },
+    {
+      "name": "file-image+ask-light",
+      "fullSizeOriginalsInspected": [
+        {
+          "kind": "app",
+          "file": "images/file-image+ask-light.app.webp",
+          "originalPNG": "captures/2026-10-03T23-48-56-219Z-LGqZib/file-image+ask-light.app.png",
+          "originalSHA256": "798e93a59d6e08214fbae0d3d1471b98818f9bf30024d2ccaf5f8e07a5be3320"
+        }
+      ],
+      "finding": "Image, metadata and Ask panel are readable without observed overlap. This is an unpaired fixture frame with no matching frozen reference; no design-fidelity credit.",
+      "blockingP2": false,
+      "status": "reference-gap-observed"
+    }
+  ],
+  "limits": "Settled browser preview images only. No live text images, minimum-window geometry, keyboard behavior, native chrome, motion, CI or product acceptance."
+}

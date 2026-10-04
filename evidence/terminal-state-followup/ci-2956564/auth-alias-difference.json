@@ -1,0 +1,43 @@
+[
+  {
+    "os": "e2e-linux",
+    "views": [
+      "remote-mfa-unavailable-light",
+      "remote-verification-unavailable-light"
+    ],
+    "imageIDs": [
+      "e2e-linux-099",
+      "e2e-linux-099"
+    ],
+    "originalPNGSHA256": [
+      "98d5112a4226cca69149c41adf36132677aaceec715939b1bf3c95d649cc9e97",
+      "98d5112a4226cca69149c41adf36132677aaceec715939b1bf3c95d649cc9e97"
+    ],
+    "changedPixels": 0,
+    "bounds": null,
+    "cause": "Unknown; no callback/timing cause inferred."
+  },
+  {
+    "os": "macos",
+    "views": [
+      "remote-mfa-unavailable-light",
+      "remote-verification-unavailable-light"
+    ],
+    "imageIDs": [
+      "macos-099",
+      "macos-101"
+    ],
+    "originalPNGSHA256": [
+      "41359fdbb9fe730dbf81e1037daf0b1e72d01b3d9d4274531183be139e9460f2",
+      "f335a20d87cd58cc2087303dcd14d1eaa20cc6c486b209c05ac5260347bfa968"
+    ],
+    "changedPixels": 15375,
+    "bounds": [
+      466,
+      392,
+      826,
+      436
+    ],
+    "cause": "Unknown; no callback/timing cause inferred."
+  }
+]

@@ -1,0 +1,251 @@
+{
+  "pull_request": "https://github.com/CortexLM/backend/pull/447",
+  "original_review": {
+    "reviewer": "CodeRabbit",
+    "id": 5398330615,
+    "source_sha": "ce05a6040ec05ac479d23dc2f701c8835a529663"
+  },
+  "findings": [
+    {
+      "id": 4171108162,
+      "disposition": "fixed",
+      "source": "af36085cc96b182950ca4bf15161dcf2c3951da1",
+      "evidence": "CI datastore failure harness exercises actual workflow script before SQL; cleanup identities retained"
+    },
+    {
+      "id": 4171108172,
+      "disposition": "fixed",
+      "source": "af36085cc96b182950ca4bf15161dcf2c3951da1",
+      "evidence": "AGENTS SDK command runs backend script from repository root"
+    },
+    {
+      "id": 4171108179,
+      "disposition": "fixed",
+      "source": "af36085cc96b182950ca4bf15161dcf2c3951da1",
+      "evidence": "Embedded example closes in finally; examples run in integration"
+    },
+    {
+      "id": 4171108190,
+      "disposition": "fixed",
+      "source": "af36085cc96b182950ca4bf15161dcf2c3951da1",
+      "evidence": "Canonical raw screenshot schema, generation, required-filename/byte typing, raw File/Blob, real upload/attach and guest refusal"
+    },
+    {
+      "id": 4171108196,
+      "disposition": "fixed",
+      "source": "af36085cc96b182950ca4bf15161dcf2c3951da1",
+      "evidence": "fileURLToPath paths and Node20.9 runtime/package checks; native header preservation regression"
+    },
+    {
+      "id": 4171108203,
+      "disposition": "fixed",
+      "source": "78712801a5016d97b3d50c79c8596707306b36d6",
+      "evidence": "Embedded assembly and partial bootstrap cleanup; ten failure phases and deferred close preserve original rejection"
+    },
+    {
+      "id": 4171071619,
+      "disposition": "fixed_minor_correctness",
+      "source": "af36085cc96b182950ca4bf15161dcf2c3951da1",
+      "evidence": "Empty catalogue guard; not SQL injection; no invented fallback slug"
+    },
+    {
+      "id": 4171071626,
+      "disposition": "unsupported",
+      "evidence": "SSE normalizes CR/LF then splits lines; native Headers independently refuses newline values; independent probes"
+    },
+    {
+      "id": 4171071629,
+      "disposition": "unsupported_functional_claim_example_clarified",
+      "source": "78712801a5016d97b3d50c79c8596707306b36d6",
+      "evidence": "Automatic reconnect owns its internal cursor; later invocation requires original account Bearer"
+    },
+    {
+      "id": 4171072349,
+      "disposition": "unsupported",
+      "evidence": "Repository-specific packer accepts output directory, not arbitrary manifests; fixed SDK manifest declares dependency"
+    },
+    {
+      "id": 4171072356,
+      "disposition": "unsupported",
+      "evidence": "Opted-in SSE metadata callback and single iterator yield are distinct contracts; independent probes"
+    },
+    {
+      "id": 4171072360,
+      "disposition": "unsupported",
+      "evidence": "Missing-original-key guard executes before fallback; regression verifies refusal before fetch"
+    },
+    {
+      "id": 4171276492,
+      "disposition": "unsupported",
+      "evidence": "Empty OpenAPI auth alternative documents explicitly enabled self-host none; registered handler/principal returns Cloud401/guest403 before storage; Host/Origin none-mode403 tested",
+      "independent_review_session": "ses_f009b3961ffeZMo932D67YrU4J"
+    }
+  ],
+  "consumer_findings": [
+    {
+      "comment": 5964001037,
+      "owner": "G4",
+      "disposition": "fixed",
+      "evidence": "Late-image pending generation lifecycle and raw screenshot upload"
+    },
+    {
+      "comment": 5964557072,
+      "owner": "G1",
+      "disposition": "generated_turn_body_fixed_canonical_gaps_disclosed",
+      "source": "d6c71de1d99197c5e0ee5c59d0a089842d760cea",
+      "evidence": "Five generated StreamEvent mutation bodies unknown instead of never; precise legacy DTOs, durable identity and complete history handed to G2"
+    }
+  ],
+  "follow_up": {
+    "review": 5398585746,
+    "source_sha": "78712801a5016d97b3d50c79c8596707306b36d6",
+    "finding": "run.mjs early stub/port/file setup outside database cleanup boundary",
+    "disposition": "fixed",
+    "fixed_source_sha": "4581fdf150088576ce231317a2cbef2eadd99c60",
+    "evidence": "25 actual-runner scenarios plus parent prove setup/teardown cleanup, flags and original2/3/4exitcode preservation; final59SDKchecks include32runtime",
+    "failure_code_followup_source": "81a2f303cd3186aae3d503ea842e4b496f3a599a"
+  },
+  "cortex_review_5398569680": {
+    "source_sha": "d6c71de1d99197c5e0ee5c59d0a089842d760cea",
+    "independent_review_session": "ses_f009b3961ffeZMo932D67YrU4J",
+    "unsupported": [
+      4171327496,
+      4171327508,
+      4171327521,
+      4171327542,
+      4171327557,
+      4171327573,
+      4171327613,
+      4171327640,
+      4171327656,
+      4171327669,
+      4171327684,
+      4171327693
+    ],
+    "minor_protocol_duplicates_fixed": [
+      4171327591,
+      4171327627
+    ],
+    "fixed_source_sha": "f8782e5e6eb25c4799b96b793db3db3a330b80bc",
+    "evidence": "Low-level publicSSEempty-IDregression failsbefore resetheaderemptystring, passesafter explicitdeletion; preserves initialcaller5,server7,noheaderafterreset. All14repliedindividuallyandresolved."
+  },
+  "final_source_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+  "cortex_review_5398686805": {
+    "source_sha": "f8782e5e6eb25c4799b96b793db3db3a330b80bc",
+    "independent_review_session": "ses_f009b3961ffeZMo932D67YrU4J",
+    "unsupported": [
+      4171432452,
+      4171432463,
+      4171432468,
+      4171432473,
+      4171432476,
+      4171432478,
+      4171432483,
+      4171432492,
+      4171432494,
+      4171432498,
+      4171432503,
+      4171432508,
+      4171432510,
+      4171432516
+    ],
+    "minor_example_fixed": [
+      4171432496
+    ],
+    "atomic_publication_in_progress": [],
+    "evidence": "14findingsindependentlyunsupported;emptyexampleenvfixed;packerprivate-staginglinkSyncatomicEEXISTpublicationwith7scenarios+parent;node20.9and22regressionpass",
+    "atomic_publication_fixed": [
+      4171432480
+    ],
+    "fixed_source_sha": "466719b1efac345c89718a0d2b7cfb417ee57308"
+  },
+  "intervening_cortex_reviews": {
+    "independent_review_session": "ses_f009b3961ffeZMo932D67YrU4J",
+    "root_ids": [
+      4171372244,
+      4171372257,
+      4171372266,
+      4171372273,
+      4171372280,
+      4171372287,
+      4171372290,
+      4171372298,
+      4171372302,
+      4171372311,
+      4171414655,
+      4171414664,
+      4171414669,
+      4171414674,
+      4171414678,
+      4171420703,
+      4171420706,
+      4171420712,
+      4171420717,
+      4171420721,
+      4171420725,
+      4171420728,
+      4171420732,
+      4171420735,
+      4171420738
+    ],
+    "disposition": "25specificrepliesandresolved;no newreleaseblocker",
+    "retained_limits": {
+      "4171372266": "SSE has no explicit per-frame byte/depth ceiling; pre-existing parser behavior, separate protocol hardening",
+      "4171414655": "Example finally can mask original request failure if close also fails; cleanup still runs and fails visibly; production startup preserves original failure"
+    }
+  },
+  "minimum_node_hang": {
+    "runtime": "Node20.9",
+    "evidence_directory": "/tmp/opencode/sdk-034-clone-review-4htt8lsw",
+    "cause": "Native Fetch Response.clone reproduced as a shutdown trigger; exact finalizer object unproven",
+    "control": "2of6hung;nativefixtureexcluded14of14exit",
+    "correction": "suiteafter(setImmediate)one eventloopturn",
+    "confirmation": "Exact packed subprocess chain: current hook4of11hangs,without hook3of8hangs,single-read23of23pass; Node22+Bunpass. Final committed source verification pending.",
+    "source": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+    "package_deadline_seconds": 60,
+    "outcome": "fixed;exactsource10checkreleasepassedincludingisolatedminimumNode",
+    "resolution_candidate": "single-read successful auth JSON, no native Response.clone; failed suite shutdown hook removed",
+    "independent_review_session": "ses_f009b3961ffeZMo932D67YrU4J",
+    "release_receipt": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/receipt.json"
+  },
+  "latest_committed_source": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+  "final_delivery_ready": true,
+  "cortex_466719b1": {
+    "independent_review_session": "ses_f009b3961ffeZMo932D67YrU4J",
+    "ids": [
+      4171520651,
+      4171520660,
+      4171520662,
+      4171520667,
+      4171520674,
+      4171520678,
+      4171520681,
+      4171520682,
+      4171520684,
+      4171520690,
+      4171520692
+    ],
+    "disposition": "all11specificreplies;no supported-path defect;allresolved"
+  },
+  "coderabbit_5398799827": {
+    "source_sha": "466719b1efac345c89718a0d2b7cfb417ee57308",
+    "fixed_source_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+    "disposition": "fixed",
+    "evidence": "collect(factory) passes AbortSignal to19streams; actualSDKsilent/partialturn/subscription deadlinecancels/refuses;focusedNode20.9passed",
+    "independent_review_session": "ses_f009b3961ffeZMo932D67YrU4J"
+  },
+  "cortex_final_5b7e9d1c": {
+    "independent_review_session": "ses_f009b3961ffeZMo932D67YrU4J",
+    "root_ids": [
+      4171599458,
+      4171599465,
+      4171599468,
+      4171599473,
+      4171599479,
+      4171599482,
+      4171599490
+    ],
+    "disposition": "seven individually answered/resolved;no supported-path defect",
+    "additional_probe": "Node20.9abort-after-read/buffered-next-frame/cursorordering passed for both readers"
+  }
+}

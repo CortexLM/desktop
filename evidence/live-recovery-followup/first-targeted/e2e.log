@@ -1,0 +1,100 @@
+
+Running 9 tests using 4 workers
+
+  ✓  3 tests/e2e/terminal-copy.spec.ts:19:1 › French Code terminal localizes fresh shell notices without changing output or replay (2.5s)
+  ✓  1 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light (16.1s)
+  ✘  2 tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — dark (16.5s)
+  ✘  4 tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — light (16.6s)
+  ✓  5 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark (16.0s)
+  ✓  6 tests/e2e/ui-flows.spec.ts:103:1 › streamed exchange with thinking and an image, driven from the composer (4.7s)
+  ✓  8 tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — light (4.7s)
+  ✓  9 tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — dark (4.8s)
+  ✓  7 tests/e2e/ui-flows.spec.ts:141:1 › rejected sends keep the draft and attachments; retry resends the image (13.1s)
+
+
+  1) tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — light
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Nothing to approve', { exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Nothing to approve', { exact: true }) with timeout 15000ms
+      - waiting for getByText('Nothing to approve', { exact: true })
+
+
+      59 |     await expect(page.getByText("Nothing to approve", { exact: true })).toHaveCount(0);
+      60 |     await call(page, `/api/sessions/${session.id}/abort`, "POST");
+    > 61 |     await expect(page.getByText("Nothing to approve", { exact: true })).toBeVisible();
+         |                                                                         ^
+      62 |     expect(errors).toEqual([]);
+      63 |   } finally { await app.close(); await fake.close(); }
+      64 | });
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/approvals-recovery.spec.ts:61:73
+
+    attachment #1: approvals-list-refused-light (image/png) ────────────────────────────────────────
+    ../../../../../../../tmp/opencode/live-recovery-first-targeted/approvals-recovery-Approva-abde6-ntil-Retry-succeeds-—-light/attachments/approvals-list-refused-light-25408de847d881199bfff29f2265c4ed2344b470.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/live-recovery-first-targeted/approvals-recovery-Approva-abde6-ntil-Retry-succeeds-—-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/live-recovery-first-targeted/approvals-recovery-Approva-abde6-ntil-Retry-succeeds-—-light/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/live-recovery-first-targeted/approvals-recovery-Approva-abde6-ntil-Retry-succeeds-—-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/live-recovery-first-targeted/approvals-recovery-Approva-abde6-ntil-Retry-succeeds-—-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — dark
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Nothing to approve', { exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Nothing to approve', { exact: true }) with timeout 15000ms
+      - waiting for getByText('Nothing to approve', { exact: true })
+
+
+      59 |     await expect(page.getByText("Nothing to approve", { exact: true })).toHaveCount(0);
+      60 |     await call(page, `/api/sessions/${session.id}/abort`, "POST");
+    > 61 |     await expect(page.getByText("Nothing to approve", { exact: true })).toBeVisible();
+         |                                                                         ^
+      62 |     expect(errors).toEqual([]);
+      63 |   } finally { await app.close(); await fake.close(); }
+      64 | });
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/approvals-recovery.spec.ts:61:73
+
+    attachment #1: approvals-list-refused-dark (image/png) ─────────────────────────────────────────
+    ../../../../../../../tmp/opencode/live-recovery-first-targeted/approvals-recovery-Approva-c0cfe-until-Retry-succeeds-—-dark/attachments/approvals-list-refused-dark-8b4d92fe8f338c29422beca5d4659b944cc22bb1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/live-recovery-first-targeted/approvals-recovery-Approva-c0cfe-until-Retry-succeeds-—-dark/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/live-recovery-first-targeted/approvals-recovery-Approva-c0cfe-until-Retry-succeeds-—-dark/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/live-recovery-first-targeted/approvals-recovery-Approva-c0cfe-until-Retry-succeeds-—-dark/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/live-recovery-first-targeted/approvals-recovery-Approva-c0cfe-until-Retry-succeeds-—-dark/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — light
+    tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — dark
+  7 passed (31.6s)

@@ -1,0 +1,105 @@
+RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+ ✓ packages/desktop/test/credentials.test.ts (23 tests) 43ms
+ ✓ packages/schema/test/schema.test.ts (3 tests) 21ms
+ ✓ tests/unit/audit-i18n.test.ts (1 test) 226ms
+ ✓ packages/protocol/test/protocol.test.ts (3 tests) 41ms
+(node:2184871) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2184864) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2184835) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2184919) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2184802) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2184838) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2184801) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2184891) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2184904) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2184877) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2184862) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2184808) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2184884) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/unit/locales.test.ts (9 tests) 415ms
+ ✓ packages/core/test/computer-use.test.ts (3 tests) 43ms
+ ✓ packages/core/test/bus.test.ts (2 tests) 29ms
+ ✓ packages/core/test/mcp.test.ts (11 tests) 101ms
+ ✓ packages/core/test/connection.test.ts (5 tests) 58ms
+ ✓ packages/core/test/scheduler.test.ts (4 tests) 167ms
+ ✓ packages/client/test/client.test.ts (3 tests) 130ms
+ ✓ packages/core/test/capabilities.test.ts (11 tests) 157ms
+ ✓ packages/server/test/server.test.ts (7 tests) 214ms
+ ✓ packages/core/test/services.test.ts (15 tests) 331ms
+ ✓ packages/core/test/catalog.test.ts (6 tests) 384ms
+   ✓ catalog (6)
+     ✓ live: fetches models.dev (skipped offline) 361ms
+ ✓ tests/unit/runtime-copy.test.ts (34 tests) 3541ms
+ ✓ packages/desktop/test/remote.test.ts (45 tests | 1 skipped) 5183ms
+   ✓ remote backend through the Cortex SDK (45)
+     ✓ times out a model listing whose JSON body never completes 5002ms
+ ✓ packages/core/test/session.test.ts (11 tests) 6310ms
+   ✓ session runner (fake OpenAI-compatible SSE) (11)
+     ✓ surfaces provider errors with a neutral code 6016ms
+ ✓ packages/desktop/test/remote-session.test.ts (8 tests) 10301ms
+   ✓ process-lifetime remote authentication (8)
+     ✓ rejects duplicate requests and times out an unfinished native authentication body 10016ms
+ ❯ packages/desktop/test/remote-chat.test.ts (17 tests | 1 failed) 10737ms
+   ❯ private remote Chat binding (17)
+     ✓ binds a promoted identity, sanitizes models and preserves the active epoch during refused replacement 96ms
+     ✓ uses legacy model discovery only after canonical Cloud instance HTTP404 22ms
+     × refuses legacy fallback for malformed/forbidden/failed Cloud discovery and missing self-host discovery 21ms
+     ✓ uploads owned raw image bytes, admits headers immediately and preserves reasoning/tools/disclosure and post-done media 80ms
+     ✓ replays immutable new-chat path/body/key and the last acknowledged cursor after disconnect or detach 124ms
+     ✓ delivers both equal-ID frames and replays without ID-only deduplication 61ms
+     ✓ does not acknowledge an observer event failure before replay 17ms
+     ✓ does not acknowledge an observer cursor failure before replay 14ms
+     ✓ keeps ambiguous headers reserved, rejects mismatched event IDs and strips in-band raw errors 20ms
+     ✓ distinguishes truncated completion, EOF without terminal, and incomplete media after done 28ms
+     ✓ rejects invalid inputs, unowned/oversized files and unsupported choices before posting a turn 27ms
+     ✓ preserves high bits when admitting GIF/WebP signatures before authenticated upload 11ms
+     ✓ validates configured registry pages, unknown capabilities and explicit unsupported operator mode 17ms
+     ✓ releases definitive admission refusals, refuses redirects and retains drafts on malformed JSON 17ms
+     ✓ invalidates on 401, logout, origin changes and local expiry; late old 401 cannot clear a replacement 42ms
+     ✓ bounds JSON bodies and ignores late commits from caller cancellation 69ms
+     ✓ enforces the real JSON deadline while an SSE body has its separate idle deadline 10059ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/desktop/test/remote-chat.test.ts > private remote Chat binding > refuses legacy fallback for malformed/forbidden/failed Cloud discovery and missing self-host discovery
+AssertionError: expected CortexError: Remote access was not accept… { code: '…' } to match object { code: 'provider_auth_failed' }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+- {
+-   "code": "provider_auth_failed",
++ Refused {
++   "code": "provider_error",
+  }
+
+ ❯ packages/desktop/test/remote-chat.test.ts:149:37
+    147|       routes.set("/v1/instance", json({ code: "not_found", status: 404…
+    148|       const start = requests.length;
+    149|       await expect(binding.models()).rejects.toMatchObject({ code: sta…
+       |                                     ^
+    150|       expect(requests.slice(start).map((r) => r.path)).toEqual(["/v1/i…
+    151|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 19 passed (20)
+      Tests  1 failed | 219 passed | 1 skipped (221)
+   Start at  05:53:57
+   Duration  11.73s (tests 76%, import 14%, transform 10%)

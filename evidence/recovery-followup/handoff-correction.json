@@ -1,0 +1,58 @@
+{
+  "verifiedAt": "2026-10-02T18:10:58.795058+00:00",
+  "handoffDisposition": {
+    "source": "Latest user handoff correction",
+    "legacy": {
+      "doubleConfirmed": 59,
+      "bOnly": 3,
+      "openP1": [
+        "M02"
+      ],
+      "openIssue": "Partir de z\u00e9ro replaces the primary Bot; independent focused repair underway"
+    },
+    "product": {
+      "routes": 17,
+      "uniqueDefects": 8,
+      "p1": [
+        "MCP argument secret-copy",
+        "Empty-registry sample fallback"
+      ],
+      "repairOwnership": "Single design owner",
+      "approvedImmutablePackage": "pending"
+    },
+    "ios": "Two independent per-route reviews underway; web freeze does not certify native iPhone",
+    "constraints": [
+      "Preserve product source and branches",
+      "No import of unapproved layouts or simulated business behavior",
+      "Original desktop 7b388e2d immutable",
+      "45 icon additions remain separately usable"
+    ]
+  },
+  "observedLedger": {
+    "path": "/root/cortex-ui/review/confirmation-status.md",
+    "sha256": "10744dc308326bc3d467293977e7b6c47b50c3120ae96544c208c34f062703cc",
+    "recordedLegacyDoubleConfirmed": 63,
+    "recordedM02": "Scoped A/B closure on later 5daa8d29 source",
+    "recordedProduct": "Eight scoped A/B closures on corrective pin41545",
+    "scope": "Disk readback differs from latest handoff. No source/report rewrite; request owner reconciliation. Do not treat either count as whole-page approval."
+  },
+  "designRequests": {
+    "path": "/root/cortex-ui/DESIGN-REQUESTS.md",
+    "sha256AtReadback": "996c6afdc48ea4729dac277436d7e94807a16727430325b040c5efa4d02d3638",
+    "settings2Placement": "Under the two-rail PreferencesIcon request; distinct from plain plug/sliders delivery"
+  },
+  "publicPin": {
+    "root": "/tmp/opencode/public-surfaces/fixes-A",
+    "sourceManifestSha256": "c5ce25e996f79a2ebc557e34304be59fec08e9fb2212381d47a52f200f9c9d63",
+    "buildManifestSha256": "1ecdc6c8de23cd287bba67c8dad1ecfb1ab5fc396e38a4d4baab7cb247649313",
+    "finalManifestSha256": "564981ed3a76c53448433837594dd5b6e561fad133488f1b5c71d3235ca4010c",
+    "authoritativeReceipt": "receipt-recovery/results.json",
+    "authoritativeReceiptSha256": "a5f6d20c04d684f1c65b7dd68ca1d07a92ee67458687e6018b5fd657b146a18f",
+    "verifiedSourceFiles": 511,
+    "verifiedBuildFiles": 342,
+    "recordedPassingChecks": 151,
+    "verifiedImages": 14,
+    "scope": "Read-only hash/count validation of the corrected Public pin; no fresh browser/build or whole-page acceptance."
+  },
+  "disposition": "Use latest handoff as conservative integration hold until exact owner-approved correction pins and counts are reconciled. Preserve previous source-bound reports as historical evidence."
+}

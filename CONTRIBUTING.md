@@ -1,7 +1,8 @@
 # Contributing to Cortex
 
-Thank you for helping. This is a Bun workspaces monorepo. The UI is SolidJS.
-The desktop host is Electron. Please keep changes small, typed, and tested.
+Bun workspaces monorepo; Electron 44 desktop app; React 19 renderer; local engine in main.
+Read [AGENTS.md](./AGENTS.md) and [`.rules/`](./.rules/) first. Keep changes small, typed,
+and tested.
 
 ## Code of conduct
 
@@ -11,111 +12,65 @@ Be kind. See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 
 1. Search existing issues and pull requests.
 2. For a large feature, open an issue first.
-3. Do not commit secrets, `.env` files, cookies, or private tunnel URLs.
-4. Do not invent API keys in fixtures. Use obvious placeholders (`sk-…`).
+3. Do not commit secrets, `.env` files, cookies or private URLs.
+4. Test keys are obvious placeholders (`sk-test-…`).
 
 ## Setup
+
+Needs Bun 1.4.x and Node 22+.
 
 ```bash
 git clone https://github.com/CortexLM/desktop.git
 cd desktop
 bun install
-bun run build:native-dual-abi   # if native addons are missing
+node node_modules/electron/install.js
 bun run build
-```
-
-Desktop:
-
-```bash
 bun run start
-# or, with the Vite dev server:
-# terminal 1: bun run --filter @cortex-ide/app dev
-# terminal 2: VITE_DEV_SERVER_URL=http://localhost:5173 bun run start
 ```
 
-Web (same UI, no local harness):
+Renderer in a browser: `bun run dev:api` and `bun run dev:app` (http://localhost:5299).
+Electron against the dev renderer: `CORTEX_RENDERER_URL=http://localhost:5299 bun run start`.
 
-```bash
-bun run --filter @cortex-ide/app dev
-```
+## Where changes go
 
-Copy `.env.example` to `.env` only on your machine. Settings in the app
-override environment keys. Keys typed in Settings go to the OS keychain.
-
-## Branch names
-
-`feat/…`, `fix/…`, `docs/…`, `test/…`, `refactor/…`. Cloud-agent branches
-follow `cursor/<name>-<id>` and are managed by that workflow.
-
-## What to change
-
-- **UI / routes:** `packages/app`. One screen module per destination. Honest
-  empty, loading, error, and signed-out states — never a fake success.
-- **Desktop services:** `packages/main` + IPC types in `packages/shared`.
-- **Bridge:** `packages/preload`. New namespaces must be added to the
-  exposure-surface test on purpose.
-- **Design tokens / kit:** regenerate from Paper (`bun run paper:sync`) rather
-  than hand-editing generated files.
-- **Live API client:** `packages/cortex-api`. Do not require cloning
-  `CortexLM/backend`.
-
-Product lock (do not reopen in a drive-by PR):
-
-- One shell: Chat | Code. Bot is a separate app.
-- Chat sidebar order: Search, Research, Planning, Projects, Library, Plugins last.
-- Planning = scheduled tasks, not a project plan.
-- Plugin cards use official brand marks (Google Drive, Slack, GitHub, Paper).
-- Bot: exactly one computer per mascot, and that computer is a cloud farm box
-  (never This PC, never SSH).
-- This PC is Cortex Code on the desktop app. SSH stays SSH.
-- Web Code never runs the harness in the browser.
-- SSH / host keys stay server-side.
+- **Screens:** `packages/app/src/screens/<area>/`, registered by the area's `index.tsx`
+  `SCREENS`. Live states read the engine through `packages/app/src/api.ts`; preview states
+  read fixtures. See [`.rules/04-structure.md`](./.rules/04-structure.md).
+- **Copy:** `packages/i18n/locales/en/<namespace>.json`, read through `t()`. Then
+  `node scripts/translate-locales.mjs` for other locales ([docs/i18n.md](./docs/i18n.md)).
+- **Engine:** contract in `packages/schema`, service in `packages/core`, route in
+  `packages/protocol`, handler in `packages/server`, method in `packages/client`.
+- **Desktop host:** `packages/desktop/src` (main, preload, credentials, menu, remote).
+  A new preload function is a security review item ([`.rules/01-security.md`](./.rules/01-security.md)).
+- **Blocked surfaces** (Space, Scheduled, Plugins & skills) wait for design. Do not add
+  stand-in screens.
 
 ## Quality bar
 
 ```bash
+bun run lint
 bun run typecheck
-npx eslint packages
 bun run test
-bun run test:discovery
+bun run audit:i18n
+bun run build && bun run test:e2e
 ```
 
-E2E (needs Playwright Chromium and, in CI, xvfb):
-
-```bash
-bunx playwright install chromium
-bun run test:e2e
-```
-
-Rules that actually fail the build:
-
-- TypeScript `strict`.
-- ESLint `max-lines` 300 and `max-lines-per-function` 50 (blank lines and
-  comments skipped). Split modules instead of disabling the rule.
-- Vitest only for unit tests. Do not import `bun:test`.
-- New behaviour gets tests. Screens get empty / error / signed-out coverage.
-- No dead mocks presented as live data.
+What fails the build: TypeScript `strict`, ESLint errors (`no-explicit-any`,
+`rules-of-hooks`, unused vars), Vitest failures, the i18n audit, locale placeholder parity.
+New behaviour gets a test. See [docs/testing.md](./docs/testing.md).
 
 ## Pull requests
 
-Title: `type: short description` (`feat`, `fix`, `docs`, `test`, `refactor`).
-
-Describe what changed, how to try it on desktop and web, and which honest
-states you added. Do not dump secrets into the PR body or screenshots.
-
-Maintainers squash-merge. Do not merge your own cloud-agent PR unless asked.
+Title `type: short description` (`feat`, `fix`, `docs`, `test`, `refactor`). Fill in the
+template and its attestation block honestly ([`.rules/07-git-and-prs.md`](./.rules/07-git-and-prs.md)).
+Docs ship in the same PR ([`.rules/05-documentation.md`](./.rules/05-documentation.md)).
+Maintainers squash-merge.
 
 ## Security
 
-See [SECURITY.md](./SECURITY.md). Never paste keys, tokens, or session
-cookies into issues, PRs, or logs.
-
-Tagged desktop releases publish the auto-update feed to R2
-(`releases.cortex.foundation`). Staging feeds are
-`software.cortex.foundation/staging/`. See
-[docs/releases.md](./docs/releases.md) and
-[docs/runbooks/desktop-staging-prod.md](./docs/runbooks/desktop-staging-prod.md).
+See [SECURITY.md](./SECURITY.md). Never paste keys, tokens or session cookies into
+issues, PRs or logs.
 
 ## Questions
 
-GitHub Issues for bugs. GitHub Discussions for design questions when enabled.
+GitHub Issues for bugs; Discussions for design questions when enabled.

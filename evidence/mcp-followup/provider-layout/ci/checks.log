@@ -1,0 +1,38 @@
+# Selected original job-log lines; ANSI color removed, job/step prefixes shortened.
+# Original complete log hashes are in receipt.json. Line numbers refer to those originals.
+# Run https://github.com/CortexLM/desktop/actions/runs/37066222793, attempt 1.
+
+checks / checkout: HEAD is now at 8eb9387 Merge 9d704ee2ec38de71668f0c323dfbe780a8138600 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d
+linux / checkout: 2026-10-02T21:20:41.4932879Z 8eb9387d9c120ff2f0b46325e2615b93fab92dd2
+macos / checkout: 2026-10-02T21:20:49.3692140Z 8eb9387d9c120ff2f0b46325e2615b93fab92dd2
+
+checks:195 2026-10-02T21:20:35.6453791Z $ eslint packages scripts tests
+checks:200 2026-10-02T21:20:42.2449722Z $ tsc -p tsconfig.json
+checks:205 2026-10-02T21:20:53.3917634Z $ vitest run
+checks:220 2026-10-02T21:21:06.4820632Z ✓ packages/desktop/test/remote.test.ts (45 tests | 1 skipped) 5145ms
+checks:247 2026-10-02T21:21:11.1540536Z Test Files 15 passed (15)
+checks:248 2026-10-02T21:21:11.1541446Z Tests 173 passed | 1 skipped (174)
+checks:259 2026-10-02T21:21:11.1830253Z $ node scripts/audit-i18n.mjs
+checks:260 2026-10-02T21:21:12.2385534Z i18n audit: 63 files, 2265 keys used, 3395 keys in en, 0 problem(s)
+
+linux:446 2026-10-02T21:22:37.5138425Z ✓ 49 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light (15.3s)
+linux:447 2026-10-02T21:22:38.6330926Z ✓ 50 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark (15.2s)
+linux:449 2026-10-02T21:24:06.3840039Z rendered 426 screen states
+linux:452 2026-10-02T21:24:06.4022479Z 52 passed (3.2m)
+macos:356 2026-10-02T21:27:08.3754600Z rendered 426 screen states
+macos:358 2026-10-02T21:27:23.7348570Z ✓ 49 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light (15.3s)
+macos:359 2026-10-02T21:27:39.6429750Z ✓ 50 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark (15.9s)
+macos:363 2026-10-02T21:27:56.0087630Z 52 passed (7.0m)
+
+macos:365 2026-10-02T21:27:56.1273600Z npx electron-builder --mac dir zip --arm64 --publish never -c.mac.identity=null -c.mac.notarize=false
+macos:378 2026-10-02T21:27:57.1273960Z • packaging platform=darwin arch=arm64 electron=44.5.1 appOutDir=dist/mac-arm64
+macos:387 2026-10-02T21:27:58.9660830Z • default Electron icon is used reason=application icon is not set
+macos:388 2026-10-02T21:27:58.9851880Z • Current build is a part of pull request, code signing will be skipped.
+macos:392 2026-10-02T21:27:58.9855460Z • building target=macOS zip arch=arm64 file=dist/Cortex-0.2.0-arm64-mac.zip
+macos:395 2026-10-02T21:28:12.4915800Z node scripts/smoke.mjs mac
+macos:402 2026-10-02T21:28:13.5484030Z window: Cortex cortex://app/index.html
+macos:403 2026-10-02T21:28:23.8212500Z could not create image from display
+macos:404 2026-10-02T21:28:23.8214680Z screencapture failed: Command failed: screencapture -x out/smoke-screen.png
+macos:405 2026-10-02T21:28:23.8215030Z could not create image from display
+macos:407 2026-10-02T21:28:23.8216380Z renderer text: Chat | Work | Cortex | New chat | Create your Bot | Tools | Web search | Documents | Images | Automations | Recents | Your chats will appear here. | Getting started | 0 of 5 | What’s on today? | No model
+macos:408 2026-10-02T21:28:23.8216910Z SMOKE OK

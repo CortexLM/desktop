@@ -1,0 +1,181 @@
+{
+  "reviewedAt": "2026-10-03T14:56:07.379425+00:00",
+  "contacts": [
+    {
+      "file": "contacts/pairs-01.jpg",
+      "sha256": "25b5727a29b39cd91574f053b4aaed1da43416cf7478d71739a199f80b5ff5ac",
+      "states": [
+        "home-dark",
+        "home-light",
+        "chat-dark",
+        "chat-light",
+        "library-dark",
+        "library-light",
+        "search~results-dark",
+        "search~results-light",
+        "search~empty-dark",
+        "search~empty-light",
+        "search~loading-dark",
+        "search~loading-light"
+      ],
+      "pairs": 12,
+      "inspected": true
+    },
+    {
+      "file": "contacts/pairs-02.jpg",
+      "sha256": "6467fc052a0ee1d9a69b822ae03451e16b6ebc695318b048737f377373fa0f61",
+      "states": [
+        "search~recent-dark",
+        "search~recent-light",
+        "command~open-dark",
+        "command~open-light",
+        "command~filtered-dark",
+        "command~filtered-light",
+        "command~submenu-dark",
+        "command~submenu-light",
+        "command~none-dark",
+        "command~none-light",
+        "projects~grid-dark",
+        "projects~grid-light"
+      ],
+      "pairs": 12,
+      "inspected": true
+    },
+    {
+      "file": "contacts/pairs-03.jpg",
+      "sha256": "c8535d6d20f7f914ebe580056fd4565872fea2dd0dd6bd707d7a3ec6210f7f5d",
+      "states": [
+        "projects~empty-dark",
+        "projects~empty-light",
+        "projects~create-dark",
+        "projects~create-light",
+        "project~overview-dark",
+        "project~overview-light",
+        "project~files-dark",
+        "project~files-light",
+        "project~instructions-dark",
+        "project~instructions-light",
+        "project~sharing-dark",
+        "project~sharing-light"
+      ],
+      "pairs": 12,
+      "inspected": true
+    },
+    {
+      "file": "contacts/gaps.jpg",
+      "sha256": "a66b62944919ceae7ce9e523a7fe98c38b2358ff80687066d2558c35964f27b0",
+      "states": [
+        "home+menu-dark",
+        "home+menu-light"
+      ],
+      "pairs": 0,
+      "inspected": true
+    }
+  ],
+  "fullResolutionImages": [
+    {
+      "state": "projects~create-dark",
+      "kind": "app",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/projects~create-dark.app.png",
+      "sha256": "204463fbf0317f0daba01c8df361a023589107892754853bd1896ebdf0179540",
+      "inspected": true
+    },
+    {
+      "state": "projects~create-dark",
+      "kind": "design",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/projects~create-dark.design.png",
+      "sha256": "4d6387907c039c4461420b4101352559cf0736e631dc28cd60fdb41e54ec4c97",
+      "inspected": true
+    },
+    {
+      "state": "projects~create-light",
+      "kind": "app",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/projects~create-light.app.png",
+      "sha256": "4de83af66721bf7f7b1029fa8b39c5bd1f288cca447a013f00a3712283cf313c",
+      "inspected": true
+    },
+    {
+      "state": "projects~create-light",
+      "kind": "design",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/projects~create-light.design.png",
+      "sha256": "ccff155b6daafbacd1785b632973fdbaf213784c993634d40bba9ad7aeee1664",
+      "inspected": true
+    },
+    {
+      "state": "project~overview-dark",
+      "kind": "app",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/project~overview-dark.app.png",
+      "sha256": "f499dd5ae7c190b5ec4de503c62f8214b757c63e24a234f2bc24b3c0bfcf182e",
+      "inspected": true
+    },
+    {
+      "state": "project~overview-dark",
+      "kind": "design",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/project~overview-dark.design.png",
+      "sha256": "9772c387f84af960cac4f03f8367d68d960757bd5bf40a1505e853016c99635b",
+      "inspected": true
+    },
+    {
+      "state": "project~overview-light",
+      "kind": "app",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/project~overview-light.app.png",
+      "sha256": "480814cec8fbafb6d1555ebb7a19d1d1b364fe8da45d2918661d55202d27542d",
+      "inspected": true
+    },
+    {
+      "state": "project~overview-light",
+      "kind": "design",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/project~overview-light.design.png",
+      "sha256": "0bb770e126012f9fa9100501477947e493108a6ebdecc1b45a0c7ccf9bbbe4d1",
+      "inspected": true
+    },
+    {
+      "state": "chat-light",
+      "kind": "app",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/chat-light.app.png",
+      "sha256": "5f48b27fb92d15f13d9ac2236eaa736eea4cbc0253a873250954504d836c683c",
+      "inspected": true
+    },
+    {
+      "state": "chat-light",
+      "kind": "design",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/chat-light.design.png",
+      "sha256": "367f1215b83a7d80a89588a1bb90eda8d228beafec0a3fc75f3721c2dbd70957",
+      "inspected": true
+    },
+    {
+      "state": "projects~create-dark",
+      "kind": "diff",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/projects~create-dark.diff.png",
+      "sha256": "8eddc9517f8ad94467e7dac28c8658bf82a3310d9c953eb72c17952aacfe49f8",
+      "inspected": true
+    },
+    {
+      "state": "projects~create-light",
+      "kind": "diff",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/projects~create-light.diff.png",
+      "sha256": "1edc6721a287aad6a3e6a5b5b59d1e5ed9be89fa6306017f7ebaf9c70744dd26",
+      "inspected": true
+    },
+    {
+      "state": "project~overview-light",
+      "kind": "diff",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/project~overview-light.diff.png",
+      "sha256": "31dbf9fa651288e2ded0877283748b520ee2c46173709250ce451edbe190f16f",
+      "inspected": true
+    },
+    {
+      "state": "chat-light",
+      "kind": "diff",
+      "original": "captures/2026-10-03T14-27-56-137Z-jaskVF/chat-light.diff.png",
+      "sha256": "4876c6e62e1c5f1f9145e8d60e5dea8d0ab232890f9f12ed5a0e71dbcdc4cc8d",
+      "inspected": true
+    }
+  ],
+  "projectCreate": "Both French dialogs retain complete title/description, focused name, eight icon choices, six color swatches, instructions and Cancel/Create actions. Selected Calendar/violet geometry matches the frozen originals; sampled full dialog interiors are RGBA-exact.",
+  "projectOverview": "Both themes retain title/actions/tabs, four chat rows, three file rows, Instructions, assigned Bot and member cards. Chat/file column and Instructions card rectangles are RGBA-exact. Light-frame Bot pose differs; shell/header text raster residuals remain.",
+  "chatMaximum": "Light comparison retains two prose-line residuals against the frozen original, plus small sidebar mascot/back-button differences. Prose/code rectangle is RGBA-identical to the historical 6d96535/f9aca44-equivalent and initial transcript-correction app images; no new text/layout drift in that sampled region.",
+  "contactsDisposition": "All36 side-by-side pairs inspected; seven route families remain complete in these settled fixtures. Project empty/Search empty mascot poses and inherited shell/header rasters vary. Command overlays and both unmatched Home menus remain readable at contact scale.",
+  "qualification": "Scoped static preview review found no new blocking layout shift in its inspected targets. Original per-row residuals, unknown timing/raster causes and two missing Home-menu references remain. No live/native/motion/all-product approval follows.",
+  "inlineImages": "Tool-opened originals supply the inspected pixels. Conversation inline examples add no independent file/hash authority."
+}

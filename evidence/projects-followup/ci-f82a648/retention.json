@@ -1,0 +1,45 @@
+{
+  "rawReports": [
+    {
+      "source": "/tmp/opencode/projects-wrap-ci-37132419774/artifacts/e2e-linux/test-results/e2e.json",
+      "retained": "e2e-linux-report.json.gz",
+      "rawBytes": 1546116,
+      "rawSHA256": "c9593ad9a853ad75357ef57ab2aee45da5721ba8cc3cfbe61f09b089ce8e1a2c",
+      "gzipSHA256": "36125ad2f51204dfd13684a89b5379cc42c829f9fbd0a9960349d34ac54ff5c0"
+    },
+    {
+      "source": "/tmp/opencode/projects-wrap-ci-37132419774/artifacts/macos/test-results/e2e.json",
+      "retained": "macos-report.json.gz",
+      "rawBytes": 1538362,
+      "rawSHA256": "ea9378f7914d7d1ff0a2447e973a95f9c209b0c7bf48e3f3f882b011e3b96bbd",
+      "gzipSHA256": "9333078081b6a2a93eecdb7b6f37f2f88b3f38790495eb3e472f471b860753f3"
+    }
+  ],
+  "imageRetention": {
+    "8e3fd79 RGBA-exact canonical": 264,
+    "new lossless WebP": 52
+  },
+  "uniqueImages": 316,
+  "pngCopies": 952,
+  "rawArchivesRetainedInRepository": false,
+  "archiveBindings": "downloads.json",
+  "canonicalReusesRequire": "Full-image decoded RGBA hash and bytes exact; prior retained SHA256 and dimensions verified. No tolerance.",
+  "originalInputHashes": [
+    {
+      "path": "/tmp/opencode/projects-wrap-ci-37132419774/run.json",
+      "sha256": "4e964295e496978acae1eb2529219efc54a6c0b73538d1d7c916eec8a46b5643"
+    },
+    {
+      "path": "/tmp/opencode/projects-wrap-ci-37132419774/run.log",
+      "sha256": "a88c652d139df5cb7e84dd9a9337fc6d2019197bfef13ba6952fed651ec20fa2"
+    },
+    {
+      "path": "/tmp/opencode/projects-wrap-ci-37132419774/artifacts.json",
+      "sha256": "9d073bf61da937eb79d05cc692ca66da48e782681a963805cee5be4beea6c1bc"
+    },
+    {
+      "path": "/tmp/opencode/projects-wrap-ci-37132419774/archive-bindings.json",
+      "sha256": "06ded4329395e88003c0acddb9b7206a30bcc9306953a105cfaffb9c08ae0ac0"
+    }
+  ]
+}

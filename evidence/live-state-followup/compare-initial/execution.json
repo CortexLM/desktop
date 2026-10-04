@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "scripts/compare-shots.mjs",
+    "--shots",
+    "/root/cortex-ui-freezes/2026-10-02-7b388e2d9674/shots",
+    "--out",
+    "/tmp/opencode/live-state-compare-initial",
+    "--base",
+    "http://127.0.0.1:5337/",
+    "--only",
+    "chat,work-task,bot,code-session",
+    "--clock",
+    "2026-10-02T12:09:00.000Z",
+    "--timezone",
+    "UTC"
+  ],
+  "elapsedSeconds": 75.736,
+  "exitCode": 0,
+  "timedOut": false,
+  "nodeVersion": "v22.23.3",
+  "beforeAllMatch": true,
+  "afterAllMatch": true,
+  "output": "/tmp/opencode/live-state-compare-initial",
+  "capturedSourceSha256": "fde8193d44f8e943915b18a5b3dc074ef048dc1f37cd580f25db1f2bfab6ed34"
+}

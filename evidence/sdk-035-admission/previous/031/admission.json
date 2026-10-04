@@ -1,0 +1,150 @@
+{
+  "checked_at": "2026-10-03T01:57:49.461805+00:00",
+  "scope": "Read-only admission: hashes, package metadata, committed source and receipt integrity; no upstream suites/build/native replay",
+  "result": "PASS",
+  "source": "ce05a6040ec05ac479d23dc2f701c8835a529663",
+  "runtime_source": "216396b1295e512d4c26d21be720bbae1facc0bf",
+  "schema_blob": "d6d46014d1c436b96540529dca2a3005556ae920",
+  "schema_sha256": "93806bd0f31a0499b6bded99a25b319a90cd5afc011b70021ba921ed12107724",
+  "generated_source_files_compared": 16,
+  "packages": [
+    {
+      "file": "cortex-api-types-0.2.0.tgz",
+      "sha256": "3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877",
+      "package": {
+        "name": "@cortex/api-types",
+        "version": "0.2.0",
+        "private": true,
+        "description": "Types and a typed client for the Cortex API. Generated from the Rust source; do not edit by hand.",
+        "type": "module",
+        "main": "./dist/index.js",
+        "types": "./dist/index.d.ts",
+        "exports": {
+          ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+          }
+        },
+        "files": [
+          "dist",
+          "src"
+        ],
+        "scripts": {
+          "build": "tsc --build",
+          "typecheck": "tsc --noEmit",
+          "check-drift": "node ../../scripts/check-type-drift.mjs",
+          "test": "tsc --build && node --test test/streaming.test.mjs test/client.test.mjs"
+        },
+        "devDependencies": {
+          "typescript": "6.0.3"
+        },
+        "engines": {
+          "node": ">=20.9.0"
+        }
+      },
+      "source_files_compared": 16
+    },
+    {
+      "file": "cortex-sdk-0.3.1.tgz",
+      "sha256": "d47fb53878385849d74822b22526838aa3f99a3cbccb96ec95324a419838d12e",
+      "package": {
+        "name": "@cortex/sdk",
+        "version": "0.3.1",
+        "private": true,
+        "description": "TypeScript SDK for the Cortex API, generated from openapi/cortex.openapi.json.",
+        "type": "module",
+        "main": "./dist/index.js",
+        "types": "./dist/index.d.ts",
+        "exports": {
+          ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+          }
+        },
+        "files": [
+          "dist",
+          "src"
+        ],
+        "scripts": {
+          "generate": "node scripts/generate.mjs",
+          "check-generated": "node scripts/generate.mjs --check",
+          "build": "tsc -p tsconfig.json",
+          "typecheck": "tsc -p tsconfig.json --noEmit",
+          "test": "npm run build && node --test test/*.test.mjs",
+          "test:types": "tsc --ignoreConfig --noEmit --strict --skipLibCheck --target ES2023 --module NodeNext --moduleResolution NodeNext test/types.ts",
+          "test:integration": "npm run build && node test/integration/run.mjs",
+          "examples": "node scripts/run-examples.mjs",
+          "pack:vendor": "node scripts/pack.mjs"
+        },
+        "devDependencies": {
+          "@hey-api/openapi-ts": "0.99.0",
+          "typescript": "6.0.3"
+        },
+        "engines": {
+          "node": ">=20.9.0"
+        },
+        "peerDependencies": {
+          "@cortex/api-types": "0.2.0"
+        },
+        "peerDependenciesMeta": {
+          "@cortex/api-types": {
+            "optional": true
+          }
+        }
+      },
+      "source_files_compared": 19
+    }
+  ],
+  "owner_checks_hash_verified_not_rerun": [
+    {
+      "name": "api-types",
+      "exit_code": 0,
+      "log_sha256": "b07a39a7f7515eba7afeb0d2152d127d89473088418e7a62aa1eb8943cad4f7d"
+    },
+    {
+      "name": "generation-drift",
+      "exit_code": 0,
+      "log_sha256": "beaf0276383664001d9dab14cba803857711a819f53f72418a5a97f0c0bdf058"
+    },
+    {
+      "name": "sdk-runtime-build",
+      "exit_code": 0,
+      "log_sha256": "5825719757d646dfb78cc925a3578bf7976a49fbbeb4f3706685a45766b4c01c"
+    },
+    {
+      "name": "consumer-types",
+      "exit_code": 0,
+      "log_sha256": "9846a46143a45edea341962633fdc3c6f1b64fce92dd484cc9704f3b761e7e7d"
+    },
+    {
+      "name": "integration-examples",
+      "exit_code": 0,
+      "log_sha256": "7af863fab7475ec8428b9d39772f14d014b4759a5d904c3b11ab531481228a92"
+    },
+    {
+      "name": "embedded-openapi",
+      "exit_code": 0,
+      "log_sha256": "ea945b4561a615f20a2da670bbb5c37cabc7891d927faf25931d432d3aaaa713"
+    },
+    {
+      "name": "pack",
+      "exit_code": 0,
+      "log_sha256": "15a152307b8b600f26c7e17cc730b269ac1d8538f1c2303f962e1b02bd31d9ec"
+    },
+    {
+      "name": "isolated-npm-bun",
+      "exit_code": 0,
+      "log_sha256": "017e6bba3f3eb230ef02f4ab6c08bc3d7e08bddb93af7d2ccd009ae02ce5e463"
+    }
+  ],
+  "preserved_negative_logs": {
+    "native-node22-before.log": "1b608473341421ba4a48444ad32169f24ca5efdd9e3e9ade03faa345d0634ed2",
+    "prior-sdk-ci-failure.log": "3745248a6ff582f26d59886c5de936da2b40fe6ad9cff8981b247c21d223d90f",
+    "schema-drift-negative.log": "f176bac467878df869016ad97a414e379823347271b09a13d24005977e9e413f",
+    "workflow-check.log": "d20678835351139a920328de46ece32b54851ee0d7ba09fcfe33ac0902d15bcd"
+  },
+  "unchanged_desktop_archives": {
+    "cortex-sdk-0.2.0.tgz": "536f57c026a7a8a1f04f1eb80b3f682f6becd514e789b998fcf28b86de7df9e7",
+    "cortex-api-types-0.1.0.tgz": "6e97d4f92c5e098ac989589fc81ca70bed1abc018383994e397c49d61837b134"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "completedAt": "2026-10-03T07:19:36.556774+00:00",
+  "run": 37105137365,
+  "head": "1076c2584941cf054efffaf709a149b4195bc1c4",
+  "downloads": [
+    {
+      "endpoint": "repos/CortexLM/desktop/actions/artifacts/11267328056/zip",
+      "path": "/var/tmp/opencode/remote-ci-1076c25/e2e-linux.zip",
+      "bytes": 27042910,
+      "sha256": "5eaad9162ecb13335c6a7d868a041ee5a2f370cdda9b3724f18dc2e474bfd2b0",
+      "artifactID": 11267328056,
+      "apiDigest": "sha256:5eaad9162ecb13335c6a7d868a041ee5a2f370cdda9b3724f18dc2e474bfd2b0",
+      "files": 367,
+      "crcAndSafePaths": true
+    },
+    {
+      "endpoint": "repos/CortexLM/desktop/actions/artifacts/11267821981/zip",
+      "path": "/var/tmp/opencode/remote-ci-1076c25/macos.zip",
+      "bytes": 26453409,
+      "sha256": "82f8a2e326a97a09710b5cfed6887a99bfd353511a28f1765ee1528cc62ec28d",
+      "artifactID": 11267821981,
+      "apiDigest": "sha256:82f8a2e326a97a09710b5cfed6887a99bfd353511a28f1765ee1528cc62ec28d",
+      "files": 372,
+      "crcAndSafePaths": true
+    },
+    {
+      "endpoint": "repos/CortexLM/desktop/actions/runs/37105137365/logs",
+      "path": "/var/tmp/opencode/remote-ci-1076c25/logs.zip",
+      "bytes": 94671,
+      "sha256": "3f26cb5e3767910b282e6329668381c937194cfe5ffab7377956ff70a9610fee",
+      "artifactID": null,
+      "apiDigest": null,
+      "files": 52,
+      "crcAndSafePaths": true
+    }
+  ],
+  "applicationPackageDownloaded": false,
+  "completedMetadataSource": "Coordinator-supplied final run/jobs and artifact API JSON; no status polling"
+}

@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "scope": "Offline package/source provenance only; no installed/native execution",
+  "application": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "prior": "2956564fbe31f882014d74ff3a7f920e839fd634",
+  "artifactID": 11272761294,
+  "workflowRunID": 37118586276,
+  "outerBytes": 144676511,
+  "archiveSHA256": {
+    "artifact.zip": "401e565fc214b2958e7115e82dd28beef7abe08c2635ce440c5664c87482ed69",
+    "Cortex.zip": "216d6a52fe0ed3b3c3b2beddcfb75262f23ef8fdcdc9ec452a74f0d07c999395",
+    "app.asar": "d1e6987ac728723b5c9b1132aa532fc63c3db55d863c9b264c48fdc631eea1f7"
+  },
+  "asarFiles": 91,
+  "buildMembers": 90,
+  "verifiedFileIntegrity": 91,
+  "verifiedBlocks": 92,
+  "catalogs": 104,
+  "localeCounts": {
+    "de": 13,
+    "en": 13,
+    "es": 13,
+    "fr": 13,
+    "ja": 13,
+    "ko": 13,
+    "pt-BR": 13,
+    "zh-Hans": 13
+  },
+  "skills": 1,
+  "packageInputs": 514,
+  "rendererInputs": 473,
+  "rendererFingerprint": "5538c5298dbad432d82cf18781b9f7e62b5a861311ad61c6fc518c0cdb6e1ae7",
+  "changedInputs": [
+    "packages/app/src/screens/system/settings.tsx"
+  ],
+  "settingsSHA256": "b859cf9785ada768307e77a2546c02b80576b1491187b6ffa944c1673432eed6",
+  "settingsLineDelta": {
+    "added": 3,
+    "removed": 3
+  },
+  "desktopMembersIdenticalTo2956564AndF5": 4,
+  "mainWorkspaceSources": 32,
+  "preloadWorkspaceSources": 1,
+  "sdkSources": 16,
+  "apiTypesSources": 16,
+  "linuxAsarBytesIdentical": true,
+  "inputArtifactsStableBeforeAfter": true,
+  "started": "2026-10-03T11:25:19.244275+00:00",
+  "finished": "2026-10-03T11:25:26.101608+00:00"
+}

@@ -1,0 +1,62 @@
+{
+  "run": 37118586276,
+  "head": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "completedAt": "2026-10-03T11:20:22.180544+00:00",
+  "downloads": [
+    {
+      "endpoint": "repos/CortexLM/desktop/actions/artifacts/11272631081/zip",
+      "path": "/var/tmp/opencode/ci-37c22c2/e2e-linux.zip",
+      "artifactID": 11272631081,
+      "bytes": 31852809,
+      "sha256": "e798876b6831c79c3be73f37bf06a4f8f1ee169092e2724a988df8592008a3ef",
+      "apiDigest": "sha256:e798876b6831c79c3be73f37bf06a4f8f1ee169092e2724a988df8592008a3ef",
+      "files": 445,
+      "digestVerifiedBeforeExtraction": true,
+      "crcAndSafePaths": true
+    },
+    {
+      "endpoint": "repos/CortexLM/desktop/actions/artifacts/11272621686/zip",
+      "path": "/var/tmp/opencode/ci-37c22c2/macos.zip",
+      "artifactID": 11272621686,
+      "bytes": 30850660,
+      "sha256": "db102fe295afbc38dad02e97a8285d0339feea86085576236defe5d82b102eff",
+      "apiDigest": "sha256:db102fe295afbc38dad02e97a8285d0339feea86085576236defe5d82b102eff",
+      "files": 448,
+      "digestVerifiedBeforeExtraction": true,
+      "crcAndSafePaths": true
+    },
+    {
+      "endpoint": "repos/CortexLM/desktop/actions/runs/37118586276/logs",
+      "path": "/var/tmp/opencode/ci-37c22c2/logs.zip",
+      "artifactID": null,
+      "bytes": 97908,
+      "sha256": "b278777e86aa1f01d91455901c9ada68f754d3507df604b9e9b7eb410b8a0541",
+      "apiDigest": null,
+      "files": 52,
+      "digestVerifiedBeforeExtraction": false,
+      "crcAndSafePaths": true
+    }
+  ],
+  "applicationPackageDownloaded": false,
+  "packageArtifact": {
+    "id": 11272761294,
+    "node_id": "MDg6QXJ0aWZhY3QxMTI3Mjc2MTI5NA==",
+    "name": "cortex-mac-arm64-zip",
+    "size_in_bytes": 144676511,
+    "url": "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11272761294",
+    "archive_download_url": "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11272761294/zip",
+    "expired": false,
+    "digest": "sha256:401e565fc214b2958e7115e82dd28beef7abe08c2635ce440c5664c87482ed69",
+    "created_at": "2026-10-03T11:18:09Z",
+    "updated_at": "2026-10-03T11:18:09Z",
+    "expires_at": "2026-10-10T11:18:05Z",
+    "workflow_run": {
+      "id": 37118586276,
+      "repository_id": 1336933474,
+      "head_repository_id": 1336933474,
+      "head_branch": "goal/desktop-rewrite",
+      "head_sha": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f"
+    }
+  },
+  "metadataReads": "One completed run/jobs/artifacts snapshot; no polling."
+}

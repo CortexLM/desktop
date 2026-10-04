@@ -1,0 +1,71 @@
+{
+  "window_utc": "2026-10-03T12:06:09Z/2026-10-03T12:10:00Z",
+  "scope": "read-only owner dependency readback; normalized tool observations, not raw HTTP archives",
+  "github": {
+    "method": "gh api --method GET",
+    "since": "2026-10-03T09:47:00Z",
+    "per_page": 100,
+    "feeds": [
+      {"path": "repos/CortexLM/backend/issues/446/comments", "command_succeeded": true, "count": 0, "comments": []},
+      {
+        "path": "repos/CortexLM/backend/issues/447/comments",
+        "command_succeeded": true,
+        "count": 1,
+        "comments": [{
+          "id": 5968782320,
+          "created_at": "2026-10-03T11:36:56Z",
+          "updated_at": "2026-10-03T11:36:56Z",
+          "author": "echobt",
+          "html_url": "https://github.com/CortexLM/backend/pull/447#issuecomment-5968782320",
+          "body": "G4 adopted the explicitly delivered SDK0.3.5/API-types0.2.0 pair in web-local immutable archives at backend#445 commit02cba721. G3-owned workspace sources remain unchanged. Generated Instance2/Registry discovery delegates to the existing guarded two-GET transport; legacy auth/refresh/cookies/JSON and streams retained. Both hashes/source identities/install trees verified; isolated clean npm ci and16 raw/SSE/reauth probes pass. Independent runtime/tooling reviews closed query and staged-compiler findings. Fresh clean commit receipt build underway; no live backend or full-transcript acceptance claimed. Thank you for the consumer-adoption handoff."
+        }]
+      }
+    ],
+    "new_owner_release_pin": false,
+    "branch_metadata_or_tarballs_requested": false
+  },
+  "public_gets": [
+    {
+      "url": "https://api.cortex.foundation/v1/instance",
+      "observed_utc": "2026-10-03T12:07:12.987329+00:00",
+      "method": "GET",
+      "authenticated": false,
+      "redirects_allowed": false,
+      "status": 404,
+      "content_type": "application/problem+json",
+      "response_date": "Sat, 03 Oct 2026 12:07:13 GMT",
+      "body_sha256": "5036874df8db29f2f2525b9666c69ec4cb01e6d715a21a959213c2f5b444fdcd",
+      "body_bytes": 219,
+      "body_capped": false,
+      "usable_instance_metadata": false
+    },
+    {
+      "url": "https://api.cortex.foundation/v1/models",
+      "observed_utc": "2026-10-03T12:07:13.238179+00:00",
+      "method": "GET",
+      "authenticated": false,
+      "redirects_allowed": false,
+      "status": 200,
+      "content_type": "application/json",
+      "response_date": "Sat, 03 Oct 2026 12:07:13 GMT",
+      "body_sha256": "d145822586d77fa2f394eef63b89cffbc2d11d0676f4e106b88c35d2805b68f3",
+      "body_bytes": 995,
+      "body_capped": false,
+      "models": [
+        {"slug": "cortex-1-mini", "supports_vision": false, "supports_reasoning": true},
+        {"slug": "cortex-teutonic-1", "supports_vision": false, "supports_reasoning": true},
+        {"slug": "cortex-image-1", "supports_vision": false, "supports_reasoning": false}
+      ]
+    }
+  ],
+  "local_authorities_observed_utc": "2026-10-03T12:07:40Z",
+  "local_authorities": [
+    {"path": "/root/cortex-goals/COORDINATION.md", "sha256": "2464f38d75819e6d2d2d427eed64b7fc7b203426a52c6a2e51e3993839852d0b", "lines": 350},
+    {"path": "/root/cortex-ui/review/ACTIVE-DIRECTION.md", "sha256": "8efe9828ff22fe7d501795858de2c4a584392c8f48e757f29392646858dfbe9a"},
+    {"path": "/root/cortex-ui/DESIGN-REQUESTS.md", "sha256": "35a10dda40ae272a35fa1b689201f9568b6106e6b5454a60d23b49c034f60600"},
+    {"path": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/AGENTS.md", "sha256": "2f21255f560336d5908339439bf82b09f36a1846b78aa59aa872dd4ad17dbda8"},
+    {"path": "/root/.config/opencode/AGENTS.md", "sha256": "b3b6d44c2b5b2bcbc102730cb072d1fbfabfaa4fdebd9c063abccacb0b1ca527"},
+    {"path": "/root/cortex-ui/AGENTS.md", "sha256": "5535d51fa8f511b1e9381085bd112e69d5533a9825b1fadbcdfa5d8b50ec3130"}
+  ],
+  "limitations": ["no new runtime acceptance", "issue-comment feeds only", "local documents may advance after observed hashes", "no archive intake", "no credentials or inference", "no product or prototype edits"]
+}

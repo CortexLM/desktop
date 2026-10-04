@@ -1,0 +1,116 @@
+{
+  "application": "2956564fbe31f882014d74ff3a7f920e839fd634",
+  "documentaryHeadAtRun": "10a57be97ee9e9f9ea0c761784279ec8744b70d3",
+  "source": {
+    "path": "source/provider-draft.spec.ts.gz",
+    "sha256": "bf57e5cdb18d53f31572ec04ec7727130574a1c33cbdf9cc3b6fcb4733365c3a",
+    "lines": 129
+  },
+  "result": {
+    "failedCases": 2,
+    "intendedAssertionFailures": 4,
+    "unexpectedSetupOrControlFailures": 0,
+    "retries": 0,
+    "expectedFailureAnnotation": false,
+    "positiveRun": false
+  },
+  "bindings": {
+    "members": 90,
+    "inputs": 514,
+    "beforeEqualsAfter": true,
+    "freeze": "/tmp/opencode/build-terminal-state-final",
+    "authority": "pre/post negative-run receipts; not a claim about later coordinator edits"
+  },
+  "cases": [
+    {
+      "theme": "light",
+      "locale": "en",
+      "viewport": [
+        960,
+        640
+      ],
+      "status": "failed",
+      "durationMs": 6450,
+      "started": "2026-10-03T10:45:26.443Z",
+      "intendedFailures": 2,
+      "assertion": "accepted preference PATCH preserves the unsaved replacement draft",
+      "draftPreservedAfterDisableAndEnable": [
+        false,
+        false
+      ],
+      "draftEmptyAfterDisableAndEnable": [
+        true,
+        true
+      ],
+      "storedHintsAfterDisableEnableSave": [
+        "1111",
+        "1111",
+        "2222"
+      ],
+      "explicitSaveClearsDraft": true,
+      "patch200": 2,
+      "put200": 2,
+      "postLaunchObservedHTTPFetches": 0,
+      "observations": "observations/light.json"
+    },
+    {
+      "theme": "dark",
+      "locale": "en",
+      "viewport": [
+        960,
+        640
+      ],
+      "status": "failed",
+      "durationMs": 6516,
+      "started": "2026-10-03T10:45:26.446Z",
+      "intendedFailures": 2,
+      "assertion": "accepted preference PATCH preserves the unsaved replacement draft",
+      "draftPreservedAfterDisableAndEnable": [
+        false,
+        false
+      ],
+      "draftEmptyAfterDisableAndEnable": [
+        true,
+        true
+      ],
+      "storedHintsAfterDisableEnableSave": [
+        "1111",
+        "1111",
+        "2222"
+      ],
+      "explicitSaveClearsDraft": true,
+      "patch200": 2,
+      "put200": 2,
+      "postLaunchObservedHTTPFetches": 0,
+      "observations": "observations/dark.json"
+    }
+  ],
+  "historicalAttempts": [
+    {
+      "path": "history/empty-renderer-url",
+      "status": "timedOut",
+      "cases": 2,
+      "errorCounts": [
+        1,
+        1
+      ],
+      "authority": "historical; not the final accepted capture run"
+    },
+    {
+      "path": "history/obscured-capture",
+      "status": "failed",
+      "cases": 2,
+      "errorCounts": [
+        2,
+        2
+      ],
+      "authority": "historical; not the final accepted capture run"
+    }
+  ],
+  "limits": [
+    "HTTP observation starts after launch; initial catalog configured as a data URI.",
+    "No pageerror listener installed; this packet makes no page-error absence claim.",
+    "Stored hints and sanitized response fields verified; no credential-store decryption.",
+    "This is negative Linux Electron evidence; no corrected build, CI, packaged or Mac acceptance."
+  ]
+}

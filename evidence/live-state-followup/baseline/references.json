@@ -1,0 +1,282 @@
+{
+  "pathBase": "this directory",
+  "rawReportPathsPreserved": true,
+  "references": [
+    {
+      "case": "stream-light",
+      "attachment": "before-history-release",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/attachments/before-history-release-81747c0159dc1262edb962f9c183c8bc817dfc1d.png",
+      "originalSHA256": "ab99b52e1ee335612ff6d3b730220a367e5edc80169321a9d00f238b81c08180",
+      "retainedPath": "images/stream-light-before.webp",
+      "relation": "decoded-RGBA-identical lossless WebP"
+    },
+    {
+      "case": "stream-light",
+      "attachment": "after-history-release",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/attachments/after-history-release-b1ebc2dcd42c4e01ed75c8a29a3af29cc55580e8.png",
+      "originalSHA256": "515c8c4bb23328f6bbdca0899a50ce3411feafc4846fd8748e6c51c7894b6954",
+      "retainedPath": "images/stream-light-after.webp",
+      "relation": "decoded-RGBA-identical lossless WebP"
+    },
+    {
+      "case": "stream-light",
+      "attachment": "failure",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/attachments/failure-5365bb9bad1d55d347d5c988d5ecdb531f50e5d1.png",
+      "originalSHA256": "515c8c4bb23328f6bbdca0899a50ce3411feafc4846fd8748e6c51c7894b6954",
+      "retainedPath": "images/stream-light-after.webp",
+      "relation": "PNG-byte-identical to after-history-release original; decoded-RGBA-identical to retained WebP"
+    },
+    {
+      "case": "stream-light",
+      "attachment": "screenshot",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/test-failed-1.png",
+      "originalSHA256": "515c8c4bb23328f6bbdca0899a50ce3411feafc4846fd8748e6c51c7894b6954",
+      "retainedPath": "images/stream-light-after.webp",
+      "relation": "PNG-byte-identical to after-history-release original; decoded-RGBA-identical to retained WebP"
+    },
+    {
+      "case": "stream-light",
+      "attachment": "held-real-history",
+      "originalReference": "raw/results.json.gz#suites/0/specs/0/tests/0/results/0/attachments/0",
+      "retainedPath": "traces/stream-light.json",
+      "relation": "parsed JSON fields retained; exact attachment bytes remain in raw report"
+    },
+    {
+      "case": "stream-light",
+      "attachment": "live-state-evidence",
+      "originalReference": "raw/results.json.gz#suites/0/specs/0/tests/0/results/0/attachments/5",
+      "retainedPath": "traces/stream-light.json",
+      "relation": "parsed JSON fields retained; exact attachment bytes remain in raw report"
+    },
+    {
+      "case": "stream-light",
+      "attachment": "live-state-errors",
+      "originalReference": "raw/results.json.gz#suites/0/specs/0/tests/0/results/0/attachments/4",
+      "retainedPath": "traces/stream-light.json",
+      "relation": "parsed JSON fields retained; exact attachment bytes remain in raw report"
+    },
+    {
+      "case": "stream-light",
+      "attachment": "error-context",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/error-context.md",
+      "originalSHA256": "c9f7ddd885920841ecb4b6a4005c8ef0159a5d7d5a78001005b854266063faa4",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; assertion retained in cases/raw report, complete recorded SSE and DOM observations in traces/stream-light.json"
+    },
+    {
+      "case": "stream-light",
+      "attachment": "trace",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/trace.zip",
+      "originalSHA256": "8fb5603cd9114808658b25e89d827c439fd74007bbf7a3eda74ed9610c205868",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; assertion retained in cases/raw report, complete recorded SSE and DOM observations in traces/stream-light.json"
+    },
+    {
+      "case": "delete-light",
+      "attachment": "before-history-release",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/attachments/before-history-release-bffbeb843cba459c92ca8f9cb9a794f1d4eab96e.png",
+      "originalSHA256": "ce54a41273528118a7ede2324fe089d323532f7f08156c13c424d0e137d8e63d",
+      "retainedPath": "images/delete-light-before.webp",
+      "relation": "decoded-RGBA-identical lossless WebP"
+    },
+    {
+      "case": "delete-light",
+      "attachment": "after-history-release",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/attachments/after-history-release-14718321b6c211d686edfa512858483d872ea6d2.png",
+      "originalSHA256": "a702e62b0cc683613334237fbef8194796c4c52218ef7e16d3d6ee1d930168c4",
+      "retainedPath": "images/delete-light-after.webp",
+      "relation": "decoded-RGBA-identical lossless WebP"
+    },
+    {
+      "case": "delete-light",
+      "attachment": "failure",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/attachments/failure-b7618da6975888c1010960a0fb90f40c059bbae7.png",
+      "originalSHA256": "a702e62b0cc683613334237fbef8194796c4c52218ef7e16d3d6ee1d930168c4",
+      "retainedPath": "images/delete-light-after.webp",
+      "relation": "PNG-byte-identical to after-history-release original; decoded-RGBA-identical to retained WebP"
+    },
+    {
+      "case": "delete-light",
+      "attachment": "screenshot",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/test-failed-1.png",
+      "originalSHA256": "a702e62b0cc683613334237fbef8194796c4c52218ef7e16d3d6ee1d930168c4",
+      "retainedPath": "images/delete-light-after.webp",
+      "relation": "PNG-byte-identical to after-history-release original; decoded-RGBA-identical to retained WebP"
+    },
+    {
+      "case": "delete-light",
+      "attachment": "held-real-history",
+      "originalReference": "raw/results.json.gz#suites/0/specs/1/tests/0/results/0/attachments/0",
+      "retainedPath": "traces/delete-light.json",
+      "relation": "parsed JSON fields retained; exact attachment bytes remain in raw report"
+    },
+    {
+      "case": "delete-light",
+      "attachment": "live-state-evidence",
+      "originalReference": "raw/results.json.gz#suites/0/specs/1/tests/0/results/0/attachments/5",
+      "retainedPath": "traces/delete-light.json",
+      "relation": "parsed JSON fields retained; exact attachment bytes remain in raw report"
+    },
+    {
+      "case": "delete-light",
+      "attachment": "live-state-errors",
+      "originalReference": "raw/results.json.gz#suites/0/specs/1/tests/0/results/0/attachments/4",
+      "retainedPath": "traces/delete-light.json",
+      "relation": "parsed JSON fields retained; exact attachment bytes remain in raw report"
+    },
+    {
+      "case": "delete-light",
+      "attachment": "error-context",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/error-context.md",
+      "originalSHA256": "a857d2001172d5fea9473c0380aa142d0839dbd7d56bb7221f0bdeb2cec431a4",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; assertion retained in cases/raw report, complete recorded SSE and DOM observations in traces/delete-light.json"
+    },
+    {
+      "case": "delete-light",
+      "attachment": "trace",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/trace.zip",
+      "originalSHA256": "fbc285619a764a7c340cc65310557fd2957c4255b6f010f4903db2b678ade87d",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; assertion retained in cases/raw report, complete recorded SSE and DOM observations in traces/delete-light.json"
+    },
+    {
+      "case": "stream-dark",
+      "attachment": "before-history-release",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/attachments/before-history-release-1448afe01cbb3bd4e68b8a9bd124036b8fa7b763.png",
+      "originalSHA256": "696916295e6fa8bd4947e9c0ecfad6d401aa1b3a97a6a624541e1bd9a05a1f94",
+      "retainedPath": "images/stream-dark-before.webp",
+      "relation": "decoded-RGBA-identical lossless WebP"
+    },
+    {
+      "case": "stream-dark",
+      "attachment": "after-history-release",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/attachments/after-history-release-8b08089b32ddd1a2403492377cda571c95d416af.png",
+      "originalSHA256": "b167635af5c2c068f8f315416c4fcbcafd4822ebc7af6a0662a6cd037ccf51b2",
+      "retainedPath": "images/stream-dark-after.webp",
+      "relation": "decoded-RGBA-identical lossless WebP"
+    },
+    {
+      "case": "stream-dark",
+      "attachment": "failure",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/attachments/failure-ff733315a875278892ce73471ef68607f7caac02.png",
+      "originalSHA256": "b167635af5c2c068f8f315416c4fcbcafd4822ebc7af6a0662a6cd037ccf51b2",
+      "retainedPath": "images/stream-dark-after.webp",
+      "relation": "PNG-byte-identical to after-history-release original; decoded-RGBA-identical to retained WebP"
+    },
+    {
+      "case": "stream-dark",
+      "attachment": "screenshot",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/test-failed-1.png",
+      "originalSHA256": "b167635af5c2c068f8f315416c4fcbcafd4822ebc7af6a0662a6cd037ccf51b2",
+      "retainedPath": "images/stream-dark-after.webp",
+      "relation": "PNG-byte-identical to after-history-release original; decoded-RGBA-identical to retained WebP"
+    },
+    {
+      "case": "stream-dark",
+      "attachment": "held-real-history",
+      "originalReference": "raw/results.json.gz#suites/0/specs/2/tests/0/results/0/attachments/0",
+      "retainedPath": "traces/stream-dark.json",
+      "relation": "parsed JSON fields retained; exact attachment bytes remain in raw report"
+    },
+    {
+      "case": "stream-dark",
+      "attachment": "live-state-evidence",
+      "originalReference": "raw/results.json.gz#suites/0/specs/2/tests/0/results/0/attachments/5",
+      "retainedPath": "traces/stream-dark.json",
+      "relation": "parsed JSON fields retained; exact attachment bytes remain in raw report"
+    },
+    {
+      "case": "stream-dark",
+      "attachment": "live-state-errors",
+      "originalReference": "raw/results.json.gz#suites/0/specs/2/tests/0/results/0/attachments/4",
+      "retainedPath": "traces/stream-dark.json",
+      "relation": "parsed JSON fields retained; exact attachment bytes remain in raw report"
+    },
+    {
+      "case": "stream-dark",
+      "attachment": "error-context",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/error-context.md",
+      "originalSHA256": "399ee68f1977f4632e858e4571dbd234fbeb13ea62bf23c9634e1a46e58d3092",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; assertion retained in cases/raw report, complete recorded SSE and DOM observations in traces/stream-dark.json"
+    },
+    {
+      "case": "stream-dark",
+      "attachment": "trace",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/trace.zip",
+      "originalSHA256": "fc8e530c29bcfd3585ca92ced8fc95ac540de7e74e22e29c13934c53643d16ab",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; assertion retained in cases/raw report, complete recorded SSE and DOM observations in traces/stream-dark.json"
+    },
+    {
+      "case": "delete-dark",
+      "attachment": "before-history-release",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/attachments/before-history-release-742b430790e0a1c6479cd52570a656156f2f8087.png",
+      "originalSHA256": "31d50f5de67f3f8d318126e2ce4a2f131be3312071a25f6d5e89e1e5b29b971b",
+      "retainedPath": "images/delete-dark-before.webp",
+      "relation": "decoded-RGBA-identical lossless WebP"
+    },
+    {
+      "case": "delete-dark",
+      "attachment": "after-history-release",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/attachments/after-history-release-3384b1eca3e643b48723efbf37defd8b44ce6284.png",
+      "originalSHA256": "481f170adbd12c404b6f0c6998266dc96e921596eda9606f0a72c426f98c98ed",
+      "retainedPath": "images/delete-dark-after.webp",
+      "relation": "decoded-RGBA-identical lossless WebP"
+    },
+    {
+      "case": "delete-dark",
+      "attachment": "failure",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/attachments/failure-dc45bc0f0bd4858e684d7d9f77be2673e8eb3a07.png",
+      "originalSHA256": "481f170adbd12c404b6f0c6998266dc96e921596eda9606f0a72c426f98c98ed",
+      "retainedPath": "images/delete-dark-after.webp",
+      "relation": "PNG-byte-identical to after-history-release original; decoded-RGBA-identical to retained WebP"
+    },
+    {
+      "case": "delete-dark",
+      "attachment": "screenshot",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/test-failed-1.png",
+      "originalSHA256": "481f170adbd12c404b6f0c6998266dc96e921596eda9606f0a72c426f98c98ed",
+      "retainedPath": "images/delete-dark-after.webp",
+      "relation": "PNG-byte-identical to after-history-release original; decoded-RGBA-identical to retained WebP"
+    },
+    {
+      "case": "delete-dark",
+      "attachment": "held-real-history",
+      "originalReference": "raw/results.json.gz#suites/0/specs/3/tests/0/results/0/attachments/0",
+      "retainedPath": "traces/delete-dark.json",
+      "relation": "parsed JSON fields retained; exact attachment bytes remain in raw report"
+    },
+    {
+      "case": "delete-dark",
+      "attachment": "live-state-evidence",
+      "originalReference": "raw/results.json.gz#suites/0/specs/3/tests/0/results/0/attachments/5",
+      "retainedPath": "traces/delete-dark.json",
+      "relation": "parsed JSON fields retained; exact attachment bytes remain in raw report"
+    },
+    {
+      "case": "delete-dark",
+      "attachment": "live-state-errors",
+      "originalReference": "raw/results.json.gz#suites/0/specs/3/tests/0/results/0/attachments/4",
+      "retainedPath": "traces/delete-dark.json",
+      "relation": "parsed JSON fields retained; exact attachment bytes remain in raw report"
+    },
+    {
+      "case": "delete-dark",
+      "attachment": "error-context",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/error-context.md",
+      "originalSHA256": "79ed30589f73fd898356a1546526f1163b96304a6d95c4cb8ab33acc75bd87eb",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; assertion retained in cases/raw report, complete recorded SSE and DOM observations in traces/delete-dark.json"
+    },
+    {
+      "case": "delete-dark",
+      "attachment": "trace",
+      "originalPath": "/tmp/opencode/live-state-race/baseline-final/artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/trace.zip",
+      "originalSHA256": "593d81e58eb53d1b3fd690b90b2cbab375a2dfda59205984b77f0882d27f11d3",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; assertion retained in cases/raw report, complete recorded SSE and DOM observations in traces/delete-dark.json"
+    }
+  ]
+}

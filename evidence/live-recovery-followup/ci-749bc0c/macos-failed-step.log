@@ -1,0 +1,142 @@
+macOS build, package, launch	E2E on macOS (source build)	﻿2026-10-03T02:05:52.7107490Z ##[group]Run bun run test:e2e
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:52.7107660Z [36;1mbun run test:e2e[0m
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:52.7134480Z shell: /bin/bash -e {0}
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:52.7134610Z env:
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:52.7134740Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:52.7134930Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 461
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:52.7135130Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 839
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:52.7135310Z ##[endgroup]
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:52.7366900Z $ playwright test
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:54.7211510Z (node:1058) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:54.7220430Z (Use `node --trace-warnings ...` to show where the warning was created)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:54.9731870Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:54.9732170Z Running 83 tests using 1 worker
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:54.9732300Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:55.2570330Z (node:1163) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:55.2570820Z (Use `node --trace-warnings ...` to show where the warning was created)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:05:58.3963370Z   ✓   1 tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — light (3.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:00.1067750Z   ✓   2 tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — dark (1.7s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:02.4381630Z   ✓   3 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 light (2.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:10.9360330Z   ✓   4 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 light (8.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:12.7302370Z   ✓   5 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 dark (1.8s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:21.6205230Z   ✓   6 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 dark (8.9s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:23.6795390Z   ✓   7 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 light (2.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:30.9709950Z   ✓   8 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 light (7.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:33.0763310Z   ✓   9 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 dark (2.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:40.5011240Z   ✓  10 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 dark (7.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:42.1990970Z   ✓  11 tests/e2e/bot-safety.spec.ts:194:1 › Bot onboarding does not navigate after leaving preview (1.7s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:44.6618380Z   ✓  12 tests/e2e/bot-safety.spec.ts:211:1 › Preview Bot locale reset and live-mode boundary (2.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:46.0512690Z   ✓  13 tests/e2e/chrome.spec.ts:8:3 › native window chrome and en menu (1.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:47.5063600Z   ✓  14 tests/e2e/chrome.spec.ts:8:3 › native window chrome and fr menu (1.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:48.9941040Z   ✓  15 tests/e2e/chrome.spec.ts:42:1 › reduced-motion startup inherits themed text immediately (1.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:52.9910850Z   ✓  16 tests/e2e/code-models.spec.ts:38:3 › Code sends the chosen model, restores session selection and refuses unavailable models — light (4.0s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:06:56.3181460Z   ✓  17 tests/e2e/code-models.spec.ts:148:3 › Code image refusal leaves attachment recovery controls reachable — light (3.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:07:00.2728600Z   ✓  18 tests/e2e/code-models.spec.ts:38:3 › Code sends the chosen model, restores session selection and refuses unavailable models — dark (4.0s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:07:03.6353900Z   ✓  19 tests/e2e/code-models.spec.ts:148:3 › Code image refusal leaves attachment recovery controls reachable — dark (3.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:07:05.2132170Z   ✓  20 tests/e2e/code-models.spec.ts:234:1 › Code keeps unsupported and missing session models instead of falling back (1.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:07:43.7814800Z   ✓  21 tests/e2e/components.spec.ts:4:40 › Components catalog: families, variants and three-preview ceiling (light) (38.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:22.2933370Z   ✓  22 tests/e2e/components.spec.ts:4:40 › Components catalog: families, variants and three-preview ceiling (dark) (38.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:24.8286680Z   ✓  23 tests/e2e/components.spec.ts:63:40 › Components catalog: keyboard, clipboard and local demos at minimum window (light) (2.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:27.4167660Z   ✓  24 tests/e2e/components.spec.ts:63:40 › Components catalog: keyboard, clipboard and local demos at minimum window (dark) (2.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:29.7864600Z   ✓  25 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — light (2.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:35.5704810Z   ✓  26 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — light (5.8s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:37.6951860Z   ✓  27 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — dark (2.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:43.4266940Z   ✓  28 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — dark (5.7s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:44.8232410Z   ✓  29 tests/e2e/engine.spec.ts:11:1 › MCP connection material stays in main across save, reload and removal (1.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:46.2157440Z   ✓  30 tests/e2e/engine.spec.ts:38:1 › models.dev catalog is listed and searchable through the bridge (1.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:48.1346550Z   ✓  31 tests/e2e/engine.spec.ts:52:1 › streamed exchange with a thinking- and image-capable model (1.9s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:49.5585420Z   ✓  32 tests/e2e/engine.spec.ts:104:1 › an image is refused for a model without image input (1.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:55.1803730Z   ✓  33 tests/e2e/frozen-composer.spec.ts:24:3 › frozen preview actions and same-URL Chat/Code history — light (5.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:08:59.4757930Z   ✓  34 tests/e2e/frozen-composer.spec.ts:147:3 › live composer capsule geometry, locale labels and attachment safety — light (4.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:09:05.0541600Z   ✓  35 tests/e2e/frozen-composer.spec.ts:24:3 › frozen preview actions and same-URL Chat/Code history — dark (5.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:09:09.6180890Z   ✓  36 tests/e2e/frozen-composer.spec.ts:147:3 › live composer capsule geometry, locale labels and attachment safety — dark (4.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:09:19.7538290Z   ✓  37 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 960 light (10.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:09:30.3512800Z   ✓  38 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 960 dark (10.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:09:41.8486500Z   ✓  39 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 1440 light (11.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:09:54.4041850Z   ✓  40 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 1440 dark (12.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:09:59.3992170Z   ✓  41 tests/e2e/keyboard.spec.ts:4:1 › hidden navigation cannot receive focus; theme radios and Undo work from the keyboard (5.0s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:08.5926750Z   ✓  42 tests/e2e/keyboard.spec.ts:130:1 › frozen shell motion settles, latest tab wins and hidden menus close (9.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:11.1455550Z   ✓  43 tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 light (2.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:13.2484100Z   ✓  44 tests/e2e/memory-safety.spec.ts:190:3 › Bot memory retains refused drafts and accepts one owned write — 960 light (2.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:15.3585000Z   ✓  45 tests/e2e/memory-safety.spec.ts:263:3 › Bot memory wipe waits for failures, partial writes and accepted retry — 960 light (2.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:17.5688170Z   ✓  46 tests/e2e/memory-safety.spec.ts:331:3 › Memory single-entry deletion keeps refused rows and reports only accepted writes — 960 light (2.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:20.1709430Z   ✓  47 tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 dark (2.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:22.3574170Z   ✓  48 tests/e2e/memory-safety.spec.ts:190:3 › Bot memory retains refused drafts and accepts one owned write — 960 dark (2.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:24.4860630Z   ✓  49 tests/e2e/memory-safety.spec.ts:263:3 › Bot memory wipe waits for failures, partial writes and accepted retry — 960 dark (2.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:26.7386180Z   ✓  50 tests/e2e/memory-safety.spec.ts:331:3 › Memory single-entry deletion keeps refused rows and reports only accepted writes — 960 dark (2.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:30.4536220Z   ✓  51 tests/e2e/navigation.spec.ts:4:1 › Back cancels a pending tab choice even when its label matches an older request (3.7s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:32.9934940Z   ✓  52 tests/e2e/navigation.spec.ts:46:1 › a newer keyboard tab choice survives the previous route commit (2.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:35.1067620Z   ✓  53 tests/e2e/navigation.spec.ts:79:1 › a pending route commit preserves the outgoing Work tree and restores Bot activity (2.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:45.3088300Z   ✓  54 tests/e2e/navigation.spec.ts:118:1 › anchors, native menus and history preserve routes, variants and chat identities (10.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:48.5825950Z   ✓  55 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 960 light (3.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:51.7512680Z   ✓  56 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 960 dark (3.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:54.9926610Z   ✓  57 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 1024 light (3.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:10:58.2657830Z   ✓  58 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 1024 dark (3.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:11:01.4557270Z   ✓  59 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 1440 light (3.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:11:04.5777980Z   ✓  60 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 1440 dark (3.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:11:06.2092110Z   ✓  61 tests/e2e/responsive.spec.ts:76:1 › preview navigation loads fixtures and catches startup URL changes (1.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:11:13.2425580Z   ✓  62 tests/e2e/responsive.spec.ts:108:1 › review, diff, canvas and computer controls remain reachable in small desktop windows (7.0s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:11:15.5245100Z   ✓  63 tests/e2e/routines.spec.ts:46:3 › Routine history reflects running, interruption and latest results — light (2.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:11:17.6165180Z   ✓  64 tests/e2e/routines.spec.ts:111:3 › Routine actions retain honest feedback when the engine refuses — light (2.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:11:20.1449090Z   ✓  65 tests/e2e/routines.spec.ts:46:3 › Routine history reflects running, interruption and latest results — dark (2.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:11:22.6857480Z   ✓  66 tests/e2e/routines.spec.ts:111:3 › Routine actions retain honest feedback when the engine refuses — dark (2.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:12:46.7754600Z rendered 426 screen states
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:12:46.7778480Z   ✓  67 tests/e2e/screens.spec.ts:10:1 › every design screen and state renders (1.4m)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:12:49.0184250Z   ✓  68 tests/e2e/search-bots.spec.ts:26:40 › Search finds persisted Bots by name and persona, preserving grouped keyboard identity — light (2.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:12:51.2288490Z   ✓  69 tests/e2e/search-bots.spec.ts:26:40 › Search finds persisted Bots by name and persona, preserving grouped keyboard identity — dark (2.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:12:53.2212790Z   ✓  70 tests/e2e/search-bots.spec.ts:93:1 › Search reports either source's real request refusal and retries both lists (2.0s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:12:55.1015990Z   ✓  71 tests/e2e/terminal-copy.spec.ts:19:1 › French Code terminal localizes fresh shell notices without changing output or replay (1.9s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:13:10.9115760Z   ✓  72 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light (15.8s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:13:26.6465140Z   ✓  73 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark (15.7s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:13:31.5878130Z   ✓  74 tests/e2e/ui-flows.spec.ts:103:1 › streamed exchange with thinking and an image, driven from the composer (4.9s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:13:44.0531930Z   ✓  75 tests/e2e/ui-flows.spec.ts:141:1 › rejected sends keep the draft and attachments; retry resends the image (12.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:13:48.3232010Z   ✓  76 tests/e2e/work-routine-source.spec.ts:48:3 › Work task conversion preserves source context and only creates on confirmation — light (4.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:13:56.9627110Z   ✓  77 tests/e2e/work-routine-source.spec.ts:151:3 › Work routine source rejects missing tasks and attachments; reassignment uses the selected Bot — light (8.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:01.3465920Z   ✓  78 tests/e2e/work-routine-source.spec.ts:48:3 › Work task conversion preserves source context and only creates on confirmation — dark (4.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:10.1288740Z   ✓  79 tests/e2e/work-routine-source.spec.ts:151:3 › Work routine source rejects missing tasks and attachments; reassignment uses the selected Bot — dark (8.8s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:13.2571030Z   ✓  80 tests/e2e/work-routine-source.spec.ts:252:1 › Routine source navigation ignores late source responses and late save completion (3.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:15.4848610Z   ✓  81 tests/e2e/work-routine-source.spec.ts:332:1 › Routine source waits for its Bot list and retains the draft through list failure and retry (2.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:19.2045170Z   ✓  82 tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — light (3.7s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7261380Z   ✘  83 tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — dark (3.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7419700Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7422290Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7427400Z   1) tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — dark
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7427800Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7427950Z     Error: expect(received).toEqual(expected) // deep equality
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7428120Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7428190Z     - Expected  - 1
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7428310Z     + Received  + 3
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7428380Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7428430Z     - Array []
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7428540Z     + Array [
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7428680Z     +   "Transition was skipped",
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7428840Z     + ]
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7428910Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7429040Z       137 |         expect((await metrics(page)).top).toBe(0);
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7429250Z       138 |       });
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7429400Z     > 139 |       expect(errors).toEqual([]);
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7429570Z           |                      ^
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7429700Z       140 |     } finally {
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7429860Z       141 |       release();
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7430080Z       142 |       await page.unrouteAll({ behavior: "wait" });
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7430370Z         at /Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts:139:22
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7430580Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7430890Z     attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7431640Z     test-results/artifacts/work-scroll-Work-initial-s-7206c-ng-back-user-control-—-dark/test-failed-1.png
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7432320Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7432470Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7432760Z     Error Context: test-results/artifacts/work-scroll-Work-initial-s-7206c-ng-back-user-control-—-dark/error-context.md
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7433060Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7433330Z     attachment #7: trace (application/zip) ─────────────────────────────────────────────────────────
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7433910Z     test-results/artifacts/work-scroll-Work-initial-s-7206c-ng-back-user-control-—-dark/trace.zip
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7434170Z     Usage:
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7434230Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7434550Z         npx playwright show-trace test-results/artifacts/work-scroll-Work-initial-s-7206c-ng-back-user-control-—-dark/trace.zip
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7434810Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7435000Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7435130Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7435180Z   1 failed
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7435520Z     tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — dark
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.7441240Z   82 passed (8.5m)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.9838380Z error: script "test:e2e" exited with code 1
+macOS build, package, launch	E2E on macOS (source build)	2026-10-03T02:14:22.9848610Z ##[error]Process completed with exit code 1.

@@ -1,0 +1,70 @@
+{
+  "baseRevision": "d390cce590600cf5896fa19acf0ddd44d7057e2c",
+  "applicationUncommitted": true,
+  "originalTestSHA256": "e28ddaece53de11cde6ed26581d085b2b002c2d3bf62ccb303f23e22938e327e",
+  "finalTestSHA256": "a7bd52dbc4577825bbaf2b50fff0de17801faa521ca98c6369c37b53e0f1e498",
+  "runs": {
+    "baseline": {
+      "startTime": "2026-10-03T20:11:31.355Z",
+      "duration": 53744.348000000005,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 8,
+      "flaky": 0
+    },
+    "initial-targeted": {
+      "startTime": "2026-10-03T20:13:57.311Z",
+      "duration": 28128.593999999997,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 2,
+      "flaky": 0
+    },
+    "rename-before": {
+      "startTime": "2026-10-03T20:28:13.859Z",
+      "duration": 4666.335,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "viewer-before": {
+      "startTime": "2026-10-03T20:38:01.166Z",
+      "duration": 4612.455,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 2,
+      "flaky": 0
+    },
+    "corrected-targeted": {
+      "startTime": "2026-10-03T20:50:26.214Z",
+      "duration": 17183.195,
+      "expected": 11,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "full": {
+      "startTime": "2026-10-03T20:51:29.290Z",
+      "duration": 303294.42600000004,
+      "expected": 143,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "units": {
+    "passed": 278,
+    "optionalSkipped": 1
+  },
+  "typecheck": "passed",
+  "lint": "passed",
+  "i18n": {
+    "files": 69,
+    "keysUsed": 2288,
+    "englishKeys": 3438,
+    "problems": 0
+  },
+  "linuxPackageSmoke": "passed",
+  "detector": "four existing Files layout-transition warnings; no added rule warnings"
+}

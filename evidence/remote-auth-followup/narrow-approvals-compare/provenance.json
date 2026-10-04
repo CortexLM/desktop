@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "capturedAt": "2026-10-03T04:28:49.511Z",
+  "clock": {
+    "mode": "fixed",
+    "source": "cli",
+    "time": "2026-10-02T12:09:00.000Z",
+    "timezone": "UTC",
+    "timers": "real"
+  },
+  "reference": {
+    "root": "/root/cortex-ui-freezes/2026-10-02-7b388e2d9674",
+    "shots": "/root/cortex-ui-freezes/2026-10-02-7b388e2d9674/shots",
+    "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+    "sourceFileCount": 106,
+    "freezeSha256": "f05453f8776c681217a3e386d4e04e59908e0fad2170745ad58b63ecaedc7253",
+    "manifestSha256": "3e215fb4b16115a89d12010a7432cb81f174b1b8292c02981aa18dc56f28bfa1",
+    "registrySha256": "a1f8e68bb0431fde8056ff150d5c2b003838dc7f2173706d0faa8a640f2faac5",
+    "coverageSha256": "71519590059226b8c3c9cc9328864b2106abe5449085837f77728a649c7e993c",
+    "motionIndexSha256": "1d291913221ad1b97511b52630e5af7bc0a63e581c4fc3a8c87c6a3e04471d79"
+  },
+  "application": {
+    "revision": "ffc118a2e58df66f430f3078e00f6e931dd910cf",
+    "sourceFingerprint": "71772215cd57c34f683d85aa748e6039af25a187249d50863bc97bf3ff362ccd",
+    "sourceFileCount": 473,
+    "sourcePaths": [
+      "packages/app/src",
+      "packages/app/public",
+      "packages/app/index.html",
+      "packages/app/vite.config.ts",
+      "packages/app/package.json",
+      "packages/i18n/src",
+      "packages/i18n/locales",
+      "packages/client/src",
+      "packages/schema/src",
+      "package.json",
+      "bun.lock",
+      "tsconfig.json"
+    ]
+  },
+  "comparatorSha256": "838bbacffef18907c15505745189b4ecd18590e71cc99256f93a8e50835eadc6",
+  "render": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 2,
+    "locale": "fr-FR",
+    "catalogLocale": "fr",
+    "pixelmatchThreshold": 0.15
+  },
+  "counts": {
+    "registered": 426,
+    "optionalInteractions": 5,
+    "capturedThisRun": 8,
+    "retainedRows": 8,
+    "compared": 8,
+    "noDesignShot": 0
+  },
+  "runs": [
+    {
+      "id": "2026-10-03T04-28-22-568Z-V7ezEi",
+      "capturedAt": "2026-10-03T04:28:49.511Z",
+      "clock": {
+        "mode": "fixed",
+        "source": "cli",
+        "time": "2026-10-02T12:09:00.000Z",
+        "timezone": "UTC",
+        "timers": "real"
+      },
+      "applicationRevision": "ffc118a2e58df66f430f3078e00f6e931dd910cf",
+      "baseUrl": "http://127.0.0.1:5309/",
+      "jobCount": 8,
+      "only": [
+        "code-settings"
+      ],
+      "build": {
+        "sha256": "97caab987cdba834c05f3f8cdb21489e1b4ac636ebd326dcc58fe7cfa5c79682",
+        "files": [
+          {
+            "url": "http://127.0.0.1:5309/",
+            "sha256": "614cf4bee3f82bce9f4a671fd4b54143873e5680b9ae1b4f2e6b98ec5f5d5b70",
+            "bytes": 664
+          },
+          {
+            "url": "http://127.0.0.1:5309/assets/bots-Dhnxap2k.js",
+            "sha256": "472f7870a1372c099a1913fd1f439e8497dfb47ba57ec4dbc2c48b54e431a2dd",
+            "bytes": 5242
+          },
+          {
+            "url": "http://127.0.0.1:5309/assets/chat-DPP7jha6.js",
+            "sha256": "6fc31d57f4cc8ff64b8c6f708ec31e4b7bbc99ab9f004307ed02a5d61f01c469",
+            "bytes": 21015
+          },
+          {
+            "url": "http://127.0.0.1:5309/assets/code-l1ImvW5S.js",
+            "sha256": "b21a98aa82ac8bff27fbf930cde91d7108210ccc3e3cecee978ffd987cb6342d",
+            "bytes": 17357
+          },
+          {
+            "url": "http://127.0.0.1:5309/assets/files-DIk1qP8R.js",
+            "sha256": "5320181b308c6ac2fe096cff72c639e630aa8df488d7268cef0892e08bea9843",
+            "bytes": 23724
+          },
+          {
+            "url": "http://127.0.0.1:5309/assets/index-BLVQW-LL.css",
+            "sha256": "44540a26450648a7745ce4c75c36ec0b7a90d3e12f029dd4bdf9f74f2395ecbf",
+            "bytes": 205331
+          },
+          {
+            "url": "http://127.0.0.1:5309/assets/index-C95KiWJP.js",
+            "sha256": "64217a30187c0f5b9ee452de97542add0ae11e37aa9dcaced7b5ef6f1664f3e7",
+            "bytes": 2440995
+          },
+          {
+            "url": "http://127.0.0.1:5309/assets/shell-CYBsECV8.js",
+            "sha256": "03ef195ca05a5dc15af65a82fc56d40d161cb420426be5f1fa1cac82db8d9365",
+            "bytes": 1030
+          },
+          {
+            "url": "http://127.0.0.1:5309/assets/system-D9_n4Goj.js",
+            "sha256": "39bacc77f2cda2bd2b349df6cf7cc555a7273915c508b6ae4b9259e28a889026",
+            "bytes": 9120
+          },
+          {
+            "url": "http://127.0.0.1:5309/assets/work-CXx4q0-W.js",
+            "sha256": "bcbba512ee7c0aaa1903ac485c3e195c982137262c92024e076f0557cd86e367",
+            "bytes": 14410
+          },
+          {
+            "url": "http://127.0.0.1:5309/fonts/Geist-Variable.woff2",
+            "sha256": "a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8",
+            "bytes": 69652
+          },
+          {
+            "url": "http://127.0.0.1:5309/fonts/GeistMono-Variable.woff2",
+            "sha256": "fba8f577f38a2bbcbe818efa6348dd58f36303a10b8737c42fefad275be563ab",
+            "bytes": 71368
+          },
+          {
+            "url": "http://127.0.0.1:5309/img/aube.png",
+            "sha256": "2743b253211c84075187ea2f7ffaa3011d5b44daa6b368049dc3153427d16662",
+            "bytes": 1405580
+          },
+          {
+            "url": "http://127.0.0.1:5309/img/crepuscule.png",
+            "sha256": "e723124b4ede2e2ad9f8f64d20b718a6854bd01df3c00ecac20cd936ae89d3aa",
+            "bytes": 1405004
+          },
+          {
+            "url": "http://127.0.0.1:5309/img/prairie.png",
+            "sha256": "ce9fd320c8c98ed73f40b3787366e09ff8c665d6930014b2b2d1c20da3801968",
+            "bytes": 1242519
+          }
+        ],
+        "httpCache": "disabled via context.route"
+      },
+      "ignoredPreviewApiErrors": [
+        {
+          "url": "http://127.0.0.1:5309/api/sessions?kind=code",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/sessions?kind=code",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/sessions?kind=code",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/sessions?kind=code",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/sessions?kind=code",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/sessions?kind=code",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/sessions?kind=code",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/sessions?kind=code",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://127.0.0.1:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        }
+      ]
+    }
+  ],
+  "reportSha256": "b621a712437b5a6a0b00db185baa0a51a47aea40665592f20e60024db4fcdfb2",
+  "limits": [
+    "Browser preview fixtures, not native or live-engine acceptance.",
+    "Settled frames, not motion or exhaustive interaction coverage.",
+    "Browser Date/timezone are caller-selected overrides; reference capturedAt does not attest the original browser timezone or Date at mount. Timers remain real.",
+    "Reference fingerprint covers src only, excluding public assets, configuration and dependencies.",
+    "Working-tree source hash and served main-frame asset hashes are separate provenance; no build-to-source attestation.",
+    "Missing reference states are explicit gaps, never comparisons; frozen coverage metadata does not establish application motion coverage or design approval."
+  ]
+}

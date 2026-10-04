@@ -1,0 +1,83 @@
+{
+  "timestamp": "2026-10-03T00:12:15.288Z",
+  "appSHA256": "23decdd0596b89e8e83284b62f6e7f0eb5314b081ccf178f7dde31c8ac04af77",
+  "captures": [
+    {
+      "file": "routine-source-list-refused-light.png",
+      "theme": "light",
+      "width": 960,
+      "height": 640,
+      "route": "#/automation-edit?theme=light&source=ses_01a0ff1a46520000612ea340ee06dd76"
+    },
+    {
+      "file": "routine-from-task-light.png",
+      "theme": "light",
+      "width": 960,
+      "height": 640,
+      "route": "#/automation-edit?theme=light&source=ses_01a0ff1a46520000612ea340ee06dd76"
+    },
+    {
+      "file": "bot-search-light.png",
+      "theme": "light",
+      "width": 960,
+      "height": 640,
+      "route": "#/search?theme=light"
+    },
+    {
+      "file": "routine-source-list-refused-dark.png",
+      "theme": "dark",
+      "width": 960,
+      "height": 640,
+      "route": "#/automation-edit?theme=dark&source=ses_01a0ff1a821a0000b67c42f2c19cffa3"
+    },
+    {
+      "file": "routine-from-task-dark.png",
+      "theme": "dark",
+      "width": 960,
+      "height": 640,
+      "route": "#/automation-edit?theme=dark&source=ses_01a0ff1a821a0000b67c42f2c19cffa3"
+    },
+    {
+      "file": "bot-search-dark.png",
+      "theme": "dark",
+      "width": 960,
+      "height": 640,
+      "route": "#/search?theme=dark"
+    }
+  ],
+  "checks": [
+    {
+      "theme": "light",
+      "sourceSession": "ses_01a0ff1a46520000612ea340ee06dd76",
+      "botID": "bot_01a0ff1a45a50000a22a09c0034213ee",
+      "taskID": "tsk_01a0ff1a6d2000002859ad9bdcb24a7e",
+      "runSession": "ses_01a0ff1a6e4b0001b44b48bb6294ebdc",
+      "promptPreserved": true,
+      "modelPreserved": true,
+      "directoryPreserved": true,
+      "agentPreserved": true,
+      "cancellationWritesNothing": true,
+      "listRefusalRetainsDraft": true,
+      "listRetryRestoresCreate": true,
+      "routineRan": true,
+      "searchBotIdentity": true
+    },
+    {
+      "theme": "dark",
+      "sourceSession": "ses_01a0ff1a821a0000b67c42f2c19cffa3",
+      "botID": "bot_01a0ff1a819a00001338fb7eeb8c430b",
+      "taskID": "tsk_01a0ff1aa37700007a116a1c145497cc",
+      "runSession": "ses_01a0ff1aa49f0001d388cd84b5155e18",
+      "promptPreserved": true,
+      "modelPreserved": true,
+      "directoryPreserved": true,
+      "agentPreserved": true,
+      "cancellationWritesNothing": true,
+      "listRefusalRetainsDraft": true,
+      "listRetryRestoresCreate": true,
+      "routineRan": true,
+      "searchBotIdentity": true
+    }
+  ],
+  "errorsSinceAttach": []
+}

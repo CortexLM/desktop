@@ -1,0 +1,719 @@
+{
+  "diagnosticOnly": true,
+  "sourceEdited": false,
+  "rule": "@media (max-width: 1200px) { .code-approval-defaults .grow { display: flex; flex-direction: column; gap: 2px; } .code-approval-defaults .sub { white-space: normal; } }",
+  "views": [
+    {
+      "size": {
+        "width": 960,
+        "height": 640
+      },
+      "theme": "light",
+      "before": {
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "right": 960,
+          "bottom": 640
+        },
+        "panel": {
+          "x": 617,
+          "y": 104,
+          "width": 283,
+          "height": 758,
+          "right": 900,
+          "bottom": 862
+        },
+        "rows": [
+          {
+            "row": {
+              "x": 617,
+              "y": 154,
+              "width": 283,
+              "height": 56,
+              "right": 900,
+              "bottom": 210
+            },
+            "title": {
+              "x": 631,
+              "y": 165,
+              "width": 44.546875,
+              "height": 33,
+              "right": 675.546875,
+              "bottom": 198
+            },
+            "sub": {
+              "x": 668.734375,
+              "y": 182,
+              "width": 145.421875,
+              "height": 16,
+              "right": 814.15625,
+              "bottom": 198
+            },
+            "text": "For new tasks and reviews",
+            "glyphs": [
+              {
+                "x": 668.734375,
+                "right": 814.15625,
+                "y": 182,
+                "bottom": 198
+              }
+            ],
+            "whiteSpace": "nowrap",
+            "control": {
+              "x": 783.984375,
+              "y": 168,
+              "width": 102.015625,
+              "height": 28,
+              "right": 886,
+              "bottom": 196
+            },
+            "allSubGlyphsContained": true,
+            "noControlOverlap": false
+          },
+          {
+            "row": {
+              "x": 617,
+              "y": 210,
+              "width": 283,
+              "height": 57,
+              "right": 900,
+              "bottom": 267
+            },
+            "title": {
+              "x": 631,
+              "y": 222,
+              "width": 182.390625,
+              "height": 33,
+              "right": 813.390625,
+              "bottom": 255
+            },
+            "sub": {
+              "x": 675.53125,
+              "y": 239,
+              "width": 170.734375,
+              "height": 16,
+              "right": 846.265625,
+              "bottom": 255
+            },
+            "text": "Desktop and phone notification",
+            "glyphs": [
+              {
+                "x": 675.53125,
+                "right": 846.265625,
+                "y": 239,
+                "bottom": 255
+              }
+            ],
+            "whiteSpace": "nowrap",
+            "control": {
+              "x": 852,
+              "y": 229,
+              "width": 34,
+              "height": 20,
+              "right": 886,
+              "bottom": 249
+            },
+            "allSubGlyphsContained": true,
+            "noControlOverlap": true
+          }
+        ]
+      },
+      "after": {
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "right": 960,
+          "bottom": 640
+        },
+        "panel": {
+          "x": 617,
+          "y": 104,
+          "width": 283,
+          "height": 794,
+          "right": 900,
+          "bottom": 898
+        },
+        "rows": [
+          {
+            "row": {
+              "x": 617,
+              "y": 154,
+              "width": 283,
+              "height": 74,
+              "right": 900,
+              "bottom": 228
+            },
+            "title": {
+              "x": 631,
+              "y": 166,
+              "width": 140.984375,
+              "height": 16,
+              "right": 771.984375,
+              "bottom": 182
+            },
+            "sub": {
+              "x": 631,
+              "y": 184,
+              "width": 140.984375,
+              "height": 32,
+              "right": 771.984375,
+              "bottom": 216
+            },
+            "text": "For new tasks and reviews",
+            "glyphs": [
+              {
+                "x": 631,
+                "right": 731.609375,
+                "y": 184,
+                "bottom": 200
+              },
+              {
+                "x": 631,
+                "right": 672.8125,
+                "y": 200,
+                "bottom": 216
+              }
+            ],
+            "whiteSpace": "normal",
+            "control": {
+              "x": 783.984375,
+              "y": 177,
+              "width": 102.015625,
+              "height": 28,
+              "right": 886,
+              "bottom": 205
+            },
+            "allSubGlyphsContained": true,
+            "noControlOverlap": true
+          },
+          {
+            "row": {
+              "x": 617,
+              "y": 228,
+              "width": 283,
+              "height": 75,
+              "right": 900,
+              "bottom": 303
+            },
+            "title": {
+              "x": 631,
+              "y": 241,
+              "width": 209,
+              "height": 32,
+              "right": 840,
+              "bottom": 273
+            },
+            "sub": {
+              "x": 631,
+              "y": 275,
+              "width": 209,
+              "height": 16,
+              "right": 840,
+              "bottom": 291
+            },
+            "text": "Desktop and phone notification",
+            "glyphs": [
+              {
+                "x": 631,
+                "right": 801.734375,
+                "y": 275,
+                "bottom": 291
+              }
+            ],
+            "whiteSpace": "normal",
+            "control": {
+              "x": 852,
+              "y": 256,
+              "width": 34,
+              "height": 20,
+              "right": 886,
+              "bottom": 276
+            },
+            "allSubGlyphsContained": true,
+            "noControlOverlap": true
+          }
+        ]
+      },
+      "checks": {
+        "descriptionsSeparate": true,
+        "descriptionsFullyFit": true
+      }
+    },
+    {
+      "size": {
+        "width": 1024,
+        "height": 686
+      },
+      "theme": "light",
+      "before": {
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 686,
+          "right": 1024,
+          "bottom": 686
+        },
+        "panel": {
+          "x": 617,
+          "y": 104,
+          "width": 347,
+          "height": 742,
+          "right": 964,
+          "bottom": 846
+        },
+        "rows": [
+          {
+            "row": {
+              "x": 617,
+              "y": 154,
+              "width": 347,
+              "height": 56,
+              "right": 964,
+              "bottom": 210
+            },
+            "title": {
+              "x": 631,
+              "y": 165,
+              "width": 44.546875,
+              "height": 33,
+              "right": 675.546875,
+              "bottom": 198
+            },
+            "sub": {
+              "x": 668.734375,
+              "y": 182,
+              "width": 145.421875,
+              "height": 16,
+              "right": 814.15625,
+              "bottom": 198
+            },
+            "text": "For new tasks and reviews",
+            "glyphs": [
+              {
+                "x": 668.734375,
+                "right": 814.15625,
+                "y": 182,
+                "bottom": 198
+              }
+            ],
+            "whiteSpace": "nowrap",
+            "control": {
+              "x": 847.984375,
+              "y": 168,
+              "width": 102.015625,
+              "height": 28,
+              "right": 950,
+              "bottom": 196
+            },
+            "allSubGlyphsContained": true,
+            "noControlOverlap": true
+          },
+          {
+            "row": {
+              "x": 617,
+              "y": 210,
+              "width": 347,
+              "height": 57,
+              "right": 964,
+              "bottom": 267
+            },
+            "title": {
+              "x": 631,
+              "y": 222,
+              "width": 182.390625,
+              "height": 33,
+              "right": 813.390625,
+              "bottom": 255
+            },
+            "sub": {
+              "x": 675.53125,
+              "y": 239,
+              "width": 170.734375,
+              "height": 16,
+              "right": 846.265625,
+              "bottom": 255
+            },
+            "text": "Desktop and phone notification",
+            "glyphs": [
+              {
+                "x": 675.53125,
+                "right": 846.265625,
+                "y": 239,
+                "bottom": 255
+              }
+            ],
+            "whiteSpace": "nowrap",
+            "control": {
+              "x": 916,
+              "y": 229,
+              "width": 34,
+              "height": 20,
+              "right": 950,
+              "bottom": 249
+            },
+            "allSubGlyphsContained": true,
+            "noControlOverlap": true
+          }
+        ]
+      },
+      "after": {
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 686,
+          "right": 1024,
+          "bottom": 686
+        },
+        "panel": {
+          "x": 617,
+          "y": 104,
+          "width": 347,
+          "height": 746,
+          "right": 964,
+          "bottom": 850
+        },
+        "rows": [
+          {
+            "row": {
+              "x": 617,
+              "y": 154,
+              "width": 347,
+              "height": 58,
+              "right": 964,
+              "bottom": 212
+            },
+            "title": {
+              "x": 631,
+              "y": 166,
+              "width": 204.984375,
+              "height": 16,
+              "right": 835.984375,
+              "bottom": 182
+            },
+            "sub": {
+              "x": 631,
+              "y": 184,
+              "width": 204.984375,
+              "height": 16,
+              "right": 835.984375,
+              "bottom": 200
+            },
+            "text": "For new tasks and reviews",
+            "glyphs": [
+              {
+                "x": 631,
+                "right": 776.421875,
+                "y": 184,
+                "bottom": 200
+              }
+            ],
+            "whiteSpace": "normal",
+            "control": {
+              "x": 847.984375,
+              "y": 169,
+              "width": 102.015625,
+              "height": 28,
+              "right": 950,
+              "bottom": 197
+            },
+            "allSubGlyphsContained": true,
+            "noControlOverlap": true
+          },
+          {
+            "row": {
+              "x": 617,
+              "y": 212,
+              "width": 347,
+              "height": 59,
+              "right": 964,
+              "bottom": 271
+            },
+            "title": {
+              "x": 631,
+              "y": 225,
+              "width": 273,
+              "height": 16,
+              "right": 904,
+              "bottom": 241
+            },
+            "sub": {
+              "x": 631,
+              "y": 243,
+              "width": 273,
+              "height": 16,
+              "right": 904,
+              "bottom": 259
+            },
+            "text": "Desktop and phone notification",
+            "glyphs": [
+              {
+                "x": 631,
+                "right": 801.734375,
+                "y": 243,
+                "bottom": 259
+              }
+            ],
+            "whiteSpace": "normal",
+            "control": {
+              "x": 916,
+              "y": 232,
+              "width": 34,
+              "height": 20,
+              "right": 950,
+              "bottom": 252
+            },
+            "allSubGlyphsContained": true,
+            "noControlOverlap": true
+          }
+        ]
+      },
+      "checks": {
+        "descriptionsSeparate": true,
+        "descriptionsFullyFit": true
+      }
+    },
+    {
+      "size": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "before": {
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "right": 1440,
+          "bottom": 900
+        },
+        "panel": {
+          "x": 686,
+          "y": 104,
+          "width": 640,
+          "height": 662,
+          "right": 1326,
+          "bottom": 766
+        },
+        "rows": [
+          {
+            "row": {
+              "x": 686,
+              "y": 154,
+              "width": 640,
+              "height": 52,
+              "right": 1326,
+              "bottom": 206
+            },
+            "title": {
+              "x": 700,
+              "y": 171,
+              "width": 85.4375,
+              "height": 17,
+              "right": 785.4375,
+              "bottom": 188
+            },
+            "sub": {
+              "x": 785.4375,
+              "y": 172,
+              "width": 145.421875,
+              "height": 16,
+              "right": 930.859375,
+              "bottom": 188
+            },
+            "text": "For new tasks and reviews",
+            "glyphs": [
+              {
+                "x": 785.4375,
+                "right": 930.859375,
+                "y": 172,
+                "bottom": 188
+              }
+            ],
+            "whiteSpace": "nowrap",
+            "control": {
+              "x": 1209.984375,
+              "y": 166,
+              "width": 102.015625,
+              "height": 28,
+              "right": 1312,
+              "bottom": 194
+            },
+            "allSubGlyphsContained": true,
+            "noControlOverlap": true
+          },
+          {
+            "row": {
+              "x": 686,
+              "y": 206,
+              "width": 640,
+              "height": 45,
+              "right": 1326,
+              "bottom": 251
+            },
+            "title": {
+              "x": 700,
+              "y": 220,
+              "width": 230.078125,
+              "height": 17,
+              "right": 930.078125,
+              "bottom": 237
+            },
+            "sub": {
+              "x": 930.078125,
+              "y": 221,
+              "width": 170.734375,
+              "height": 16,
+              "right": 1100.8125,
+              "bottom": 237
+            },
+            "text": "Desktop and phone notification",
+            "glyphs": [
+              {
+                "x": 930.078125,
+                "right": 1100.8125,
+                "y": 221,
+                "bottom": 237
+              }
+            ],
+            "whiteSpace": "nowrap",
+            "control": {
+              "x": 1278,
+              "y": 219,
+              "width": 34,
+              "height": 20,
+              "right": 1312,
+              "bottom": 239
+            },
+            "allSubGlyphsContained": true,
+            "noControlOverlap": true
+          }
+        ]
+      },
+      "after": {
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "right": 1440,
+          "bottom": 900
+        },
+        "panel": {
+          "x": 686,
+          "y": 104,
+          "width": 640,
+          "height": 662,
+          "right": 1326,
+          "bottom": 766
+        },
+        "rows": [
+          {
+            "row": {
+              "x": 686,
+              "y": 154,
+              "width": 640,
+              "height": 52,
+              "right": 1326,
+              "bottom": 206
+            },
+            "title": {
+              "x": 700,
+              "y": 171,
+              "width": 85.4375,
+              "height": 17,
+              "right": 785.4375,
+              "bottom": 188
+            },
+            "sub": {
+              "x": 785.4375,
+              "y": 172,
+              "width": 145.421875,
+              "height": 16,
+              "right": 930.859375,
+              "bottom": 188
+            },
+            "text": "For new tasks and reviews",
+            "glyphs": [
+              {
+                "x": 785.4375,
+                "right": 930.859375,
+                "y": 172,
+                "bottom": 188
+              }
+            ],
+            "whiteSpace": "nowrap",
+            "control": {
+              "x": 1209.984375,
+              "y": 166,
+              "width": 102.015625,
+              "height": 28,
+              "right": 1312,
+              "bottom": 194
+            },
+            "allSubGlyphsContained": true,
+            "noControlOverlap": true
+          },
+          {
+            "row": {
+              "x": 686,
+              "y": 206,
+              "width": 640,
+              "height": 45,
+              "right": 1326,
+              "bottom": 251
+            },
+            "title": {
+              "x": 700,
+              "y": 220,
+              "width": 230.078125,
+              "height": 17,
+              "right": 930.078125,
+              "bottom": 237
+            },
+            "sub": {
+              "x": 930.078125,
+              "y": 221,
+              "width": 170.734375,
+              "height": 16,
+              "right": 1100.8125,
+              "bottom": 237
+            },
+            "text": "Desktop and phone notification",
+            "glyphs": [
+              {
+                "x": 930.078125,
+                "right": 1100.8125,
+                "y": 221,
+                "bottom": 237
+              }
+            ],
+            "whiteSpace": "nowrap",
+            "control": {
+              "x": 1278,
+              "y": 219,
+              "width": 34,
+              "height": 20,
+              "right": 1312,
+              "bottom": 239
+            },
+            "allSubGlyphsContained": true,
+            "noControlOverlap": true
+          }
+        ]
+      },
+      "checks": {
+        "wideUnchanged": true
+      }
+    }
+  ],
+  "pageErrors": [],
+  "scriptSha256": "863859d2d292efd0667ec4ecdeb1afa4a13154fc62db15e17ee33f8ad9cd2ce4"
+}

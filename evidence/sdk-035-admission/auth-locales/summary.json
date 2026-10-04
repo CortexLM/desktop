@@ -1,0 +1,482 @@
+{
+  "revision": "78857365a509d78af10ebdda5b52348a2e50e961",
+  "status": "passed",
+  "primaryViews": 48,
+  "primaryChecks": 896,
+  "primaryTabStops": 144,
+  "auxiliaryPairs": 16,
+  "auxiliaryChecks": 96,
+  "newKeys": [
+    "auth.continuationUnavailable",
+    "auth.failed",
+    "auth.optionUnavailable",
+    "auth.sendFailed",
+    "auth.sessionOnly",
+    "auth.settings",
+    "auth.signedIn"
+  ],
+  "fixture": {
+    "origin": "http://127.0.0.1:44495",
+    "counts": {
+      "email": 48,
+      "sendRefused": 16,
+      "code": 48,
+      "wrongCode": 16,
+      "session": 16,
+      "enrollment": 16,
+      "discovery": 0,
+      "logout": 0
+    },
+    "freshRequestsCredentialFree": true,
+    "errors": []
+  },
+  "runtime": {
+    "electron": "44.5.1",
+    "chromium": "152.0.7977.130",
+    "embeddedNode": "24.21.0",
+    "platform": "linux"
+  },
+  "harness": "v22.23.3",
+  "startedAt": "2026-10-03T05:45:26.107Z",
+  "finishedAt": "2026-10-03T05:47:05.645Z",
+  "primaryScrollInputs": 0,
+  "primaryInitialTextClips": 0,
+  "primaryInitialControlClips": 0,
+  "currentMainSourceMatchesPin": false,
+  "distMembersBeforeAfter": [
+    90,
+    90
+  ],
+  "distDigest": "b2c2f54529a76ac43549136a496c7b24865fe722f8889ca9b42fed9e340c8dcb",
+  "emailFollowup": {
+    "status": "passed",
+    "views": 6,
+    "initialCancelClipPx": 6,
+    "tabScrollPx": 6,
+    "tabStops": 54,
+    "cancelEnterReturnsHome": true
+  },
+  "controlsByLocale": {
+    "en": {
+      "wrong-code": [
+        {
+          "text": "Resend the code",
+          "height": 16,
+          "bottom": 385.5
+        },
+        {
+          "text": "Continue",
+          "height": 44,
+          "bottom": 447.5
+        },
+        {
+          "text": "Use another address",
+          "height": 16,
+          "bottom": 479.5
+        },
+        {
+          "text": "Cancel",
+          "height": 16,
+          "bottom": 531.5
+        }
+      ],
+      "signed-in": [
+        {
+          "text": "Continue",
+          "height": 44,
+          "bottom": 425.5
+        },
+        {
+          "text": "Open connection settings",
+          "height": 44,
+          "bottom": 477.5
+        }
+      ],
+      "unavailable-enrollment": [
+        {
+          "text": "Use another address",
+          "height": 44,
+          "bottom": 435.5
+        },
+        {
+          "text": "Cancel",
+          "height": 16,
+          "bottom": 467.5
+        }
+      ]
+    },
+    "fr": {
+      "wrong-code": [
+        {
+          "text": "Renvoyer le code",
+          "height": 16,
+          "bottom": 377.5
+        },
+        {
+          "text": "Continuer",
+          "height": 44,
+          "bottom": 439.5
+        },
+        {
+          "text": "Utiliser une autre adresse",
+          "height": 16,
+          "bottom": 471.5
+        },
+        {
+          "text": "Annuler",
+          "height": 16,
+          "bottom": 539.5
+        }
+      ],
+      "signed-in": [
+        {
+          "text": "Continuer",
+          "height": 44,
+          "bottom": 435.5
+        },
+        {
+          "text": "Ouvrir les réglages de connexion",
+          "height": 44,
+          "bottom": 487.5
+        }
+      ],
+      "unavailable-enrollment": [
+        {
+          "text": "Utiliser une autre adresse",
+          "height": 44,
+          "bottom": 435.5
+        },
+        {
+          "text": "Annuler",
+          "height": 16,
+          "bottom": 467.5
+        }
+      ]
+    },
+    "es": {
+      "wrong-code": [
+        {
+          "text": "Reenviar el código",
+          "height": 16,
+          "bottom": 387.5
+        },
+        {
+          "text": "Continuar",
+          "height": 44,
+          "bottom": 449.5
+        },
+        {
+          "text": "Usar otra dirección",
+          "height": 16,
+          "bottom": 481.5
+        },
+        {
+          "text": "Cancelar",
+          "height": 16,
+          "bottom": 549.5
+        }
+      ],
+      "signed-in": [
+        {
+          "text": "Continuar",
+          "height": 44,
+          "bottom": 425.5
+        },
+        {
+          "text": "Abrir la configuración de conexión",
+          "height": 44,
+          "bottom": 477.5
+        }
+      ],
+      "unavailable-enrollment": [
+        {
+          "text": "Usar otra dirección",
+          "height": 44,
+          "bottom": 435.5
+        },
+        {
+          "text": "Cancelar",
+          "height": 16,
+          "bottom": 467.5
+        }
+      ]
+    },
+    "de": {
+      "wrong-code": [
+        {
+          "text": "Code erneut senden",
+          "height": 16,
+          "bottom": 387.5
+        },
+        {
+          "text": "Weiter",
+          "height": 44,
+          "bottom": 449.5
+        },
+        {
+          "text": "Andere Adresse verwenden",
+          "height": 16,
+          "bottom": 481.5
+        },
+        {
+          "text": "Abbrechen",
+          "height": 16,
+          "bottom": 549.5
+        }
+      ],
+      "signed-in": [
+        {
+          "text": "Weiter",
+          "height": 44,
+          "bottom": 425.5
+        },
+        {
+          "text": "Verbindungseinstellungen öffnen",
+          "height": 44,
+          "bottom": 477.5
+        }
+      ],
+      "unavailable-enrollment": [
+        {
+          "text": "Andere Adresse verwenden",
+          "height": 44,
+          "bottom": 435.5
+        },
+        {
+          "text": "Abbrechen",
+          "height": 16,
+          "bottom": 467.5
+        }
+      ]
+    },
+    "ja": {
+      "wrong-code": [
+        {
+          "text": "コードを再送信",
+          "height": 16,
+          "bottom": 387.5
+        },
+        {
+          "text": "続ける",
+          "height": 44,
+          "bottom": 449.5
+        },
+        {
+          "text": "別のアドレスを使用",
+          "height": 16,
+          "bottom": 481.5
+        },
+        {
+          "text": "キャンセル",
+          "height": 16,
+          "bottom": 549.5
+        }
+      ],
+      "signed-in": [
+        {
+          "text": "続ける",
+          "height": 44,
+          "bottom": 435.5
+        },
+        {
+          "text": "接続設定を開く",
+          "height": 44,
+          "bottom": 487.5
+        }
+      ],
+      "unavailable-enrollment": [
+        {
+          "text": "別のアドレスを使用",
+          "height": 44,
+          "bottom": 435.5
+        },
+        {
+          "text": "キャンセル",
+          "height": 16,
+          "bottom": 467.5
+        }
+      ]
+    },
+    "zh-Hans": {
+      "wrong-code": [
+        {
+          "text": "重新发送验证码",
+          "height": 16,
+          "bottom": 385.5
+        },
+        {
+          "text": "继续",
+          "height": 44,
+          "bottom": 447.5
+        },
+        {
+          "text": "使用其他邮箱地址",
+          "height": 16,
+          "bottom": 479.5
+        },
+        {
+          "text": "取消",
+          "height": 16,
+          "bottom": 531.5
+        }
+      ],
+      "signed-in": [
+        {
+          "text": "继续",
+          "height": 44,
+          "bottom": 425.5
+        },
+        {
+          "text": "打开连接设置",
+          "height": 44,
+          "bottom": 477.5
+        }
+      ],
+      "unavailable-enrollment": [
+        {
+          "text": "使用其他邮箱地址",
+          "height": 44,
+          "bottom": 425.5
+        },
+        {
+          "text": "取消",
+          "height": 16,
+          "bottom": 457.5
+        }
+      ]
+    },
+    "pt-BR": {
+      "wrong-code": [
+        {
+          "text": "Reenviar o código",
+          "height": 16,
+          "bottom": 387.5
+        },
+        {
+          "text": "Continuar",
+          "height": 44,
+          "bottom": 449.5
+        },
+        {
+          "text": "Usar outro endereço",
+          "height": 16,
+          "bottom": 481.5
+        },
+        {
+          "text": "Cancelar",
+          "height": 16,
+          "bottom": 549.5
+        }
+      ],
+      "signed-in": [
+        {
+          "text": "Continuar",
+          "height": 44,
+          "bottom": 435.5
+        },
+        {
+          "text": "Abrir configurações de conexão",
+          "height": 44,
+          "bottom": 487.5
+        }
+      ],
+      "unavailable-enrollment": [
+        {
+          "text": "Usar outro endereço",
+          "height": 44,
+          "bottom": 435.5
+        },
+        {
+          "text": "Cancelar",
+          "height": 16,
+          "bottom": 467.5
+        }
+      ]
+    },
+    "ko": {
+      "wrong-code": [
+        {
+          "text": "코드 재전송",
+          "height": 16,
+          "bottom": 387.5
+        },
+        {
+          "text": "계속",
+          "height": 44,
+          "bottom": 449.5
+        },
+        {
+          "text": "다른 이메일 사용",
+          "height": 16,
+          "bottom": 481.5
+        },
+        {
+          "text": "취소",
+          "height": 16,
+          "bottom": 549.5
+        }
+      ],
+      "signed-in": [
+        {
+          "text": "계속",
+          "height": 44,
+          "bottom": 425.5
+        },
+        {
+          "text": "연결 설정 열기",
+          "height": 44,
+          "bottom": 477.5
+        }
+      ],
+      "unavailable-enrollment": [
+        {
+          "text": "다른 이메일 사용",
+          "height": 44,
+          "bottom": 435.5
+        },
+        {
+          "text": "취소",
+          "height": 16,
+          "bottom": 467.5
+        }
+      ]
+    }
+  },
+  "fontsByLocale": {
+    "en": [
+      "Geist",
+      "Geist Mono"
+    ],
+    "fr": [
+      "Geist",
+      "Geist Mono"
+    ],
+    "es": [
+      "Geist",
+      "Geist Mono"
+    ],
+    "de": [
+      "Geist",
+      "Geist Mono"
+    ],
+    "ja": [
+      "Geist",
+      "Geist Mono",
+      "WenQuanYi Zen Hei"
+    ],
+    "zh-Hans": [
+      "Geist",
+      "Geist Mono",
+      "WenQuanYi Zen Hei"
+    ],
+    "pt-BR": [
+      "Geist",
+      "Geist Mono"
+    ],
+    "ko": [
+      "Geist",
+      "Geist Mono",
+      "WenQuanYi Zen Hei"
+    ]
+  }
+}

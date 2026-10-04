@@ -1,0 +1,91 @@
+RUN  v5.0.3 /var/tmp/opencode/remote-chat-security-review
+
+(node:2170363) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+stdout | probes.test.ts > rejects GIF/WebP signatures with the high bit changed in every magic byte
+{"case":"high-bit-magic","type":"image/gif","hex":"c7c9c6b8b9e1","outcome":"accepted"}
+
+stdout | probes.test.ts > rejects GIF/WebP signatures with the high bit changed in every magic byte
+{"case":"high-bit-magic","type":"image/webp","hex":"d2c9c6c6b0b0b0b0d7c5c2d0","outcome":"accepted"}
+
+ × probes.test.ts > rejects GIF/WebP signatures with the high bit changed in every magic byte 49ms
+   → expected 'accepted' to be 'invalid_request' // Object.is equality
+   → expected 'accepted' to be 'invalid_request' // Object.is equality
+   → expected [ …(2) ] to deeply equal []
+ ✓ probes.test.ts > expiry timer aborts an idle reader without state/operation polling even when raw cancellation never settles 205ms
+ ✓ probes.test.ts > local logout immediately aborts an open reader and a Fetch ignoring cancellation before revocation returns 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  probes.test.ts > rejects GIF/WebP signatures with the high bit changed in every magic byte
+ FAIL  probes.test.ts > rejects GIF/WebP signatures with the high bit changed in every magic byte
+AssertionError: expected 'accepted' to be 'invalid_request' // Object.is equality
+
+Expected: "invalid_request"
+Received: "accepted"
+
+ ❯ probes.test.ts:53:28
+     51|       const outcome = await binding.upload({ body: new Blob([bytes], {…
+     52|       console.log(JSON.stringify({ case: "high-bit-magic", type, hex: …
+     53|       expect.soft(outcome).toBe("invalid_request");
+       |                            ^
+     54|     }
+     55|     expect.soft(seen).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  probes.test.ts > rejects GIF/WebP signatures with the high bit changed in every magic byte
+AssertionError: expected [ …(2) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "bytes": [
++       199,
++       201,
++       198,
++       184,
++       185,
++       225,
++     ],
++     "contentType": "image/gif",
++   },
++   {
++     "bytes": [
++       210,
++       201,
++       198,
++       198,
++       176,
++       176,
++       176,
++       176,
++       215,
++       197,
++       194,
++       208,
++     ],
++     "contentType": "image/webp",
++   },
++ ]
+
+ ❯ probes.test.ts:55:23
+     53|       expect.soft(outcome).toBe("invalid_request");
+     54|     }
+     55|     expect.soft(seen).toEqual([]);
+       |                       ^
+     56|   } finally { session.clear(); }
+     57| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  05:45:48
+   Duration  990ms (import 39%, tests 31%, transform 30%, worker 1%)
+
+JSON report written to /tmp/opencode/remote-chat-security-review/current-probes.json

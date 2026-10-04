@@ -1,0 +1,503 @@
+{
+  "reviewedAt": "2026-10-03T05:15:06.680669+00:00",
+  "method": "All 20 contact sheets inspected; all 37 targeted original PNGs opened at native dimensions; two cropped prior/current diagnostics additionally inspected.",
+  "uniquePNGs": 231,
+  "pngCopies": 683,
+  "contactSheets": 20,
+  "fullResolutionOriginals": 37,
+  "fullResolutionByOS": {
+    "e2e-linux": 18,
+    "macos": 19
+  },
+  "targetCategories": {
+    "approvals": 8,
+    "auth": 12,
+    "diffs": 4,
+    "terminals": 4,
+    "workTasks": 4,
+    "previewBots": 4,
+    "rendererSmoke": 1
+  },
+  "contactReview": [
+    {
+      "path": "contacts/contact-e2e-linux-01.jpg",
+      "sha256": "c74f9af4e23acdf7cd216203b147b5dfdf477d9b314279188efee5c17856976d",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-e2e-linux-02.jpg",
+      "sha256": "42d5665c1d6a0b039bff35ab3f9d59fc668e55e41b21a295548fee4bb1cdceed",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-e2e-linux-03.jpg",
+      "sha256": "1aa2373b12ba30f7babb79f448dbcdd66c3b014e2b809bfb91dc1e7445d6411c",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-e2e-linux-04.jpg",
+      "sha256": "cdfc97daad3436fb3445ecf0bead471e797d9c3069ed58c6b1c7875529a851dc",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-e2e-linux-05.jpg",
+      "sha256": "e84eda5a08d0d60e4643f3a3f200ac7e624328864ca42e5fcc5f76ab9c53f4ea",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-e2e-linux-06.jpg",
+      "sha256": "9c0492250a26ffe5293c286cebfc18b78cc3da5f40144f4f064a54284ae36af4",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-e2e-linux-07.jpg",
+      "sha256": "f180f682d58e2680cbba84cfd7467f3de036e34b7672312ee658c2c7db8fad0d",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-e2e-linux-08.jpg",
+      "sha256": "da7b45670390f92533d64cd1348ac86f0e84d89da88de873a17519b7f7727253",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-e2e-linux-09.jpg",
+      "sha256": "b7e9be23c1922b36445c04ea85bc9079549bd278211d0d50304adfc234c8a5ca",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-e2e-linux-10.jpg",
+      "sha256": "9d03e0bd9f2a62e4e3bfe6430bfb4fb3e7bb4913490cccc731f961b1615453cc",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-macos-01.jpg",
+      "sha256": "166941a84d84c6d6d99606ffa4f93e4fc339b6b1035a7816f766b2180916a794",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-macos-02.jpg",
+      "sha256": "d7d2bc9ed88ad7d0644267faf181e636955361b4362c4bdcf2eaf96677e4cdbb",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-macos-03.jpg",
+      "sha256": "ff4b217d74c413bd229b02528249ca57da280a01e1881df5229eb906f1fc5382",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-macos-04.jpg",
+      "sha256": "5d7f9069833a38a5bc68ad8222e989209448a551e576077595a8b0e06c1142bf",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-macos-05.jpg",
+      "sha256": "d14aa9a9748dbd35986dcde707e55ba92c86aefe118f037af7fe5f3ec8f5fcb4",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-macos-06.jpg",
+      "sha256": "eabf69180e57ef61c35057b29686f4fafc388fbf63018a9180a12d2bb7fd4647",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-macos-07.jpg",
+      "sha256": "c45247f170d12f72345395ea6d352b29e207ee54dc4879b2372a67779ec216d9",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-macos-08.jpg",
+      "sha256": "731bc4d7b7b1bfdd486f1213f6264cd2375f413a052bde0429f48b95aac017a6",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-macos-09.jpg",
+      "sha256": "42a54735a10d1c100322acc7959bf928c3e6de4092578aef4dff0fa15b47fab1",
+      "inspected": true
+    },
+    {
+      "path": "contacts/contact-macos-10.jpg",
+      "sha256": "23b07bdb292839208242eef639d4b63152a44eb713c03fca51a43f6056d01b0a",
+      "inspected": true
+    }
+  ],
+  "fullResolutionReview": [
+    {
+      "id": "e2e-linux-001",
+      "originalSHA256": "c990eb76598cd56cb207d8bd0625b65e09966f28f37fa8635bdab55231d5b6bc",
+      "retainedPath": "images/e2e-linux/approval-descriptions-1024x686-dark.webp",
+      "pixels": [
+        1024,
+        686
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-002",
+      "originalSHA256": "8ef0206b4f8a2527571d19fd6120cee8ee6e8c030e2d3c32832a4c25a45f3606",
+      "retainedPath": "images/e2e-linux/approval-descriptions-1024x686-light.webp",
+      "pixels": [
+        1024,
+        686
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-003",
+      "originalSHA256": "5093dce4e626884e03b5d36d919f6efcea7c9fcb46f05686b004cedba38ea048",
+      "retainedPath": "images/e2e-linux/approval-descriptions-960x640-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-004",
+      "originalSHA256": "ac7b1006a3fc4d47e172514b80a57403368729dcc4c1ef8c375e9d6d8220c007",
+      "retainedPath": "images/e2e-linux/approval-descriptions-960x640-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-019",
+      "originalSHA256": "3dd74b3e64af65f2450f7c1792151bf1a929f2697e0dd764cea0c506659f85a2",
+      "retainedPath": "images/e2e-linux/code-diff-scroll-960-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-020",
+      "originalSHA256": "21a9cf3c25aea445af25593c8d084ec84ab6a0a487b9d46357f282c8db632660",
+      "retainedPath": "images/e2e-linux/code-diff-scroll-960-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-063",
+      "originalSHA256": "2cf8f2a374e671aa26a99c497640efe95c5d6f736a8040bdc8c26c54c79d50bf",
+      "retainedPath": "images/e2e-linux/preview-bot-shared-960-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-064",
+      "originalSHA256": "5ce468259c5dd91a4a8f642dc75dc34510fd6d37d217051a0cae8065b4d63360",
+      "retainedPath": "images/e2e-linux/preview-bot-shared-960-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-074",
+      "originalSHA256": "d130c3e9d2fd35ca40d21ff1a5e0409af0026993ac20e4bf2d3ff76dc0f238d7",
+      "retainedPath": "images/e2e-linux/remote-code-refused-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-075",
+      "originalSHA256": "085f1f0b2d60c09d5556d68afec97b31c4f7f25446e340474267061e76be5738",
+      "retainedPath": "images/e2e-linux/remote-code-refused-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-077",
+      "originalSHA256": "2f8d20abef111cd47dc672af8b906f1e53a9aed42db6756cf253a5a891232257",
+      "retainedPath": "images/e2e-linux/remote-mfa-unavailable-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-078",
+      "originalSHA256": "98d5112a4226cca69149c41adf36132677aaceec715939b1bf3c95d649cc9e97",
+      "retainedPath": "images/e2e-linux/remote-mfa-unavailable-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-081",
+      "originalSHA256": "9eba57ac2278f547d4df874de4c0588efa68cdd7681cae3583f1fd8787db71bb",
+      "retainedPath": "images/e2e-linux/remote-signed-in-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-082",
+      "originalSHA256": "8d463a2571396500a959e2d7572f2bd7e1b72103d6b05f616f0d67ebdffbf329",
+      "retainedPath": "images/e2e-linux/remote-signed-in-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-104",
+      "originalSHA256": "6c58029c36bde6395343f5e2b6fdee0cd7b161955e9abc7a297a7abc19c532d3",
+      "retainedPath": "images/e2e-linux/terminal-copy-fr-960-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-105",
+      "originalSHA256": "327e39c843458fbdb8ec3da38ae40e6b9686b8ce0285b25be8c78917f52e1eb3",
+      "retainedPath": "images/e2e-linux/terminal-copy-fr-960-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-114",
+      "originalSHA256": "8573431481f4bae7532387e26d2c39fce1475d3b7106bbdd8f9938f98d13b3c3",
+      "retainedPath": "images/e2e-linux/work-task-source-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "e2e-linux-115",
+      "originalSHA256": "71a2f7cc831eef2c052a5fbf726ee567af323b59b92b302f2c7db9fefc9a3f8b",
+      "retainedPath": "images/e2e-linux/work-task-source-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-001",
+      "originalSHA256": "574cdc14d6013f9b6e1be0c8bd9012a5251e0c19284ca6da669c754ce0eec406",
+      "retainedPath": "images/macos/approval-descriptions-1024x686-dark.webp",
+      "pixels": [
+        1024,
+        686
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-002",
+      "originalSHA256": "a9eb56f17a0f0312a78c3953e0378a6c826a18c0eb4532e36ab4205fbd1aadae",
+      "retainedPath": "images/macos/approval-descriptions-1024x686-light.webp",
+      "pixels": [
+        1024,
+        686
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-003",
+      "originalSHA256": "b9d5cb678477b80dca1e3c8673c4e89838f0697c50c0e6e3a18496509c3af883",
+      "retainedPath": "images/macos/approval-descriptions-960x640-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-004",
+      "originalSHA256": "f0a57e69cee7c670e58729452765e0204e7cee3f85664d0388c53e626f2da2dc",
+      "retainedPath": "images/macos/approval-descriptions-960x640-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-019",
+      "originalSHA256": "7c4632b4877f7b2f201417acceeb108fb11e9bf688fed2ab819f4d32e89c27cc",
+      "retainedPath": "images/macos/code-diff-scroll-960-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-020",
+      "originalSHA256": "ff3b623efd246164f46ededfd20d9937d95d32cd702e20391b43f595c2ddc1f1",
+      "retainedPath": "images/macos/code-diff-scroll-960-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-063",
+      "originalSHA256": "df491ec48f77c14b4d991808aafe4146e317ced6f5d93ff34ed1d589315d3e04",
+      "retainedPath": "images/macos/preview-bot-shared-960-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-064",
+      "originalSHA256": "50e8c85fd52fc009bf55379c8bfb93d95e102916b04b2c1db8328b7fac9abbd6",
+      "retainedPath": "images/macos/preview-bot-shared-960-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-074",
+      "originalSHA256": "b8fb41a8a23eb97dd5fd32a72899fe66fe0a2fdf0736a500b3529d2dbe25c879",
+      "retainedPath": "images/macos/remote-code-refused-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-075",
+      "originalSHA256": "6875761062cc2e81d1ef803aca5e577396929228d59a13d69d06ed794e8bac56",
+      "retainedPath": "images/macos/remote-code-refused-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-077",
+      "originalSHA256": "feaa397e6081b8c6b0ed9cc48cfccb3e66d8259d018850c6c17cef570e71138e",
+      "retainedPath": "images/macos/remote-mfa-unavailable-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-078",
+      "originalSHA256": "aa720e6b00ccb845bb14328f47ed41686fa60a944c65104d0bdeb0dcb438cb57",
+      "retainedPath": "images/macos/remote-mfa-unavailable-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-081",
+      "originalSHA256": "c27ab480d796315507c70f5a49243f346fdd3273f18add76f063b57f26751de2",
+      "retainedPath": "images/macos/remote-signed-in-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-082",
+      "originalSHA256": "6198d1ab0c3be0c2d6e912487ceee6f81d9e7fde882a0d3e244ef4f2a8cb6732",
+      "retainedPath": "images/macos/remote-signed-in-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-100",
+      "originalSHA256": "bb69536bf3b15ff6bd53db88c9c3197711ef1a5cae4ac36e2036e35deb0651da",
+      "retainedPath": "images/macos/smoke-renderer.webp",
+      "pixels": [
+        1440,
+        900
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-105",
+      "originalSHA256": "ce4ab8a49379e06034316cb8823b1f167832570101ab7bea33234ff9aa04dacd",
+      "retainedPath": "images/macos/terminal-copy-fr-960-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-106",
+      "originalSHA256": "2c675f3cd3927e2430ad9f72c8fdfb168f45f3629ba6e74e652cbae3d6cd1eb9",
+      "retainedPath": "images/macos/terminal-copy-fr-960-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-115",
+      "originalSHA256": "e63aed9cb7a141dce12dace5ff98439279bd259b359515f7afa53ed151ea50fb",
+      "retainedPath": "images/macos/work-task-source-dark.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    },
+    {
+      "id": "macos-116",
+      "originalSHA256": "d0a65a70b85dc241da79944bd2fb7a56965ccdb4b5bf501105b87b7c92ded074",
+      "retainedPath": "images/macos/work-task-source-light.webp",
+      "pixels": [
+        960,
+        640
+      ],
+      "inspected": true
+    }
+  ],
+  "observations": [
+    "All eight approval captures show complete stacked descriptions clear of the model selector and focused notification switch.",
+    "Auth refusal retains six digits and recovery copy; signed-in/unavailable copy remains readable in light and dark.",
+    "All sampled Code diff tails/headers and French terminal suffixes are visible; Work task and preview Bot frames preserve their prior layout.",
+    "Preview Bot toasts overlap transcript content above the composer; contact sheets retain stacked refusal toasts and a clipped login logo.",
+    "23 of 29 comparable targets are RGBA-identical. Five macOS auth frames differ by 29/37 sidebar pixels; dark unavailable differs in button fill/outline. Cause not isolated.",
+    "All targeted images are renderer captures. Native display capture failed; no native acceptance follows from these images."
+  ]
+}

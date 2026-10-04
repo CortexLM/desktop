@@ -1,0 +1,255 @@
+{
+  "policy": "Raw RGBA comparison, no crop alignment or pixel masking. Diagnostics supplement whole-frame metrics, never replace them.",
+  "regions": [
+    {
+      "state": "work-task~blocked-dark",
+      "region": "blocked-transcript",
+      "devicePixelRect": [
+        1080,
+        260,
+        2460,
+        1555
+      ],
+      "appRGBA": "1b0a299f787f063d7762515ab0fdd7166ae5632a974f26ca900918722781b3cb",
+      "frozenRGBA": "7afd492879c96286f1f077809e1bf9d89bc0580140b22bb31a7ea2aee122c40c",
+      "historicalRGBA": "1b0a299f787f063d7762515ab0fdd7166ae5632a974f26ca900918722781b3cb",
+      "versusFrozen": {
+        "rawChanged": 3963,
+        "exactRGBA": false,
+        "boundsWithinRegion": [
+          205,
+          161,
+          1341,
+          842
+        ]
+      },
+      "versusHistorical": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      }
+    },
+    {
+      "state": "work-task~blocked-light",
+      "region": "blocked-transcript",
+      "devicePixelRect": [
+        1080,
+        260,
+        2460,
+        1555
+      ],
+      "appRGBA": "308fb747f2653c3bb1095fe89ff9f8a8ec4be21fda2ca011a6ffb0de49d56717",
+      "frozenRGBA": "301792ad2c683c62b35ac00c2b76779108b0f694404d0358255cadb3b03b0428",
+      "historicalRGBA": "308fb747f2653c3bb1095fe89ff9f8a8ec4be21fda2ca011a6ffb0de49d56717",
+      "versusFrozen": {
+        "rawChanged": 3981,
+        "exactRGBA": false,
+        "boundsWithinRegion": [
+          205,
+          161,
+          1341,
+          842
+        ]
+      },
+      "versusHistorical": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      }
+    },
+    {
+      "state": "activity~timeline-dark",
+      "region": "event-text-icons-times",
+      "devicePixelRect": [
+        1080,
+        420,
+        2535,
+        1620
+      ],
+      "appRGBA": "ca41a2b4d46d3c32577f438768368abc28731d574207d64efc9483b2a900787e",
+      "frozenRGBA": "ca41a2b4d46d3c32577f438768368abc28731d574207d64efc9483b2a900787e",
+      "historicalRGBA": "ca41a2b4d46d3c32577f438768368abc28731d574207d64efc9483b2a900787e",
+      "versusFrozen": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      },
+      "versusHistorical": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      }
+    },
+    {
+      "state": "activity~timeline-dark",
+      "region": "filter-summary",
+      "devicePixelRect": [
+        1000,
+        337,
+        1510,
+        405
+      ],
+      "appRGBA": "1e70d154dbeea52ff9267be1be3f2675679dcff47ea56a02df0a279faf3f40d3",
+      "frozenRGBA": "1e70d154dbeea52ff9267be1be3f2675679dcff47ea56a02df0a279faf3f40d3",
+      "historicalRGBA": "1e70d154dbeea52ff9267be1be3f2675679dcff47ea56a02df0a279faf3f40d3",
+      "versusFrozen": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      },
+      "versusHistorical": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      }
+    },
+    {
+      "state": "activity~timeline-light",
+      "region": "event-text-icons-times",
+      "devicePixelRect": [
+        1080,
+        420,
+        2535,
+        1620
+      ],
+      "appRGBA": "eb34eba18e6ac86e47cecc512e1232eee9c62e781a23bb60ab7d79abb76cc55c",
+      "frozenRGBA": "eb34eba18e6ac86e47cecc512e1232eee9c62e781a23bb60ab7d79abb76cc55c",
+      "historicalRGBA": "eb34eba18e6ac86e47cecc512e1232eee9c62e781a23bb60ab7d79abb76cc55c",
+      "versusFrozen": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      },
+      "versusHistorical": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      }
+    },
+    {
+      "state": "activity~timeline-light",
+      "region": "filter-summary",
+      "devicePixelRect": [
+        1000,
+        337,
+        1510,
+        405
+      ],
+      "appRGBA": "ae49aaa3bd7f2230a9aa81df59960168f4c8e570e3a04873e6ac7b0a82c53160",
+      "frozenRGBA": "ae49aaa3bd7f2230a9aa81df59960168f4c8e570e3a04873e6ac7b0a82c53160",
+      "historicalRGBA": "ae49aaa3bd7f2230a9aa81df59960168f4c8e570e3a04873e6ac7b0a82c53160",
+      "versusFrozen": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      },
+      "versusHistorical": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      }
+    },
+    {
+      "state": "activity~filtered-dark",
+      "region": "event-text-icons-times",
+      "devicePixelRect": [
+        1080,
+        420,
+        2535,
+        1620
+      ],
+      "appRGBA": "0d2dcfca0710d92a65a77a9798990663401a89c6c83e7a64ba38ff560a33f6d9",
+      "frozenRGBA": "0d2dcfca0710d92a65a77a9798990663401a89c6c83e7a64ba38ff560a33f6d9",
+      "historicalRGBA": "0d2dcfca0710d92a65a77a9798990663401a89c6c83e7a64ba38ff560a33f6d9",
+      "versusFrozen": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      },
+      "versusHistorical": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      }
+    },
+    {
+      "state": "activity~filtered-dark",
+      "region": "filter-summary",
+      "devicePixelRect": [
+        1000,
+        337,
+        1510,
+        405
+      ],
+      "appRGBA": "1b5b0d077ea065e9cfa77468c4273bd0a4e1156e67d4926bdee6f6909d496abd",
+      "frozenRGBA": "447ae2e9d235e0da7be2e4ea86ff89dab39550e8965831a3c3c5edf2805be07e",
+      "historicalRGBA": "1b5b0d077ea065e9cfa77468c4273bd0a4e1156e67d4926bdee6f6909d496abd",
+      "versusFrozen": {
+        "rawChanged": 5048,
+        "exactRGBA": false,
+        "boundsWithinRegion": [
+          89,
+          5,
+          484,
+          57
+        ]
+      },
+      "versusHistorical": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      }
+    },
+    {
+      "state": "activity~filtered-light",
+      "region": "event-text-icons-times",
+      "devicePixelRect": [
+        1080,
+        420,
+        2535,
+        1620
+      ],
+      "appRGBA": "f345ef36c286196d8d0e3e8b051a72a353ee6876b46832e84e0311d4070a9b41",
+      "frozenRGBA": "f345ef36c286196d8d0e3e8b051a72a353ee6876b46832e84e0311d4070a9b41",
+      "historicalRGBA": "f345ef36c286196d8d0e3e8b051a72a353ee6876b46832e84e0311d4070a9b41",
+      "versusFrozen": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      },
+      "versusHistorical": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      }
+    },
+    {
+      "state": "activity~filtered-light",
+      "region": "filter-summary",
+      "devicePixelRect": [
+        1000,
+        337,
+        1510,
+        405
+      ],
+      "appRGBA": "4eeb75e2f693b13d3384b2fefda1ef730f8041e95059ffdb190e2801d8031513",
+      "frozenRGBA": "28465464da244c4ec297f9037800c6200b2087c467a7f458809c0a5ab5d3e47e",
+      "historicalRGBA": "4eeb75e2f693b13d3384b2fefda1ef730f8041e95059ffdb190e2801d8031513",
+      "versusFrozen": {
+        "rawChanged": 5048,
+        "exactRGBA": false,
+        "boundsWithinRegion": [
+          89,
+          5,
+          484,
+          57
+        ]
+      },
+      "versusHistorical": {
+        "rawChanged": 0,
+        "exactRGBA": true,
+        "boundsWithinRegion": null
+      }
+    }
+  ]
+}

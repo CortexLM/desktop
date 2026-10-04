@@ -1,0 +1,27 @@
+0_Lint, typecheck, unit tests, i18n audit.txt
+2026-10-03T02:05:38.8189187Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e12ef51a418176d17f96ec66ef3c5c2c541fc7f9:refs/remotes/pull/36/merge
+2026-10-03T02:05:38.8190921Z  * [new ref]         e12ef51a418176d17f96ec66ef3c5c2c541fc7f9 -> pull/36/merge
+2026-10-03T02:05:40.1244008Z e12ef51a418176d17f96ec66ef3c5c2c541fc7f9
+2026-10-03T02:06:28.6184403Z  Test Files  16 passed (16)
+2026-10-03T02:06:28.6185621Z       Tests  188 passed | 1 skipped (189)
+2026-10-03T02:06:29.8398847Z i18n audit: 63 files, 2269 keys used, 3398 keys in en, 0 problem(s)
+2_macOS build, package, launch.txt
+2026-10-03T02:05:23.8207130Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e12ef51a418176d17f96ec66ef3c5c2c541fc7f9:refs/remotes/pull/36/merge
+2026-10-03T02:05:46.4400890Z  * [new ref]         e12ef51a418176d17f96ec66ef3c5c2c541fc7f9 -> pull/36/merge
+2026-10-03T02:05:47.5351370Z e12ef51a418176d17f96ec66ef3c5c2c541fc7f9
+2026-10-03T02:12:46.7755220Z rendered 426 screen states
+2026-10-03T02:14:22.7428690Z     +   "Transition was skipped",
+2026-10-03T02:14:22.7435180Z   1 failed
+2026-10-03T02:14:22.7441240Z   82 passed (8.5m)
+2026-10-03T02:14:24.6409510Z SHA256 digest of uploaded artifact zip is 611fe87c541c8354d219b93ff800376378e3d3237c4a4ed7ac4a6a2e76a9e323
+2026-10-03T02:14:25.1965120Z Artifact macos.zip successfully finalized. Artifact ID 11261149881
+2026-10-03T02:14:25.1965620Z Artifact macos has been successfully uploaded! Final size is 21202080 bytes. Artifact ID is 11261149881
+1_E2E (Playwright + Electron, Linux).txt
+2026-10-03T02:05:16.2850996Z [command]/usr/local/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e12ef51a418176d17f96ec66ef3c5c2c541fc7f9:refs/remotes/pull/36/merge
+2026-10-03T02:05:54.6721291Z  * [new ref]         e12ef51a418176d17f96ec66ef3c5c2c541fc7f9 -> pull/36/merge
+2026-10-03T02:05:55.9861819Z e12ef51a418176d17f96ec66ef3c5c2c541fc7f9
+2026-10-03T02:09:20.3194186Z rendered 426 screen states
+2026-10-03T02:09:20.3371739Z   83 passed (3.1m)
+2026-10-03T02:09:23.2444438Z SHA256 digest of uploaded artifact zip is cdcdac54b6f4390ecbc9888ef486da88167f4637e2d05bc8bce2c62d95bda931
+2026-10-03T02:09:23.7242062Z Artifact e2e-linux.zip successfully finalized. Artifact ID 11261019492
+2026-10-03T02:09:23.7242594Z Artifact e2e-linux has been successfully uploaded! Final size is 20929886 bytes. Artifact ID is 11261019492

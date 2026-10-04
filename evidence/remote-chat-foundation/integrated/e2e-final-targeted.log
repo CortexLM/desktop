@@ -1,0 +1,15 @@
+Running 11 tests using 4 workers
+
+  ✓   1 tests/e2e/engine.spec.ts:11:1 › MCP connection material stays in main across save, reload and removal (1.3s)
+  ✓   3 tests/e2e/engine.spec.ts:104:1 › an image is refused for a model without image input (1.4s)
+  ✓   4 tests/e2e/engine.spec.ts:38:1 › models.dev catalog is listed and searchable through the bridge (1.5s)
+  ✓   2 tests/e2e/engine.spec.ts:52:1 › streamed exchange with a thinking- and image-capable model (2.3s)
+  ✓   5 tests/e2e/remote-auth.spec.ts:135:3 › Email code sign-in retains refusal, submits once, reloads and signs out — 960 light (2.8s)
+  ✓   7 tests/e2e/remote-auth.spec.ts:135:3 › Email code sign-in retains refusal, submits once, reloads and signs out — 960 dark (2.8s)
+  ✓   9 tests/e2e/remote-auth.spec.ts:276:1 › Mode and origin changes reject late auth replies and never reuse another origin’s credentials (2.3s)
+  ✓   6 tests/e2e/remote-auth.spec.ts:200:3 › Unavailable continuations and cancelled codes stay private; restart clears login — 960 light (5.1s)
+  ✓  10 tests/e2e/remote-auth.spec.ts:319:1 › Initial connection and auth reads protect selection, canonical sign-in and cancellation (2.3s)
+  ✓   8 tests/e2e/remote-auth.spec.ts:200:3 › Unavailable continuations and cancelled codes stay private; restart clears login — 960 dark (4.7s)
+  ✓  11 tests/e2e/remote-auth.spec.ts:409:1 › Live sign-in copy stays readable across eight locales (38.8s)
+
+  11 passed (45.8s)

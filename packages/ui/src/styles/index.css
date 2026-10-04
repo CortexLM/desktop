@@ -1,8 +1,0 @@
-/*
- * Single import for an app consuming this design system.
- *
- * Pulls in the token layers from @cortex-ide/tokens, then the component stylesheets. The
- * order matters: component rules reference the custom properties the token layers define.
- */
-
-@import '@cortex-ide/tokens/theme.css';

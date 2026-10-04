@@ -1,0 +1,67 @@
+{
+  "sourceSHA256": "a2d30f707d733e1dff8302404f3b2f01860da7fcf491bf75dc031058c09d8c9d",
+  "sourceLines": 363,
+  "caseCountPerRun": 3,
+  "cases": [
+    {
+      "run": "production-full",
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion — light",
+      "line": 75,
+      "status": "passed",
+      "durationMs": 13391,
+      "pngs": 4
+    },
+    {
+      "run": "production-full",
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion — dark",
+      "line": 75,
+      "status": "passed",
+      "durationMs": 13352,
+      "pngs": 4
+    },
+    {
+      "run": "production-full",
+      "title": "Projects retain newer drafts and isolate late reads/writes across owners",
+      "line": 239,
+      "status": "passed",
+      "durationMs": 2826,
+      "pngs": 0
+    },
+    {
+      "run": "production-targeted",
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion — light",
+      "line": 75,
+      "status": "passed",
+      "durationMs": 13295,
+      "pngs": 4
+    },
+    {
+      "run": "production-targeted",
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion — dark",
+      "line": 75,
+      "status": "passed",
+      "durationMs": 13491,
+      "pngs": 4
+    },
+    {
+      "run": "production-targeted",
+      "title": "Projects retain newer drafts and isolate late reads/writes across owners",
+      "line": 239,
+      "status": "passed",
+      "durationMs": 3199,
+      "pngs": 0
+    }
+  ],
+  "sourceAssertions": {
+    "twoRestartsPerThemedCase": "88–95,146,212",
+    "providerDisabledRefusal": "113–141: actual422/provider_disabled, zero messages/requests, same-session retry",
+    "instructionRequests": "142–174,225–230: original/revised/no-project context, three fake requests",
+    "deletePreservesChats": "204–223",
+    "lateDeliveryPaintFence": "253–272,298–307",
+    "realPatchRefusal": "314–334",
+    "persistentLibraryRefusal": "335–355"
+  },
+  "positiveCapturesPerRun": 8,
+  "capturesAreRenderer": true,
+  "realCloudAccountOrInferenceProof": false
+}

@@ -1,0 +1,2050 @@
+{
+  "status": "passed",
+  "revision": "2956564fbe31f882014d74ff3a7f920e839fd634",
+  "expectedAsar": "de7b30a5eedc416a1e1b35756e268fc7028f70908564e15b3ef4df9ec9c94d6e",
+  "membersSHA256": "96121d2c1c3c4762c0de6faca1245d41ae2dddba356dfefe988795dadcc775b7",
+  "startedAt": "2026-10-03T10:02:16.705Z",
+  "helperHashes": {
+    "terminal-state-native.mjs": "9f6a819fcd44a26c5b61050a51e0c94c9d87a420b5b32b7a27902ebdcb110949",
+    "terminal-state-native-backend.mjs": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "launch-terminal-state-native.py": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "cleanup-terminal-state-native.py": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+  },
+  "invocation": {
+    "execPath": "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "nodeVersion": "v22.23.3",
+    "argv": [
+      "/tmp/opencode/terminal-state-native.mjs",
+      "/tmp/opencode/terminal-state-native-2956564",
+      "/tmp/opencode/desktop-terminal-state-2956564",
+      "de7b30a5eedc416a1e1b35756e268fc7028f70908564e15b3ef4df9ec9c94d6e",
+      "2956564fbe31f882014d74ff3a7f920e839fd634",
+      "/tmp/opencode/mac-2956564/members.json"
+    ],
+    "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite"
+  },
+  "expectedCopy": {
+    "missingTitle": "Page not found",
+    "missingBody": "This link goes nowhere, or the page has moved.",
+    "failed": "Failed",
+    "ready": "Ready",
+    "running": "Running",
+    "errorTitle": "The task stopped",
+    "errorBody": "Check the provider in Settings, then ask again."
+  },
+  "captures": [
+    {
+      "file": "missing-chat-light.png",
+      "theme": "light",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "active": true,
+      "pid": 58393,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "id": 8608,
+      "sha256": "5ebcd43db929edd713d83d1695e0367dd762639f80a55ee448a4664a34995a98",
+      "boxes": [
+        {
+          "text": "Page not found",
+          "opacity": 1,
+          "bounds": [
+            427,
+            120,
+            895,
+            137
+          ],
+          "ink": [
+            [
+              427,
+              120,
+              519.5625,
+              137
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "This link goes nowhere, or the page has moved.",
+          "opacity": 1,
+          "bounds": [
+            427,
+            138,
+            895,
+            155
+          ],
+          "ink": [
+            [
+              427,
+              138,
+              685.40625,
+              154
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "ink": [
+            [
+              918,
+              64,
+              934,
+              80
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            434,
+            542,
+            693.5625,
+            592
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "file": "code-failed-light.png",
+      "theme": "light",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "active": true,
+      "pid": 58393,
+      "id": 8608,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "sha256": "d56d32d0045ffe6c6754d01f560cd4e319c85c11677b4870048752b871980c7a",
+      "boxes": [
+        {
+          "text": "Native Code light",
+          "opacity": 1,
+          "bounds": [
+            357,
+            64,
+            461.3125,
+            80
+          ],
+          "ink": [
+            [
+              357,
+              63,
+              461.3125,
+              80
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Failed",
+          "opacity": 1,
+          "bounds": [
+            473.3125,
+            62,
+            518.421875,
+            82
+          ],
+          "ink": [
+            [
+              480.3125,
+              65,
+              511.421875,
+              79
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex light Code fail.",
+          "opacity": 1,
+          "bounds": [
+            357,
+            104,
+            513.03125,
+            142
+          ],
+          "ink": [
+            [
+              371,
+              114,
+              499.03125,
+              131
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "The task stopped",
+          "opacity": 1,
+          "bounds": [
+            395,
+            172,
+            492.515625,
+            188
+          ],
+          "ink": [
+            [
+              395,
+              172,
+              492.515625,
+              188
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Check the provider in Settings, then ask again.",
+          "opacity": 1,
+          "bounds": [
+            502.515625,
+            164,
+            665,
+            196
+          ],
+          "ink": [
+            [
+              502.515625,
+              164,
+              619.9375,
+              180
+            ],
+            [
+              502.515625,
+              180,
+              636.59375,
+              196
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            406,
+            566,
+            463.5625,
+            616
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "file": "code-recovered-light.png",
+      "theme": "light",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "id": 8608,
+      "pid": 58393,
+      "active": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "sha256": "7f2bce704393a93d6fc6232b29685108bfe132430cc51410dd08cda6041952a1",
+      "boxes": [
+        {
+          "text": "Native Code light",
+          "opacity": 1,
+          "bounds": [
+            357,
+            64,
+            461.3125,
+            80
+          ],
+          "ink": [
+            [
+              357,
+              63,
+              461.3125,
+              80
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Ready",
+          "opacity": 1,
+          "bounds": [
+            473.3125,
+            62,
+            519.796875,
+            82
+          ],
+          "ink": [
+            [
+              480.3125,
+              65,
+              512.796875,
+              79
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex light Code fail.",
+          "opacity": 1,
+          "bounds": [
+            357,
+            104,
+            513.03125,
+            142
+          ],
+          "ink": [
+            [
+              371,
+              114,
+              499.03125,
+              131
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex light Code recover.",
+          "opacity": 1,
+          "bounds": [
+            357,
+            156,
+            538.0625,
+            194
+          ],
+          "ink": [
+            [
+              371,
+              166,
+              524.0625,
+              183
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Recovered light Code task.",
+          "opacity": 1,
+          "bounds": [
+            357,
+            208,
+            677,
+            229
+          ],
+          "ink": [
+            [
+              357,
+              210,
+              515.71875,
+              227
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            406,
+            566,
+            463.5625,
+            616
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "file": "missing-chat-dark.png",
+      "theme": "dark",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "active": true,
+      "id": 8608,
+      "pid": 58393,
+      "sha256": "77ac1562245c3ca4843004b4aed621a5019b060521a8c75c2719073e0cff39bd",
+      "boxes": [
+        {
+          "text": "Page not found",
+          "opacity": 1,
+          "bounds": [
+            427,
+            120,
+            895,
+            137
+          ],
+          "ink": [
+            [
+              427,
+              120,
+              519.5625,
+              137
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "This link goes nowhere, or the page has moved.",
+          "opacity": 1,
+          "bounds": [
+            427,
+            138,
+            895,
+            155
+          ],
+          "ink": [
+            [
+              427,
+              138,
+              685.40625,
+              154
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "ink": [
+            [
+              918,
+              64,
+              934,
+              80
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            434,
+            542,
+            693.5625,
+            592
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "file": "code-failed-dark.png",
+      "theme": "dark",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "pid": 58393,
+      "id": 8608,
+      "active": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "sha256": "1e7dfe6f8c62d4e04bd34f1986b2b22f9b585b9966118ca57faac3017f34e9ae",
+      "boxes": [
+        {
+          "text": "Native Code dark",
+          "opacity": 1,
+          "bounds": [
+            357,
+            64,
+            462.078125,
+            80
+          ],
+          "ink": [
+            [
+              357,
+              63,
+              462.078125,
+              80
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Failed",
+          "opacity": 1,
+          "bounds": [
+            474.078125,
+            62,
+            519.1875,
+            82
+          ],
+          "ink": [
+            [
+              481.078125,
+              65,
+              512.1875,
+              79
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex dark Code fail.",
+          "opacity": 1,
+          "bounds": [
+            357,
+            104,
+            513.890625,
+            142
+          ],
+          "ink": [
+            [
+              371,
+              114,
+              499.890625,
+              131
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "The task stopped",
+          "opacity": 1,
+          "bounds": [
+            395,
+            172,
+            492.515625,
+            188
+          ],
+          "ink": [
+            [
+              395,
+              172,
+              492.515625,
+              188
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Check the provider in Settings, then ask again.",
+          "opacity": 1,
+          "bounds": [
+            502.515625,
+            164,
+            665,
+            196
+          ],
+          "ink": [
+            [
+              502.515625,
+              164,
+              619.9375,
+              180
+            ],
+            [
+              502.515625,
+              180,
+              636.59375,
+              196
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            406,
+            566,
+            463.5625,
+            616
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "file": "code-recovered-dark.png",
+      "theme": "dark",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "active": true,
+      "id": 8608,
+      "pid": 58393,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "sha256": "b2959513b90d1de630005dff1184dbfb77af81f7f7356a8d9a916058a25158a8",
+      "boxes": [
+        {
+          "text": "Native Code dark",
+          "opacity": 1,
+          "bounds": [
+            357,
+            64,
+            462.078125,
+            80
+          ],
+          "ink": [
+            [
+              357,
+              63,
+              462.078125,
+              80
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Ready",
+          "opacity": 1,
+          "bounds": [
+            474.078125,
+            62,
+            520.5625,
+            82
+          ],
+          "ink": [
+            [
+              481.078125,
+              65,
+              513.5625,
+              79
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex dark Code fail.",
+          "opacity": 1,
+          "bounds": [
+            357,
+            104,
+            513.890625,
+            142
+          ],
+          "ink": [
+            [
+              371,
+              114,
+              499.890625,
+              131
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex dark Code recover.",
+          "opacity": 1,
+          "bounds": [
+            357,
+            156,
+            538.921875,
+            194
+          ],
+          "ink": [
+            [
+              371,
+              166,
+              524.921875,
+              183
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Recovered dark Code task.",
+          "opacity": 1,
+          "bounds": [
+            357,
+            208,
+            677,
+            229
+          ],
+          "ink": [
+            [
+              357,
+              210,
+              516.5625,
+              227
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            406,
+            566,
+            463.5625,
+            616
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "theme": "light",
+      "scenario": "missing-chat",
+      "sessionID": "ses_01a10136fec40000a732b1f0e6b8d366",
+      "emptyDeletedSession": true,
+      "exactCopy": true,
+      "retryAbsent": true,
+      "newChatUIRecovered": true,
+      "inferenceRequests": 0
+    },
+    {
+      "theme": "light",
+      "scenario": "code-failed",
+      "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+      "persistedError": "provider_auth_failed",
+      "beforeReload": {
+        "text": "Failed",
+        "className": "badge err",
+        "color": "color(srgb 0.731765 0.239216 0.254902)",
+        "background": "color(srgb 0.898039 0.282353 0.301961 / 0.14)",
+        "rgba": [
+          187,
+          61,
+          65,
+          255
+        ]
+      },
+      "afterReload": {
+        "text": "Failed",
+        "className": "badge err",
+        "color": "color(srgb 0.731765 0.239216 0.254902)",
+        "background": "color(srgb 0.898039 0.282353 0.301961 / 0.14)",
+        "rgba": [
+          187,
+          61,
+          65,
+          255
+        ]
+      },
+      "historyExact": true
+    },
+    {
+      "theme": "light",
+      "scenario": "code-recovered",
+      "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+      "failedPrefixUnchanged": true,
+      "runningObserved": true,
+      "ready": {
+        "text": "Ready",
+        "className": "badge ok",
+        "color": "color(srgb 0.154902 0.540196 0.240196)",
+        "background": "color(srgb 0.184314 0.698039 0.298039 / 0.16)",
+        "rgba": [
+          40,
+          138,
+          61,
+          255
+        ]
+      },
+      "bannerRemoved": true,
+      "toolParts": 0
+    },
+    {
+      "theme": "dark",
+      "scenario": "missing-chat",
+      "sessionID": "ses_01a10137b50c000049dffacef95673ee",
+      "emptyDeletedSession": true,
+      "exactCopy": true,
+      "retryAbsent": true,
+      "newChatUIRecovered": true,
+      "inferenceRequests": 0
+    },
+    {
+      "theme": "dark",
+      "scenario": "code-failed",
+      "sessionID": "ses_01a10137e458000082a018e784cfce02",
+      "persistedError": "provider_auth_failed",
+      "beforeReload": {
+        "text": "Failed",
+        "className": "badge err",
+        "color": "color(srgb 0.991373 0.501961 0.520784)",
+        "background": "color(srgb 1 0.388235 0.411765 / 0.14)",
+        "rgba": [
+          253,
+          128,
+          133,
+          255
+        ]
+      },
+      "afterReload": {
+        "text": "Failed",
+        "className": "badge err",
+        "color": "color(srgb 0.991373 0.501961 0.520784)",
+        "background": "color(srgb 1 0.388235 0.411765 / 0.14)",
+        "rgba": [
+          253,
+          128,
+          133,
+          255
+        ]
+      },
+      "historyExact": true
+    },
+    {
+      "theme": "dark",
+      "scenario": "code-recovered",
+      "sessionID": "ses_01a10137e458000082a018e784cfce02",
+      "failedPrefixUnchanged": true,
+      "runningObserved": true,
+      "ready": {
+        "text": "Ready",
+        "className": "badge ok",
+        "color": "color(srgb 0.403922 0.865686 0.477451)",
+        "background": "color(srgb 0.219608 0.835294 0.317647 / 0.16)",
+        "rgba": [
+          103,
+          221,
+          122,
+          255
+        ]
+      },
+      "bannerRemoved": true,
+      "toolParts": 0
+    }
+  ],
+  "histories": [
+    {
+      "theme": "light",
+      "session": {
+        "id": "ses_01a1013737930000416a7e4d935228e4",
+        "title": "Native Code light",
+        "agent": "build",
+        "model": {
+          "providerID": "fake",
+          "modelID": "reasoner"
+        },
+        "directory": "/private/tmp/opencode/desktop-terminal-state-2956564",
+        "kind": "code",
+        "time": {
+          "created": 1791021758355,
+          "updated": 1791021758355
+        }
+      },
+      "failed": [
+        {
+          "info": {
+            "id": "msg_01a101374316000029d025c003edd864",
+            "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+            "role": "user",
+            "time": {
+              "created": 1791021761302
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1013743160001bfde2ceb425feae6",
+              "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+              "messageID": "msg_01a101374316000029d025c003edd864",
+              "type": "text",
+              "text": "Cortex light Code fail."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a10137431700006c9fe0b7751904d3",
+            "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+            "role": "assistant",
+            "time": {
+              "created": 1791021761303,
+              "completed": 1791021761587
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            },
+            "error": {
+              "code": "provider_auth_failed",
+              "message": "Provider rejected the credentials (status 401)"
+            }
+          },
+          "parts": []
+        }
+      ],
+      "failedReloaded": [
+        {
+          "info": {
+            "id": "msg_01a101374316000029d025c003edd864",
+            "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+            "role": "user",
+            "time": {
+              "created": 1791021761302
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1013743160001bfde2ceb425feae6",
+              "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+              "messageID": "msg_01a101374316000029d025c003edd864",
+              "type": "text",
+              "text": "Cortex light Code fail."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a10137431700006c9fe0b7751904d3",
+            "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+            "role": "assistant",
+            "time": {
+              "created": 1791021761303,
+              "completed": 1791021761587
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            },
+            "error": {
+              "code": "provider_auth_failed",
+              "message": "Provider rejected the credentials (status 401)"
+            }
+          },
+          "parts": []
+        }
+      ],
+      "recovered": [
+        {
+          "info": {
+            "id": "msg_01a101374316000029d025c003edd864",
+            "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+            "role": "user",
+            "time": {
+              "created": 1791021761302
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1013743160001bfde2ceb425feae6",
+              "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+              "messageID": "msg_01a101374316000029d025c003edd864",
+              "type": "text",
+              "text": "Cortex light Code fail."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a10137431700006c9fe0b7751904d3",
+            "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+            "role": "assistant",
+            "time": {
+              "created": 1791021761303,
+              "completed": 1791021761587
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            },
+            "error": {
+              "code": "provider_auth_failed",
+              "message": "Provider rejected the credentials (status 401)"
+            }
+          },
+          "parts": []
+        },
+        {
+          "info": {
+            "id": "msg_01a101377f1a00007e501398c47a337c",
+            "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+            "role": "user",
+            "time": {
+              "created": 1791021776666
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a101377f1b00000689d1a3276824fc",
+              "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+              "messageID": "msg_01a101377f1a00007e501398c47a337c",
+              "type": "text",
+              "text": "Cortex light Code recover."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a101377f1b0001a4375e0040ad2978",
+            "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+            "role": "assistant",
+            "time": {
+              "created": 1791021776667,
+              "completed": 1791021777240
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a101377f280000b9143c2d3fc123bd",
+              "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+              "messageID": "msg_01a101377f1b0001a4375e0040ad2978",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a101377fa00000adb5d473e10cd0dc",
+              "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+              "messageID": "msg_01a101377f1b0001a4375e0040ad2978",
+              "type": "reasoning",
+              "text": "Checking light recovery."
+            },
+            {
+              "id": "prt_01a10137805c00003e389feea464c172",
+              "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+              "messageID": "msg_01a101377f1b0001a4375e0040ad2978",
+              "type": "text",
+              "text": "Recovered light Code task."
+            },
+            {
+              "id": "prt_01a1013781560000f6c59e47ffe16691",
+              "sessionID": "ses_01a1013737930000416a7e4d935228e4",
+              "messageID": "msg_01a101377f1b0001a4375e0040ad2978",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "session": {
+        "id": "ses_01a10137e458000082a018e784cfce02",
+        "title": "Native Code dark",
+        "agent": "build",
+        "model": {
+          "providerID": "fake",
+          "modelID": "reasoner"
+        },
+        "directory": "/private/tmp/opencode/desktop-terminal-state-2956564",
+        "kind": "code",
+        "time": {
+          "created": 1791021802584,
+          "updated": 1791021802584
+        }
+      },
+      "failed": [
+        {
+          "info": {
+            "id": "msg_01a10137f09300007b3990f8005eb00b",
+            "sessionID": "ses_01a10137e458000082a018e784cfce02",
+            "role": "user",
+            "time": {
+              "created": 1791021805715
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a10137f0930001b33d25370035fda9",
+              "sessionID": "ses_01a10137e458000082a018e784cfce02",
+              "messageID": "msg_01a10137f09300007b3990f8005eb00b",
+              "type": "text",
+              "text": "Cortex dark Code fail."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a10137f09300025e5459ab30bede88",
+            "sessionID": "ses_01a10137e458000082a018e784cfce02",
+            "role": "assistant",
+            "time": {
+              "created": 1791021805715,
+              "completed": 1791021805978
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            },
+            "error": {
+              "code": "provider_auth_failed",
+              "message": "Provider rejected the credentials (status 401)"
+            }
+          },
+          "parts": []
+        }
+      ],
+      "failedReloaded": [
+        {
+          "info": {
+            "id": "msg_01a10137f09300007b3990f8005eb00b",
+            "sessionID": "ses_01a10137e458000082a018e784cfce02",
+            "role": "user",
+            "time": {
+              "created": 1791021805715
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a10137f0930001b33d25370035fda9",
+              "sessionID": "ses_01a10137e458000082a018e784cfce02",
+              "messageID": "msg_01a10137f09300007b3990f8005eb00b",
+              "type": "text",
+              "text": "Cortex dark Code fail."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a10137f09300025e5459ab30bede88",
+            "sessionID": "ses_01a10137e458000082a018e784cfce02",
+            "role": "assistant",
+            "time": {
+              "created": 1791021805715,
+              "completed": 1791021805978
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            },
+            "error": {
+              "code": "provider_auth_failed",
+              "message": "Provider rejected the credentials (status 401)"
+            }
+          },
+          "parts": []
+        }
+      ],
+      "recovered": [
+        {
+          "info": {
+            "id": "msg_01a10137f09300007b3990f8005eb00b",
+            "sessionID": "ses_01a10137e458000082a018e784cfce02",
+            "role": "user",
+            "time": {
+              "created": 1791021805715
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a10137f0930001b33d25370035fda9",
+              "sessionID": "ses_01a10137e458000082a018e784cfce02",
+              "messageID": "msg_01a10137f09300007b3990f8005eb00b",
+              "type": "text",
+              "text": "Cortex dark Code fail."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a10137f09300025e5459ab30bede88",
+            "sessionID": "ses_01a10137e458000082a018e784cfce02",
+            "role": "assistant",
+            "time": {
+              "created": 1791021805715,
+              "completed": 1791021805978
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            },
+            "error": {
+              "code": "provider_auth_failed",
+              "message": "Provider rejected the credentials (status 401)"
+            }
+          },
+          "parts": []
+        },
+        {
+          "info": {
+            "id": "msg_01a101382d0a00002275e626ab23694d",
+            "sessionID": "ses_01a10137e458000082a018e784cfce02",
+            "role": "user",
+            "time": {
+              "created": 1791021821194
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a101382d0b0000482513d2ad93772a",
+              "sessionID": "ses_01a10137e458000082a018e784cfce02",
+              "messageID": "msg_01a101382d0a00002275e626ab23694d",
+              "type": "text",
+              "text": "Cortex dark Code recover."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a101382d0b000101000d05c1879114",
+            "sessionID": "ses_01a10137e458000082a018e784cfce02",
+            "role": "assistant",
+            "time": {
+              "created": 1791021821195,
+              "completed": 1791021821757
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a101382d1300000563632046602e1f",
+              "sessionID": "ses_01a10137e458000082a018e784cfce02",
+              "messageID": "msg_01a101382d0b000101000d05c1879114",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a101382d8d00005c3cee93a0d60e4f",
+              "sessionID": "ses_01a10137e458000082a018e784cfce02",
+              "messageID": "msg_01a101382d0b000101000d05c1879114",
+              "type": "reasoning",
+              "text": "Checking dark recovery."
+            },
+            {
+              "id": "prt_01a101382e440000a164bd80c9380645",
+              "sessionID": "ses_01a10137e458000082a018e784cfce02",
+              "messageID": "msg_01a101382d0b000101000d05c1879114",
+              "type": "text",
+              "text": "Recovered dark Code task."
+            },
+            {
+              "id": "prt_01a101382f3c00001b3095459d912c34",
+              "sessionID": "ses_01a10137e458000082a018e784cfce02",
+              "messageID": "msg_01a101382d0b000101000d05c1879114",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "uiAdmissions": [
+    {
+      "theme": "light",
+      "turn": "fail",
+      "status": 202,
+      "messageID": "msg_01a101374316000029d025c003edd864"
+    },
+    {
+      "theme": "light",
+      "turn": "recover",
+      "status": 202,
+      "messageID": "msg_01a101377f1a00007e501398c47a337c"
+    },
+    {
+      "theme": "dark",
+      "turn": "fail",
+      "status": 202,
+      "messageID": "msg_01a10137f09300007b3990f8005eb00b"
+    },
+    {
+      "theme": "dark",
+      "turn": "recover",
+      "status": 202,
+      "messageID": "msg_01a101382d0a00002275e626ab23694d"
+    }
+  ],
+  "uiReadbacks": [
+    {
+      "theme": "light",
+      "scenario": "missing-chat",
+      "records": [
+        {
+          "status": 404,
+          "code": "not_found"
+        },
+        {
+          "status": 404,
+          "code": "not_found"
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "scenario": "missing-chat",
+      "records": [
+        {
+          "status": 404,
+          "code": "not_found"
+        },
+        {
+          "status": 404,
+          "code": "not_found"
+        }
+      ]
+    }
+  ],
+  "badgeObservations": [
+    {
+      "theme": "light",
+      "turn": "fail",
+      "samples": [
+        {
+          "text": "Ready",
+          "className": "badge ok"
+        },
+        {
+          "text": "Running",
+          "className": "badge run"
+        },
+        {
+          "text": "Failed",
+          "className": "badge err"
+        }
+      ]
+    },
+    {
+      "theme": "light",
+      "turn": "recover",
+      "samples": [
+        {
+          "text": "Failed",
+          "className": "badge err"
+        },
+        {
+          "text": "Running",
+          "className": "badge run"
+        },
+        {
+          "text": "Ready",
+          "className": "badge ok"
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "turn": "fail",
+      "samples": [
+        {
+          "text": "Ready",
+          "className": "badge ok"
+        },
+        {
+          "text": "Running",
+          "className": "badge run"
+        },
+        {
+          "text": "Failed",
+          "className": "badge err"
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "turn": "recover",
+      "samples": [
+        {
+          "text": "Failed",
+          "className": "badge err"
+        },
+        {
+          "text": "Running",
+          "className": "badge run"
+        },
+        {
+          "text": "Ready",
+          "className": "badge ok"
+        }
+      ]
+    }
+  ],
+  "stateCalls": [
+    {
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/catalog/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake/key",
+      "method": "PUT",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/sessions/ses_01a10136fec40000a732b1f0e6b8d366/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10136fec40000a732b1f0e6b8d366",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10136fec40000a732b1f0e6b8d366",
+      "method": "GET",
+      "status": 404,
+      "code": "not_found"
+    },
+    {
+      "route": "/api/sessions/ses_01a10136fec40000a732b1f0e6b8d366/messages",
+      "method": "GET",
+      "status": 404,
+      "code": "not_found"
+    },
+    {
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/sessions/ses_01a10137b50c000049dffacef95673ee/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137b50c000049dffacef95673ee",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137b50c000049dffacef95673ee",
+      "method": "GET",
+      "status": 404,
+      "code": "not_found"
+    },
+    {
+      "route": "/api/sessions/ses_01a10137b50c000049dffacef95673ee/messages",
+      "method": "GET",
+      "status": 404,
+      "code": "not_found"
+    },
+    {
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4/abort",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a1013737930000416a7e4d935228e4",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02/abort",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10137e458000082a018e784cfce02",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake/key",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "rendererHttp": [],
+  "unexpectedDialogs": 0,
+  "cleanup": {
+    "ownedSessionRemoved:ses_01a1013737930000416a7e4d935228e4": true,
+    "ownedSessionRemoved:ses_01a10137e458000082a018e784cfce02": true,
+    "fixtureReceiptRead": true,
+    "providerRestoredKeyRemoved": true,
+    "appearanceRestored": true,
+    "initialRouteRestored": true
+  },
+  "installedBefore": {
+    "asarSHA256": "de7b30a5eedc416a1e1b35756e268fc7028f70908564e15b3ef4df9ec9c94d6e",
+    "revision": "2956564fbe31f882014d74ff3a7f920e839fd634",
+    "membersVerified": 90,
+    "pid": 58393,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-2956564",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "96121d2c1c3c4762c0de6faca1245d41ae2dddba356dfefe988795dadcc775b7"
+  },
+  "backend": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-2956564",
+    "runID": "449ffc61-de8e-46be-b570-0b3688607a5b",
+    "pid": 58390,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d"
+  },
+  "backendReceipt": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-2956564",
+    "runID": "449ffc61-de8e-46be-b570-0b3688607a5b",
+    "pid": 58390,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "counts": {
+      "catalog": 1,
+      "health": 2,
+      "receipt": 9,
+      "errors": 0
+    },
+    "requests": [
+      {
+        "theme": "light",
+        "turn": "fail",
+        "userTexts": [
+          "Cortex light Code fail."
+        ],
+        "replayAnswers": [],
+        "modelExact": true,
+        "authorizationExact": true,
+        "workingDirectoryExact": true,
+        "toolsAbsent": true,
+        "reasoningOptionFields": [],
+        "httpStatus": 401,
+        "outputFields": [],
+        "completed": true
+      },
+      {
+        "theme": "light",
+        "turn": "recover",
+        "userTexts": [
+          "Cortex light Code fail.",
+          "Cortex light Code recover."
+        ],
+        "replayAnswers": [],
+        "modelExact": true,
+        "authorizationExact": true,
+        "workingDirectoryExact": true,
+        "toolsAbsent": true,
+        "reasoningOptionFields": [],
+        "httpStatus": 200,
+        "outputFields": [
+          "reasoning_content",
+          "content"
+        ],
+        "reasoningText": "Checking light recovery.",
+        "answerText": "Recovered light Code task.",
+        "completed": true
+      },
+      {
+        "theme": "dark",
+        "turn": "fail",
+        "userTexts": [
+          "Cortex dark Code fail."
+        ],
+        "replayAnswers": [],
+        "modelExact": true,
+        "authorizationExact": true,
+        "workingDirectoryExact": true,
+        "toolsAbsent": true,
+        "reasoningOptionFields": [],
+        "httpStatus": 401,
+        "outputFields": [],
+        "completed": true
+      },
+      {
+        "theme": "dark",
+        "turn": "recover",
+        "userTexts": [
+          "Cortex dark Code fail.",
+          "Cortex dark Code recover."
+        ],
+        "replayAnswers": [],
+        "modelExact": true,
+        "authorizationExact": true,
+        "workingDirectoryExact": true,
+        "toolsAbsent": true,
+        "reasoningOptionFields": [],
+        "httpStatus": 200,
+        "outputFields": [
+          "reasoning_content",
+          "content"
+        ],
+        "reasoningText": "Checking dark recovery.",
+        "answerText": "Recovered dark Code task.",
+        "completed": true
+      }
+    ],
+    "failures": []
+  },
+  "installedAfter": {
+    "asarSHA256": "de7b30a5eedc416a1e1b35756e268fc7028f70908564e15b3ef4df9ec9c94d6e",
+    "revision": "2956564fbe31f882014d74ff3a7f920e839fd634",
+    "membersVerified": 90,
+    "pid": 58393,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-2956564",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "96121d2c1c3c4762c0de6faca1245d41ae2dddba356dfefe988795dadcc775b7"
+  },
+  "finishedAt": "2026-10-03T10:03:57.898Z",
+  "durationMs": 101193,
+  "scope": "Ordinary installed English local Chat missing-link and Code persisted failure/recovery, both themes. Passive JSON/DOM observations only; no response stubbing, held RPC, injected main handler, tools, remote auth or SDK Chat inference. Future pixel acceptance remains coordinator-owned."
+}

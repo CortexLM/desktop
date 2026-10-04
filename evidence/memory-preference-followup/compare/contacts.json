@@ -1,0 +1,66 @@
+[
+  {
+    "file": "contacts/pairs-01.jpg",
+    "sha256": "9d2c398cb941964923c74d4f96ed7b709672ff497e9d514fcdc29fbee3f3ce08",
+    "states": [
+      "bot-settings~general-dark",
+      "bot-settings~general-light",
+      "bot-settings~permissions-dark",
+      "bot-settings~permissions-light",
+      "bot-settings~memory-dark",
+      "bot-settings~memory-light",
+      "bot-settings~usage-dark",
+      "bot-settings~usage-light"
+    ],
+    "pairs": 8,
+    "kind": "frozen-app-pairs"
+  },
+  {
+    "file": "contacts/pairs-02.jpg",
+    "sha256": "13bb13815de7c675e7651640f6357ef0c451eefeeec7c555d1a0517301401bd2",
+    "states": [
+      "memory~list-dark",
+      "memory~list-light",
+      "memory~off-dark",
+      "memory~off-light",
+      "memory~empty-dark",
+      "memory~empty-light",
+      "settings~general-dark",
+      "settings~general-light"
+    ],
+    "pairs": 8,
+    "kind": "frozen-app-pairs"
+  },
+  {
+    "file": "contacts/gaps-01.jpg",
+    "sha256": "46094a79bab7e1b2699405adb06b4bca8b94388ed0104024613b9bfc1f3e884c",
+    "states": [
+      "settings~appearance-dark",
+      "settings~appearance-light",
+      "settings~providers-dark",
+      "settings~providers-light",
+      "settings~connection-dark",
+      "settings~connection-light",
+      "settings~bot-dark",
+      "settings~bot-light"
+    ],
+    "pairs": 0,
+    "kind": "explicit-gaps"
+  },
+  {
+    "file": "contacts/gaps-02.jpg",
+    "sha256": "763f3298964311eb3b49b5b9e88f361343b2906f80fef6ed715a756a73332717",
+    "states": [
+      "settings~notifications-dark",
+      "settings~notifications-light",
+      "settings~privacy-dark",
+      "settings~privacy-light",
+      "settings~shortcuts-dark",
+      "settings~shortcuts-light",
+      "settings~account-dark",
+      "settings~account-light"
+    ],
+    "pairs": 0,
+    "kind": "explicit-gaps"
+  }
+]

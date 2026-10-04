@@ -1,0 +1,228 @@
+{
+  "documentaryRevision": "6642d46467304cbe1181d0963d51c085ec09a0c4",
+  "applicationRevision": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "inputScope": {
+    "frozenManifestCount": 514,
+    "originalVerifierCount": 512,
+    "filter": "not row[\"path\"].endswith(\".md\")",
+    "excluded": [
+      {
+        "path": "packages/core/README.md",
+        "sha256": "39a910f75f794c27f56188b7b39dcdf624fa309757b9953a77b4fa402c5d2dee"
+      },
+      {
+        "path": "skills/summarize/SKILL.md",
+        "sha256": "7d9147d7bd3d533773fab25c97b8e9c5032a9ee18fbd50fc9c077e22cff2e249"
+      }
+    ],
+    "reason": "Original verifier applies a suffix filter, not a runtime-importance classification. These receipts establish 512 matches only; the excluded skill is packaged."
+  },
+  "distributionScope": "Original before/after receipts establish 90 unchanged distribution members. No current distribution reread during retention.",
+  "sourceBaselineScope": "Coordinator-supplied pre-fix five-file SHA-256 pins only; not a 514-input validation receipt.",
+  "entries": [
+    {
+      "path": "appearance-theme.spec.ts",
+      "source": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+      "operation": "copy",
+      "sourceSha256": "2bff6928c640ef274363b00e3861027488fa1025d0087135a93ddbee061949ba",
+      "sourceBytes": 6259,
+      "retainedSha256": "2bff6928c640ef274363b00e3861027488fa1025d0087135a93ddbee061949ba",
+      "retainedBytes": 6259
+    },
+    {
+      "path": "raw/results.json.gz",
+      "source": "/tmp/opencode/appearance-theme-baseline/results.json",
+      "operation": "gzip",
+      "sourceSha256": "a329e62fafe84b0d82645852b379b0810bf6b44069ce52910f3edda1110b1112",
+      "sourceBytes": 88756,
+      "retainedSha256": "af9d30bd63977ee7b402bd31863d6c71bbdec6b6b61dd8434ea771468b8d3fc1",
+      "retainedBytes": 7428
+    },
+    {
+      "path": "raw/run.log.gz",
+      "source": "/tmp/opencode/appearance-theme-baseline/run.log",
+      "operation": "gzip",
+      "sourceSha256": "33b92caf61d114aa8bae3bb7dad9efffd2cb2eb51f67913e48d11c776e1d48c6",
+      "sourceBytes": 28114,
+      "retainedSha256": "4bd6f070fe3461388c252c19e67dc320d237d76d64fc2a143d617b43b8a7d9c0",
+      "retainedBytes": 2405
+    },
+    {
+      "path": "raw/original-README.md.gz",
+      "source": "/tmp/opencode/appearance-theme-baseline/README.md",
+      "operation": "gzip",
+      "sourceSha256": "33454271c83d94f656a157e7b297d9fd542136d0d341df95bc39a3f4be897908",
+      "sourceBytes": 4694,
+      "retainedSha256": "6254b24ea32fce81c6f7a026be6848bc3a12fb43700e7e877dd9597e4ac40580",
+      "retainedBytes": 2060
+    },
+    {
+      "path": "run.json",
+      "source": "/tmp/opencode/appearance-theme-baseline/run.json",
+      "operation": "copy",
+      "sourceSha256": "9f271253b15ff9fcdf398f84be524659b00d8e59b2ff1e6bc20fb38d5b4416f1",
+      "sourceBytes": 515,
+      "retainedSha256": "9f271253b15ff9fcdf398f84be524659b00d8e59b2ff1e6bc20fb38d5b4416f1",
+      "retainedBytes": 515
+    },
+    {
+      "path": "raw/playwright.config.ts",
+      "source": "/tmp/opencode/appearance-theme-baseline/playwright.config.ts",
+      "operation": "copy",
+      "sourceSha256": "aac44fe1ac4d732610be280d30613f57722cd0ab04a5faada3c44539dc2d1a1c",
+      "sourceBytes": 590,
+      "retainedSha256": "aac44fe1ac4d732610be280d30613f57722cd0ab04a5faada3c44539dc2d1a1c",
+      "retainedBytes": 590
+    },
+    {
+      "path": "integrity/before.json.gz",
+      "source": "/tmp/opencode/appearance-theme-baseline/before-integrity.json",
+      "operation": "gzip",
+      "sourceSha256": "0c8e5b72b67dd6769e0435d0525c6acb6034a5f77be0555811f0380dddd617e9",
+      "sourceBytes": 29656,
+      "retainedSha256": "4d4fc4f468c0e16104aea872b88b546c076b32262a9557d1191ffa1738bb5c87",
+      "retainedBytes": 5990
+    },
+    {
+      "path": "integrity/after.json.gz",
+      "source": "/tmp/opencode/appearance-theme-baseline/after-integrity.json",
+      "operation": "gzip",
+      "sourceSha256": "4a6f051417443a3354eced5a6deee4090e3b5043de4b2fa934a430494418d4f9",
+      "sourceBytes": 29655,
+      "retainedSha256": "acf6253451117048400d9882701646c6d97ecab2e84d93edb150baa1968ec5d7",
+      "retainedBytes": 5989
+    },
+    {
+      "path": "integrity/original-verifier.py",
+      "source": "/tmp/opencode/appearance-theme-baseline/verify.py",
+      "operation": "copy",
+      "sourceSha256": "c094fff1cc901d6e4e4b46b7e459eabccf8473a62086f8a67a6d1f8c23135339",
+      "sourceBytes": 2066,
+      "retainedSha256": "c094fff1cc901d6e4e4b46b7e459eabccf8473a62086f8a67a6d1f8c23135339",
+      "retainedBytes": 2066
+    },
+    {
+      "path": "observations/light.json",
+      "source": "/tmp/opencode/appearance-theme-baseline/appearance-theme-observations-light.json",
+      "operation": "copy",
+      "sourceSha256": "42b04cac35b6d5c58c78fe2c6ca5da7bac8b8d5b851469fd60ade89305510a94",
+      "sourceBytes": 7778,
+      "retainedSha256": "42b04cac35b6d5c58c78fe2c6ca5da7bac8b8d5b851469fd60ade89305510a94",
+      "retainedBytes": 7778
+    },
+    {
+      "path": "observations/dark.json",
+      "source": "/tmp/opencode/appearance-theme-baseline/appearance-theme-observations-dark.json",
+      "operation": "copy",
+      "sourceSha256": "52c6c321fffbabe068c170808d0cc0cb8c8f367f0cb55cf29808c2dc12d49037",
+      "sourceBytes": 7767,
+      "retainedSha256": "52c6c321fffbabe068c170808d0cc0cb8c8f367f0cb55cf29808c2dc12d49037",
+      "retainedBytes": 7767
+    },
+    {
+      "path": "integrity/source-baseline.json",
+      "source": "/tmp/opencode/appearance-theme-followup/source-baseline.json",
+      "operation": "copy",
+      "sourceSha256": "97b7c3ec74a14369d578f9eb4eb53c4a24f654089aa5d041a3d9851b151f0f5d",
+      "sourceBytes": 907,
+      "retainedSha256": "97b7c3ec74a14369d578f9eb4eb53c4a24f654089aa5d041a3d9851b151f0f5d",
+      "retainedBytes": 907
+    },
+    {
+      "path": "images/dark.webp",
+      "source": "/tmp/opencode/appearance-theme-baseline/artifacts/appearance-theme-Appearanc-d4dec-synchronization-\u2014-960-light/attachments/appearance-theme-dark-65092df8b6460a56f51968fe69183d4f1c3faf3a.png",
+      "operation": "lossless-webp",
+      "sourceSha256": "5c771290102cb549fb0fa764d42b1348a585719d4fd77e33a5e54db2fc13f23f",
+      "sourceBytes": 72290,
+      "retainedSha256": "f60a802f2a3e113fe94669110128a88f6e87a1cd0c640880ae64f31730788cae",
+      "retainedBytes": 37518,
+      "width": 960,
+      "height": 640,
+      "sourceRgbaSha256": "f880089baa71d43ac45fa00482b4ede96ebbcba0f3a2330990bab201e849abff",
+      "retainedRgbaSha256": "f880089baa71d43ac45fa00482b4ede96ebbcba0f3a2330990bab201e849abff",
+      "rgbaExact": true
+    },
+    {
+      "path": "raw/error-context-light.md",
+      "source": "/tmp/opencode/appearance-theme-baseline/artifacts/appearance-theme-Appearanc-d4dec-synchronization-\u2014-960-light/error-context.md",
+      "operation": "normalize-trailing-whitespace",
+      "sourceSha256": "604d62982246b336d85a0e7c3e49eba2dfd8582c1b9d6099cf4fcb3b86076858",
+      "sourceBytes": 12361,
+      "retainedSha256": "d653ef372fb7933983499b44a1f73abdf50b51d7b9473fb7af9a4fe98355529a",
+      "retainedBytes": 12352,
+      "normalization": "Remove ASCII spaces/tabs at line ends only; preserve line endings and all other bytes.",
+      "originalCompressed": "raw/error-context-light.md.gz",
+      "trailingWhitespaceLinesNormalized": 9
+    },
+    {
+      "path": "images/light.webp",
+      "source": "/tmp/opencode/appearance-theme-baseline/artifacts/appearance-theme-Appearanc-bb3ff--synchronization-\u2014-960-dark/attachments/appearance-theme-light-617e0e3a33458feeecb0b1c157983f6a81c35654.png",
+      "operation": "lossless-webp",
+      "sourceSha256": "5d73c60fe5a03e95e612c97ff03ca2361e323f690be552ab2344d12cd30955da",
+      "sourceBytes": 71898,
+      "retainedSha256": "8ce977a7b235ac63e22a9dedf5f1951d538171fd6d7b968a176ab75ae9b15c2c",
+      "retainedBytes": 36532,
+      "width": 960,
+      "height": 640,
+      "sourceRgbaSha256": "5c8c81c0fbe58fe62641f952941b5f53ff36e674acd732e8b01673c99482e2fa",
+      "retainedRgbaSha256": "5c8c81c0fbe58fe62641f952941b5f53ff36e674acd732e8b01673c99482e2fa",
+      "rgbaExact": true
+    },
+    {
+      "path": "raw/error-context-dark.md",
+      "source": "/tmp/opencode/appearance-theme-baseline/artifacts/appearance-theme-Appearanc-bb3ff--synchronization-\u2014-960-dark/error-context.md",
+      "operation": "normalize-trailing-whitespace",
+      "sourceSha256": "907ae119b42293fa51b042b80c5ea370e0a7fd32509cdcd0e24aec328acd5c38",
+      "sourceBytes": 11649,
+      "retainedSha256": "d544f17f87f5fcb665b185440b135c92aa5d492b4eb0d15f0b7ad89e74ea8a11",
+      "retainedBytes": 11640,
+      "normalization": "Remove ASCII spaces/tabs at line ends only; preserve line endings and all other bytes.",
+      "originalCompressed": "raw/error-context-dark.md.gz",
+      "trailingWhitespaceLinesNormalized": 9
+    },
+    {
+      "path": "run.log",
+      "source": "/tmp/opencode/appearance-theme-baseline/run.log",
+      "operation": "normalize-log",
+      "sourceSha256": "33b92caf61d114aa8bae3bb7dad9efffd2cb2eb51f67913e48d11c776e1d48c6",
+      "sourceBytes": 28114,
+      "retainedSha256": "6296302eb9f3256e7c990b8ea4e1899e14450158e54b3f7a6094b59edc6a8942",
+      "retainedBytes": 24800,
+      "normalization": "Strip ANSI; repository paths become relative; capture/context references point to retained files. Remove ASCII spaces/tabs at line ends; preserve line endings.",
+      "originalCompressed": "raw/run.log.gz",
+      "trailingWhitespaceLinesNormalized": 4
+    },
+    {
+      "path": "raw/error-context-light.md.gz",
+      "source": "/tmp/opencode/appearance-theme-baseline/artifacts/appearance-theme-Appearanc-d4dec-synchronization-\u2014-960-light/error-context.md",
+      "operation": "gzip",
+      "sourceSha256": "604d62982246b336d85a0e7c3e49eba2dfd8582c1b9d6099cf4fcb3b86076858",
+      "sourceBytes": 12361,
+      "retainedSha256": "755901b459672f4bd1aca9cf646a0f887e2481517d99ba2259344038dd95f7b5",
+      "retainedBytes": 3127
+    },
+    {
+      "path": "raw/error-context-dark.md.gz",
+      "source": "/tmp/opencode/appearance-theme-baseline/artifacts/appearance-theme-Appearanc-bb3ff--synchronization-\u2014-960-dark/error-context.md",
+      "operation": "gzip",
+      "sourceSha256": "907ae119b42293fa51b042b80c5ea370e0a7fd32509cdcd0e24aec328acd5c38",
+      "sourceBytes": 11649,
+      "retainedSha256": "e45f2fd17926fe4e81f4d5f575969d85798ac9b67d6148bfb6b46ef5f2924700",
+      "retainedBytes": 3000
+    }
+  ],
+  "retentionTools": [
+    {
+      "path": "/tmp/opencode/appearance-theme-retention/retain.py",
+      "sha256": "bc390ca579f3f37d5a882624dcf9950deb1112908740333b3832bb2bfc90824c"
+    },
+    {
+      "path": "/tmp/opencode/appearance-theme-retention/verify.py",
+      "sha256": "a3f491204e563da08ce7dcdade1afef9fd237fa4660bfcec6dfaa9a23be5e246"
+    },
+    {
+      "path": "/tmp/opencode/appearance-theme-retention/normalize.py",
+      "sha256": "fe42b5cb6fadfd1ca9bd038b8a6c20ed8fae2511a95677ffa65f46d7ba5192f4"
+    }
+  ]
+}

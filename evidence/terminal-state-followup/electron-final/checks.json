@@ -1,0 +1,3699 @@
+{
+  "missingChat": [
+    {
+      "case": 15,
+      "theme": "light",
+      "dataDir": "/tmp/cortex-e2e-05kSFB",
+      "calls": [
+        {
+          "route": "/api/providers/fake/key",
+          "method": "PUT",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions",
+          "method": "POST",
+          "status": 201
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d62ea0000ee92fc44c76dc333/prompt",
+          "method": "POST",
+          "status": 202
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d62ea0000ee92fc44c76dc333/messages",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d62ea0000ee92fc44c76dc333/messages",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d62ea0000ee92fc44c76dc333/messages",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d62ea0000ee92fc44c76dc333/messages",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d62ea0000ee92fc44c76dc333/messages",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d62ea0000ee92fc44c76dc333",
+          "method": "DELETE",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions",
+          "method": "GET",
+          "status": 200
+        }
+      ],
+      "errors": [],
+      "rendererHttp": [],
+      "session": {
+        "id": "ses_01a1011d62ea0000ee92fc44c76dc333",
+        "title": "Deleted Chat regression",
+        "agent": "build",
+        "model": {
+          "providerID": "fake",
+          "modelID": "reasoner"
+        },
+        "kind": "chat",
+        "time": {
+          "created": 1791020065514,
+          "updated": 1791020065514
+        }
+      },
+      "historyBeforeDelete": [
+        {
+          "info": {
+            "id": "msg_01a1011d63220000c600d727e271ac62",
+            "sessionID": "ses_01a1011d62ea0000ee92fc44c76dc333",
+            "role": "user",
+            "time": {
+              "created": 1791020065570
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1011d632300008671b3af066d4025",
+              "sessionID": "ses_01a1011d62ea0000ee92fc44c76dc333",
+              "messageID": "msg_01a1011d63220000c600d727e271ac62",
+              "type": "text",
+              "text": "Saved exchange before deleting this Chat."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a1011d6325000071d99032fc971375",
+            "sessionID": "ses_01a1011d62ea0000ee92fc44c76dc333",
+            "role": "assistant",
+            "time": {
+              "created": 1791020065573,
+              "completed": 1791020066252
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0.0002
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1011d635a000021e191d3fafffadb",
+              "sessionID": "ses_01a1011d62ea0000ee92fc44c76dc333",
+              "messageID": "msg_01a1011d6325000071d99032fc971375",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a1011d635b0000f29755ef08bc0cac",
+              "sessionID": "ses_01a1011d62ea0000ee92fc44c76dc333",
+              "messageID": "msg_01a1011d6325000071d99032fc971375",
+              "type": "reasoning",
+              "text": "Looking at the request."
+            },
+            {
+              "id": "prt_01a1011d647f0000a72f479e121a4272",
+              "sessionID": "ses_01a1011d62ea0000ee92fc44c76dc333",
+              "messageID": "msg_01a1011d6325000071d99032fc971375",
+              "type": "text",
+              "text": "Hello from the streaming test provider. Everything works."
+            },
+            {
+              "id": "prt_01a1011d65ca0000001ad4baa4cec958",
+              "sessionID": "ses_01a1011d62ea0000ee92fc44c76dc333",
+              "messageID": "msg_01a1011d6325000071d99032fc971375",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0.0002
+              }
+            }
+          ]
+        }
+      ],
+      "missing": {
+        "status": 404,
+        "body": {
+          "error": {
+            "code": "not_found",
+            "message": "Unknown session ses_01a1011d62ea0000ee92fc44c76dc333"
+          }
+        }
+      },
+      "missingHistory": {
+        "status": 404,
+        "body": {
+          "error": {
+            "code": "not_found",
+            "message": "Unknown session ses_01a1011d62ea0000ee92fc44c76dc333"
+          }
+        }
+      },
+      "alert": {
+        "title": "Page not found",
+        "body": "This link goes nowhere, or the page has moved."
+      },
+      "newChatRecovery": true,
+      "originalSoftAssertionsPassed": 2
+    },
+    {
+      "case": 16,
+      "theme": "dark",
+      "dataDir": "/tmp/cortex-e2e-RfHyY1",
+      "calls": [
+        {
+          "route": "/api/providers/fake/key",
+          "method": "PUT",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions",
+          "method": "POST",
+          "status": 201
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d65ae00006390c376eb5cf46e/prompt",
+          "method": "POST",
+          "status": 202
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d65ae00006390c376eb5cf46e/messages",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d65ae00006390c376eb5cf46e/messages",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d65ae00006390c376eb5cf46e/messages",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d65ae00006390c376eb5cf46e/messages",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d65ae00006390c376eb5cf46e/messages",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions/ses_01a1011d65ae00006390c376eb5cf46e",
+          "method": "DELETE",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "route": "/api/sessions",
+          "method": "GET",
+          "status": 200
+        }
+      ],
+      "errors": [],
+      "rendererHttp": [],
+      "session": {
+        "id": "ses_01a1011d65ae00006390c376eb5cf46e",
+        "title": "Deleted Chat regression",
+        "agent": "build",
+        "model": {
+          "providerID": "fake",
+          "modelID": "reasoner"
+        },
+        "kind": "chat",
+        "time": {
+          "created": 1791020066222,
+          "updated": 1791020066222
+        }
+      },
+      "historyBeforeDelete": [
+        {
+          "info": {
+            "id": "msg_01a1011d65e300006c4125a83a6ddb65",
+            "sessionID": "ses_01a1011d65ae00006390c376eb5cf46e",
+            "role": "user",
+            "time": {
+              "created": 1791020066275
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1011d65e3000165ea3be07b6daf04",
+              "sessionID": "ses_01a1011d65ae00006390c376eb5cf46e",
+              "messageID": "msg_01a1011d65e300006c4125a83a6ddb65",
+              "type": "text",
+              "text": "Saved exchange before deleting this Chat."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a1011d65e40000c13a3c2a82a8830c",
+            "sessionID": "ses_01a1011d65ae00006390c376eb5cf46e",
+            "role": "assistant",
+            "time": {
+              "created": 1791020066276,
+              "completed": 1791020066955
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0.0002
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1011d660f0000795dff1a159b01dc",
+              "sessionID": "ses_01a1011d65ae00006390c376eb5cf46e",
+              "messageID": "msg_01a1011d65e40000c13a3c2a82a8830c",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a1011d660f0001a414c9b90b185adf",
+              "sessionID": "ses_01a1011d65ae00006390c376eb5cf46e",
+              "messageID": "msg_01a1011d65e40000c13a3c2a82a8830c",
+              "type": "reasoning",
+              "text": "Looking at the request."
+            },
+            {
+              "id": "prt_01a1011d67360000d998e0fc8632cc90",
+              "sessionID": "ses_01a1011d65ae00006390c376eb5cf46e",
+              "messageID": "msg_01a1011d65e40000c13a3c2a82a8830c",
+              "type": "text",
+              "text": "Hello from the streaming test provider. Everything works."
+            },
+            {
+              "id": "prt_01a1011d688800006952bccb0f5d7fb4",
+              "sessionID": "ses_01a1011d65ae00006390c376eb5cf46e",
+              "messageID": "msg_01a1011d65e40000c13a3c2a82a8830c",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0.0002
+              }
+            }
+          ]
+        }
+      ],
+      "missing": {
+        "status": 404,
+        "body": {
+          "error": {
+            "code": "not_found",
+            "message": "Unknown session ses_01a1011d65ae00006390c376eb5cf46e"
+          }
+        }
+      },
+      "missingHistory": {
+        "status": 404,
+        "body": {
+          "error": {
+            "code": "not_found",
+            "message": "Unknown session ses_01a1011d65ae00006390c376eb5cf46e"
+          }
+        }
+      },
+      "alert": {
+        "title": "Page not found",
+        "body": "This link goes nowhere, or the page has moved."
+      },
+      "newChatRecovery": true,
+      "originalSoftAssertionsPassed": 2
+    }
+  ],
+  "codeFailure": [
+    {
+      "case": 26,
+      "theme": "light",
+      "id": "ses_01a1011d82c3000040435abeeb8e0856",
+      "failed": [
+        {
+          "info": {
+            "id": "msg_01a1011d82ce000069e50bd1bdac67a3",
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "role": "user",
+            "time": {
+              "created": 1791020073678
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1011d82ce0001309374100e27af11",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d82ce000069e50bd1bdac67a3",
+              "type": "text",
+              "text": "Persist this failed Code request"
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a1011d82d00000dade5e54a15dac66",
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "role": "assistant",
+            "time": {
+              "created": 1791020073680,
+              "completed": 1791020073732
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            },
+            "error": {
+              "code": "provider_error",
+              "message": "Provider request failed (status 400)"
+            }
+          },
+          "parts": []
+        }
+      ],
+      "initialBadge": {
+        "text": "Failed",
+        "className": "badge err"
+      },
+      "reloadedBadge": {
+        "text": "Failed",
+        "className": "badge err"
+      },
+      "runningBadge": {
+        "text": "Running",
+        "className": "badge run"
+      },
+      "recovered": [
+        {
+          "info": {
+            "id": "msg_01a1011d82ce000069e50bd1bdac67a3",
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "role": "user",
+            "time": {
+              "created": 1791020073678
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1011d82ce0001309374100e27af11",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d82ce000069e50bd1bdac67a3",
+              "type": "text",
+              "text": "Persist this failed Code request"
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a1011d82d00000dade5e54a15dac66",
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "role": "assistant",
+            "time": {
+              "created": 1791020073680,
+              "completed": 1791020073732
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            },
+            "error": {
+              "code": "provider_error",
+              "message": "Provider request failed (status 400)"
+            }
+          },
+          "parts": []
+        },
+        {
+          "info": {
+            "id": "msg_01a1011d849f0000d44de29c81906dee",
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "role": "user",
+            "time": {
+              "created": 1791020074143
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1011d84a00000ed8a7f1563abe244",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d849f0000d44de29c81906dee",
+              "type": "text",
+              "text": "Recover in the same Code session"
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "role": "assistant",
+            "time": {
+              "created": 1791020074144,
+              "completed": 1791020074792
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0.0002
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1011d84b200002eaef80026219a5f",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a1011d84b200014264f3bf20051d23",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "type": "reasoning",
+              "text": "Looking at the request."
+            },
+            {
+              "id": "prt_01a1011d85db0000b95279f64f9fed84",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "type": "text",
+              "text": "Hello from the streaming test provider. Everything works."
+            },
+            {
+              "id": "prt_01a1011d8724000097f1c09c37218823",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0.0002
+              }
+            }
+          ]
+        }
+      ],
+      "recoveredBadge": {
+        "text": "Ready",
+        "className": "badge ok"
+      },
+      "events": [
+        {
+          "type": "session.created",
+          "properties": {
+            "session": {
+              "id": "ses_01a1011d82c3000040435abeeb8e0856",
+              "title": "",
+              "agent": "build",
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "directory": "/tmp/cortex-e2e-j8RzvT/project",
+              "kind": "code",
+              "time": {
+                "created": 1791020073667,
+                "updated": 1791020073667
+              }
+            }
+          }
+        },
+        {
+          "type": "session.updated",
+          "properties": {
+            "session": {
+              "id": "ses_01a1011d82c3000040435abeeb8e0856",
+              "title": "",
+              "agent": "build",
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "directory": "/tmp/cortex-e2e-j8RzvT/project",
+              "kind": "code",
+              "time": {
+                "created": 1791020073667,
+                "updated": 1791020073677
+              }
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d82ce000069e50bd1bdac67a3",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "role": "user",
+              "time": {
+                "created": 1791020073678
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 0,
+                "output": 0,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d82ce0001309374100e27af11",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d82ce000069e50bd1bdac67a3",
+              "type": "text",
+              "text": "Persist this failed Code request"
+            }
+          }
+        },
+        {
+          "type": "session.updated",
+          "properties": {
+            "session": {
+              "id": "ses_01a1011d82c3000040435abeeb8e0856",
+              "title": "Persist this failed Code request",
+              "agent": "build",
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "directory": "/tmp/cortex-e2e-j8RzvT/project",
+              "kind": "code",
+              "time": {
+                "created": 1791020073667,
+                "updated": 1791020073679
+              }
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d82d00000dade5e54a15dac66",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "role": "assistant",
+              "time": {
+                "created": 1791020073680
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 0,
+                "output": 0,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          }
+        },
+        {
+          "type": "session.status",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "status": {
+              "type": "busy"
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d82d00000dade5e54a15dac66",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "role": "assistant",
+              "time": {
+                "created": 1791020073680,
+                "completed": 1791020073732
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 0,
+                "output": 0,
+                "reasoning": 0,
+                "cost": 0
+              },
+              "error": {
+                "code": "provider_error",
+                "message": "Provider request failed (status 400)"
+              }
+            }
+          }
+        },
+        {
+          "type": "session.updated",
+          "properties": {
+            "session": {
+              "id": "ses_01a1011d82c3000040435abeeb8e0856",
+              "title": "Persist this failed Code request",
+              "agent": "build",
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "directory": "/tmp/cortex-e2e-j8RzvT/project",
+              "kind": "code",
+              "time": {
+                "created": 1791020073667,
+                "updated": 1791020073733
+              }
+            }
+          }
+        },
+        {
+          "type": "session.status",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "status": {
+              "type": "error",
+              "error": {
+                "code": "provider_error",
+                "message": "Provider request failed (status 400)"
+              }
+            }
+          }
+        },
+        {
+          "type": "session.status",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "status": {
+              "type": "idle"
+            }
+          }
+        },
+        {
+          "type": "session.updated",
+          "properties": {
+            "session": {
+              "id": "ses_01a1011d82c3000040435abeeb8e0856",
+              "title": "Persist this failed Code request",
+              "agent": "build",
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "directory": "/tmp/cortex-e2e-j8RzvT/project",
+              "kind": "code",
+              "time": {
+                "created": 1791020073667,
+                "updated": 1791020074143
+              }
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d849f0000d44de29c81906dee",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "role": "user",
+              "time": {
+                "created": 1791020074143
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 0,
+                "output": 0,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d84a00000ed8a7f1563abe244",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d849f0000d44de29c81906dee",
+              "type": "text",
+              "text": "Recover in the same Code session"
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "role": "assistant",
+              "time": {
+                "created": 1791020074144
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 0,
+                "output": 0,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          }
+        },
+        {
+          "type": "session.status",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "status": {
+              "type": "busy"
+            }
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d84b200002eaef80026219a5f",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "type": "step-start"
+            }
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d84b200014264f3bf20051d23",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "type": "reasoning",
+              "text": ""
+            }
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d84b200014264f3bf20051d23",
+            "field": "reasoning",
+            "delta": "Looking "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d84b200014264f3bf20051d23",
+            "field": "reasoning",
+            "delta": "at "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d84b200014264f3bf20051d23",
+            "field": "reasoning",
+            "delta": "the "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d84b200014264f3bf20051d23",
+            "field": "reasoning",
+            "delta": "request"
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d84b200014264f3bf20051d23",
+            "field": "reasoning",
+            "delta": "."
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d84b200014264f3bf20051d23",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "type": "reasoning",
+              "text": "Looking at the request."
+            }
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d85db0000b95279f64f9fed84",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "type": "text",
+              "text": ""
+            }
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d85db0000b95279f64f9fed84",
+            "field": "text",
+            "delta": "Hello "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d85db0000b95279f64f9fed84",
+            "field": "text",
+            "delta": "from "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d85db0000b95279f64f9fed84",
+            "field": "text",
+            "delta": "the "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d85db0000b95279f64f9fed84",
+            "field": "text",
+            "delta": "streaming "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d85db0000b95279f64f9fed84",
+            "field": "text",
+            "delta": "test "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d85db0000b95279f64f9fed84",
+            "field": "text",
+            "delta": "provider. "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d85db0000b95279f64f9fed84",
+            "field": "text",
+            "delta": "Everything "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+            "partID": "prt_01a1011d85db0000b95279f64f9fed84",
+            "field": "text",
+            "delta": "works."
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d85db0000b95279f64f9fed84",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "type": "text",
+              "text": "Hello from the streaming test provider. Everything works."
+            }
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d8724000097f1c09c37218823",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "messageID": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0.0002
+              }
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "role": "assistant",
+              "time": {
+                "created": 1791020074144
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0.0002
+              }
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d84a000017adc2d08aaf081a1",
+              "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+              "role": "assistant",
+              "time": {
+                "created": 1791020074144,
+                "completed": 1791020074792
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0.0002
+              }
+            }
+          }
+        },
+        {
+          "type": "session.updated",
+          "properties": {
+            "session": {
+              "id": "ses_01a1011d82c3000040435abeeb8e0856",
+              "title": "Persist this failed Code request",
+              "agent": "build",
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "directory": "/tmp/cortex-e2e-j8RzvT/project",
+              "kind": "code",
+              "time": {
+                "created": 1791020073667,
+                "updated": 1791020074793
+              }
+            }
+          }
+        },
+        {
+          "type": "session.status",
+          "properties": {
+            "sessionID": "ses_01a1011d82c3000040435abeeb8e0856",
+            "status": {
+              "type": "idle"
+            }
+          }
+        }
+      ],
+      "errors": [],
+      "rendererHttp": [],
+      "requests": [
+        {
+          "body": {
+            "model": "reasoner",
+            "max_tokens": 4000,
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are Cortex, a capable assistant and coding agent. Use the available tools when they help; be concise and accurate.\n\nWorking directory: /tmp/cortex-e2e-j8RzvT/project"
+              },
+              {
+                "role": "user",
+                "content": "Persist this failed Code request"
+              }
+            ],
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "read",
+                  "description": "Read a text file. Returns numbered lines. Use offset/limit (1-based lines) for large files.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "offset": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      },
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      }
+                    },
+                    "required": [
+                      "path"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "write",
+                  "description": "Create or overwrite a file with the given content.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "content": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "content"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "edit",
+                  "description": "Replace an exact string in a file. oldString must occur exactly once unless replaceAll is true.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "oldString": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "newString": {
+                        "type": "string"
+                      },
+                      "replaceAll": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "oldString",
+                      "newString"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "list",
+                  "description": "List the entries of a directory (directories end with /).",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "default": ".",
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "glob",
+                  "description": "Find files by glob pattern (e.g. **/*.ts) relative to the session directory.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "pattern": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "pattern"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "grep",
+                  "description": "Search file contents with a regular expression. Optional include glob filters files.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "pattern": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "string"
+                      },
+                      "include": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "pattern"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "bash",
+                  "description": "Run a shell command in the session directory. Runs with the user's own permissions.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "command": {
+                        "type": "string"
+                      },
+                      "timeout": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 600000
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "command"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "webfetch",
+                  "description": "Fetch a URL over HTTP(S) and return its text content.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    },
+                    "required": [
+                      "url"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "todowrite",
+                  "description": "Replace the session todo list to track multi-step work.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "todos": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string",
+                              "enum": [
+                                "pending",
+                                "in_progress",
+                                "completed",
+                                "cancelled"
+                              ]
+                            },
+                            "priority": {
+                              "type": "string",
+                              "enum": [
+                                "high",
+                                "medium",
+                                "low"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "content",
+                            "status"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "todos"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "task",
+                  "description": "Delegate a self-contained task to a subagent (general or explore). Returns its final report.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string"
+                      },
+                      "prompt": {
+                        "type": "string"
+                      },
+                      "agent": {
+                        "default": "general",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "description",
+                      "prompt"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "skill",
+                  "description": "Load the instructions of an available skill by name.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            ],
+            "tool_choice": "auto",
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            }
+          },
+          "auth": "Bearer sk-test-code-failure"
+        },
+        {
+          "body": {
+            "model": "reasoner",
+            "max_tokens": 4000,
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are Cortex, a capable assistant and coding agent. Use the available tools when they help; be concise and accurate.\n\nWorking directory: /tmp/cortex-e2e-j8RzvT/project"
+              },
+              {
+                "role": "user",
+                "content": "Persist this failed Code request"
+              },
+              {
+                "role": "user",
+                "content": "Recover in the same Code session"
+              }
+            ],
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "read",
+                  "description": "Read a text file. Returns numbered lines. Use offset/limit (1-based lines) for large files.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "offset": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      },
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      }
+                    },
+                    "required": [
+                      "path"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "write",
+                  "description": "Create or overwrite a file with the given content.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "content": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "content"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "edit",
+                  "description": "Replace an exact string in a file. oldString must occur exactly once unless replaceAll is true.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "oldString": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "newString": {
+                        "type": "string"
+                      },
+                      "replaceAll": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "oldString",
+                      "newString"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "list",
+                  "description": "List the entries of a directory (directories end with /).",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "default": ".",
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "glob",
+                  "description": "Find files by glob pattern (e.g. **/*.ts) relative to the session directory.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "pattern": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "pattern"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "grep",
+                  "description": "Search file contents with a regular expression. Optional include glob filters files.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "pattern": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "string"
+                      },
+                      "include": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "pattern"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "bash",
+                  "description": "Run a shell command in the session directory. Runs with the user's own permissions.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "command": {
+                        "type": "string"
+                      },
+                      "timeout": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 600000
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "command"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "webfetch",
+                  "description": "Fetch a URL over HTTP(S) and return its text content.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    },
+                    "required": [
+                      "url"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "todowrite",
+                  "description": "Replace the session todo list to track multi-step work.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "todos": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string",
+                              "enum": [
+                                "pending",
+                                "in_progress",
+                                "completed",
+                                "cancelled"
+                              ]
+                            },
+                            "priority": {
+                              "type": "string",
+                              "enum": [
+                                "high",
+                                "medium",
+                                "low"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "content",
+                            "status"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "todos"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "task",
+                  "description": "Delegate a self-contained task to a subagent (general or explore). Returns its final report.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string"
+                      },
+                      "prompt": {
+                        "type": "string"
+                      },
+                      "agent": {
+                        "default": "general",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "description",
+                      "prompt"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "skill",
+                  "description": "Load the instructions of an available skill by name.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            ],
+            "tool_choice": "auto",
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            }
+          },
+          "auth": "Bearer sk-test-code-failure"
+        }
+      ],
+      "statusSequence": [
+        "busy",
+        "error",
+        "idle",
+        "busy",
+        "idle"
+      ],
+      "eventCounts": {
+        "session.created": 1,
+        "session.updated": 5,
+        "message.updated": 7,
+        "part.updated": 8,
+        "session.status": 5,
+        "part.delta": 13
+      },
+      "successfulAssistantDeltas": 13,
+      "originalSoftAssertionsPassed": 2,
+      "bannerRemovedAndDraftCleared": "asserted by unchanged passing test, not a separate attachment field"
+    },
+    {
+      "case": 27,
+      "theme": "dark",
+      "id": "ses_01a1011d84500000066d6fd4556503e3",
+      "failed": [
+        {
+          "info": {
+            "id": "msg_01a1011d84590000a6dfc4650cc14253",
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "role": "user",
+            "time": {
+              "created": 1791020074073
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1011d845900010cb5b9d69e49019b",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d84590000a6dfc4650cc14253",
+              "type": "text",
+              "text": "Persist this failed Code request"
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a1011d845b00004fa6f27e35e021fb",
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "role": "assistant",
+            "time": {
+              "created": 1791020074075,
+              "completed": 1791020074131
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            },
+            "error": {
+              "code": "provider_error",
+              "message": "Provider request failed (status 400)"
+            }
+          },
+          "parts": []
+        }
+      ],
+      "initialBadge": {
+        "text": "Failed",
+        "className": "badge err"
+      },
+      "reloadedBadge": {
+        "text": "Failed",
+        "className": "badge err"
+      },
+      "runningBadge": {
+        "text": "Running",
+        "className": "badge run"
+      },
+      "recovered": [
+        {
+          "info": {
+            "id": "msg_01a1011d84590000a6dfc4650cc14253",
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "role": "user",
+            "time": {
+              "created": 1791020074073
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1011d845900010cb5b9d69e49019b",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d84590000a6dfc4650cc14253",
+              "type": "text",
+              "text": "Persist this failed Code request"
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a1011d845b00004fa6f27e35e021fb",
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "role": "assistant",
+            "time": {
+              "created": 1791020074075,
+              "completed": 1791020074131
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            },
+            "error": {
+              "code": "provider_error",
+              "message": "Provider request failed (status 400)"
+            }
+          },
+          "parts": []
+        },
+        {
+          "info": {
+            "id": "msg_01a1011d86410000a47d1d597410f29e",
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "role": "user",
+            "time": {
+              "created": 1791020074561
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1011d864200009d848c95f20f24b1",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d86410000a47d1d597410f29e",
+              "type": "text",
+              "text": "Recover in the same Code session"
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a1011d86420001ba2aa094beaf080c",
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "role": "assistant",
+            "time": {
+              "created": 1791020074562,
+              "completed": 1791020075202
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0.0002
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a1011d86520000cc88013fe1534c4b",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a1011d865300001ed3e8e33fdbd85d",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+              "type": "reasoning",
+              "text": "Looking at the request."
+            },
+            {
+              "id": "prt_01a1011d877a000045c61f83ec44caa1",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+              "type": "text",
+              "text": "Hello from the streaming test provider. Everything works."
+            },
+            {
+              "id": "prt_01a1011d88bf0000412ace616efd6d5a",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0.0002
+              }
+            }
+          ]
+        }
+      ],
+      "recoveredBadge": {
+        "text": "Ready",
+        "className": "badge ok"
+      },
+      "events": [
+        {
+          "type": "session.created",
+          "properties": {
+            "session": {
+              "id": "ses_01a1011d84500000066d6fd4556503e3",
+              "title": "",
+              "agent": "build",
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "directory": "/tmp/cortex-e2e-uFOTpg/project",
+              "kind": "code",
+              "time": {
+                "created": 1791020074064,
+                "updated": 1791020074064
+              }
+            }
+          }
+        },
+        {
+          "type": "session.updated",
+          "properties": {
+            "session": {
+              "id": "ses_01a1011d84500000066d6fd4556503e3",
+              "title": "",
+              "agent": "build",
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "directory": "/tmp/cortex-e2e-uFOTpg/project",
+              "kind": "code",
+              "time": {
+                "created": 1791020074064,
+                "updated": 1791020074072
+              }
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d84590000a6dfc4650cc14253",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "role": "user",
+              "time": {
+                "created": 1791020074073
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 0,
+                "output": 0,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d845900010cb5b9d69e49019b",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d84590000a6dfc4650cc14253",
+              "type": "text",
+              "text": "Persist this failed Code request"
+            }
+          }
+        },
+        {
+          "type": "session.updated",
+          "properties": {
+            "session": {
+              "id": "ses_01a1011d84500000066d6fd4556503e3",
+              "title": "Persist this failed Code request",
+              "agent": "build",
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "directory": "/tmp/cortex-e2e-uFOTpg/project",
+              "kind": "code",
+              "time": {
+                "created": 1791020074064,
+                "updated": 1791020074074
+              }
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d845b00004fa6f27e35e021fb",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "role": "assistant",
+              "time": {
+                "created": 1791020074075
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 0,
+                "output": 0,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          }
+        },
+        {
+          "type": "session.status",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "status": {
+              "type": "busy"
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d845b00004fa6f27e35e021fb",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "role": "assistant",
+              "time": {
+                "created": 1791020074075,
+                "completed": 1791020074131
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 0,
+                "output": 0,
+                "reasoning": 0,
+                "cost": 0
+              },
+              "error": {
+                "code": "provider_error",
+                "message": "Provider request failed (status 400)"
+              }
+            }
+          }
+        },
+        {
+          "type": "session.updated",
+          "properties": {
+            "session": {
+              "id": "ses_01a1011d84500000066d6fd4556503e3",
+              "title": "Persist this failed Code request",
+              "agent": "build",
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "directory": "/tmp/cortex-e2e-uFOTpg/project",
+              "kind": "code",
+              "time": {
+                "created": 1791020074064,
+                "updated": 1791020074131
+              }
+            }
+          }
+        },
+        {
+          "type": "session.status",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "status": {
+              "type": "error",
+              "error": {
+                "code": "provider_error",
+                "message": "Provider request failed (status 400)"
+              }
+            }
+          }
+        },
+        {
+          "type": "session.status",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "status": {
+              "type": "idle"
+            }
+          }
+        },
+        {
+          "type": "session.updated",
+          "properties": {
+            "session": {
+              "id": "ses_01a1011d84500000066d6fd4556503e3",
+              "title": "Persist this failed Code request",
+              "agent": "build",
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "directory": "/tmp/cortex-e2e-uFOTpg/project",
+              "kind": "code",
+              "time": {
+                "created": 1791020074064,
+                "updated": 1791020074561
+              }
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d86410000a47d1d597410f29e",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "role": "user",
+              "time": {
+                "created": 1791020074561
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 0,
+                "output": 0,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d864200009d848c95f20f24b1",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d86410000a47d1d597410f29e",
+              "type": "text",
+              "text": "Recover in the same Code session"
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d86420001ba2aa094beaf080c",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "role": "assistant",
+              "time": {
+                "created": 1791020074562
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 0,
+                "output": 0,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          }
+        },
+        {
+          "type": "session.status",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "status": {
+              "type": "busy"
+            }
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d86520000cc88013fe1534c4b",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+              "type": "step-start"
+            }
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d865300001ed3e8e33fdbd85d",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+              "type": "reasoning",
+              "text": ""
+            }
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d865300001ed3e8e33fdbd85d",
+            "field": "reasoning",
+            "delta": "Looking "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d865300001ed3e8e33fdbd85d",
+            "field": "reasoning",
+            "delta": "at "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d865300001ed3e8e33fdbd85d",
+            "field": "reasoning",
+            "delta": "the "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d865300001ed3e8e33fdbd85d",
+            "field": "reasoning",
+            "delta": "request"
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d865300001ed3e8e33fdbd85d",
+            "field": "reasoning",
+            "delta": "."
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d865300001ed3e8e33fdbd85d",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+              "type": "reasoning",
+              "text": "Looking at the request."
+            }
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d877a000045c61f83ec44caa1",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+              "type": "text",
+              "text": ""
+            }
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d877a000045c61f83ec44caa1",
+            "field": "text",
+            "delta": "Hello "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d877a000045c61f83ec44caa1",
+            "field": "text",
+            "delta": "from "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d877a000045c61f83ec44caa1",
+            "field": "text",
+            "delta": "the "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d877a000045c61f83ec44caa1",
+            "field": "text",
+            "delta": "streaming "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d877a000045c61f83ec44caa1",
+            "field": "text",
+            "delta": "test "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d877a000045c61f83ec44caa1",
+            "field": "text",
+            "delta": "provider. "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d877a000045c61f83ec44caa1",
+            "field": "text",
+            "delta": "Everything "
+          }
+        },
+        {
+          "type": "part.delta",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+            "partID": "prt_01a1011d877a000045c61f83ec44caa1",
+            "field": "text",
+            "delta": "works."
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d877a000045c61f83ec44caa1",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+              "type": "text",
+              "text": "Hello from the streaming test provider. Everything works."
+            }
+          }
+        },
+        {
+          "type": "part.updated",
+          "properties": {
+            "part": {
+              "id": "prt_01a1011d88bf0000412ace616efd6d5a",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "messageID": "msg_01a1011d86420001ba2aa094beaf080c",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0.0002
+              }
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d86420001ba2aa094beaf080c",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "role": "assistant",
+              "time": {
+                "created": 1791020074562
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0.0002
+              }
+            }
+          }
+        },
+        {
+          "type": "message.updated",
+          "properties": {
+            "message": {
+              "id": "msg_01a1011d86420001ba2aa094beaf080c",
+              "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+              "role": "assistant",
+              "time": {
+                "created": 1791020074562,
+                "completed": 1791020075202
+              },
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "agent": "build",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0.0002
+              }
+            }
+          }
+        },
+        {
+          "type": "session.updated",
+          "properties": {
+            "session": {
+              "id": "ses_01a1011d84500000066d6fd4556503e3",
+              "title": "Persist this failed Code request",
+              "agent": "build",
+              "model": {
+                "providerID": "fake",
+                "modelID": "reasoner"
+              },
+              "directory": "/tmp/cortex-e2e-uFOTpg/project",
+              "kind": "code",
+              "time": {
+                "created": 1791020074064,
+                "updated": 1791020075202
+              }
+            }
+          }
+        },
+        {
+          "type": "session.status",
+          "properties": {
+            "sessionID": "ses_01a1011d84500000066d6fd4556503e3",
+            "status": {
+              "type": "idle"
+            }
+          }
+        }
+      ],
+      "errors": [],
+      "rendererHttp": [],
+      "requests": [
+        {
+          "body": {
+            "model": "reasoner",
+            "max_tokens": 4000,
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are Cortex, a capable assistant and coding agent. Use the available tools when they help; be concise and accurate.\n\nWorking directory: /tmp/cortex-e2e-uFOTpg/project"
+              },
+              {
+                "role": "user",
+                "content": "Persist this failed Code request"
+              }
+            ],
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "read",
+                  "description": "Read a text file. Returns numbered lines. Use offset/limit (1-based lines) for large files.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "offset": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      },
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      }
+                    },
+                    "required": [
+                      "path"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "write",
+                  "description": "Create or overwrite a file with the given content.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "content": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "content"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "edit",
+                  "description": "Replace an exact string in a file. oldString must occur exactly once unless replaceAll is true.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "oldString": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "newString": {
+                        "type": "string"
+                      },
+                      "replaceAll": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "oldString",
+                      "newString"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "list",
+                  "description": "List the entries of a directory (directories end with /).",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "default": ".",
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "glob",
+                  "description": "Find files by glob pattern (e.g. **/*.ts) relative to the session directory.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "pattern": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "pattern"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "grep",
+                  "description": "Search file contents with a regular expression. Optional include glob filters files.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "pattern": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "string"
+                      },
+                      "include": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "pattern"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "bash",
+                  "description": "Run a shell command in the session directory. Runs with the user's own permissions.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "command": {
+                        "type": "string"
+                      },
+                      "timeout": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 600000
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "command"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "webfetch",
+                  "description": "Fetch a URL over HTTP(S) and return its text content.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    },
+                    "required": [
+                      "url"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "todowrite",
+                  "description": "Replace the session todo list to track multi-step work.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "todos": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string",
+                              "enum": [
+                                "pending",
+                                "in_progress",
+                                "completed",
+                                "cancelled"
+                              ]
+                            },
+                            "priority": {
+                              "type": "string",
+                              "enum": [
+                                "high",
+                                "medium",
+                                "low"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "content",
+                            "status"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "todos"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "task",
+                  "description": "Delegate a self-contained task to a subagent (general or explore). Returns its final report.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string"
+                      },
+                      "prompt": {
+                        "type": "string"
+                      },
+                      "agent": {
+                        "default": "general",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "description",
+                      "prompt"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "skill",
+                  "description": "Load the instructions of an available skill by name.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            ],
+            "tool_choice": "auto",
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            }
+          },
+          "auth": "Bearer sk-test-code-failure"
+        },
+        {
+          "body": {
+            "model": "reasoner",
+            "max_tokens": 4000,
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are Cortex, a capable assistant and coding agent. Use the available tools when they help; be concise and accurate.\n\nWorking directory: /tmp/cortex-e2e-uFOTpg/project"
+              },
+              {
+                "role": "user",
+                "content": "Persist this failed Code request"
+              },
+              {
+                "role": "user",
+                "content": "Recover in the same Code session"
+              }
+            ],
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "read",
+                  "description": "Read a text file. Returns numbered lines. Use offset/limit (1-based lines) for large files.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "offset": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      },
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      }
+                    },
+                    "required": [
+                      "path"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "write",
+                  "description": "Create or overwrite a file with the given content.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "content": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "content"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "edit",
+                  "description": "Replace an exact string in a file. oldString must occur exactly once unless replaceAll is true.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "oldString": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "newString": {
+                        "type": "string"
+                      },
+                      "replaceAll": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "oldString",
+                      "newString"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "list",
+                  "description": "List the entries of a directory (directories end with /).",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "default": ".",
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "glob",
+                  "description": "Find files by glob pattern (e.g. **/*.ts) relative to the session directory.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "pattern": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "pattern"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "grep",
+                  "description": "Search file contents with a regular expression. Optional include glob filters files.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "pattern": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "string"
+                      },
+                      "include": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "pattern"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "bash",
+                  "description": "Run a shell command in the session directory. Runs with the user's own permissions.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "command": {
+                        "type": "string"
+                      },
+                      "timeout": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 600000
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "command"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "webfetch",
+                  "description": "Fetch a URL over HTTP(S) and return its text content.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    },
+                    "required": [
+                      "url"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "todowrite",
+                  "description": "Replace the session todo list to track multi-step work.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "todos": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string",
+                              "enum": [
+                                "pending",
+                                "in_progress",
+                                "completed",
+                                "cancelled"
+                              ]
+                            },
+                            "priority": {
+                              "type": "string",
+                              "enum": [
+                                "high",
+                                "medium",
+                                "low"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "content",
+                            "status"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "todos"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "task",
+                  "description": "Delegate a self-contained task to a subagent (general or explore). Returns its final report.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string"
+                      },
+                      "prompt": {
+                        "type": "string"
+                      },
+                      "agent": {
+                        "default": "general",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "description",
+                      "prompt"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "skill",
+                  "description": "Load the instructions of an available skill by name.",
+                  "parameters": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            ],
+            "tool_choice": "auto",
+            "stream": true,
+            "stream_options": {
+              "include_usage": true
+            }
+          },
+          "auth": "Bearer sk-test-code-failure"
+        }
+      ],
+      "statusSequence": [
+        "busy",
+        "error",
+        "idle",
+        "busy",
+        "idle"
+      ],
+      "eventCounts": {
+        "session.created": 1,
+        "session.updated": 5,
+        "message.updated": 7,
+        "part.updated": 8,
+        "session.status": 5,
+        "part.delta": 13
+      },
+      "successfulAssistantDeltas": 13,
+      "originalSoftAssertionsPassed": 2,
+      "bannerRemovedAndDraftCleared": "asserted by unchanged passing test, not a separate attachment field"
+    }
+  ],
+  "priorChat": [
+    {
+      "case": 50,
+      "title": "Late initial Chat history cannot erase a completed stream — light",
+      "snapshots": [
+        {
+          "phase": "setup",
+          "users": [],
+          "answers": []
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": []
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            ""
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test provider. "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test provider. Everything "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test provider. Everything works."
+          ]
+        },
+        {
+          "phase": "before-release",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test provider. Everything works."
+          ]
+        },
+        {
+          "phase": "before-release",
+          "users": [
+            "Earlier saved message must remain.",
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test provider. Everything works.",
+            "Hello from the streaming test provider. Everything works."
+          ]
+        },
+        {
+          "phase": "after-release",
+          "users": [
+            "Earlier saved message must remain.",
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test provider. Everything works.",
+            "Hello from the streaming test provider. Everything works."
+          ]
+        }
+      ],
+      "eventCounts": {
+        "message.updated": 8,
+        "part.updated": 14,
+        "session.status": 4,
+        "part.delta": 26,
+        "session.updated": 2
+      },
+      "completedAssistants": 2
+    },
+    {
+      "case": 51,
+      "title": "Late initial Chat history cannot revive a deleted session — light",
+      "snapshots": [
+        {
+          "phase": "setup",
+          "users": [],
+          "answers": []
+        },
+        {
+          "phase": "before-release",
+          "users": [],
+          "answers": []
+        },
+        {
+          "phase": "after-release",
+          "users": [],
+          "answers": []
+        }
+      ],
+      "eventCounts": {
+        "message.updated": 4,
+        "part.updated": 7,
+        "session.status": 2,
+        "part.delta": 13,
+        "session.updated": 1,
+        "session.deleted": 1
+      },
+      "completedAssistants": 1
+    },
+    {
+      "case": 52,
+      "title": "Late initial Chat history cannot erase a completed stream — dark",
+      "snapshots": [
+        {
+          "phase": "setup",
+          "users": [],
+          "answers": []
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": []
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test provider. "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test provider. Everything "
+          ]
+        },
+        {
+          "phase": "setup",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test provider. Everything works."
+          ]
+        },
+        {
+          "phase": "before-release",
+          "users": [
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test provider. Everything works."
+          ]
+        },
+        {
+          "phase": "before-release",
+          "users": [
+            "Earlier saved message must remain.",
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test provider. Everything works.",
+            "Hello from the streaming test provider. Everything works."
+          ]
+        },
+        {
+          "phase": "after-release",
+          "users": [
+            "Earlier saved message must remain.",
+            "Newest streamed message must remain."
+          ],
+          "answers": [
+            "Hello from the streaming test provider. Everything works.",
+            "Hello from the streaming test provider. Everything works."
+          ]
+        }
+      ],
+      "eventCounts": {
+        "message.updated": 8,
+        "part.updated": 14,
+        "session.status": 4,
+        "part.delta": 26,
+        "session.updated": 2
+      },
+      "completedAssistants": 2
+    },
+    {
+      "case": 53,
+      "title": "Late initial Chat history cannot revive a deleted session — dark",
+      "snapshots": [
+        {
+          "phase": "setup",
+          "users": [],
+          "answers": []
+        },
+        {
+          "phase": "before-release",
+          "users": [],
+          "answers": []
+        },
+        {
+          "phase": "after-release",
+          "users": [],
+          "answers": []
+        }
+      ],
+      "eventCounts": {
+        "message.updated": 4,
+        "part.updated": 7,
+        "session.status": 2,
+        "part.delta": 13,
+        "session.updated": 1,
+        "session.deleted": 1
+      },
+      "completedAssistants": 1
+    }
+  ],
+  "priorBot": [
+    {
+      "case": 3,
+      "theme": "light",
+      "alphaID": "ses_01a1011d33620000b47b61459e31f153",
+      "betaID": "ses_01a1011d2f30000027bb7ce1b3306d76",
+      "promptPaths": [
+        "/api/sessions/ses_01a1011d2f30000027bb7ce1b3306d76/prompt"
+      ],
+      "alphaMessages": 2,
+      "betaMessages": 4,
+      "snapshotCount": 13,
+      "betaSnapshots": 11,
+      "ownershipAssertionsPassed": 6
+    },
+    {
+      "case": 4,
+      "theme": "dark",
+      "alphaID": "ses_01a1011d3370000017c87d0fec46985d",
+      "betaID": "ses_01a1011d2f670000ab9c0ea75261024d",
+      "promptPaths": [
+        "/api/sessions/ses_01a1011d2f670000ab9c0ea75261024d/prompt"
+      ],
+      "alphaMessages": 2,
+      "betaMessages": 4,
+      "snapshotCount": 13,
+      "betaSnapshots": 11,
+      "ownershipAssertionsPassed": 6
+    }
+  ]
+}

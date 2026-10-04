@@ -1,0 +1,198 @@
+{
+  "recordedAt": "2026-10-03T08:55:46.937209+00:00",
+  "scope": "One paginated read per requested issue feed; no repeated polling. Local documentation snapshots compared with retained 07:48 originals.",
+  "feeds": [
+    {
+      "issue": 446,
+      "since": "2026-10-03T07:44:00Z",
+      "perPage": 100,
+      "pages": [
+        {
+          "endpoint": "repos/CortexLM/backend/issues/446/comments?since=2026-10-03T07%3A44%3A00Z&per_page=100&page=1",
+          "startedAt": "2026-10-03T08:55:46.565424+00:00",
+          "finishedAt": "2026-10-03T08:55:46.928125+00:00",
+          "exitCode": 0,
+          "status": "HTTP/2.0 200 OK",
+          "date": [
+            "Sat, 03 Oct 2026 08:55:46 GMT"
+          ],
+          "link": null,
+          "rawSHA256": "eefbaf563b9d5556b93394a769848ff200781cefdabf6be396f9a930b97f3e58",
+          "count": 0
+        }
+      ],
+      "count": 0,
+      "paginationComplete": true,
+      "commentIndex": []
+    },
+    {
+      "issue": 447,
+      "since": "2026-10-03T07:44:00Z",
+      "perPage": 100,
+      "pages": [
+        {
+          "endpoint": "repos/CortexLM/backend/issues/447/comments?since=2026-10-03T07%3A44%3A00Z&per_page=100&page=1",
+          "startedAt": "2026-10-03T08:55:46.566161+00:00",
+          "finishedAt": "2026-10-03T08:55:46.935902+00:00",
+          "exitCode": 0,
+          "status": "HTTP/2.0 200 OK",
+          "date": [
+            "Sat, 03 Oct 2026 08:55:46 GMT"
+          ],
+          "link": null,
+          "rawSHA256": "75941f34dc82df7556ba7f34e58a8e206d5236f29bb57fe20a72830c4addfa55",
+          "count": 1
+        }
+      ],
+      "count": 1,
+      "paginationComplete": true,
+      "commentIndex": [
+        {
+          "id": 5966941204,
+          "author": "echobt",
+          "createdAt": "2026-10-03T07:53:53Z",
+          "updatedAt": "2026-10-03T07:53:53Z",
+          "url": "https://github.com/CortexLM/backend/pull/447#issuecomment-5966941204"
+        }
+      ]
+    }
+  ],
+  "localSnapshots": [
+    {
+      "path": "/root/cortex-goals/COORDINATION.md",
+      "observedAt": "2026-10-03T08:55:46.566255+00:00",
+      "sha256": "b602cd5fba946f7e9158a37b958c6b261718082e3cd1d0ffbe3803a480d8435a",
+      "bytes": 170044,
+      "lines": 277,
+      "previousSHA256": "4337a4a96f029fd05a90f88b96fe78d1c733ea009d155032a4db95aab4c1659e",
+      "previousLines": 263,
+      "unchanged": false,
+      "previousBytesArePrefix": true,
+      "appendedLines": 14
+    },
+    {
+      "path": "/root/cortex-ui/DESIGN-REQUESTS.md",
+      "observedAt": "2026-10-03T08:55:46.578955+00:00",
+      "sha256": "ba7972643b15572da3d0bdde4e4ec442ee8b16d4a9fa0f2877360b9c9133e501",
+      "bytes": 39873,
+      "lines": 90,
+      "previousSHA256": "ba7972643b15572da3d0bdde4e4ec442ee8b16d4a9fa0f2877360b9c9133e501",
+      "previousLines": 90,
+      "unchanged": true,
+      "previousBytesArePrefix": true,
+      "appendedLines": 0
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "coordination.delta.diff",
+      "bytes": 7079,
+      "sha256": "a56710b1755d0d18ab6e1e186e5d55ffca1939de5021ce4daf86d10dc55d37ed"
+    },
+    {
+      "file": "coordination.original.md.gz",
+      "bytes": 64318,
+      "sha256": "cbc99e5e4c5b3465a2c9f5554149155398231cc266d9b82c4eaaefd512042e70"
+    },
+    {
+      "file": "coordination.readable.md",
+      "bytes": 20040,
+      "sha256": "b744db17bee9c4c5837338dfc1e1bf6c5a17c43fd02f60ebb763f9ac73919dbb"
+    },
+    {
+      "file": "design-requests.delta.diff",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "design-requests.original.md.gz",
+      "bytes": 15291,
+      "sha256": "4af1117c6b57bb0d6778f37d35ae9a34d4af9c89c46760cc3895618eb1e1f252"
+    },
+    {
+      "file": "design-requests.readable.md",
+      "bytes": 5461,
+      "sha256": "bf66ee84bc11a9c349e4025e4996c134fd9291b43faac0c68e97334aba8dfe3c"
+    },
+    {
+      "file": "g2-446.comments.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "file": "g2-446.comments.md",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "file": "g2-446.page-1.headers.raw.txt",
+      "bytes": 1408,
+      "sha256": "afa834fddae08cb6329a1123196596bc94752197aa2dd160e449def6eaad4366"
+    },
+    {
+      "file": "g2-446.page-1.headers.txt",
+      "bytes": 1383,
+      "sha256": "2386191bb0023b0aa8d5fa2bdfc731e57449cf9b8dd6f4256d52e2f5f69234d7"
+    },
+    {
+      "file": "g2-446.page-1.http.gz",
+      "bytes": 787,
+      "sha256": "16018343437c096d18884e2bd1c6b6af6f57ca09b34013f7d58fb9d25441fd8c"
+    },
+    {
+      "file": "g2-446.page-1.receipt.json",
+      "bytes": 417,
+      "sha256": "211d3a0139940da00012bae31f013636b05c1b34f8261925f9a2b1fb69c9a993"
+    },
+    {
+      "file": "g2-446.page-1.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "g2-446.receipt.json",
+      "bytes": 639,
+      "sha256": "90f16e5b1c5f3d48820cdf24c1dc7ba324815a1d837741438f4a21b220aa32a2"
+    },
+    {
+      "file": "g3-447.comments.json",
+      "bytes": 2698,
+      "sha256": "a67da0eef7dd77ae2a0d40a838a5fc51a0064dc0593362e0699bb04ddc910152"
+    },
+    {
+      "file": "g3-447.comments.md",
+      "bytes": 967,
+      "sha256": "8dac992c9dfb219067af19d6cf0047e062b85c4fceed65395d569af8b9221362"
+    },
+    {
+      "file": "g3-447.page-1.headers.raw.txt",
+      "bytes": 1391,
+      "sha256": "94ee90872ae6f38655399a0b69babd1f15f89c80e6eff648fadb6945d3ef83e7"
+    },
+    {
+      "file": "g3-447.page-1.headers.txt",
+      "bytes": 1367,
+      "sha256": "3cd36d701e104b1d493f11e5d8b754b14cf0119cea568d97fe30ccb888d23ae5"
+    },
+    {
+      "file": "g3-447.page-1.http.gz",
+      "bytes": 1800,
+      "sha256": "876150d33dac1774cd76482452a5a42ed54129961fd4647d2ecaa8e1122eddf5"
+    },
+    {
+      "file": "g3-447.page-1.receipt.json",
+      "bytes": 417,
+      "sha256": "58de3ed9bec3c552c8acf7fba4ac96cb13019f74a0cee3ccfc9d7c40a698dac9"
+    },
+    {
+      "file": "g3-447.page-1.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "g3-447.receipt.json",
+      "bytes": 874,
+      "sha256": "c6f2cab2fe068fee6f9c97a258ac28402c4775840859a4988d8dc089f8a41462"
+    }
+  ]
+}

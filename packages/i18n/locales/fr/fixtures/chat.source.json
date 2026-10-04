@@ -1,0 +1,643 @@
+{
+  "bot": "Nova",
+  "sources": [
+    {
+      "m": "SH",
+      "c": "blue",
+      "site": "salon-habitat.fr",
+      "t": "2026 exhibitor rates: equipped and bare stands",
+      "d": "Equipped space rises to €420 excl. VAT per m², setup included above 24 m².",
+      "date": "March 12, 2026"
+    },
+    {
+      "m": "JA",
+      "c": "green",
+      "site": "journal-artisans.fr",
+      "t": "What does a trade show stand really cost?",
+      "d": "Plan 15 to 25% of the budget for lighting and furniture, often missing from quotes.",
+      "date": "February 4, 2026"
+    },
+    {
+      "m": "OC",
+      "c": "yellow",
+      "site": "observatoire-ceramique.fr",
+      "t": "2026 crafts barometer",
+      "d": "Trade shows remain the first acquisition channel for 61% of workshops.",
+      "date": "January 20, 2026"
+    },
+    {
+      "m": "SN",
+      "c": "red",
+      "site": "studionord.fr",
+      "t": "Studio Nord — stand design",
+      "d": "Custom stand design and build, delivery guaranteed 3 days ahead.",
+      "date": "2026"
+    },
+    {
+      "m": "IN",
+      "c": "blue",
+      "site": "insee.fr",
+      "t": "Fine crafts: key figures 2025",
+      "d": "38,000 businesses and €1.6 billion in revenue.",
+      "date": "December 9, 2025"
+    },
+    {
+      "m": "AM",
+      "c": "green",
+      "site": "ateliermorel.fr",
+      "t": "Atelier Morel — modular stand spec sheet",
+      "d": "Aluminium frame, built-in LED lighting, set up in 6 hours.",
+      "date": "2026"
+    },
+    {
+      "m": "EP",
+      "c": "yellow",
+      "site": "expoplus.fr",
+      "t": "Expo Plus — rental terms and conditions",
+      "d": "Delivery the day before opening, insurance optional.",
+      "date": "2025"
+    },
+    {
+      "m": "CM",
+      "c": "red",
+      "site": "cma-france.fr",
+      "t": "Regional grants for trade show participation",
+      "d": "Up to 50% of stand costs covered for workshops with fewer than 10 employees.",
+      "date": "March 3, 2026"
+    },
+    {
+      "m": "PD",
+      "c": "blue",
+      "site": "paris-design-week.fr",
+      "t": "2026 calendar of home decor shows",
+      "d": "Eight major shows between January and September in Paris.",
+      "date": "January 15, 2026"
+    },
+    {
+      "m": "LM",
+      "c": "green",
+      "site": "lemag-deco.fr",
+      "t": "Exhibiting for the first time: 9 mistakes to avoid",
+      "d": "Book early, check the lighting, keep buffer stock.",
+      "date": "February 28, 2026"
+    },
+    {
+      "m": "BF",
+      "c": "yellow",
+      "site": "bpifrance-creation.fr",
+      "t": "Funding your presence at a trade show",
+      "d": "Honour loans and prospecting insurance for international shows.",
+      "date": "2025"
+    },
+    {
+      "m": "RC",
+      "c": "red",
+      "site": "revue-ceramique.fr",
+      "t": "Ceramicists return to the big shows",
+      "d": "Trade visitors grew 12% in 2025.",
+      "date": "November 6, 2025"
+    },
+    {
+      "m": "LO",
+      "c": "blue",
+      "site": "lyon-objets.fr",
+      "t": "Lyon makers’ show: 2025 review",
+      "d": "212 exhibitors and 41,000 visitors in three days.",
+      "date": "October 2, 2025"
+    },
+    {
+      "m": "AT",
+      "c": "green",
+      "site": "atelier-tarifs.fr",
+      "t": "Stand design quote comparison",
+      "d": "Observed median price: €610 excl. VAT per m², all included.",
+      "date": "March 18, 2026"
+    }
+  ],
+  "home": {
+    "suggestions": [
+      [
+        "bot",
+        "Every Monday, summarize the AI news worth my attention"
+      ],
+      [
+        "documents",
+        "Summarize the latest updates in the Spring launch folder"
+      ]
+    ]
+  },
+  "chat": {
+    "title": "April 14 launch plan",
+    "q": "Prepare a launch plan for April 14, with milestones and owners.",
+    "reply": [
+      "Here’s a proposed plan for the April 14 launch, built from the brief and the preview feedback.",
+      "Week 1 — teasing: three posts and an email sequence to the waitlist.",
+      "Week 2 — launch: live demo on Tuesday at 6 pm, then accounts opened in waves of 500."
+    ],
+    "ack": "Noted. I’m adding this to the plan and letting Léa, who owns the emails, know.",
+    "h": "Milestones and owners",
+    "file": "planning.csv",
+    "csv": "date,milestone,owner\n2026-03-31,Social teasing,Inès\n2026-04-07,Email sequence,Léa\n2026-04-14,Live demo,Hugo"
+  },
+  "states": {
+    "title": "Stand quotes · September show",
+    "ack": "Noted. I’m adding this to the comparison and letting Léa, who tracks the show budget, know.",
+    "prev": {
+      "user": "Here are the three quotes we received for the stand.",
+      "files": [
+        [
+          "quote-atelier-morel.pdf",
+          "PDF · 3 pages"
+        ],
+        [
+          "quote-studio-nord.pdf",
+          "PDF · 2 pages"
+        ],
+        [
+          "quote-expo-plus.pdf",
+          "PDF · 4 pages"
+        ]
+      ],
+      "bot": "Got them, I’ve read all three. Do you want a detailed comparison or straight to a recommendation?"
+    },
+    "q": "Compare the three quotes for the September show stand and recommend one.",
+    "answer": "After comparing, I recommend the Atelier Morel quote: it’s the most expensive of the three (€18,400 excl. VAT), but the only one that includes setup, lighting and insurance.\nStudio Nord offers €15,900 excl. VAT, without lighting: adding €2,100 of spotlight rental brings the gap down to €400.\nThe Expo Plus quote (€13,200 excl. VAT) is still the cheapest, but delivery is planned the day before opening: too tight to set up the stand calmly.",
+    "reason": [
+      "Read the three quotes and list what each includes",
+      "Bring prices to the same scope (setup, lighting, insurance)",
+      "Check delivery dates against September 11",
+      "Weigh the delay risk against the price gap"
+    ],
+    "budget": {
+      "q": "What’s the total show budget including travel?",
+      "steps": [
+        "Add the stand, shipping of the pieces and accommodation",
+        "Apply the 8% discount negotiated with Studio Nord"
+      ],
+      "a": "The total budget comes to €24,900 excl. VAT, including €4,300 of travel for three people."
+    },
+    "market": "Are these quotes in line with market prices?",
+    "queries": [
+      "average price home decor show stand 2026",
+      "stand design quote lighting included",
+      "stand delivery lead times Paris show"
+    ],
+    "cited": [
+      "Yes, they’re in line with the market. For an equipped stand, space runs around €420 excl. VAT per m² in 2026",
+      " and lighting is often 15 to 25% of the budget without appearing in quotes",
+      "For your 36 m², the Atelier Morel quote (€511 per m²) stays below the observed median of €610, all included",
+      "Studio Nord also guarantees delivery three days before opening",
+      "Note: the chamber of trades can cover up to 50% of stand costs for a workshop with fewer than 10 employees"
+    ],
+    "rich": {
+      "q": "Give me a full summary, with a table and the return on investment.",
+      "title": "Summary of the three quotes",
+      "intro": "All three offers cover a 36 m² stand for the September 11–15 show. They mostly differ in what they include:",
+      "items": [
+        [
+          "Atelier Morel",
+          "all included: setup, LED lighting, insurance."
+        ],
+        [
+          "Studio Nord",
+          "custom frame, lighting rented separately."
+        ],
+        [
+          "Expo Plus",
+          "the cheapest, but delivered the day before opening."
+        ]
+      ],
+      "h": {
+        "table": "Comparison",
+        "calc": "Calculation",
+        "roi": "Return on investment"
+      },
+      "tableLabel": "Quote comparison",
+      "head": [
+        "Supplier",
+        "Price excl. VAT",
+        "Extras",
+        "Total",
+        "Delivery"
+      ],
+      "rows": [
+        [
+          "Atelier Morel",
+          "€18,400",
+          "—",
+          "€18,400",
+          "Sep 8"
+        ],
+        [
+          "Studio Nord",
+          "€15,900",
+          "€2,100",
+          "€18,000",
+          "Sep 8"
+        ],
+        [
+          "Expo Plus",
+          "€13,200",
+          "€3,400",
+          "€16,600",
+          "Sep 10"
+        ]
+      ],
+      "file": "comparison.js",
+      "code": "const quotes = [\n  { name: \"Atelier Morel\", net: 18400, extras: 0 },\n  { name: \"Studio Nord\", net: 15900, extras: 2100 },\n  { name: \"Expo Plus\", net: 13200, extras: 3400 },\n];\nconst total = (q) => q.net + q.extras;\nquotes.sort((a, b) => total(a) - total(b));",
+      "mathLabel": "ROI equals expected revenue minus cost, divided by cost",
+      "math": {
+        "roi": "ROI",
+        "rev": "Rev",
+        "sub": "show",
+        "c": "C",
+        "num": "52,000 − 18,400",
+        "den": "18,400",
+        "res": "1.83"
+      },
+      "outro": "With €52,000 of expected orders, each euro invested in the stand would bring back 1.83."
+    },
+    "tool": {
+      "file": "atelier-morel-catalog.pdf",
+      "meta": "PDF · 18 pages · 6.2 MB",
+      "q": "Summarize how prices changed in this catalog.",
+      "extracted": "46 items and 3 tables extracted",
+      "answer": "The catalog lists 46 items. Prices rose 6% on average compared with 2025, mostly on large platters (page 12)."
+    },
+    "files": {
+      "pdf": [
+        "quote-studio-nord-v2.pdf",
+        "PDF · 1.8 MB"
+      ],
+      "img": [
+        "stand-mockup.png",
+        "Image · 2,400 × 1,600"
+      ],
+      "up": [
+        "hall-B-plan.pdf",
+        "PDF · 4.1 MB"
+      ],
+      "err": [
+        "stand-video-2025.mov",
+        "Too large · 412 MB of 100 MB"
+      ]
+    },
+    "edit": {
+      "v1": [
+        "Compare the quotes.",
+        "Compare the three quotes, keeping only those that include setup."
+      ],
+      "a": "Only Atelier Morel and Studio Nord include setup. Atelier Morel wins: lighting and insurance are included, for €400 more.",
+      "v2": [
+        "What if we take a 24 m² stand instead of 36?"
+      ]
+    },
+    "regen": [
+      "I recommend Atelier Morel: it’s the only all-inclusive quote, and the gap with Studio Nord is only €400 once lighting is added.",
+      "Studio Nord is the best compromise: €18,000 including lighting, delivery guaranteed three days ahead and a frame you can reuse for the Lyon show.",
+      "In short: Atelier Morel for peace of mind, Studio Nord for price, and avoid Expo Plus because of the day-before delivery."
+    ],
+    "limitTime": "6:40 pm",
+    "long": {
+      "q": "Write a full decision memo on the supplier choice, for management.",
+      "title": "Decision memo · stand supplier",
+      "note": "This point was checked against the signable quotes received on June 2; amounts are excluding VAT and team travel costs.",
+      "sections": [
+        [
+          "Context",
+          "The show runs September 11–15, hall 5. The 36 m² stand is a corner spot, with two sides open onto the main aisle."
+        ],
+        [
+          "Criteria",
+          "Total price at equal scope, delivery date, lighting quality, possible reuse of the frame and cancellation terms."
+        ],
+        [
+          "Atelier Morel",
+          "All-inclusive quote at €18,400 excl. VAT. Modular aluminium frame, built-in LED lighting, insurance and setup in 6 hours by two technicians."
+        ],
+        [
+          "Studio Nord",
+          "€15,900 excl. VAT without lighting. Custom wooden frame, very polished, but not reusable. Delivery guaranteed three days before opening."
+        ],
+        [
+          "Expo Plus",
+          "€13,200 excl. VAT, lighting and furniture optional for €3,400. Delivery planned the evening of September 10, with no margin for delay."
+        ],
+        [
+          "Cancellation terms",
+          "Atelier Morel refunds 80% up to 30 days before. Studio Nord bills the design regardless. Expo Plus refunds nothing after signing."
+        ],
+        [
+          "Risks",
+          "The main risk is logistics: a day-before delivery forces an overnight setup, with €1,200 of extra labour."
+        ],
+        [
+          "Recommendation",
+          "Atelier Morel, for a calm setup and reuse of the frame at the Lyon show in February."
+        ],
+        [
+          "Next steps",
+          "Approve the quote before June 15 to lock in the 30% deposit, then send the stand plan to the supplier."
+        ]
+      ]
+    },
+    "suggestions": [
+      [
+        "documents",
+        "Compare the quotes in the September show folder"
+      ],
+      [
+        "recherche-web",
+        "Find regional grants for exhibiting at trade shows"
+      ],
+      [
+        "images",
+        "Imagine three moods for the Atelier Morel stand"
+      ]
+    ]
+  },
+  "voice": {
+    "user": "Can you remind me what’s left to approve for the stand before Friday?",
+    "bot": "Two things are left: sign the Atelier Morel quote and send the stand plan. I can draft the email to Camille, if you like.",
+    "when": "4 min 12 s · today at 4:05 pm",
+    "summary": [
+      "Two approvals are left before Friday: the Atelier Morel quote and the stand plan.",
+      "Nova is drafting an email to Camille Laurent with the quote attached.",
+      "Reminder added: Thursday at 10 am, check the display stand delivery."
+    ],
+    "transcriptDesc": "Added to the Stand quotes chat",
+    "interrupt": "Wait, add the carrier’s invoice too."
+  },
+  "canvas": {
+    "doc": [
+      "Lyon, October 3, 2026 — Atelier Morel, the ceramics house founded in Limoges in 2014, opens its first shop on October 17, at 12 rue Auguste-Comte.",
+      "Across 80 m², the shop brings together the tableware collections, a selection of unique pieces and an open workshop where visitors can watch the ceramicists at the wheel every Saturday.",
+      "“We wanted a place where you touch the material before you buy it,” says Camille Laurent, the brand’s director. An opening sale runs October 17 to 19.",
+      "Press contact: Inès Garnier — presse@ateliermorel.fr"
+    ],
+    "sel": "an open workshop where visitors can watch the ceramicists at the wheel every Saturday",
+    "sel2": "a glass-walled workshop where anyone can watch the ceramicists at the wheel, every Saturday from 10 am to 1 pm",
+    "selBefore": "Across 80 m², the shop brings together the tableware collections, a selection of unique pieces and ",
+    "title": "Press release · Lyon shop",
+    "head": "Press release · Atelier Morel in Lyon",
+    "file": "countdown.ts",
+    "code": "// Countdown to the shop opening\nconst OPENING = new Date(\"2026-10-17T10:00:00+02:00\");\n\nexport function timeLeft(now = new Date()) {\n  const ms = Math.max(0, OPENING.getTime() - now.getTime());\n  const days = Math.floor(ms / 86_400_000);\n  const hours = Math.floor((ms % 86_400_000) / 3_600_000);\n  return `${days} d ${hours} h`;\n}\n\nconsole.log(timeLeft());",
+    "output": "13 d 21 h",
+    "docQ": "Write a press release for the opening of the Atelier Morel shop in Lyon on October 17.",
+    "codeQ": "Write a small function that shows the time left before the opening.",
+    "docA": "I wrote a first version in the canvas. Select a passage to ask me for a targeted change.",
+    "codeA": "Here’s the function: it returns text like “13 d 21 h”. You can run it right in the canvas.",
+    "compareQ": "Show me what changed since version 2.",
+    "time": "2:32 pm",
+    "versions": [
+      [
+        3,
+        "Current · 2:32 pm"
+      ],
+      [
+        2,
+        "Added the quote · 2:20 pm"
+      ],
+      [
+        1,
+        "First draft · 2:12 pm"
+      ]
+    ],
+    "h1": "Atelier Morel opens its first shop in Lyon",
+    "cmp": {
+      "a": "Across 80 m², the shop brings together the tableware collections",
+      "del": ", a few vintage pieces",
+      "ins": ", a selection of unique pieces",
+      "b": " and an open workshop where visitors can watch the ceramicists at the wheel every Saturday.",
+      "removed": "A private sale is planned on October 16."
+    }
+  },
+  "search": {
+    "q": "Home decor shows in Paris in 2026: dates and exhibitor rates",
+    "emptyBody": "I couldn’t find a recent source giving 2026 exhibitor rates. The organisers may not have published them yet.",
+    "chips": [
+      "Include 2025 rates",
+      "Widen to all of France",
+      "Search in English"
+    ],
+    "p1": "Eight major home decor shows take place in Paris in 2026, three between January and March and most of the others in September",
+    "h": "Exhibitor rates",
+    "items": [
+      "Equipped stand: about €420 excl. VAT per m², setup included above 24 m²",
+      "Observed all-inclusive median: €610 excl. VAT per m²",
+      "Up to 50% covered by regional grants for small workshops"
+    ],
+    "p2": "For a first show, book before the end of the first quarter: corner spots go first",
+    "related": [
+      "Which shows for handmade ceramics?",
+      "How do I get the regional trade show grant?",
+      "What budget for a first stand?"
+    ]
+  },
+  "deep": {
+    "q": "Do deep research on the handmade ceramics market in France, to prepare the Lyon opening.",
+    "topic": "Handmade ceramics market in France, 2023–2026",
+    "meta": "48 sources · 7 min 40 s · October 3, 2026",
+    "plan": [
+      "Size and growth of the handmade ceramics market in France (2023–2026)",
+      "Buyer profiles: individuals, hospitality, concept stores",
+      "Sales channels: trade shows, shops, online",
+      "Average prices by type of piece",
+      "Main players and Atelier Morel’s positioning"
+    ],
+    "toc": [
+      "Summary",
+      "Market size",
+      "Buyers",
+      "Sales channels",
+      "Prices",
+      "Competition",
+      "Recommendations"
+    ],
+    "body": [
+      "The French handmade ceramics market reached €410 million in 2025, up 7% a year since 2023. Demand is driven by hospitality and concept stores.",
+      "With 38,000 fine-craft businesses, ceramics is nearly 11% of the sector; workshops of fewer than 5 people make up most of it.",
+      "Individuals aged 30 to 50 remain the core customers, but professional purchases grow twice as fast.",
+      "Trade shows remain the first acquisition channel for 61% of workshops; online sales now exceed 30% of established brands’ revenue.",
+      "The average handmade plate sells for €38 and a large platter for €120, with a 1-to-3 spread depending on reputation.",
+      "About ten houses shape the high end; Atelier Morel stands out with limited runs and short lead times.",
+      "Open the Lyon shop with a visible workshop, strengthen presence at two trade shows and launch an offer for hospitality."
+    ]
+  },
+  "image": {
+    "title": "Stand visuals",
+    "prompt": "Trade show stand for Atelier Morel: white ceramics on light oak shelves, soft light, workshop mood.",
+    "refusedQ": "Make a stand poster with the official logo of a big luxury brand and the face of a famous actress.",
+    "alternatives": [
+      "A poster with the Atelier Morel logo",
+      "A fictional model in front of the stand",
+      "A purely typographic composition"
+    ],
+    "fileBase": "atelier-morel-stand",
+    "editAsk": "Replace the vase with a stack of blue plates"
+  },
+  "share": {
+    "url": "cortex.app/s/7f3a-k29q",
+    "team": "Studio Nord team",
+    "teamSub": "The 12 members of the workspace",
+    "title": "April 14 launch plan",
+    "user": "Prepare a launch plan for April 14, with milestones and owners.",
+    "bot": [
+      "Here’s a proposed plan for the April 14 launch, built from the brief and the preview feedback.",
+      "Week 1 — teasing: three posts and an email sequence to the waitlist."
+    ],
+    "org": "Studio Nord",
+    "previewUser": "Prepare a launch plan for April 14…",
+    "owner": "Camille Laurent",
+    "admin": "Hugo Martin, admin"
+  },
+  "temp": {
+    "q": "Help me word a polite refusal to the Expo Plus quote, without closing the door.",
+    "a": "Hello, thank you for your detailed proposal. After comparing, we chose another offer for the September show, mainly because of delivery timing. We’d be glad to consult you for our upcoming events.",
+    "short": "Here’s a shorter version: “Thank you for your quote. We went with another offer this time, but we’d be happy to stay in touch.”"
+  },
+  "library": [
+    {
+      "kind": "projects",
+      "img": "aube",
+      "mono": "LP",
+      "title": "Spring launch",
+      "desc": "Plan, milestones and assets for the April 14 release.",
+      "who": "Camille",
+      "when": "2 h ago"
+    },
+    {
+      "kind": "files",
+      "img": "lagon",
+      "mono": "SN",
+      "title": "Studio Nord brief",
+      "desc": "Goals, audiences and constraints for the site redesign.",
+      "who": "Julien",
+      "when": "5 h ago"
+    },
+    {
+      "kind": "images",
+      "img": "crepuscule",
+      "mono": "VC",
+      "title": "Campaign visuals",
+      "desc": "Twelve variations for social and posters.",
+      "who": "Camille",
+      "when": "yesterday"
+    },
+    {
+      "kind": "links",
+      "img": "prairie",
+      "mono": "IA",
+      "title": "AI watch",
+      "desc": "Articles and announcements Nova picked this week.",
+      "who": "Nova",
+      "when": "Monday"
+    },
+    {
+      "kind": "projects",
+      "img": "atelier",
+      "mono": "AM",
+      "title": "Atelier Morel",
+      "desc": "Quotes, threads and schedule for the May project.",
+      "who": "Camille",
+      "when": "3 d ago"
+    },
+    {
+      "kind": "files",
+      "img": "marche",
+      "mono": "Q2",
+      "title": "Q2 market study",
+      "desc": "Sales comparison tables by channel.",
+      "who": "Inès",
+      "when": "4 d ago"
+    },
+    {
+      "kind": "images",
+      "img": "montagne",
+      "mono": "RM",
+      "title": "Mountain scouting",
+      "desc": "Location photos for the summer shoot.",
+      "who": "Julien",
+      "when": "1 wk ago"
+    },
+    {
+      "kind": "links",
+      "img": "ceramique",
+      "mono": "FC",
+      "title": "Ceramics suppliers",
+      "desc": "Contacts, rates and lead times of selected workshops.",
+      "who": "Camille",
+      "when": "2 wk ago"
+    }
+  ],
+  "history": [
+    {
+      "id": "1",
+      "title": "April 14 launch plan",
+      "sub": "Milestones, owners and email sequence",
+      "when": "14:32",
+      "group": "Today"
+    },
+    {
+      "id": "2",
+      "title": "Morning email triage",
+      "sub": "Nova · 3 emails sorted, 2 to approve",
+      "when": "08:00",
+      "group": "Today",
+      "task": "ok"
+    },
+    {
+      "id": "3",
+      "title": "Compare March and April sales",
+      "sub": "Analysis by channel in progress",
+      "when": "11:05",
+      "group": "Today",
+      "task": "run"
+    },
+    {
+      "id": "4",
+      "title": "Reply to the Atelier Morel quote",
+      "sub": "Draft ready to review",
+      "when": "18:20",
+      "group": "Yesterday"
+    },
+    {
+      "id": "5",
+      "title": "Studio Nord brief summary",
+      "sub": "Goals and constraints in five points",
+      "when": "15:47",
+      "group": "Yesterday"
+    },
+    {
+      "id": "6",
+      "title": "March invoice export",
+      "sub": "Failed: folder access denied",
+      "when": "09:12",
+      "group": "Yesterday",
+      "task": "err"
+    },
+    {
+      "id": "7",
+      "title": "Instagram caption ideas",
+      "sub": "Twelve options, warm tone",
+      "when": "Thursday",
+      "group": "Previous 7 days"
+    },
+    {
+      "id": "8",
+      "title": "This week’s AI watch",
+      "sub": "Nova · 5 announcements kept out of 38",
+      "when": "Monday",
+      "group": "Previous 7 days",
+      "task": "ok"
+    },
+    {
+      "id": "9",
+      "title": "Translate the pricing page into English",
+      "sub": "Reviewed and approved",
+      "when": "Monday",
+      "group": "Previous 7 days"
+    }
+  ],
+  "canvas§code": "// Countdown to the shop opening\nconst OPENING = new Date(\"2026-10-17T10:00:00+02:00\");\n\nexport function timeLeft(now = new Date()) {\n  const ms = Math.max(0, OPENING.getTime() - now.getTime());\n  const days = Math.floor(ms / 86_400_000);\n  const hours = Math.floor((ms % 86_400_000) / 3_600_000);\n  return `${days} d ${hours} h`;\n}\n\nconsole.log(timeLeft());"
+}

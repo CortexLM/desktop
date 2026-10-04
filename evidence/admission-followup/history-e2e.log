@@ -1,0 +1,7 @@
+$ playwright test "tests/e2e/ui-flows.spec.ts" -g "rejected sends"
+
+Running 1 test using 1 worker
+
+  ✓  1 tests/e2e/ui-flows.spec.ts:64:1 › rejected sends keep the draft and attachments; retry resends the image (12.8s)
+
+  1 passed (13.6s)

@@ -1,0 +1,285 @@
+{
+  "config": {
+    "argv": [
+      "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/@playwright/test/cli.js",
+      "test",
+      "tests/e2e/terminal-copy.spec.ts",
+      "--workers=1",
+      "--retries=0",
+      "--reporter=json",
+      "--output=/tmp/opencode/terminal-viewport/baseline-artifacts"
+    ],
+    "configFile": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/playwright.config.ts",
+    "rootDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/opencode/terminal-viewport/baseline-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "terminal-copy.spec.ts",
+      "file": "terminal-copy.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "French Code terminal localizes fresh shell notices without changing output or replay",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 4341,
+                  "error": {
+                    "message": "Error: terminal-copy-fr-960-light\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 3\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"bounded\": true,\u001b[39m\n\u001b[32m-   \"markerVisible\": true,\u001b[39m\n\u001b[32m-   \"scrollable\": true,\u001b[39m\n\u001b[31m+   \"bounded\": false,\u001b[39m\n\u001b[31m+   \"markerVisible\": false,\u001b[39m\n\u001b[31m+   \"scrollable\": false,\u001b[39m\n\u001b[2m  }\u001b[22m",
+                    "stack": "Error: terminal-copy-fr-960-light\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 3\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"bounded\": true,\u001b[39m\n\u001b[32m-   \"markerVisible\": true,\u001b[39m\n\u001b[32m-   \"scrollable\": true,\u001b[39m\n\u001b[31m+   \"bounded\": false,\u001b[39m\n\u001b[31m+   \"markerVisible\": false,\u001b[39m\n\u001b[31m+   \"scrollable\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:114:39\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:82:5",
+                    "location": {
+                      "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts",
+                      "column": 39,
+                      "line": 114
+                    },
+                    "snippet": "  112 |           await test.info().attach(name, { path: shot, contentType: \"image/png\" });\n  113 |           await test.info().attach(`${name}-viewport`, { body: JSON.stringify(viewport, null, 2), contentType: \"application/json\" });\n> 114 |           expect.soft(viewport, name).toMatchObject({ bounded: true, scrollable: true, markerVisible: true });\n      |                                       ^\n  115 |         }\n  116 |       }\n  117 |     });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts",
+                        "column": 39,
+                        "line": 114
+                      },
+                      "message": "Error: terminal-copy-fr-960-light\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 3\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"bounded\": true,\u001b[39m\n\u001b[32m-   \"markerVisible\": true,\u001b[39m\n\u001b[32m-   \"scrollable\": true,\u001b[39m\n\u001b[31m+   \"bounded\": false,\u001b[39m\n\u001b[31m+   \"markerVisible\": false,\u001b[39m\n\u001b[31m+   \"scrollable\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n\n  112 |           await test.info().attach(name, { path: shot, contentType: \"image/png\" });\n  113 |           await test.info().attach(`${name}-viewport`, { body: JSON.stringify(viewport, null, 2), contentType: \"application/json\" });\n> 114 |           expect.soft(viewport, name).toMatchObject({ bounded: true, scrollable: true, markerVisible: true });\n      |                                       ^\n  115 |         }\n  116 |       }\n  117 |     });\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:114:39\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:82:5"
+                    },
+                    {
+                      "location": {
+                        "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts",
+                        "column": 39,
+                        "line": 114
+                      },
+                      "message": "Error: terminal-copy-fr-960-dark\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 3\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"bounded\": true,\u001b[39m\n\u001b[32m-   \"markerVisible\": true,\u001b[39m\n\u001b[32m-   \"scrollable\": true,\u001b[39m\n\u001b[31m+   \"bounded\": false,\u001b[39m\n\u001b[31m+   \"markerVisible\": false,\u001b[39m\n\u001b[31m+   \"scrollable\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n\n  112 |           await test.info().attach(name, { path: shot, contentType: \"image/png\" });\n  113 |           await test.info().attach(`${name}-viewport`, { body: JSON.stringify(viewport, null, 2), contentType: \"application/json\" });\n> 114 |           expect.soft(viewport, name).toMatchObject({ bounded: true, scrollable: true, markerVisible: true });\n      |                                       ^\n  115 |         }\n  116 |       }\n  117 |     });\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:114:39\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:82:5"
+                    },
+                    {
+                      "location": {
+                        "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts",
+                        "column": 39,
+                        "line": 114
+                      },
+                      "message": "Error: terminal-copy-fr-1024-light\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 3\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"bounded\": true,\u001b[39m\n\u001b[32m-   \"markerVisible\": true,\u001b[39m\n\u001b[32m-   \"scrollable\": true,\u001b[39m\n\u001b[31m+   \"bounded\": false,\u001b[39m\n\u001b[31m+   \"markerVisible\": false,\u001b[39m\n\u001b[31m+   \"scrollable\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n\n  112 |           await test.info().attach(name, { path: shot, contentType: \"image/png\" });\n  113 |           await test.info().attach(`${name}-viewport`, { body: JSON.stringify(viewport, null, 2), contentType: \"application/json\" });\n> 114 |           expect.soft(viewport, name).toMatchObject({ bounded: true, scrollable: true, markerVisible: true });\n      |                                       ^\n  115 |         }\n  116 |       }\n  117 |     });\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:114:39\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:82:5"
+                    },
+                    {
+                      "location": {
+                        "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts",
+                        "column": 39,
+                        "line": 114
+                      },
+                      "message": "Error: terminal-copy-fr-1024-dark\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 3\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"bounded\": true,\u001b[39m\n\u001b[32m-   \"markerVisible\": true,\u001b[39m\n\u001b[32m-   \"scrollable\": true,\u001b[39m\n\u001b[31m+   \"bounded\": false,\u001b[39m\n\u001b[31m+   \"markerVisible\": false,\u001b[39m\n\u001b[31m+   \"scrollable\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n\n  112 |           await test.info().attach(name, { path: shot, contentType: \"image/png\" });\n  113 |           await test.info().attach(`${name}-viewport`, { body: JSON.stringify(viewport, null, 2), contentType: \"application/json\" });\n> 114 |           expect.soft(viewport, name).toMatchObject({ bounded: true, scrollable: true, markerVisible: true });\n      |                                       ^\n  115 |         }\n  116 |       }\n  117 |     });\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:114:39\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:82:5"
+                    },
+                    {
+                      "location": {
+                        "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts",
+                        "column": 39,
+                        "line": 114
+                      },
+                      "message": "Error: terminal-copy-fr-1440-light\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 3\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"bounded\": true,\u001b[39m\n\u001b[32m-   \"markerVisible\": true,\u001b[39m\n\u001b[32m-   \"scrollable\": true,\u001b[39m\n\u001b[31m+   \"bounded\": false,\u001b[39m\n\u001b[31m+   \"markerVisible\": false,\u001b[39m\n\u001b[31m+   \"scrollable\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n\n  112 |           await test.info().attach(name, { path: shot, contentType: \"image/png\" });\n  113 |           await test.info().attach(`${name}-viewport`, { body: JSON.stringify(viewport, null, 2), contentType: \"application/json\" });\n> 114 |           expect.soft(viewport, name).toMatchObject({ bounded: true, scrollable: true, markerVisible: true });\n      |                                       ^\n  115 |         }\n  116 |       }\n  117 |     });\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:114:39\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:82:5"
+                    },
+                    {
+                      "location": {
+                        "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts",
+                        "column": 39,
+                        "line": 114
+                      },
+                      "message": "Error: terminal-copy-fr-1440-dark\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 3\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"bounded\": true,\u001b[39m\n\u001b[32m-   \"markerVisible\": true,\u001b[39m\n\u001b[32m-   \"scrollable\": true,\u001b[39m\n\u001b[31m+   \"bounded\": false,\u001b[39m\n\u001b[31m+   \"markerVisible\": false,\u001b[39m\n\u001b[31m+   \"scrollable\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n\n  112 |           await test.info().attach(name, { path: shot, contentType: \"image/png\" });\n  113 |           await test.info().attach(`${name}-viewport`, { body: JSON.stringify(viewport, null, 2), contentType: \"application/json\" });\n> 114 |           expect.soft(viewport, name).toMatchObject({ bounded: true, scrollable: true, markerVisible: true });\n      |                                       ^\n  115 |         }\n  116 |       }\n  117 |     });\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:114:39\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:82:5"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "nonzero exit is localized; model output remains English",
+                      "duration": 156
+                    },
+                    {
+                      "title": "large output preserves lookalikes; only the engine suffix changes",
+                      "duration": 265
+                    },
+                    {
+                      "title": "reload uses persisted metadata without rewriting stored output",
+                      "duration": 470
+                    },
+                    {
+                      "title": "multiline terminal tail stays scrollable inside the window in both themes",
+                      "duration": 1709,
+                      "error": {
+                        "message": "Error: terminal-copy-fr-960-light\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 3\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"bounded\": true,\u001b[39m\n\u001b[32m-   \"markerVisible\": true,\u001b[39m\n\u001b[32m-   \"scrollable\": true,\u001b[39m\n\u001b[31m+   \"bounded\": false,\u001b[39m\n\u001b[31m+   \"markerVisible\": false,\u001b[39m\n\u001b[31m+   \"scrollable\": false,\u001b[39m\n\u001b[2m  }\u001b[22m",
+                        "stack": "Error: terminal-copy-fr-960-light\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 3\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"bounded\": true,\u001b[39m\n\u001b[32m-   \"markerVisible\": true,\u001b[39m\n\u001b[32m-   \"scrollable\": true,\u001b[39m\n\u001b[31m+   \"bounded\": false,\u001b[39m\n\u001b[31m+   \"markerVisible\": false,\u001b[39m\n\u001b[31m+   \"scrollable\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:114:39\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts:82:5",
+                        "location": {
+                          "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts",
+                          "column": 39,
+                          "line": 114
+                        },
+                        "snippet": "  112 |           await test.info().attach(name, { path: shot, contentType: \"image/png\" });\n  113 |           await test.info().attach(`${name}-viewport`, { body: JSON.stringify(viewport, null, 2), contentType: \"application/json\" });\n> 114 |           expect.soft(viewport, name).toMatchObject({ bounded: true, scrollable: true, markerVisible: true });\n      |                                       ^\n  115 |         }\n  116 |       }\n  117 |     });"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-03T03:23:12.096Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "terminal-copy-fr-960-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/terminal-viewport/baseline-artifacts/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/attachments/terminal-copy-fr-960-light-84beb4af368ad612cca38ddeb5fd90eed3912dfc.png"
+                    },
+                    {
+                      "name": "terminal-copy-fr-960-light-viewport",
+                      "contentType": "application/json",
+                      "body": "ewogICJjbGllbnRIZWlnaHQiOiA1ODk2NCwKICAic2Nyb2xsSGVpZ2h0IjogNTg5NjQsCiAgInNjcm9sbFRvcCI6IDAsCiAgInBhbmUiOiB7CiAgICAieCI6IDcxMiwKICAgICJ5IjogMTQ4LAogICAgIndpZHRoIjogMjI4Ljk4NDM3NSwKICAgICJoZWlnaHQiOiA1ODk4MSwKICAgICJ0b3AiOiAxNDgsCiAgICAicmlnaHQiOiA5NDAuOTg0Mzc1LAogICAgImJvdHRvbSI6IDU5MTI5LAogICAgImxlZnQiOiA3MTIKICB9LAogICJ0YWlsIjogewogICAgIngiOiA3MjcsCiAgICAieSI6IDU5MDgzLAogICAgIndpZHRoIjogMTU4LjQwNjI1LAogICAgImhlaWdodCI6IDE2LAogICAgInRvcCI6IDU5MDgzLAogICAgInJpZ2h0IjogODg1LjQwNjI1LAogICAgImJvdHRvbSI6IDU5MDk5LAogICAgImxlZnQiOiA3MjcKICB9LAogICJ2aWV3cG9ydEhlaWdodCI6IDY0MCwKICAiYm91bmRlZCI6IGZhbHNlLAogICJzY3JvbGxhYmxlIjogZmFsc2UsCiAgIm1hcmtlclZpc2libGUiOiBmYWxzZQp9"
+                    },
+                    {
+                      "name": "terminal-copy-fr-960-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/terminal-viewport/baseline-artifacts/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/attachments/terminal-copy-fr-960-dark-c0746c3cd2d9f340385264feb8aad2920b0ceb98.png"
+                    },
+                    {
+                      "name": "terminal-copy-fr-960-dark-viewport",
+                      "contentType": "application/json",
+                      "body": "ewogICJjbGllbnRIZWlnaHQiOiA1ODk2NCwKICAic2Nyb2xsSGVpZ2h0IjogNTg5NjQsCiAgInNjcm9sbFRvcCI6IDAsCiAgInBhbmUiOiB7CiAgICAieCI6IDcxMiwKICAgICJ5IjogMTQ4LAogICAgIndpZHRoIjogMjI4Ljk4NDM3NSwKICAgICJoZWlnaHQiOiA1ODk4MSwKICAgICJ0b3AiOiAxNDgsCiAgICAicmlnaHQiOiA5NDAuOTg0Mzc1LAogICAgImJvdHRvbSI6IDU5MTI5LAogICAgImxlZnQiOiA3MTIKICB9LAogICJ0YWlsIjogewogICAgIngiOiA3MjcsCiAgICAieSI6IDU5MDgzLAogICAgIndpZHRoIjogMTU4LjQwNjI1LAogICAgImhlaWdodCI6IDE2LAogICAgInRvcCI6IDU5MDgzLAogICAgInJpZ2h0IjogODg1LjQwNjI1LAogICAgImJvdHRvbSI6IDU5MDk5LAogICAgImxlZnQiOiA3MjcKICB9LAogICJ2aWV3cG9ydEhlaWdodCI6IDY0MCwKICAiYm91bmRlZCI6IGZhbHNlLAogICJzY3JvbGxhYmxlIjogZmFsc2UsCiAgIm1hcmtlclZpc2libGUiOiBmYWxzZQp9"
+                    },
+                    {
+                      "name": "terminal-copy-fr-1024-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/terminal-viewport/baseline-artifacts/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/attachments/terminal-copy-fr-1024-light-de67180071e12823f73aabe8d94b4ae35f704613.png"
+                    },
+                    {
+                      "name": "terminal-copy-fr-1024-light-viewport",
+                      "contentType": "application/json",
+                      "body": "ewogICJjbGllbnRIZWlnaHQiOiA1ODk2NCwKICAic2Nyb2xsSGVpZ2h0IjogNTg5NjQsCiAgInNjcm9sbFRvcCI6IDAsCiAgInBhbmUiOiB7CiAgICAieCI6IDcxMiwKICAgICJ5IjogMTQ4LAogICAgIndpZHRoIjogMjkyLjk4NDM3NSwKICAgICJoZWlnaHQiOiA1ODk4MSwKICAgICJ0b3AiOiAxNDgsCiAgICAicmlnaHQiOiAxMDA0Ljk4NDM3NSwKICAgICJib3R0b20iOiA1OTEyOSwKICAgICJsZWZ0IjogNzEyCiAgfSwKICAidGFpbCI6IHsKICAgICJ4IjogNzI3LAogICAgInkiOiA1OTA4MywKICAgICJ3aWR0aCI6IDE1OC40MDYyNSwKICAgICJoZWlnaHQiOiAxNiwKICAgICJ0b3AiOiA1OTA4MywKICAgICJyaWdodCI6IDg4NS40MDYyNSwKICAgICJib3R0b20iOiA1OTA5OSwKICAgICJsZWZ0IjogNzI3CiAgfSwKICAidmlld3BvcnRIZWlnaHQiOiA2NDAsCiAgImJvdW5kZWQiOiBmYWxzZSwKICAic2Nyb2xsYWJsZSI6IGZhbHNlLAogICJtYXJrZXJWaXNpYmxlIjogZmFsc2UKfQ=="
+                    },
+                    {
+                      "name": "terminal-copy-fr-1024-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/terminal-viewport/baseline-artifacts/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/attachments/terminal-copy-fr-1024-dark-0c38bc10f71ce9c8d5b25de185143de0a8cba1ef.png"
+                    },
+                    {
+                      "name": "terminal-copy-fr-1024-dark-viewport",
+                      "contentType": "application/json",
+                      "body": "ewogICJjbGllbnRIZWlnaHQiOiA1ODk2NCwKICAic2Nyb2xsSGVpZ2h0IjogNTg5NjQsCiAgInNjcm9sbFRvcCI6IDAsCiAgInBhbmUiOiB7CiAgICAieCI6IDcxMiwKICAgICJ5IjogMTQ4LAogICAgIndpZHRoIjogMjkyLjk4NDM3NSwKICAgICJoZWlnaHQiOiA1ODk4MSwKICAgICJ0b3AiOiAxNDgsCiAgICAicmlnaHQiOiAxMDA0Ljk4NDM3NSwKICAgICJib3R0b20iOiA1OTEyOSwKICAgICJsZWZ0IjogNzEyCiAgfSwKICAidGFpbCI6IHsKICAgICJ4IjogNzI3LAogICAgInkiOiA1OTA4MywKICAgICJ3aWR0aCI6IDE1OC40MDYyNSwKICAgICJoZWlnaHQiOiAxNiwKICAgICJ0b3AiOiA1OTA4MywKICAgICJyaWdodCI6IDg4NS40MDYyNSwKICAgICJib3R0b20iOiA1OTA5OSwKICAgICJsZWZ0IjogNzI3CiAgfSwKICAidmlld3BvcnRIZWlnaHQiOiA2NDAsCiAgImJvdW5kZWQiOiBmYWxzZSwKICAic2Nyb2xsYWJsZSI6IGZhbHNlLAogICJtYXJrZXJWaXNpYmxlIjogZmFsc2UKfQ=="
+                    },
+                    {
+                      "name": "terminal-copy-fr-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/terminal-viewport/baseline-artifacts/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/attachments/terminal-copy-fr-1440-light-471996f2d9d62a3471812d1b2128127b58d2803c.png"
+                    },
+                    {
+                      "name": "terminal-copy-fr-1440-light-viewport",
+                      "contentType": "application/json",
+                      "body": "ewogICJjbGllbnRIZWlnaHQiOiA1ODk2NCwKICAic2Nyb2xsSGVpZ2h0IjogNTg5NjQsCiAgInNjcm9sbFRvcCI6IDAsCiAgInBhbmUiOiB7CiAgICAieCI6IDg2Mi42ODc1LAogICAgInkiOiAxNDgsCiAgICAid2lkdGgiOiA1NTguMzEyNSwKICAgICJoZWlnaHQiOiA1ODk4MSwKICAgICJ0b3AiOiAxNDgsCiAgICAicmlnaHQiOiAxNDIxLAogICAgImJvdHRvbSI6IDU5MTI5LAogICAgImxlZnQiOiA4NjIuNjg3NQogIH0sCiAgInRhaWwiOiB7CiAgICAieCI6IDg3Ny42ODc1LAogICAgInkiOiA1OTA4MywKICAgICJ3aWR0aCI6IDE1OC40MDYyNSwKICAgICJoZWlnaHQiOiAxNiwKICAgICJ0b3AiOiA1OTA4MywKICAgICJyaWdodCI6IDEwMzYuMDkzNzUsCiAgICAiYm90dG9tIjogNTkwOTksCiAgICAibGVmdCI6IDg3Ny42ODc1CiAgfSwKICAidmlld3BvcnRIZWlnaHQiOiA5MDAsCiAgImJvdW5kZWQiOiBmYWxzZSwKICAic2Nyb2xsYWJsZSI6IGZhbHNlLAogICJtYXJrZXJWaXNpYmxlIjogZmFsc2UKfQ=="
+                    },
+                    {
+                      "name": "terminal-copy-fr-1440-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/terminal-viewport/baseline-artifacts/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/attachments/terminal-copy-fr-1440-dark-df927ec61558e8a08976d8fc111f113d11c8ac01.png"
+                    },
+                    {
+                      "name": "terminal-copy-fr-1440-dark-viewport",
+                      "contentType": "application/json",
+                      "body": "ewogICJjbGllbnRIZWlnaHQiOiA1ODk2NCwKICAic2Nyb2xsSGVpZ2h0IjogNTg5NjQsCiAgInNjcm9sbFRvcCI6IDAsCiAgInBhbmUiOiB7CiAgICAieCI6IDg2Mi42ODc1LAogICAgInkiOiAxNDgsCiAgICAid2lkdGgiOiA1NTguMzEyNSwKICAgICJoZWlnaHQiOiA1ODk4MSwKICAgICJ0b3AiOiAxNDgsCiAgICAicmlnaHQiOiAxNDIxLAogICAgImJvdHRvbSI6IDU5MTI5LAogICAgImxlZnQiOiA4NjIuNjg3NQogIH0sCiAgInRhaWwiOiB7CiAgICAieCI6IDg3Ny42ODc1LAogICAgInkiOiA1OTA4MywKICAgICJ3aWR0aCI6IDE1OC40MDYyNSwKICAgICJoZWlnaHQiOiAxNiwKICAgICJ0b3AiOiA1OTA4MywKICAgICJyaWdodCI6IDEwMzYuMDkzNzUsCiAgICAiYm90dG9tIjogNTkwOTksCiAgICAibGVmdCI6IDg3Ny42ODc1CiAgfSwKICAidmlld3BvcnRIZWlnaHQiOiA5MDAsCiAgImJvdW5kZWQiOiBmYWxzZSwKICAic2Nyb2xsYWJsZSI6IGZhbHNlLAogICJtYXJrZXJWaXNpYmxlIjogZmFsc2UKfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/terminal-viewport/baseline-artifacts/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/opencode/terminal-viewport/baseline-artifacts/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/opencode/terminal-viewport/baseline-artifacts/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/terminal-copy.spec.ts",
+                    "column": 39,
+                    "line": 114
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "72dd4898d70aec99871b-5e7157366506b4cbfef2",
+          "file": "terminal-copy.spec.ts",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-03T03:23:10.563Z",
+    "duration": 6028.9220000000005,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

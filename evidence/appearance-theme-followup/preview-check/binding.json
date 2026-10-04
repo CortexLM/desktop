@@ -1,0 +1,13 @@
+{
+  "baseApplication": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "source": {
+    "packages/app/src/screens/system/settings.tsx": "4f0b4f911195eb7e5a12dc22ff9e940f0cd67190ce9eb44ae7c99d6054c80461",
+    "packages/app/src/shell/nav.tsx": "876682aef675ef9e0b1c5a3a59a49b00acbb1da84a7897f0dc17efa287579315",
+    "packages/app/src/shell/shell.tsx": "880240350484738971849dbabdfe591cd90471afc08fa0ffca02ef6f78a6ae67",
+    "tests/e2e/appearance-theme.spec.ts": "2bff6928c640ef274363b00e3861027488fa1025d0087135a93ddbee061949ba"
+  },
+  "nodeVersion": "v22.23.3",
+  "runner": "env -u CORTEX_RENDERER_URL NODE_ENV=test xvfb-run -a -s \"-screen 0 1920x1080x24\" /root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node /tmp/opencode/appearance-preview-check.mjs",
+  "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+  "screenshots": 0
+}

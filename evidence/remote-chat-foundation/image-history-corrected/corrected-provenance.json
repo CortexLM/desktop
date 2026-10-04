@@ -1,0 +1,62 @@
+{
+  "startedAt": "2026-10-03T06:51:15.449524+00:00",
+  "finishedAt": "2026-10-03T06:51:16.769184+00:00",
+  "head": "7a0b55288b584e1fe7a25eb435e609db6918550c",
+  "command": [
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "/tmp/opencode/remote-history-capability-review/corrected-vitest.config.mjs",
+    "--reporter=default",
+    "--reporter=json",
+    "--outputFile.json=/tmp/opencode/remote-history-capability-review/corrected-vitest.json"
+  ],
+  "NODE_ENV": "test",
+  "exitCode": 0,
+  "sourcesBefore": {
+    "packages/desktop/src/remote-chat.ts": "a735975865341bec30fb1981165192f993fbd1235416a3271b947bfb15a4fad6",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/core/src/remote-sessions.ts": "72bd7be91cf5ad99734a58300617da17e4bb782a631da3acbbbdfb8ca049decb",
+    "packages/core/src/session.ts": "8bdaadc276264e3e755c73df44bd894b884826875a6e582149dccc69086b81d4",
+    "packages/core/src/index.ts": "f95a508dc024fbbd2f4b5c4bab77fb4ee5efd06294801fd5de31c5abd19386bd",
+    "packages/core/src/connection.ts": "2dabb6fec133d599733a6c6961ed52532dd4fde9c0356543507d78c9f973015b",
+    "packages/schema/src/index.ts": "0403846e16c38e7f06c077d7980a9c375898ba413f5aa5f93cf863d7229f5361",
+    "packages/desktop/test/remote-chat.test.ts": "d6447e76b5b75af5b09f9226f66490483dddf89d9ff8326451b837d225e307d9"
+  },
+  "sourcesAfter": {
+    "packages/desktop/src/remote-chat.ts": "a735975865341bec30fb1981165192f993fbd1235416a3271b947bfb15a4fad6",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/core/src/remote-sessions.ts": "72bd7be91cf5ad99734a58300617da17e4bb782a631da3acbbbdfb8ca049decb",
+    "packages/core/src/session.ts": "8bdaadc276264e3e755c73df44bd894b884826875a6e582149dccc69086b81d4",
+    "packages/core/src/index.ts": "f95a508dc024fbbd2f4b5c4bab77fb4ee5efd06294801fd5de31c5abd19386bd",
+    "packages/core/src/connection.ts": "2dabb6fec133d599733a6c6961ed52532dd4fde9c0356543507d78c9f973015b",
+    "packages/schema/src/index.ts": "0403846e16c38e7f06c077d7980a9c375898ba413f5aa5f93cf863d7229f5361",
+    "packages/desktop/test/remote-chat.test.ts": "d6447e76b5b75af5b09f9226f66490483dddf89d9ff8326451b837d225e307d9"
+  },
+  "sourceStableDuringProbe": true,
+  "originalEvidenceUnchanged": true,
+  "originalEvidenceHashes": {
+    "provenance.json": "7d9205e5b3a0f940e3e3c9a723ad2b8abc769c99355fb2638631894ee72ee460",
+    "history-capability.test.ts": "31660fd592cf9e5afe98c342ec4f9ef812662544d62b9b196cfe3bdf5dfad04f",
+    "run.log": "a2d5e2a5aa6c51d7440ca9a5482e78cb0b366951f12063f169aa9056c873f706",
+    "vitest.config.mjs": "df8cdf5736b4266ced626c4ac4a4886c70d9a71087eb5d41ea8b65d4cc37f7e5",
+    "vitest.json": "48915dc9d78695d49121a5041aa9103019ad992959229825f11f48c23c0711f3",
+    "result.json": "1706af29d8ed0c9ff5f5e029a9d87c68afec5eadf90aa34ad0156c8e98b3258a",
+    "desktop-source/packages/schema/src/index.ts": "09fa14a9a35a9f1479c50ab841cacba9c6f2074e10e366e8bdf628b493e87161",
+    "desktop-source/packages/core/src/remote-sessions.ts": "5d14e25bd6732b80c2139ac66c1e8de77b9d4240f11bc3deaf3b8d3462a6e559",
+    "desktop-source/packages/core/src/connection.ts": "2dabb6fec133d599733a6c6961ed52532dd4fde9c0356543507d78c9f973015b",
+    "desktop-source/packages/core/src/index.ts": "f95a508dc024fbbd2f4b5c4bab77fb4ee5efd06294801fd5de31c5abd19386bd",
+    "desktop-source/packages/core/src/session.ts": "8bdaadc276264e3e755c73df44bd894b884826875a6e582149dccc69086b81d4",
+    "desktop-source/packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "desktop-source/packages/desktop/src/remote-chat.ts": "43372f6b8c115cdb13cf4fc00d5d4fffacbfc3e18ba69ee41a6f6311ed53259f",
+    "backend-source/server/src/chat/turn.ts": "355395f36234d52de5c7ca5d2c2d00300479ce18351d30a3d195fc61cb4a3ba1",
+    "backend-source/server/src/api/upstream.ts": "707f1a4bb534df1426f26804b46e06c6e0ea0835c3b45642397f6e4e2b91abb1",
+    "backend-source/server/src/inference/registry.ts": "030e2dc4acef34edcff9b7bc553937b028e0128bf5aab044069feb7dbfb2d0d3",
+    "backend-source/server/src/api/turns/generate.ts": "5048031d8d36ce0d4c3be8f54a0ed61ba6d87c22934ca9654ad6840fae21a095",
+    "backend-source/server/src/api/turns/create.ts": "ec10c3f0a4425dcf7425e2a252c7391b985fbb408d42c542d52ca4a304d87295",
+    "backend-source/server/src/api/library/index.ts": "8ae09e41fc76a674b503fe313e4042e0e5cf16707ac29c65a9dc6e23a97efbfa"
+  },
+  "correctedProbeSHA256": "d0213585d162d20f2ccf2d5854a949c1c211e543e5a8a01e9fc42a6c204a24cd",
+  "correctedConfigSHA256": "5d971be59cd30ac87802340474066532ebdf21ab11425b02b392f5447ffa38d5"
+}

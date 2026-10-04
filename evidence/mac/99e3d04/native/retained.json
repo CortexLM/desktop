@@ -1,0 +1,44 @@
+{
+  "transform": {
+    "pillow": "12.3.0",
+    "libwebp": "1.6.0",
+    "lossless": true,
+    "quality": 100,
+    "method": 6,
+    "exact": true
+  },
+  "originalPNGBytes": 178546,
+  "retainedWebPBytes": 64648,
+  "images": [
+    {
+      "theme": "light",
+      "source": "/tmp/opencode/appearance-theme-native-99e3d04-confirm/appearance-theme-light.png",
+      "sourceSHA256": "0f07bea07abb10610e630c5680a991170f48d01e4007866f75ba9076f12d54e6",
+      "sourceBytes": 89670,
+      "sourceMode": "RGBA",
+      "path": "images/appearance-theme-light.webp",
+      "sha256": "7844e794b519b7e9b667ad40bf74f8bbf57cccf36792c94b7933510c300e2b4d",
+      "bytes": 32578,
+      "width": 960,
+      "height": 640,
+      "rgbaSHA256": "e3853435c702b0f7728edf877c6cacc511ce01663c7bedc68bff247eac63d333",
+      "transparentPixels": 176,
+      "pixelPolicy": "Exact top-to-bottom row-major RGBA8, including RGB at alpha=0; no crop/resize"
+    },
+    {
+      "theme": "dark",
+      "source": "/tmp/opencode/appearance-theme-native-99e3d04-confirm/appearance-theme-dark.png",
+      "sourceSHA256": "0e0955739beaeff4ab36512b0238645c1b101e87496cc505980f080bdc8e4c7b",
+      "sourceBytes": 88876,
+      "sourceMode": "RGBA",
+      "path": "images/appearance-theme-dark.webp",
+      "sha256": "42085bfb5768fb9ea3825c7a5c814615b205243dc2432464656cb5a96b839fd2",
+      "bytes": 32070,
+      "width": 960,
+      "height": 640,
+      "rgbaSHA256": "78b53019daf04299398dd1d8b0d1261e42b739c608cbd2b6c12222c3fac3f198",
+      "transparentPixels": 176,
+      "pixelPolicy": "Exact top-to-bottom row-major RGBA8, including RGB at alpha=0; no crop/resize"
+    }
+  ]
+}

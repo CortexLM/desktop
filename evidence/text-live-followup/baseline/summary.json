@@ -1,0 +1,28 @@
+{
+  "originalSourceSHA256": "1db7c1845446e5d7eaf62596f90bd11033cb3b8b4e713c20f41b68bd968eb9a8",
+  "stats": {
+    "startTime": "2026-10-03T23:43:28.734Z",
+    "duration": 129687.955,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 9,
+    "flaky": 0
+  },
+  "missingBehaviorFailures": 7,
+  "collectorSetupFailures": 2,
+  "collectorIssue": "Electron clipboard.read returned zero-format item; constructing ClipboardItem({}) throws",
+  "correction": "Skip items with no MIME types; meaningful clipboard content is preserved",
+  "correctedTestSHA256": "562625c19ee8bc95449ebc4459fe46a5b81dbaae818b5e0b951f42a9a20e5ae2",
+  "correctedTwoCaseBaseline": {
+    "stats": {
+      "startTime": "2026-10-03T23:46:36.680Z",
+      "duration": 36923.013999999996,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 2,
+      "flaky": 0
+    },
+    "cause": "Missing live text recovery and history read; ClipboardItem setup succeeds",
+    "allNineCasesHaveMissingBehaviorNegatives": true
+  }
+}

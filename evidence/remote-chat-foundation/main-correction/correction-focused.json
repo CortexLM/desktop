@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "packages/desktop/test/remote-chat.test.ts",
+    "packages/desktop/test/remote-session.test.ts",
+    "--reporter=verbose",
+    "--reporter=json",
+    "--outputFile.json=/tmp/opencode/remote-chat-main-correction/tests.json"
+  ],
+  "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+  "exit_code": 0,
+  "seconds": 11.883
+}

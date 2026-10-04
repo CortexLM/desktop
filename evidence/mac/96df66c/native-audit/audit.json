@@ -1,0 +1,88 @@
+{
+  "status": "passed",
+  "scope": "Bounded installed Memory/Privacy off-state proof; offline evidence audit",
+  "applicationRevision": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "asarSHA256": "b55bda25290eaf90c821c9a79806d2aecdba5a1bb291da71f6b1abc251a16c44",
+  "workflowRunID": 37139741944,
+  "artifactID": 11279989876,
+  "collectorSHA256": "d1eaeea3ae44d0b32fc0903e67c860a0d8c2444b93ab23a0a997f4c1f17c4b8e",
+  "manifestSHA256": "f7bcbbc47f51b156750ad8972b4a1a3706db1e11ea2844572af3a4598d16e5f6",
+  "counts": {
+    "members": 90,
+    "nativeCaptures": 4,
+    "targetRows": 20,
+    "nativeSamples": 8,
+    "stateChecks": 15,
+    "pausedForgetChecks": 2,
+    "explicitIPCLogEntries": 70,
+    "explicitGETs": 66,
+    "explicitMutations": 4,
+    "uiSettingChangesFromPinnedSourceAndReadbacks": 9,
+    "uiPointerSettingChanges": 1,
+    "uiSpaceSettingChanges": 8,
+    "driverCleanupChecks": 8,
+    "inferenceRequests": 0,
+    "rendererErrors": 0,
+    "checksumEntries": 47,
+    "stableInputFiles": 56
+  },
+  "timing": {
+    "durationMsIncludingDriverCleanup": 68646,
+    "lastCaptureFinishedAfterStartMs": 62521,
+    "exactFlowAndCleanupSplitRecorded": false,
+    "flowBudgetMs": 120000
+  },
+  "images": {
+    "dimensions": [960, 640],
+    "themes": ["light", "dark"],
+    "locale": "en",
+    "fullSizeOriginalsInspected": 4,
+    "pngCRCChunksVerified": 42,
+    "webpFullRGBAEquality": 4,
+    "originalPNGBytes": 314518,
+    "trafficLightCentersVerified": 4,
+    "blueFocusPixelsPerImage": 252,
+    "decoder": "Pillow 12.3.0",
+    "visualDefectsFound": []
+  },
+  "scopeCorrection": {
+    "pausedFocusAndPointerChecks": "both themes",
+    "actualNoteDeletion": "final dark Enter only",
+    "aggregateBothThemeDeletionClaimSupported": false,
+    "uiWritesAbsentFromExplicitIPCLog": true
+  },
+  "restoration": {
+    "isolatedPID": 71055,
+    "windowID": 8973,
+    "ordinaryPID": 71358,
+    "sameASAR": true,
+    "initialOSDarkRestored": true,
+    "settingsRestoredTrue": true,
+    "isolatedSettingsDocumentRetained": true,
+    "isolatedArgsAbsent": true,
+    "closedPorts": [9444, 9445, 9456, 19444, 19445],
+    "helpersStopped": true,
+    "leaseReleased": true
+  },
+  "negativeEvidence": {
+    "initialStatus": "failed",
+    "initialDurationMs": 20330,
+    "initialImages": 0,
+    "initialCleanupChecks": 8,
+    "originalFailingConjunctUnknown": true,
+    "explicitLightDiagnosticSeparate": true,
+    "launchRefusalsBeforeProfile": 2
+  },
+  "reproduction": {
+    "command": "python3 evidence/mac/96df66c/native-audit/verify.py",
+    "verifierSHA256": "fc7d7ecf93476612364e577a4b00dc733b6e1c7e65c3ab91815431bcbf02dfd6",
+    "scratch": "/tmp/opencode/memory-native-audit",
+    "inputHashReceiptSHA256": "4bb8db2cedaaadbb2dceaacb21eafaffa0c944150d099a5a948a254ab4c3edd8",
+    "startedUTC": "2026-10-03T18:07:40.343251+00:00",
+    "finishedUTC": "2026-10-03T18:07:40.500422+00:00",
+    "executedNativeActions": 0,
+    "networkRequests": 0,
+    "executedApplicationTests": 0
+  },
+  "acceptanceLimits": ["No restart persistence", "No legacy migration", "No inference/context injection", "No preview/refusal/race proof", "No whole-product or full-rewrite acceptance"]
+}

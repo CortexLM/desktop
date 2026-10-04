@@ -1,0 +1,10 @@
+{
+  "application": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+  "expected": "Privacy off survives navigation and Memory off survives reload",
+  "observations": {
+    "privacyOffSaved": "false",
+    "memoryAfterPrivacyOff": true,
+    "memoryAfterReload": true
+  },
+  "status": "reproduced"
+}

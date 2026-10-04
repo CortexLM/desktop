@@ -1,0 +1,52 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
+    enabled: true,
++   error: {
++     code: 'mcp_connect_failed',
++     message: 'Could not connect to MCP server private'
++   },
+    name: 'private',
++   status: 'failed',
++   tools: [],
+-   status: 'connected',
+-   tools: [
+-     {
+-       description: 'Connection check',
+-       name: 'ping'
+-     }
+-   ],
+    type: 'remote'
+  }
+
+    at file:///var/tmp/opencode/desktop-mcp-packaged-check.mjs:38:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: {
+    name: 'private',
+    type: 'remote',
+    enabled: true,
+    status: 'failed',
+    error: {
+      code: 'mcp_connect_failed',
+      message: 'Could not connect to MCP server private'
+    },
+    tools: []
+  },
+  expected: {
+    name: 'private',
+    type: 'remote',
+    enabled: true,
+    status: 'connected',
+    tools: [ { name: 'ping', description: 'Connection check' } ]
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.21.0

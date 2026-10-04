@@ -1,0 +1,183 @@
+{
+  "audit": "G1 full-objective completion",
+  "sourceReadbackAt": "2026-10-03T13:05:03.961633+00:00",
+  "head": "99e3d04a8dab6b51b6cf23bcdae0365624492e0f",
+  "main": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+  "originMain": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+  "pr": { "number": 36, "draft": true, "basis": "supplied status and local evidence/STATUS.md; no GitHub query" },
+  "fullObjectiveComplete": false,
+  "allSixProofsComplete": false,
+  "whollyBlockedOnExternalInputs": false,
+  "currentSource": {
+    "applicationTestConfigWorktreeDelta": false,
+    "productionBase": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+    "productionDiff": [
+      { "path": "packages/app/src/screens/system/settings.tsx", "added": 8, "removed": 7 },
+      { "path": "packages/app/src/shell/nav.tsx", "added": 3, "removed": 2 },
+      { "path": "packages/app/src/shell/shell.tsx", "added": 1, "removed": 1 }
+    ],
+    "registeredRoutes": 61,
+    "registeredStatesFromReceipt": 213,
+    "registeredThemeRenderChecksFromReceipt": 426,
+    "requiredAbsentRouteIDs": ["space", "space-page", "scheduled", "scheduled-edit", "scheduled-history", "plugins", "plugin-detail", "skills", "mcp-add"],
+    "rulesReadPreviously": 9,
+    "ruleFilesChangedSincePreviousRead": false,
+    "documentaryWorktreeEditsByCoordinatorPresent": true
+  },
+  "requirements": [
+    {
+      "id": "electron-shell",
+      "status": "implemented_bounded",
+      "live": ["Electron main local engine", "React/Base UI shell", "Cortex/Cortex Code modes", "light/dark/system", "sandboxed IPC", "native navigation/menu"],
+      "remaining": ["all requested routes and interactions", "current complete native and reference acceptance"],
+      "anchors": ["packages/desktop/src/main.ts:24-46,83-93", "packages/desktop/src/preload.ts:8-25", "packages/app/src/shell/shell.tsx", "packages/desktop/src/menu.ts:50-52"]
+    },
+    {
+      "id": "chat",
+      "status": "partial_live_preview",
+      "live": ["home/transcript/history", "local model/image/reasoning", "streaming/refusal/recovery"],
+      "remaining": ["voice", "Canvas", "search/research", "image generation", "sharing", "temporary chat", "live Library records"],
+      "anchors": ["packages/app/src/screens/chat/index.tsx", "packages/app/src/screens/chat/voice.tsx:19", "packages/app/src/screens/chat/canvas.tsx:14", "packages/app/src/screens/chat/research.tsx:20,72", "packages/app/src/screens/chat/extras.tsx:27,137,203", "packages/app/src/screens/chat/pages.tsx:32-38"]
+    },
+    {
+      "id": "work",
+      "status": "partial_live_preview",
+      "live": ["Bot tasks", "permissions", "persisted outcomes", "routines/history", "task conversion"],
+      "remaining": ["Inbox/Activity/Notification feeds", "connectors", "computer/takeover workflow"],
+      "anchors": ["packages/app/src/screens/work/home.tsx", "packages/app/src/screens/work/routines.tsx", "packages/app/src/screens/work/desk.tsx:30-32,254,291-292,375", "packages/core/src/scheduler.ts:103-126"]
+    },
+    {
+      "id": "bots-mascot",
+      "status": "partial_live_preview",
+      "live": ["CRUD/persona/model", "customizable animated mascot", "sessions", "memory mutations", "permissions/routines"],
+      "remaining": ["hierarchy/templates", "channels/logs", "usage-budget behavior"],
+      "anchors": ["packages/app/src/screens/bots/bot.tsx", "packages/app/src/screens/bots/team.tsx:65,94,214-217,256", "packages/app/src/mascot/Mascot.tsx", "packages/core/src/bot.ts"]
+    },
+    {
+      "id": "files",
+      "status": "upload_live_viewers_preview",
+      "live": ["FileReader progress", "Ask-about-file local Chat"],
+      "remaining": ["durable file store/identity", "live PDF/Office/image/media/ZIP viewers and operations", "project attachment"],
+      "anchors": ["packages/app/src/screens/files/index.tsx:9-10", "packages/app/src/screens/files/docs.tsx:602-629,650-662"]
+    },
+    {
+      "id": "code",
+      "status": "partial_live_preview",
+      "live": ["folder-backed sessions/tasks", "model/reasoning", "tools/approvals", "tool terminal/diff output panes"],
+      "remaining": ["dedicated Review/Diff/Terminal/Environment/PR workflows", "repository/instructions/usage settings"],
+      "anchors": ["packages/app/src/screens/code/code.tsx:24,84-85,215-263", "packages/app/src/screens/code/lot-code.tsx:218,308,417,528,668,785"]
+    },
+    {
+      "id": "system",
+      "status": "partial_live_preview",
+      "live": ["theme/locale", "session/Bot Search", "providers", "connection/email-code auth", "bounded memory CRUD"],
+      "remaining": ["project engine and persistence", "runtime effect of stored general/privacy/Bot/notification preferences", "memory-enable policy", "profile/billing/updater workflows"],
+      "anchors": ["packages/app/src/screens/system/projects.tsx:40-43,95,255", "packages/app/src/screens/system/settings.tsx:31-43", "packages/app/src/screens/system/account.tsx", "packages/app/src/screens/system/misc.tsx:144", "packages/core/src/bot.ts:68-86"],
+      "preferenceSearch": "cortex.pref.* found only in Settings writer/reader; no other package consumer"
+    },
+    {
+      "id": "space",
+      "status": "engine_only_design_import_pending",
+      "live": ["page/site/image text-URL CRUD", "recents/open timestamps"],
+      "remaining": ["Space home/welcome/tabs/recents and page screen"],
+      "candidateContractsNeedingDisposition": ["covers/assets", "site publishing"],
+      "anchors": ["packages/core/src/space.ts:8-43", "packages/schema/src/index.ts:418-425", "packages/protocol/src/index.ts:108-113"],
+      "existingDesignRequest": "/root/cortex-ui/DESIGN-REQUESTS.md:46-47,73-87"
+    },
+    {
+      "id": "scheduled",
+      "status": "engine_routines_live_standalone_absent",
+      "live": ["cron/daily/weekly/once", "CRUD/pause/manual run", "persisted history through Work/Bot"],
+      "remaining": ["standalone list/editor/history", "suggestions"],
+      "candidateContractsNeedingDisposition": ["timezone", "per-run consent", "dry-run"],
+      "limits": ["process-local timer", "no missed-run backfill"],
+      "anchors": ["packages/core/src/scheduler.ts", "packages/schema/src/index.ts:359-389", "packages/protocol/src/index.ts:101-106"],
+      "existingDesignRequest": "/root/cortex-ui/DESIGN-REQUESTS.md:48-49,73-87"
+    },
+    {
+      "id": "plugins-skills-mcp-ui",
+      "status": "engine_only_design_import_and_contracts_pending",
+      "live": ["plugin discovery/hooks/toggle/rescan", "skill discovery/load/toggle", "MCP stdio/HTTP lifecycle", "main-only MCP configuration"],
+      "remaining": ["Installed/Public/Personal management screens", "public acquisition source and lifecycle", "install/uninstall", "skill content/import/editor operations", "computer-use enablement UI"],
+      "candidateContractsNeedingDisposition": ["skill scan/verdict/acknowledgement", "plugin permissions", "MCP check-only versus save/connect"],
+      "anchors": ["packages/desktop/src/main.ts:33-34", "packages/core/src/plugin.ts", "packages/core/src/skill.ts", "packages/protocol/src/index.ts:76-88", "packages/schema/src/index.ts:328-355"],
+      "existingDesignRequest": "/root/cortex-ui/DESIGN-REQUESTS.md:50-51,73-87"
+    },
+    {
+      "id": "local-engine-architecture",
+      "status": "implemented_contract_scope",
+      "live": ["schema/core/protocol/server/client", "SQLite bus/projections", "sessions/tools/agents/permissions", "plugins/skills/MCP", "in-main app.fetch IPC"],
+      "limits": ["not a claim of full external-library parity", "no persistent app server socket", "plugins execute in-process with host privileges"],
+      "anchors": ["docs/architecture.md:3-53", "packages/core/src/index.ts:45-109", "packages/server/src/index.ts:49-152", "packages/client/src/index.ts:95-180", "packages/core/src/tool.ts", "packages/core/src/session.ts"]
+    },
+    {
+      "id": "providers-capabilities",
+      "status": "implemented_local_scope",
+      "live": ["models.dev network/cache discovery", "write-only main credentials", "reasoning/image/tools/context/cost metadata", "capability admission and refusal", "four supported SDK families"],
+      "limits": ["other provider families explicitly unsupported", "historical real exchange is not current packaged or remote-mode proof"],
+      "anchors": ["packages/core/src/catalog.ts", "packages/core/src/provider.ts", "packages/core/src/llm.ts", "packages/core/src/session.ts:124-144,304-314", "docs/providers.md", "tests/e2e/engine.spec.ts"]
+    },
+    {
+      "id": "connection-modes",
+      "status": "local_live_remote_probe_auth_partial",
+      "live": ["account-free local default", "Cloud/selfhost preference and origin validation", "probes", "main-only process-lifetime email-code auth", "private remote transport/core projections"],
+      "remaining": ["public remote schema/protocol/client dispatch", "remote model/upload/turn/history UI routing", "approved authentication continuation UI", "full identity/history/discard observability", "authorized real remote image/reasoning proof"],
+      "scopeInterpretation": "Three mode labels alone require preferences/reachability; remote inference is a separately explicit active delivery goal in current docs and continuation context.",
+      "anchors": ["packages/core/src/connection.ts", "packages/server/src/index.ts:61-63", "packages/app/src/api.ts:38", "docs/connection-modes.md:19-41,64-95,141-224"]
+    }
+  ],
+  "proofs": [
+    { "id": 1, "requirement": "lint/types/units", "status": "scoped_local_pass", "application": "99e3d04", "unitPasses": 245, "optionalSkips": 1, "lint": "pass_from_retained_log", "types": "pass_from_retained_log", "evidence": ["evidence/appearance-theme-followup/electron-final/README.md:51-54"] },
+    { "id": 2, "requirement": "all screens plus provider/thinking/image E2E", "status": "partial", "application": "99e3d04", "localLinuxCases": 113, "registeredThemeRenderChecks": 426, "retries": 0, "skips": 0, "flaky": 0, "auditImages": 149, "auditFullSizeTargetViews": 2, "limits": ["preview smoke not all live controls", "required routes absent", "current macOS result not queried", "controlled provider not real Cortex inference"], "evidence": ["evidence/appearance-theme-followup/electron-final/summary.json", "tests/e2e/screens.spec.ts", "tests/e2e/engine.spec.ts"] },
+    { "id": 3, "requirement": "Blacksmith macOS package/launch", "status": "current_revision_pending_coordinator", "currentRun": 37124432902, "currentRunStatusBasis": "supplied running status, no CI query", "currentLinuxPackageSmoke": "pass_from_receipt", "priorApplication": "37c22c2", "priorRun": 37118586276, "documentaryEquivalentRevision": "6642d46467304cbe1181d0963d51c085ec09a0c4", "documentaryEquivalentRun": 37121900898, "evidence": [".github/workflows/ci.yml:58-77", "evidence/provider-draft-followup/documentary-6642d46/README.md", "evidence/appearance-theme-followup/README.md"] },
+    { "id": 4, "requirement": "installed Mac every screen/theme/native chrome/menu", "status": "partial_historical_plus_targeted", "historicalFullApplication": "f9aca44", "historicalNativeCaptures": 426, "historicalBounds": [1024, 686], "historicalMenuCaptures": 14, "priorTargetedApplication": "37c22c2", "priorTargetedCaptures": 4, "currentPreparedCaptures": 2, "currentNativeExecuted": false, "currentNativeStatusBasis": "supplied readback and native-preparation source report", "limits": ["not current full source", "absent surfaces", "not all controls at 960x640"], "evidence": ["evidence/mac/f9aca44/full/README.md", "evidence/mac/37c22c2/native/README.md", "evidence/appearance-theme-followup/native-preparation/appearance-theme-native-review.md"] },
+    { "id": 5, "requirement": "side-by-side with no unjustified material gap", "status": "partial", "historicalRevision": "6d96535", "historicalApplication": "f9aca44", "referenceFreeze": "2026-10-02-7b388e2d9674", "jobs": 431, "references": 410, "gaps": 21, "gapKinds": { "extraSettingsThemeRenders": 16, "clickedExtras": 5 }, "maximumDifferencePercent": 1.73, "currentAppearanceReferencePresent": false, "limits": ["historical source pin", "no current full comparison", "unresolved historical scheduling residuals", "no replacement of missing refs with own before-after images"], "evidence": ["evidence/current-full-followup/compare/README.md", "evidence/appearance-theme-followup/reference-gap.json"] },
+    { "id": 6, "requirement": "automated i18n zero findings", "status": "scoped_automated_pass", "application": "99e3d04", "files": 65, "usedKeys": 2272, "englishKeys": 3405, "findings": 0, "locales": 8, "limits": ["dynamic/imported dataflow", "translation semantics", "exhaustive locale geometry"], "evidence": ["evidence/appearance-theme-followup/electron-final/README.md:51-54", "docs/i18n.md:55-98"] }
+  ],
+  "historicalRealInference": {
+    "timestamp": "2026-10-02T02:47:51.673Z",
+    "evidence": "evidence/real-provider.json",
+    "scope": "built Electron IPC/local engine; admitted transparent test-only model alias; actual upstream streamed response",
+    "textDeltas": 9,
+    "reasoningDeltas": 1,
+    "imageAnswerCorrect": true,
+    "mainSHA256": "102e8fceb249492c0a5d57b394838db124b83474ca3597dd5a9e423f9cb0d6f4",
+    "currentPackagedOrRemoteAccountProof": false
+  },
+  "environmentPresenceOnly": {
+    "scope": "nonempty variables in this audit process; no values emitted; no statement about every credential channel",
+    "CORTEX_REAL_BASE_URL": false,
+    "CORTEX_REAL_API_KEY": false,
+    "CORTEX_TEST_BACKEND_URL": false
+  },
+  "externalInputs": [
+    { "owner": "DESIGN", "input": "exact immutable source/state/capture and G1 import disposition for Space/Scheduled/Plugins/Skills/MCP", "existingRequest": "/root/cortex-ui/DESIGN-REQUESTS.md:46-51,73-87", "alreadyRequested": true, "newRequestNeeded": false },
+    { "owner": "DESIGN", "input": "five remote Chat/Settings states: stored-thread model, one-off model, limited history, image-history refusal, continuation ownership; exact G1 import disposition", "existingRequest": "/root/cortex-ui/DESIGN-REQUESTS.md:63-66,92,97", "alreadyRequested": true, "motifsReusableAsDesignInput": true, "codeBotPrototypeProductImportAuthorized": false, "newRequestNeeded": false },
+    { "owner": "G2", "input": "stable account ID, unambiguous replay/history, historical image pixels, compatible instance and vision+reasoning Chat deployment", "existingRequest": "docs/connection-modes.md:69-83,181-187; /tmp/opencode/g1-owner-readback-1200/REPORT.md:23-25", "alreadyRequested": true, "reasoningOffAndCancel": "known absent; honest effort/detach semantics can be implemented without inventing these APIs" },
+    { "owner": "G3", "input": "versioned immutable SDK/API-types successor exposing onDiscardedFrame with source/schema/archive/runtime receipts", "existingRequest": "docs/connection-modes.md:80-84; /tmp/opencode/g1-owner-readback-1200/REPORT.md:22", "alreadyRequested": true, "currentSDK": "0.3.5 admitted, projections intentionally limited" },
+    { "owner": "authorized runtime owner", "input": "configured compatible backend, authorized account/OTP, eligible model entitlement; provider access for new local real replay", "alreadyRequested": true, "evidence": "/tmp/opencode/g1-owner-readback-1200/REPORT.md:25" }
+  ],
+  "latestSuppliedOwnerObservation": {
+    "intervalUTC": "2026-10-03 12:06-12:10",
+    "report": "/tmp/opencode/g1-owner-readback-1200/REPORT.md",
+    "newG2G3SuccessorFound": false,
+    "namedFiveStateG1ImportPermissionFound": false,
+    "publicInstanceStatusAt1207": 404,
+    "eligibleVisionChatModelEstablished": false,
+    "freshNetworkVerificationByThisAudit": false
+  },
+  "unblockedG1Deliverables": [
+    "Finish current coordinator CI/package/native scoped acceptance and retain explicit all-screen/menu/minimum-window remainder.",
+    "Implement project/file persistence and real viewer routing under existing approved layouts.",
+    "Implement real Work feeds/notification controls and runtime memory/preferences semantics.",
+    "Implement dedicated Code review/environment/PR functions with explicit operational contracts.",
+    "Complete local Space/Scheduled/extension lifecycle contracts and resolve draft-only semantics through existing requests; approved new-screen imports remain gated.",
+    "Expose bounded remote schema/protocol/client dispatch within current honest limits; integrate UI after exact state authorization, then prove real account/image/reasoning and recovery.",
+    "Complete all six proofs on final implemented scope; retain every historical gap and original source pin."
+  ],
+  "doneEligibility": "All requested functions delivered and all six obligations true together for final source or explicitly justified identical inputs. Scoped fixes, prototype approval and historical evidence cannot substitute for full-product completion.",
+  "outsideRequestedUnsignedMacProof": ["Windows CI", "signing/notarization", "public release publishing unless shipping scope changes"],
+  "performed": ["local source and retained-report reads", "current AGENTS/STATUS and unchanged-rule readback", "Git HEAD/main/origin-main validation", "three-file production diff validation", "61-route literal enumeration and required-route absence check", "source/test/config worktree delta check", "environment-presence booleans", "read-only existing design-request and prototype-disposition inspection"],
+  "notPerformed": ["tests", "build", "CI query", "Mac access", "network", "posts", "captures", "image review", "archive reinspection", "repository or design edit", "commit", "delegation"],
+  "ownedOutputs": ["/tmp/opencode/g1-full-objective-audit-99e3d04.md", "/tmp/opencode/g1-full-objective-audit-99e3d04.json"]
+}

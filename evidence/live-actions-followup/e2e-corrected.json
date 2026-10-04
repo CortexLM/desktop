@@ -1,0 +1,660 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/work-routine-source.spec.ts",
+      "tests/e2e/search-bots.spec.ts",
+      "tests/e2e/routines.spec.ts",
+      "--output=/tmp/opencode/live-actions-corrected-artifacts"
+    ],
+    "configFile": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/playwright.config.ts",
+    "rootDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/opencode/live-actions-corrected-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/e2e.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "routines.spec.ts",
+      "file": "routines.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Routine history reflects running, interruption and latest results — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2602,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:30.619Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-running-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/routines-Routine-history-r-71513--and-latest-results-—-light/attachments/routine-running-light-29dcf5bcc65e59fa577441ec09dca7ee59a1d18a.png"
+                    },
+                    {
+                      "name": "routine-interrupted-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/routines-Routine-history-r-71513--and-latest-results-—-light/attachments/routine-interrupted-light-f0afc0aba368a8e251b1eeb4fccaa31d954724bb.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3926c6d2509f6eec95f-33f1db36955072d9dac5",
+          "file": "routines.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "Routine actions retain honest feedback when the engine refuses — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1811,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:30.585Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-start-refused-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/routines-Routine-actions-r-37a92--the-engine-refuses-—-light/attachments/routine-start-refused-light-765ebc5fce6ff5208d939cff9a12299a6531c64d.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3926c6d2509f6eec95f-f236c3973d5817202423",
+          "file": "routines.spec.ts",
+          "line": 111,
+          "column": 3
+        },
+        {
+          "title": "Routine history reflects running, interruption and latest results — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2680,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:30.633Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-running-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/routines-Routine-history-r-3a54b-n-and-latest-results-—-dark/attachments/routine-running-dark-2f970cf39fb3ffb25ba45c57a4d9cd6f03616774.png"
+                    },
+                    {
+                      "name": "routine-interrupted-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/routines-Routine-history-r-3a54b-n-and-latest-results-—-dark/attachments/routine-interrupted-dark-9e8cbb6fc75bb432e980ec2564bd4ba386a4cb2f.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3926c6d2509f6eec95f-c09d73b90a99ac547c2f",
+          "file": "routines.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "Routine actions retain honest feedback when the engine refuses — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 1885,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:30.626Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-start-refused-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/routines-Routine-actions-r-f9f82-n-the-engine-refuses-—-dark/attachments/routine-start-refused-dark-26a239d9f234d05630a2f2d0541e22c8fed5960c.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3926c6d2509f6eec95f-4884eca05235741331f1",
+          "file": "routines.spec.ts",
+          "line": 111,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "search-bots.spec.ts",
+      "file": "search-bots.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Search finds persisted Bots by name and persona, preserving grouped keyboard identity — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2424,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:32.452Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "search-bots-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/search-bots-Search-finds-p-8032b-d-keyboard-identity-—-light/attachments/search-bots-light-d06729d4af09e8fbff938048726bd6061c0cfc2b.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a4778faf0e2beff531c2-e3922587b9e934352eb2",
+          "file": "search-bots.spec.ts",
+          "line": 26,
+          "column": 40
+        },
+        {
+          "title": "Search finds persisted Bots by name and persona, preserving grouped keyboard identity — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2397,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:32.572Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "search-bots-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/search-bots-Search-finds-p-4fe9f-ed-keyboard-identity-—-dark/attachments/search-bots-dark-cb0c429f37ae5df1c47efc2a7a7a76a85735f311.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a4778faf0e2beff531c2-f07d318a52a73daaf208",
+          "file": "search-bots.spec.ts",
+          "line": 26,
+          "column": 40
+        },
+        {
+          "title": "Search reports either source's real request refusal and retries both lists",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1617,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:33.280Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a4778faf0e2beff531c2-e1bd18f653ca346d9456",
+          "file": "search-bots.spec.ts",
+          "line": 93,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "work-routine-source.spec.ts",
+      "file": "work-routine-source.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Work task conversion preserves source context and only creates on confirmation — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 5069,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:33.375Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "work-task-source-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/work-routine-source-Work-t-41043-tes-on-confirmation-—-light/attachments/work-task-source-light-0eb91a2750160e146e3e0e6d58f965aa68cedb78.png"
+                    },
+                    {
+                      "name": "routine-source-editor-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/work-routine-source-Work-t-41043-tes-on-confirmation-—-light/attachments/routine-source-editor-light-7c62d8e5ee0789b22ae86337621343615b38dd99.png"
+                    },
+                    {
+                      "name": "routine-source-run-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/work-routine-source-Work-t-41043-tes-on-confirmation-—-light/attachments/routine-source-run-light-825be9a170ecbbfec2d0b09bb677dee818907b45.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ed5901f54515ff4248db-140136c4027c6dd258f1",
+          "file": "work-routine-source.spec.ts",
+          "line": 48,
+          "column": 3
+        },
+        {
+          "title": "Work routine source rejects missing tasks and attachments; reassignment uses the selected Bot — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 8229,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:34.916Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-source-missing-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/work-routine-source-Work-r-ec8b8-es-the-selected-Bot-—-light/attachments/routine-source-missing-light-d24031b1dc9b418ea6f8dea2ba5bf82b66034915.png"
+                    },
+                    {
+                      "name": "routine-source-attachment-refused-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/work-routine-source-Work-r-ec8b8-es-the-selected-Bot-—-light/attachments/routine-source-attachment-refused-light-16ae405b0efd9a98f9311043a7d55e7d858ee2a6.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ed5901f54515ff4248db-f7bf940acdc10f6644ad",
+          "file": "work-routine-source.spec.ts",
+          "line": 151,
+          "column": 3
+        },
+        {
+          "title": "Work task conversion preserves source context and only creates on confirmation — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5229,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:34.925Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "work-task-source-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/work-routine-source-Work-t-06599-ates-on-confirmation-—-dark/attachments/work-task-source-dark-d96f9d3683ef72e2908d11e3515161f3f7666081.png"
+                    },
+                    {
+                      "name": "routine-source-editor-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/work-routine-source-Work-t-06599-ates-on-confirmation-—-dark/attachments/routine-source-editor-dark-e25bbf2ed07f0708ad800f0632c1032b26fca637.png"
+                    },
+                    {
+                      "name": "routine-source-run-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/work-routine-source-Work-t-06599-ates-on-confirmation-—-dark/attachments/routine-source-run-dark-0dfae747d6826e8d56eed828f8463b0ef221877c.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ed5901f54515ff4248db-aeea6f614a162bbb3565",
+          "file": "work-routine-source.spec.ts",
+          "line": 48,
+          "column": 3
+        },
+        {
+          "title": "Work routine source rejects missing tasks and attachments; reassignment uses the selected Bot — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 8185,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:34.999Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-source-missing-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/work-routine-source-Work-r-47e79-ses-the-selected-Bot-—-dark/attachments/routine-source-missing-dark-9dbd2cc0ad2fa0e54f812363af4604d9ef059087.png"
+                    },
+                    {
+                      "name": "routine-source-attachment-refused-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/work-routine-source-Work-r-47e79-ses-the-selected-Bot-—-dark/attachments/routine-source-attachment-refused-dark-bce74425ceff0ed0a60322d885cf513ad0ba8d0b.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ed5901f54515ff4248db-4316332151a11294ea7c",
+          "file": "work-routine-source.spec.ts",
+          "line": 151,
+          "column": 3
+        },
+        {
+          "title": "Routine source navigation ignores late source responses and late save completion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 3324,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:38.458Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ed5901f54515ff4248db-5d6c76a423f09eb6c2c7",
+          "file": "work-routine-source.spec.ts",
+          "line": 252,
+          "column": 1
+        },
+        {
+          "title": "Routine source waits for its Bot list and retains the draft through list failure and retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2502,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T23:55:40.178Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "routine-source-list-unavailable",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/live-actions-corrected-artifacts/work-routine-source-Routin-b2b7c-ough-list-failure-and-retry/attachments/routine-source-list-unavailable-a904e4467c3eb2d0407525683630654258e2cf67.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ed5901f54515ff4248db-008057f152f86959e518",
+          "file": "work-routine-source.spec.ts",
+          "line": 332,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-02T23:55:29.562Z",
+    "duration": 13761.411,
+    "expected": 13,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

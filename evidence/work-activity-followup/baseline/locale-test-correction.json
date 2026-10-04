@@ -1,0 +1,7 @@
+{
+  "baselineTestSHA256": "d40d9be095b26db813fe442233f139d67228aa036971f081f5974238d68fd0fc",
+  "correctedTestSHA256": "bfda7f43480e7f20e8101480950c28c5ea149b0f6f3bedf231d56c3ed7a5e087",
+  "correction": "Each text fragment now checks every clipping ancestor starting at its parent, including descendant spans with ellipsis/overflow. Measurements retain exact ranges and clipping boxes.",
+  "originalFailure": "Missing scope label, before geometry or populated states. That assertion remains unchanged.",
+  "runtime": "Corrected geometry unexecuted"
+}

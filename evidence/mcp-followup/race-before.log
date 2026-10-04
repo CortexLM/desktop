@@ -1,0 +1,51 @@
+$ vitest run packages/core/test/mcp.test.ts -t "removed during"
+
+ RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+ ❯ packages/core/test/mcp.test.ts (5 tests | 1 failed | 4 skipped) 38ms
+   ❯ main-only MCP connection configuration (5)
+     ↓ returns metadata only and keeps complete connection material out of SQLite across reopen
+     ↓ preserves prior configuration when its replacement cannot be stored
+     ↓ retains the old connection when the metadata write fails
+     ↓ migrates legacy configuration only after credential persistence succeeds
+     × does not publish a connection after it was removed during credential lookup 36ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/core/test/mcp.test.ts > main-only MCP connection configuration > does not publish a connection after it was removed during credential lookup
+AssertionError: expected [ { name: 'pending_ping', …(4) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "description": undefined,
++     "inputSchema": {
++       "properties": {},
++       "type": "object",
++     },
++     "name": "pending_ping",
++     "server": "pending",
++     "tool": "ping",
++   },
++ ]
+
+ ❯ packages/core/test/mcp.test.ts:119:32
+    117|       await pending
+    118|       expect(core.mcp.get("pending")).toBeUndefined()
+    119|       expect(core.mcp.tools()).toEqual([])
+       |                                ^
+    120|       expect(transports).toBe(0)
+    121|     } finally { release(); await core.close() }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  20:10:32
+   Duration  709ms (import 53%, transform 40%, tests 7%, worker 1%)
+
+error: script "test" exited with code 1

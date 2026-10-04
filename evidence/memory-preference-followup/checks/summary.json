@@ -1,0 +1,35 @@
+{
+  "baseRevision": "74579d574646aff5dbd462247b4fd47a99dd2cdd",
+  "baseline": {
+    "startTime": "2026-10-03T16:43:54.175Z",
+    "duration": 19092.603,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 5,
+    "flaky": 0
+  },
+  "targeted": {
+    "startTime": "2026-10-03T16:45:21.947Z",
+    "duration": 14503.44,
+    "expected": 14,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "behaviorTestSHA256": "47b4b17adc8222565e8513db3880cf49fdbdec1be35f743816662a77e7d03580",
+  "units": {
+    "passed": 260,
+    "optionalBackendSkipped": 1
+  },
+  "localizationStates": 64,
+  "localeCaptures": 8,
+  "initialFull": {
+    "startTime": "2026-10-03T16:46:38.007Z",
+    "duration": 294900.95999999996,
+    "expected": 124,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "initialFullScope": "Original 124 cases; later canceled-preview lifecycle regression not yet present"
+}

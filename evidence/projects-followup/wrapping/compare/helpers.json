@@ -1,0 +1,27 @@
+{
+  "executedOffline": [
+    {
+      "path": "/tmp/opencode/projects-wrap-compare-review/pixels.mjs",
+      "sha256": "a2b7e0953695154405b27326bbdacbce9228f8b074dd10fae708d548b163951f"
+    },
+    {
+      "path": "/tmp/opencode/projects-wrap-compare-review/audit.py",
+      "sha256": "d469cdfdccd9ba719b7a17da959f8ead5de2f625aff01877f9fba3b95f032dd8"
+    },
+    {
+      "path": "/tmp/opencode/projects-wrap-compare-review/regions.py",
+      "sha256": "38f2543a7be10da7eae07d131ea3670dfc66b52e29398654e7bd7b5fe9eb1dda"
+    },
+    {
+      "path": "/tmp/opencode/projects-wrap-compare-review/finalize.py",
+      "sha256": "f3bec2212c62149a9816f6ae5d20ce8bcf2d3a0a34761b259080e23d62ab5a38"
+    }
+  ],
+  "comparator": {
+    "source": "scripts/compare-shots.mjs",
+    "sha256": "838bbacffef18907c15505745189b4ecd18590e71cc99256f93a8e50835eadc6",
+    "archived": "raw/comparator.mjs.gz",
+    "gzipSHA256": "52ed7e7349b1d32aa6bf4917dd7ba332a87ce186979c4c65a56ff2013e1c77d3",
+    "executedByReviewer": false
+  }
+}

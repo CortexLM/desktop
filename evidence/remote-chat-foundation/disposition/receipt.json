@@ -1,0 +1,23 @@
+{
+  "completed_at": "2026-10-03T05:59:48.091750+00:00",
+  "result": "PASS; uncommitted bounded seam addition",
+  "source_hashes": {
+    "packages/desktop/src/remote-chat.ts": "cb9f0d389f820ba8cbfc985bcc4c1543e1bce0dae5f3c84087ea85d928d770e0",
+    "packages/desktop/test/remote-chat.test.ts": "9b288917a120ef214d41b14f8caf2d47343520bdbd833d834db128b751e70e24"
+  },
+  "only_public_change": "MainRemoteDelivery.readonly admissionState: pending | refused | uncertain | admitted",
+  "getter_priority": "admission ? admitted : closed ? refused : running ? pending : uncertain",
+  "tests": {
+    "runtime": "Node22.23.3",
+    "passed": 25,
+    "failed": 0,
+    "skipped": 0,
+    "transport": 17,
+    "existing_auth": 8
+  },
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "remote_session_and_auth_test_unchanged": true,
+  "dist_unchanged": 90,
+  "report_sha256": "2415bbce367c6b56d4b1449c8ea4a03e0a735c9900168f65f6984f3cd0b1b448"
+}

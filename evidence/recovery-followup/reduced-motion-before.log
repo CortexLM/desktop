@@ -1,0 +1,44 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 tests/e2e/chrome.spec.ts:42:1 › reduced-motion startup inherits themed text immediately (1.3s)
+
+
+  1) tests/e2e/chrome.spec.ts:42:1 › reduced-motion startup inherits themed text immediately ───────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "animation": "0.001s",
+    -   "transition": "0s",
+    +   "transition": "0.001s",
+      }
+
+      50 |       await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+      51 |       await expect.poll(() => page.locator(".home h1").evaluate((el) => getComputedStyle(el).color === getComputedStyle(document.body).color)).toBe(true);
+    > 52 |       expect(await page.locator(".home .composer").evaluate((el) => ({ transition: getComputedStyle(el).transitionDuration, animation: getComputedStyle(el).animationDuration }))).toEqual({ transition: "0s", animation: "0.001s" });
+         |                                                                                                                                                                                    ^
+      53 |     }
+      54 |   } finally { await app.close(); }
+      55 | });
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/chrome.spec.ts:52:180
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/desktop-reduced-before/chrome-reduced-motion-star-4ca00-its-themed-text-immediately/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/desktop-reduced-before/chrome-reduced-motion-star-4ca00-its-themed-text-immediately/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/desktop-reduced-before/chrome-reduced-motion-star-4ca00-its-themed-text-immediately/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/desktop-reduced-before/chrome-reduced-motion-star-4ca00-its-themed-text-immediately/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/chrome.spec.ts:42:1 › reduced-motion startup inherits themed text immediately ────────

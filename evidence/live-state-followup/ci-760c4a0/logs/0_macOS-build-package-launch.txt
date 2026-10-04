@@ -1,0 +1,631 @@
+2026-10-03T08:36:29.4151150Z Current runner version: '2.337.0'
+2026-10-03T08:36:29.4154140Z Runner name: 'blacksmith-6vcpu-macos-26-Runner-b5a619aa57'
+2026-10-03T08:36:29.4154720Z Runner group name: 'blacksmith scale sets - blacksmith-6vcpu-macos-26'
+2026-10-03T08:36:29.4155390Z Machine name: 'Mac-1789701302612'
+2026-10-03T08:36:29.4156880Z ##[group]GITHUB_TOKEN Permissions
+2026-10-03T08:36:29.4157930Z Contents: read
+2026-10-03T08:36:29.4158200Z Metadata: read
+2026-10-03T08:36:29.4158460Z ##[endgroup]
+2026-10-03T08:36:29.4159650Z Secret source: Actions
+2026-10-03T08:36:29.4160780Z Cache mode: write
+2026-10-03T08:36:29.4161340Z Prepare workflow directory
+2026-10-03T08:36:29.4371180Z Prepare all required actions
+2026-10-03T08:36:29.4398170Z Getting action download info
+2026-10-03T08:36:29.6710070Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-03T08:36:30.0690510Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-03T08:36:30.1322980Z Download action repository 'oven-sh/setup-bun@v2' (SHA:0c5077e51419868618aeaa5fe8019c62421857d6)
+2026-10-03T08:36:30.5246660Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-03T08:36:31.0758420Z Setting BLACKSMITH_ACTIONS_RESULTS_URL to https://results-receiver.actions.githubusercontent.com/
+2026-10-03T08:36:31.0801650Z Complete job name: macOS build, package, launch
+2026-10-03T08:36:31.1265680Z A job started hook has been configured by the self-hosted runner administrator
+2026-10-03T08:36:31.1421160Z ##[group]Run '/opt/blacksmith/setup_mac.sh'
+2026-10-03T08:36:31.1463390Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-03T08:36:31.1464140Z env:
+2026-10-03T08:36:31.1464440Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:36:31.1464870Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:36:31.1465340Z   BLACKSMITH_CHECK_RUN_ID: 111166590603
+2026-10-03T08:36:31.1465800Z   BLACKSMITH_JOB_DISPLAY_NAME: macOS build, package, launch
+2026-10-03T08:36:31.1466310Z   GITHUB_ACTIONS_CACHE_MODE: write
+2026-10-03T08:36:31.1466650Z ##[endgroup]
+2026-10-03T08:36:31.2312230Z
+2026-10-03T08:36:31.2413600Z ----------------------------------------
+2026-10-03T08:36:31.2514340Z View this job: https://app.blacksmith.sh/CortexLM/runs/37110253688/jobs/111166590603
+2026-10-03T08:36:31.2616020Z SSH Access (using your GitHub SSH key):
+2026-10-03T08:36:31.2718260Z   ssh -p 64001 runner@blacksmith-6vcpu-macos-26-runner-b5a619aa57.vm.blacksmith.sh
+2026-10-03T08:36:31.2819980Z
+2026-10-03T08:36:31.2922480Z No GitHub SSH key? Add one at:
+2026-10-03T08:36:31.3025350Z https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+2026-10-03T08:36:31.3124750Z
+2026-10-03T08:36:31.3226520Z ----------------------------------------
+2026-10-03T08:36:31.3327810Z
+2026-10-03T08:36:31.3429100Z VM ID: blacksmith-6vcpu-macos-26-Runner-b5a619aa57
+2026-10-03T08:36:31.3530930Z Host: production-205.234.200.18-arm64
+2026-10-03T08:36:31.3631820Z Host Agent PID: 24448
+2026-10-03T08:36:31.3733230Z Host Agent Git SHA: dc54a2deb
+2026-10-03T08:36:31.3833530Z Host CPU Manufacturer: Apple
+2026-10-03T08:36:31.3935730Z Blacksmith Host Generation: gen 1
+2026-10-03T08:36:31.4035900Z Petname: production-happy-falcon-6869146b-macos
+2026-10-03T08:36:31.4136170Z Region: us-central
+2026-10-03T08:36:31.4237980Z Rootfs Version: 26-20260916
+2026-10-03T08:36:31.4339560Z OS Version: macOS 26.3
+2026-10-03T08:36:31.4441020Z ----------------------------------------
+2026-10-03T08:36:31.4542500Z
+2026-10-03T08:36:31.6831720Z ##[group]Run actions/checkout@v4
+2026-10-03T08:36:31.6832170Z with:
+2026-10-03T08:36:31.6832550Z   repository: CortexLM/desktop
+2026-10-03T08:36:31.6836940Z   token: ***
+2026-10-03T08:36:31.6837210Z   ssh-strict: true
+2026-10-03T08:36:31.6837660Z   ssh-user: git
+2026-10-03T08:36:31.6837980Z   persist-credentials: true
+2026-10-03T08:36:31.6838440Z   clean: true
+2026-10-03T08:36:31.6838810Z   sparse-checkout-cone-mode: true
+2026-10-03T08:36:31.6839620Z   fetch-depth: 1
+2026-10-03T08:36:31.6839890Z   fetch-tags: false
+2026-10-03T08:36:31.6840170Z   show-progress: true
+2026-10-03T08:36:31.6840580Z   lfs: false
+2026-10-03T08:36:31.6840970Z   submodules: false
+2026-10-03T08:36:31.6841260Z   set-safe-directory: true
+2026-10-03T08:36:31.6841610Z   allow-unsafe-pr-checkout: false
+2026-10-03T08:36:31.6841990Z env:
+2026-10-03T08:36:31.6842250Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T08:36:31.6842760Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:36:31.6843290Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:36:31.6843660Z ##[endgroup]
+2026-10-03T08:36:31.9904240Z Syncing repository: CortexLM/desktop
+2026-10-03T08:36:31.9905880Z ##[group]Getting Git version info
+2026-10-03T08:36:31.9906420Z Working directory is '/Users/runner/_work/desktop/desktop'
+2026-10-03T08:36:31.9907290Z [command]/opt/homebrew/bin/git version
+2026-10-03T08:36:32.0018920Z git version 2.54.0
+2026-10-03T08:36:32.0032630Z ##[endgroup]
+2026-10-03T08:36:32.0038940Z Copying '/Users/runner/.gitconfig' to '/Users/runner/_work/_temp/eb924773-b563-40d1-8521-7abdf3bfa4e6/.gitconfig'
+2026-10-03T08:36:32.0047070Z Temporarily overriding HOME='/Users/runner/_work/_temp/eb924773-b563-40d1-8521-7abdf3bfa4e6' before making global git config changes
+2026-10-03T08:36:32.0050650Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-03T08:36:32.0052810Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/_work/desktop/desktop
+2026-10-03T08:36:32.0134250Z Deleting the contents of '/Users/runner/_work/desktop/desktop'
+2026-10-03T08:36:32.0138370Z ##[group]Initializing the repository
+2026-10-03T08:36:32.0218680Z [command]/opt/homebrew/bin/git init /Users/runner/_work/desktop/desktop
+2026-10-03T08:36:32.0321120Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-03T08:36:32.0322640Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-03T08:36:32.0324150Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-03T08:36:32.0326640Z hint: call:
+2026-10-03T08:36:32.0327530Z hint:
+2026-10-03T08:36:32.0328700Z hint: 	git config --global init.defaultBranch <name>
+2026-10-03T08:36:32.0329700Z hint:
+2026-10-03T08:36:32.0330710Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-03T08:36:32.0332070Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-03T08:36:32.0333040Z hint:
+2026-10-03T08:36:32.0334050Z hint: 	git branch -m <name>
+2026-10-03T08:36:32.0334690Z hint:
+2026-10-03T08:36:32.0335570Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-03T08:36:32.0336860Z Initialized empty Git repository in /Users/runner/_work/desktop/desktop/.git/
+2026-10-03T08:36:32.0339430Z [command]/opt/homebrew/bin/git remote add origin https://github.com/CortexLM/desktop
+2026-10-03T08:36:32.0389690Z ##[endgroup]
+2026-10-03T08:36:32.0390640Z ##[group]Disabling automatic garbage collection
+2026-10-03T08:36:32.0392650Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-03T08:36:32.0447530Z ##[endgroup]
+2026-10-03T08:36:32.0448720Z ##[group]Setting up auth
+2026-10-03T08:36:32.0452890Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-03T08:36:32.0507630Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-03T08:36:32.1233340Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-03T08:36:32.1286030Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-03T08:36:32.1931620Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-03T08:36:32.1984200Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-03T08:36:32.3012910Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-03T08:36:32.3015030Z ##[endgroup]
+2026-10-03T08:36:32.3015860Z ##[group]Fetching the repository
+2026-10-03T08:36:32.3017380Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +520da2689bdccfdbbaba2378961784be3ba40cb1:refs/remotes/pull/36/merge
+2026-10-03T08:37:08.5712390Z From https://github.com/CortexLM/desktop
+2026-10-03T08:37:08.5713280Z  * [new ref]         520da2689bdccfdbbaba2378961784be3ba40cb1 -> pull/36/merge
+2026-10-03T08:37:08.5774600Z ##[endgroup]
+2026-10-03T08:37:08.5774900Z ##[group]Determining the checkout info
+2026-10-03T08:37:08.5775260Z ##[endgroup]
+2026-10-03T08:37:08.5779800Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-10-03T08:37:08.5840530Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-03T08:37:08.5879550Z ##[group]Checking out the ref
+2026-10-03T08:37:08.5882630Z [command]/opt/homebrew/bin/git checkout --progress --force refs/remotes/pull/36/merge
+2026-10-03T08:37:09.6016970Z Updating files:  54% (3614/6645)
+2026-10-03T08:37:09.6087770Z Updating files:  55% (3655/6645)
+2026-10-03T08:37:09.6164200Z Updating files:  56% (3722/6645)
+2026-10-03T08:37:09.6261660Z Updating files:  57% (3788/6645)
+2026-10-03T08:37:09.6430850Z Updating files:  58% (3855/6645)
+2026-10-03T08:37:09.6621730Z Updating files:  59% (3921/6645)
+2026-10-03T08:37:09.6716410Z Updating files:  60% (3987/6645)
+2026-10-03T08:37:09.6823840Z Updating files:  61% (4054/6645)
+2026-10-03T08:37:09.6925730Z Updating files:  62% (4120/6645)
+2026-10-03T08:37:09.7014500Z Updating files:  63% (4187/6645)
+2026-10-03T08:37:09.7099940Z Updating files:  64% (4253/6645)
+2026-10-03T08:37:09.7186580Z Updating files:  65% (4320/6645)
+2026-10-03T08:37:09.7395880Z Updating files:  66% (4386/6645)
+2026-10-03T08:37:09.7500650Z Updating files:  67% (4453/6645)
+2026-10-03T08:37:09.7603450Z Updating files:  68% (4519/6645)
+2026-10-03T08:37:09.7817970Z Updating files:  69% (4586/6645)
+2026-10-03T08:37:09.8026760Z Updating files:  70% (4652/6645)
+2026-10-03T08:37:09.8372930Z Updating files:  71% (4718/6645)
+2026-10-03T08:37:09.8674700Z Updating files:  72% (4785/6645)
+2026-10-03T08:37:09.9054610Z Updating files:  73% (4851/6645)
+2026-10-03T08:37:09.9278690Z Updating files:  74% (4918/6645)
+2026-10-03T08:37:09.9422890Z Updating files:  75% (4984/6645)
+2026-10-03T08:37:09.9477410Z Updating files:  76% (5051/6645)
+2026-10-03T08:37:09.9674000Z Updating files:  77% (5117/6645)
+2026-10-03T08:37:09.9754250Z Updating files:  78% (5184/6645)
+2026-10-03T08:37:09.9803410Z Updating files:  79% (5250/6645)
+2026-10-03T08:37:09.9926720Z Updating files:  80% (5316/6645)
+2026-10-03T08:37:09.9968430Z Updating files:  81% (5383/6645)
+2026-10-03T08:37:10.0014550Z Updating files:  82% (5449/6645)
+2026-10-03T08:37:10.0153100Z Updating files:  83% (5516/6645)
+2026-10-03T08:37:10.0542950Z Updating files:  84% (5582/6645)
+2026-10-03T08:37:10.0630440Z Updating files:  85% (5649/6645)
+2026-10-03T08:37:10.0763830Z Updating files:  86% (5715/6645)
+2026-10-03T08:37:10.0972370Z Updating files:  87% (5782/6645)
+2026-10-03T08:37:10.1050990Z Updating files:  88% (5848/6645)
+2026-10-03T08:37:10.1113060Z Updating files:  89% (5915/6645)
+2026-10-03T08:37:10.1153360Z Updating files:  90% (5981/6645)
+2026-10-03T08:37:10.1414240Z Updating files:  91% (6047/6645)
+2026-10-03T08:37:10.1453810Z Updating files:  92% (6114/6645)
+2026-10-03T08:37:10.1509250Z Updating files:  93% (6180/6645)
+2026-10-03T08:37:10.1564700Z Updating files:  94% (6247/6645)
+2026-10-03T08:37:10.1618210Z Updating files:  95% (6313/6645)
+2026-10-03T08:37:10.1671660Z Updating files:  96% (6380/6645)
+2026-10-03T08:37:10.1720990Z Updating files:  97% (6446/6645)
+2026-10-03T08:37:10.1774900Z Updating files:  98% (6513/6645)
+2026-10-03T08:37:10.1831330Z Updating files:  99% (6579/6645)
+2026-10-03T08:37:10.1831530Z Updating files: 100% (6645/6645)
+2026-10-03T08:37:10.1831690Z Updating files: 100% (6645/6645), done.
+2026-10-03T08:37:10.1880520Z HEAD is now at 520da26 Merge 760c4a046ce454bc8b0ab2fd85c941fec321c3ea into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d
+2026-10-03T08:37:10.1893980Z ##[endgroup]
+2026-10-03T08:37:10.1964190Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-03T08:37:10.2008130Z 520da2689bdccfdbbaba2378961784be3ba40cb1
+2026-10-03T08:37:10.2155550Z ##[group]Run actions/setup-node@v4
+2026-10-03T08:37:10.2155710Z with:
+2026-10-03T08:37:10.2155830Z   node-version: 22
+2026-10-03T08:37:10.2155970Z   always-auth: false
+2026-10-03T08:37:10.2156090Z   check-latest: false
+2026-10-03T08:37:10.2157270Z   token: ***
+2026-10-03T08:37:10.2157360Z env:
+2026-10-03T08:37:10.2157450Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T08:37:10.2157580Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:37:10.2157700Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:37:10.2157820Z ##[endgroup]
+2026-10-03T08:37:10.3038250Z Found in cache @ /Users/runner/hostedtoolcache/node/22.22.3/arm64
+2026-10-03T08:37:10.3040920Z (node:1059) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-03T08:37:10.3041280Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-03T08:37:10.3041950Z ##[group]Environment details
+2026-10-03T08:37:10.5552710Z node: v22.22.3
+2026-10-03T08:37:10.5552970Z npm: 10.9.8
+2026-10-03T08:37:10.5553100Z yarn: 1.22.22
+2026-10-03T08:37:10.5553500Z ##[endgroup]
+2026-10-03T08:37:10.5649920Z ##[group]Run oven-sh/setup-bun@v2
+2026-10-03T08:37:10.5650250Z with:
+2026-10-03T08:37:10.5650380Z   bun-version: 1.4.2
+2026-10-03T08:37:10.5650510Z   no-cache: false
+2026-10-03T08:37:10.5652050Z   token: ***
+2026-10-03T08:37:10.5652160Z env:
+2026-10-03T08:37:10.5652280Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T08:37:10.5652480Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:37:10.5652660Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:37:10.5652840Z ##[endgroup]
+2026-10-03T08:37:10.8753050Z Cache hit for: bun-q9QmESoiI7cwLvhPM7UOBEdVaSY=
+2026-10-03T08:37:11.0979130Z Received 23912746 of 23912746 (100.0%), 123.9 MBs/sec
+2026-10-03T08:37:11.0980500Z Cache Size: ~23 MB (23912746 B)
+2026-10-03T08:37:11.1003780Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/_work/_temp/88bfc628-de9d-4c23-b722-cb465cd8642d/cache.tzst -P -C /Users/runner/_work/desktop/desktop --delay-directory-restore --use-compress-program unzstd
+2026-10-03T08:37:11.1768280Z Cache restored successfully
+2026-10-03T08:37:11.1774870Z [command]/Users/runner/.bun/bin/bun --revision
+2026-10-03T08:37:11.1877930Z 1.4.2+744846f84
+2026-10-03T08:37:11.1880850Z Using a cached version of Bun: 1.4.2+744846f84
+2026-10-03T08:37:11.1942230Z ##[group]Run bun install --frozen-lockfile && node node_modules/electron/install.js
+2026-10-03T08:37:11.1942540Z bun install --frozen-lockfile && node node_modules/electron/install.js
+2026-10-03T08:37:11.2031820Z shell: /bin/bash -e {0}
+2026-10-03T08:37:11.2031990Z env:
+2026-10-03T08:37:11.2032110Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T08:37:11.2032270Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:37:11.2032410Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:37:11.2032540Z ##[endgroup]
+2026-10-03T08:37:11.2280620Z bun install v1.4.2 (744846f84)
+2026-10-03T08:37:12.9501030Z
+2026-10-03T08:37:12.9523450Z + @ai-sdk/anthropic@4.0.71
+2026-10-03T08:37:12.9527320Z + @ai-sdk/google@4.0.87
+2026-10-03T08:37:12.9557490Z + @ai-sdk/openai@4.0.83
+2026-10-03T08:37:12.9561170Z + @ai-sdk/openai-compatible@3.0.62
+2026-10-03T08:37:12.9572880Z + @babel/parser@7.29.9
+2026-10-03T08:37:12.9579300Z + @babel/traverse@8.0.6
+2026-10-03T08:37:12.9579730Z + @base-ui/react@1.8.0
+2026-10-03T08:37:12.9580030Z + @eslint/js@10.0.1
+2026-10-03T08:37:12.9580250Z + @modelcontextprotocol/sdk@1.31.0
+2026-10-03T08:37:12.9580450Z + @playwright/test@1.63.0
+2026-10-03T08:37:12.9580700Z + @types/node@26.6.4
+2026-10-03T08:37:12.9580980Z + @types/react@19.3.0
+2026-10-03T08:37:12.9581170Z + @types/react-dom@19.3.0
+2026-10-03T08:37:12.9581410Z + @vitejs/plugin-react@6.1.1
+2026-10-03T08:37:12.9581620Z + ai@7.0.127
+2026-10-03T08:37:12.9581870Z + electron@44.5.1
+2026-10-03T08:37:12.9582050Z + electron-builder@26.15.3
+2026-10-03T08:37:12.9582260Z + esbuild@0.28.2
+2026-10-03T08:37:12.9582400Z + eslint@10.11.0
+2026-10-03T08:37:12.9582670Z + eslint-plugin-react-hooks@7.1.1
+2026-10-03T08:37:12.9582830Z + hono@4.13.12
+2026-10-03T08:37:12.9583120Z + pixelmatch@7.2.0
+2026-10-03T08:37:12.9583260Z + playwright@1.63.0
+2026-10-03T08:37:12.9583380Z + pngjs@7.0.0
+2026-10-03T08:37:12.9583530Z + react@19.3.0
+2026-10-03T08:37:12.9583670Z + react-dom@19.3.0
+2026-10-03T08:37:12.9583830Z + typescript@5.9.3
+2026-10-03T08:37:12.9584150Z + typescript-eslint@8.71.0
+2026-10-03T08:37:12.9584300Z + vite@8.3.2
+2026-10-03T08:37:12.9584440Z + vitest@5.0.3
+2026-10-03T08:37:12.9584640Z + zod@4.6.5
+2026-10-03T08:37:12.9584730Z
+2026-10-03T08:37:12.9584840Z 525 packages installed [1.72s]
+2026-10-03T08:37:14.1350210Z ##[group]Run bun run build
+2026-10-03T08:37:14.1350730Z bun run build
+2026-10-03T08:37:14.1378180Z shell: /bin/bash -e {0}
+2026-10-03T08:37:14.1378330Z env:
+2026-10-03T08:37:14.1378470Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T08:37:14.1378650Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:37:14.1378790Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:37:14.1378930Z ##[endgroup]
+2026-10-03T08:37:14.1639490Z $ bun run build:app && bun run build:desktop
+2026-10-03T08:37:14.1687970Z $ cd packages/app && vite build
+2026-10-03T08:37:14.4054330Z vite v8.3.2 building client environment for production...
+2026-10-03T08:37:14.4139460Z transforming...
+2026-10-03T08:37:14.5516620Z ✓ 863 modules transformed.
+2026-10-03T08:37:14.6587920Z rendering chunks...
+2026-10-03T08:37:14.7709540Z computing gzip size...
+2026-10-03T08:37:14.7954810Z dist/index.html                     0.66 kB │ gzip:   0.38 kB
+2026-10-03T08:37:14.7955400Z dist/assets/index-BLVQW-LL.css    205.33 kB │ gzip:  36.23 kB
+2026-10-03T08:37:14.7955730Z dist/assets/shell-C-itNRLu.js       0.93 kB │ gzip:   0.49 kB
+2026-10-03T08:37:14.7956110Z dist/assets/shell-BCHMvIiL.js       0.96 kB │ gzip:   0.60 kB
+2026-10-03T08:37:14.7956520Z dist/assets/shell-BuotxJKs.js       0.99 kB │ gzip:   0.55 kB
+2026-10-03T08:37:14.7957050Z dist/assets/shell-Yhf1FA3F.js       0.99 kB │ gzip:   0.61 kB
+2026-10-03T08:37:14.7957660Z dist/assets/shell-CmOyaB3c.js       1.02 kB │ gzip:   0.55 kB
+2026-10-03T08:37:14.7958040Z dist/assets/shell-CYBsECV8.js       1.03 kB │ gzip:   0.56 kB
+2026-10-03T08:37:14.7958360Z dist/assets/shell-CwZdhwwk.js       1.04 kB │ gzip:   0.55 kB
+2026-10-03T08:37:14.7958670Z dist/assets/shell-DBev-A7t.js       1.08 kB │ gzip:   0.65 kB
+2026-10-03T08:37:14.7958970Z dist/assets/bots-Bm1-6BNE.js        4.91 kB │ gzip:   2.54 kB
+2026-10-03T08:37:14.7959270Z dist/assets/bots-G-GRUblJ.js        4.91 kB │ gzip:   2.12 kB
+2026-10-03T08:37:14.7959570Z dist/assets/bots-Dhnxap2k.js        5.24 kB │ gzip:   2.28 kB
+2026-10-03T08:37:14.7959900Z dist/assets/bots-C_sEU92Q.js        5.28 kB │ gzip:   2.36 kB
+2026-10-03T08:37:14.7960250Z dist/assets/bots-DEyUUREg.js        5.30 kB │ gzip:   2.29 kB
+2026-10-03T08:37:14.7960530Z dist/assets/bots-Vx_jdXt9.js        5.31 kB │ gzip:   2.52 kB
+2026-10-03T08:37:14.7960820Z dist/assets/bots-XhGdPyli.js        5.33 kB │ gzip:   2.29 kB
+2026-10-03T08:37:14.7961100Z dist/assets/bots-BdqX5oXD.js        5.75 kB │ gzip:   2.69 kB
+2026-10-03T08:37:14.7961430Z dist/assets/system-Dgm-zsfL.js      8.53 kB │ gzip:   3.50 kB
+2026-10-03T08:37:14.7961760Z dist/assets/system-6GOii8V2.js      8.58 kB │ gzip:   4.22 kB
+2026-10-03T08:37:14.7962030Z dist/assets/system-D-v_P-IN.js      9.09 kB │ gzip:   3.86 kB
+2026-10-03T08:37:14.7962320Z dist/assets/system-D9_n4Goj.js      9.12 kB │ gzip:   3.74 kB
+2026-10-03T08:37:14.7962790Z dist/assets/system-CHsH64BV.js      9.21 kB │ gzip:   4.18 kB
+2026-10-03T08:37:14.7963210Z dist/assets/system-D0-Zm1I0.js      9.35 kB │ gzip:   3.81 kB
+2026-10-03T08:37:14.7963520Z dist/assets/system-CUSSAkIm.js      9.36 kB │ gzip:   3.82 kB
+2026-10-03T08:37:14.7963820Z dist/assets/system-CAyEVNFh.js      9.95 kB │ gzip:   4.39 kB
+2026-10-03T08:37:14.7964110Z dist/assets/work-H1mXT1T-.js       13.41 kB │ gzip:   5.15 kB
+2026-10-03T08:37:14.7964390Z dist/assets/work-BFR3EcZv.js       13.47 kB │ gzip:   6.04 kB
+2026-10-03T08:37:14.7964680Z dist/assets/work-CXx4q0-W.js       14.41 kB │ gzip:   5.50 kB
+2026-10-03T08:37:14.7965030Z dist/assets/work-C3sVn7Tw.js       14.69 kB │ gzip:   6.07 kB
+2026-10-03T08:37:14.7965320Z dist/assets/work-DE4UuE7v.js       14.70 kB │ gzip:   5.58 kB
+2026-10-03T08:37:14.7965620Z dist/assets/work-DM-bn9rL.js       14.72 kB │ gzip:   5.62 kB
+2026-10-03T08:37:14.7965940Z dist/assets/work-D7wz_BjB.js       14.76 kB │ gzip:   5.78 kB
+2026-10-03T08:37:14.7966280Z dist/assets/work-EocTYN0P.js       15.94 kB │ gzip:   6.28 kB
+2026-10-03T08:37:14.7966570Z dist/assets/code-D796Wmca.js       16.38 kB │ gzip:   6.34 kB
+2026-10-03T08:37:14.7967400Z dist/assets/code-Dj63_RNm.js       16.92 kB │ gzip:   7.40 kB
+2026-10-03T08:37:14.7968030Z dist/assets/code-cF_R13w2.js       17.11 kB │ gzip:   6.72 kB
+2026-10-03T08:37:14.7968320Z dist/assets/code-1vU-fKss.js       17.25 kB │ gzip:   6.78 kB
+2026-10-03T08:37:14.7968620Z dist/assets/code-D0jaYtvL.js       17.29 kB │ gzip:   6.88 kB
+2026-10-03T08:37:14.7968890Z dist/assets/code-l1ImvW5S.js       17.35 kB │ gzip:   6.71 kB
+2026-10-03T08:37:14.7969170Z dist/assets/code-D17_EVJa.js       17.71 kB │ gzip:   7.47 kB
+2026-10-03T08:37:14.7969440Z dist/assets/chat-CvBJxFqq.js       17.90 kB │ gzip:   8.91 kB
+2026-10-03T08:37:14.7969710Z dist/assets/chat-CpUWRzSs.js       18.59 kB │ gzip:   7.49 kB
+2026-10-03T08:37:14.7969960Z dist/assets/code-D0QB2Ug8.js       18.70 kB │ gzip:   7.62 kB
+2026-10-03T08:37:14.7970280Z dist/assets/chat-C_J9W5h_.js       20.80 kB │ gzip:   8.12 kB
+2026-10-03T08:37:14.7970610Z dist/assets/chat-CGHYpLbL.js       20.84 kB │ gzip:   8.54 kB
+2026-10-03T08:37:14.7970850Z dist/assets/chat-DPP7jha6.js       21.01 kB │ gzip:   8.24 kB
+2026-10-03T08:37:14.7971090Z dist/assets/files-ChUKgMNm.js      21.02 kB │ gzip:  10.13 kB
+2026-10-03T08:37:14.7971350Z dist/assets/chat-DeCdZ0A1.js       21.07 kB │ gzip:   8.14 kB
+2026-10-03T08:37:14.7971650Z dist/assets/chat-Csrcd_Np.js       21.26 kB │ gzip:   8.86 kB
+2026-10-03T08:37:14.7972000Z dist/assets/files-PuBVWCGV.js      21.43 kB │ gzip:   8.58 kB
+2026-10-03T08:37:14.7972280Z dist/assets/chat-BGpNcO0B.js       22.08 kB │ gzip:   9.39 kB
+2026-10-03T08:37:14.7972570Z dist/assets/files-Cg4Cbij3.js      23.33 kB │ gzip:   9.59 kB
+2026-10-03T08:37:14.7972870Z dist/assets/files-8yYH43vb.js      23.62 kB │ gzip:   9.30 kB
+2026-10-03T08:37:14.7973140Z dist/assets/files-DIk1qP8R.js      23.72 kB │ gzip:   9.27 kB
+2026-10-03T08:37:14.7973410Z dist/assets/files-C3wBKb8I.js      23.85 kB │ gzip:   9.31 kB
+2026-10-03T08:37:14.7973670Z dist/assets/files-B0LnTjdG.js      24.10 kB │ gzip:  10.17 kB
+2026-10-03T08:37:14.7973950Z dist/assets/files-k2Mgqtmt.js      25.31 kB │ gzip:  10.63 kB
+2026-10-03T08:37:14.7974200Z dist/assets/index-DKH-iKjj.js   2,445.11 kB │ gzip: 725.07 kB
+2026-10-03T08:37:14.7974310Z
+2026-10-03T08:37:14.8074030Z ✓ built in 402ms
+2026-10-03T08:37:14.8295630Z $ node packages/desktop/build.mjs
+2026-10-03T08:37:15.0257880Z
+2026-10-03T08:37:15.0258880Z   packages/desktop/dist/main.cjs      3.4mb ⚠️
+2026-10-03T08:37:15.0259210Z   packages/desktop/dist/main.cjs.map  7.5mb
+2026-10-03T08:37:15.0259360Z
+2026-10-03T08:37:15.0259450Z ⚡ Done in 135ms
+2026-10-03T08:37:15.0279390Z
+2026-10-03T08:37:15.0279830Z   packages/desktop/dist/preload.cjs      1.9kb
+2026-10-03T08:37:15.0280360Z   packages/desktop/dist/preload.cjs.map  2.3kb
+2026-10-03T08:37:15.0280570Z
+2026-10-03T08:37:15.0280830Z ⚡ Done in 1ms
+2026-10-03T08:37:15.0342490Z ##[group]Run bun run test:e2e
+2026-10-03T08:37:15.0342650Z bun run test:e2e
+2026-10-03T08:37:15.0372120Z shell: /bin/bash -e {0}
+2026-10-03T08:37:15.0372260Z env:
+2026-10-03T08:37:15.0372380Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T08:37:15.0372560Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:37:15.0372760Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:37:15.0372920Z ##[endgroup]
+2026-10-03T08:37:15.0648180Z $ playwright test
+2026-10-03T08:37:17.4293460Z (node:1122) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T08:37:17.4293880Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T08:37:17.7102300Z
+2026-10-03T08:37:17.7102570Z Running 103 tests using 1 worker
+2026-10-03T08:37:17.7102760Z
+2026-10-03T08:37:17.9942940Z (node:1209) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-03T08:37:17.9962830Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-03T08:37:20.9285170Z   ✓    1 tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — light (2.9s)
+2026-10-03T08:37:22.5992370Z   ✓    2 tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — dark (1.7s)
+2026-10-03T08:37:26.8112740Z   ✓    3 tests/e2e/bot-owner.spec.ts:34:40 › Bot route ownership replaces the selected session before displaying or sending — light (4.2s)
+2026-10-03T08:37:30.9749700Z   ✓    4 tests/e2e/bot-owner.spec.ts:34:40 › Bot route ownership replaces the selected session before displaying or sending — dark (4.2s)
+2026-10-03T08:37:33.2236780Z   ✓    5 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 light (2.2s)
+2026-10-03T08:37:41.5416070Z   ✓    6 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 light (8.3s)
+2026-10-03T08:37:43.6391340Z   ✓    7 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 dark (2.1s)
+2026-10-03T08:37:52.3090900Z   ✓    8 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 dark (8.7s)
+2026-10-03T08:37:54.2759620Z   ✓    9 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 light (2.0s)
+2026-10-03T08:38:01.3503540Z   ✓   10 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 light (7.1s)
+2026-10-03T08:38:03.3571170Z   ✓   11 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 dark (2.0s)
+2026-10-03T08:38:10.8881350Z   ✓   12 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 dark (7.5s)
+2026-10-03T08:38:12.3758990Z   ✓   13 tests/e2e/bot-safety.spec.ts:194:1 › Bot onboarding does not navigate after leaving preview (1.5s)
+2026-10-03T08:38:14.5327990Z   ✓   14 tests/e2e/bot-safety.spec.ts:211:1 › Preview Bot locale reset and live-mode boundary (2.2s)
+2026-10-03T08:38:15.8527590Z   ✓   15 tests/e2e/chrome.spec.ts:8:3 › native window chrome and en menu (1.3s)
+2026-10-03T08:38:17.1289240Z   ✓   16 tests/e2e/chrome.spec.ts:8:3 › native window chrome and fr menu (1.3s)
+2026-10-03T08:38:18.4794200Z   ✓   17 tests/e2e/chrome.spec.ts:42:1 › reduced-motion startup inherits themed text immediately (1.3s)
+2026-10-03T08:38:21.8881840Z   ✓   18 tests/e2e/code-diff-scroll.spec.ts:9:1 › Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible (3.4s)
+2026-10-03T08:38:25.6276360Z   ✓   19 tests/e2e/code-models.spec.ts:38:3 › Code sends the chosen model, restores session selection and refuses unavailable models — light (3.7s)
+2026-10-03T08:38:28.6913190Z   ✓   20 tests/e2e/code-models.spec.ts:148:3 › Code image refusal leaves attachment recovery controls reachable — light (3.1s)
+2026-10-03T08:38:32.3696320Z   ✓   21 tests/e2e/code-models.spec.ts:38:3 › Code sends the chosen model, restores session selection and refuses unavailable models — dark (3.7s)
+2026-10-03T08:38:35.4039780Z   ✓   22 tests/e2e/code-models.spec.ts:148:3 › Code image refusal leaves attachment recovery controls reachable — dark (3.0s)
+2026-10-03T08:38:36.8083130Z   ✓   23 tests/e2e/code-models.spec.ts:234:1 › Code keeps unsupported and missing session models instead of falling back (1.4s)
+2026-10-03T08:39:12.7436320Z   ✓   24 tests/e2e/components.spec.ts:4:40 › Components catalog: families, variants and three-preview ceiling (light) (35.9s)
+2026-10-03T08:39:50.2139480Z   ✓   25 tests/e2e/components.spec.ts:4:40 › Components catalog: families, variants and three-preview ceiling (dark) (37.5s)
+2026-10-03T08:39:53.0229880Z   ✓   26 tests/e2e/components.spec.ts:63:40 › Components catalog: keyboard, clipboard and local demos at minimum window (light) (2.8s)
+2026-10-03T08:39:56.3057230Z   ✓   27 tests/e2e/components.spec.ts:63:40 › Components catalog: keyboard, clipboard and local demos at minimum window (dark) (3.3s)
+2026-10-03T08:39:58.9345350Z   ✓   28 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — light (2.6s)
+2026-10-03T08:40:05.0681350Z   ✓   29 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — light (6.1s)
+2026-10-03T08:40:07.3578570Z   ✓   30 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — dark (2.3s)
+2026-10-03T08:40:13.9483320Z   ✓   31 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — dark (6.6s)
+2026-10-03T08:40:15.5393240Z   ✓   32 tests/e2e/engine.spec.ts:11:1 › MCP connection material stays in main across save, reload and removal (1.6s)
+2026-10-03T08:40:17.0450740Z   ✓   33 tests/e2e/engine.spec.ts:38:1 › models.dev catalog is listed and searchable through the bridge (1.5s)
+2026-10-03T08:40:18.9864130Z   ✓   34 tests/e2e/engine.spec.ts:52:1 › streamed exchange with a thinking- and image-capable model (1.9s)
+2026-10-03T08:40:20.4846390Z   ✓   35 tests/e2e/engine.spec.ts:104:1 › an image is refused for a model without image input (1.5s)
+2026-10-03T08:40:26.5980220Z   ✓   36 tests/e2e/frozen-composer.spec.ts:24:3 › frozen preview actions and same-URL Chat/Code history — light (6.1s)
+2026-10-03T08:40:31.1155450Z   ✓   37 tests/e2e/frozen-composer.spec.ts:147:3 › live composer capsule geometry, locale labels and attachment safety — light (4.5s)
+2026-10-03T08:40:36.8286740Z   ✓   38 tests/e2e/frozen-composer.spec.ts:24:3 › frozen preview actions and same-URL Chat/Code history — dark (5.7s)
+2026-10-03T08:40:41.8248310Z   ✓   39 tests/e2e/frozen-composer.spec.ts:147:3 › live composer capsule geometry, locale labels and attachment safety — dark (5.0s)
+2026-10-03T08:40:52.0207440Z   ✓   40 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 960 light (10.2s)
+2026-10-03T08:41:02.8852920Z   ✓   41 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 960 dark (10.9s)
+2026-10-03T08:41:14.4089760Z   ✓   42 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 1440 light (11.5s)
+2026-10-03T08:41:26.4595370Z   ✓   43 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 1440 dark (12.0s)
+2026-10-03T08:41:31.7192360Z   ✓   44 tests/e2e/keyboard.spec.ts:4:1 › hidden navigation cannot receive focus; theme radios and Undo work from the keyboard (5.3s)
+2026-10-03T08:41:40.8237200Z   ✓   45 tests/e2e/keyboard.spec.ts:130:1 › frozen shell motion settles, latest tab wins and hidden menus close (9.1s)
+2026-10-03T08:41:43.7262510Z   ✓   46 tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot erase a completed stream — light (2.9s)
+2026-10-03T08:41:45.9887180Z   ✓   47 tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot revive a deleted session — light (2.3s)
+2026-10-03T08:41:49.0186380Z   ✓   48 tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot erase a completed stream — dark (3.0s)
+2026-10-03T08:41:51.3797360Z   ✓   49 tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot revive a deleted session — dark (2.4s)
+2026-10-03T08:41:54.3138340Z   ✓   50 tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 light (2.9s)
+2026-10-03T08:41:56.5241700Z   ✓   51 tests/e2e/memory-safety.spec.ts:190:3 › Bot memory retains refused drafts and accepts one owned write — 960 light (2.2s)
+2026-10-03T08:41:58.8324590Z   ✓   52 tests/e2e/memory-safety.spec.ts:263:3 › Bot memory wipe waits for failures, partial writes and accepted retry — 960 light (2.3s)
+2026-10-03T08:42:00.9778790Z   ✓   53 tests/e2e/memory-safety.spec.ts:331:3 › Memory single-entry deletion keeps refused rows and reports only accepted writes — 960 light (2.1s)
+2026-10-03T08:42:03.4266920Z   ✓   54 tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 dark (2.4s)
+2026-10-03T08:42:05.5677470Z   ✓   55 tests/e2e/memory-safety.spec.ts:190:3 › Bot memory retains refused drafts and accepts one owned write — 960 dark (2.1s)
+2026-10-03T08:42:07.7653100Z   ✓   56 tests/e2e/memory-safety.spec.ts:263:3 › Bot memory wipe waits for failures, partial writes and accepted retry — 960 dark (2.2s)
+2026-10-03T08:42:09.9057350Z   ✓   57 tests/e2e/memory-safety.spec.ts:331:3 › Memory single-entry deletion keeps refused rows and reports only accepted writes — 960 dark (2.1s)
+2026-10-03T08:42:13.0213420Z   ✓   58 tests/e2e/navigation.spec.ts:4:1 › skipped native route and theme transitions preserve updates and report callback errors (3.1s)
+2026-10-03T08:42:16.5314000Z   ✓   59 tests/e2e/navigation.spec.ts:85:1 › Back cancels a pending tab choice even when its label matches an older request (3.5s)
+2026-10-03T08:42:18.9946880Z   ✓   60 tests/e2e/navigation.spec.ts:127:1 › a newer keyboard tab choice survives the previous route commit (2.5s)
+2026-10-03T08:42:20.6896010Z   ✓   61 tests/e2e/navigation.spec.ts:160:1 › a pending route commit preserves the outgoing Work tree and restores Bot activity (1.7s)
+2026-10-03T08:42:29.5534930Z   ✓   62 tests/e2e/navigation.spec.ts:199:1 › anchors, native menus and history preserve routes, variants and chat identities (8.9s)
+2026-10-03T08:42:31.4972690Z   ✓   63 tests/e2e/navigation.spec.ts:316:1 › Work preview departure keeps its context until native live-Code navigation commits (1.9s)
+2026-10-03T08:42:33.9984940Z   ✓   64 tests/e2e/remote-auth.spec.ts:135:3 › Email code sign-in retains refusal, submits once, reloads and signs out — 960 light (2.5s)
+2026-10-03T08:42:38.0056020Z   ✓   65 tests/e2e/remote-auth.spec.ts:200:3 › Unavailable continuations and cancelled codes stay private; restart clears login — 960 light (4.0s)
+2026-10-03T08:42:40.6459510Z   ✓   66 tests/e2e/remote-auth.spec.ts:135:3 › Email code sign-in retains refusal, submits once, reloads and signs out — 960 dark (2.6s)
+2026-10-03T08:42:44.7831550Z   ✓   67 tests/e2e/remote-auth.spec.ts:200:3 › Unavailable continuations and cancelled codes stay private; restart clears login — 960 dark (4.1s)
+2026-10-03T08:42:47.0228330Z   ✓   68 tests/e2e/remote-auth.spec.ts:276:1 › Mode and origin changes reject late auth replies and never reuse another origin’s credentials (2.2s)
+2026-10-03T08:42:49.1550580Z   ✓   69 tests/e2e/remote-auth.spec.ts:319:1 › Initial connection and auth reads protect selection, canonical sign-in and cancellation (2.1s)
+2026-10-03T08:43:14.8256570Z   ✓   70 tests/e2e/remote-auth.spec.ts:409:1 › Live sign-in copy stays readable across eight locales (25.7s)
+2026-10-03T08:43:16.0623080Z   ✓   71 tests/e2e/responsive.spec.ts:10:3 › Code approval descriptions stay clear of controls — 960×640 light (1.2s)
+2026-10-03T08:43:17.2685550Z   ✓   72 tests/e2e/responsive.spec.ts:10:3 › Code approval descriptions stay clear of controls — 960×640 dark (1.2s)
+2026-10-03T08:43:18.5154230Z   ✓   73 tests/e2e/responsive.spec.ts:10:3 › Code approval descriptions stay clear of controls — 1024×686 light (1.2s)
+2026-10-03T08:43:19.7876340Z   ✓   74 tests/e2e/responsive.spec.ts:10:3 › Code approval descriptions stay clear of controls — 1024×686 dark (1.3s)
+2026-10-03T08:43:22.7118380Z   ✓   75 tests/e2e/responsive.spec.ts:56:3 › Work board columns and cards remain reachable — 960 light (2.9s)
+2026-10-03T08:43:25.7722710Z   ✓   76 tests/e2e/responsive.spec.ts:56:3 › Work board columns and cards remain reachable — 960 dark (3.1s)
+2026-10-03T08:43:28.6455640Z   ✓   77 tests/e2e/responsive.spec.ts:56:3 › Work board columns and cards remain reachable — 1024 light (2.9s)
+2026-10-03T08:43:31.5757140Z   ✓   78 tests/e2e/responsive.spec.ts:56:3 › Work board columns and cards remain reachable — 1024 dark (2.9s)
+2026-10-03T08:43:34.4545340Z   ✓   79 tests/e2e/responsive.spec.ts:56:3 › Work board columns and cards remain reachable — 1440 light (2.9s)
+2026-10-03T08:43:37.3401680Z   ✓   80 tests/e2e/responsive.spec.ts:56:3 › Work board columns and cards remain reachable — 1440 dark (2.9s)
+2026-10-03T08:43:38.5444940Z   ✓   81 tests/e2e/responsive.spec.ts:122:1 › preview navigation loads fixtures and catches startup URL changes (1.2s)
+2026-10-03T08:43:45.4715560Z   ✓   82 tests/e2e/responsive.spec.ts:154:1 › review, diff, canvas and computer controls remain reachable in small desktop windows (6.9s)
+2026-10-03T08:43:47.7802300Z   ✓   83 tests/e2e/routines.spec.ts:46:3 › Routine history reflects running, interruption and latest results — light (2.3s)
+2026-10-03T08:43:49.3387870Z   ✓   84 tests/e2e/routines.spec.ts:111:3 › Routine actions retain honest feedback when the engine refuses — light (1.6s)
+2026-10-03T08:43:51.3735820Z   ✓   85 tests/e2e/routines.spec.ts:46:3 › Routine history reflects running, interruption and latest results — dark (2.0s)
+2026-10-03T08:43:52.9899410Z   ✓   86 tests/e2e/routines.spec.ts:111:3 › Routine actions retain honest feedback when the engine refuses — dark (1.6s)
+2026-10-03T08:45:14.5875210Z rendered 426 screen states
+2026-10-03T08:45:14.5896210Z   ✓   87 tests/e2e/screens.spec.ts:10:1 › every design screen and state renders (1.4m)
+2026-10-03T08:45:16.4023080Z   ✓   88 tests/e2e/search-bots.spec.ts:26:40 › Search finds persisted Bots by name and persona, preserving grouped keyboard identity — light (1.8s)
+2026-10-03T08:45:18.3217880Z   ✓   89 tests/e2e/search-bots.spec.ts:26:40 › Search finds persisted Bots by name and persona, preserving grouped keyboard identity — dark (1.9s)
+2026-10-03T08:45:19.9748070Z   ✓   90 tests/e2e/search-bots.spec.ts:93:1 › Search reports either source's real request refusal and retries both lists (1.6s)
+2026-10-03T08:45:22.3907560Z   ✓   91 tests/e2e/terminal-copy.spec.ts:19:1 › French Code terminal localizes fresh shell notices without changing output or replay (2.4s)
+2026-10-03T08:45:38.1964280Z   ✓   92 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light (15.8s)
+2026-10-03T08:45:53.7617620Z   ✓   93 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark (15.6s)
+2026-10-03T08:45:57.9803650Z   ✓   94 tests/e2e/ui-flows.spec.ts:103:1 › streamed exchange with thinking and an image, driven from the composer (4.2s)
+2026-10-03T08:46:10.7561610Z   ✓   95 tests/e2e/ui-flows.spec.ts:141:1 › rejected sends keep the draft and attachments; retry resends the image (12.8s)
+2026-10-03T08:46:14.6885180Z   ✓   96 tests/e2e/work-routine-source.spec.ts:48:3 › Work task conversion preserves source context and only creates on confirmation — light (3.9s)
+2026-10-03T08:46:22.2885520Z   ✓   97 tests/e2e/work-routine-source.spec.ts:151:3 › Work routine source rejects missing tasks and attachments; reassignment uses the selected Bot — light (7.6s)
+2026-10-03T08:46:26.2563220Z   ✓   98 tests/e2e/work-routine-source.spec.ts:48:3 › Work task conversion preserves source context and only creates on confirmation — dark (4.0s)
+2026-10-03T08:46:33.7972770Z   ✓   99 tests/e2e/work-routine-source.spec.ts:151:3 › Work routine source rejects missing tasks and attachments; reassignment uses the selected Bot — dark (7.5s)
+2026-10-03T08:46:36.6171160Z   ✓  100 tests/e2e/work-routine-source.spec.ts:252:1 › Routine source navigation ignores late source responses and late save completion (2.8s)
+2026-10-03T08:46:38.6061960Z   ✓  101 tests/e2e/work-routine-source.spec.ts:332:1 › Routine source waits for its Bot list and retains the draft through list failure and retry (2.0s)
+2026-10-03T08:46:41.7669230Z   ✓  102 tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — light (3.2s)
+2026-10-03T08:46:44.9040140Z   ✓  103 tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — dark (3.1s)
+2026-10-03T08:46:44.9191180Z
+2026-10-03T08:46:44.9193710Z   103 passed (9.5m)
+2026-10-03T08:46:45.1695020Z ##[group]Run npx electron-builder --mac dir zip --arm64 --publish never -c.mac.identity=null -c.mac.notarize=false
+2026-10-03T08:46:45.1695480Z npx electron-builder --mac dir zip --arm64 --publish never -c.mac.identity=null -c.mac.notarize=false
+2026-10-03T08:46:45.1833610Z shell: /bin/bash -e {0}
+2026-10-03T08:46:45.1833780Z env:
+2026-10-03T08:46:45.1833900Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T08:46:45.1834030Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:46:45.1834160Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:46:45.1834280Z ##[endgroup]
+2026-10-03T08:46:45.7775680Z   • electron-builder  version=26.15.3 os=25.3.0
+2026-10-03T08:46:45.7814300Z   • loaded configuration  file=/Users/runner/_work/desktop/desktop/electron-builder.yml
+2026-10-03T08:46:46.0099030Z   • detected workspace root for project using lock file  pm=bun config=undefined resolved=/Users/runner/_work/desktop/desktop projectDir=/Users/runner/_work/desktop/desktop
+2026-10-03T08:46:46.0117120Z   • executing @electron/rebuild  electronVersion=44.5.1 arch=arm64 buildFromSource=false workspaceRoot=/Users/runner/_work/desktop/desktop projectDir=./ appDir=./
+2026-10-03T08:46:46.0117620Z   • installing native dependencies  arch=arm64
+2026-10-03T08:46:46.1122660Z   • completed installing native dependencies
+2026-10-03T08:46:46.1133660Z   • packaging       platform=darwin arch=arm64 electron=44.5.1 appOutDir=dist/mac-arm64
+2026-10-03T08:46:46.2071400Z   • downloaded      label=electron progress=100%
+2026-10-03T08:46:47.6992410Z   • downloaded electron zip extracted successfully  output=/Users/runner/_work/desktop/desktop/dist/mac-arm64
+2026-10-03T08:46:47.7093160Z   • searching for node modules  pm=bun searchDir=/Users/runner/_work/desktop/desktop
+2026-10-03T08:46:47.7094610Z   • note: bun does not support any CLI for dependency tree extraction, utilizing file traversal collector instead
+2026-10-03T08:46:47.7095030Z   • using manual traversal of node_modules to build dependency tree
+2026-10-03T08:46:47.7113640Z   • searching for node modules  pm=traversal searchDir=/Users/runner/_work/desktop/desktop
+2026-10-03T08:46:47.7114060Z   • using manual traversal of node_modules to build dependency tree
+2026-10-03T08:46:47.7117590Z   • no node modules returned while searching directories  searchDirectories=[""]
+2026-10-03T08:46:47.8537120Z   • default Electron icon is used  reason=application icon is not set
+2026-10-03T08:46:47.8725840Z   • Current build is a part of pull request, code signing will be skipped.
+2026-10-03T08:46:47.8726180Z Set env CSC_FOR_PULL_REQUEST to true to force code signing.
+2026-10-03T08:46:47.8726760Z There are serious security concerns with CSC_FOR_PULL_REQUEST=true (see the  CircleCI documentation (https://circleci.com/docs/1.0/fork-pr-builds/) for details)
+2026-10-03T08:46:47.8727580Z If you have SSH keys, sensitive env vars or AWS credentials stored in your project settings and untrusted forks can make pull requests against your repo, then this option isn't for you.
+2026-10-03T08:46:47.8728890Z   • building        target=macOS zip arch=arm64 file=dist/Cortex-0.2.0-arm64-mac.zip
+2026-10-03T08:46:55.9706500Z   • building block map  blockMapFile=dist/Cortex-0.2.0-arm64-mac.zip.blockmap
+2026-10-03T08:46:58.6242250Z ##[group]Run node scripts/smoke.mjs mac
+2026-10-03T08:46:58.6242430Z node scripts/smoke.mjs mac
+2026-10-03T08:46:58.6267300Z shell: /bin/bash -e {0}
+2026-10-03T08:46:58.6267450Z env:
+2026-10-03T08:46:58.6267570Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T08:46:58.6267710Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:46:58.6267850Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:46:58.6267990Z ##[endgroup]
+2026-10-03T08:46:59.6860880Z window: Cortex cortex://app/index.html
+2026-10-03T08:47:09.9868630Z could not create image from display
+2026-10-03T08:47:09.9869910Z screencapture failed: Command failed: screencapture -x out/smoke-screen.png
+2026-10-03T08:47:09.9870170Z could not create image from display
+2026-10-03T08:47:09.9870260Z
+2026-10-03T08:47:09.9871610Z renderer text: Chat | Work | Cortex | New chat | Create your Bot | Tools | Web search | Documents | Images | Automations | Recents | Your chats will appear here. | Getting started | 0 of 5 | What’s on today? | No model
+2026-10-03T08:47:09.9872130Z SMOKE OK
+2026-10-03T08:47:10.2247190Z ##[group]Run mkdir -p out && cp ~/Library/Logs/DiagnosticReports/*.ips out/ 2>/dev/null || true
+2026-10-03T08:47:10.2247540Z mkdir -p out && cp ~/Library/Logs/DiagnosticReports/*.ips out/ 2>/dev/null || true
+2026-10-03T08:47:10.2282540Z shell: /bin/bash -e {0}
+2026-10-03T08:47:10.2282710Z env:
+2026-10-03T08:47:10.2282860Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T08:47:10.2283050Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:47:10.2283210Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:47:10.2283380Z ##[endgroup]
+2026-10-03T08:47:10.2582420Z ##[group]Run actions/upload-artifact@v4
+2026-10-03T08:47:10.2583200Z with:
+2026-10-03T08:47:10.2583340Z   name: macos
+2026-10-03T08:47:10.2583500Z   path: out/
+test-results/
+playwright-report/
+
+2026-10-03T08:47:10.2583680Z   if-no-files-found: warn
+2026-10-03T08:47:10.2583830Z   compression-level: 6
+2026-10-03T08:47:10.2583940Z   overwrite: false
+2026-10-03T08:47:10.2584050Z   include-hidden-files: false
+2026-10-03T08:47:10.2584180Z env:
+2026-10-03T08:47:10.2584280Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T08:47:10.2584430Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:47:10.2584600Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:47:10.2584890Z ##[endgroup]
+2026-10-03T08:47:10.3547070Z (node:4466) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-03T08:47:10.3547580Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-03T08:47:10.4106810Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-03T08:47:10.4108030Z The least common ancestor is /Users/runner/_work/desktop/desktop. This will be the root directory of the artifact
+2026-10-03T08:47:10.4108400Z With the provided path, there will be 411 files uploaded
+2026-10-03T08:47:10.4111180Z Artifact name is valid!
+2026-10-03T08:47:10.4111360Z Root directory input is valid!
+2026-10-03T08:47:10.6416170Z Beginning upload of artifact content to blob storage
+2026-10-03T08:47:10.8427980Z (node:4466) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-03T08:47:11.2095150Z Uploaded bytes 8388608
+2026-10-03T08:47:11.4170820Z Uploaded bytes 16777216
+2026-10-03T08:47:11.4687510Z Uploaded bytes 25165824
+2026-10-03T08:47:11.5739080Z Uploaded bytes 28542049
+2026-10-03T08:47:11.6132470Z Finished uploading artifact content to blob storage!
+2026-10-03T08:47:11.6136330Z SHA256 digest of uploaded artifact zip is 90f474aa0476ca8956508875be825317bf06fd844c6c95f4496b9f3b6737d45b
+2026-10-03T08:47:11.6140910Z Finalizing artifact upload
+2026-10-03T08:47:11.9090690Z Artifact macos.zip successfully finalized. Artifact ID 11269637206
+2026-10-03T08:47:11.9093220Z Artifact macos has been successfully uploaded! Final size is 28542049 bytes. Artifact ID is 11269637206
+2026-10-03T08:47:11.9127460Z Artifact download URL: https://github.com/CortexLM/desktop/actions/runs/37110253688/artifacts/11269637206
+2026-10-03T08:47:11.9400300Z ##[group]Run actions/upload-artifact@v4
+2026-10-03T08:47:11.9400640Z with:
+2026-10-03T08:47:11.9400870Z   name: cortex-mac-arm64-zip
+2026-10-03T08:47:11.9401140Z   path: dist/*.zip
+2026-10-03T08:47:11.9401380Z   retention-days: 7
+2026-10-03T08:47:11.9401620Z   if-no-files-found: warn
+2026-10-03T08:47:11.9401870Z   compression-level: 6
+2026-10-03T08:47:11.9402120Z   overwrite: false
+2026-10-03T08:47:11.9402360Z   include-hidden-files: false
+2026-10-03T08:47:11.9403320Z env:
+2026-10-03T08:47:11.9403600Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+2026-10-03T08:47:11.9404130Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:47:11.9404480Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:47:11.9404780Z ##[endgroup]
+2026-10-03T08:47:12.0580350Z (node:4475) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-03T08:47:12.0580820Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-03T08:47:12.0605310Z With the provided path, there will be 1 file uploaded
+2026-10-03T08:47:12.0607920Z Artifact name is valid!
+2026-10-03T08:47:12.0608160Z Root directory input is valid!
+2026-10-03T08:47:12.3119430Z Beginning upload of artifact content to blob storage
+2026-10-03T08:47:12.4916310Z (node:4475) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-03T08:47:12.8310780Z Uploaded bytes 8388608
+2026-10-03T08:47:12.9912560Z Uploaded bytes 16777216
+2026-10-03T08:47:13.0660020Z Uploaded bytes 25165824
+2026-10-03T08:47:13.1295750Z Uploaded bytes 33554432
+2026-10-03T08:47:13.2838010Z Uploaded bytes 41943040
+2026-10-03T08:47:13.3719470Z Uploaded bytes 50331648
+2026-10-03T08:47:13.4944290Z Uploaded bytes 58720256
+2026-10-03T08:47:13.6739960Z Uploaded bytes 67108864
+2026-10-03T08:47:13.8185870Z Uploaded bytes 75497472
+2026-10-03T08:47:13.9443370Z Uploaded bytes 83886080
+2026-10-03T08:47:14.0933460Z Uploaded bytes 92274688
+2026-10-03T08:47:14.2616900Z Uploaded bytes 100663296
+2026-10-03T08:47:14.4396260Z Uploaded bytes 109051904
+2026-10-03T08:47:14.4625950Z Uploaded bytes 117440512
+2026-10-03T08:47:14.6170390Z Uploaded bytes 125829120
+2026-10-03T08:47:14.7880440Z Uploaded bytes 134217728
+2026-10-03T08:47:14.9091390Z Uploaded bytes 142606336
+2026-10-03T08:47:14.9852270Z Uploaded bytes 144676546
+2026-10-03T08:47:15.0167150Z Finished uploading artifact content to blob storage!
+2026-10-03T08:47:15.0170690Z SHA256 digest of uploaded artifact zip is 257fb7b54e362efae0a7c053183955fd6362228338c0a203874778d4b3d5e1df
+2026-10-03T08:47:15.0172600Z Finalizing artifact upload
+2026-10-03T08:47:15.2914260Z Artifact cortex-mac-arm64-zip.zip successfully finalized. Artifact ID 11269856853
+2026-10-03T08:47:15.2917420Z Artifact cortex-mac-arm64-zip has been successfully uploaded! Final size is 144676546 bytes. Artifact ID is 11269856853
+2026-10-03T08:47:15.2948030Z Artifact download URL: https://github.com/CortexLM/desktop/actions/runs/37110253688/artifacts/11269856853
+2026-10-03T08:47:15.3243830Z Post job cleanup.
+2026-10-03T08:47:15.4412190Z Post job cleanup.
+2026-10-03T08:47:15.5116720Z (node:4479) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-03T08:47:15.5117400Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-03T08:47:15.5196140Z Post job cleanup.
+2026-10-03T08:47:15.5763630Z [command]/opt/homebrew/bin/git version
+2026-10-03T08:47:15.5808570Z git version 2.54.0
+2026-10-03T08:47:15.5822680Z Copying '/Users/runner/.gitconfig' to '/Users/runner/_work/_temp/0533e856-b727-4c23-acdd-4b4eed5f34a0/.gitconfig'
+2026-10-03T08:47:15.5828800Z Temporarily overriding HOME='/Users/runner/_work/_temp/0533e856-b727-4c23-acdd-4b4eed5f34a0' before making global git config changes
+2026-10-03T08:47:15.5829420Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-03T08:47:15.5833350Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/_work/desktop/desktop
+2026-10-03T08:47:15.5873540Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-03T08:47:15.5910760Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-03T08:47:15.6354190Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-03T08:47:15.6376240Z http.https://github.com/.extraheader
+2026-10-03T08:47:15.6382060Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-03T08:47:15.6419900Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-03T08:47:15.6839710Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-03T08:47:15.6873400Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-03T08:47:15.7298110Z A job completed hook has been configured by the self-hosted runner administrator
+2026-10-03T08:47:15.7329280Z ##[group]Run '/opt/blacksmith/job_completed_mac.sh'
+2026-10-03T08:47:15.7352690Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-03T08:47:15.7352920Z env:
+2026-10-03T08:47:15.7353070Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+2026-10-03T08:47:15.7353230Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 712
+2026-10-03T08:47:15.7353380Z   BLACKSMITH_CHECK_RUN_ID: 111166590603
+2026-10-03T08:47:15.7353550Z   BLACKSMITH_JOB_DISPLAY_NAME: macOS build, package, launch
+2026-10-03T08:47:15.7353740Z   GITHUB_ACTIONS_CACHE_MODE: write
+2026-10-03T08:47:15.7353880Z ##[endgroup]
+2026-10-03T08:47:15.7777850Z No active SSH sessions detected. Proceeding with shutdown immediately.
+2026-10-03T08:47:15.7823940Z Cleaning up orphan processes
+2026-10-03T08:47:17.5374590Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

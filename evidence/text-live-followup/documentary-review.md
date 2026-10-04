@@ -1,0 +1,25 @@
+# Saved text — precommit documentary boundary review
+**One stale-status contradiction; otherwise reviewed claims remain scoped. No new product P2 identified.**
+Only this report written; no delegation, repository edits, application execution, builds, tests, CI/network/device actions or commit.
+## Minimal correction
+- `evidence/text-live-followup/README.md:20`: delete **“Runtime assertions are still pending.”** It contradicts the same overview's passing local-runtime statement (:12–13), twenty targeted cases (:28–29) and full152-case results (:29–31). Keep its native-speaker limitation and pending CI/native qualifications.
+## Verified documents and receipt boundaries
+- Read `.rules/06-product.md`, `.rules/07-git-and-prs.md`, `AGENTS.md`, `docs/engine.md`, `docs/i18n.md`, `docs/testing.md`, `docs/connection-modes.md`, `evidence/STATUS.md`, both `evidence/{text,files}-live-followup/README.md` and `evidence/mac/d20a012/README.md`; all224 local Markdown links in those11 documents resolve.
+- Product rules/AGENTS describe implemented saved text while keeping verification scope separate; remaining formats, standalone storage and remote hydration stay unfinished. No full Files/product acceptance inferred.
+- `docs/engine.md:142–182` correctly separates escaped Markdown source, fatal UTF-8/BOM policy, original bytes, visual-only LF normalization, CR/LF logical rows, control refusal and 5,000,000/50,000/100,000 limits.
+- Copy/session revalidation, selectable refusal guidance, stale-owner fencing and nonrevocable dispatched actions are qualified. Generic SDK file conversion proves neither broad model support nor complete token/history-memory bounds.
+- `docs/i18n.md:17–20` limits22 keys/eight locales to author/key-placeholder checks; no native-speaker or runtime-layout approval is asserted by translation review.
+- Retained unit/i18n logs independently read: 26 files,295 passing units plus1 optional skip;72 audited files,2292 used keys,3460 English keys,0 findings. These match the overview/AGENTS counts.
+- Targeted JSON independently read:20 expected/20 attempts,84550.355ms,one worker,0 skips/unexpected/flaky/retries/top-level errors. Nine text plus eleven image cases remain separately named.
+- Full JSON independently read:152 expected/152 attempts,1000318.039ms,one worker,0 skips/unexpected/flaky/retries/top-level errors. Retained log explicitly says `rendered 426 screen states`; this verifies the recorded visit claim, not the separately owned artifact/image audit.
+- `baseline/summary.json`, `e2e-review.md`, `production-initial/test-pin.json` consistently distinguish original `1db7c184…`: seven missing-behavior failures plus two zero-MIME ClipboardItem setup failures; corrected `562625c19ee8bc95449ebc4459fe46a5b81dbaae818b5e0b951f42a9a20e5ae2` filters only empty-format items, with both separate reruns failing missing reads.
+- Candidate attribution remains dirty `f2c1bc828d2eb64fbe0792031c2e33de63c54957`,524 inputs/482 renderer inputs/90 members; fingerprint `e19de38f6a5cd68b770c9a960bc9e9e62e5e88b27885602c3a6b8e6845354c4b`. Earlier completed preview audit independently bound these inputs; no future commit assigned.
+- Linux package receipt names ASAR `667bead37e35f27eeea26aea6018fadac525f7ef17faee161198dff44facb4b8`,91 ASAR entries/90 matching build members and Xvfb smoke success. Initial missing-DISPLAY failure stays explicit; package bytes were not reaudited in this document pass.
+- Completed preview audit remains13 application captures/12 references/1 Ask gap,25 originals, maximum exact0.15268132716049382%; four Code interiors are RGBA-exact, not whole-frame equality or a golden for live plaintext.
+- `.github/workflows/ci.yml:48–50` sets Linux step `E2E_WORKERS: 1`; runner unchanged, macOS default1 preserved. `checks/ci-isolation.json` attributes YAML parsing to coordinator; docs correctly avoid calling configuration a successful CI run.
+- `docs/connection-modes.md:195–204` and `owner-readback/REPORT.md` preserve G2 `5bb7ff55`/schema `e971ba48` as owner claims, pending G3 screenshot-schema reconciliation; admitted SDK0.3.5/API-types0.2.0/`c8f6a7f0` remains authoritative. No `onDiscardedFrame` successor or exact five-state import claimed.
+- Image closure retains `f2c1bc8` CI37160709132/all520 unchanged inputs. Mac composite summary stays a pre-review snapshot; Mac README:44–45 explicitly points to `native-audit/results.json`, whose accepted bounded composite still records failed collector/unreached assertions and manual delivery.
+- Historical `checks/initial.json` and `e2e-review.md` retain their then-current build/full-suite status; no retrospective rewrite needed. Current overview/STATUS carry later results.
+## Remaining scope
+- Local text image audit remains separately owned and was not inspected while active. Text CI/new Mac package/native execution remain pending; prepared collectors confer no acceptance and existing installed image evidence does not transfer.
+- After the one sentence deletion, this bounded review has no further precommit documentary correction. It does not grant CI/native/product acceptance or alter prior receipts.

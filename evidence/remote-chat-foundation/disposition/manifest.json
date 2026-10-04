@@ -1,0 +1,70 @@
+{
+  "report": "/tmp/opencode/remote-chat-disposition.md",
+  "report_sha256": "2415bbce367c6b56d4b1449c8ea4a03e0a735c9900168f65f6984f3cd0b1b448",
+  "files": [
+    {
+      "path": "before/packages/desktop/src/remote-chat.ts",
+      "sha256": "4b2674007b8e634b371bf30322b713c8ab9e00ba2309b6b833783a39fe1d8b12"
+    },
+    {
+      "path": "before/packages/desktop/src/remote-session.ts",
+      "sha256": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6"
+    },
+    {
+      "path": "before/packages/desktop/test/remote-chat.test.ts",
+      "sha256": "fc3f5f6980504b8422ba9c6d0dcd1399f6bda8480bfbc6b42751e998242c10e9"
+    },
+    {
+      "path": "before/packages/desktop/test/remote-session.test.ts",
+      "sha256": "29c8e4a175495f1ee2c87a70d489f68167911d333aa9200114f59cb9fc50c0f4"
+    },
+    {
+      "path": "before.json",
+      "sha256": "3acce9f0306687bbbee8d5712047d84de01ba75fd21188ecf4ac50bd3bbbd78c"
+    },
+    {
+      "path": "check.py",
+      "sha256": "c5baa58d36f60894e6e559ff4de9ff24b120d565f9ac294da41a15dc9d85570b"
+    },
+    {
+      "path": "disposition.diff",
+      "sha256": "622caa9d43929bd75de53aba3bd7c3bdfe8b2ab68b2d876cb0b75e3397c3bf91"
+    },
+    {
+      "path": "focused.json",
+      "sha256": "64a86b839bdc0a007908d3ce0fbd2e529874099509701e66ec5f4f93fc079baf"
+    },
+    {
+      "path": "focused.log",
+      "sha256": "e389565f7820f29e6365f6e0be5d640aea09f54acc0169e0101192b29b2502f3"
+    },
+    {
+      "path": "lint.json",
+      "sha256": "e51ebeb32033c9388d7f30795b957b93bb73e295b41b41c75ff33b5dad08acd4"
+    },
+    {
+      "path": "lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "receipt.json",
+      "sha256": "45cea481fcd14c11914f0f241abda4842d7989906db8ad58798bd4d78def447d"
+    },
+    {
+      "path": "status-before.txt",
+      "sha256": "0d3d692719504b7619264b4b8119713aeb44fcd82ec5df4a2f060982feae1d73"
+    },
+    {
+      "path": "tests.json",
+      "sha256": "0a7aa2a45702cc440d1f77f5dff0bf0b3de1b37d6a4f03e8f35f739b0932d527"
+    },
+    {
+      "path": "typecheck.json",
+      "sha256": "f3ef579512dad6e6c61610196e3934d9971682237daf28264d7eecdeb602facb"
+    },
+    {
+      "path": "typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

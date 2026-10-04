@@ -1,0 +1,77 @@
+[
+  {
+    "path": "evidence/remote-auth-followup/first-electron/report.json",
+    "sha256": "c2bff07b8d510d25bda99d3bdaae5c097ac9e12d518f7e7b905b8f1a08f9f47d",
+    "stats": {
+      "startTime": "2026-10-03T03:03:28.068Z",
+      "duration": 10949.865,
+      "expected": 5,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "test_cases": 5,
+    "result_count": 5,
+    "errors": [],
+    "retries": {
+      "0": 5
+    }
+  },
+  {
+    "path": "evidence/remote-auth-followup/read-races/report.json",
+    "sha256": "7a658edd764e2b2e6cb143134b68fa66fe530a399b17f1c232a9ca204485447b",
+    "stats": {
+      "startTime": "2026-10-03T03:09:10.652Z",
+      "duration": 57.37099999999998,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "test_cases": 0,
+    "result_count": 0,
+    "errors": [
+      {
+        "message": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.",
+        "stack": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments."
+      }
+    ],
+    "retries": {}
+  },
+  {
+    "path": "evidence/remote-auth-followup/read-races/result.json",
+    "sha256": "660a24a8a651aba53440a0cc1484be8a70a6b1cf664b4d3ca450ca0a5fc04b4c",
+    "stats": {
+      "startTime": "2026-10-03T03:09:56.588Z",
+      "duration": 3333.216,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "test_cases": 1,
+    "result_count": 1,
+    "errors": [],
+    "retries": {
+      "0": 1
+    }
+  },
+  {
+    "path": "evidence/remote-auth-followup/e2e-full.json",
+    "sha256": "c89c312e324fb2557fd39354c72f8b0cdbe9f4fb62b8145a633aed9619f625b1",
+    "stats": {
+      "startTime": "2026-10-03T03:13:02.097Z",
+      "duration": 247495.453,
+      "expected": 90,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "test_cases": 90,
+    "result_count": 90,
+    "errors": [],
+    "retries": {
+      "0": 90
+    }
+  }
+]

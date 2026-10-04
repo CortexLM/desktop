@@ -1,0 +1,76 @@
+{
+  "observedAt": "2026-10-03T07:47:18.266522+00:00",
+  "osRelease": "PRETTY_NAME=\"Ubuntu 26.04.1 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"26.04\"\nVERSION=\"26.04.1 LTS (Resolute Raccoon)\"\nVERSION_CODENAME=resolute\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=resolute\nLOGO=ubuntu-logo\n",
+  "fontconfig": {
+    "command": [
+      "fc-match",
+      "--version"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "fontconfig version 2.17.1\n"
+  },
+  "packages": {
+    "command": [
+      "dpkg-query",
+      "-W",
+      "-f=${Package}\t${Version}\t${Status}\n",
+      "fontconfig",
+      "fonts-wqy-zenhei",
+      "fonts-noto-cjk",
+      "fonts-dejavu-core"
+    ],
+    "exitCode": 1,
+    "stdout": "fontconfig\t2.17.1-3ubuntu1\tinstall ok installed\nfonts-dejavu-core\t2.37-8build1\tinstall ok installed\nfonts-wqy-zenhei\t0.9.45-8build1\tinstall ok installed\n",
+    "stderr": "dpkg-query: no packages found matching fonts-noto-cjk\n"
+  },
+  "matches": {
+    "sans-serif": {
+      "command": [
+        "fc-match",
+        "-f",
+        "%{family}\t%{style}\t%{file}\n",
+        "sans-serif"
+      ],
+      "exitCode": 0,
+      "stdout": "DejaVu Sans\tBook\t/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf\n",
+      "stderr": ""
+    },
+    ":lang=ja": {
+      "command": [
+        "fc-match",
+        "-f",
+        "%{family}\t%{style}\t%{file}\n",
+        ":lang=ja"
+      ],
+      "exitCode": 0,
+      "stdout": "WenQuanYi Zen Hei,\u6587\u6cc9\u9a5b\u6b63\u9ed1,\u6587\u6cc9\u9a7f\u6b63\u9ed1\tRegular\t/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc\n",
+      "stderr": ""
+    },
+    ":lang=ko": {
+      "command": [
+        "fc-match",
+        "-f",
+        "%{family}\t%{style}\t%{file}\n",
+        ":lang=ko"
+      ],
+      "exitCode": 0,
+      "stdout": "WenQuanYi Zen Hei,\u6587\u6cc9\u9a5b\u6b63\u9ed1,\u6587\u6cc9\u9a7f\u6b63\u9ed1\tRegular\t/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc\n",
+      "stderr": ""
+    },
+    ":lang=zh-cn": {
+      "command": [
+        "fc-match",
+        "-f",
+        "%{family}\t%{style}\t%{file}\n",
+        ":lang=zh-cn"
+      ],
+      "exitCode": 0,
+      "stdout": "WenQuanYi Zen Hei,\u6587\u6cc9\u9a5b\u6b63\u9ed1,\u6587\u6cc9\u9a7f\u6b63\u9ed1\tRegular\t/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc\n",
+      "stderr": ""
+    }
+  },
+  "inheritedFontEnvironment": {
+    "LANG": "C.UTF-8"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x900x24",
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/e2e/live-state.spec.ts",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=list,json",
+    "--output=/tmp/opencode/live-state-race/baseline-final/artifacts"
+  ],
+  "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+  "applicationRevision": "f5bf305473db12fddfddcda890a01794f02f578f",
+  "head": "1076c2584941cf054efffaf709a149b4195bc1c4",
+  "nodeVersion": "v22.23.3",
+  "NODE_ENV": "test",
+  "TMPDIR": "/tmp/opencode/live-state-race/baseline-final/temp",
+  "CORTEX_RENDERER_URL": "unset",
+  "sourceSHA256": {
+    "packages/app/src/state/live.ts": "4c4ec7ae725dfd250f5102c273deeed827c22a3e70568eaa145435a2970119c7",
+    "tests/e2e/live-state.spec.ts": "842804966f6cd584834c728c92c495ccc52ece47bce2dcd128df912f98c83710"
+  }
+}

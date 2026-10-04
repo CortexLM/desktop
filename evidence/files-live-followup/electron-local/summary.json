@@ -1,0 +1,73 @@
+{
+  "disposition": "PASS bounded retained local artifact audit",
+  "originalDirtyBase": "d390cce590600cf5896fa19acf0ddd44d7057e2c",
+  "laterCommit": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "cleanBuildClaim": false,
+  "fullCases": 143,
+  "renderVisits": 426,
+  "fullDurationMs": 303294.426,
+  "targetedCases": 11,
+  "targetedDurationMs": 17183.195,
+  "sameFinalTestSHA256": "a7bd52dbc4577825bbaf2b50fff0de17801faa521ca98c6369c37b53e0f1e498",
+  "images": {
+    "runs": {
+      "full": {
+        "uniqueImages": 195,
+        "fileCopies": 394,
+        "inlinePNG": 4,
+        "pngAttachments": 201
+      },
+      "corrected-targeted": {
+        "uniqueImages": 14,
+        "fileCopies": 28,
+        "inlinePNG": 0,
+        "pngAttachments": 14
+      },
+      "rename-before": {
+        "uniqueImages": 1,
+        "fileCopies": 1,
+        "inlinePNG": 0,
+        "pngAttachments": 1
+      },
+      "viewer-before": {
+        "uniqueImages": 2,
+        "fileCopies": 2,
+        "inlinePNG": 0,
+        "pngAttachments": 2
+      },
+      "initial-targeted": {
+        "uniqueImages": 14,
+        "fileCopies": 26,
+        "inlinePNG": 0,
+        "pngAttachments": 14
+      },
+      "baseline": {
+        "uniqueImages": 8,
+        "fileCopies": 8,
+        "inlinePNG": 0,
+        "pngAttachments": 8
+      }
+    },
+    "union": {
+      "uniquePNG": 216,
+      "uniqueRGBA": 216,
+      "newLosslessWebP": 73,
+      "newImageBytes": 2062716,
+      "reuses": {
+        "../../work-activity-followup/ci-9ba8e59/images.jsonl": 117,
+        "../../work-activity-followup/electron-local/images.jsonl": 26
+      },
+      "contacts": 18,
+      "fullsizeTargets": 27
+    }
+  },
+  "candidateOnlyNewLosslessWebP": 52,
+  "fullsizePrimary": 14,
+  "fullsizeNegative": 13,
+  "unexpectedReportErrors": 0,
+  "intentionalNavigationCallbackErrors": 3,
+  "packageInputs": 520,
+  "rendererInputs": 478,
+  "distAndAsarMembers": 90,
+  "pendingSeparately": "CI/native/source-review/preview-comparison ownership; local audit confers no broader acceptance"
+}

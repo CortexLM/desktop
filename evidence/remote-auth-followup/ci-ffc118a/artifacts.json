@@ -1,0 +1,65 @@
+{
+  "total_count": 3,
+  "artifacts": [
+    {
+      "id": 11264045278,
+      "node_id": "MDg6QXJ0aWZhY3QxMTI2NDA0NTI3OA==",
+      "name": "e2e-linux",
+      "size_in_bytes": 24930818,
+      "url": "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11264045278",
+      "archive_download_url": "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11264045278/zip",
+      "expired": false,
+      "digest": "sha256:e3cb089016fb586d1eac3c868751a143908a2bb80d465a6536cafe5d079cea40",
+      "created_at": "2026-10-03T03:55:01Z",
+      "updated_at": "2026-10-03T03:55:01Z",
+      "expires_at": "2027-01-01T03:50:40Z",
+      "workflow_run": {
+        "id": 37094538845,
+        "repository_id": 1336933474,
+        "head_repository_id": 1336933474,
+        "head_branch": "goal/desktop-rewrite",
+        "head_sha": "ffc118a2e58df66f430f3078e00f6e931dd910cf"
+      }
+    },
+    {
+      "id": 11263628650,
+      "node_id": "MDg6QXJ0aWZhY3QxMTI2MzYyODY1MA==",
+      "name": "cortex-mac-arm64-zip",
+      "size_in_bytes": 144638433,
+      "url": "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11263628650",
+      "archive_download_url": "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11263628650/zip",
+      "expired": false,
+      "digest": "sha256:eb5c88db8629ba80f1b9da329d429628ec0df1d640fc7cf547f8c510fc633136",
+      "created_at": "2026-10-03T04:01:05Z",
+      "updated_at": "2026-10-03T04:01:05Z",
+      "expires_at": "2026-10-10T04:01:01Z",
+      "workflow_run": {
+        "id": 37094538845,
+        "repository_id": 1336933474,
+        "head_repository_id": 1336933474,
+        "head_branch": "goal/desktop-rewrite",
+        "head_sha": "ffc118a2e58df66f430f3078e00f6e931dd910cf"
+      }
+    },
+    {
+      "id": 11262754604,
+      "node_id": "MDg6QXJ0aWZhY3QxMTI2Mjc1NDYwNA==",
+      "name": "macos",
+      "size_in_bytes": 24234945,
+      "url": "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11262754604",
+      "archive_download_url": "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11262754604/zip",
+      "expired": false,
+      "digest": "sha256:9038d9dcb5d397d4e7f6dbe26428026e8e3fa00b506dd0033436eadd9f2bef7f",
+      "created_at": "2026-10-03T04:01:01Z",
+      "updated_at": "2026-10-03T04:01:01Z",
+      "expires_at": "2027-01-01T03:50:40Z",
+      "workflow_run": {
+        "id": 37094538845,
+        "repository_id": 1336933474,
+        "head_repository_id": 1336933474,
+        "head_branch": "goal/desktop-rewrite",
+        "head_sha": "ffc118a2e58df66f430f3078e00f6e931dd910cf"
+      }
+    }
+  ]
+}

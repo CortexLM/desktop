@@ -1,0 +1,28 @@
+{
+  "runs": {
+    "full": {
+      "uniqueImages": 181,
+      "fileCopies": 366,
+      "inlinePNG": 4,
+      "pngAttachments": 187
+    },
+    "final-targeted": {
+      "uniqueImages": 4,
+      "fileCopies": 8,
+      "inlinePNG": 0,
+      "pngAttachments": 4
+    }
+  },
+  "union": {
+    "uniquePNG": 185,
+    "uniqueRGBA": 185,
+    "newLosslessWebP": 45,
+    "newImageBytes": 1378326,
+    "reuses": {
+      "../../memory-preference-followup/ci-96df66c/images.jsonl": 110,
+      "../../memory-preference-followup/electron-final/images.jsonl": 30
+    },
+    "contacts": 16,
+    "fullsizeTargets": 16
+  }
+}

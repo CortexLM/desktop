@@ -1,0 +1,35 @@
+bun test v1.4.2 (744846f84)
+
+test/bootstrap.test.ts:
+(pass) bootstrap cleans partial acquisitions, preserves failures and transfers successful ownership [36.15ms]
+
+test/embedded/embedded.test.ts:
+{"ts":"2026-10-03T03:51:39.341Z","level":"warn","msg":"no search API key configured; web_search is disabled"}
+{"ts":"2026-10-03T03:51:39.344Z","level":"warn","msg":"sandbox.agent_base_url is empty; using a local python3 process"}
+(pass) serves public routes without a listener [5.70ms]
+(pass) a guest session cookie round-trips [15.36ms]
+(pass) errors are problem documents [1.00ms]
+
+test/embedded/lifecycle.test.ts:
+(pass) embedded lifecycle cleans up failed starts and closes the database despite Redis failure [25.51ms]
+
+test/http/openapi.test.ts:
+(pass) every public route is described once, with a unique operationId and a tag [12.47ms]
+(pass) audio and preparation return JSON or binary; WebSockets describe an upgrade, not SSE [6.34ms]
+(pass) turn replay, named agent events and realtime frames keep their own catalogs and cursors [28.85ms]
+(pass) non-timeout file and export routes document raw media and range responses [3.72ms]
+(pass) registered audio, export, blob, realtime and local auth handlers match the contract [28.12ms]
+(pass) self-host endpoints specify local logout, registry bounds and conditional authentication [2.78ms]
+(pass) the Problem code enum is the server's ErrorCode list [7.64ms]
+(pass) SDK sign-in bodies preserve required fields, continuation states and bodyless code sending [3.14ms]
+(pass) SDK Library upload is a required raw body with query bindings and a 200 metadata response [2.39ms]
+(pass) SDK bug screenshot upload requires raw bytes and filename, returning only screenshot metadata [3.06ms]
+(pass) registered screenshot upload honors the documented bytes, size, filename and member boundary [248.04ms]
+(pass) operationIds follow the method and path [0.30ms]
+(pass) serialisation is deterministic regardless of route order [20.39ms]
+(pass) the committed openapi/cortex.openapi.json is up to date [7.73ms]
+
+ 19 pass
+ 0 fail
+ 1676 expect() calls
+Ran 19 tests across 4 files. [952.00ms]

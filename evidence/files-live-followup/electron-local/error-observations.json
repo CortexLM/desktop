@@ -1,0 +1,248 @@
+[
+  {
+    "run": "full",
+    "file": "appearance-theme.spec.ts",
+    "name": "appearance-theme-observations-light",
+    "sha256": "d3c0b11bab6f487e1632dc5c8c67590a04696427104f73dda081c447af23b767",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "appearance-theme.spec.ts",
+    "name": "appearance-theme-observations-dark",
+    "sha256": "f688d1adab79fb932d41e392108c22115a5bc7fbbe9fa728782f6e1b6327c8f4",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "bot-owner.spec.ts",
+    "name": "bot-owner-evidence",
+    "sha256": "52bf13936bdebee21f4a14ebe997dc07c9de74bc970d7ea3965d084d8a39b97c",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "bot-owner.spec.ts",
+    "name": "bot-owner-evidence",
+    "sha256": "4ec528464bfcbbfa3b200692cb62fa72c051fcdf6649f11cfeebd1beddb03c67",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "chat-missing.spec.ts",
+    "name": "chat-missing-evidence",
+    "sha256": "c3104fe5e511e2c46e355abbff20019daf75d1e1172a6504220bd72e5a448b4d",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "chat-missing.spec.ts",
+    "name": "chat-missing-evidence",
+    "sha256": "3b02a34c285f54be01100308ebd5f5628382931b1cb36a2afc37fdac3fba1446",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "code-models.spec.ts",
+    "name": "code-failure-evidence",
+    "sha256": "9cd7f2d3a40dbe50b5cc457733a6f59dd845aa9f9e388c4389ee5fe5f1de6bf6",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "code-models.spec.ts",
+    "name": "code-failure-evidence",
+    "sha256": "3653e0b3ac6a426caa0e04b8f4708300107d7adcb33302f735421e7c33ccc79c",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "live-state.spec.ts",
+    "name": "live-state-errors",
+    "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "live-state.spec.ts",
+    "name": "live-state-errors",
+    "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "live-state.spec.ts",
+    "name": "live-state-errors",
+    "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "live-state.spec.ts",
+    "name": "live-state-errors",
+    "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "navigation.spec.ts",
+    "name": "skipped-native-transitions",
+    "sha256": "80f621bdca8b5a01a4f1a32b88c92457a87f9cacee0cf962bc1003ca1a1681f4",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "unhandled": [],
+      "errors": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "navigation.spec.ts",
+    "name": "native-callback-errors",
+    "sha256": "f64a709ce8e81d59e0f1ea8f636137ef773fdfd138dd45db03fbcfc4e5218286",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "unhandled": [
+        {
+          "source": "updateCallbackDone",
+          "kind": "route",
+          "name": "Error",
+          "message": "Native route callback failed"
+        },
+        {
+          "source": "finished",
+          "kind": "route",
+          "name": "Error",
+          "message": "Native route callback failed"
+        },
+        {
+          "source": "updateCallbackDone",
+          "kind": "theme",
+          "name": "Error",
+          "message": "Native theme callback failed"
+        }
+      ],
+      "errors": [
+        "Native route callback failed",
+        "Native route callback failed",
+        "Native theme callback failed"
+      ]
+    },
+    "intentional": true
+  },
+  {
+    "run": "full",
+    "file": "navigation.spec.ts",
+    "name": "preview-departure-errors",
+    "sha256": "04c2d340cfae02d5b14d54b8d839e8c8b92bb1f2a8b828d8425b84692bb93048",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "provider-draft.spec.ts",
+    "name": "provider-draft-observation-light",
+    "sha256": "8b8da008dbb1b6b7fa4f86481474d33bc58b46653fa9e0ed06e020ba45b762c5",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "httpRequests": 0
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "provider-draft.spec.ts",
+    "name": "provider-draft-observation-dark",
+    "sha256": "b72857e5faf50f67c8e0f1d0d536f933df732cf5ace9be6cc942a490560fd381",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "httpRequests": 0
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "provider-key-pending.spec.ts",
+    "name": "provider-key-pending-evidence",
+    "sha256": "1a39a9777f094dabf070ee7d5da27d5b7ede2beab2493124c1946b5d70104cbf",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "full",
+    "file": "provider-key-pending.spec.ts",
+    "name": "provider-key-pending-evidence",
+    "sha256": "e2312099a1e3783952514c347044ccf51c5e2b6f7b81d98c0684f20a4a9dfe67",
+    "report": "../checks/full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  }
+]

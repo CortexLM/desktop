@@ -1,0 +1,6 @@
+*** Begin Patch
+*** Update File: packages/app/src/App.tsx
+@@
+-      <PreviewGate>
++      <PreviewGate preview={h.params.has("preview") || h.params.has("shot")}>
+*** End Patch

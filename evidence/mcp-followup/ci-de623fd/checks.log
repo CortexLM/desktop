@@ -1,0 +1,49 @@
+# Selected CI log lines; original gh run view --log line numbers preserved.
+# ANSI escapes and UTF-8 BOM removed. Full-log SHA-256 is in receipt.json.
+148: E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T20:51:23.7130182Z 44c9ead8c77ce2cf52fb3e8ba430ea7d36fbaf70
+396: E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T20:51:46.1347991Z Running 51 tests using 4 workers
+416: E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T20:52:07.5784808Z   ✓  22 tests/e2e/engine.spec.ts:11:1 › MCP connection material stays in main across save, reload and removal (767ms)
+431: E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T20:52:56.4167621Z   ✓  35 tests/e2e/keyboard.spec.ts:130:1 › frozen shell motion settles, latest tab wins and hidden menus close (8.8s)
+443: E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T20:53:07.9614213Z   ✓  49 tests/e2e/ui-flows.spec.ts:19:1 › a provider key saved in Settings shows only its last four characters (1.6s)
+444: E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T20:53:10.2555238Z   ✓  39 tests/e2e/navigation.spec.ts:118:1 › anchors, native menus and history preserve routes, variants and chat identities (12.9s)
+446: E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T20:53:12.3063847Z   ✓  50 tests/e2e/ui-flows.spec.ts:26:1 › streamed exchange with thinking and an image, driven from the composer (4.3s)
+447: E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T20:53:21.1707551Z   ✓  51 tests/e2e/ui-flows.spec.ts:64:1 › rejected sends keep the draft and attachments; retry resends the image (10.9s)
+448: E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T20:54:47.7629071Z rendered 426 screen states
+451: E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T20:54:47.7817054Z   51 passed (3.1m)
+644: macOS build, package, launch	Run actions/checkout@v4	2026-10-02T20:51:20.5609720Z 44c9ead8c77ce2cf52fb3e8ba430ea7d36fbaf70
+822: macOS build, package, launch	E2E on macOS (source build)	2026-10-02T20:51:26.7091910Z Running 51 tests using 1 worker
+845: macOS build, package, launch	E2E on macOS (source build)	2026-10-02T20:53:49.5506950Z   ✓  22 tests/e2e/engine.spec.ts:11:1 › MCP connection material stays in main across save, reload and removal (1.3s)
+858: macOS build, package, launch	E2E on macOS (source build)	2026-10-02T20:55:09.1341510Z   ✓  35 tests/e2e/keyboard.spec.ts:130:1 › frozen shell motion settles, latest tab wins and hidden menus close (7.9s)
+862: macOS build, package, launch	E2E on macOS (source build)	2026-10-02T20:55:26.0682320Z   ✓  39 tests/e2e/navigation.spec.ts:118:1 › anchors, native menus and history preserve routes, variants and chat identities (9.2s)
+871: macOS build, package, launch	E2E on macOS (source build)	2026-10-02T20:57:13.2243000Z rendered 426 screen states
+873: macOS build, package, launch	E2E on macOS (source build)	2026-10-02T20:57:14.8628490Z   ✓  49 tests/e2e/ui-flows.spec.ts:19:1 › a provider key saved in Settings shows only its last four characters (1.6s)
+874: macOS build, package, launch	E2E on macOS (source build)	2026-10-02T20:57:18.6012830Z   ✓  50 tests/e2e/ui-flows.spec.ts:26:1 › streamed exchange with thinking and an image, driven from the composer (3.7s)
+875: macOS build, package, launch	E2E on macOS (source build)	2026-10-02T20:57:30.1079870Z   ✓  51 tests/e2e/ui-flows.spec.ts:64:1 › rejected sends keep the draft and attachments; retry resends the image (11.5s)
+877: macOS build, package, launch	E2E on macOS (source build)	2026-10-02T20:57:30.1317560Z   51 passed (6.1m)
+878: macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T20:57:30.2663040Z ##[group]Run npx electron-builder --mac dir zip --arm64 --publish never -c.mac.identity=null -c.mac.notarize=false
+886: macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T20:57:31.0507120Z   • electron-builder  version=26.15.3 os=25.3.0
+892: macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T20:57:31.4159390Z   • packaging       platform=darwin arch=arm64 electron=44.5.1 appOutDir=dist/mac-arm64
+901: macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T20:57:33.3113860Z   • default Electron icon is used  reason=application icon is not set
+902: macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T20:57:33.3306220Z   • Current build is a part of pull request, code signing will be skipped.
+906: macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T20:57:33.3309820Z   • building        target=macOS zip arch=arm64 file=dist/Cortex-0.2.0-arm64-mac.zip
+908: macOS build, package, launch	Packaged smoke test	2026-10-02T20:57:46.1499010Z ##[group]Run node scripts/smoke.mjs mac
+909: macOS build, package, launch	Packaged smoke test	2026-10-02T20:57:46.1499200Z node scripts/smoke.mjs mac
+916: macOS build, package, launch	Packaged smoke test	2026-10-02T20:57:47.2092450Z window: Cortex cortex://app/index.html
+917: macOS build, package, launch	Packaged smoke test	2026-10-02T20:57:57.4997470Z could not create image from display
+918: macOS build, package, launch	Packaged smoke test	2026-10-02T20:57:57.4999890Z screencapture failed: Command failed: screencapture -x out/smoke-screen.png
+919: macOS build, package, launch	Packaged smoke test	2026-10-02T20:57:57.5000300Z could not create image from display
+921: macOS build, package, launch	Packaged smoke test	2026-10-02T20:57:57.5001510Z renderer text: Chat | Work | Cortex | New chat | Create your Bot | Tools | Web search | Documents | Images | Automations | Recents | Your chats will appear here. | Getting started | 0 of 5 | What’s on today? | No model
+922: macOS build, package, launch	Packaged smoke test	2026-10-02T20:57:57.5001970Z SMOKE OK
+1162: Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T20:51:11.9990247Z 44c9ead8c77ce2cf52fb3e8ba430ea7d36fbaf70
+1236: Lint, typecheck, unit tests, i18n audit	Run bun run lint	2026-10-02T20:51:17.5048246Z $ eslint packages scripts tests
+1241: Lint, typecheck, unit tests, i18n audit	Run bun run typecheck	2026-10-02T20:51:24.7242265Z $ tsc -p tsconfig.json
+1246: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T20:51:38.3378845Z $ vitest run
+1260: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T20:51:46.7158150Z  ✓ packages/core/test/mcp.test.ts (11 tests) 239ms
+1261: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T20:51:52.1069175Z  ✓ packages/desktop/test/remote.test.ts (45 tests | 1 skipped) 5152ms
+1264: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T20:51:52.8123869Z  ✓ packages/desktop/test/credentials.test.ts (23 tests) 588ms
+1290: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T20:51:58.2053556Z  Test Files  15 passed (15)
+1291: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T20:51:58.2072717Z       Tests  173 passed | 1 skipped (174)
+1298: Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-02T20:51:58.2319700Z ##[group]Run bun run audit:i18n
+1299: Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-02T20:51:58.2319994Z bun run audit:i18n
+1302: Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-02T20:51:58.2470258Z $ node scripts/audit-i18n.mjs
+1303: Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-02T20:51:59.5660387Z i18n audit: 63 files, 2265 keys used, 3395 keys in en, 0 problem(s)

@@ -1,0 +1,52 @@
+# Native Mac evidence
+
+Latest complete registered-state sweep: [0e63f87](0e63f87/README.md), clean-installed
+from green CI, with revision-pinned native screenshots, menu appearances and action results.
+The material below remains the historical baseline.
+
+Installed artifact: [CI 36957854761](https://github.com/CortexLM/desktop/actions/runs/36957854761),
+code `d40b5d786a44657cf18ea5b990d83f3a357034e1`, unsigned Cortex 0.2.0 arm64.
+Installed at `/Applications/Cortex.app`; macOS 26.6.2, 1024×768 desktop.
+
+- **426 native window captures**, 213 registered states × light/dark; 1024×685 pixels.
+- `screens/*.webp`: lossless conversion of native `screencapture` PNGs, including traffic
+  lights and title bar. Original PNG hashes are recorded in [manifest.json](manifest.json).
+- [index.html](index.html): full-resolution capture browser; `contact-*.jpg`: review sheets.
+- `menus/*.webp`: seven native menus in each appearance, whole desktop captured.
+- [window-actions.json](window-actions.json): observed minimize/fullscreen state transitions.
+- The sweep asserts the requested route/theme and nonempty screen content, records uncaught
+  renderer errors (**zero**) and the installed `app.asar` SHA-256. Image variance checks found
+  no blank main panes. Every contact sheet was inspected; suspect panels were read at full size.
+
+Navigation used CDP over SSH. Pixels came from `screencapture` in the authorized graphical
+session via `scripts/mac/capture-server.py`, not a renderer screenshot. Direct SSH capture
+failed the Screen Recording permission check; the authorized path is explicit.
+
+## Findings and scope
+
+These are preview screens with fixtures, not live-provider or backend-flow proof. Native
+menus initially exposed unimplemented destinations and duplicate fullscreen entries; small
+panels clipped Code suggestions, Canvas controls and Work computer controls. Corrections
+are recorded in [followup/README.md](followup/README.md); this baseline revision is not
+claimed as final visual acceptance.
+
+The yellow native traffic light was clicked through mac-computer: accessibility reported
+`AXMinimized=true`; restoring it yielded the visible window again. The green light yielded
+`AXFullScreen=true`; leaving fullscreen restored the same window. Source E2E assertions
+cover window title/minimum size, traffic-light coordinates and localized native menus.
+Native screenshot review supplements those assertions; it does not replace them.
+
+CI's native screenshot could not run without Screen Recording permission. Its packaged
+renderer screenshot is in `../ci/macos-ci-packaged-renderer.png`; these installed-app
+captures provide the separate native-window evidence. Signing/notarization is unproven.
+
+The original Mac install was overlaid on an older app: its asar hash matches this build,
+but 14 obsolete raw fixture files remained in `resources/locales`. The clean CI artifact
+contains none. These captures prove the recorded UI, not a clean resource installation;
+the [follow-up package](followup/install.json) was installed into a fresh app directory
+before regression captures and has zero raw fixture/source-stamp files.
+
+Final [Gallery verification](gallery/manifest.json) uses a clean-installed `7341cc7` package
+(same application code as green `2a9d1ad`). Native Help opens at the top, only 1–2 preview
+documents load, offscreen documents unload and the native-click exit returns home promptly.
+See [native-gallery.webp](gallery/native-gallery.webp). This does not refresh the full baseline.

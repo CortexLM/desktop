@@ -1,0 +1,55 @@
+ RUN  v5.0.3 /var/tmp/opencode/terminal-copy-repro
+
+ × current.test.tsx > French live CodeSession: exit7 84ms
+   → exit7: Cortex's English annotation reached French CodeSession
+ × current.test.tsx > French live CodeSession: large 30ms
+   → large: Cortex's English annotation reached French CodeSession
+ ✓ current.test.tsx > French live CodeSession: lookalike 30ms
+ ✓ current.test.tsx > French live CodeSession: unicode-boundary 30ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+   Start at  01:04:09
+   Duration  1.65s (import 42%, transform 35%, tests 22%)
+
+JSON report written to /tmp/opencode/terminal-copy-repro/negative/vitest.json
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  current.test.tsx > French live CodeSession: exit7
+AssertionError: exit7: Cortex's English annotation reached French CodeSession
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ current.test.tsx:113:12
+    111|   assert.ok(html.includes(t("code.session.ready")) || html.includes(t(…
+    112|   if (process.env.CORTEX_EXPECT_LOCALIZED && ["exit7", "large"].includ…
+    113|     assert.ok(!body?.includes(id === "exit7" ? "[exit code 7]" : "[tru…
+       |            ^
+    114|   }
+    115| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  current.test.tsx > French live CodeSession: large
+AssertionError: large: Cortex's English annotation reached French CodeSession
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ current.test.tsx:113:12
+    111|   assert.ok(html.includes(t("code.session.ready")) || html.includes(t(…
+    112|   if (process.env.CORTEX_EXPECT_LOCALIZED && ["exit7", "large"].includ…
+    113|     assert.ok(!body?.includes(id === "exit7" ? "[exit code 7]" : "[tru…
+       |            ^
+    114|   }
+    115| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯

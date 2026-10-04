@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-10-03T02:09:37.071875+00:00",
+  "result": "PASS",
+  "scope": "Retained exact-head CI receipts and SDK log hash. No CI replay or additional GitHub request.",
+  "ci_run": 37084973406,
+  "ci_passed": [
+    "Supply chain",
+    "Image publish script",
+    "Docs site",
+    "Web",
+    "Helm chart",
+    "SDK",
+    "Test",
+    "Deploy preflight scripts",
+    "API type contract",
+    "Dockerfile",
+    "Typecheck and lint"
+  ],
+  "ci_skipped": [
+    "Probe CodeQL CodeBuild x64"
+  ],
+  "codeql_run": 37084973410,
+  "codeql_passed": [
+    "Analyze (python)",
+    "Analyze (actions)",
+    "Analyze (javascript-typescript)"
+  ],
+  "pr_snapshot_utc": "2026-10-03T01:57:49.701080+00:00",
+  "pr_state": "OPEN",
+  "pr_head": "ce05a6040ec05ac479d23dc2f701c8835a529663",
+  "comments_since_cutoff": 9,
+  "reviews_since_cutoff": 10,
+  "coderabbit_review": "https://github.com/CortexLM/backend/pull/447#pullrequestreview-5398330615"
+}

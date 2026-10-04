@@ -1,0 +1,13 @@
+RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+(node:2128099) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ packages/core/test/bus.test.ts > delivers remote events live without journaling, projecting or notifying plugins; local CRUD still works 16ms
+ ✓ packages/core/test/bus.test.ts > isolates listener faults and snapshots publisher data after committing default-local events 3ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  05:17:59
+   Duration  739ms (import 52%, transform 43%, tests 3%, worker 1%)
+
+JSON report written to /tmp/opencode/remote-bus-prerequisite/fixed.json

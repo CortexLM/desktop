@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "scope": "Offline package/source provenance only",
+  "applicationRevision": "2956564fbe31f882014d74ff3a7f920e839fd634",
+  "artifactID": 11271217895,
+  "workflowRunID": 37113961621,
+  "outerBytes": 144676976,
+  "archiveSHA256": {
+    "artifact.zip": "e985229999bc066da6d356c3aed32caeb96ce0593c6a33db37218b4b86405193",
+    "Cortex.zip": "f53412e11bcd1d3c9a74a7a3e078979ed5e904555e2becd62f9d09d417bb1636",
+    "app.asar": "de7b30a5eedc416a1e1b35756e268fc7028f70908564e15b3ef4df9ec9c94d6e"
+  },
+  "asarRegularFiles": 91,
+  "buildMembers": 90,
+  "entriesWithVerifiedFileAndBlockIntegrity": 91,
+  "catalogs": 104,
+  "localeCounts": {
+    "de": 13,
+    "en": 13,
+    "es": 13,
+    "fr": 13,
+    "ja": 13,
+    "ko": 13,
+    "pt-BR": 13,
+    "zh-Hans": 13
+  },
+  "skills": 1,
+  "packageInputs": 514,
+  "rendererInputs": 473,
+  "rendererFingerprint": "e288e023805e998f276b224f10f63a5b448082d7a31174020b943f70815c028e",
+  "changedInputsFrom760c4a0": [
+    "packages/app/src/screens/chat/live-chat.tsx",
+    "packages/app/src/screens/code/code.tsx"
+  ],
+  "desktopMembersIdenticalTo760c4a0AndF5": 4,
+  "mainWorkspaceSources": 32,
+  "preloadWorkspaceSources": 1,
+  "sdkSources": 16,
+  "apiTypesSources": 16,
+  "linuxAsarBytesIdentical": true,
+  "frozenBuildAndInputArtifactsStableBeforeAfter": true,
+  "auditStartedAt": "2026-10-03T09:59:54.395936+00:00",
+  "auditFinishedAt": "2026-10-03T10:00:00.125919+00:00"
+}

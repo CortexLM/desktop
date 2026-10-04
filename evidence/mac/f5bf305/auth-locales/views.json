@@ -1,0 +1,740 @@
+[
+  {
+    "locale": "en",
+    "theme": "light",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "6-digit code",
+      "Resend the code",
+      "Continue",
+      "Use another address",
+      "Cancel"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "en",
+    "theme": "light",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Continue",
+      "Open connection settings"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "en",
+    "theme": "light",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Use another address",
+      "Cancel"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "fr",
+    "theme": "light",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "Code à 6 chiffres",
+      "Renvoyer le code",
+      "Continuer",
+      "Utiliser une autre adresse",
+      "Annuler"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "fr",
+    "theme": "light",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Continuer",
+      "Ouvrir les réglages de connexion"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "fr",
+    "theme": "light",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Utiliser une autre adresse",
+      "Annuler"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "es",
+    "theme": "light",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "Código de 6 cifras",
+      "Reenviar el código",
+      "Continuar",
+      "Usar otra dirección",
+      "Cancelar"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "es",
+    "theme": "light",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Continuar",
+      "Abrir la configuración de conexión"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "es",
+    "theme": "light",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Usar otra dirección",
+      "Cancelar"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "de",
+    "theme": "light",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "6-stelliger Code",
+      "Code erneut senden",
+      "Weiter",
+      "Andere Adresse verwenden",
+      "Abbrechen"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "de",
+    "theme": "light",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Weiter",
+      "Verbindungseinstellungen öffnen"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "de",
+    "theme": "light",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Andere Adresse verwenden",
+      "Abbrechen"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "ja",
+    "theme": "light",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "6桁のコード",
+      "コードを再送信",
+      "続ける",
+      "別のアドレスを使用",
+      "キャンセル"
+    ],
+    "fonts": [
+      "Geist",
+      "Hiragino Kaku Gothic ProN"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "ja",
+    "theme": "light",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "続ける",
+      "接続設定を開く"
+    ],
+    "fonts": [
+      "Geist",
+      "Hiragino Kaku Gothic ProN"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "ja",
+    "theme": "light",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "別のアドレスを使用",
+      "キャンセル"
+    ],
+    "fonts": [
+      "Geist",
+      "Hiragino Kaku Gothic ProN"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "zh-Hans",
+    "theme": "light",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "6 位验证码",
+      "重新发送验证码",
+      "继续",
+      "使用其他邮箱地址",
+      "取消"
+    ],
+    "fonts": [
+      "Geist",
+      "蘋方-簡"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "zh-Hans",
+    "theme": "light",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "继续",
+      "打开连接设置"
+    ],
+    "fonts": [
+      "Geist",
+      "蘋方-簡"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "zh-Hans",
+    "theme": "light",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "使用其他邮箱地址",
+      "取消"
+    ],
+    "fonts": [
+      "Geist",
+      "蘋方-簡"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "pt-BR",
+    "theme": "light",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "Código de 6 dígitos",
+      "Reenviar o código",
+      "Continuar",
+      "Usar outro endereço",
+      "Cancelar"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "pt-BR",
+    "theme": "light",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Continuar",
+      "Abrir configurações de conexão"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "pt-BR",
+    "theme": "light",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Usar outro endereço",
+      "Cancelar"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "ko",
+    "theme": "light",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "6자리 코드",
+      "코드 재전송",
+      "계속",
+      "다른 이메일 사용",
+      "취소"
+    ],
+    "fonts": [
+      "Apple SD Gothic Neo",
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "ko",
+    "theme": "light",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "계속",
+      "연결 설정 열기"
+    ],
+    "fonts": [
+      "Apple SD Gothic Neo",
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "ko",
+    "theme": "light",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "다른 이메일 사용",
+      "취소"
+    ],
+    "fonts": [
+      "Apple SD Gothic Neo",
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "en",
+    "theme": "dark",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "6-digit code",
+      "Resend the code",
+      "Continue",
+      "Use another address",
+      "Cancel"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "en",
+    "theme": "dark",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Continue",
+      "Open connection settings"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "en",
+    "theme": "dark",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Use another address",
+      "Cancel"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "fr",
+    "theme": "dark",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "Code à 6 chiffres",
+      "Renvoyer le code",
+      "Continuer",
+      "Utiliser une autre adresse",
+      "Annuler"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "fr",
+    "theme": "dark",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Continuer",
+      "Ouvrir les réglages de connexion"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "fr",
+    "theme": "dark",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Utiliser une autre adresse",
+      "Annuler"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "es",
+    "theme": "dark",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "Código de 6 cifras",
+      "Reenviar el código",
+      "Continuar",
+      "Usar otra dirección",
+      "Cancelar"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "es",
+    "theme": "dark",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Continuar",
+      "Abrir la configuración de conexión"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "es",
+    "theme": "dark",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Usar otra dirección",
+      "Cancelar"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "de",
+    "theme": "dark",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "6-stelliger Code",
+      "Code erneut senden",
+      "Weiter",
+      "Andere Adresse verwenden",
+      "Abbrechen"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "de",
+    "theme": "dark",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Weiter",
+      "Verbindungseinstellungen öffnen"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "de",
+    "theme": "dark",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Andere Adresse verwenden",
+      "Abbrechen"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "ja",
+    "theme": "dark",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "6桁のコード",
+      "コードを再送信",
+      "続ける",
+      "別のアドレスを使用",
+      "キャンセル"
+    ],
+    "fonts": [
+      "Geist",
+      "Hiragino Kaku Gothic ProN"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "ja",
+    "theme": "dark",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "続ける",
+      "接続設定を開く"
+    ],
+    "fonts": [
+      "Geist",
+      "Hiragino Kaku Gothic ProN"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "ja",
+    "theme": "dark",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "別のアドレスを使用",
+      "キャンセル"
+    ],
+    "fonts": [
+      "Geist",
+      "Hiragino Kaku Gothic ProN"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "zh-Hans",
+    "theme": "dark",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "6 位验证码",
+      "重新发送验证码",
+      "继续",
+      "使用其他邮箱地址",
+      "取消"
+    ],
+    "fonts": [
+      "Geist",
+      "蘋方-簡"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "zh-Hans",
+    "theme": "dark",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "继续",
+      "打开连接设置"
+    ],
+    "fonts": [
+      "Geist",
+      "蘋方-簡"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "zh-Hans",
+    "theme": "dark",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "使用其他邮箱地址",
+      "取消"
+    ],
+    "fonts": [
+      "Geist",
+      "蘋方-簡"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "pt-BR",
+    "theme": "dark",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "Código de 6 dígitos",
+      "Reenviar o código",
+      "Continuar",
+      "Usar outro endereço",
+      "Cancelar"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "pt-BR",
+    "theme": "dark",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Continuar",
+      "Abrir configurações de conexão"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "pt-BR",
+    "theme": "dark",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "Usar outro endereço",
+      "Cancelar"
+    ],
+    "fonts": [
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "ko",
+    "theme": "dark",
+    "state": "code_sent",
+    "textRows": 14,
+    "keyboardOrder": [
+      "6자리 코드",
+      "코드 재전송",
+      "계속",
+      "다른 이메일 사용",
+      "취소"
+    ],
+    "fonts": [
+      "Apple SD Gothic Neo",
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "ko",
+    "theme": "dark",
+    "state": "signed_in",
+    "textRows": 4,
+    "keyboardOrder": [
+      "계속",
+      "연결 설정 열기"
+    ],
+    "fonts": [
+      "Apple SD Gothic Neo",
+      "Geist"
+    ],
+    "passed": true
+  },
+  {
+    "locale": "ko",
+    "theme": "dark",
+    "state": "mfa_enrollment",
+    "textRows": 4,
+    "keyboardOrder": [
+      "다른 이메일 사용",
+      "취소"
+    ],
+    "fonts": [
+      "Apple SD Gothic Neo",
+      "Geist"
+    ],
+    "passed": true
+  }
+]

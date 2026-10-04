@@ -1,0 +1,113 @@
+[
+  {
+    "file": "provider-draft.spec.ts",
+    "testSHA256": "bf57e5cdb18d53f31572ec04ec7727130574a1c33cbdf9cc3b6fcb4733365c3a",
+    "originalReport": "../toggle-baseline/final/report.json.gz",
+    "originalReportSHA256": "5d404f08854b7fba21e3e639b2b429d70c5d9c13c0ee6ea209d54a8e50f65758",
+    "cases": 2,
+    "failedAssertions": 4,
+    "lines": [
+      99
+    ],
+    "assertions": [
+      {
+        "title": "provider availability preserves an unsaved replacement key — 960 light",
+        "errors": [
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-draft.spec.ts",
+              "column": 123,
+              "line": 99
+            },
+            "message": "Error: after-disable: accepted preference PATCH preserves the unsaved replacement draft\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   97 |           await test.info().attach(`provider-draft-${theme}`, { path, contentType: \"image/png\" });\n   98 |         }\n>  99 |         expect.soft(value === REPLACEMENT, `${stage}: accepted preference PATCH preserves the unsaved replacement draft`).toBe(true);\n      |                                                                                                                           ^\n  100 |       });\n  101 |     }\n  102 |\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-draft.spec.ts:99:123\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-draft.spec.ts:80:7"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-draft.spec.ts",
+              "column": 123,
+              "line": 99
+            },
+            "message": "Error: after-enable: accepted preference PATCH preserves the unsaved replacement draft\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   97 |           await test.info().attach(`provider-draft-${theme}`, { path, contentType: \"image/png\" });\n   98 |         }\n>  99 |         expect.soft(value === REPLACEMENT, `${stage}: accepted preference PATCH preserves the unsaved replacement draft`).toBe(true);\n      |                                                                                                                           ^\n  100 |       });\n  101 |     }\n  102 |\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-draft.spec.ts:99:123\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-draft.spec.ts:80:7"
+          }
+        ]
+      },
+      {
+        "title": "provider availability preserves an unsaved replacement key — 960 dark",
+        "errors": [
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-draft.spec.ts",
+              "column": 123,
+              "line": 99
+            },
+            "message": "Error: after-disable: accepted preference PATCH preserves the unsaved replacement draft\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   97 |           await test.info().attach(`provider-draft-${theme}`, { path, contentType: \"image/png\" });\n   98 |         }\n>  99 |         expect.soft(value === REPLACEMENT, `${stage}: accepted preference PATCH preserves the unsaved replacement draft`).toBe(true);\n      |                                                                                                                           ^\n  100 |       });\n  101 |     }\n  102 |\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-draft.spec.ts:99:123\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-draft.spec.ts:80:7"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-draft.spec.ts",
+              "column": 123,
+              "line": 99
+            },
+            "message": "Error: after-enable: accepted preference PATCH preserves the unsaved replacement draft\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   97 |           await test.info().attach(`provider-draft-${theme}`, { path, contentType: \"image/png\" });\n   98 |         }\n>  99 |         expect.soft(value === REPLACEMENT, `${stage}: accepted preference PATCH preserves the unsaved replacement draft`).toBe(true);\n      |                                                                                                                           ^\n  100 |       });\n  101 |     }\n  102 |\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-draft.spec.ts:99:123\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-draft.spec.ts:80:7"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "provider-key-pending.spec.ts",
+    "testSHA256": "bcafa61de982af883954f648123c06370021b0dab8c8aca5003a2ec06d3d7477",
+    "originalReport": "../pending-baseline/raw/results.json.gz",
+    "originalReportSHA256": "bcbce4a8198f76def6384da29649516e0e9540ba13f2a0741defbb3336cf76fc",
+    "cases": 2,
+    "failedAssertions": 4,
+    "lines": [
+      84,
+      101
+    ],
+    "assertions": [
+      {
+        "title": "Provider key Save and Remove preserve edits made while their real response is pending — light",
+        "errors": [
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-key-pending.spec.ts",
+              "column": 97,
+              "line": 84
+            },
+            "message": "Error: Completed Save must preserve the newer unsaved key\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"sk-test-pending-3333\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\n\n  82 |     await expect(hint).toHaveText(\"Saved · 2222\"); await expect(remove).toBeEnabled(); await settle();\n  83 |     evidence.putSettled = { stored: await config(page), responseUnchanged: true, newerDraftPreserved: (await input.inputValue()) === C, draftLength: (await input.inputValue()).length };\n> 84 |     expect.soft(await input.inputValue(), \"Completed Save must preserve the newer unsaved key\").toBe(C);\n     |                                                                                                 ^\n  85 |     await form.scrollIntoViewIfNeeded(); await capture(page, \"after-put-release\");\n  86 |\n  87 |     // Explicit preparation after the recorded assertion; continue to the independent Remove race.\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-key-pending.spec.ts:84:97"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-key-pending.spec.ts",
+              "column": 99,
+              "line": 101
+            },
+            "message": "Error: Completed Remove must preserve the newer unsaved key\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"sk-test-pending-4444\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\n\n   99 |     await expect(hint).toHaveText(\"Stored on this device, never shown again\"); await expect(remove).toHaveCount(0); await settle();\n  100 |     evidence.deleteSettled = { stored: await config(page), responseUnchanged: true, newerDraftPreserved: (await input.inputValue()) === D, draftLength: (await input.inputValue()).length };\n> 101 |     expect.soft(await input.inputValue(), \"Completed Remove must preserve the newer unsaved key\").toBe(D);\n      |                                                                                                   ^\n  102 |     await form.scrollIntoViewIfNeeded(); await capture(page, \"after-delete-release\");\n  103 |\n  104 |     // Preserve the negative result above, then exercise genuine final recovery in both implementations.\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-key-pending.spec.ts:101:99"
+          }
+        ]
+      },
+      {
+        "title": "Provider key Save and Remove preserve edits made while their real response is pending — dark",
+        "errors": [
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-key-pending.spec.ts",
+              "column": 97,
+              "line": 84
+            },
+            "message": "Error: Completed Save must preserve the newer unsaved key\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"sk-test-pending-3333\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\n\n  82 |     await expect(hint).toHaveText(\"Saved · 2222\"); await expect(remove).toBeEnabled(); await settle();\n  83 |     evidence.putSettled = { stored: await config(page), responseUnchanged: true, newerDraftPreserved: (await input.inputValue()) === C, draftLength: (await input.inputValue()).length };\n> 84 |     expect.soft(await input.inputValue(), \"Completed Save must preserve the newer unsaved key\").toBe(C);\n     |                                                                                                 ^\n  85 |     await form.scrollIntoViewIfNeeded(); await capture(page, \"after-put-release\");\n  86 |\n  87 |     // Explicit preparation after the recorded assertion; continue to the independent Remove race.\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-key-pending.spec.ts:84:97"
+          },
+          {
+            "location": {
+              "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-key-pending.spec.ts",
+              "column": 99,
+              "line": 101
+            },
+            "message": "Error: Completed Remove must preserve the newer unsaved key\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"sk-test-pending-4444\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\n\n   99 |     await expect(hint).toHaveText(\"Stored on this device, never shown again\"); await expect(remove).toHaveCount(0); await settle();\n  100 |     evidence.deleteSettled = { stored: await config(page), responseUnchanged: true, newerDraftPreserved: (await input.inputValue()) === D, draftLength: (await input.inputValue()).length };\n> 101 |     expect.soft(await input.inputValue(), \"Completed Remove must preserve the newer unsaved key\").toBe(D);\n      |                                                                                                   ^\n  102 |     await form.scrollIntoViewIfNeeded(); await capture(page, \"after-delete-release\");\n  103 |\n  104 |     // Preserve the negative result above, then exercise genuine final recovery in both implementations.\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/provider-key-pending.spec.ts:101:99"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,214 @@
+{
+  "status": "approved",
+  "scope": "Offline package/source admission only; native acceptance remains pending",
+  "applicationRevision": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+  "baselineApplication": "99e3d04a8dab6b51b6cf23bcdae0365624492e0f",
+  "workflowRunID": 37130209247,
+  "artifactID": 11277575575,
+  "outerBytes": 144684259,
+  "archiveSHA256": {
+    "artifact.zip": "a5a4e90f376c2ec5fab38c879820e8988b72681854c78cb14a10bd7e641cb147",
+    "Cortex.zip": "696ab8a1cdf1915068df371bc34ad82e70f5462a70ce5415d4af73d32de5f549",
+    "app.asar": "5a92b306afc07184af30404d3d04ae596554ea9800bf31e3a0e3f2fd5c74d9ad"
+  },
+  "outerCRC": "passed",
+  "innerCRC": "passed",
+  "innerZipEntries": 697,
+  "safeFrameworkSymlinks": 14,
+  "asarFiles": 91,
+  "verifiedIntegrityBlocks": 92,
+  "asarContiguousPayload": true,
+  "asarLinks": 0,
+  "asarUnpackedEntries": 0,
+  "buildMembers": 90,
+  "completeBuildMemberSetMatches": true,
+  "rootPackageMatchesGit": true,
+  "catalogs": 104,
+  "localeCounts": {
+    "de": 13,
+    "en": 13,
+    "es": 13,
+    "fr": 13,
+    "ja": 13,
+    "ko": 13,
+    "pt-BR": 13,
+    "zh-Hans": 13
+  },
+  "skills": 1,
+  "extraLocaleOrSkillFiles": 0,
+  "resourceFixturesOrSourceStamps": 0,
+  "packageInputsMatchingGit": 515,
+  "packageInputPathSetIndependentlyEnumerated": true,
+  "newPackageInput": "packages/core/src/project.ts",
+  "newTestsExcludedFromPackageInputSet": [
+    "packages/server/test/projects.test.ts",
+    "tests/e2e/projects.spec.ts"
+  ],
+  "rendererInputs": 473,
+  "rendererFingerprintAlgorithm": "sha256(LF-joined sorted path:sha256, no trailing LF)",
+  "rendererFingerprint": "6070fc3282e019c04a29f6a2a68f36f029c56e7813c4aecd84cba46f071a5bb4",
+  "changedPackageInputs": [
+    {
+      "path": "packages/app/src/screens/chat/live-chat.tsx",
+      "added": 57,
+      "removed": 13,
+      "beforeSHA256": "c70919bb1dd6167f1bd32c4618a11e59aa79df7a7c5484a9adbf7810b79e0a6e",
+      "afterSHA256": "c5ea58ac346d4ade23ab7c4c4c0934edb8132e123eec9320f41983ca7c9b16e0"
+    },
+    {
+      "path": "packages/app/src/screens/chat/pages.tsx",
+      "added": 18,
+      "removed": 11,
+      "beforeSHA256": "e32b77613dc41bc07f80148d8c351a6fa75b3c72e8b2034d9b8b0ce5f15b07c5",
+      "afterSHA256": "6575d12d2393b28987b6b43643e185b97a853c5d0986f44d17de985009e3cb0b"
+    },
+    {
+      "path": "packages/app/src/screens/system/projects.tsx",
+      "added": 141,
+      "removed": 18,
+      "beforeSHA256": "27fa94c6f85909f6a00ee2afaadc36f4b90bbb8557bd0b937f5f1edc092ede08",
+      "afterSHA256": "e46c23172a22c388e981f4b4b73e7aa8158b76b80ea628d293c82c38ae9ef54b"
+    },
+    {
+      "path": "packages/app/src/screens/system/search.tsx",
+      "added": 7,
+      "removed": 5,
+      "beforeSHA256": "331ed3f50186a7c09b4dabf7a0257af039b01d8aa342c74ccce81d0f8b7979ba",
+      "afterSHA256": "3d1080ab1c3e79d61e2e50f51ef1cd49497b80a6276fa879d10acd70eea0269b"
+    },
+    {
+      "path": "packages/app/src/shell/shell.tsx",
+      "added": 34,
+      "removed": 6,
+      "beforeSHA256": "880240350484738971849dbabdfe591cd90471afc08fa0ffca02ef6f78a6ae67",
+      "afterSHA256": "96cd8f48c55e4f02849ca83939875c5976267743d7b1294dd429176fc548b9e2"
+    },
+    {
+      "path": "packages/app/src/state/live.ts",
+      "added": 3,
+      "removed": 2,
+      "beforeSHA256": "fde8193d44f8e943915b18a5b3dc074ef048dc1f37cd580f25db1f2bfab6ed34",
+      "afterSHA256": "7af5441489592dfb8f3a6f9ff6fb5b68f6e9d035b9704933f3df73ca777ec057"
+    },
+    {
+      "path": "packages/client/src/index.ts",
+      "added": 11,
+      "removed": 1,
+      "beforeSHA256": "0faa61a96ffb009edd1fd6d321d38d805625eb385c9d912c7a184bc1467367e7",
+      "afterSHA256": "76bb38b6781d768f660948470327fafdac587725ecc8f631fef1af36eb470c3a"
+    },
+    {
+      "path": "packages/core/README.md",
+      "added": 3,
+      "removed": 1,
+      "beforeSHA256": "39a910f75f794c27f56188b7b39dcdf624fa309757b9953a77b4fa402c5d2dee",
+      "afterSHA256": "fa1b8a0bcb6f9634d0ad021dfe43ad253f53988a4622242af1d808c75bc288b2"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "added": 6,
+      "removed": 0,
+      "beforeSHA256": "f95a508dc024fbbd2f4b5c4bab77fb4ee5efd06294801fd5de31c5abd19386bd",
+      "afterSHA256": "8b988d7f457495b7bee62337e1b2a3dba1b4ce33bee60b9a41b9013626153a8d"
+    },
+    {
+      "path": "packages/core/src/project.ts",
+      "added": 42,
+      "removed": 0,
+      "beforeSHA256": null,
+      "afterSHA256": "9aba16201c9537e7d59c378b5629fcdec6f940160b7a273fbc1514487d0d7c32"
+    },
+    {
+      "path": "packages/core/src/session.ts",
+      "added": 53,
+      "removed": 10,
+      "beforeSHA256": "8bdaadc276264e3e755c73df44bd894b884826875a6e582149dccc69086b81d4",
+      "afterSHA256": "1fd33846781b589135cc13f40add5fce0c79f59afeae9aa7b89ceaacc5238345"
+    },
+    {
+      "path": "packages/core/src/storage.ts",
+      "added": 7,
+      "removed": 1,
+      "beforeSHA256": "1c56b82e24b89b68733e7cf5ba38a7d241f11f66e7a3857e0561ec3728bff255",
+      "afterSHA256": "f7bfc00d4e8017980b03519d5032819d0b2d00ca39beeff40c7c1995cca39e7c"
+    },
+    {
+      "path": "packages/protocol/src/index.ts",
+      "added": 10,
+      "removed": 1,
+      "beforeSHA256": "8c91ead8ab678b0bfab39799bb03e0b4d60612632bfd5aa65f74bf8b21669e69",
+      "afterSHA256": "91a3c11e78aec35bca7354d09620af3fe1ecaf038c322e763ac8feaedd3c3a1a"
+    },
+    {
+      "path": "packages/schema/src/index.ts",
+      "added": 29,
+      "removed": 3,
+      "beforeSHA256": "0403846e16c38e7f06c077d7980a9c375898ba413f5aa5f93cf863d7229f5361",
+      "afterSHA256": "83654e5afe2aa36d8de77f45941beb7aeb8d9b2bf2c70a95487d2c6754986678"
+    },
+    {
+      "path": "packages/server/src/index.ts",
+      "added": 6,
+      "removed": 0,
+      "beforeSHA256": "7585be3574f67ba1280e7f4f0e1423413b9d697be4e7423ac8ca3941aa783037",
+      "afterSHA256": "0262af1fa6e9dc16a8f6b83f98ec2ca73ff292bd6cbf9bacc8061dc025e425bd"
+    }
+  ],
+  "runtimeSourceFilesChanged": 14,
+  "runtimeLineDelta": {
+    "added": 424,
+    "removed": 71
+  },
+  "packageDocumentationChange": "packages/core/README.md",
+  "desktopBytesIdenticalToBaseline": {
+    "packages/desktop/dist/main.cjs": false,
+    "packages/desktop/dist/main.cjs.map": false,
+    "packages/desktop/dist/preload.cjs": true,
+    "packages/desktop/dist/preload.cjs.map": true
+  },
+  "cssIdenticalToBaseline": {
+    "packages/app/dist/assets/index-BLVQW-LL.css": "44540a26450648a7745ce4c75c36ec0b7a90d3e12f029dd4bdf9f74f2395ecbf"
+  },
+  "mainWorkspaceSourcesMatchingGit": 33,
+  "preloadWorkspaceSourcesMatchingGit": 1,
+  "sdkSources": 16,
+  "apiTypesSources": 16,
+  "otherEmbeddedDependencySourcesUnchanged": 915,
+  "dependencyPinsUnchanged": true,
+  "productionRenderer": {
+    "path": "packages/app/dist/assets/index-Cvqb1vYV.js",
+    "bytes": 2461373,
+    "sha256": "e0527034c7c35a2ccf680bb750d156cf0511f4edc20ece0e21a1a453bf31309d",
+    "presentMarkers": [
+      "Minified React error #",
+      "bundleType:0,version:`19.3.0`,rendererPackageName:`react-dom`"
+    ],
+    "absentDevelopmentMarkers": [
+      "act(...) is not supported",
+      "actQueue",
+      "_debugStack",
+      "__DEV__",
+      "You are calling ReactDOMClient.createRoot()"
+    ]
+  },
+  "linuxAsarBytesIdentical": true,
+  "originalDirtyReceiptsPreserved": true,
+  "originalDirtyBase": "0597848cdbdec362e1441b44c67bf74c525feefa",
+  "earlierDevelopmentBuildResult": "109/116; seven failures retained, not native acceptance",
+  "inputArtifactsStableBeforeAfter": true,
+  "executedBuilds": 0,
+  "executedApplicationTests": 0,
+  "nativeExecution": false,
+  "networkRequests": 0,
+  "startedUTC": "2026-10-03T15:00:12.031896+00:00",
+  "finishedUTC": "2026-10-03T15:00:18.610535+00:00",
+  "verifier": {
+    "path": "/tmp/opencode/projects-mac-package-audit/verify.py",
+    "sha256": "fd4df3995a0a2ba32bc394bec6a94655dbed01412a4e07a17d1e56cf392cc6dc",
+    "helperSHA256": "b1dc950239a29d1fbce49df67a1ba6b4dbe4d049a4c6bfc59520e0f6488c9710"
+  },
+  "detailReceipts": {
+    "integrity.json": "df09a759779c602695a8702e1d42f17f40db997fe17aa45066fd295d05935c4c",
+    "source-hashes.json": "b93a77a5a1876e112888d34433bc16d2b83b1e99d596836312819aaa7ef76a60"
+  }
+}

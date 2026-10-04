@@ -1,0 +1,115 @@
+[
+  {
+    "case": 68,
+    "file": "provider-draft.spec.ts",
+    "title": "provider availability preserves an unsaved replacement key — 960 light",
+    "name": "provider-draft-light",
+    "image": "image-083",
+    "sha256": "bba44faf9eaec43cb02584296fd3e8c2512455e6469ebf3fb2cea5bd7805b018",
+    "canonical": "../integrated/targeted-images/bba44faf9eaec43cb02584296fd3e8c2512455e6469ebf3fb2cea5bd7805b018.webp",
+    "original": "/tmp/opencode/provider-draft-integrated/e2e-full-artifacts/provider-draft-provider-av-c7b41-replacement-key-—-960-light/attachments/provider-draft-light-579d78665e489cdaa396e799863c228d2e4ba1f3.png",
+    "targetedOriginalPNGEqual": true,
+    "targetedPixelComparison": {
+      "sameSize": true,
+      "sameRGBA": true,
+      "changedPixels": 0,
+      "differenceBounds": null,
+      "cause": null
+    }
+  },
+  {
+    "case": 69,
+    "file": "provider-draft.spec.ts",
+    "title": "provider availability preserves an unsaved replacement key — 960 dark",
+    "name": "provider-draft-dark",
+    "image": "image-084",
+    "sha256": "e41de31f6a344bfba1270a7c2c91beff4bf382e8df737ad15c189f51d84b02e5",
+    "canonical": "../integrated/targeted-images/e41de31f6a344bfba1270a7c2c91beff4bf382e8df737ad15c189f51d84b02e5.webp",
+    "original": "/tmp/opencode/provider-draft-integrated/e2e-full-artifacts/provider-draft-provider-av-bab6b--replacement-key-—-960-dark/attachments/provider-draft-dark-0bc8e32eec00be276bb21e14c660171345bc7257.png",
+    "targetedOriginalPNGEqual": true,
+    "targetedPixelComparison": {
+      "sameSize": true,
+      "sameRGBA": true,
+      "changedPixels": 0,
+      "differenceBounds": null,
+      "cause": null
+    }
+  },
+  {
+    "case": 70,
+    "file": "provider-key-pending.spec.ts",
+    "title": "Provider key Save and Remove preserve edits made while their real response is pending — light",
+    "name": "after-delete-release",
+    "image": "image-085",
+    "sha256": "f158d9e4c2c541a14010a7f4ec55c2bc632fdc4bebbe922f7853d6bb7392664a",
+    "canonical": "images/f158d9e4c2c541a14010a7f4ec55c2bc632fdc4bebbe922f7853d6bb7392664a.webp",
+    "original": "/tmp/opencode/provider-draft-integrated/e2e-full-artifacts/provider-key-pending-Provi-f3799-response-is-pending-—-light/attachments/after-delete-release-df5315509b349177ae88c3cde1ed823b330075dc.png",
+    "targetedOriginalPNGEqual": false,
+    "targetedPixelComparison": {
+      "sameSize": true,
+      "sameRGBA": false,
+      "changedPixels": 1,
+      "differenceBounds": [
+        954,
+        620,
+        955,
+        621
+      ],
+      "cause": "unknown"
+    }
+  },
+  {
+    "case": 70,
+    "file": "provider-key-pending.spec.ts",
+    "title": "Provider key Save and Remove preserve edits made while their real response is pending — light",
+    "name": "after-put-release",
+    "image": "image-086",
+    "sha256": "05bdf66c12f868ed4e25fc6eacb3b30c88cde4c82d6bae9ebac2d03d4aa5ff22",
+    "canonical": "../integrated/targeted-images/05bdf66c12f868ed4e25fc6eacb3b30c88cde4c82d6bae9ebac2d03d4aa5ff22.webp",
+    "original": "/tmp/opencode/provider-draft-integrated/e2e-full-artifacts/provider-key-pending-Provi-f3799-response-is-pending-—-light/attachments/after-put-release-bc90c304244308262bcbc95e7c5a0c97fb8e63fc.png",
+    "targetedOriginalPNGEqual": true,
+    "targetedPixelComparison": {
+      "sameSize": true,
+      "sameRGBA": true,
+      "changedPixels": 0,
+      "differenceBounds": null,
+      "cause": null
+    }
+  },
+  {
+    "case": 71,
+    "file": "provider-key-pending.spec.ts",
+    "title": "Provider key Save and Remove preserve edits made while their real response is pending — dark",
+    "name": "after-delete-release",
+    "image": "image-087",
+    "sha256": "aa1931d3bc8a6dffa2bd7c498345c0ff801913f1fa2b27da86c13c082d8f48d9",
+    "canonical": "../integrated/targeted-images/aa1931d3bc8a6dffa2bd7c498345c0ff801913f1fa2b27da86c13c082d8f48d9.webp",
+    "original": "/tmp/opencode/provider-draft-integrated/e2e-full-artifacts/provider-key-pending-Provi-12b0d--response-is-pending-—-dark/attachments/after-delete-release-e1e7b6c943e53f3bf5328b9c3bcefcdde01f0f74.png",
+    "targetedOriginalPNGEqual": true,
+    "targetedPixelComparison": {
+      "sameSize": true,
+      "sameRGBA": true,
+      "changedPixels": 0,
+      "differenceBounds": null,
+      "cause": null
+    }
+  },
+  {
+    "case": 71,
+    "file": "provider-key-pending.spec.ts",
+    "title": "Provider key Save and Remove preserve edits made while their real response is pending — dark",
+    "name": "after-put-release",
+    "image": "image-088",
+    "sha256": "cf5041f9fe375b2992d20f11623c5f6582fc1ebaffb676a4c98d4e051ea66e76",
+    "canonical": "../integrated/targeted-images/cf5041f9fe375b2992d20f11623c5f6582fc1ebaffb676a4c98d4e051ea66e76.webp",
+    "original": "/tmp/opencode/provider-draft-integrated/e2e-full-artifacts/provider-key-pending-Provi-12b0d--response-is-pending-—-dark/attachments/after-put-release-04e7e5410218a9d32650b89d3fa577bdc5427f03.png",
+    "targetedOriginalPNGEqual": true,
+    "targetedPixelComparison": {
+      "sameSize": true,
+      "sameRGBA": true,
+      "changedPixels": 0,
+      "differenceBounds": null,
+      "cause": null
+    }
+  }
+]

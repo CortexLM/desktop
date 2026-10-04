@@ -1,0 +1,16 @@
+{
+  "localFinalReceipt": {
+    "path": "../final/application-pin.json",
+    "bytes": 452,
+    "sha256": "37a9f4ca4101a6d1690c6c86a378e30ada2175695a6cf233b44aaffb01b29761"
+  },
+  "localLinuxReceipt": {
+    "path": "../final/linux-package.json",
+    "bytes": 337,
+    "sha256": "adb419f07768709d48ab5ecf51ffe9e5ab4acca47dfc0f64e083b94bfcb46adc"
+  },
+  "reportedLocalASARSHA256": "b55bda25290eaf90c821c9a79806d2aecdba5a1bb291da71f6b1abc251a16c44",
+  "binaryInspected": false,
+  "ciPackageArtifact": 11279989876,
+  "scope": "Receipt cross-binding only. Local ASAR hash is not asserted as CI Mac ASAR equality. Package/native admission belongs to coordinator."
+}

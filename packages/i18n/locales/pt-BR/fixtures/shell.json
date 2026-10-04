@@ -1,0 +1,89 @@
+{
+  "user": {
+    "initials": "CL"
+  },
+  "bot": {
+    "name": "Nova",
+    "doing": "organizando seu email"
+  },
+  "projects": [
+    {
+      "name": "Lançamento de primavera",
+      "to": "project",
+      "chats": [
+        {
+          "title": "Plano de lançamento de 14 de abril",
+          "to": "chat",
+          "active": true
+        },
+        {
+          "title": "Sequência de email para clientes",
+          "to": "chat",
+          "dim": true
+        },
+        {
+          "title": "Feedback da pré-visualização",
+          "to": "chat",
+          "dim": true
+        },
+        {
+          "title": "Mostrar mais",
+          "to": "project",
+          "dim": true
+        }
+      ]
+    },
+    {
+      "name": "Studio Nord",
+      "meta": "3 tarefas",
+      "status": "yellow",
+      "to": "project",
+      "chats": []
+    }
+  ],
+  "repos": [
+    {
+      "name": "cortex-web",
+      "tasks": [
+        {
+          "title": "Corrigir paginação de faturas",
+          "status": "blue",
+          "to": "code-session"
+        },
+        {
+          "title": "Migrar login para passkeys",
+          "meta": "+214 −37",
+          "to": "code-diff"
+        },
+        {
+          "title": "Adicionar exportações em CSV",
+          "status": "green",
+          "to": "code-pr"
+        }
+      ]
+    },
+    {
+      "name": "cortex-ios",
+      "tasks": [
+        {
+          "title": "Corrigir a falha ao despertar",
+          "status": "red",
+          "to": "code-terminal"
+        }
+      ]
+    }
+  ],
+  "envs": [
+    {
+      "name": "Cloud · ubuntu-24",
+      "icon": "cpu",
+      "meta": "pronto",
+      "status": "green"
+    },
+    {
+      "name": "MacBook Pro local",
+      "icon": "terminal",
+      "meta": "offline"
+    }
+  ]
+}

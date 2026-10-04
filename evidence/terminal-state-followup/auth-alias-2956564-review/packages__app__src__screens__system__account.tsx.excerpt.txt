@@ -1,0 +1,15 @@
+111:   const preview = isPreview();
+112:   const [variant, setV] = useVariant("email");
+113:   const [auth, setAuth] = React.useState<RemoteAuthState | null>(null);
+114:   const [authError, setAuthError] = React.useState("");
+115:   const request = React.useRef<symbol | null>(null);
+116:   const v = preview ? variant : auth?.status === "signed_in" ? "signed-in" : auth?.status === "code_sent" ? "code" : auth && auth.status !== "signed_out" ? "unavailable" : "email";
+204:         </>}
+205:         {v === "unavailable" && <>
+206:           <span className="systeme-logo" aria-hidden /><h1>{t("system.unavailable")}</h1>
+207:           <p className="systeme-lead">{t("system.auth.continuationUnavailable")}</p>
+208:           <button className="btn secondary big" onClick={() => void submit({ action: "cancel" })}>{t("system.login.otherEmail")}</button>
+209:         </>}
+210:         {!preview && authError && <p className="systeme-err" role="alert"><Icon name="alert-triangle" size={16} />{t(authError)}</p>}
+211:         {!preview && !auth && authError && <button className="btn secondary" disabled={busy} onClick={loadAuth}>{t("common.retry")}</button>}
+212:         {!preview && v !== "signed-in" && <button className="systeme-textbtn" style={{ marginTop: 16, alignSelf: "center" }} onClick={() => void submit({ action: "cancel" }, true)}>{t("common.cancel")}</button>}

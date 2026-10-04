@@ -1,0 +1,173 @@
+{
+  "full": {
+    "raw": "/tmp/opencode/work-activity/full.json",
+    "sha256": "fc14ec77c1486e9a51ef00f134f655e0bbdef2833b96f092be15134f214be911",
+    "retained": "../checks/full.json.gz",
+    "retainedSHA256": "9f75b7054a055ed87936a7b8be2603b1c4d633631d431ba1c7a6dc80d0e94003",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T18:41:36.166Z",
+      "duration": 294848.924,
+      "expected": 132,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": 132,
+    "attempts": 132,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 0,
+    "attachments": {
+      "image/png": 187,
+      "application/json": 66
+    },
+    "renderVisits": 426,
+    "renderStdout": "rendered 426 screen states\n"
+  },
+  "final-targeted": {
+    "raw": "/tmp/opencode/work-activity/final-targeted.json",
+    "sha256": "a1eb3624b0ab8cfd24bcbec6133e8c0cc4c84301fe512fba98af1dc14db23fc6",
+    "retained": "../checks/final-targeted.json.gz",
+    "retainedSHA256": "d1b062a94833fb7c98d112e9d75218949ba0af394048ebdbfd098fb4db391462",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T18:48:08.108Z",
+      "duration": 7286.332,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": 6,
+    "attempts": 6,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 0,
+    "attachments": {
+      "image/png": 4,
+      "application/json": 1
+    }
+  },
+  "targeted": {
+    "raw": "/tmp/opencode/work-activity/targeted.json",
+    "sha256": "9abed157a8ba5ed1977312dd5f2f389068b55e3461d7d7de867e323cf1f3e505",
+    "retained": "../checks/targeted.json.gz",
+    "retainedSHA256": "fafb0cefe8fad4217463b80529d29fb58ada9c81b972fd8e40929f0b29fe60b3",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T18:39:10.654Z",
+      "duration": 20794.998,
+      "expected": 5,
+      "skipped": 0,
+      "unexpected": 2,
+      "flaky": 0
+    },
+    "cases": 7,
+    "attempts": 7,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 2,
+    "attachments": {
+      "image/png": 12,
+      "application/json": 2,
+      "text/markdown": 2,
+      "application/zip": 2
+    }
+  },
+  "lifecycle-corrected": {
+    "raw": "/tmp/opencode/work-activity/lifecycle-corrected.json",
+    "sha256": "cdf19472f62d3d61ce4ec231b58e30888b6ec99ea1c36f5a35baf5f4fa6abb4e",
+    "retained": "../checks/lifecycle-corrected.json.gz",
+    "retainedSHA256": "ed28a110f9cba126e8e1c92ff919abebef1b1208f51e3e55efb6a31e3b8cad20",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T18:40:39.840Z",
+      "duration": 5161.413,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": 2,
+    "attempts": 2,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 0,
+    "attachments": {
+      "image/png": 4
+    }
+  },
+  "race-strengthened": {
+    "raw": "/tmp/opencode/work-activity/race-strengthened.json",
+    "sha256": "cdac7ed5a9d3cf622174d738e93f4a0d111b4c60cfaa17f44d932c723ff66c7c",
+    "retained": "../checks/race-strengthened.json.gz",
+    "retainedSHA256": "181bdec70014ca3fb17550a6913e8e0df82a598d0f07b7d5a49426f3d7674d78",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T18:43:19.616Z",
+      "duration": 3188.593,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": 1,
+    "attempts": 1,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 0,
+    "attachments": {}
+  },
+  "baseline": {
+    "raw": "/tmp/opencode/work-activity/baseline.json",
+    "sha256": "71deffbdd0ca735562a2a95b2976972b8f81135eccb15470ab9c5c05dcedcad2",
+    "retained": "../baseline/baseline.json.gz",
+    "retainedSHA256": "2f59a8c15355f44da6cb088d97e01ed34a636281d0a82588a8bd06851e53b546",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T18:34:56.347Z",
+      "duration": 34312.702,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 6,
+      "flaky": 0
+    },
+    "cases": 6,
+    "attempts": 6,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 6,
+    "attachments": {
+      "image/png": 6,
+      "text/markdown": 6,
+      "application/zip": 6
+    }
+  },
+  "locale-baseline": {
+    "raw": "/tmp/opencode/work-activity/locale-baseline.json",
+    "sha256": "90a5bacd3703b149280e7502e6406da434a89abef4ea3dac13e47d7b132da2ff",
+    "retained": "../baseline/locale-baseline.json.gz",
+    "retainedSHA256": "1619f788583f3efa73cd41050a6aa85202cc323888b4666fb9623d363a9804c8",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T18:25:27.321Z",
+      "duration": 17058.476,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "cases": 1,
+    "attempts": 1,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 1,
+    "attachments": {
+      "application/json": 1,
+      "image/png": 1,
+      "text/markdown": 1,
+      "application/zip": 1
+    }
+  }
+}

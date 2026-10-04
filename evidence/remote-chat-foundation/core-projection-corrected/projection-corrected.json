@@ -1,0 +1,35 @@
+{
+  "started_at": "2026-10-03T06:48:26.212101+00:00",
+  "completed_at": "2026-10-03T06:48:27.599819+00:00",
+  "command": [
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "/tmp/opencode/remote-core-projection-review/vitest.config.mjs",
+    "--reporter=verbose"
+  ],
+  "exit_code": 0,
+  "log_sha256": "51439b54e69ab24b6dc0cb8a8cb39ccd957577e549bc3a1b05c94a79f56ee856",
+  "source_hashes_before": {
+    "packages/core/src/remote-sessions.ts": "72bd7be91cf5ad99734a58300617da17e4bb782a631da3acbbbdfb8ca049decb",
+    "packages/schema/src/index.ts": "0403846e16c38e7f06c077d7980a9c375898ba413f5aa5f93cf863d7229f5361",
+    "packages/desktop/src/remote-chat.ts": "a735975865341bec30fb1981165192f993fbd1235416a3271b947bfb15a4fad6",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/desktop/test/remote-core.test.ts": "72208fc330d490feff9ff6083b39622ab1102b0eefd28a8913e83ed9d6696427",
+    "packages/desktop/node_modules/@cortex/sdk/src/stream.ts": "42ecb733e80f9a5d838fd68c9d9601d901dc1dcfebd4129a5c6408d3f02d3e5a",
+    "packages/desktop/node_modules/@cortex/api-types/src/streaming.ts": "83474bb72f7ef4cf6c59618c6ff863c79092b06f15c0e52028ea68d17f4af279",
+    "packages/desktop/node_modules/@cortex/api-types/src/ids.ts": "b5d7e6bd418962b2a9923f43f262e02746aae9c7fe5f7a825581934ecb3b0bdb"
+  },
+  "source_hashes_after": {
+    "packages/core/src/remote-sessions.ts": "72bd7be91cf5ad99734a58300617da17e4bb782a631da3acbbbdfb8ca049decb",
+    "packages/schema/src/index.ts": "0403846e16c38e7f06c077d7980a9c375898ba413f5aa5f93cf863d7229f5361",
+    "packages/desktop/src/remote-chat.ts": "a735975865341bec30fb1981165192f993fbd1235416a3271b947bfb15a4fad6",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/desktop/test/remote-core.test.ts": "72208fc330d490feff9ff6083b39622ab1102b0eefd28a8913e83ed9d6696427",
+    "packages/desktop/node_modules/@cortex/sdk/src/stream.ts": "42ecb733e80f9a5d838fd68c9d9601d901dc1dcfebd4129a5c6408d3f02d3e5a",
+    "packages/desktop/node_modules/@cortex/api-types/src/streaming.ts": "83474bb72f7ef4cf6c59618c6ff863c79092b06f15c0e52028ea68d17f4af279",
+    "packages/desktop/node_modules/@cortex/api-types/src/ids.ts": "b5d7e6bd418962b2a9923f43f262e02746aae9c7fe5f7a825581934ecb3b0bdb"
+  },
+  "probe_sha256": "e0d6ba72ed42b3010a945ce6046180f6f6c4ffea9e6ec88b4f6edd8ab69583a6"
+}

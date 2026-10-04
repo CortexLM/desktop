@@ -1,0 +1,2037 @@
+{
+  "timestamp": "2026-10-03T04:06:15.342Z",
+  "revision": "ffc118a2e58df66f430f3078e00f6e931dd910cf",
+  "environment": "Linux Electron under independent Xvfb; existing renderer served at http://127.0.0.1:5309; real preload/desktop layout",
+  "sources": {
+    "packages/app/src/screens/files/docs.tsx": "4823841db9bf30607811439ccf7a77c4d7dce9ab67321555ea4d4c5f480cdc99",
+    "packages/app/src/screens/files/files.css": "6c8c504edca7622fe954f4d9413252fa8279a409c5188e787ae754c76e05b842",
+    "packages/app/src/screens/code/lot-code.tsx": "10f265b43146b0db99b761818007b219ab2c1160945541850b168a38529b45b5",
+    "packages/app/src/screens/code/lot-code.css": "491a3cfb4c863233a4b99ff5ffda11fe3cb3b92e00b2ff81296778e1da1a4be2",
+    "packages/app/src/screens/code/parts.tsx": "6b94f4b93c4032a3807e3b09d40334202d4867c227c92f87319579da3df9893f",
+    "packages/app/src/kit/styles.css": "8f2caecacb1574f931e2113be8bd7cfef039fc0105a776ef5a66bc6e867cd730"
+  },
+  "desktop": {
+    "main": "f57525a0d275ec1a624961962cf8d9ce9edd270322a803c826e187cf0a1074b2",
+    "preload": "0c0dea24ae0345641c19ebc41af763ce8462f961a984fa530960a4b187831bb0"
+  },
+  "views": [
+    {
+      "kind": "approvals",
+      "size": {
+        "width": 960,
+        "height": 640
+      },
+      "theme": "light",
+      "url": "http://127.0.0.1:5309/?audit=approvals-960-light#/code-settings?theme=light&shot&v=approvals",
+      "before": {
+        "innerWidth": 960,
+        "innerHeight": 640,
+        "dpr": 1,
+        "host": "desktop",
+        "platform": "linux",
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "right": 960,
+          "bottom": 640
+        },
+        "content": {
+          "rect": {
+            "x": 337,
+            "y": 44,
+            "width": 618,
+            "height": 591,
+            "right": 955,
+            "bottom": 635
+          },
+          "clientWidth": 618,
+          "scrollWidth": 618,
+          "clientHeight": 591,
+          "scrollHeight": 591,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "document": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 960,
+            "height": 640,
+            "right": 960,
+            "bottom": 640
+          },
+          "clientWidth": 960,
+          "scrollWidth": 960,
+          "clientHeight": 640,
+          "scrollHeight": 640,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "theme": "light",
+        "panel": {
+          "x": 617,
+          "y": 104,
+          "width": 283,
+          "height": 758,
+          "right": 900,
+          "bottom": 862
+        },
+        "rows": [
+          {
+            "text": "Default modelFor new tasks and reviewsDeep code",
+            "innerText": "Default modelFor new tasks and reviews\nDeep code",
+            "parentClass": "grow",
+            "parentDisplay": "block",
+            "title": "Default model",
+            "sub": "For new tasks and reviews",
+            "titleDisplay": "inline",
+            "subDisplay": "inline",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 165,
+                "right": 675.546875,
+                "bottom": 182,
+                "height": 17
+              },
+              {
+                "x": 631,
+                "y": 181,
+                "right": 668.734375,
+                "bottom": 198,
+                "height": 17
+              }
+            ],
+            "subRects": [
+              {
+                "x": 668.734375,
+                "y": 182,
+                "right": 814.15625,
+                "bottom": 198,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": true,
+            "control": {
+              "rect": {
+                "x": 783.984375,
+                "y": 168,
+                "width": 102.015625,
+                "height": 28,
+                "right": 886,
+                "bottom": 196
+              },
+              "clip": {
+                "left": 617,
+                "top": 154,
+                "right": 900,
+                "bottom": 267
+              },
+              "fullyVisible": true,
+              "centerHit": true
+            }
+          },
+          {
+            "text": "Notify me when an approval is waitingDesktop and phone notification",
+            "innerText": "Notify me when an approval is waitingDesktop and phone notification",
+            "parentClass": "grow",
+            "parentDisplay": "block",
+            "title": "Notify me when an approval is waiting",
+            "sub": "Desktop and phone notification",
+            "titleDisplay": "inline",
+            "subDisplay": "inline",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 222,
+                "right": 813.390625,
+                "bottom": 239,
+                "height": 17
+              },
+              {
+                "x": 631,
+                "y": 238,
+                "right": 675.53125,
+                "bottom": 255,
+                "height": 17
+              }
+            ],
+            "subRects": [
+              {
+                "x": 675.53125,
+                "y": 239,
+                "right": 846.265625,
+                "bottom": 255,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": true,
+            "control": null
+          }
+        ]
+      },
+      "inMemoryCodeGrow": {
+        "innerWidth": 960,
+        "innerHeight": 640,
+        "dpr": 1,
+        "host": "desktop",
+        "platform": "linux",
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "right": 960,
+          "bottom": 640
+        },
+        "content": {
+          "rect": {
+            "x": 337,
+            "y": 44,
+            "width": 618,
+            "height": 591,
+            "right": 955,
+            "bottom": 635
+          },
+          "clientWidth": 618,
+          "scrollWidth": 618,
+          "clientHeight": 591,
+          "scrollHeight": 591,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "document": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 960,
+            "height": 640,
+            "right": 960,
+            "bottom": 640
+          },
+          "clientWidth": 960,
+          "scrollWidth": 960,
+          "clientHeight": 640,
+          "scrollHeight": 640,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "theme": "light",
+        "panel": {
+          "x": 617,
+          "y": 104,
+          "width": 283,
+          "height": 778,
+          "right": 900,
+          "bottom": 882
+        },
+        "rows": [
+          {
+            "text": "Default modelFor new tasks and reviewsDeep code",
+            "innerText": "Default model\nFor new tasks and reviews\nDeep code",
+            "parentClass": "code-grow",
+            "parentDisplay": "flex",
+            "title": "Default model",
+            "sub": "For new tasks and reviews",
+            "titleDisplay": "block",
+            "subDisplay": "block",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 166,
+                "right": 771.984375,
+                "bottom": 182,
+                "height": 16
+              }
+            ],
+            "subRects": [
+              {
+                "x": 631,
+                "y": 184,
+                "right": 771.984375,
+                "bottom": 200,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": false,
+            "control": {
+              "rect": {
+                "x": 783.984375,
+                "y": 169,
+                "width": 102.015625,
+                "height": 28,
+                "right": 886,
+                "bottom": 197
+              },
+              "clip": {
+                "left": 617,
+                "top": 154,
+                "right": 900,
+                "bottom": 287
+              },
+              "fullyVisible": true,
+              "centerHit": true
+            }
+          },
+          {
+            "text": "Notify me when an approval is waitingDesktop and phone notification",
+            "innerText": "Notify me when an approval is waiting\nDesktop and phone notification",
+            "parentClass": "code-grow",
+            "parentDisplay": "flex",
+            "title": "Notify me when an approval is waiting",
+            "sub": "Desktop and phone notification",
+            "titleDisplay": "block",
+            "subDisplay": "block",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 225,
+                "right": 840,
+                "bottom": 257,
+                "height": 32
+              }
+            ],
+            "subRects": [
+              {
+                "x": 631,
+                "y": 259,
+                "right": 840,
+                "bottom": 275,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": false,
+            "control": null
+          }
+        ]
+      },
+      "keyboardControls": [
+        {
+          "text": "Deep code",
+          "label": null,
+          "role": null,
+          "centerHit": true
+        },
+        {
+          "text": "",
+          "label": "Notify approvals",
+          "role": "switch",
+          "centerHit": true
+        }
+      ]
+    },
+    {
+      "kind": "approvals",
+      "size": {
+        "width": 960,
+        "height": 640
+      },
+      "theme": "dark",
+      "url": "http://127.0.0.1:5309/?audit=approvals-960-dark#/code-settings?theme=dark&shot&v=approvals",
+      "before": {
+        "innerWidth": 960,
+        "innerHeight": 640,
+        "dpr": 1,
+        "host": "desktop",
+        "platform": "linux",
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "right": 960,
+          "bottom": 640
+        },
+        "content": {
+          "rect": {
+            "x": 337,
+            "y": 44,
+            "width": 618,
+            "height": 591,
+            "right": 955,
+            "bottom": 635
+          },
+          "clientWidth": 618,
+          "scrollWidth": 618,
+          "clientHeight": 591,
+          "scrollHeight": 591,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "document": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 960,
+            "height": 640,
+            "right": 960,
+            "bottom": 640
+          },
+          "clientWidth": 960,
+          "scrollWidth": 960,
+          "clientHeight": 640,
+          "scrollHeight": 640,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "theme": "dark",
+        "panel": {
+          "x": 617,
+          "y": 104,
+          "width": 283,
+          "height": 758,
+          "right": 900,
+          "bottom": 862
+        },
+        "rows": [
+          {
+            "text": "Default modelFor new tasks and reviewsDeep code",
+            "innerText": "Default modelFor new tasks and reviews\nDeep code",
+            "parentClass": "grow",
+            "parentDisplay": "block",
+            "title": "Default model",
+            "sub": "For new tasks and reviews",
+            "titleDisplay": "inline",
+            "subDisplay": "inline",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 165,
+                "right": 675.546875,
+                "bottom": 182,
+                "height": 17
+              },
+              {
+                "x": 631,
+                "y": 181,
+                "right": 668.734375,
+                "bottom": 198,
+                "height": 17
+              }
+            ],
+            "subRects": [
+              {
+                "x": 668.734375,
+                "y": 182,
+                "right": 814.15625,
+                "bottom": 198,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": true,
+            "control": {
+              "rect": {
+                "x": 783.984375,
+                "y": 168,
+                "width": 102.015625,
+                "height": 28,
+                "right": 886,
+                "bottom": 196
+              },
+              "clip": {
+                "left": 617,
+                "top": 154,
+                "right": 900,
+                "bottom": 267
+              },
+              "fullyVisible": true,
+              "centerHit": true
+            }
+          },
+          {
+            "text": "Notify me when an approval is waitingDesktop and phone notification",
+            "innerText": "Notify me when an approval is waitingDesktop and phone notification",
+            "parentClass": "grow",
+            "parentDisplay": "block",
+            "title": "Notify me when an approval is waiting",
+            "sub": "Desktop and phone notification",
+            "titleDisplay": "inline",
+            "subDisplay": "inline",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 222,
+                "right": 813.390625,
+                "bottom": 239,
+                "height": 17
+              },
+              {
+                "x": 631,
+                "y": 238,
+                "right": 675.53125,
+                "bottom": 255,
+                "height": 17
+              }
+            ],
+            "subRects": [
+              {
+                "x": 675.53125,
+                "y": 239,
+                "right": 846.265625,
+                "bottom": 255,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": true,
+            "control": null
+          }
+        ]
+      },
+      "inMemoryCodeGrow": {
+        "innerWidth": 960,
+        "innerHeight": 640,
+        "dpr": 1,
+        "host": "desktop",
+        "platform": "linux",
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "right": 960,
+          "bottom": 640
+        },
+        "content": {
+          "rect": {
+            "x": 337,
+            "y": 44,
+            "width": 618,
+            "height": 591,
+            "right": 955,
+            "bottom": 635
+          },
+          "clientWidth": 618,
+          "scrollWidth": 618,
+          "clientHeight": 591,
+          "scrollHeight": 591,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "document": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 960,
+            "height": 640,
+            "right": 960,
+            "bottom": 640
+          },
+          "clientWidth": 960,
+          "scrollWidth": 960,
+          "clientHeight": 640,
+          "scrollHeight": 640,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "theme": "dark",
+        "panel": {
+          "x": 617,
+          "y": 104,
+          "width": 283,
+          "height": 778,
+          "right": 900,
+          "bottom": 882
+        },
+        "rows": [
+          {
+            "text": "Default modelFor new tasks and reviewsDeep code",
+            "innerText": "Default model\nFor new tasks and reviews\nDeep code",
+            "parentClass": "code-grow",
+            "parentDisplay": "flex",
+            "title": "Default model",
+            "sub": "For new tasks and reviews",
+            "titleDisplay": "block",
+            "subDisplay": "block",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 166,
+                "right": 771.984375,
+                "bottom": 182,
+                "height": 16
+              }
+            ],
+            "subRects": [
+              {
+                "x": 631,
+                "y": 184,
+                "right": 771.984375,
+                "bottom": 200,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": false,
+            "control": {
+              "rect": {
+                "x": 783.984375,
+                "y": 169,
+                "width": 102.015625,
+                "height": 28,
+                "right": 886,
+                "bottom": 197
+              },
+              "clip": {
+                "left": 617,
+                "top": 154,
+                "right": 900,
+                "bottom": 287
+              },
+              "fullyVisible": true,
+              "centerHit": true
+            }
+          },
+          {
+            "text": "Notify me when an approval is waitingDesktop and phone notification",
+            "innerText": "Notify me when an approval is waiting\nDesktop and phone notification",
+            "parentClass": "code-grow",
+            "parentDisplay": "flex",
+            "title": "Notify me when an approval is waiting",
+            "sub": "Desktop and phone notification",
+            "titleDisplay": "block",
+            "subDisplay": "block",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 225,
+                "right": 840,
+                "bottom": 257,
+                "height": 32
+              }
+            ],
+            "subRects": [
+              {
+                "x": 631,
+                "y": 259,
+                "right": 840,
+                "bottom": 275,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": false,
+            "control": null
+          }
+        ]
+      },
+      "keyboardControls": [
+        {
+          "text": "Deep code",
+          "label": null,
+          "role": null,
+          "centerHit": true
+        },
+        {
+          "text": "",
+          "label": "Notify approvals",
+          "role": "switch",
+          "centerHit": true
+        }
+      ]
+    },
+    {
+      "kind": "approvals",
+      "size": {
+        "width": 1024,
+        "height": 686
+      },
+      "theme": "light",
+      "url": "http://127.0.0.1:5309/?audit=approvals-1024-light#/code-settings?theme=light&shot&v=approvals",
+      "before": {
+        "innerWidth": 1024,
+        "innerHeight": 686,
+        "dpr": 1,
+        "host": "desktop",
+        "platform": "linux",
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 686,
+          "right": 1024,
+          "bottom": 686
+        },
+        "content": {
+          "rect": {
+            "x": 337,
+            "y": 44,
+            "width": 682,
+            "height": 637,
+            "right": 1019,
+            "bottom": 681
+          },
+          "clientWidth": 682,
+          "scrollWidth": 682,
+          "clientHeight": 637,
+          "scrollHeight": 637,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "document": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 686,
+            "right": 1024,
+            "bottom": 686
+          },
+          "clientWidth": 1024,
+          "scrollWidth": 1024,
+          "clientHeight": 686,
+          "scrollHeight": 686,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "theme": "light",
+        "panel": {
+          "x": 617,
+          "y": 104,
+          "width": 347,
+          "height": 742,
+          "right": 964,
+          "bottom": 846
+        },
+        "rows": [
+          {
+            "text": "Default modelFor new tasks and reviewsDeep code",
+            "innerText": "Default modelFor new tasks and reviews\nDeep code",
+            "parentClass": "grow",
+            "parentDisplay": "block",
+            "title": "Default model",
+            "sub": "For new tasks and reviews",
+            "titleDisplay": "inline",
+            "subDisplay": "inline",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 165,
+                "right": 675.546875,
+                "bottom": 182,
+                "height": 17
+              },
+              {
+                "x": 631,
+                "y": 181,
+                "right": 668.734375,
+                "bottom": 198,
+                "height": 17
+              }
+            ],
+            "subRects": [
+              {
+                "x": 668.734375,
+                "y": 182,
+                "right": 814.15625,
+                "bottom": 198,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": true,
+            "control": {
+              "rect": {
+                "x": 847.984375,
+                "y": 168,
+                "width": 102.015625,
+                "height": 28,
+                "right": 950,
+                "bottom": 196
+              },
+              "clip": {
+                "left": 617,
+                "top": 154,
+                "right": 964,
+                "bottom": 267
+              },
+              "fullyVisible": true,
+              "centerHit": true
+            }
+          },
+          {
+            "text": "Notify me when an approval is waitingDesktop and phone notification",
+            "innerText": "Notify me when an approval is waitingDesktop and phone notification",
+            "parentClass": "grow",
+            "parentDisplay": "block",
+            "title": "Notify me when an approval is waiting",
+            "sub": "Desktop and phone notification",
+            "titleDisplay": "inline",
+            "subDisplay": "inline",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 222,
+                "right": 813.390625,
+                "bottom": 239,
+                "height": 17
+              },
+              {
+                "x": 631,
+                "y": 238,
+                "right": 675.53125,
+                "bottom": 255,
+                "height": 17
+              }
+            ],
+            "subRects": [
+              {
+                "x": 675.53125,
+                "y": 239,
+                "right": 846.265625,
+                "bottom": 255,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": true,
+            "control": null
+          }
+        ]
+      },
+      "inMemoryCodeGrow": {
+        "innerWidth": 1024,
+        "innerHeight": 686,
+        "dpr": 1,
+        "host": "desktop",
+        "platform": "linux",
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 686,
+          "right": 1024,
+          "bottom": 686
+        },
+        "content": {
+          "rect": {
+            "x": 337,
+            "y": 44,
+            "width": 682,
+            "height": 637,
+            "right": 1019,
+            "bottom": 681
+          },
+          "clientWidth": 682,
+          "scrollWidth": 682,
+          "clientHeight": 637,
+          "scrollHeight": 637,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "document": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 686,
+            "right": 1024,
+            "bottom": 686
+          },
+          "clientWidth": 1024,
+          "scrollWidth": 1024,
+          "clientHeight": 686,
+          "scrollHeight": 686,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "theme": "light",
+        "panel": {
+          "x": 617,
+          "y": 104,
+          "width": 347,
+          "height": 746,
+          "right": 964,
+          "bottom": 850
+        },
+        "rows": [
+          {
+            "text": "Default modelFor new tasks and reviewsDeep code",
+            "innerText": "Default model\nFor new tasks and reviews\nDeep code",
+            "parentClass": "code-grow",
+            "parentDisplay": "flex",
+            "title": "Default model",
+            "sub": "For new tasks and reviews",
+            "titleDisplay": "block",
+            "subDisplay": "block",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 166,
+                "right": 835.984375,
+                "bottom": 182,
+                "height": 16
+              }
+            ],
+            "subRects": [
+              {
+                "x": 631,
+                "y": 184,
+                "right": 835.984375,
+                "bottom": 200,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": false,
+            "control": {
+              "rect": {
+                "x": 847.984375,
+                "y": 169,
+                "width": 102.015625,
+                "height": 28,
+                "right": 950,
+                "bottom": 197
+              },
+              "clip": {
+                "left": 617,
+                "top": 154,
+                "right": 964,
+                "bottom": 271
+              },
+              "fullyVisible": true,
+              "centerHit": true
+            }
+          },
+          {
+            "text": "Notify me when an approval is waitingDesktop and phone notification",
+            "innerText": "Notify me when an approval is waiting\nDesktop and phone notification",
+            "parentClass": "code-grow",
+            "parentDisplay": "flex",
+            "title": "Notify me when an approval is waiting",
+            "sub": "Desktop and phone notification",
+            "titleDisplay": "block",
+            "subDisplay": "block",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 225,
+                "right": 904,
+                "bottom": 241,
+                "height": 16
+              }
+            ],
+            "subRects": [
+              {
+                "x": 631,
+                "y": 243,
+                "right": 904,
+                "bottom": 259,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": false,
+            "control": null
+          }
+        ]
+      },
+      "keyboardControls": [
+        {
+          "text": "Deep code",
+          "label": null,
+          "role": null,
+          "centerHit": true
+        },
+        {
+          "text": "",
+          "label": "Notify approvals",
+          "role": "switch",
+          "centerHit": true
+        }
+      ]
+    },
+    {
+      "kind": "approvals",
+      "size": {
+        "width": 1024,
+        "height": 686
+      },
+      "theme": "dark",
+      "url": "http://127.0.0.1:5309/?audit=approvals-1024-dark#/code-settings?theme=dark&shot&v=approvals",
+      "before": {
+        "innerWidth": 1024,
+        "innerHeight": 686,
+        "dpr": 1,
+        "host": "desktop",
+        "platform": "linux",
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 686,
+          "right": 1024,
+          "bottom": 686
+        },
+        "content": {
+          "rect": {
+            "x": 337,
+            "y": 44,
+            "width": 682,
+            "height": 637,
+            "right": 1019,
+            "bottom": 681
+          },
+          "clientWidth": 682,
+          "scrollWidth": 682,
+          "clientHeight": 637,
+          "scrollHeight": 637,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "document": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 686,
+            "right": 1024,
+            "bottom": 686
+          },
+          "clientWidth": 1024,
+          "scrollWidth": 1024,
+          "clientHeight": 686,
+          "scrollHeight": 686,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "theme": "dark",
+        "panel": {
+          "x": 617,
+          "y": 104,
+          "width": 347,
+          "height": 742,
+          "right": 964,
+          "bottom": 846
+        },
+        "rows": [
+          {
+            "text": "Default modelFor new tasks and reviewsDeep code",
+            "innerText": "Default modelFor new tasks and reviews\nDeep code",
+            "parentClass": "grow",
+            "parentDisplay": "block",
+            "title": "Default model",
+            "sub": "For new tasks and reviews",
+            "titleDisplay": "inline",
+            "subDisplay": "inline",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 165,
+                "right": 675.546875,
+                "bottom": 182,
+                "height": 17
+              },
+              {
+                "x": 631,
+                "y": 181,
+                "right": 668.734375,
+                "bottom": 198,
+                "height": 17
+              }
+            ],
+            "subRects": [
+              {
+                "x": 668.734375,
+                "y": 182,
+                "right": 814.15625,
+                "bottom": 198,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": true,
+            "control": {
+              "rect": {
+                "x": 847.984375,
+                "y": 168,
+                "width": 102.015625,
+                "height": 28,
+                "right": 950,
+                "bottom": 196
+              },
+              "clip": {
+                "left": 617,
+                "top": 154,
+                "right": 964,
+                "bottom": 267
+              },
+              "fullyVisible": true,
+              "centerHit": true
+            }
+          },
+          {
+            "text": "Notify me when an approval is waitingDesktop and phone notification",
+            "innerText": "Notify me when an approval is waitingDesktop and phone notification",
+            "parentClass": "grow",
+            "parentDisplay": "block",
+            "title": "Notify me when an approval is waiting",
+            "sub": "Desktop and phone notification",
+            "titleDisplay": "inline",
+            "subDisplay": "inline",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 222,
+                "right": 813.390625,
+                "bottom": 239,
+                "height": 17
+              },
+              {
+                "x": 631,
+                "y": 238,
+                "right": 675.53125,
+                "bottom": 255,
+                "height": 17
+              }
+            ],
+            "subRects": [
+              {
+                "x": 675.53125,
+                "y": 239,
+                "right": 846.265625,
+                "bottom": 255,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": true,
+            "control": null
+          }
+        ]
+      },
+      "inMemoryCodeGrow": {
+        "innerWidth": 1024,
+        "innerHeight": 686,
+        "dpr": 1,
+        "host": "desktop",
+        "platform": "linux",
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 686,
+          "right": 1024,
+          "bottom": 686
+        },
+        "content": {
+          "rect": {
+            "x": 337,
+            "y": 44,
+            "width": 682,
+            "height": 637,
+            "right": 1019,
+            "bottom": 681
+          },
+          "clientWidth": 682,
+          "scrollWidth": 682,
+          "clientHeight": 637,
+          "scrollHeight": 637,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "document": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 686,
+            "right": 1024,
+            "bottom": 686
+          },
+          "clientWidth": 1024,
+          "scrollWidth": 1024,
+          "clientHeight": 686,
+          "scrollHeight": 686,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "theme": "dark",
+        "panel": {
+          "x": 617,
+          "y": 104,
+          "width": 347,
+          "height": 746,
+          "right": 964,
+          "bottom": 850
+        },
+        "rows": [
+          {
+            "text": "Default modelFor new tasks and reviewsDeep code",
+            "innerText": "Default model\nFor new tasks and reviews\nDeep code",
+            "parentClass": "code-grow",
+            "parentDisplay": "flex",
+            "title": "Default model",
+            "sub": "For new tasks and reviews",
+            "titleDisplay": "block",
+            "subDisplay": "block",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 166,
+                "right": 835.984375,
+                "bottom": 182,
+                "height": 16
+              }
+            ],
+            "subRects": [
+              {
+                "x": 631,
+                "y": 184,
+                "right": 835.984375,
+                "bottom": 200,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": false,
+            "control": {
+              "rect": {
+                "x": 847.984375,
+                "y": 169,
+                "width": 102.015625,
+                "height": 28,
+                "right": 950,
+                "bottom": 197
+              },
+              "clip": {
+                "left": 617,
+                "top": 154,
+                "right": 964,
+                "bottom": 271
+              },
+              "fullyVisible": true,
+              "centerHit": true
+            }
+          },
+          {
+            "text": "Notify me when an approval is waitingDesktop and phone notification",
+            "innerText": "Notify me when an approval is waiting\nDesktop and phone notification",
+            "parentClass": "code-grow",
+            "parentDisplay": "flex",
+            "title": "Notify me when an approval is waiting",
+            "sub": "Desktop and phone notification",
+            "titleDisplay": "block",
+            "subDisplay": "block",
+            "titleRects": [
+              {
+                "x": 631,
+                "y": 225,
+                "right": 904,
+                "bottom": 241,
+                "height": 16
+              }
+            ],
+            "subRects": [
+              {
+                "x": 631,
+                "y": 243,
+                "right": 904,
+                "bottom": 259,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": false,
+            "control": null
+          }
+        ]
+      },
+      "keyboardControls": [
+        {
+          "text": "Deep code",
+          "label": null,
+          "role": null,
+          "centerHit": true
+        },
+        {
+          "text": "",
+          "label": "Notify approvals",
+          "role": "switch",
+          "centerHit": true
+        }
+      ]
+    },
+    {
+      "kind": "approvals",
+      "size": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "url": "http://127.0.0.1:5309/?audit=approvals-1440-light#/code-settings?theme=light&shot&v=approvals",
+      "before": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "dpr": 1,
+        "host": "desktop",
+        "platform": "linux",
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "right": 1440,
+          "bottom": 900
+        },
+        "content": {
+          "rect": {
+            "x": 337,
+            "y": 44,
+            "width": 1098,
+            "height": 851,
+            "right": 1435,
+            "bottom": 895
+          },
+          "clientWidth": 1098,
+          "scrollWidth": 1098,
+          "clientHeight": 851,
+          "scrollHeight": 851,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "document": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900,
+            "right": 1440,
+            "bottom": 900
+          },
+          "clientWidth": 1440,
+          "scrollWidth": 1440,
+          "clientHeight": 900,
+          "scrollHeight": 900,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "theme": "light",
+        "panel": {
+          "x": 686,
+          "y": 104,
+          "width": 640,
+          "height": 662,
+          "right": 1326,
+          "bottom": 766
+        },
+        "rows": [
+          {
+            "text": "Default modelFor new tasks and reviewsDeep code",
+            "innerText": "Default modelFor new tasks and reviews\nDeep code",
+            "parentClass": "grow",
+            "parentDisplay": "block",
+            "title": "Default model",
+            "sub": "For new tasks and reviews",
+            "titleDisplay": "inline",
+            "subDisplay": "inline",
+            "titleRects": [
+              {
+                "x": 700,
+                "y": 171,
+                "right": 785.4375,
+                "bottom": 188,
+                "height": 17
+              }
+            ],
+            "subRects": [
+              {
+                "x": 785.4375,
+                "y": 172,
+                "right": 930.859375,
+                "bottom": 188,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": true,
+            "control": {
+              "rect": {
+                "x": 1209.984375,
+                "y": 166,
+                "width": 102.015625,
+                "height": 28,
+                "right": 1312,
+                "bottom": 194
+              },
+              "clip": {
+                "left": 686,
+                "top": 154,
+                "right": 1326,
+                "bottom": 251
+              },
+              "fullyVisible": true,
+              "centerHit": true
+            }
+          },
+          {
+            "text": "Notify me when an approval is waitingDesktop and phone notification",
+            "innerText": "Notify me when an approval is waitingDesktop and phone notification",
+            "parentClass": "grow",
+            "parentDisplay": "block",
+            "title": "Notify me when an approval is waiting",
+            "sub": "Desktop and phone notification",
+            "titleDisplay": "inline",
+            "subDisplay": "inline",
+            "titleRects": [
+              {
+                "x": 700,
+                "y": 220,
+                "right": 930.078125,
+                "bottom": 237,
+                "height": 17
+              }
+            ],
+            "subRects": [
+              {
+                "x": 930.078125,
+                "y": 221,
+                "right": 1100.8125,
+                "bottom": 237,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": true,
+            "control": null
+          }
+        ]
+      },
+      "inMemoryCodeGrow": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "dpr": 1,
+        "host": "desktop",
+        "platform": "linux",
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "right": 1440,
+          "bottom": 900
+        },
+        "content": {
+          "rect": {
+            "x": 337,
+            "y": 44,
+            "width": 1098,
+            "height": 851,
+            "right": 1435,
+            "bottom": 895
+          },
+          "clientWidth": 1098,
+          "scrollWidth": 1098,
+          "clientHeight": 851,
+          "scrollHeight": 851,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "document": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900,
+            "right": 1440,
+            "bottom": 900
+          },
+          "clientWidth": 1440,
+          "scrollWidth": 1440,
+          "clientHeight": 900,
+          "scrollHeight": 900,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "theme": "light",
+        "panel": {
+          "x": 686,
+          "y": 104,
+          "width": 640,
+          "height": 682,
+          "right": 1326,
+          "bottom": 786
+        },
+        "rows": [
+          {
+            "text": "Default modelFor new tasks and reviewsDeep code",
+            "innerText": "Default model\nFor new tasks and reviews\nDeep code",
+            "parentClass": "code-grow",
+            "parentDisplay": "flex",
+            "title": "Default model",
+            "sub": "For new tasks and reviews",
+            "titleDisplay": "block",
+            "subDisplay": "block",
+            "titleRects": [
+              {
+                "x": 700,
+                "y": 166,
+                "right": 1197.984375,
+                "bottom": 182,
+                "height": 16
+              }
+            ],
+            "subRects": [
+              {
+                "x": 700,
+                "y": 184,
+                "right": 1197.984375,
+                "bottom": 200,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": false,
+            "control": {
+              "rect": {
+                "x": 1209.984375,
+                "y": 169,
+                "width": 102.015625,
+                "height": 28,
+                "right": 1312,
+                "bottom": 197
+              },
+              "clip": {
+                "left": 686,
+                "top": 154,
+                "right": 1326,
+                "bottom": 271
+              },
+              "fullyVisible": true,
+              "centerHit": true
+            }
+          },
+          {
+            "text": "Notify me when an approval is waitingDesktop and phone notification",
+            "innerText": "Notify me when an approval is waiting\nDesktop and phone notification",
+            "parentClass": "code-grow",
+            "parentDisplay": "flex",
+            "title": "Notify me when an approval is waiting",
+            "sub": "Desktop and phone notification",
+            "titleDisplay": "block",
+            "subDisplay": "block",
+            "titleRects": [
+              {
+                "x": 700,
+                "y": 225,
+                "right": 1266,
+                "bottom": 241,
+                "height": 16
+              }
+            ],
+            "subRects": [
+              {
+                "x": 700,
+                "y": 243,
+                "right": 1266,
+                "bottom": 259,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": false,
+            "control": null
+          }
+        ]
+      },
+      "keyboardControls": [
+        {
+          "text": "Deep code",
+          "label": null,
+          "role": null,
+          "centerHit": true
+        },
+        {
+          "text": "",
+          "label": "Notify approvals",
+          "role": "switch",
+          "centerHit": true
+        }
+      ]
+    },
+    {
+      "kind": "approvals",
+      "size": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "url": "http://127.0.0.1:5309/?audit=approvals-1440-dark#/code-settings?theme=dark&shot&v=approvals",
+      "before": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "dpr": 1,
+        "host": "desktop",
+        "platform": "linux",
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "right": 1440,
+          "bottom": 900
+        },
+        "content": {
+          "rect": {
+            "x": 337,
+            "y": 44,
+            "width": 1098,
+            "height": 851,
+            "right": 1435,
+            "bottom": 895
+          },
+          "clientWidth": 1098,
+          "scrollWidth": 1098,
+          "clientHeight": 851,
+          "scrollHeight": 851,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "document": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900,
+            "right": 1440,
+            "bottom": 900
+          },
+          "clientWidth": 1440,
+          "scrollWidth": 1440,
+          "clientHeight": 900,
+          "scrollHeight": 900,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "theme": "dark",
+        "panel": {
+          "x": 686,
+          "y": 104,
+          "width": 640,
+          "height": 662,
+          "right": 1326,
+          "bottom": 766
+        },
+        "rows": [
+          {
+            "text": "Default modelFor new tasks and reviewsDeep code",
+            "innerText": "Default modelFor new tasks and reviews\nDeep code",
+            "parentClass": "grow",
+            "parentDisplay": "block",
+            "title": "Default model",
+            "sub": "For new tasks and reviews",
+            "titleDisplay": "inline",
+            "subDisplay": "inline",
+            "titleRects": [
+              {
+                "x": 700,
+                "y": 171,
+                "right": 785.4375,
+                "bottom": 188,
+                "height": 17
+              }
+            ],
+            "subRects": [
+              {
+                "x": 785.4375,
+                "y": 172,
+                "right": 930.859375,
+                "bottom": 188,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": true,
+            "control": {
+              "rect": {
+                "x": 1209.984375,
+                "y": 166,
+                "width": 102.015625,
+                "height": 28,
+                "right": 1312,
+                "bottom": 194
+              },
+              "clip": {
+                "left": 686,
+                "top": 154,
+                "right": 1326,
+                "bottom": 251
+              },
+              "fullyVisible": true,
+              "centerHit": true
+            }
+          },
+          {
+            "text": "Notify me when an approval is waitingDesktop and phone notification",
+            "innerText": "Notify me when an approval is waitingDesktop and phone notification",
+            "parentClass": "grow",
+            "parentDisplay": "block",
+            "title": "Notify me when an approval is waiting",
+            "sub": "Desktop and phone notification",
+            "titleDisplay": "inline",
+            "subDisplay": "inline",
+            "titleRects": [
+              {
+                "x": 700,
+                "y": 220,
+                "right": 930.078125,
+                "bottom": 237,
+                "height": 17
+              }
+            ],
+            "subRects": [
+              {
+                "x": 930.078125,
+                "y": 221,
+                "right": 1100.8125,
+                "bottom": 237,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": true,
+            "control": null
+          }
+        ]
+      },
+      "inMemoryCodeGrow": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "dpr": 1,
+        "host": "desktop",
+        "platform": "linux",
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "right": 1440,
+          "bottom": 900
+        },
+        "content": {
+          "rect": {
+            "x": 337,
+            "y": 44,
+            "width": 1098,
+            "height": 851,
+            "right": 1435,
+            "bottom": 895
+          },
+          "clientWidth": 1098,
+          "scrollWidth": 1098,
+          "clientHeight": 851,
+          "scrollHeight": 851,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "document": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900,
+            "right": 1440,
+            "bottom": 900
+          },
+          "clientWidth": 1440,
+          "scrollWidth": 1440,
+          "clientHeight": 900,
+          "scrollHeight": 900,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "tabIndex": -1
+        },
+        "theme": "dark",
+        "panel": {
+          "x": 686,
+          "y": 104,
+          "width": 640,
+          "height": 682,
+          "right": 1326,
+          "bottom": 786
+        },
+        "rows": [
+          {
+            "text": "Default modelFor new tasks and reviewsDeep code",
+            "innerText": "Default model\nFor new tasks and reviews\nDeep code",
+            "parentClass": "code-grow",
+            "parentDisplay": "flex",
+            "title": "Default model",
+            "sub": "For new tasks and reviews",
+            "titleDisplay": "block",
+            "subDisplay": "block",
+            "titleRects": [
+              {
+                "x": 700,
+                "y": 166,
+                "right": 1197.984375,
+                "bottom": 182,
+                "height": 16
+              }
+            ],
+            "subRects": [
+              {
+                "x": 700,
+                "y": 184,
+                "right": 1197.984375,
+                "bottom": 200,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": false,
+            "control": {
+              "rect": {
+                "x": 1209.984375,
+                "y": 169,
+                "width": 102.015625,
+                "height": 28,
+                "right": 1312,
+                "bottom": 197
+              },
+              "clip": {
+                "left": 686,
+                "top": 154,
+                "right": 1326,
+                "bottom": 271
+              },
+              "fullyVisible": true,
+              "centerHit": true
+            }
+          },
+          {
+            "text": "Notify me when an approval is waitingDesktop and phone notification",
+            "innerText": "Notify me when an approval is waiting\nDesktop and phone notification",
+            "parentClass": "code-grow",
+            "parentDisplay": "flex",
+            "title": "Notify me when an approval is waiting",
+            "sub": "Desktop and phone notification",
+            "titleDisplay": "block",
+            "subDisplay": "block",
+            "titleRects": [
+              {
+                "x": 700,
+                "y": 225,
+                "right": 1266,
+                "bottom": 241,
+                "height": 16
+              }
+            ],
+            "subRects": [
+              {
+                "x": 700,
+                "y": 243,
+                "right": 1266,
+                "bottom": 259,
+                "height": 16
+              }
+            ],
+            "touchingSameLine": false,
+            "control": null
+          }
+        ]
+      },
+      "keyboardControls": [
+        {
+          "text": "Deep code",
+          "label": null,
+          "role": null,
+          "centerHit": true
+        },
+        {
+          "text": "",
+          "label": "Notify approvals",
+          "role": "switch",
+          "centerHit": true
+        }
+      ]
+    }
+  ],
+  "screenshots": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "checks": [
+    {
+      "name": "approvals/960/light: true desktop bounds",
+      "passed": true
+    },
+    {
+      "name": "approvals/960/light: reproduces inline label-description join",
+      "passed": true
+    },
+    {
+      "name": "approvals/960/light: existing code-grow separates title/description",
+      "passed": true
+    },
+    {
+      "name": "approvals/960/light: keyboard reaches both controls",
+      "passed": true
+    },
+    {
+      "name": "approvals/960/dark: true desktop bounds",
+      "passed": true
+    },
+    {
+      "name": "approvals/960/dark: reproduces inline label-description join",
+      "passed": true
+    },
+    {
+      "name": "approvals/960/dark: existing code-grow separates title/description",
+      "passed": true
+    },
+    {
+      "name": "approvals/960/dark: keyboard reaches both controls",
+      "passed": true
+    },
+    {
+      "name": "approvals/1024/light: true desktop bounds",
+      "passed": true
+    },
+    {
+      "name": "approvals/1024/light: reproduces inline label-description join",
+      "passed": true
+    },
+    {
+      "name": "approvals/1024/light: existing code-grow separates title/description",
+      "passed": true
+    },
+    {
+      "name": "approvals/1024/light: keyboard reaches both controls",
+      "passed": true
+    },
+    {
+      "name": "approvals/1024/dark: true desktop bounds",
+      "passed": true
+    },
+    {
+      "name": "approvals/1024/dark: reproduces inline label-description join",
+      "passed": true
+    },
+    {
+      "name": "approvals/1024/dark: existing code-grow separates title/description",
+      "passed": true
+    },
+    {
+      "name": "approvals/1024/dark: keyboard reaches both controls",
+      "passed": true
+    },
+    {
+      "name": "approvals/1440/light: true desktop bounds",
+      "passed": true
+    },
+    {
+      "name": "approvals/1440/light: reproduces inline label-description join",
+      "passed": true
+    },
+    {
+      "name": "approvals/1440/light: existing code-grow separates title/description",
+      "passed": true
+    },
+    {
+      "name": "approvals/1440/light: keyboard reaches both controls",
+      "passed": true
+    },
+    {
+      "name": "approvals/1440/dark: true desktop bounds",
+      "passed": true
+    },
+    {
+      "name": "approvals/1440/dark: reproduces inline label-description join",
+      "passed": true
+    },
+    {
+      "name": "approvals/1440/dark: existing code-grow separates title/description",
+      "passed": true
+    },
+    {
+      "name": "approvals/1440/dark: keyboard reaches both controls",
+      "passed": true
+    }
+  ],
+  "assets": [
+    {
+      "url": "/assets/index-BdXdFE63.js",
+      "sha256": "d768744b4132de58a1550a7967416a6edf0577d5e3b16b91a580f9e39dafc349",
+      "bytes": 2440972
+    },
+    {
+      "url": "/assets/index-BWZasjBJ.css",
+      "sha256": "1b1946a4b1078dca0bbf6b662bd6976228930b407b2569e9e2ff1d00d303f162",
+      "bytes": 205210
+    }
+  ],
+  "runtime": {
+    "electron": "44.5.1",
+    "chrome": "152.0.7977.130",
+    "appVersion": "0.0",
+    "bounds": {
+      "x": 80,
+      "y": 50,
+      "width": 1440,
+      "height": 900
+    },
+    "contentBounds": {
+      "x": 80,
+      "y": 50,
+      "width": 1440,
+      "height": 900
+    }
+  },
+  "sourceChanged": [],
+  "revisionAfter": "ffc118a2e58df66f430f3078e00f6e931dd910cf"
+}

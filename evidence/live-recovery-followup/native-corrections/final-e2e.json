@@ -1,0 +1,1340 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/navigation.spec.ts",
+      "tests/e2e/work-scroll.spec.ts",
+      "tests/e2e/terminal-copy.spec.ts",
+      "tests/e2e/code-diff-scroll.spec.ts",
+      "tests/e2e/bot-safety.spec.ts",
+      "tests/e2e/remote-auth.spec.ts",
+      "--workers=4",
+      "--output=/tmp/opencode/auth-native-corrections-e2e"
+    ],
+    "configFile": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/playwright.config.ts",
+    "rootDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/opencode/auth-native-corrections-e2e",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/e2e.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "bot-safety.spec.ts",
+      "file": "bot-safety.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Bot Studio retains refused saves; accepted saves leave once — 960 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1980,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:48.367Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "bot-save-refused-960-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/bot-safety-Bot-Studio-reta-0345e-aves-leave-once-—-960-light/attachments/bot-save-refused-960-light-d8c2fb4b0e6dd35db3c62eeaee1a10ba69c6f6c1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-3e357836405f8c076342",
+          "file": "bot-safety.spec.ts",
+          "line": 30,
+          "column": 3
+        },
+        {
+          "title": "Preview Bot shares saved look, draft, pause and activity — 960 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 8733,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:48.349Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preview-bot-shared-960-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/bot-safety-Preview-Bot-sha-3a2c7-se-and-activity-—-960-light/attachments/preview-bot-shared-960-light-3fee93b76ab7e4deccb864c59a03232db763e16b.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-9e4e1c678b0bacb4909b",
+          "file": "bot-safety.spec.ts",
+          "line": 102,
+          "column": 3
+        },
+        {
+          "title": "Bot Studio retains refused saves; accepted saves leave once — 960 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2009,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:48.374Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "bot-save-refused-960-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/bot-safety-Bot-Studio-reta-e3468-saves-leave-once-—-960-dark/attachments/bot-save-refused-960-dark-120a009b9c600b9190b3bfcabf6262f8488498ef.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-e4f2f33859e1bb4026ca",
+          "file": "bot-safety.spec.ts",
+          "line": 30,
+          "column": 3
+        },
+        {
+          "title": "Preview Bot shares saved look, draft, pause and activity — 960 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 8654,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:48.371Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preview-bot-shared-960-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/bot-safety-Preview-Bot-sha-7eaf1-use-and-activity-—-960-dark/attachments/preview-bot-shared-960-dark-e72444f07e03afb478737861267a07c3a741d640.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-e3bf6ba1a6c04d0f129b",
+          "file": "bot-safety.spec.ts",
+          "line": 102,
+          "column": 3
+        },
+        {
+          "title": "Bot Studio retains refused saves; accepted saves leave once — 1440 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2002,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:50.391Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "bot-save-refused-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/bot-safety-Bot-Studio-reta-adf70-ves-leave-once-—-1440-light/attachments/bot-save-refused-1440-light-0822082198dbd440c2614ef99d97b8c8bf081027.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-0846e6922dbebe7c0f01",
+          "file": "bot-safety.spec.ts",
+          "line": 30,
+          "column": 3
+        },
+        {
+          "title": "Preview Bot shares saved look, draft, pause and activity — 1440 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 7913,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:50.428Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preview-bot-shared-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/bot-safety-Preview-Bot-sha-10441-e-and-activity-—-1440-light/attachments/preview-bot-shared-1440-light-8e2137fe5871d5b73751b924b3026aa91216ea21.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-ab99f50bb6ef840167e4",
+          "file": "bot-safety.spec.ts",
+          "line": 102,
+          "column": 3
+        },
+        {
+          "title": "Bot Studio retains refused saves; accepted saves leave once — 1440 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2189,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:52.430Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "bot-save-refused-1440-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/bot-safety-Bot-Studio-reta-c24c2-aves-leave-once-—-1440-dark/attachments/bot-save-refused-1440-dark-74aa70fa76b3e140ac775f335d743306592b386e.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-13a502ae96c2eb6499a1",
+          "file": "bot-safety.spec.ts",
+          "line": 30,
+          "column": 3
+        },
+        {
+          "title": "Preview Bot shares saved look, draft, pause and activity — 1440 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7838,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:54.642Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preview-bot-shared-1440-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/bot-safety-Preview-Bot-sha-3eaa0-se-and-activity-—-1440-dark/attachments/preview-bot-shared-1440-dark-e332eb7fea1e68b75e67f7ced5142b10120de5e6.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-f04a079c8e55ba631290",
+          "file": "bot-safety.spec.ts",
+          "line": 102,
+          "column": 3
+        },
+        {
+          "title": "Bot onboarding does not navigate after leaving preview",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 1509,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:57.067Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-820bcecd217639221cd5",
+          "file": "bot-safety.spec.ts",
+          "line": 194,
+          "column": 1
+        },
+        {
+          "title": "Preview Bot locale reset and live-mode boundary",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2204,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:57.128Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6a10f133a8cc37fe4404-be9e70a9c5ef7628af7d",
+          "file": "bot-safety.spec.ts",
+          "line": 211,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "code-diff-scroll.spec.ts",
+      "file": "code-diff-scroll.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Code diff bodies wheel-scroll to real write tails while headers stay visible",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 3739,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:58.680Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "code-diff-scroll-960-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/code-diff-scroll-Code-diff-8d32e--while-headers-stay-visible/attachments/code-diff-scroll-960-light-540bd1f1f84818f75346be914766b7de9c4f18ab.png"
+                    },
+                    {
+                      "name": "code-diff-scroll-960-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/code-diff-scroll-Code-diff-8d32e--while-headers-stay-visible/attachments/code-diff-scroll-960-dark-ef1dbfc662ffb6d283cf001ddabb398dac37f06f.png"
+                    },
+                    {
+                      "name": "code-diff-scroll-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/code-diff-scroll-Code-diff-8d32e--while-headers-stay-visible/attachments/code-diff-scroll-1440-light-6ec0a7edcfdfb4255604ee7cdf6749ea4b235b67.png"
+                    },
+                    {
+                      "name": "code-diff-scroll-1440-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/code-diff-scroll-Code-diff-8d32e--while-headers-stay-visible/attachments/code-diff-scroll-1440-dark-6f334844c1240b5903b2205ad3938e7b737e43e4.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b2d9e103a5479321d78b-35228181c1369802eaf4",
+          "file": "code-diff-scroll.spec.ts",
+          "line": 9,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "navigation.spec.ts",
+      "file": "navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "skipped native route and theme transitions preserve updates and report callback errors",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 3206,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:58.632Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "skipped-native-transitions",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNvcmRzIjogWwogICAgewogICAgICAia2luZCI6ICJyb3V0ZSIsCiAgICAgICJjYWxsYmFja3MiOiAxLAogICAgICAicmVhZHlIYW5kbGVkIjogdHJ1ZSwKICAgICAgInJlYWR5RXJyb3IiOiAiQWJvcnRFcnJvciIsCiAgICAgICJuYXRpdmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAia2luZCI6ICJ0aGVtZSIsCiAgICAgICJjYWxsYmFja3MiOiAxLAogICAgICAicmVhZHlIYW5kbGVkIjogdHJ1ZSwKICAgICAgInJlYWR5RXJyb3IiOiAiQWJvcnRFcnJvciIsCiAgICAgICJuYXRpdmUiOiB0cnVlCiAgICB9CiAgXSwKICAidW5oYW5kbGVkIjogW10sCiAgImVycm9ycyI6IFtdCn0="
+                    },
+                    {
+                      "name": "native-callback-errors",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNvcmRzIjogWwogICAgewogICAgICAia2luZCI6ICJyb3V0ZSIsCiAgICAgICJjYWxsYmFja3MiOiAxLAogICAgICAicmVhZHlIYW5kbGVkIjogdHJ1ZSwKICAgICAgInJlYWR5RXJyb3IiOiAiQWJvcnRFcnJvciIsCiAgICAgICJuYXRpdmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAia2luZCI6ICJ0aGVtZSIsCiAgICAgICJjYWxsYmFja3MiOiAxLAogICAgICAicmVhZHlIYW5kbGVkIjogdHJ1ZSwKICAgICAgInJlYWR5RXJyb3IiOiAiQWJvcnRFcnJvciIsCiAgICAgICJuYXRpdmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAia2luZCI6ICJyb3V0ZSIsCiAgICAgICJjYWxsYmFja3MiOiAxLAogICAgICAicmVhZHlIYW5kbGVkIjogdHJ1ZSwKICAgICAgInJlYWR5RXJyb3IiOiAiQWJvcnRFcnJvciIsCiAgICAgICJuYXRpdmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAia2luZCI6ICJ0aGVtZSIsCiAgICAgICJjYWxsYmFja3MiOiAxLAogICAgICAicmVhZHlIYW5kbGVkIjogdHJ1ZSwKICAgICAgInJlYWR5RXJyb3IiOiAiQWJvcnRFcnJvciIsCiAgICAgICJuYXRpdmUiOiB0cnVlCiAgICB9CiAgXSwKICAidW5oYW5kbGVkIjogWwogICAgewogICAgICAic291cmNlIjogInVwZGF0ZUNhbGxiYWNrRG9uZSIsCiAgICAgICJraW5kIjogInJvdXRlIiwKICAgICAgIm5hbWUiOiAiRXJyb3IiLAogICAgICAibWVzc2FnZSI6ICJOYXRpdmUgcm91dGUgY2FsbGJhY2sgZmFpbGVkIgogICAgfSwKICAgIHsKICAgICAgInNvdXJjZSI6ICJmaW5pc2hlZCIsCiAgICAgICJraW5kIjogInJvdXRlIiwKICAgICAgIm5hbWUiOiAiRXJyb3IiLAogICAgICAibWVzc2FnZSI6ICJOYXRpdmUgcm91dGUgY2FsbGJhY2sgZmFpbGVkIgogICAgfSwKICAgIHsKICAgICAgInNvdXJjZSI6ICJ1cGRhdGVDYWxsYmFja0RvbmUiLAogICAgICAia2luZCI6ICJ0aGVtZSIsCiAgICAgICJuYW1lIjogIkVycm9yIiwKICAgICAgIm1lc3NhZ2UiOiAiTmF0aXZlIHRoZW1lIGNhbGxiYWNrIGZhaWxlZCIKICAgIH0KICBdLAogICJlcnJvcnMiOiBbCiAgICAiTmF0aXZlIHJvdXRlIGNhbGxiYWNrIGZhaWxlZCIsCiAgICAiTmF0aXZlIHJvdXRlIGNhbGxiYWNrIGZhaWxlZCIsCiAgICAiTmF0aXZlIHRoZW1lIGNhbGxiYWNrIGZhaWxlZCIKICBdCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-bb16e7baac80c7313d28",
+          "file": "navigation.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "Back cancels a pending tab choice even when its label matches an older request",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4218,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:37:59.362Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-d33299e6687ed5c4e120",
+          "file": "navigation.spec.ts",
+          "line": 85,
+          "column": 1
+        },
+        {
+          "title": "a newer keyboard tab choice survives the previous route commit",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 3226,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:38:01.856Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-0094a07eac1f49d76729",
+          "file": "navigation.spec.ts",
+          "line": 127,
+          "column": 1
+        },
+        {
+          "title": "a pending route commit preserves the outgoing Work tree and restores Bot activity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1362,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:38:02.444Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-17b5302532fec090cdbd",
+          "file": "navigation.spec.ts",
+          "line": 160,
+          "column": 1
+        },
+        {
+          "title": "anchors, native menus and history preserve routes, variants and chat identities",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13031,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:38:02.514Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-9cdd731813e713aca897",
+          "file": "navigation.spec.ts",
+          "line": 199,
+          "column": 1
+        },
+        {
+          "title": "Work preview departure keeps its context until native live-Code navigation commits",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1635,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:38:03.595Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preview-departure-errors",
+                      "contentType": "application/json",
+                      "body": "ewogICJlcnJvcnMiOiBbXSwKICAidXJsIjogImNvcnRleDovL2FwcC9pbmRleC5odG1sIy9jb2RlIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-3aa211c950975d227b58",
+          "file": "navigation.spec.ts",
+          "line": 316,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "remote-auth.spec.ts",
+      "file": "remote-auth.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Email code sign-in retains refusal, submits once, reloads and signs out — 960 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2780,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:38:03.850Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "remote-code-refused-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/remote-auth-Email-code-sig-755f5-s-and-signs-out-—-960-light/attachments/remote-code-refused-light-1ea72cf6a27f32c315c938bcf4735f05eeb3f1d5.png"
+                    },
+                    {
+                      "name": "remote-signed-in-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/remote-auth-Email-code-sig-755f5-s-and-signs-out-—-960-light/attachments/remote-signed-in-light-6057606c16f74139540dc23db98b03e58a4921a0.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aea179ae34735fbe9a1d-591c5ac58645027b1810",
+          "file": "remote-auth.spec.ts",
+          "line": 135,
+          "column": 3
+        },
+        {
+          "title": "Unavailable continuations and cancelled codes stay private; restart clears login — 960 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 4785,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:38:05.120Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "remote-mfa-unavailable-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/remote-auth-Unavailable-co-89071-rt-clears-login-—-960-light/attachments/remote-mfa-unavailable-light-221dd105b8db050f2bb9d1271fa2afab53406b0a.png"
+                    },
+                    {
+                      "name": "remote-verification-unavailable-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/remote-auth-Unavailable-co-89071-rt-clears-login-—-960-light/attachments/remote-verification-unavailable-light-1ee24457b4b6d508e96c7d9e35eb5e13ca73c27f.png"
+                    },
+                    {
+                      "name": "remote-signed-in-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/remote-auth-Unavailable-co-89071-rt-clears-login-—-960-light/attachments/remote-signed-in-1440-light-7f72886903093bab7a947022380e32638dbccea4.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aea179ae34735fbe9a1d-984b6ece0cb0b45329ce",
+          "file": "remote-auth.spec.ts",
+          "line": 200,
+          "column": 3
+        },
+        {
+          "title": "Email code sign-in retains refusal, submits once, reloads and signs out — 960 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2767,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:38:05.267Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "remote-code-refused-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/remote-auth-Email-code-sig-a8bea-ds-and-signs-out-—-960-dark/attachments/remote-code-refused-dark-9dad734f9d67cb9c1862f3577242a70386f6b45b.png"
+                    },
+                    {
+                      "name": "remote-signed-in-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/remote-auth-Email-code-sig-a8bea-ds-and-signs-out-—-960-dark/attachments/remote-signed-in-dark-67ebfd36fed9ef837fa5ecf93e5d063ad5e45bed.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aea179ae34735fbe9a1d-98cba352dc4c9cf26887",
+          "file": "remote-auth.spec.ts",
+          "line": 135,
+          "column": 3
+        },
+        {
+          "title": "Unavailable continuations and cancelled codes stay private; restart clears login — 960 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 4747,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:38:06.648Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "remote-mfa-unavailable-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/remote-auth-Unavailable-co-52aca-art-clears-login-—-960-dark/attachments/remote-mfa-unavailable-dark-33b62f6d6e0e23c2c27866ee20fe975b9e42bff1.png"
+                    },
+                    {
+                      "name": "remote-verification-unavailable-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/remote-auth-Unavailable-co-52aca-art-clears-login-—-960-dark/attachments/remote-verification-unavailable-dark-449405645dce4a1c70d5cce04489290b56524a27.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aea179ae34735fbe9a1d-0810fbaeb60d49b2fd10",
+          "file": "remote-auth.spec.ts",
+          "line": 200,
+          "column": 3
+        },
+        {
+          "title": "Mode and origin changes reject late auth replies and never reuse another origin’s credentials",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2320,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:38:08.056Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aea179ae34735fbe9a1d-e3c44d2de11f8ff91afc",
+          "file": "remote-auth.spec.ts",
+          "line": 276,
+          "column": 1
+        },
+        {
+          "title": "Initial connection and auth reads protect selection, canonical sign-in and cancellation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2189,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:38:09.922Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "remote-settings-initial-read-held",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/remote-auth-Initial-connec-fcca5-al-sign-in-and-cancellation/attachments/remote-settings-initial-read-held-da3ee9345b92cb2983e0cfb6ce5ae525eb2b4a27.png"
+                    },
+                    {
+                      "name": "remote-canonical-origin-sign-in",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/remote-auth-Initial-connec-fcca5-al-sign-in-and-cancellation/attachments/remote-canonical-origin-sign-in-da6680a8495e64c1ffaafd2bcf4b22e93f08a4b0.png"
+                    },
+                    {
+                      "name": "remote-initial-auth-read-cancelled",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/remote-auth-Initial-connec-fcca5-al-sign-in-and-cancellation/attachments/remote-initial-auth-read-cancelled-9a718a218b206dc1e65221450193abd1e4332c45.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aea179ae34735fbe9a1d-59626b9dca5a8a9d2d92",
+          "file": "remote-auth.spec.ts",
+          "line": 319,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "terminal-copy.spec.ts",
+      "file": "terminal-copy.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "French Code terminal localizes fresh shell notices without changing output or replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3647,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "nonzero exit is localized; model output remains English",
+                      "duration": 122
+                    },
+                    {
+                      "title": "large output preserves lookalikes; only the engine suffix changes",
+                      "duration": 219
+                    },
+                    {
+                      "title": "reload uses persisted metadata without rewriting stored output",
+                      "duration": 390
+                    },
+                    {
+                      "title": "multiline terminal tail stays scrollable inside the window in both themes",
+                      "duration": 1490
+                    }
+                  ],
+                  "startTime": "2026-10-03T03:38:10.649Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "terminal-copy-fr-960-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/attachments/terminal-copy-fr-960-light-3da690a3f15306f8586d0cb143656cf04dcf656b.png"
+                    },
+                    {
+                      "name": "terminal-copy-fr-960-light-viewport",
+                      "contentType": "application/json",
+                      "body": "ewogICJjbGllbnRIZWlnaHQiOiA0NTYsCiAgInNjcm9sbEhlaWdodCI6IDU4OTY0LAogICJzY3JvbGxUb3AiOiA1ODUwOCwKICAicGFuZSI6IHsKICAgICJ4IjogNzEyLAogICAgInkiOiAxNDgsCiAgICAid2lkdGgiOiAyMjguOTg0Mzc1LAogICAgImhlaWdodCI6IDQ3MywKICAgICJ0b3AiOiAxNDgsCiAgICAicmlnaHQiOiA5NDAuOTg0Mzc1LAogICAgImJvdHRvbSI6IDYyMSwKICAgICJsZWZ0IjogNzEyCiAgfSwKICAidGFpbCI6IHsKICAgICJ4IjogNzI3LAogICAgInkiOiA1NzUsCiAgICAid2lkdGgiOiAxNTguNDA2MjUsCiAgICAiaGVpZ2h0IjogMTYsCiAgICAidG9wIjogNTc1LAogICAgInJpZ2h0IjogODg1LjQwNjI1LAogICAgImJvdHRvbSI6IDU5MSwKICAgICJsZWZ0IjogNzI3CiAgfSwKICAidmlld3BvcnRIZWlnaHQiOiA2NDAsCiAgImJvdW5kZWQiOiB0cnVlLAogICJzY3JvbGxhYmxlIjogdHJ1ZSwKICAibWFya2VyVmlzaWJsZSI6IHRydWUKfQ=="
+                    },
+                    {
+                      "name": "terminal-copy-fr-960-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/attachments/terminal-copy-fr-960-dark-2abad16c71ee66b6680531474a248aabd8f9e07e.png"
+                    },
+                    {
+                      "name": "terminal-copy-fr-960-dark-viewport",
+                      "contentType": "application/json",
+                      "body": "ewogICJjbGllbnRIZWlnaHQiOiA0NTYsCiAgInNjcm9sbEhlaWdodCI6IDU4OTY0LAogICJzY3JvbGxUb3AiOiA1ODUwOCwKICAicGFuZSI6IHsKICAgICJ4IjogNzEyLAogICAgInkiOiAxNDgsCiAgICAid2lkdGgiOiAyMjguOTg0Mzc1LAogICAgImhlaWdodCI6IDQ3MywKICAgICJ0b3AiOiAxNDgsCiAgICAicmlnaHQiOiA5NDAuOTg0Mzc1LAogICAgImJvdHRvbSI6IDYyMSwKICAgICJsZWZ0IjogNzEyCiAgfSwKICAidGFpbCI6IHsKICAgICJ4IjogNzI3LAogICAgInkiOiA1NzUsCiAgICAid2lkdGgiOiAxNTguNDA2MjUsCiAgICAiaGVpZ2h0IjogMTYsCiAgICAidG9wIjogNTc1LAogICAgInJpZ2h0IjogODg1LjQwNjI1LAogICAgImJvdHRvbSI6IDU5MSwKICAgICJsZWZ0IjogNzI3CiAgfSwKICAidmlld3BvcnRIZWlnaHQiOiA2NDAsCiAgImJvdW5kZWQiOiB0cnVlLAogICJzY3JvbGxhYmxlIjogdHJ1ZSwKICAibWFya2VyVmlzaWJsZSI6IHRydWUKfQ=="
+                    },
+                    {
+                      "name": "terminal-copy-fr-1024-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/attachments/terminal-copy-fr-1024-light-7adce1d81dad752566f17f0879c0b544738b2f46.png"
+                    },
+                    {
+                      "name": "terminal-copy-fr-1024-light-viewport",
+                      "contentType": "application/json",
+                      "body": "ewogICJjbGllbnRIZWlnaHQiOiA0NTYsCiAgInNjcm9sbEhlaWdodCI6IDU4OTY0LAogICJzY3JvbGxUb3AiOiA1ODUwOCwKICAicGFuZSI6IHsKICAgICJ4IjogNzEyLAogICAgInkiOiAxNDgsCiAgICAid2lkdGgiOiAyOTIuOTg0Mzc1LAogICAgImhlaWdodCI6IDQ3MywKICAgICJ0b3AiOiAxNDgsCiAgICAicmlnaHQiOiAxMDA0Ljk4NDM3NSwKICAgICJib3R0b20iOiA2MjEsCiAgICAibGVmdCI6IDcxMgogIH0sCiAgInRhaWwiOiB7CiAgICAieCI6IDcyNywKICAgICJ5IjogNTc1LAogICAgIndpZHRoIjogMTU4LjQwNjI1LAogICAgImhlaWdodCI6IDE2LAogICAgInRvcCI6IDU3NSwKICAgICJyaWdodCI6IDg4NS40MDYyNSwKICAgICJib3R0b20iOiA1OTEsCiAgICAibGVmdCI6IDcyNwogIH0sCiAgInZpZXdwb3J0SGVpZ2h0IjogNjQwLAogICJib3VuZGVkIjogdHJ1ZSwKICAic2Nyb2xsYWJsZSI6IHRydWUsCiAgIm1hcmtlclZpc2libGUiOiB0cnVlCn0="
+                    },
+                    {
+                      "name": "terminal-copy-fr-1024-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/attachments/terminal-copy-fr-1024-dark-45e257b2f0f780fda97c5d6f9d32101cc1402c8d.png"
+                    },
+                    {
+                      "name": "terminal-copy-fr-1024-dark-viewport",
+                      "contentType": "application/json",
+                      "body": "ewogICJjbGllbnRIZWlnaHQiOiA0NTYsCiAgInNjcm9sbEhlaWdodCI6IDU4OTY0LAogICJzY3JvbGxUb3AiOiA1ODUwOCwKICAicGFuZSI6IHsKICAgICJ4IjogNzEyLAogICAgInkiOiAxNDgsCiAgICAid2lkdGgiOiAyOTIuOTg0Mzc1LAogICAgImhlaWdodCI6IDQ3MywKICAgICJ0b3AiOiAxNDgsCiAgICAicmlnaHQiOiAxMDA0Ljk4NDM3NSwKICAgICJib3R0b20iOiA2MjEsCiAgICAibGVmdCI6IDcxMgogIH0sCiAgInRhaWwiOiB7CiAgICAieCI6IDcyNywKICAgICJ5IjogNTc1LAogICAgIndpZHRoIjogMTU4LjQwNjI1LAogICAgImhlaWdodCI6IDE2LAogICAgInRvcCI6IDU3NSwKICAgICJyaWdodCI6IDg4NS40MDYyNSwKICAgICJib3R0b20iOiA1OTEsCiAgICAibGVmdCI6IDcyNwogIH0sCiAgInZpZXdwb3J0SGVpZ2h0IjogNjQwLAogICJib3VuZGVkIjogdHJ1ZSwKICAic2Nyb2xsYWJsZSI6IHRydWUsCiAgIm1hcmtlclZpc2libGUiOiB0cnVlCn0="
+                    },
+                    {
+                      "name": "terminal-copy-fr-1440-light",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/attachments/terminal-copy-fr-1440-light-2aa6a228b055bc40372165421426097d9aa10299.png"
+                    },
+                    {
+                      "name": "terminal-copy-fr-1440-light-viewport",
+                      "contentType": "application/json",
+                      "body": "ewogICJjbGllbnRIZWlnaHQiOiA3MzEsCiAgInNjcm9sbEhlaWdodCI6IDU4OTY0LAogICJzY3JvbGxUb3AiOiA1ODIzMywKICAicGFuZSI6IHsKICAgICJ4IjogODYyLjY4NzUsCiAgICAieSI6IDE0OCwKICAgICJ3aWR0aCI6IDU1OC4zMTI1LAogICAgImhlaWdodCI6IDczMywKICAgICJ0b3AiOiAxNDgsCiAgICAicmlnaHQiOiAxNDIxLAogICAgImJvdHRvbSI6IDg4MSwKICAgICJsZWZ0IjogODYyLjY4NzUKICB9LAogICJ0YWlsIjogewogICAgIngiOiA4NzcuNjg3NSwKICAgICJ5IjogODUwLAogICAgIndpZHRoIjogMTU4LjQwNjI1LAogICAgImhlaWdodCI6IDE2LAogICAgInRvcCI6IDg1MCwKICAgICJyaWdodCI6IDEwMzYuMDkzNzUsCiAgICAiYm90dG9tIjogODY2LAogICAgImxlZnQiOiA4NzcuNjg3NQogIH0sCiAgInZpZXdwb3J0SGVpZ2h0IjogOTAwLAogICJib3VuZGVkIjogdHJ1ZSwKICAic2Nyb2xsYWJsZSI6IHRydWUsCiAgIm1hcmtlclZpc2libGUiOiB0cnVlCn0="
+                    },
+                    {
+                      "name": "terminal-copy-fr-1440-dark",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/auth-native-corrections-e2e/terminal-copy-French-Code--01cd6-t-changing-output-or-replay/attachments/terminal-copy-fr-1440-dark-d583897674775e83211408962b10c6573f721a51.png"
+                    },
+                    {
+                      "name": "terminal-copy-fr-1440-dark-viewport",
+                      "contentType": "application/json",
+                      "body": "ewogICJjbGllbnRIZWlnaHQiOiA3MzEsCiAgInNjcm9sbEhlaWdodCI6IDU4OTY0LAogICJzY3JvbGxUb3AiOiA1ODIzMywKICAicGFuZSI6IHsKICAgICJ4IjogODYyLjY4NzUsCiAgICAieSI6IDE0OCwKICAgICJ3aWR0aCI6IDU1OC4zMTI1LAogICAgImhlaWdodCI6IDczMywKICAgICJ0b3AiOiAxNDgsCiAgICAicmlnaHQiOiAxNDIxLAogICAgImJvdHRvbSI6IDg4MSwKICAgICJsZWZ0IjogODYyLjY4NzUKICB9LAogICJ0YWlsIjogewogICAgIngiOiA4NzcuNjg3NSwKICAgICJ5IjogODUwLAogICAgIndpZHRoIjogMTU4LjQwNjI1LAogICAgImhlaWdodCI6IDE2LAogICAgInRvcCI6IDg1MCwKICAgICJyaWdodCI6IDEwMzYuMDkzNzUsCiAgICAiYm90dG9tIjogODY2LAogICAgImxlZnQiOiA4NzcuNjg3NQogIH0sCiAgInZpZXdwb3J0SGVpZ2h0IjogOTAwLAogICJib3VuZGVkIjogdHJ1ZSwKICAic2Nyb2xsYWJsZSI6IHRydWUsCiAgIm1hcmtlclZpc2libGUiOiB0cnVlCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72dd4898d70aec99871b-5e7157366506b4cbfef2",
+          "file": "terminal-copy.spec.ts",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "work-scroll.spec.ts",
+      "file": "work-scroll.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Work initial scroll settles after fonts without taking back user control — light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 4407,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "cold fonts finish at the actual bottom",
+                      "duration": 427
+                    },
+                    {
+                      "title": "warm-font remount still opens at the bottom",
+                      "duration": 279
+                    },
+                    {
+                      "title": "wheel intent before font readiness keeps the user's reading position",
+                      "duration": 932
+                    },
+                    {
+                      "title": "a new variant cancels the old pending bottom scroll",
+                      "duration": 636
+                    },
+                    {
+                      "title": "leaving the task cancels its pending scroll",
+                      "duration": 768
+                    }
+                  ],
+                  "startTime": "2026-10-03T03:38:11.415Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "cold-fonts-light",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZXF1ZXN0cyI6IFsKICAgICJjb3J0ZXg6Ly9hcHAvZm9udHMvR2Vpc3QtVmFyaWFibGUud29mZjIiLAogICAgImNvcnRleDovL2FwcC9mb250cy9HZWlzdE1vbm8tVmFyaWFibGUud29mZjIiCiAgXSwKICAiYmVmb3JlIjogewogICAgInRvcCI6IDQwOSwKICAgICJoZWlnaHQiOiAxMDY4LAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDAsCiAgICAiZm9udHMiOiAibG9hZGluZyIKICB9LAogICJhZnRlciI6IHsKICAgICJ0b3AiOiAzOTIsCiAgICAiaGVpZ2h0IjogMTA1MSwKICAgICJ2aWV3cG9ydCI6IDY1OSwKICAgICJnYXAiOiAwLAogICAgImZvbnRzIjogImxvYWRlZCIKICB9Cn0="
+                    },
+                    {
+                      "name": "warm-fonts-light",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZXF1ZXN0cyI6IFsKICAgICJjb3J0ZXg6Ly9hcHAvZm9udHMvR2Vpc3QtVmFyaWFibGUud29mZjIiLAogICAgImNvcnRleDovL2FwcC9mb250cy9HZWlzdE1vbm8tVmFyaWFibGUud29mZjIiCiAgXSwKICAiYmVmb3JlIjogewogICAgInRvcCI6IDM5MiwKICAgICJoZWlnaHQiOiAxMDUxLAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDAsCiAgICAiZm9udHMiOiAibG9hZGVkIgogIH0sCiAgImFmdGVyIjogewogICAgInRvcCI6IDM5MiwKICAgICJoZWlnaHQiOiAxMDUxLAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDAsCiAgICAiZm9udHMiOiAibG9hZGVkIgogIH0KfQ=="
+                    },
+                    {
+                      "name": "user-wheel-light",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZXF1ZXN0cyI6IFsKICAgICJjb3J0ZXg6Ly9hcHAvZm9udHMvR2Vpc3QtVmFyaWFibGUud29mZjIiLAogICAgImNvcnRleDovL2FwcC9mb250cy9HZWlzdE1vbm8tVmFyaWFibGUud29mZjIiCiAgXSwKICAiYmVmb3JlIjogewogICAgInRvcCI6IDIyOSwKICAgICJoZWlnaHQiOiAxMDY4LAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDE4MCwKICAgICJmb250cyI6ICJsb2FkaW5nIgogIH0sCiAgImFmdGVyIjogewogICAgInRvcCI6IDIyOSwKICAgICJoZWlnaHQiOiAxMDUxLAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDE2MywKICAgICJmb250cyI6ICJsb2FkZWQiCiAgfQp9"
+                    },
+                    {
+                      "name": "variant-change-light",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZXF1ZXN0cyI6IFsKICAgICJjb3J0ZXg6Ly9hcHAvZm9udHMvR2Vpc3QtVmFyaWFibGUud29mZjIiLAogICAgImNvcnRleDovL2FwcC9mb250cy9HZWlzdE1vbm8tVmFyaWFibGUud29mZjIiCiAgXSwKICAiYmVmb3JlIjogewogICAgInRvcCI6IDE3OSwKICAgICJoZWlnaHQiOiA3ODYsCiAgICAidmlld3BvcnQiOiA2MDcsCiAgICAiZ2FwIjogMCwKICAgICJmb250cyI6ICJsb2FkaW5nIgogIH0sCiAgImFmdGVyIjogewogICAgInRvcCI6IDE2MiwKICAgICJoZWlnaHQiOiA3NjksCiAgICAidmlld3BvcnQiOiA2MDcsCiAgICAiZ2FwIjogMCwKICAgICJmb250cyI6ICJsb2FkZWQiCiAgfQp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "39b363586dc6e0d5f280-ac5fe95d343c222abae5",
+          "file": "work-scroll.spec.ts",
+          "line": 12,
+          "column": 3
+        },
+        {
+          "title": "Work initial scroll settles after fonts without taking back user control — dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 4731,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "cold fonts finish at the actual bottom",
+                      "duration": 439
+                    },
+                    {
+                      "title": "warm-font remount still opens at the bottom",
+                      "duration": 239
+                    },
+                    {
+                      "title": "wheel intent before font readiness keeps the user's reading position",
+                      "duration": 977
+                    },
+                    {
+                      "title": "a new variant cancels the old pending bottom scroll",
+                      "duration": 715
+                    },
+                    {
+                      "title": "leaving the task cancels its pending scroll",
+                      "duration": 873
+                    }
+                  ],
+                  "startTime": "2026-10-03T03:38:12.133Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "cold-fonts-dark",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZXF1ZXN0cyI6IFsKICAgICJjb3J0ZXg6Ly9hcHAvZm9udHMvR2Vpc3QtVmFyaWFibGUud29mZjIiLAogICAgImNvcnRleDovL2FwcC9mb250cy9HZWlzdE1vbm8tVmFyaWFibGUud29mZjIiCiAgXSwKICAiYmVmb3JlIjogewogICAgInRvcCI6IDQwOSwKICAgICJoZWlnaHQiOiAxMDY4LAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDAsCiAgICAiZm9udHMiOiAibG9hZGluZyIKICB9LAogICJhZnRlciI6IHsKICAgICJ0b3AiOiAzOTIsCiAgICAiaGVpZ2h0IjogMTA1MSwKICAgICJ2aWV3cG9ydCI6IDY1OSwKICAgICJnYXAiOiAwLAogICAgImZvbnRzIjogImxvYWRlZCIKICB9Cn0="
+                    },
+                    {
+                      "name": "warm-fonts-dark",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZXF1ZXN0cyI6IFsKICAgICJjb3J0ZXg6Ly9hcHAvZm9udHMvR2Vpc3QtVmFyaWFibGUud29mZjIiLAogICAgImNvcnRleDovL2FwcC9mb250cy9HZWlzdE1vbm8tVmFyaWFibGUud29mZjIiCiAgXSwKICAiYmVmb3JlIjogewogICAgInRvcCI6IDM5MiwKICAgICJoZWlnaHQiOiAxMDUxLAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDAsCiAgICAiZm9udHMiOiAibG9hZGVkIgogIH0sCiAgImFmdGVyIjogewogICAgInRvcCI6IDM5MiwKICAgICJoZWlnaHQiOiAxMDUxLAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDAsCiAgICAiZm9udHMiOiAibG9hZGVkIgogIH0KfQ=="
+                    },
+                    {
+                      "name": "user-wheel-dark",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZXF1ZXN0cyI6IFsKICAgICJjb3J0ZXg6Ly9hcHAvZm9udHMvR2Vpc3QtVmFyaWFibGUud29mZjIiLAogICAgImNvcnRleDovL2FwcC9mb250cy9HZWlzdE1vbm8tVmFyaWFibGUud29mZjIiCiAgXSwKICAiYmVmb3JlIjogewogICAgInRvcCI6IDIyOSwKICAgICJoZWlnaHQiOiAxMDY4LAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDE4MCwKICAgICJmb250cyI6ICJsb2FkaW5nIgogIH0sCiAgImFmdGVyIjogewogICAgInRvcCI6IDIyOSwKICAgICJoZWlnaHQiOiAxMDUxLAogICAgInZpZXdwb3J0IjogNjU5LAogICAgImdhcCI6IDE2MywKICAgICJmb250cyI6ICJsb2FkZWQiCiAgfQp9"
+                    },
+                    {
+                      "name": "variant-change-dark",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZXF1ZXN0cyI6IFsKICAgICJjb3J0ZXg6Ly9hcHAvZm9udHMvR2Vpc3QtVmFyaWFibGUud29mZjIiLAogICAgImNvcnRleDovL2FwcC9mb250cy9HZWlzdE1vbm8tVmFyaWFibGUud29mZjIiCiAgXSwKICAiYmVmb3JlIjogewogICAgInRvcCI6IDE3OSwKICAgICJoZWlnaHQiOiA3ODYsCiAgICAidmlld3BvcnQiOiA2MDcsCiAgICAiZ2FwIjogMCwKICAgICJmb250cyI6ICJsb2FkaW5nIgogIH0sCiAgImFmdGVyIjogewogICAgInRvcCI6IDE2MiwKICAgICJoZWlnaHQiOiA3NjksCiAgICAidmlld3BvcnQiOiA2MDcsCiAgICAiZ2FwIjogMCwKICAgICJmb250cyI6ICJsb2FkZWQiCiAgfQp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "39b363586dc6e0d5f280-b78841f117ed53cc9f2d",
+          "file": "work-scroll.spec.ts",
+          "line": 12,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-03T03:37:47.324Z",
+    "duration": 29627.128,
+    "expected": 26,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

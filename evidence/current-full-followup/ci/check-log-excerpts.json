@@ -1,0 +1,11 @@
+{
+  "unit": [
+    "2026-10-03T00:29:03.4351007Z  \u2713 packages/desktop/test/remote.test.ts (45 tests | 1 skipped) 5162ms",
+    "2026-10-03T00:29:10.1337503Z  Test Files  16 passed (16)",
+    "2026-10-03T00:29:10.1339005Z       Tests  178 passed | 1 skipped (179)",
+    "2026-10-03T00:29:11.6417285Z i18n audit: 63 files, 2267 keys used, 3395 keys in en, 0 problem(s)"
+  ],
+  "skipSource": [
+    "  it.skipIf(!process.env.CORTEX_TEST_BACKEND_URL)(\"lists models from a real backend\", async () => {"
+  ]
+}

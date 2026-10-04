@@ -1,0 +1,45 @@
+{
+  "rawReports": [
+    {
+      "source": "/tmp/opencode/projects-ci-37130209247/artifacts/e2e-linux/test-results/e2e.json",
+      "retained": "e2e-linux-report.json.gz",
+      "rawBytes": 1542952,
+      "rawSHA256": "08bdaff6fd3f52d06967a021a6fa9b9fc43838072ee311efc833810a711bfd08",
+      "gzipSHA256": "db62319a7608075fd4064a43cea009074fd220c8bacc587476d30cd270842d35"
+    },
+    {
+      "source": "/tmp/opencode/projects-ci-37130209247/artifacts/macos/test-results/e2e.json",
+      "retained": "macos-report.json.gz",
+      "rawBytes": 1535803,
+      "rawSHA256": "eee7927de03d8f426c00c6fe3767dc4ab4c2e583a9be880edbde0cb27772c400",
+      "gzipSHA256": "36f8b1e850767cf0a2d5120a7c5aff574a0e4f3f310c5099a56eef479876e171"
+    }
+  ],
+  "rawArchivesRetainedInRepository": false,
+  "archiveBindings": "downloads.json",
+  "imageRetention": {
+    "new lossless WebP": 230,
+    "CI99 RGBA-exact canonical": 81
+  },
+  "uniqueImages": 311,
+  "pngCopies": 939,
+  "canonicalReusesRequire": "Verified prior retained SHA256, dimensions, decoded RGBA SHA256 and byte equality; no tolerance. Prior canonical chain stays explicit.",
+  "originalInputHashes": [
+    {
+      "path": "/tmp/opencode/projects-ci-37130209247/run.json",
+      "sha256": "00cba55f309e7e9a6dbd49bc6a85fd22f0c30b14ca6715699a984c33a4301cb3"
+    },
+    {
+      "path": "/tmp/opencode/projects-ci-37130209247/run.log",
+      "sha256": "f4e0c7d80eb3bf67b12c85254a63587737d9c150f3ac8fb8cd1f9cdf9ca4273f"
+    },
+    {
+      "path": "/tmp/opencode/projects-ci-37130209247/artifacts.json",
+      "sha256": "28f7b463a1779da7b3856de495c8ae725a4160af07e86727b118a6fc0ca124d0"
+    },
+    {
+      "path": "/tmp/opencode/projects-ci-37130209247/archive-bindings.json",
+      "sha256": "d8322a1988a3805bb1a68720b7bc751c605555dc2155641e766afb7578ce572e"
+    }
+  ]
+}

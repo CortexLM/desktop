@@ -1,0 +1,83 @@
+{
+  "run": {
+    "id": 37082159189,
+    "url": "https://github.com/CortexLM/desktop/actions/runs/37082159189",
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "completedAt": "2026-10-03T00:37:16Z",
+    "downloadsCompletedAt": "2026-10-03T00:43:08.973565Z",
+    "head": "6d965358bb5e02473df6be7e97ecfdb07650c0b8",
+    "checkout": "3b733db499868a2917d9ed7cdb311d9312a28bdd",
+    "tree": "eba03a02a764cc9999010bc01af4bbe537042115",
+    "base": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+  },
+  "jobs": [
+    {"id": 111084827948, "name": "checks", "conclusion": "success", "runner": "ubuntu-latest"},
+    {"id": 111084827904, "name": "e2e", "conclusion": "success", "runner": "blacksmith-4vcpu-ubuntu-2404"},
+    {"id": 111084827814, "name": "macos", "conclusion": "success", "runner": "blacksmith-6vcpu-macos-26"}
+  ],
+  "checks": {
+    "lint": "success",
+    "typecheck": "success",
+    "unitPassed": 178,
+    "unitSkipped": 1,
+    "unitFailed": 0,
+    "filesPassed": 16,
+    "skip": "lists models from a real backend; it.skipIf(!process.env.CORTEX_TEST_BACKEND_URL)",
+    "i18n": {"files": 63, "usedKeys": 2267, "englishKeys": 3395, "problems": 0}
+  },
+  "e2e": {
+    "linux": {"artifactID": 11259033438, "passed": 70, "attempts": 70, "retries": 0, "skipped": 0, "flaky": 0, "errors": 0, "renders": 426, "workers": 4, "durationMs": 187144.087},
+    "macos": {"artifactID": 11259183794, "passed": 70, "attempts": 70, "retries": 0, "skipped": 0, "flaky": 0, "errors": 0, "renders": 426, "workers": 1, "durationMs": 483755.163}
+  },
+  "source": {"application": "f9aca44476fcebd0699c09c9e3f7eebcd5151a2a", "applicationE2EPackageInputsUnchanged": true, "rendererFiles": 473, "rendererFingerprint": "5f709c11d836948142b65c5c2b4fe0582bddbfc19f76dbe15cf6d2146a6bcf0f", "details": "source-verification.json", "manifest": "source-pins.json"},
+  "package": {
+    "artifactID": 11259064123,
+    "details": "package-verification.json",
+    "innerZIPBytes": 144905920,
+    "innerZIPSHA256": "4eba9ed7ab8fe55b678e8dafd24dc3d49622edad6f4c149f97fd83cb560a1a02",
+    "zipEntries": 697,
+    "zipNonDirectoryEntries": 376,
+    "asarBytes": 28191344,
+    "asarSHA256": "23decdd0596b89e8e83284b62f6e7f0eb5314b081ccf178f7dde31c8ac04af77",
+    "asarMembers": 91,
+    "buildMembers": 90,
+    "matchingPriorZIPEntryPathsSizesAndContentHashes": 697,
+    "matchingPriorASARMembers": 91,
+    "priorRun": 37080136101,
+    "priorInstalledArtifactID": 11258159964,
+    "priorWholeZIPHashDiffers": true,
+    "currentArtifactInstalledByExecutor": false,
+    "priorManifestsVerifiedAgainstCommittedHead": true
+  },
+  "smoke": {
+    "result": "SMOKE OK",
+    "window": "Cortex cortex://app/index.html",
+    "livenessSeconds": 10,
+    "rendererScreenshot": "macos/out/smoke-renderer.png",
+    "rendererScreenshotSHA256": "bb69536bf3b15ff6bd53db88c9c3197711ef1a5cae4ac36e2036e35deb0651da",
+    "nativeCapture": "failed",
+    "nativeCaptureCommand": "screencapture -x out/smoke-screen.png",
+    "nativeCaptureError": "could not create image from display",
+    "nativePNGUploaded": false,
+    "nativeCaptureFailureCaughtByScript": true,
+    "nativeCaptureCause": "not diagnosed",
+    "uploadedCrashReport": {"app": "Setup Assistant", "simulated": true, "timestamp": "2026-03-16 08:32:43 -0700", "sha256": "384ea4db6324dc5b8ab6a0fd5a4594b620e76ec694e0f0bb75495595824f90dd"}
+  },
+  "images": {"uploadedCopies": 451, "unique": 151, "contactSheetsReviewed": 14, "originalResolutionReviewed": 16, "details": "visual-review.json", "manifest": "images.json"},
+  "artifacts": "artifacts.json",
+  "archiveHashes": "downloads.json",
+  "checksums": "SHA256SUMS",
+  "verification": {"script": "verify.py", "finalRun": "passed", "lastSuccessfulCheckAt": "2026-10-03T00:49:30.392695Z", "earlierVerifierFailures": "Prior ZIP manifest included CRC32 and directory rows with null hashes. Verifier normalization corrected; no actual package-member difference found. No product failure or CI rerun."},
+  "limits": [
+    "Renderer screenshots and API chrome assertions do not establish native window/menu pixels.",
+    "426 render/copy checks per OS are not 426 uploaded screenshots or reference comparisons.",
+    "Every unique PNG reviewed on contact sheets; 16 individually at original resolution.",
+    "Code draft-prefix/toast stacking and narrow model-metadata truncation remain captured presentation residuals, not newly attributed regressions or data-loss claims.",
+    "Controlled provider and preview coverage do not establish authenticated Cloud/selfhost inference or exhaustive live behavior/localization.",
+    "No Windows test or Linux packaged-smoke claim from this run.",
+    "Coordinator-owned native sweep/frozen comparison and prior installed artifact retain separate provenance; not inspected here.",
+    "Executor performed artifact/source verification only: no app build/test, CI rerun, native capture, Mac operation, owner action or app/repo write."
+  ]
+}

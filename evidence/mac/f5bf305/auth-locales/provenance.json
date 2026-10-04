@@ -1,0 +1,363 @@
+{
+  "applicationRevision": "f5bf305473db12fddfddcda890a01794f02f578f",
+  "documentaryRevision": "1076c2584941cf054efffaf709a149b4195bc1c4",
+  "artifactID": 11267761992,
+  "CI": 37105137365,
+  "asarSHA256": "d34d6d8609045f56851a6004f5c7bb185108cd743732ff8b79d6e3689df7f14c",
+  "manifestSHA256": "ea1d51c5dbebc31995bddc7fcc6148b15b6a4c474e08fe5cae218c6dbb38c610",
+  "manifestBytes": 449301,
+  "harnessSHA256": "25e6481613780096505e6b3970b36cc0290c1d1ac4a156aefa57829cb32faefe",
+  "scriptMatchesExecutedManifest": true,
+  "references": [
+    {
+      "path": "evidence/mac/f5bf305/artifact.json",
+      "sha256": "b9f03435831ef657535641889b9c632a4d678267f3f3a652fbb362b234fd1c00"
+    },
+    {
+      "path": "evidence/mac/f5bf305/package.json",
+      "sha256": "981d8d8e82907d295dd104e949a508f5740e35fa2897c850b308ba61846a0a85"
+    },
+    {
+      "path": "evidence/mac/f5bf305/installed.json",
+      "sha256": "08b86e00bab3a2eb4da7071b04641871308b9df3b702d0602baa594a6d4a0b8a"
+    },
+    {
+      "path": "evidence/mac/f5bf305/renderer-inputs.json",
+      "sha256": "ac52f5c53fb3d65ef348dfd51575f698698c7a2399a6d09a9db892ec04f2ab46"
+    },
+    {
+      "path": "evidence/mac/f5bf305/pinned-inputs.json",
+      "sha256": "90829d2273ec886601ddf8b51e445bde4850301f4fca4b7b24423ae34c0cd753"
+    },
+    {
+      "path": "evidence/mac/f5bf305/documentary-binding.json",
+      "sha256": "e1173a9b9c9998d3dab2774dfaa8dc5755055b97c6d869b16b747b415dd704ea"
+    },
+    {
+      "path": "evidence/mac/f5bf305/cleanup.json",
+      "sha256": "a175898e88986d90d5a4433d66f99e16d36b61f6c3332c05432b613a8df81eb1"
+    },
+    {
+      "path": "evidence/mac/f5bf305/ports-closed.json",
+      "sha256": "c4b9a827e4e43441129fd39c1fa8018d2924b025f89f7c859dbbef5d65ba5398"
+    },
+    {
+      "path": "evidence/mac/f5bf305/auth/manifest.json",
+      "sha256": "9b36564a9387b10b16a4f4608f659bffbd0e013d04fb87f7b4ad041ed40fdcb6"
+    },
+    {
+      "path": "evidence/mac/f5bf305/auth/retained.json",
+      "sha256": "7b8e9db033618c533804ed31539063f9c852abd1e93a4f2f333aab8ed210d84c"
+    },
+    {
+      "path": "evidence/mac/f5bf305/auth-locales-initial/manifest.json",
+      "sha256": "754aff12455550c825ee3c019cff2697f117849b313ad8049f7a5a36caa6a0af"
+    },
+    {
+      "path": "evidence/mac/f5bf305/auth-locales-initial/script-initial.mjs",
+      "sha256": "50948d030e3577698323c978252e38545b88d79e31c0bc13c8ef756e70162494"
+    },
+    {
+      "path": "evidence/mac/f5bf305/scripts/native-auth-locales-final.mjs",
+      "sha256": "25e6481613780096505e6b3970b36cc0290c1d1ac4a156aefa57829cb32faefe"
+    },
+    {
+      "path": "evidence/mac/f5bf305/scripts/remote-auth-native-backend.mjs",
+      "sha256": "22b6d8cb958db2c7d749b737329f169894435d995ca67e6e929cd96eec79ee65"
+    },
+    {
+      "path": "evidence/mac/f5bf305/scripts/capture-server.py",
+      "sha256": "7dc569f5386e45f418c92790d6c9126373435419daeaf473046f1af13facb723"
+    }
+  ],
+  "packageInputsVerifiedAgainstGit": 514,
+  "rendererInputsVerifiedAgainstGit": 473,
+  "rendererFingerprint": "fb6220f8df77bdee09241fb2084417d3e3cc4924c8a1a4fbfa19200e09e96acb",
+  "comparatorFingerprint": "5361c34082a62dfb944d47fc27b11695d3f9826870bb928f74670ba778cc3d9b",
+  "embeddedAndFrozenMembersVerified": 90,
+  "runtimeAuthPinnedFiles": {
+    "packages/i18n/locales/en/system.json": "18dff6afda09dc67df5091b5a2440fc1f6b3e1d439230cd9fda6967f6be7b10a",
+    "packages/i18n/locales/en/common.json": "69f0e0e8b334dfbc9b796b095acf6e8fe610becdb7d8a7aa6abb5489edc2f8c5",
+    "packages/i18n/locales/fr/system.json": "c63761c3053604f5fd206e3f09bc728c40015abf220c3cd0be777c6193309bdc",
+    "packages/i18n/locales/fr/common.json": "e93295b100a1b2d7b90542126d2edf08f74ca52f6a62e5e1b7373a533628b9af",
+    "packages/i18n/locales/es/system.json": "71c7a154c0cff9049ceeeb07696d701ec44ccf53160a5d3b3d4c96d7d54ff63b",
+    "packages/i18n/locales/es/common.json": "21e780a16640e1596cd7a6761d98cebd88517e056832b65c6ce58f7575495fbe",
+    "packages/i18n/locales/de/system.json": "cacaffee5a71bcca8b544f40a9d6fbbead5da1695ff2fdc0ba634c91e5b49e74",
+    "packages/i18n/locales/de/common.json": "a1004240418e3ceb69d675cd01d8439a9aeba1e8fc5001c14b3321b49e81f3bb",
+    "packages/i18n/locales/ja/system.json": "0b86eb32b546ac0e342bab729d9e3990a944fae9c02b694bf8d095475f0fbad7",
+    "packages/i18n/locales/ja/common.json": "eb6b7c0fccb09a1de3ea14f1ea66a08acdf66ad94d9984f219150ec71d491dd0",
+    "packages/i18n/locales/zh-Hans/system.json": "3e95eeaf1470b830351ae8b36332f35cf6cf1ce44ca5e2de869bef1ccd874043",
+    "packages/i18n/locales/zh-Hans/common.json": "983e69bb6b06828046d0ab7888705cdcdfebd7b010b416894903d95f67c4aa33",
+    "packages/i18n/locales/pt-BR/system.json": "bb28de8fa8ee1028d7d2a717ed049bdeb0dca42a04e2c9d901b520bb39d2c82b",
+    "packages/i18n/locales/pt-BR/common.json": "ff48e1896ca988e89699ec9ff2429ce2a4c7c01facedeeca9077317b7a61ff86",
+    "packages/i18n/locales/ko/system.json": "c404abfe396c950ee8da904eb5d21d23a34fa090ace1bf5898426757efa93801",
+    "packages/i18n/locales/ko/common.json": "fca99f7af4561a829b0b2847094107ab6a55ca6563649753af76305e6bf7d6bf",
+    "packages/app/src/screens/system/account.tsx": "7d6946caefc5f0333267c41fb472d321a8f62358023933c7e2fcd2c6674f0a36"
+  },
+  "mainWorkspaceSources": [
+    {
+      "path": "packages/desktop/src/main.ts",
+      "sha256": "d33d466e1a16b45ac124fb2c72b28a3ae632960e6575d0ebf4d90eb6f076396c"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "f95a508dc024fbbd2f4b5c4bab77fb4ee5efd06294801fd5de31c5abd19386bd"
+    },
+    {
+      "path": "packages/schema/src/index.ts",
+      "sha256": "0403846e16c38e7f06c077d7980a9c375898ba413f5aa5f93cf863d7229f5361"
+    },
+    {
+      "path": "packages/core/src/agent.ts",
+      "sha256": "7358c388614b14b6fb150f14062c407a4db55eaf478b7a1bd4e0636ab3424748"
+    },
+    {
+      "path": "packages/core/src/permission.ts",
+      "sha256": "25b054dac80e490bd05193f6f2e7995dbf6c5a89ac81343d6397353d885dd993"
+    },
+    {
+      "path": "packages/core/src/computer-use.ts",
+      "sha256": "bdeaa1fa9054424318051b9b067e0dd54064b6626b899aa2568388bcc96758c7"
+    },
+    {
+      "path": "packages/core/src/error.ts",
+      "sha256": "9205502b45ddbdab79a212385af3141940158e6a68f1439391241b0a571572a2"
+    },
+    {
+      "path": "packages/core/src/bot.ts",
+      "sha256": "3f99c03f2b6093735ec80571cdfb9651cd36a03e2ed46da06df87a202e13938d"
+    },
+    {
+      "path": "packages/core/src/bus.ts",
+      "sha256": "5e75b98b548cb4adc8f7eb98d23ee89bea86705c45eee485b494632a8ec0bb53"
+    },
+    {
+      "path": "packages/core/src/storage.ts",
+      "sha256": "1c56b82e24b89b68733e7cf5ba38a7d241f11f66e7a3857e0561ec3728bff255"
+    },
+    {
+      "path": "packages/core/src/catalog.ts",
+      "sha256": "21a075c1916f3e975d86c198bb2548d01dca6a3809a159419c171835c65f88ce"
+    },
+    {
+      "path": "packages/core/src/provider.ts",
+      "sha256": "ded605cbdf58d2ed7352d302ac365067fcd6b33b4ab33bacc67af1de8a536e07"
+    },
+    {
+      "path": "packages/core/src/connection.ts",
+      "sha256": "2dabb6fec133d599733a6c6961ed52532dd4fde9c0356543507d78c9f973015b"
+    },
+    {
+      "path": "packages/core/src/mcp.ts",
+      "sha256": "9b40fcb025b6e5e021529e33278b4f64e39d25c9fb364775ebe6a15f83034306"
+    },
+    {
+      "path": "packages/core/src/plugin.ts",
+      "sha256": "241a1cfcc39bf3e2995a6f9d4d4188dfd96d90e535db9daf4c19489aaac9c0c0"
+    },
+    {
+      "path": "packages/core/src/scheduler.ts",
+      "sha256": "1895f074ff79ab029d304f3c363fe9ff120fbd7322139e3f98ab27ddf759a2ea"
+    },
+    {
+      "path": "packages/core/src/cron.ts",
+      "sha256": "46ad3593474fb884b575ae9d38ba9df3e02093a7c29a96bc83c7211a79f9682c"
+    },
+    {
+      "path": "packages/core/src/session.ts",
+      "sha256": "8bdaadc276264e3e755c73df44bd894b884826875a6e582149dccc69086b81d4"
+    },
+    {
+      "path": "packages/core/src/llm.ts",
+      "sha256": "ea942621374f065a53804ebd3639f38a7a0f3355767adfcecdd4fc84f73074df"
+    },
+    {
+      "path": "packages/core/src/tool.ts",
+      "sha256": "cad95f16b627366bbe15bf42b68cc534467973f68e1c808a73e94a98e069ec60"
+    },
+    {
+      "path": "packages/core/src/remote-sessions.ts",
+      "sha256": "72bd7be91cf5ad99734a58300617da17e4bb782a631da3acbbbdfb8ca049decb"
+    },
+    {
+      "path": "packages/core/src/skill.ts",
+      "sha256": "1efed8d7a5c9a49d288f985c68dd1a8455089da1c2638d12e368e7cae8391ab0"
+    },
+    {
+      "path": "packages/core/src/space.ts",
+      "sha256": "7def89a713297632e4ac7aaab63318960a4e8fb723944c38f65125b63ba3449c"
+    },
+    {
+      "path": "packages/server/src/index.ts",
+      "sha256": "7585be3574f67ba1280e7f4f0e1423413b9d697be4e7423ac8ca3941aa783037"
+    },
+    {
+      "path": "packages/protocol/src/index.ts",
+      "sha256": "8c91ead8ab678b0bfab39799bb03e0b4d60612632bfd5aa65f74bf8b21669e69"
+    },
+    {
+      "path": "packages/i18n/src/index.ts",
+      "sha256": "1c9408e2c49ed28d12280572f26c1c833ffc7bab493eeef2eee9a0d61baf0227"
+    },
+    {
+      "path": "packages/i18n/src/node.ts",
+      "sha256": "ff33f72cf44424f515de87416acf18f5b3da3119d696cdeb8ba48a7c22ee8d6e"
+    },
+    {
+      "path": "packages/desktop/src/credentials.ts",
+      "sha256": "8a40785b287e585252b0918df6d634b90e65a8bdf0927c1f13a0353724a57fab"
+    },
+    {
+      "path": "packages/desktop/src/menu.ts",
+      "sha256": "891e5e16507892c01b5c26727c324d18f86267ab7b78418bf446d14727c4791b"
+    },
+    {
+      "path": "packages/desktop/src/remote.ts",
+      "sha256": "9d08fb8acabc6dd2384acabee49d969c707258e676065b2639fb0b492ad34a51"
+    },
+    {
+      "path": "packages/desktop/src/remote-session.ts",
+      "sha256": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6"
+    },
+    {
+      "path": "packages/desktop/src/remote-chat.ts",
+      "sha256": "a735975865341bec30fb1981165192f993fbd1235416a3271b947bfb15a4fad6"
+    }
+  ],
+  "embeddedSDK035Sources": [
+    "package/dist/index.js",
+    "package/dist/client.js",
+    "package/dist/gen/client/index.js",
+    "package/dist/gen/core/bodySerializer.gen.js",
+    "package/dist/gen/core/params.gen.js",
+    "package/dist/gen/core/queryKeySerializer.gen.js",
+    "package/dist/gen/client/client.gen.js",
+    "package/dist/gen/core/serverSentEvents.gen.js",
+    "package/dist/gen/core/utils.gen.js",
+    "package/dist/gen/core/pathSerializer.gen.js",
+    "package/dist/gen/client/utils.gen.js",
+    "package/dist/gen/core/auth.gen.js",
+    "package/dist/gen/sdk.gen.js",
+    "package/dist/gen/client.gen.js",
+    "package/dist/stream.js",
+    "package/dist/gen/index.js"
+  ],
+  "currentWorktreeDrift": [
+    {
+      "path": "packages/app/src/state/live.ts",
+      "capturedSHA256": "4c4ec7ae725dfd250f5102c273deeed827c22a3e70568eaa145435a2970119c7",
+      "currentWorktreeSHA256": "fde8193d44f8e943915b18a5b3dc074ef048dc1f37cd580f25db1f2bfab6ed34"
+    }
+  ],
+  "driftBoundary": "These captures exercise the installed f5bf305 artifact, not current mutable source.",
+  "historicalLinuxGlyphFailures": [
+    {
+      "path": "evidence/remote-chat-foundation/ci-1076c25/images/e2e-linux/remote-locale-ja.webp",
+      "sha256": "34067f7b6b40b57acf2c39b40375a2fc6de6f1acaadddbb828de4d293ab21ac6",
+      "rgbaSHA256": "0107af868ba6050091cd8985770dc04b40b22229b391112e621af54e367e0da1",
+      "observation": "Missing-glyph boxes remain visible; historical Linux failure retained."
+    },
+    {
+      "path": "evidence/remote-chat-foundation/ci-1076c25/images/e2e-linux/remote-locale-ko.webp",
+      "sha256": "c3be86eb4ef0600a0d12315cbc8aa57d2e13c12d714ad0005bd000be9f41a956",
+      "rgbaSHA256": "d5df041cea46a62a2e91381df7959e87f69cc4ff5229c948dd0154d96803f50f",
+      "observation": "Missing-glyph boxes remain visible; historical Linux failure retained."
+    },
+    {
+      "path": "evidence/remote-chat-foundation/ci-1076c25/images/e2e-linux/remote-locale-zh-Hans.webp",
+      "sha256": "5dc02a8c2c1a077f9c327a6bc7eb40b2bd0305a8667907241d51facc7cb137d1",
+      "rgbaSHA256": "19a6a203d16af35a944845e9cb27f10c12df1cda1bbe2fc6722567777df47fb7",
+      "observation": "Missing-glyph boxes remain visible; historical Linux failure retained."
+    }
+  ],
+  "initialFailure": {
+    "message": "cdpSession.send: Protocol error (Browser.getWindowForTarget): 'Browser.getWindowForTarget' wasn't found",
+    "sha256": "70037f2fdb56c2ff07870443aeea8c3c8ce1c4200b32c54cfe5030907a44ef33",
+    "elapsedSeconds": 10.229,
+    "zeroViews": true,
+    "counterDeltaZero": true
+  },
+  "encoding": {
+    "library": "Pillow",
+    "version": "12.3.0",
+    "options": {
+      "format": "WEBP",
+      "lossless": true,
+      "quality": 100,
+      "method": 6,
+      "exact": true
+    },
+    "verification": "Original and decoded WebP RGBA bytes including transparent pixels compare exactly."
+  },
+  "reviewAttribution": "Same terminal executor authored the harness; this is its second-pass source/evidence review, complementing coordinator execution, not independent-author review.",
+  "sourceUnchangedFrom7885736": {
+    "packages/app/": 172,
+    "packages/i18n/": 297
+  },
+  "packagedAuthCatalogsVerified": [
+    {
+      "path": "locales/en/system.json",
+      "sha256": "18dff6afda09dc67df5091b5a2440fc1f6b3e1d439230cd9fda6967f6be7b10a"
+    },
+    {
+      "path": "locales/en/common.json",
+      "sha256": "69f0e0e8b334dfbc9b796b095acf6e8fe610becdb7d8a7aa6abb5489edc2f8c5"
+    },
+    {
+      "path": "locales/fr/system.json",
+      "sha256": "c63761c3053604f5fd206e3f09bc728c40015abf220c3cd0be777c6193309bdc"
+    },
+    {
+      "path": "locales/fr/common.json",
+      "sha256": "e93295b100a1b2d7b90542126d2edf08f74ca52f6a62e5e1b7373a533628b9af"
+    },
+    {
+      "path": "locales/es/system.json",
+      "sha256": "71c7a154c0cff9049ceeeb07696d701ec44ccf53160a5d3b3d4c96d7d54ff63b"
+    },
+    {
+      "path": "locales/es/common.json",
+      "sha256": "21e780a16640e1596cd7a6761d98cebd88517e056832b65c6ce58f7575495fbe"
+    },
+    {
+      "path": "locales/de/system.json",
+      "sha256": "cacaffee5a71bcca8b544f40a9d6fbbead5da1695ff2fdc0ba634c91e5b49e74"
+    },
+    {
+      "path": "locales/de/common.json",
+      "sha256": "a1004240418e3ceb69d675cd01d8439a9aeba1e8fc5001c14b3321b49e81f3bb"
+    },
+    {
+      "path": "locales/ja/system.json",
+      "sha256": "0b86eb32b546ac0e342bab729d9e3990a944fae9c02b694bf8d095475f0fbad7"
+    },
+    {
+      "path": "locales/ja/common.json",
+      "sha256": "eb6b7c0fccb09a1de3ea14f1ea66a08acdf66ad94d9984f219150ec71d491dd0"
+    },
+    {
+      "path": "locales/zh-Hans/system.json",
+      "sha256": "3e95eeaf1470b830351ae8b36332f35cf6cf1ce44ca5e2de869bef1ccd874043"
+    },
+    {
+      "path": "locales/zh-Hans/common.json",
+      "sha256": "983e69bb6b06828046d0ab7888705cdcdfebd7b010b416894903d95f67c4aa33"
+    },
+    {
+      "path": "locales/pt-BR/system.json",
+      "sha256": "bb28de8fa8ee1028d7d2a717ed049bdeb0dca42a04e2c9d901b520bb39d2c82b"
+    },
+    {
+      "path": "locales/pt-BR/common.json",
+      "sha256": "ff48e1896ca988e89699ec9ff2429ce2a4c7c01facedeeca9077317b7a61ff86"
+    },
+    {
+      "path": "locales/ko/system.json",
+      "sha256": "c404abfe396c950ee8da904eb5d21d23a34fa090ace1bf5898426757efa93801"
+    },
+    {
+      "path": "locales/ko/common.json",
+      "sha256": "fca99f7af4561a829b0b2847094107ab6a55ca6563649753af76305e6bf7d6bf"
+    }
+  ]
+}

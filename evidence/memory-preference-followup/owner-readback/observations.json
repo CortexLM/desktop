@@ -1,0 +1,385 @@
+{
+  "startedUTC": "2026-10-03T16:53:01.407473+00:00",
+  "finishedUTC": "2026-10-03T16:53:03.073322+00:00",
+  "commentCutoffUTC": "2026-10-03T14:47:00Z",
+  "priorPacket": "/tmp/opencode/g1-owner-readback-1435",
+  "github": [
+    {
+      "endpoint": "repos/CortexLM/backend/issues/446/comments",
+      "url": "https://github.com/CortexLM/backend/pull/446",
+      "observedStartUTC": "2026-10-03T16:53:01.407800+00:00",
+      "observedEndUTC": "2026-10-03T16:53:01.735371+00:00",
+      "command": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/CortexLM/backend/issues/446/comments",
+        "-f",
+        "since=2026-10-03T14:47:00Z",
+        "-f",
+        "per_page=100"
+      ],
+      "exitCode": 0,
+      "rawFile": "pr446-comments.json",
+      "rawSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "count": 0,
+      "morePagesPossible": false,
+      "comments": []
+    },
+    {
+      "endpoint": "repos/CortexLM/backend/issues/447/comments",
+      "url": "https://github.com/CortexLM/backend/pull/447",
+      "observedStartUTC": "2026-10-03T16:53:01.408092+00:00",
+      "observedEndUTC": "2026-10-03T16:53:01.747439+00:00",
+      "command": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/CortexLM/backend/issues/447/comments",
+        "-f",
+        "since=2026-10-03T14:47:00Z",
+        "-f",
+        "per_page=100"
+      ],
+      "exitCode": 0,
+      "rawFile": "pr447-comments.json",
+      "rawSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "count": 0,
+      "morePagesPossible": false,
+      "comments": []
+    }
+  ],
+  "publicGETs": [
+    {
+      "url": "https://api.cortex.foundation/v1/instance",
+      "method": "GET",
+      "authenticated": false,
+      "redirectsAllowed": false,
+      "attempts": 1,
+      "observedStartUTC": "2026-10-03T16:53:01.408366+00:00",
+      "status": 404,
+      "responseHeaders": [
+        [
+          "Content-Type",
+          "application/problem+json"
+        ],
+        [
+          "Content-Length",
+          "219"
+        ],
+        [
+          "Connection",
+          "close"
+        ],
+        [
+          "Date",
+          "Sat, 03 Oct 2026 16:53:03 GMT"
+        ],
+        [
+          "x-request-id",
+          "req_01a102aef5c275e4803ed6b46f94dc3a"
+        ],
+        [
+          "Cache-Control",
+          "no-store"
+        ],
+        [
+          "X-Content-Type-Options",
+          "nosniff"
+        ],
+        [
+          "X-Frame-Options",
+          "DENY"
+        ],
+        [
+          "Referrer-Policy",
+          "no-referrer"
+        ],
+        [
+          "Strict-Transport-Security",
+          "max-age=63072000; includeSubDomains; preload"
+        ],
+        [
+          "Content-Security-Policy",
+          "default-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+        ],
+        [
+          "Cross-Origin-Resource-Policy",
+          "same-origin"
+        ],
+        [
+          "X-Cache",
+          "Error from cloudfront"
+        ],
+        [
+          "Via",
+          "1.1 b14ba249bfaea21e805591cdb1544d92.cloudfront.net (CloudFront)"
+        ],
+        [
+          "X-Amz-Cf-Pop",
+          "ORD58-P6"
+        ],
+        [
+          "X-Amz-Cf-Id",
+          "PrDQPANW_eWckRUOHBQRCW3ww65QuOb-1znc3eOVOlL9sJb8oNnDBw=="
+        ],
+        [
+          "X-XSS-Protection",
+          "1; mode=block"
+        ]
+      ],
+      "excludedHeaderNames": [],
+      "bodyBytes": 219,
+      "bodyCapped": false,
+      "bodySHA256": "d3bf8dd7ed90da97b720b825ec0c922627190059915d1f9291d0d49805616ec8",
+      "rawFile": "public-instance.body",
+      "priorObservedUTC": "2026-10-03T14:47:00.622067+00:00",
+      "priorBodySHA256": "13196615c0092d40a672a1f4cec2686dba13f7b41d29fc5cd3d8e3390927c95b",
+      "sameBodyAs1447": false,
+      "changedTopLevelFields": [
+        "request_id"
+      ],
+      "observedEndUTC": "2026-10-03T16:53:03.056976+00:00"
+    },
+    {
+      "url": "https://api.cortex.foundation/v1/models",
+      "method": "GET",
+      "authenticated": false,
+      "redirectsAllowed": false,
+      "attempts": 1,
+      "observedStartUTC": "2026-10-03T16:53:01.409009+00:00",
+      "status": 200,
+      "responseHeaders": [
+        [
+          "Content-Type",
+          "application/json"
+        ],
+        [
+          "Content-Length",
+          "995"
+        ],
+        [
+          "Connection",
+          "close"
+        ],
+        [
+          "Date",
+          "Sat, 03 Oct 2026 16:53:03 GMT"
+        ],
+        [
+          "x-request-id",
+          "req_01a102aef5c77671adb84bfdbf7e46db"
+        ],
+        [
+          "X-Content-Type-Options",
+          "nosniff"
+        ],
+        [
+          "X-Frame-Options",
+          "DENY"
+        ],
+        [
+          "Referrer-Policy",
+          "no-referrer"
+        ],
+        [
+          "Strict-Transport-Security",
+          "max-age=63072000; includeSubDomains; preload"
+        ],
+        [
+          "Content-Security-Policy",
+          "default-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+        ],
+        [
+          "Cross-Origin-Resource-Policy",
+          "same-origin"
+        ],
+        [
+          "X-Cache",
+          "Miss from cloudfront"
+        ],
+        [
+          "Via",
+          "1.1 049d2c2e11b2a18bd6ce7ab8a5981ed2.cloudfront.net (CloudFront)"
+        ],
+        [
+          "X-Amz-Cf-Pop",
+          "ORD58-P6"
+        ],
+        [
+          "X-Amz-Cf-Id",
+          "5OaNqUkPE3ryxidACtaj1QoPBYuRrnC6KhyV1flRpfS_d2j5p5Mtjw=="
+        ],
+        [
+          "X-XSS-Protection",
+          "1; mode=block"
+        ]
+      ],
+      "excludedHeaderNames": [],
+      "bodyBytes": 995,
+      "bodyCapped": false,
+      "bodySHA256": "d145822586d77fa2f394eef63b89cffbc2d11d0676f4e106b88c35d2805b68f3",
+      "rawFile": "public-models.body",
+      "priorObservedUTC": "2026-10-03T14:47:00.616221+00:00",
+      "priorBodySHA256": "d145822586d77fa2f394eef63b89cffbc2d11d0676f4e106b88c35d2805b68f3",
+      "sameBodyAs1447": true,
+      "changedTopLevelFields": [],
+      "models": [
+        {
+          "slug": "cortex-1-mini",
+          "kind": "chat",
+          "supports_vision": false,
+          "supports_reasoning": true
+        },
+        {
+          "slug": "cortex-teutonic-1",
+          "kind": "chat",
+          "supports_vision": false,
+          "supports_reasoning": true
+        },
+        {
+          "slug": "cortex-image-1",
+          "kind": "image",
+          "supports_vision": false,
+          "supports_reasoning": false
+        }
+      ],
+      "capabilities": {
+        "total": 3,
+        "chat": 2,
+        "visionChat": 0,
+        "reasoningChat": 2,
+        "eligibleVisionReasoningChat": 0,
+        "hasMore": false
+      },
+      "observedEndUTC": "2026-10-03T16:53:03.069254+00:00"
+    }
+  ],
+  "localPins": [
+    {
+      "path": "/root/cortex-goals/COORDINATION.md",
+      "observedUTC": "2026-10-03T16:53:03.071188+00:00",
+      "mtimeUTC": "2026-10-03T16:50:45.704060+00:00",
+      "sha256": "c31b186d5c1fd797c7a7e6b6887abc9ad3d796aa5b196def6ce793bbd257c5c0",
+      "priorSHA256": "c2942b85f1f3db488f8205cdf164c24a5c4013137fe96597ad98aac70eddd254",
+      "sameBytesAsPrior": false,
+      "bytes": 255290,
+      "lines": 461,
+      "latestG1": {
+        "line": 461,
+        "text": "- 2026-10-03 16:38 UTC [G1 documentary CI + Memory baseline] Documentary74579d5 CI37136181306 all3green preserving515f82packageinputs. NewMemorybaseline on90exactf82distmembers reproducesPrivacyfalseignoredMemorycheckedtrueandMemoryfalse\u2192reloadtrue; firstwrongaccessible-namecollector recordedseparate. Implementationengine/API8/8targetunits passedauthorNode22 scopedtsc;8localescatalogparity9/9passed. Engineindependentreviewactive; UIhooks+legacygate/schemawiring/Electronbehavior authoring; new64-state8localegeometrycase prepared. No newappbuild/runtimeacceptance yet. NativeMemory4capturedriverpreparationoffdevice assigned; Mac remainsordinaryf82 leasefree."
+      },
+      "latestG2": {
+        "line": 168,
+        "text": "- 2026-10-02 [G2 consumer ownership read-back 17:30UTC] G2's six backend criteria demonstrated at70a3056f; consumer completion is still pending. Independent source-only report `/tmp/opencode/selfhost-consumers-current-20261002.md`: G3#447 remains7633f7e2 with e8801c4d schema,33operation/23component deltas from canonical d6d46014, no updated generated/publicProblem/runtime/package receipt; existing replay UUID/since, reentrant401refresh, generated-stream/default parsing and instance.mode documentation actions remain G3-owned. G4#445 now39cfdc570583c11f9a3959e48678f95613327bd1 retains local-reauth/provider-none fixes; foundation#448 alone does not. G4 still always fetches `/v1/models` and discards instance.mode: select configured registry pages when `instance.mode === \"self_host\"`, irrespective of metadata-enrichment flag, preserve capabilities; SDK adoption remains pending. Bounded source handoff https://github.com/CortexLM/backend/pull/445#issuecomment-5957943210 . G1#36 cc758a69fe9349d17f6a4bf7accd978421035519 acknowledges canonical schema and keeps correct mode-based paginated discovery; old SDK/api-types tarballs remain probe-only, remote auth/model selection/inference unfinished. G3 must deliver immutable package pair/checks before G1/G4 consume it. No consumer files changed, no consumer browser/build pass inferred, no repeat product CI."
+      },
+      "latestG3": {
+        "line": 239,
+        "text": "- 2026-10-03 [G3 FINAL SDK delivery] SDK **0.3.5** / api-types **0.2.0**, source `5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31`; PR #447 open, stacked on G2 #446 `70a3056f7223a7eb9257d984848d4d33fee7ec12`. Immutable pair `/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/`: SDK SHA-256 `5c75f212a2669bcd6f5110fe6e5c8862e1ca6eba85a118b350e0ce38694596b8`; api-types `3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877` (unchanged0.2.0 bytes). Canonical schema source `af36085cc96b182950ca4bf15161dcf2c3951da1`, blob `c8f6a7f0257858306a885c71202c13420f40725f`, SHA-256 `b2495d1d8ec631d143c5dcc5d200aeb0d288f69beae31ba671b3a7856f663d5b`; all422 IDs/421publicmethods retained. Ten exact-source release checks PASS:40api-types,71SDKchecks/34runtime,48integration,421/421operations,171dedicated,51/51groups,4examples,19bootstrap/embedded/OpenAPI; isolated npm/Bun publictypes+34runtime each on Node22 and minimum20.9. Native response-clone shutdown defect corrected by single-read auth; failed after-hook removed; prior0.3.4 attempts retained failed. G1/G4 image-tail/rawscreenshot/generatedturnbody defects fixed; headers, SSEreset, startup/testcleanup, atomicnoclobberpacker verified. CI37094557684 attempt1 all11substantive PASS, server2414/0, cleanmigration verified; CodeQL37094557772 all3 PASS. CodeRabbit exactsource run `9fbee79b-5846-421a-8b55-28966beaa577` successful, nonewactionable,86reviewthreads resolved after fixes/independent adjudication. Independent last-push review verified10logs/16generated/35sources/102compiledfiles, cleanlocal=origin; receipt SHA256 `6bb1af0ae2412b00e7415ad76b259951ee0460449cbe46b96e8b00afffd93aba`. Handoffs G3 https://github.com/CortexLM/backend/pull/447#issuecomment-5965356215, G4 https://github.com/CortexLM/backend/pull/445#issuecomment-5965356171, G1 https://github.com/CortexLM/desktop/pull/36#issuecomment-5965356180, G2 https://github.com/CortexLM/backend/pull/446#issuecomment-5965356181. G1/G4 own adoption+newpairbackendcall; historicaldesktop0.2.0 proof not reused. CanonicallegacyDTO/stableaccountID/exhaustiveChathistory remain documentedG2work; no portableOff/Chatcancel/UIacceptance inferred. Earlierartifacts/histories retained; no main/merge/deploy/consumerbranchwrite."
+      }
+    },
+    {
+      "path": "/root/cortex-ui/review/ACTIVE-DIRECTION.md",
+      "observedUTC": "2026-10-03T16:53:03.072260+00:00",
+      "mtimeUTC": "2026-10-03T11:45:07.915236+00:00",
+      "sha256": "8efe9828ff22fe7d501795858de2c4a584392c8f48e757f29392646858dfbe9a",
+      "priorSHA256": "8efe9828ff22fe7d501795858de2c4a584392c8f48e757f29392646858dfbe9a",
+      "sameBytesAsPrior": true,
+      "bytes": 2683,
+      "lines": 25
+    },
+    {
+      "path": "/root/cortex-ui/DESIGN-REQUESTS.md",
+      "observedUTC": "2026-10-03T16:53:03.072603+00:00",
+      "mtimeUTC": "2026-10-03T16:29:40.016563+00:00",
+      "sha256": "6586f80d933b97441fa4fca1f752bc8d69cdba4c0c31a154ef0914804c44f218",
+      "priorSHA256": "77ca8dd1525133a1c8c754c97a391fa6953349485f90a929dbaa96d610ea02df",
+      "sameBytesAsPrior": false,
+      "bytes": 55052,
+      "lines": 115,
+      "newTail": [
+        {
+          "line": 109,
+          "text": "- [2026-10-03] [G4 native focus reuse] Clean `80e8747f` browser V1 measures invisible keyboard focus on Tabs and a Tooltip button: utility shadows replace the old global shadow ring while its outline is transparent. The rule predates Base UI adoption. Existing canonical `src/styles.css:54` supplies the exact replacement (`2px solid var(--blue)`, 1px offset); G4 is reusing it, not requesting or inventing a new treatment. Composite text-field boundary and inner-input suppression remain. Original V1 12 failed cases/36 PNGs stay negative evidence; source correction and one bounded confirmation pending. No canonical source edited."
+        },
+        {
+          "line": 110,
+          "text": "- [2026-10-03] [G4 native control confirmation / remaining findings] Pushed `1f2255fb` clean build/tests/typecheck/CI/CodeQL/catalogs pass. Single corrective shared-control browser run reports 12/12 EN/JA \u00d7 three widths \u00d7 both themes, 36 PNGs, native Space/Enter/cancellation and visible focus; original V1 remains failed. Final 156-route captures/66 active-reference comparisons retain 90 unmapped images and do not approve material Home/Code/Usage/Connectors/Gallery differences. Project duplicate controls close within scoped source/image/browser review, not complete composition acceptance. That review exposes a separate pre-existing Settings portal-focus mount bug (six failed initial/return snapshots); implementation is correcting lifecycle only. Gallery theme button shrink after Tooltip wrapper removal is corrected locally with `shrink-0`, actual size verification pending. Neither correction invents a design or authorizes Code/Bot product import. No canonical code changed."
+        },
+        {
+          "line": 111,
+          "text": "- [2026-10-03] [G4 shared light focus contrast P2] Independent review approves the recorded native control behaviors at `1f2255fb`, but measures the Source segment's right outline edge at **2.812516:1** (`#3b82f6` against `#e1e1e1`); other outer edges are **3.677901:1** against white. Exact current canonical CSS/token parity is confirmed. Please resolve the shared light focus/background pairing in the existing kit, or give a bounded disposition; G4 will not invent a replacement token. Evidence: `/tmp/opencode/web-native-controls-proof-independent-review.{md,json}`, original `en-1440-light-tabs.png` pixels (965,527)/(967,527). This blocks uniform 3:1/global accessibility claims, not the separately verified native behavior. No new capture or canonical code change."
+        },
+        {
+          "line": 112,
+          "text": "- [2026-10-03] [G4 Settings/gallery source correction] Local `d826db464732bcfc81dc8e0bf4b0d2062e70691d` corrects the confirmed Settings portal-focus lifecycle with the existing Dialog mount/presence guard (+6/\u22123) and preserves the gallery ThemeToggle slot with one `shrink-0` class. Independent exact-source reviews approve both; Settings 10/10 regressions pass, unchanged tests fail 9/10 against old source. Isolated production build and focused source-bound browser confirmation are underway, not yet accepted. Shared contrast P2 remains design-owned; no token/layout/new-screen change, no canonical implementation edit."
+        },
+        {
+          "line": 113,
+          "text": "- [2026-10-03] [G4 d826 focused confirmation] Pushed `d826db46` clean install/build/typecheck, 716 Node / 2,925 Vitest, CI/CodeQL/catalogs pass. Settings reports six width/theme cases with 18 actual focus entries/returns, 576 keyboard stops and native exit reopening; independent evidence review pending. Gallery slot's four EN/JA desktop theme cases and eight-image delta are independently approved within scope: 28\u00d728 button, 20px gaps, pre-regression gallery image bytes restored. Four generic gallery console 404s remain recorded. Only eight affected-route images/four active-reference pairs are current to this source; historical full manifest stays at `1f2255fb`. Shared focus-contrast P2 and requests 104\u2013105 outside Project duplication remain open; no whole-screen or canonical import approval inferred."
+        },
+        {
+          "line": 114,
+          "text": "- [2026-10-03] [G4 Settings lifecycle closure / outline clipping] Independent review closes the mounted focus lifecycle P2 on `d826db46` for Project Manage \u2192 Settings Data & privacy: 18 acquisitions/actual-opener returns, 576 keyboard stops, six interrupted-exit reopens, exact build/asset/PNG binding. Original `1f2255fb` six failed acquisitions/returns remain negative evidence. A distinct visual reserve remains: General's native outline is partially clipped by the Settings navigation scroller (`settings-modal.tsx:304`), visible at 390 light and 1440 dark. Please dispose the existing navigation focus treatment without changing density, tab labels or the shared token; box containment does not prove the full outer outline is visible. Evidence: `/tmp/opencode/web-settings-mounted-focus-proof/d826db46-v1/INDEPENDENT-REVIEW.{md,json}` and retained focus PNGs. No new capture/canonical edit; no whole-Settings or global accessibility acceptance."
+        },
+        {
+          "line": 115,
+          "text": "- [2026-10-03] [G4 supplied menu references] User supplied the light History row-menu and dark Home mode-menu images already present as `shots/history-menu-light.png` and `shots/home+menu-dark.png`. G4 is adopting their existing shared Base UI Menu/Portal/Positioner implementation (`src/ui.tsx:100\u2013115` and `ModeSwitcher`) on the current web menus, preserving product gates, locale links and callbacks. This is not an import of the History page, a replacement of working navigation, or authorization for the pending Code/Bot compositions. Exact-source tests/browser comparison are pending. Requests 104\u2013105, shared light contrast and Settings outline clipping still need disposition; canonical code remains untouched."
+        }
+      ]
+    },
+    {
+      "path": "/root/cortex-ui/review/code-supplement-accepted.json",
+      "observedUTC": "2026-10-03T16:53:03.072809+00:00",
+      "mtimeUTC": "2026-10-03T10:37:51.970740+00:00",
+      "sha256": "2e783316e118c4dc96031ae1b2c480e47a3a058001bfed7c7f75b51fb3741fe4",
+      "priorSHA256": "2e783316e118c4dc96031ae1b2c480e47a3a058001bfed7c7f75b51fb3741fe4",
+      "sameBytesAsPrior": true,
+      "bytes": 1377,
+      "lines": 39,
+      "prototypeIntegrationAuthorized": true,
+      "productImportAuthorized": false
+    },
+    {
+      "path": "/root/cortex-ui/review/bot-supplement-adoption.json",
+      "observedUTC": "2026-10-03T16:53:03.072961+00:00",
+      "mtimeUTC": "2026-10-03T11:19:02.248598+00:00",
+      "sha256": "b148e7d93ef31d3d24e42bee695e1982cb6b9e05444c95d7c88e3ed3881af266",
+      "priorSHA256": "b148e7d93ef31d3d24e42bee695e1982cb6b9e05444c95d7c88e3ed3881af266",
+      "sameBytesAsPrior": true,
+      "bytes": 1948,
+      "lines": 46,
+      "prototypeIntegrationAuthorized": true,
+      "productImportAuthorized": false
+    },
+    {
+      "path": "/var/tmp/opencode/product-design-reuse-map-20261003/REPORT.md",
+      "observedUTC": "2026-10-03T16:53:03.073163+00:00",
+      "mtimeUTC": "2026-10-03T10:07:54.437083+00:00",
+      "sha256": "de5c2408b6984123d4556f67b004dfc8aa0e6560ed85b26bb085da2aacca679f",
+      "priorSHA256": "de5c2408b6984123d4556f67b004dfc8aa0e6560ed85b26bb085da2aacca679f",
+      "sameBytesAsPrior": true,
+      "bytes": 14040,
+      "lines": 53
+    },
+    {
+      "path": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/vendor/README.md",
+      "observedUTC": "2026-10-03T16:53:03.073293+00:00",
+      "mtimeUTC": "2026-10-03T06:51:09.932641+00:00",
+      "sha256": "6156e466d689b665e35714811d8090044a1f6123da60b4a85d84b119db86f151",
+      "priorSHA256": "6156e466d689b665e35714811d8090044a1f6123da60b4a85d84b119db86f151",
+      "sameBytesAsPrior": true,
+      "bytes": 4202,
+      "lines": 62
+    }
+  ],
+  "environmentPresenceOnly": {
+    "CORTEX_REAL_BASE_URL": false,
+    "CORTEX_REAL_API_KEY": false,
+    "CORTEX_TEST_BACKEND_URL": false
+  },
+  "environmentPredicate": "name in os.environ; no values read or retained",
+  "scope": "Two issue-comment GETs; two unauthenticated public GETs; local document hashes. No auth, inference, CI/native query, post or source write."
+}

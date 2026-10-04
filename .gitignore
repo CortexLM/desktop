@@ -11,6 +11,9 @@ playwright-report/
 .env
 .env.local
 .env.*.local
+.env.*
+!.env.example
+!.env.*.example
 
 # Dependencies
 node_modules/
@@ -40,11 +43,54 @@ coverage/
 # Covers the Paper parity output too: captures land in test-results/paper-parity
 # and diffs in test-results/paper-diff. The baselines under
 # tests/visual/paper-baselines are committed; these derived images are not.
-test-results/
 tests/performance/results/
 *.test-results/
+blob-report/
+*.tsbuildinfo
+*.log
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
 
 # Vitest
 .vitest/
 demo-repo/
 .tmp-*
+out/
+evidence/tmp/
+.cortex-dev/
+scripts/tmp-*
+
+# Local agent state and scratch files (not product source)
+/.omo/
+/tmp/
+/temp/
+/.staging-builder.json
+
+# Raw verification output belongs in CI artifacts, not the source diff.
+# Keep review summaries, reproducible collectors/verifiers and checksum ledgers.
+# Existing tracked evidence is unaffected; removing it needs a separate migration.
+/evidence/**
+!/evidence/**/
+!/evidence/**/*.md
+!/evidence/**/*.py
+!/evidence/**/*.mjs
+!/evidence/**/*.sh
+!/evidence/**/SHA256SUMS
+
+# Evidence exceptions must not expose generated dependency/cache trees.
+/evidence/**/node_modules/
+/evidence/**/dist/
+/evidence/**/out/
+/evidence/**/coverage/
+/evidence/**/.nyc_output/
+/evidence/**/test-results/
+/evidence/**/playwright-report/
+/evidence/**/blob-report/
+/evidence/**/.cache/
+/evidence/**/.pytest_cache/
+/evidence/**/__pycache__/
+/evidence/**/.vitest/
+/evidence/**/.tmp-*/
+/evidence/tmp/

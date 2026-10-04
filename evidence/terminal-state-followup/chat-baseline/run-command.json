@@ -1,0 +1,34 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x900x24",
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/e2e/chat-missing.spec.ts",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=list,json",
+    "--output=/tmp/opencode/chat-missing-regression/baseline/artifacts"
+  ],
+  "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+  "head": "72d2926b284760d96462cc931777761eedf9e3c1",
+  "applicationRevision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+  "nodeVersion": "v22.23.3",
+  "NODE_ENV": "test",
+  "TMPDIR": "/tmp/opencode/chat-missing-regression/baseline/temp",
+  "CORTEX_RENDERER_URL": "unset",
+  "sourceSHA256": {
+    "tests/e2e/chat-missing.spec.ts": "a9bdc8e86f3ede94f0b54dc6a5d8b45142a62b98ad9fd0af2515c96bddb3d994",
+    "tests/e2e/fixtures.ts": "a9772c5fe4038dd4a260bf1d47d7a6f382ba40ea54eb4cde9ab2048223e2fe03",
+    "tests/e2e/fake-provider.ts": "2d6e794add17a55a7c70fa72b93f024129a2bd4c1b9bd3d055efca48a11c14ee",
+    "packages/app/src/screens/chat/live-chat.tsx": "2a1c72aed2b979797be67d6f37612726a7d086e7a902ab5423d8d9026dc299ab",
+    "packages/app/src/state/live.ts": "fde8193d44f8e943915b18a5b3dc074ef048dc1f37cd580f25db1f2bfab6ed34",
+    "packages/core/test/fixtures/catalog.json": "1c6fe3acb86c4da727ed66e7fc11880a7057a5d633fe762938e5a35d1d885206",
+    "packages/i18n/locales/en/shell.json": "8ba4529fadc5da8e2a562d19e37788f8dfbb1c697487563c745e9facf9e87c75",
+    "packages/i18n/locales/en/chat.json": "2127240c44415c513d8ea761e44fdc5a110100f4ba253554632f7d57f3494736",
+    "packages/i18n/locales/en/common.json": "69f0e0e8b334dfbc9b796b095acf6e8fe610becdb7d8a7aa6abb5489edc2f8c5"
+  }
+}

@@ -1,0 +1,54 @@
+--- local-full-5740841a
++++ CI-final-d98c9205
+@@ -56,22 +56,22 @@
+ }
+ type Wire = { url: string; method: string; headers: [string, string][]; body?: string };
+ type Reply = { status: number; headers: [string, string][]; body: string };
+-type Gate = { hold?: string; fail: string[]; held?: Reply; returned: boolean; release?: () => void; restore: () => void; calls: { path: string; method: string; status?: number }[] };
++type Gate = { hold?: string; fail: string[]; held?: Reply; heldURL?: string; returned: boolean; release?: () => void; restore: () => void; calls: { path: string; method: string; status?: number }[] };
+ async function observe(app: ElectronApplication, page: Page) {
+   await app.evaluate(({ ipcMain }) => {
+     const original = (ipcMain as unknown as { _invokeHandlers: Map<string, (e: unknown, req: Wire) => Promise<Reply>> })._invokeHandlers.get("cortex:fetch")!;
+     const g: Gate = { fail: [], returned: false, calls: [], restore: () => { ipcMain.removeHandler("cortex:fetch"); ipcMain.handle("cortex:fetch", original); } };
+     (globalThis as unknown as { activityGate: Gate }).activityGate = g; ipcMain.removeHandler("cortex:fetch");
+     ipcMain.handle("cortex:fetch", async (event, req: Wire) => {
+-      const path = new URL(req.url).pathname, hold = req.method === "GET" && g.hold === path, entry: Gate["calls"][number] = { path, method: req.method }; g.calls.push(entry); if (hold) g.hold = undefined;
++      const url = new URL(req.url), path = url.pathname, hold = req.method === "GET" && g.hold === path + url.search, entry: Gate["calls"][number] = { path, method: req.method }; g.calls.push(entry); if (hold) g.hold = undefined;
+       // Every response comes from the real protocol; selected GETs use a missing route or await delivery.
+       const response = await original(event, req.method === "GET" && g.fail.includes(path) ? { ...req, url: "cortex://local/api/missing-activity-source" } : req);
+-      if (hold) { g.held = response; await new Promise<void>((r) => { g.release = r; }); g.returned = true; }
++      if (hold) { g.held = response; g.heldURL = path + url.search; await new Promise<void>((r) => { g.release = r; }); g.returned = true; }
+       entry.status = response.status; return response;
+     });
+   });
+-  const state = () => app.evaluate(() => { const g = (globalThis as unknown as { activityGate: Gate }).activityGate; return { calls: g.calls, held: g.held, waiting: !!g.release, returned: g.returned }; });
+-  return { state, set: (options: Partial<Pick<Gate, "hold" | "fail">>) => app.evaluate((_, options) => { Object.assign((globalThis as unknown as { activityGate: Gate }).activityGate, options, { held: undefined, returned: false }); }, options),
++  const state = () => app.evaluate(() => { const g = (globalThis as unknown as { activityGate: Gate }).activityGate; return { calls: g.calls, held: g.held, heldURL: g.heldURL, waiting: !!g.release, returned: g.returned }; });
++  return { state, set: (options: Partial<Pick<Gate, "hold" | "fail">>) => app.evaluate((_, options) => { Object.assign((globalThis as unknown as { activityGate: Gate }).activityGate, options, { held: undefined, heldURL: undefined, returned: false }); }, options),
+     waiting: () => expect.poll(async () => (await state()).waiting).toBe(true),
+     release: async () => { await app.evaluate(() => { const g = (globalThis as unknown as { activityGate: Gate }).activityGate; g.release?.(); g.release = undefined; }); await expect.poll(async () => (await state()).returned).toBe(true); await fence(page); },
+     close: () => app.evaluate(() => { const g = (globalThis as unknown as { activityGate: Gate }).activityGate; g.release?.(); g.restore(); }),
+@@ -183,17 +183,20 @@
+     await gate.set({ hold: `/api/sessions/${a.id}/messages` }); await call(page, `/api/sessions/${a.id}`, "PATCH", { title: "Retired row" }); await gate.waiting();
+     expect((await gate.state()).held?.status).toBe(200); await page.getByRole("button", { name: copy.allBots, exact: true }).click();
+     await page.getByRole("menuitem").filter({ hasText: survivor.name }).click(); await call(page, `/api/sessions/${a.id}`, "DELETE"); await expect(rows(page)).toHaveCount(1); await expect(row(page, b.title)).toBeVisible();
+-    await gate.release(); await expect(rows(page)).toHaveCount(1); await expect(page.locator("main")).not.toContainText("Retired row");
++    await gate.release(); await page.getByRole("button", { name: copy["act.clear"], exact: true }).click(); await expect(rows(page)).toHaveCount(1); await expect(page.locator("main")).not.toContainText("Retired row");
++    const retire = await session(page, owner.id, "Immediate retirement"); await prompt(page, retire.id); await completed(page, retire.id); await expect(rows(page)).toHaveCount(2);
++    await gate.set({ hold: "/api/sessions?kind=bot" }); await call(page, `/api/sessions/${retire.id}`, "DELETE"); await gate.waiting(); expect((await gate.state()).heldURL).toBe("/api/sessions?kind=bot");
++    await expect(row(page, retire.title)).toHaveCount(0); await expect(rows(page)).toHaveCount(1); await gate.release(); await expect(rows(page)).toHaveCount(1);
+     await show(page, "home"); await gate.set({ hold: `/api/sessions/${b.id}/messages` }); await show(page, "activity"); await gate.waiting(); await fence(page);
+     await page.emulateMedia({ reducedMotion: "no-preference" });
+     const transitions = await page.evaluateHandle(() => {
+-      const start = document.startViewTransition, live = location.href, owner = document.querySelector("main.content")!;
++      const start = document.startViewTransition, live = location.href, owner = document.querySelector("main .content-top")!;
+       const pending: { release: () => void; done: Promise<void> }[] = [];
+       document.startViewTransition = (update) => { let release!: () => void; const done = new Promise<void>((r) => { release = r; }).then(() => typeof update === "function" ? update() : update?.update?.()); pending.push({ release, done }); return { ready: done, finished: done, updateCallbackDone: done, types: new Set<string>(), skipTransition() {} }; };
+       return { live, owner, pending, restore: () => { document.startViewTransition = start; pending.forEach((p) => p.release()); } };
+     });
+     restore = async () => { await transitions.evaluate((p) => p.restore()); await transitions.dispose(); };
+-    await show(page, "home?preview"); await expect.poll(() => transitions.evaluate((p) => p.pending.length)).toBe(1); await gate.release(); await page.evaluate(() => history.back());
++    await show(page, "home?preview"); await expect.poll(() => transitions.evaluate((p) => p.pending.length)).toBe(1); expect(new URL(await page.evaluate(() => location.href)).hash).toContain("home?preview"); await gate.release(); await page.evaluate(() => history.back());
+     await expect.poll(() => page.evaluate(() => location.href)).toBe(await transitions.evaluate((p) => p.live)); await expect.poll(() => transitions.evaluate((p) => p.pending.length)).toBe(2);
+     await transitions.evaluate(async (p) => { for (const t of [...p.pending].reverse()) { t.release(); await t.done; } p.restore(); }); await fence(page);
+     expect(await transitions.evaluate((p) => p.owner.isConnected)).toBe(true); await expect(page.locator(".home")).toHaveCount(0); await expect(rows(page)).toHaveCount(1); await expect(row(page, b.title)).toBeVisible();

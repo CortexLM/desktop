@@ -1,0 +1,13 @@
+# Pending rename regression — appended only
+- File: `tests/e2e/files-live.spec.ts`; appended one case, `Saved attachment Open waits for the single pending Chat rename`.
+- Existing file prefix verified byte-exact SHA-256 `e28ddaece53de11cde6ed26581d085b2b002c2d3bf62ccb303f23e22938e327e`; original eight cases unchanged.
+- Uses real Chat session/accepted saved PNG, native Rename menu, English catalog labels, existing IPC gate and cleanup.
+- Holds PATCH A after real engine status 200; separately confirms persisted title A while response remains pending.
+- Attempts Rename B; requires no new editor within 1s and exactly one PATCH.
+- Open must retain Chat URL, explain finishDraft, leave viewer absent until A's reply settles.
+- Releases A, checks title, opens valid viewer; PATCH count remains one. Total case timeout 15s.
+- Gate cleanup is registered before assertions; baseline failure releases held response/restores IPC.
+- Scoped ESLint passed. Only static hash assertion executed; no test execution, build or application change.
+- Coordinator owns failing-built baseline, minimal source correction and unchanged-case rerun; test ownership released.
+- Current whole-file SHA-256: `0982831cc5fc8a569bdd0a08b5e13515cc3796de717283fb53ce6fd42ecdf1e6`.
+- Appended suffix SHA-256: `306b4166022fd1ce545fc83a502d17572ee440027515531519dd274eda283943`.

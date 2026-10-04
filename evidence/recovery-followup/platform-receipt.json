@@ -1,0 +1,248 @@
+{
+  "verifiedAt": "2026-10-02T17:42:38.916801+00:00",
+  "manifest": "/tmp/opencode/platform/manifest.json",
+  "manifestSha256": "eaa877e23b85521069c2f5db3d79df07a3817ded69b2b3a4992e67a6da19efc3",
+  "source": {
+    "src/screens/lot-platform.tsx": {
+      "receiptSha256": "48fa7c7a309936b9681aa122867c0abab5928edef893b3e3e7c6da4af8602986",
+      "snapshotSha256": "48fa7c7a309936b9681aa122867c0abab5928edef893b3e3e7c6da4af8602986",
+      "currentSha256": "bc468efa99012f39e28eca5488bcd8e35caa4492ebcaba66fe11db252e79a068",
+      "currentMatchesReceipt": false
+    },
+    "src/screens/lot-platform.css": {
+      "receiptSha256": "5ef7f3641075ec5e0076c0f69af3e76e0576f6be5106fb0de748ea495aa4a738",
+      "snapshotSha256": "5ef7f3641075ec5e0076c0f69af3e76e0576f6be5106fb0de748ea495aa4a738",
+      "currentSha256": "ed800bd80ef97b4e14a943bf0ada9cad8f942befebed5bf8c678f172783759bb",
+      "currentMatchesReceipt": false
+    }
+  },
+  "assets": [
+    {
+      "file": "index.html",
+      "sha256": "8c5be3d31567e5f86e7e213cfc6c4182f62519e5ce684f560b3209a7ae558186",
+      "servedSha256": "8c5be3d31567e5f86e7e213cfc6c4182f62519e5ce684f560b3209a7ae558186"
+    },
+    {
+      "file": "assets/index-Bd8bc-IU.js",
+      "sha256": "3c3d41ddaeb3ca58797e7aa64ea75ff623f1a0f5854be6582cc79bba02ad65f8",
+      "servedSha256": "3c3d41ddaeb3ca58797e7aa64ea75ff623f1a0f5854be6582cc79bba02ad65f8"
+    },
+    {
+      "file": "assets/index-D7VOaQsz.css",
+      "sha256": "fe662f23af4994e40a71e0d981738af62e3a12820efd1aa97b7d02e7496f579d",
+      "servedSha256": "fe662f23af4994e40a71e0d981738af62e3a12820efd1aa97b7d02e7496f579d"
+    }
+  ],
+  "verifiedReceiptFileCount": 12,
+  "routeCount": 8,
+  "variantCount": 94,
+  "distinctPassingViews": 376,
+  "firstPassViews": 372,
+  "unchangedConfirmationViews": 4,
+  "targetedPassingGroups": 52,
+  "interactionScenarios": 13,
+  "configurations": 4,
+  "verifiedImageCount": 396,
+  "initialFailedViews": [
+    {
+      "route": "provider-detail",
+      "variant": "forbidden",
+      "combo": "1440x900-dark"
+    },
+    {
+      "route": "provider-detail",
+      "variant": "forbidden",
+      "combo": "1440x900-light"
+    },
+    {
+      "route": "provider-detail",
+      "variant": "removed",
+      "combo": "1024x700-light"
+    },
+    {
+      "route": "provider-detail",
+      "variant": "removed",
+      "combo": "1024x700-dark"
+    }
+  ],
+  "substituted": [],
+  "scope": "Read-only stored source/build/capture/report hashes and served assets. No browser rerun, independent visual acceptance, native or backend availability claim. Original timeout cause remains unproven; later live-source drift is not covered by receipt.",
+  "laterScopedCorrections": {
+    "delivery": "/tmp/opencode/fixes-new-product/delivery.json",
+    "deliverySha256": "995f02735e51b45b52e330b88f49e104e03647e13fc2546eec4290d2db012d81",
+    "snapshot": "/tmp/opencode/fixes-new-product/delta/snapshot",
+    "source": {
+      "src/screens/lot-platform.tsx": "bc468efa99012f39e28eca5488bcd8e35caa4492ebcaba66fe11db252e79a068",
+      "src/screens/lot-platform.css": "ed800bd80ef97b4e14a943bf0ada9cad8f942befebed5bf8c678f172783759bb"
+    },
+    "reports": {
+      "/root/cortex-ui/review/fixes-new-product.md": "4910578287e32b1993e9b2326b60c932918be683043e4512092599cf026ab005",
+      "/root/cortex-ui/review/confirmed-new-product-A.md": "0fefeff7d5e989ce5ce0861cc253ed9cb6e199bd1ad6d0b525c623ad63059e4c",
+      "/root/cortex-ui/review/confirmed-new-product-B.md": "62a7d715cc263c62f12f5021fbb56f6c903424ca092212e7c46158314a38a9f1"
+    },
+    "scope": "Current Platform source matches the later NPA04/B02/B04 correction pin. A/B reports confirm eight named cross-lot defects; no whole-page, native or backend acceptance. Original 396 captures retain their original source."
+  },
+  "receiptFiles": {
+    "check.mjs": "5e4bcad3d0576e701ddc2c33f45883e9379ed177cd4ec7d4598e517a7f48ab23",
+    "build-scoped.mjs": "069560ee16b5499c68cbdc2398f007bee3c11a86532a8a66a465d7f0538f6298",
+    "build-provenance.json": "13466073c2213d0553d8b417c51d3c0e9ea35827d67affb2f6b1f2a2cc9699ce",
+    "build-final.log": "8b2165d4950fdb1362c9a6b2631876789f59a78cddc02f9571290793d534f195",
+    "typecheck-resumed.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lint-resumed.json": "0ecdf2c8555421fa9b084961c4dca98341688c6faa345cfa88e0f92e4d8bbcb3",
+    "impeccable-resumed.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "final/results.json": "efc4911573dc3d6a32abc1e0c8fe0ec7f526eee0ef1c846a63511464f82635fb",
+    "confirmation/results.json": "01b52c1e561cb0cf59633f22dcec271e7e3c6fb94e8c1814d204a192402e64ba",
+    "round2/results.json": "bff737851f85ad63a98b709ffa730d5b51458ca176f658f4a38fa44bc3e54e1e",
+    "round2/build-provenance.json": "43e8d9c59d7d0bab1790344dffa9864ee46ad40e9a75975e695e1ae970e19a60",
+    "contrast.json": "fa20dd17bda39781103e0a3856d034deb3dbcfcba93753275e43fbce8a78b570"
+  },
+  "registry": {
+    "file": "final/registry.json",
+    "sha256": "1b7904a0045b98240cd27ecebc883beb12aa4ad86087ebb37dc6849a116cecb0",
+    "routes": [
+      {
+        "id": "connection",
+        "variants": [
+          "local",
+          "cloud",
+          "self-host",
+          "empty",
+          "checking",
+          "reachable",
+          "unreachable",
+          "incompatible",
+          "offline",
+          "forbidden",
+          "operator",
+          "registry-disabled"
+        ]
+      },
+      {
+        "id": "providers",
+        "variants": [
+          "list",
+          "loading",
+          "empty",
+          "error",
+          "offline",
+          "forbidden"
+        ]
+      },
+      {
+        "id": "provider-detail",
+        "variants": [
+          "openai",
+          "anthropic",
+          "operator",
+          "empty",
+          "checking",
+          "success",
+          "error",
+          "forbidden",
+          "offline",
+          "removed"
+        ]
+      },
+      {
+        "id": "models",
+        "variants": [
+          "list",
+          "unknown",
+          "loading",
+          "empty",
+          "error",
+          "offline",
+          "forbidden",
+          "diagnostic-ready",
+          "diagnostic-owner",
+          "diagnostic-member",
+          "diagnostic-unavailable",
+          "diagnostic-loading",
+          "diagnostic-ok",
+          "diagnostic-denied",
+          "diagnostic-incomplete",
+          "diagnostic-unaudited",
+          "diagnostic-invalid",
+          "diagnostic-error"
+        ]
+      },
+      {
+        "id": "model-picker",
+        "variants": [
+          "ready",
+          "open",
+          "unknown",
+          "no-images",
+          "empty",
+          "loading",
+          "error",
+          "offline",
+          "forbidden"
+        ]
+      },
+      {
+        "id": "remote-login",
+        "variants": [
+          "operator",
+          "operator-none",
+          "operator-success",
+          "reauth-required",
+          "cloud-email",
+          "otp",
+          "verify-email",
+          "mfa-challenge",
+          "mfa-enrollment",
+          "sso",
+          "loading",
+          "network",
+          "forbidden",
+          "offline",
+          "success",
+          "session-expired",
+          "logged-out"
+        ]
+      },
+      {
+        "id": "remote-chat",
+        "variants": [
+          "live",
+          "idle",
+          "empty",
+          "unknown",
+          "detached",
+          "reconnecting",
+          "expired",
+          "loaded",
+          "offline",
+          "error",
+          "forbidden"
+        ]
+      },
+      {
+        "id": "tool-approval",
+        "variants": [
+          "pending",
+          "bound-action",
+          "allowed",
+          "remembered",
+          "denied",
+          "loading",
+          "empty",
+          "error",
+          "offline",
+          "forbidden",
+          "expired"
+        ]
+      }
+    ],
+    "sourceAstMatchesReceipt": true,
+    "verification": "TypeScript AST literal fields compared with manifest runtime registry, no prototype execution"
+  },
+  "viewConfigurations": [
+    "1024x700-light",
+    "1024x700-dark",
+    "1440x900-light",
+    "1440x900-dark"
+  ],
+  "chromium": "153.0.8010.12"
+}

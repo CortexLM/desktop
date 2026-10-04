@@ -1,0 +1,51 @@
+[
+  {
+    "source": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/evidence/work-activity-followup/baseline/work-activity.spec.ts",
+    "sha256": "0166d765dd10a8c332da09563af8c2418ea995cfd2ee07bcdd19b7438a347851",
+    "lines": 208,
+    "retained": "source/behavior-original.ts.gz",
+    "scope": "baseline + initial targeted"
+  },
+  {
+    "source": "/tmp/opencode/work-activity/initial-full-behavior.spec.ts",
+    "sha256": "5740841a75bda4c688f5407122b870bda049698c1b5e80c6746ce55b82ba4af0",
+    "lines": 208,
+    "retained": "source/behavior-full132.ts.gz",
+    "scope": "full132 + corrected lifecycle"
+  },
+  {
+    "source": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/work-activity.spec.ts",
+    "sha256": "d98c9205c5dbddfe349a06a4271b4a2a1c135248cf84817705b6d81e11916744",
+    "lines": 211,
+    "retained": "source/behavior-final6.ts.gz",
+    "scope": "final-targeted6"
+  },
+  {
+    "source": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/evidence/work-activity-followup/baseline/work-activity-localization.spec.ts",
+    "sha256": "d40d9be095b26db813fe442233f139d67228aa036971f081f5974238d68fd0fc",
+    "lines": 110,
+    "retained": "source/locale-baseline.ts.gz",
+    "scope": "old96 locale missing-copy baseline"
+  },
+  {
+    "source": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/work-activity-localization.spec.ts",
+    "sha256": "bfda7f43480e7f20e8101480950c28c5ea149b0f6f3bedf231d56c3ed7a5e087",
+    "lines": 112,
+    "retained": "source/locale-final.ts.gz",
+    "scope": "corrected locale geometry/full132"
+  },
+  {
+    "source": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/screens.spec.ts",
+    "sha256": "f55899bf1861cbcd0c8e6c01fa7e87b52dc3a609c1e2268cfad3dbde659ba54c",
+    "lines": 42,
+    "retained": "source/screens.spec.ts.gz",
+    "scope": "426 visits"
+  },
+  {
+    "source": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts",
+    "sha256": "59faac9327ee70fa71750953e089552b97b3507388f391bc22b1ff2434a55f62",
+    "lines": 379,
+    "retained": "source/navigation.spec.ts.gz",
+    "scope": "intentional callback failures"
+  }
+]

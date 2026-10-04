@@ -1,0 +1,54 @@
+{
+  "commit": "0e63f876bbe3d0fe893c6c698ff3fadb6dcec702",
+  "appSha256": "90ad1d7962d71e7167c777868bf1a7cab36316dd77d868f91342dc9fbc831aa1",
+  "os": "macOS 26.6.2 arm64",
+  "method": "Native controls through mac-computer; System Events accessibility read-back",
+  "attempts": [
+    {
+      "launchMethod": "Direct binary launch through SSH",
+      "minimize": {
+        "AXMinimized": true,
+        "restoredAXMinimized": false
+      },
+      "fullscreen": {
+        "actions": [
+          "green traffic light",
+          "View > Enter Full Screen"
+        ],
+        "AXFullScreen": false
+      },
+      "appearance": {
+        "osDarkMode": true,
+        "observedNativeMenus": "light"
+      }
+    },
+    {
+      "time": "2026-10-02T11:21Z",
+      "launchMethod": "LaunchServices through authorized GUI session",
+      "command": "open -na /Applications/Cortex.app --env CORTEX_DATA_DIR=/tmp/cortex-0e63f87-data --env CORTEX_LOCALE=en --args --remote-debugging-port=9444",
+      "fullscreen": {
+        "action": "View > Enter Full Screen",
+        "AXFullScreen": true,
+        "size": [
+          1024,
+          768
+        ],
+        "AXMinimized": false
+      },
+      "appearance": {
+        "osDarkMode": true,
+        "observedNativeMenus": "dark"
+      },
+      "restoreAction": "Set AXFullScreen=false through System Events",
+      "restoredWindowVisible": true
+    }
+  ],
+  "scope": "Installed unsigned artifact; manual native-action verification supplements source E2E. Direct-launch failure is retained, not counted as successful acceptance.",
+  "fullscreenScreenshot": {
+    "file": "fullscreen.webp",
+    "pngSha256": "128fc0834163a464fc12e2233245e4d0e05b3e420fec8aa81a468ef5a435d203",
+    "webpSha256": "39613dbc3a350a09965017a961c2504e70e482afb02add9d8c34e4c4a1a85b2c",
+    "width": 1024,
+    "height": 768
+  }
+}

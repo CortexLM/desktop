@@ -1,0 +1,21 @@
+{
+  "base": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "inputs": 514,
+  "changed": [
+    {
+      "path": "packages/app/src/screens/system/settings.tsx",
+      "before": "b859cf9785ada768307e77a2546c02b80576b1491187b6ffa944c1673432eed6",
+      "after": "4f0b4f911195eb7e5a12dc22ff9e940f0cd67190ce9eb44ae7c99d6054c80461"
+    },
+    {
+      "path": "packages/app/src/shell/nav.tsx",
+      "before": "ef41fdb8fea078bd7b1cfcb890584440dba293782d6ab5ac2a4a04316b3888fb",
+      "after": "876682aef675ef9e0b1c5a3a59a49b00acbb1da84a7897f0dc17efa287579315"
+    },
+    {
+      "path": "packages/app/src/shell/shell.tsx",
+      "before": "249cd485e33aa9b693c026cceb71434e5794e8e6268aa17ff61b58784277ea13",
+      "after": "880240350484738971849dbabdfe591cd90471afc08fa0ffca02ef6f78a6ae67"
+    }
+  ]
+}

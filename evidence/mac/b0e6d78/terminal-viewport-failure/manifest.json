@@ -1,0 +1,65 @@
+{
+  "status": "failed",
+  "expectedAsar": "71f560e62bf0d0a8cf0e72beb85611eb413acf9fe10e2cacc3d9f1fedd5b4c04",
+  "startedAt": "2026-10-03T03:16:32.694Z",
+  "captures": [
+    {
+      "file": "terminal-exit-light.png",
+      "theme": "light",
+      "windowID": 8129,
+      "pid": 45607,
+      "bounds": {
+        "X": 0,
+        "Height": 685,
+        "Y": 30,
+        "Width": 1024
+      },
+      "width": 1024,
+      "height": 685,
+      "sha256": "726c5eafef1dee51ebf8798fbaf03e9502b391e082f645a1b4fdb5a13a3eccdc",
+      "localizedAnnotationVisible": true,
+      "route": "#/code-session?id=ses_01a0ffc381270000b44535a49679a18b&theme=light"
+    }
+  ],
+  "checks": [
+    {
+      "theme": "light",
+      "sessionID": "ses_01a0ffc381270000b44535a49679a18b",
+      "exitOutputExact": true,
+      "exitMetadataExact": true,
+      "largeOutputExact": true,
+      "largeMetadataExact": true,
+      "lookalikeTextPreserved": true,
+      "reloadExact": true
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "cleanup": {
+    "providerRestored": true,
+    "localeResetToEnglish": true
+  },
+  "asarBefore": "71f560e62bf0d0a8cf0e72beb85611eb413acf9fe10e2cacc3d9f1fedd5b4c04",
+  "windowBefore": {
+    "bounds": {
+      "X": 0,
+      "Height": 685,
+      "Y": 30,
+      "Width": 1024
+    },
+    "pid": 45607,
+    "active": true,
+    "id": 8129
+  },
+  "provider": {
+    "protocol": "cortex-terminal-native-v1",
+    "runID": "ce1fe908-8edd-4a3f-9e02-98a1738c7f4a",
+    "project": "/private/tmp/opencode/desktop-recovery-b0e6d78/project",
+    "platform": "darwin",
+    "port": 9456,
+    "startedAt": "2026-10-03T03:13:49.067Z"
+  },
+  "failure": "Localized annotation must be in the visible terminal viewport\n\nfalse !== true\n",
+  "finishedAt": "2026-10-03T03:16:47.843Z",
+  "scope": "Installed-app IPC and real bash; controlled local inference; native helper captures. ASAR checked on disk before/after; fresh LaunchServices launch/artifact provenance remains coordinator-owned. No legacy migration or full-product acceptance."
+}

@@ -1,0 +1,807 @@
+[
+  {
+    "report": "../../current-full-followup/compare/report.json",
+    "reportSHA256": "75451933436da845d7b57b06be97e6341a5019f8ac63c34a9860fcb24376414c",
+    "provenanceSHA256": "b398fb276074ef9eea8b939c5c48e4435c8e446fdfef8812b1a91f680de8c145",
+    "application": {
+      "revision": "6d965358bb5e02473df6be7e97ecfdb07650c0b8",
+      "sourceFingerprint": "5f709c11d836948142b65c5c2b4fe0582bddbfc19f76dbe15cf6d2146a6bcf0f",
+      "sourceFileCount": 473,
+      "sourcePaths": [
+        "packages/app/src",
+        "packages/app/public",
+        "packages/app/index.html",
+        "packages/app/vite.config.ts",
+        "packages/app/package.json",
+        "packages/i18n/src",
+        "packages/i18n/locales",
+        "packages/client/src",
+        "packages/schema/src",
+        "package.json",
+        "bun.lock",
+        "tsconfig.json"
+      ]
+    },
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:09:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "clockEqual": false,
+    "rows": [
+      {
+        "name": "home-dark",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/home-dark.app.png",
+          "sha256": "948f7700844c80c977551023a9556e281d818d2dc2da4a8a751915e4d74287dc",
+          "bytes": 665947
+        },
+        "rawChangedPixels": 223,
+        "rawBounds": [
+          241,
+          392,
+          267,
+          416
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "home-light",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/home-light.app.png",
+          "sha256": "9b430933625c5827d26c1717a7cd2635f686c056ffe102cf0253092ea2d76c89",
+          "bytes": 653375
+        },
+        "rawChangedPixels": 211,
+        "rawBounds": [
+          241,
+          394,
+          267,
+          416
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "chat-dark",
+        "priorRoundedDiffPct": 0.15,
+        "currentRoundedDiffPct": 0.15,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/chat-dark.app.png",
+          "sha256": "2b09c40b2465c80b24adfb8788ba2285bc7902f16005429ad4ecd43b5dc3efcd",
+          "bytes": 715204
+        },
+        "rawChangedPixels": 144,
+        "rawBounds": [
+          241,
+          394,
+          1126,
+          419
+        ],
+        "sameRGBA": false,
+        "transcriptCropDevicePixels": [
+          1140,
+          440,
+          2460,
+          1490
+        ],
+        "transcriptRGBAExactToPrior": true,
+        "diffImageComparison": {
+          "rawChangedPixels": 85,
+          "rawBounds": [
+            241,
+            394,
+            267,
+            415
+          ],
+          "sameRGBA": false
+        }
+      },
+      {
+        "name": "chat-light",
+        "priorRoundedDiffPct": 0.15,
+        "currentRoundedDiffPct": 0.15,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/chat-light.app.png",
+          "sha256": "8e152e7229d598f07969dc8c26df001a3bd6c17c94a214235c91d8786977218c",
+          "bytes": 700474
+        },
+        "rawChangedPixels": 2693,
+        "rawBounds": [
+          119,
+          214,
+          1127,
+          1697
+        ],
+        "sameRGBA": false,
+        "transcriptCropDevicePixels": [
+          1140,
+          440,
+          2460,
+          1490
+        ],
+        "transcriptRGBAExactToPrior": true,
+        "diffImageComparison": {
+          "rawChangedPixels": 2010,
+          "rawBounds": [
+            119,
+            214,
+            1127,
+            1697
+          ],
+          "sameRGBA": false
+        }
+      },
+      {
+        "name": "library-dark",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0.01,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/library-dark.app.png",
+          "sha256": "8f9def6b4de720addbe7ced1c78e348e5cdc6fc87e4308723bea46dd9c40193f",
+          "bytes": 2383323
+        },
+        "rawChangedPixels": 239,
+        "rawBounds": [
+          241,
+          392,
+          267,
+          415
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "library-light",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0.01,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/library-light.app.png",
+          "sha256": "1ec9f030787a04e838a864232065a2e6b98b5442836941cace995180db7a3b31",
+          "bytes": 2376712
+        },
+        "rawChangedPixels": 279,
+        "rawBounds": [
+          241,
+          392,
+          266,
+          416
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "search~results-dark",
+        "priorRoundedDiffPct": 0.01,
+        "currentRoundedDiffPct": 0.01,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/search~results-dark.app.png",
+          "sha256": "b3e6d232632e0e537ee1aa22138ce3dcacf8e93e8d1958999c43f1debecd0e7c",
+          "bytes": 774755
+        },
+        "rawChangedPixels": 193,
+        "rawBounds": [
+          241,
+          393,
+          268,
+          415
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "search~results-light",
+        "priorRoundedDiffPct": 0.01,
+        "currentRoundedDiffPct": 0.01,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/search~results-light.app.png",
+          "sha256": "46f739dd7becf9ac8f4edb961f3bc92cb4a0df8d63ea6cde73691ad9758212ba",
+          "bytes": 762919
+        },
+        "rawChangedPixels": 139,
+        "rawBounds": [
+          241,
+          394,
+          267,
+          415
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "search~empty-dark",
+        "priorRoundedDiffPct": 0.03,
+        "currentRoundedDiffPct": 0.03,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/search~empty-dark.app.png",
+          "sha256": "88fe8d9e388aa6017a23a59bb7d2bc823966893714db44e0d8195102db63a5f4",
+          "bytes": 672082
+        },
+        "rawChangedPixels": 1596,
+        "rawBounds": [
+          241,
+          394,
+          1835,
+          700
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "search~empty-light",
+        "priorRoundedDiffPct": 0.03,
+        "currentRoundedDiffPct": 0.03,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/search~empty-light.app.png",
+          "sha256": "c3a3aabc2c1e4504f47242d17d219cb49f16c7d6cb262095982c4a0c0485d9f4",
+          "bytes": 658395
+        },
+        "rawChangedPixels": 1280,
+        "rawBounds": [
+          241,
+          393,
+          1835,
+          700
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "search~loading-dark",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/search~loading-dark.app.png",
+          "sha256": "8a2eea3c3f5e1ca05c145bc97dad8811ec2062dd2d905c278708ca0370c95da1",
+          "bytes": 681416
+        },
+        "rawChangedPixels": 16,
+        "rawBounds": [
+          260,
+          396,
+          266,
+          402
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "search~loading-light",
+        "priorRoundedDiffPct": 0.01,
+        "currentRoundedDiffPct": 0.01,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/search~loading-light.app.png",
+          "sha256": "fdfed0ba620e50a0336d7cd9542972988c04eb3ff0d6e4a52ea6afffe88bfc14",
+          "bytes": 668127
+        },
+        "rawChangedPixels": 80528,
+        "rawBounds": [
+          241,
+          394,
+          2234,
+          972
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "search~recent-dark",
+        "priorRoundedDiffPct": 0.01,
+        "currentRoundedDiffPct": 0.01,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/search~recent-dark.app.png",
+          "sha256": "c0da9bf4f045d1a7307da7fe15ea3a6bc5910bc1e3a23c9ad45eeda35270cd9a",
+          "bytes": 711711
+        },
+        "rawChangedPixels": 208,
+        "rawBounds": [
+          241,
+          393,
+          268,
+          415
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "search~recent-light",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0.01,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/search~recent-light.app.png",
+          "sha256": "58e89fddbe82ca235695f46496e4f7fd0e6381a26f0bd9e2de2b2d9db4722c97",
+          "bytes": 697926
+        },
+        "rawChangedPixels": 256,
+        "rawBounds": [
+          241,
+          393,
+          268,
+          416
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "command~open-dark",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/command~open-dark.app.png",
+          "sha256": "10213aa9001c05f4e63dcae5de9a75df31d7d0ed7df816e4d670d2ce8a884059",
+          "bytes": 632626
+        },
+        "rawChangedPixels": 0,
+        "rawBounds": null,
+        "sameRGBA": true
+      },
+      {
+        "name": "command~open-light",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/command~open-light.app.png",
+          "sha256": "e19637d784c482185b9b7b9fd479cbc93b35323297db00b61e54bb8a5afc9b9c",
+          "bytes": 619564
+        },
+        "rawChangedPixels": 203,
+        "rawBounds": [
+          241,
+          393,
+          267,
+          416
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "command~filtered-dark",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/command~filtered-dark.app.png",
+          "sha256": "c8676a8d56aeb922fc3d207fe594fbcb25f60ece4bebcdd3cf237ed6f447e8ef",
+          "bytes": 620147
+        },
+        "rawChangedPixels": 13,
+        "rawBounds": [
+          261,
+          397,
+          267,
+          403
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "command~filtered-light",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/command~filtered-light.app.png",
+          "sha256": "7304a68e897d379e501e97452fb57b23528fb969277f92d57d79422fe915d567",
+          "bytes": 607614
+        },
+        "rawChangedPixels": 183,
+        "rawBounds": [
+          241,
+          393,
+          267,
+          416
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "command~submenu-dark",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/command~submenu-dark.app.png",
+          "sha256": "d438a5763d4eea2512f04692c010d1740e09bce7511d1a56a8ef9f77161f2628",
+          "bytes": 608318
+        },
+        "rawChangedPixels": 166,
+        "rawBounds": [
+          241,
+          394,
+          267,
+          416
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "command~submenu-light",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/command~submenu-light.app.png",
+          "sha256": "35bf296d54cfa43fe3625c93b5736fae2743c708b99c686676e1506181ad820a",
+          "bytes": 597910
+        },
+        "rawChangedPixels": 138,
+        "rawBounds": [
+          241,
+          395,
+          267,
+          416
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "command~none-dark",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/command~none-dark.app.png",
+          "sha256": "a33701fa1974eaef31cedb180cd3eded771261dd961b499d716fb8088bf97a84",
+          "bytes": 614585
+        },
+        "rawChangedPixels": 183,
+        "rawBounds": [
+          241,
+          394,
+          267,
+          416
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "command~none-light",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/command~none-light.app.png",
+          "sha256": "f0f764f2440d8945135f236c75ef80e0cd0170e8e64c84a4096edba5cd0dd7c9",
+          "bytes": 602909
+        },
+        "rawChangedPixels": 0,
+        "rawBounds": null,
+        "sameRGBA": true
+      },
+      {
+        "name": "projects~grid-dark",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0.01,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/projects~grid-dark.app.png",
+          "sha256": "c671b8104b852de52505603603d44661d3405ef32a29c49c6e9779d0158710d6",
+          "bytes": 1629463
+        },
+        "rawChangedPixels": 240,
+        "rawBounds": [
+          241,
+          392,
+          267,
+          415
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "projects~grid-light",
+        "priorRoundedDiffPct": 0.01,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/projects~grid-light.app.png",
+          "sha256": "c6469c286421b22c84b99acef09fd37ef49c499792e258d155eb1e960893e350",
+          "bytes": 1620922
+        },
+        "rawChangedPixels": 267,
+        "rawBounds": [
+          241,
+          393,
+          268,
+          416
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "projects~empty-dark",
+        "priorRoundedDiffPct": 0.01,
+        "currentRoundedDiffPct": 0.01,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/projects~empty-dark.app.png",
+          "sha256": "ac03f01e6a2ed944e8e1d587cff73bcf3557157f7e30933d28d2e0bad6a48595",
+          "bytes": 649600
+        },
+        "rawChangedPixels": 9,
+        "rawBounds": [
+          248,
+          395,
+          266,
+          405
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "projects~empty-light",
+        "priorRoundedDiffPct": 0.02,
+        "currentRoundedDiffPct": 0.02,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/projects~empty-light.app.png",
+          "sha256": "6a14db808668d33313a8241b1b16c1047cdcd745d2511845ee6671450599a905",
+          "bytes": 635977
+        },
+        "rawChangedPixels": 532,
+        "rawBounds": [
+          241,
+          393,
+          1831,
+          930
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "projects~create-dark",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/projects~create-dark.app.png",
+          "sha256": "08ef80db541621acd6afb767e3c92b3bd7ec1775546032685bf7fd55ef8f2e36",
+          "bytes": 669947
+        },
+        "rawChangedPixels": 1329,
+        "rawBounds": [
+          232,
+          382,
+          277,
+          424
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "projects~create-light",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/projects~create-light.app.png",
+          "sha256": "74a155d07c5bacf41965f52eb95de6b33015a5672cc93b4cc98422960d858c5f",
+          "bytes": 682890
+        },
+        "rawChangedPixels": 1024,
+        "rawBounds": [
+          233,
+          384,
+          275,
+          422
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "project~overview-dark",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/project~overview-dark.app.png",
+          "sha256": "e85fb3de88d25d436af99a79a0a430509e691fe7dbb43e480b0488c117f53165",
+          "bytes": 792377
+        },
+        "rawChangedPixels": 614,
+        "rawBounds": [
+          241,
+          394,
+          2203,
+          1067
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "project~overview-light",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0.01,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/project~overview-light.app.png",
+          "sha256": "7540f68efafe0fbfea0b2e373ecabe139eabcde15d5b67219866cd853293f4a9",
+          "bytes": 783698
+        },
+        "rawChangedPixels": 1157,
+        "rawBounds": [
+          241,
+          393,
+          2203,
+          1066
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "project~files-dark",
+        "priorRoundedDiffPct": 0.01,
+        "currentRoundedDiffPct": 0.01,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/project~files-dark.app.png",
+          "sha256": "082f8a6b1f5ee21ea7c605a0e637a3362c7f403b1bd6f7d5824e798ab367f32f",
+          "bytes": 735046
+        },
+        "rawChangedPixels": 130,
+        "rawBounds": [
+          241,
+          392,
+          268,
+          414
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "project~files-light",
+        "priorRoundedDiffPct": 0,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/project~files-light.app.png",
+          "sha256": "603df0f6d57fe58d16aa67c28e9acdea77115ebba9ea04583c2567118488b290",
+          "bytes": 724012
+        },
+        "rawChangedPixels": 200,
+        "rawBounds": [
+          241,
+          394,
+          267,
+          416
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "project~instructions-dark",
+        "priorRoundedDiffPct": 0.01,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/project~instructions-dark.app.png",
+          "sha256": "df47792033e727fa94ccfa70ef05d9800936199454fac5f361e311d69519b149",
+          "bytes": 700766
+        },
+        "rawChangedPixels": 188,
+        "rawBounds": [
+          241,
+          394,
+          267,
+          416
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "project~instructions-light",
+        "priorRoundedDiffPct": 0.01,
+        "currentRoundedDiffPct": 0.01,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/project~instructions-light.app.png",
+          "sha256": "a8c7c0a51380f58472064100b05686978dc20f32b3fa2dc58b9878c4c7ec591b",
+          "bytes": 688278
+        },
+        "rawChangedPixels": 162,
+        "rawBounds": [
+          241,
+          394,
+          267,
+          415
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "project~sharing-dark",
+        "priorRoundedDiffPct": 0.01,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/project~sharing-dark.app.png",
+          "sha256": "76368dbf84c801343c141edd479f39365c93a751d1dfd0a43e0a741ffd045537",
+          "bytes": 727165
+        },
+        "rawChangedPixels": 692,
+        "rawBounds": [
+          241,
+          395,
+          2203,
+          1043
+        ],
+        "sameRGBA": false
+      },
+      {
+        "name": "project~sharing-light",
+        "priorRoundedDiffPct": 0.01,
+        "currentRoundedDiffPct": 0,
+        "priorApp": {
+          "path": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/project~sharing-light.app.png",
+          "sha256": "cfb64c9a5750997086fa04f17b16a6a8dcf1801e048eeb9a8e186afff7545d80",
+          "bytes": 716512
+        },
+        "rawChangedPixels": 1029,
+        "rawBounds": [
+          241,
+          393,
+          2203,
+          1042
+        ],
+        "sameRGBA": false
+      }
+    ]
+  },
+  {
+    "report": "../../live-state-followup/compare-initial/report.json",
+    "reportSHA256": "92ca3638aa0bec4bff18b480d390f866498deee8e1d5e92fe19253f2b70ea1af",
+    "provenanceSHA256": "5aa516ecc5a2c0388eb7ccc448f94a4d820ba07467e58819cc4a76e62835733e",
+    "application": {
+      "revision": "1076c2584941cf054efffaf709a149b4195bc1c4",
+      "sourceFingerprint": "cc5192cbaaf1f5ac8e5b12ee00ac5b41089ff93d8fe1276eb22d2431a1c3afe2",
+      "sourceFileCount": 473,
+      "sourcePaths": [
+        "packages/app/src",
+        "packages/app/public",
+        "packages/app/index.html",
+        "packages/app/vite.config.ts",
+        "packages/app/package.json",
+        "packages/i18n/src",
+        "packages/i18n/locales",
+        "packages/client/src",
+        "packages/schema/src",
+        "package.json",
+        "bun.lock",
+        "tsconfig.json"
+      ]
+    },
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:09:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "clockEqual": false,
+    "rows": [
+      {
+        "name": "chat-dark",
+        "priorRoundedDiffPct": 0.15,
+        "currentRoundedDiffPct": 0.15,
+        "priorApp": {
+          "path": "/tmp/opencode/live-state-compare-initial/captures/2026-10-03T07-54-59-214Z-QfwN38/chat-dark.app.png",
+          "sha256": "66e09b12bd458b8292a9108224149c41c7fcde610ec989763463c8de552587a6",
+          "bytes": 715219
+        },
+        "rawChangedPixels": 8,
+        "rawBounds": [
+          255,
+          398,
+          1123,
+          418
+        ],
+        "sameRGBA": false,
+        "transcriptCropDevicePixels": [
+          1140,
+          440,
+          2460,
+          1490
+        ],
+        "transcriptRGBAExactToPrior": true,
+        "diffImageComparison": {
+          "rawChangedPixels": 0,
+          "rawBounds": null,
+          "sameRGBA": true
+        }
+      },
+      {
+        "name": "chat-light",
+        "priorRoundedDiffPct": 0.15,
+        "currentRoundedDiffPct": 0.15,
+        "priorApp": {
+          "path": "/tmp/opencode/live-state-compare-initial/captures/2026-10-03T07-54-59-214Z-QfwN38/chat-light.app.png",
+          "sha256": "d240ead23323656937f1219ced6af6aeb91a5d3f2ab43f63d76b892aa7e73e0b",
+          "bytes": 700440
+        },
+        "rawChangedPixels": 2487,
+        "rawBounds": [
+          119,
+          214,
+          1110,
+          1697
+        ],
+        "sameRGBA": false,
+        "transcriptCropDevicePixels": [
+          1140,
+          440,
+          2460,
+          1490
+        ],
+        "transcriptRGBAExactToPrior": true,
+        "diffImageComparison": {
+          "rawChangedPixels": 1862,
+          "rawBounds": [
+            119,
+            214,
+            710,
+            1697
+          ],
+          "sameRGBA": false
+        }
+      }
+    ]
+  }
+]

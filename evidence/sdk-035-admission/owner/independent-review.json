@@ -1,0 +1,42 @@
+{
+  "source_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+  "review_session": "ses_f0069c2cbffezuKTgrb2fSsa9Q",
+  "result": "scoped_last_push_approval",
+  "scope": "final auth single-read runtime, collector deadline propagation, source/schema/package identity and receipt evidence",
+  "read_only": true,
+  "clean_worktree": true,
+  "remote_head_matches": true,
+  "receipt_sha256": "6bb1af0ae2412b00e7415ad76b259951ee0460449cbe46b96e8b00afffd93aba",
+  "sdk_sha256": "5c75f212a2669bcd6f5110fe6e5c8862e1ca6eba85a118b350e0ce38694596b8",
+  "api_types_sha256": "3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877",
+  "schema_source_sha": "af36085cc96b182950ca4bf15161dcf2c3951da1",
+  "schema_blob": "c8f6a7f0257858306a885c71202c13420f40725f",
+  "schema_sha256": "b2495d1d8ec631d143c5dcc5d200aeb0d288f69beae31ba671b3a7856f663d5b",
+  "reviewed_blobs": {
+    "packages/sdk/src/client.ts": "3d3373d6a08391cd470700be35a5a5fbb5bda610",
+    "packages/sdk/scripts/pack.mjs": "efee0c6a760e42b803646d89d2d94b4341fd75d1",
+    "packages/sdk/test/runtime.test.mjs": "1b90667e07b050c138df6f4d843af391828755c3",
+    "packages/sdk/test/collect.test.mjs": "3a5d40296661b00960fc6dcb6cae95e70dbd58ec",
+    "packages/sdk/test/integration/helpers.mjs": "c51b2074ebe79094a2bf83375a2ea25bd033946a",
+    "packages/sdk/test/package.mjs": "52168c308bd6dbc0a2c59055568841009e362f72",
+    "packages/sdk/examples/resume.mjs": "046569064a28ac82447cd167737827f8761f7095"
+  },
+  "verified": {
+    "receipt_logs": 10,
+    "generated_files": 16,
+    "packaged_sources": 35,
+    "compiled_files_against_readonly_typescript_6_0_3_emit": 102,
+    "collector_signal_call_sites": 19,
+    "exact_optional_api_types_peer": "0.2.0",
+    "sdk_checks": 71,
+    "runtime_checks": 34,
+    "api_types_tests": 40,
+    "integration_tests": 48,
+    "operations": 421,
+    "dedicated_calls": 171,
+    "groups": 51,
+    "examples": 4,
+    "server_focused_tests": 19
+  },
+  "limits": ["Remote CI/CodeQL verified separately", "Not formal GitHub approval", "Not consumer adoption or UI acceptance"]
+}

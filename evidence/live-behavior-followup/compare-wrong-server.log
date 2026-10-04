@@ -1,0 +1,12 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at main (/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/scripts/compare-shots.mjs:156:16)
+    at async file:///root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/scripts/compare-shots.mjs:232:95 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v24.21.0

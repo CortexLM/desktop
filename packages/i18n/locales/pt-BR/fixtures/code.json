@@ -1,0 +1,722 @@
+{
+  "home": {
+    "repos": [
+      "cortex-web",
+      "cortex-ios",
+      "cortex-api"
+    ],
+    "branches": [
+      "main",
+      "release/2.4",
+      "feat/passkeys"
+    ],
+    "envCloud": "Cloud · ubuntu-24",
+    "envLocal": "MacBook Pro Local",
+    "envCloudShort": "Cloud",
+    "envLocalShort": "Local",
+    "tasks": [
+      [
+        "Corrigir paginação de faturas",
+        "cortex-web · há 4 min",
+        "run"
+      ],
+      [
+        "Migrar login para passkeys",
+        "cortex-web · +214 −37",
+        "wait"
+      ],
+      [
+        "Adicionar exportações em CSV",
+        "cortex-web · mesclado",
+        "ok"
+      ],
+      [
+        "Corrigir o travamento ao despertar",
+        "cortex-ios · 2 testes falhando",
+        "err"
+      ]
+    ]
+  },
+  "session": {
+    "title": "Corrigir paginação de faturas",
+    "prRef": "cortex-web #482",
+    "prompt": "A página 2 das faturas mostra as mesmas linhas da página 1. Corrija isso e adicione um teste.",
+    "log": [
+      [
+        "search",
+        "Lendo src/billing/invoices.ts"
+      ],
+      [
+        "terminal",
+        "pnpm test billing — 2 falhas"
+      ],
+      [
+        "edit",
+        "Corrigido o offset (as páginas começam em 1)"
+      ],
+      [
+        "edit",
+        "Ordenação estável por id como chave secundária"
+      ],
+      [
+        "check-circle",
+        "pnpm test billing — 48 aprovados"
+      ]
+    ],
+    "running": "Executando testes…",
+    "answer": "O offset começava na página 0 enquanto a API recebe páginas a partir de 1. Também adicionei uma ordenação estável: duas faturas criadas no mesmo segundo podiam trocar de página.",
+    "answerBold": "2 arquivos alterados, 48 testes aprovados.",
+    "file": "src/billing/invoices.ts",
+    "diff": "@@ -42,9 +42,11 @@ export async function listInvoices(q: Query) {\n-  const offset = q.page * q.size;\n+  const page = Math.max(1, q.page);\n+  const offset = (page - 1) * q.size;\n   const rows = await db.invoice.findMany({\n     where: { orgId: q.orgId },\n-    orderBy: { createdAt: \"desc\" },\n+    orderBy: [{ createdAt: \"desc\" }, { id: \"desc\" }],\n     skip: offset,\n     take: q.size,\n   });",
+    "terminal": "$ pnpm test billing\n ✓ listInvoices › returns page 1 (12 ms)\n ✓ listInvoices › returns page 2 without duplicates (9 ms)\n ✓ listInvoices › stable sort on equal timestamps (7 ms)\n\nTests: 48 passed, 48 total\nTime: 3.42 s"
+  },
+  "tasks": {
+    "repos": [
+      "cortex-web",
+      "cortex-api",
+      "cortex-ios"
+    ],
+    "list": [
+      {
+        "t": "Corrigir paginação de faturas",
+        "repo": "cortex-web",
+        "br": "fix/invoice-pagination",
+        "st": "run",
+        "a": 3,
+        "d": 2,
+        "dur": "4 min",
+        "env": "Cloud · ubuntu-24",
+        "when": "há 4 min"
+      },
+      {
+        "t": "Acelerar a renderização da lista de faturas",
+        "repo": "cortex-web",
+        "br": "perf/invoice-list",
+        "st": "run",
+        "a": 0,
+        "d": 0,
+        "dur": "7 min",
+        "env": "Cloud · ubuntu-24",
+        "when": "há 7 min",
+        "n": 4
+      },
+      {
+        "t": "Migrar login para passkeys",
+        "repo": "cortex-web",
+        "br": "feat/passkeys",
+        "st": "review",
+        "a": 214,
+        "d": 37,
+        "dur": "18 min",
+        "env": "Cloud · ubuntu-24",
+        "when": "há 1 h"
+      },
+      {
+        "t": "Adicionar exportações em CSV",
+        "repo": "cortex-web",
+        "br": "feat/export-csv",
+        "st": "merged",
+        "a": 96,
+        "d": 4,
+        "dur": "11 min",
+        "env": "Cloud · ubuntu-24",
+        "when": "ontem"
+      },
+      {
+        "t": "Documentar os webhooks de pagamento",
+        "repo": "cortex-api",
+        "br": "docs/webhooks",
+        "st": "review",
+        "a": 142,
+        "d": 8,
+        "dur": "6 min",
+        "env": "Cloud · python-3.12",
+        "when": "há 2 h"
+      },
+      {
+        "t": "Limitar taxa em /v1/exports",
+        "repo": "cortex-api",
+        "br": "feat/rate-limit",
+        "st": "merged",
+        "a": 61,
+        "d": 12,
+        "dur": "9 min",
+        "env": "Cloud · python-3.12",
+        "when": "segunda-feira"
+      },
+      {
+        "t": "Corrigir o travamento ao despertar",
+        "repo": "cortex-ios",
+        "br": "fix/crash-on-wake",
+        "st": "fail",
+        "a": 18,
+        "d": 5,
+        "dur": "14 min",
+        "env": "Local MacBook Pro",
+        "when": "há 3 h"
+      },
+      {
+        "t": "Migrar para o Swift 6",
+        "repo": "cortex-ios",
+        "br": "chore/swift-6",
+        "st": "archived",
+        "a": 402,
+        "d": 388,
+        "dur": "32 min",
+        "env": "Local MacBook Pro",
+        "when": "12 de set."
+      }
+    ]
+  },
+  "attempts": {
+    "title": "Acelerar a renderização da lista de faturas",
+    "repo": "cortex-web",
+    "branch": "perf/invoice-list",
+    "env": "Cloud · ubuntu-24 · 4 containers",
+    "recommendBody": "Renderização mais rápida (p95 118 ms) e todos os testes passam.",
+    "durations": [
+      "6 min 12 s",
+      "7 min 40 s",
+      "9 min 05 s"
+    ],
+    "items": [
+      {
+        "done": 4,
+        "a": 38,
+        "d": 21,
+        "files": 3,
+        "tests": "212 de 212",
+        "p95": "118 ms",
+        "note": "Virtualiza a lista: apenas as 40 linhas visíveis são renderizadas.",
+        "diff": [
+          "-  {invoices.map((f) => <InvoiceRow key={f.id} f={f} />)}",
+          "+  <VirtualList items={invoices} rowHeight={44} overscan={8}>",
+          "+    {(f) => <InvoiceRow key={f.id} f={f} />}"
+        ]
+      },
+      {
+        "done": 6,
+        "a": 24,
+        "d": 9,
+        "files": 2,
+        "tests": "212 de 212",
+        "p95": "164 ms",
+        "note": "Memoiza as linhas e move a ordenação para o servidor.",
+        "diff": [
+          "-export function InvoiceRow({ f }: Props) {",
+          "+export const InvoiceRow = memo(function InvoiceRow({ f }: Props) {",
+          "+  const total = useMemo(() => format(f.total), [f.total]);"
+        ]
+      },
+      {
+        "done": 9,
+        "fail": true,
+        "a": 71,
+        "d": 33,
+        "files": 5,
+        "tests": "209 de 212",
+        "p95": "—",
+        "note": "Paginação infinita; 3 testes e2e falham ao voltar.",
+        "diff": [
+          "-  const { data } = useInvoices(page);",
+          "+  const { data, fetchNextPage } = useInfiniteInvoices();",
+          "+  useIntersection(sentinel, fetchNextPage);"
+        ]
+      },
+      {
+        "done": 13,
+        "a": 0,
+        "d": 0,
+        "files": 0,
+        "tests": "—",
+        "p95": "—",
+        "note": "Analisa o desempenho da renderização e depois divide a tabela em subcomponentes.",
+        "diff": []
+      }
+    ]
+  },
+  "review": {
+    "title": "Revisão · cortex-web #479",
+    "prTitle": "Paginar a lista de faturas na API",
+    "author": [
+      "HM",
+      "Hugo Martin"
+    ],
+    "branch": "hugo/pagination-api",
+    "base": "main",
+    "src": "@@ -38,4 +38,11 @@ import { db } from \"@/lib/db\";\n export async function listInvoices(q: Query) {\n-  const rows = await db.invoice.findMany({ where: { orgId: q.orgId } });\n-  return rows.slice(q.page * q.size, (q.page + 1) * q.size);\n{page}\n+  const rows = await db.invoice.findMany({\n+    where: { orgId: q.orgId },\n+    orderBy: [{ createdAt: \"desc\" }, { id: \"desc\" }],\n+    skip: (page - 1) * q.size,\n+    take: q.size,\n+  });\n+  return { rows, page, hasMore: rows.length === q.size };\n }",
+    "pageOld": "+  const page = Math.max(1, q.page);",
+    "pageNew": "+  const page = Math.max(1, Math.trunc(Number(q.page)) || 1);",
+    "test": "@@ -0,0 +1,5 @@\n+test(\"returns page 2 without duplicates\", async () => {\n+  const a = await listInvoices({ orgId, page: 1, size: 20 });\n+  const b = await listInvoices({ orgId, page: 2, size: 20 });\n+  expect(ids(a)).not.toEqual(expect.arrayContaining(ids(b)));\n+});",
+    "srcFile": "src/billing/invoices.ts",
+    "testFile": "tests/billing/invoices.test.ts",
+    "c1": "`q.page` vem da query string. Com `?page=abc`, `Math.max` retorna `NaN` e o Prisma recebe `skip: NaN`: a consulta falha com um 500.",
+    "c2": "Essa ordenação precisa de um índice em `(orgId, createdAt, id)`. Sem ele, a consulta percorre a tabela inteira: 1,4 s medido na cópia de produção.",
+    "c3": "Adicione um caso com duas faturas criadas no mesmo segundo: é exatamente isso que a segunda chave de ordenação corrige.",
+    "commit": "3f2a9c1",
+    "commitBranch": "hugo/pagination-api",
+    "prRef": "cortex-web #479"
+  },
+  "diff": {
+    "title": "Migrar o login para passkeys",
+    "branch": "feat/passkeys",
+    "files": [
+      {
+        "path": "src/auth/passkeys.ts",
+        "st": "A",
+        "a": 128,
+        "d": 0,
+        "more": "mais 113 linhas adicionadas",
+        "src": "@@ -0,0 +1,128 @@\n+import { verifyAuthenticationResponse } from \"@simplewebauthn/server\";\n+import { db } from \"@/lib/db\";\n+\n+const RP_ID = process.env.RP_ID ?? \"app.studio-nord.fr\";\n+\n+export async function verifyPasskey(user: UserWithPasskeys, assertion: PasskeyAssertion) {\n+  const key = user.passkeys.find((k) => k.credentialId === assertion.id);\n+  if (!key) return false;\n+  const { verified, authenticationInfo } = await verifyAuthenticationResponse({\n+    response: assertion,\n+    expectedChallenge: await takeChallenge(user.id),\n+    expectedOrigin: `https://${RP_ID}`,\n+    expectedRPID: RP_ID,\n+    credential: { id: key.credentialId, publicKey: key.publicKey, counter: key.counter },\n+  });"
+      },
+      {
+        "path": "src/auth/session.ts",
+        "st": "M",
+        "a": 41,
+        "d": 22,
+        "hidden": true,
+        "src": "@@ -1,6 +1,7 @@\n import { cookies } from \"next/headers\";\n import { db } from \"@/lib/db\";\n+import { verifyPasskey } from \"./passkeys\";\n \n const SESSION_TTL = 60 * 60 * 24 * 30;\n \n~\n@@ -18,7 +19,14 @@ export async function signIn(input: SignInInput) {\n export async function signIn(input: SignInInput) {\n-  const user = await db.user.findUnique({ where: { email: input.email } });\n-  if (!user || !(await checkPassword(user, input.password))) {\n-    throw new AuthError(\"Invalid credentials\");\n-  }\n+  const user = await db.user.findUnique({\n+    where: { email: input.email },\n+    include: { passkeys: true },\n+  });\n+  if (!user) throw new AuthError(\"Account not found\");\n+  const ok = input.assertion\n+    ? await verifyPasskey(user, input.assertion)\n+    : await checkPassword(user, input.password);\n+  if (!ok) throw new AuthError(\"Invalid credentials\");\n   return createSession(user.id);\n }"
+      },
+      {
+        "path": "src/auth/magic-link.ts",
+        "st": "D",
+        "a": 0,
+        "d": 6,
+        "src": "@@ -1,6 +0,0 @@\n-// Old magic-link sign-in, replaced by passkeys.\n-export async function sendMagicLink(email: string) {\n-  const token = await createToken(email, { ttl: 15 * 60 });\n-  await mailer.send(email, \"Your sign-in link\", linkFor(token));\n-  return token;\n-}"
+      },
+      {
+        "path": "src/routes/login.tsx",
+        "st": "M",
+        "a": 32,
+        "d": 9,
+        "src": "@@ -12,9 +12,16 @@ export default function LoginPage() {\n   return (\n     <form action={signIn} className=\"login\">\n       <Field label=\"Email\" name=\"email\" type=\"email\" />\n-      <Field label=\"Password\" name=\"password\" type=\"password\" />\n-      <button type=\"submit\">Sign in</button>\n+      {mode === \"password\" && (\n+        <Field label=\"Password\" name=\"password\" type=\"password\" />\n+      )}\n+      <button type=\"submit\">\n+        {mode === \"passkey\" ? \"Continue with a passkey\" : \"Sign in\"}\n+      </button>\n+      <button type=\"button\" onClick={toggleMode} className=\"link\">\n+        {mode === \"passkey\" ? \"Use a password\" : \"Use a passkey\"}\n+      </button>\n     </form>\n   );\n }"
+      },
+      {
+        "path": "tests/auth/passkeys.test.ts",
+        "st": "A",
+        "a": 13,
+        "d": 0,
+        "src": "@@ -0,0 +1,13 @@\n+import { describe, expect, it } from \"vitest\";\n+import { verifyPasskey } from \"@/auth/passkeys\";\n+\n+describe(\"verifyPasskey\", () => {\n+  it(\"rejects an unknown key\", async () => {\n+    expect(await verifyPasskey(userWithoutKey, assertion)).toBe(false);\n+  });\n+\n+  it(\"accepts a registered key and increments the counter\", async () => {\n+    expect(await verifyPasskey(camille, assertion)).toBe(true);\n+    expect(await counterOf(camille)).toBe(8);\n+  });\n+});"
+      }
+    ],
+    "hidden": [
+      [
+        "export type SignInInput = {",
+        "  email: string;",
+        "  password: string;",
+        "  remember?: boolean;",
+        "};",
+        "",
+        "export class AuthError extends Error {",
+        "  status = 401;",
+        "}",
+        "",
+        "// Abre uma sessão de 30 dias após um login bem-sucedido."
+      ]
+    ],
+    "tree": [
+      [
+        "src/auth",
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      [
+        "src/routes",
+        [
+          3
+        ]
+      ],
+      [
+        "tests/auth",
+        [
+          4
+        ]
+      ]
+    ],
+    "me": [
+      "CL",
+      "Camille Laurent"
+    ],
+    "comment": "Isso revela que existe uma conta para este e-mail. Manter uma única mensagem para os dois casos?",
+    "reply": "Sim, vou colocar de volta “Invalid credentials” para os dois casos e adicionar um teste.",
+    "conflictFile": "src/auth/session.ts",
+    "conflictBody": "1 conflito em src/auth/session.ts: a main reduziu a duração da sessão durante sua tarefa.",
+    "ours": [
+      "const SESSION_TTL = 60 * 60 * 24 * 30;",
+      "const PASSKEY_TIMEOUT = 60_000;"
+    ],
+    "theirs": [
+      "const SESSION_TTL = 60 * 60 * 24 * 14; // 14 dias, solicitado pela segurança"
+    ],
+    "cortex": [
+      "const SESSION_TTL = 60 * 60 * 24 * 14; // 14 dias, solicitado pela segurança",
+      "const PASSKEY_TIMEOUT = 60_000;"
+    ],
+    "oursLabel": "feat/passkeys (sua branch)",
+    "baseBranch": "main"
+  },
+  "terminal": {
+    "title": "Corrigir paginação de faturas",
+    "base": [
+      [
+        "cmd",
+        "pnpm install --frozen-lockfile"
+      ],
+      [
+        "dim",
+        "Lockfile está atualizado, resolução ignorada"
+      ],
+      [
+        "dim",
+        "Packages: +1.284"
+      ],
+      [
+        "ok",
+        "Concluído em 6,8 s"
+      ],
+      [
+        "cmd",
+        "pnpm lint"
+      ],
+      [
+        "ok",
+        "0 problemas"
+      ],
+      [
+        "cmd",
+        "pnpm test billing"
+      ]
+    ],
+    "run": [
+      [
+        "ok",
+        " ✓ listInvoices › returns page 1 (12 ms)"
+      ],
+      [
+        "ok",
+        " ✓ listInvoices › returns page 2 without duplicates (9 ms)"
+      ],
+      [
+        "ok",
+        " ✓ listInvoices › stable sort on equal timestamps (7 ms)"
+      ],
+      [
+        "ok",
+        " ✓ exportCsv › escapes semicolons (4 ms)"
+      ],
+      [
+        "dim",
+        "Tests: 48 passed, 48 total · 3,42 s"
+      ],
+      [
+        "ask",
+        "rm -rf dist"
+      ],
+      [
+        "cmd",
+        "rm -rf dist"
+      ],
+      [
+        "cmd",
+        "pnpm build"
+      ],
+      [
+        "dim",
+        "vite v6.2.0 compilando para produção…"
+      ],
+      [
+        "dim",
+        "✓ 1.412 módulos transformados"
+      ],
+      [
+        "dim",
+        "dist/assets/index-4f2a.js   412.8 kB │ gzip: 128.3 kB"
+      ],
+      [
+        "ok",
+        "✓ compilado em 8,91 s"
+      ]
+    ],
+    "fail": [
+      [
+        "ok",
+        " ✓ listInvoices › returns page 1 (12 ms)"
+      ],
+      [
+        "err",
+        " ✗ listInvoices › retorna página 2 sem duplicatas (14 ms)"
+      ],
+      [
+        "dim",
+        "     esperado: F-2026-0113 · recebido: F-2026-0101"
+      ],
+      [
+        "err",
+        " ✗ listInvoices › ordenação estável em timestamps iguais (8 ms)"
+      ],
+      [
+        "dim",
+        "     as faturas F-2026-0118 e F-2026-0119 trocam de página"
+      ],
+      [
+        "ok",
+        " ✓ exportCsv › escapa ponto e vírgula (4 ms)"
+      ],
+      [
+        "dim",
+        "Testes: 2 falharam, 46 passaram, 48 no total · 3.61 s"
+      ],
+      [
+        "err",
+        "Comando saiu com código 1"
+      ]
+    ],
+    "build": "pnpm build",
+    "buildAlt": "pnpm build --outDir dist-next",
+    "user": "Camille Laurent",
+    "env": "Cloud · ubuntu-24",
+    "branch": "fix/invoice-pagination",
+    "network": "Lista de permissões",
+    "approvals": "Comandos destrutivos",
+    "failSub": "O offset ainda começa na página 0.",
+    "doneSub": "48 testes passaram · compilado em 8.9 s",
+    "repo": "cortex-web",
+    "times": [
+      "09:41:02",
+      "09:41:11",
+      "09:41:20",
+      "09:41:29",
+      "09:41:38"
+    ]
+  },
+  "env": {
+    "envs": [
+      {
+        "name": "Cloud · ubuntu-24",
+        "ic": "cpu",
+        "image": "cortex/universal:24.04",
+        "stack": "Node 22 · pnpm 9 · Python 3.12",
+        "repos": "cortex-web, cortex-api",
+        "net": "Lista de permissões",
+        "cache": "1,2 GB · há 2 h",
+        "ready": true
+      },
+      {
+        "name": "Cloud · python-3.12",
+        "ic": "cpu",
+        "image": "cortex/python:3.12-slim",
+        "stack": "Python 3.12 · uv 0.5",
+        "repos": "cortex-api",
+        "net": "Nenhuma",
+        "cache": "340 MB · ontem",
+        "ready": true
+      },
+      {
+        "name": "MacBook Pro local",
+        "ic": "terminal",
+        "image": "macOS 15 · Xcode 17",
+        "stack": "Swift 6 · Node 22",
+        "repos": "cortex-ios",
+        "net": "Completa",
+        "cache": "Desativado",
+        "ready": false
+      }
+    ],
+    "setup": "#!/usr/bin/env bash\nset -euo pipefail\ncorepack enable\npnpm install --frozen-lockfile\npnpm prisma generate\npnpm exec playwright install --with-deps chromium",
+    "boot": [
+      "Baixando imagem cortex/universal:24.04",
+      "Imagem em cache · 1,8 GB",
+      "Clonando studio-nord/cortex-web (main)",
+      "Restaurando cache do pnpm · 1,2 GB",
+      "$ corepack enable",
+      "$ pnpm install --frozen-lockfile",
+      "Pacotes: +1.284 · concluído em 11.2 s",
+      "$ pnpm prisma generate",
+      "Cliente Prisma gerado (v6.4.1)",
+      "$ pnpm exec playwright install --with-deps chromium",
+      "Chromium 131 instalado",
+      "✓Ambiente pronto · 3 segredos carregados · rede: lista de permissões (3 domínios)"
+    ],
+    "images": [
+      "cortex/universal:24.04",
+      "cortex/node:22",
+      "cortex/python:3.12-slim"
+    ],
+    "domains": [
+      "npm.studio-nord.fr",
+      "api.studio-nord.fr",
+      "files.pythonhosted.org"
+    ],
+    "secrets": [
+      [
+        "NPM_TOKEN",
+        "a91f",
+        "12 de set."
+      ],
+      [
+        "DATABASE_URL",
+        "5432",
+        "3 de ago."
+      ],
+      [
+        "MONITORING_DSN",
+        "e07b",
+        "3 de ago."
+      ]
+    ],
+    "stackHint": "Node 22, pnpm 9, Python 3.12 e Playwright já estão pré-instalados.",
+    "cacheSub": "Dependências e builds · 1,2 GB · expira após 12 h",
+    "cacheFreed": "1,2 GB liberados",
+    "current": "Cloud · ubuntu-24",
+    "repo": "cortex-web · main",
+    "netSummary": "Lista de permissões · 3 domínios",
+    "secretsSummary": "3 carregados",
+    "bootTime": "40 s",
+    "errLine": "Linha 4 do script: pnpm install",
+    "errBody": "O pnpm não conseguiu ler o registro privado: o token NPM_TOKEN parece estar expirado.",
+    "domainPlaceholder": "add.a-domain.com",
+    "bootErr": [
+      "Baixando imagem cortex/universal:24.04",
+      "Imagem em cache · 1,8 GB",
+      "Clonando studio-nord/cortex-web (main)",
+      "Restaurando cache do pnpm · 1,2 GB",
+      "$ corepack enable",
+      "$ pnpm install --frozen-lockfile",
+      "!ERR_PNPM_FETCH_403  GET https://npm.studio-nord.fr/@studio-nord%2fui: forbidden (403)",
+      "O token NPM_TOKEN expirou ou não tem acesso ao registro privado.",
+      "!O script de configuração saiu com código 1"
+    ]
+  },
+  "pr": {
+    "title": "Corrigir paginação de faturas",
+    "ref": "cortex-web #482",
+    "desc": "## Problema\nA página 2 das faturas mostrava as mesmas linhas da página 1: o offset começava em 0 enquanto a API conta as páginas a partir de 1.\n\n## Alterações\n- Offset calculado a partir da página 1 em listInvoices\n- Ordenação estável por id como segunda chave\n- 3 testes de regressão\n\n## Verificações\n- pnpm test billing: 48 aprovados",
+    "reviewers": [
+      [
+        "HM",
+        "Hugo Martin"
+      ],
+      [
+        "LD",
+        "Léa Dubois"
+      ]
+    ],
+    "more": [
+      [
+        "NR",
+        "Nina Roux"
+      ],
+      [
+        "TB",
+        "Théo Bernard"
+      ]
+    ],
+    "branch": "fix/invoice-pagination",
+    "checks": [
+      [
+        "Lint",
+        "pnpm lint",
+        "12 s"
+      ],
+      [
+        "Tipos",
+        "tsc -b",
+        "24 s"
+      ],
+      [
+        "Testes unitários",
+        "vitest · 48 testes",
+        "1 min 08 s"
+      ],
+      [
+        "Testes E2E",
+        "playwright · 3 navegadores",
+        "2 min 41 s"
+      ],
+      [
+        "Preview",
+        "implantação de preview",
+        "48 s"
+      ]
+    ],
+    "ciLog": "✗ invoices › pagination › page 2 loads (webkit)\n  Tempo limite de 30.000 ms excedido\n  tests/e2e/invoices.spec.ts:42",
+    "sha": "9c41e07",
+    "user": "Camille Laurent",
+    "files": 2,
+    "a": 31,
+    "d": 2,
+    "reviewerHint": "Sugerido pelo AGENTS.md: billing, revisado por Hugo Martin.",
+    "e2eFail": "Um teste e2e falha no WebKit. Posso corrigir.",
+    "approvedBy": "Hugo Martin"
+  },
+  "settings": {
+    "org": "Studio Nord",
+    "repos": [
+      {
+        "o": "SN",
+        "r": "studio-nord/cortex-web",
+        "s": "main · sincronizado há 2 min",
+        "on": true
+      },
+      {
+        "o": "SN",
+        "r": "studio-nord/cortex-api",
+        "s": "main · sincronizado há 1 h",
+        "on": true
+      },
+      {
+        "o": "SN",
+        "r": "studio-nord/cortex-ios",
+        "s": "develop · sincronizado há 3 h",
+        "on": true
+      },
+      {
+        "o": "AM",
+        "r": "atelier-morel/site-vitrine",
+        "s": "main · somente leitura",
+        "on": false
+      }
+    ],
+    "avail": [
+      "studio-nord/design-tokens",
+      "studio-nord/infra"
+    ],
+    "agents": "# Instruções para o Cortex · cortex-web\n\n## Verificações\n- Execute pnpm lint e pnpm test antes de cada PR.\n- Nunca edite uma migration existente em prisma/migrations: crie uma nova.\n\n## Estilo\n- TypeScript estrito, sem any.\n- Textos de interface em inglês, sentence case.\n\n## Pull requests\n- Título no tempo presente, com menos de 70 caracteres.\n- Adicione Hugo Martin como revisor para qualquer coisa relacionada a billing.",
+    "repoNames": [
+      "cortex-web",
+      "cortex-api",
+      "cortex-ios"
+    ],
+    "allow": [
+      "pnpm test",
+      "pnpm lint",
+      "git status",
+      "rm -rf dist"
+    ],
+    "fromTask": "rm -rf dist",
+    "usage": [
+      [
+        "cortex-web",
+        26,
+        268,
+        31
+      ],
+      [
+        "cortex-api",
+        9,
+        94,
+        6
+      ],
+      [
+        "cortex-ios",
+        6,
+        50,
+        3
+      ]
+    ],
+    "reset": "Reinicia na segunda-feira, 5 de outubro."
+  }
+}

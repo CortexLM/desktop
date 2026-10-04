@@ -1,0 +1,1336 @@
+E2E (Playwright + Electron, Linux)	Set up job	﻿2026-10-02T17:18:46.4924012Z Current runner version: '2.337.0'
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.4929609Z Runner name: 'blacksmith-4vcpu-ubuntu-2404-Runner-1939ca83b2'
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.4930879Z Runner group name: 'blacksmith scale sets - blacksmith-4vcpu-ubuntu-2404'
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.4931862Z Machine name: 'ip-172-31-64-123'
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.4934458Z ##[group]GITHUB_TOKEN Permissions
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.4936254Z Contents: read
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.4936850Z Metadata: read
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.4937418Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.4939030Z Secret source: Actions
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.4940054Z Cache mode: write
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.4940785Z Prepare workflow directory
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.5180906Z Prepare all required actions
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.5214386Z Getting action download info
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:46.9561834Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:47.2885836Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:47.3548962Z Download action repository 'oven-sh/setup-bun@v2' (SHA:0c5077e51419868618aeaa5fe8019c62421857d6)
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:47.6339727Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:47.7762613Z Setting BLACKSMITH_ACTIONS_RESULTS_URL to https://results-receiver.actions.githubusercontent.com/
+E2E (Playwright + Electron, Linux)	Set up job	2026-10-02T17:18:47.7815841Z Complete job name: E2E (Playwright + Electron, Linux)
+E2E (Playwright + Electron, Linux)	Set up runner	﻿2026-10-02T17:18:47.8264295Z A job started hook has been configured by the self-hosted runner administrator
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.8369042Z ##[group]Run '/setup.sh'
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.8390734Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.8391669Z env:
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.8392160Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 691
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.8392844Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1310
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.8393506Z   BLACKSMITH_CHECK_RUN_ID: 110946923716
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.8394309Z   BLACKSMITH_JOB_DISPLAY_NAME: E2E (Playwright + Electron, Linux)
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.8395254Z   GITHUB_ACTIONS_CACHE_MODE: write
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.8395840Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.8681623Z Logging daemon started (blacksmithd for logs)
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.8879548Z Results daemon started (blacksmithd for results)
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9069715Z Background adoption and SSH setup started (PID: 3441)
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9070767Z
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9071312Z ----------------------------------------
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9072694Z View this job: https://app.blacksmith.sh/CortexLM/runs/37039827971/jobs/110946923716
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9073787Z SSH Access (using your GitHub SSH key):
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9079154Z   ssh -p 64001 runner@blacksmith-4vcpu-ubuntu-2404-runner-1939ca83b2.vm.blacksmith.sh
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9083329Z
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9083735Z No GitHub SSH key? Add one at:
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9085070Z https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9086300Z
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9086677Z ----------------------------------------
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9087190Z
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9087613Z VM ID: blacksmith-4vcpu-ubuntu-2404-Runner-1939ca83b2
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9088788Z Host: production-178.63.131.201-x8664
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9089564Z Host Agent PID: 2168031
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9090262Z Host Agent Git SHA: dc54a2deb
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9090972Z Host CPU Manufacturer: AuthenticAMD
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9197485Z Blacksmith Host Generation: gen 1
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9198518Z Petname: production-noble-mite-0f30072f
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9199403Z Region: eu-central
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9200084Z Rootfs Version: ubuntu24-full-x64-012126
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9200995Z OS Version: Ubuntu 24.04.3 LTS
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9201686Z
+E2E (Playwright + Electron, Linux)	Set up runner	2026-10-02T17:18:47.9202088Z Enabling Blacksmith transparent cache
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	﻿2026-10-02T17:18:47.9454576Z ##[group]Run actions/checkout@v4
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9455476Z with:
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9455990Z   repository: CortexLM/desktop
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9461446Z   token: ***
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9462615Z   ssh-strict: true
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9463150Z   ssh-user: git
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9463687Z   persist-credentials: true
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9464261Z   clean: true
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9464790Z   sparse-checkout-cone-mode: true
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9465501Z   fetch-depth: 1
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9466355Z   fetch-tags: false
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9466934Z   show-progress: true
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9467473Z   lfs: false
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9467961Z   submodules: false
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9468492Z   set-safe-directory: true
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9469100Z   allow-unsafe-pr-checkout: false
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9469708Z env:
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9470207Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 691
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9470896Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1310
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9471574Z   GITHUB_REPO_NAME: CortexLM/desktop
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:47.9472265Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1235838Z Syncing repository: CortexLM/desktop
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1237602Z ##[group]Getting Git version info
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1238466Z Working directory is '/home/runner/_work/desktop/desktop'
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1239644Z [command]/usr/local/bin/git version
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1432345Z git version 2.52.0
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1446135Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1455803Z Temporarily overriding HOME='/home/runner/_work/_temp/468f96de-02d0-4c55-9f89-ad570dccf163' before making global git config changes
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1457950Z Adding repository directory to the temporary git global config as a safe directory
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1459665Z [command]/usr/local/bin/git config --global --add safe.directory /home/runner/_work/desktop/desktop
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1505404Z Deleting the contents of '/home/runner/_work/desktop/desktop'
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1508320Z ##[group]Initializing the repository
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1511843Z [command]/usr/local/bin/git init /home/runner/_work/desktop/desktop
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1573162Z hint: Using 'master' as the name for the initial branch. This default branch name
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1575192Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1576821Z hint: to use in all of your new repositories, which will suppress this warning,
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1577761Z hint: call:
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1578256Z hint:
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1578871Z hint: 	git config --global init.defaultBranch <name>
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1579621Z hint:
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1580338Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1581644Z hint: 'development'. The just-created branch can be renamed via this command:
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1582724Z hint:
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1583221Z hint: 	git branch -m <name>
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1583781Z hint:
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1584532Z hint: Disable this message with "git config set advice.defaultBranchName false"
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1585758Z Initialized empty Git repository in /home/runner/_work/desktop/desktop/.git/
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1587867Z [command]/usr/local/bin/git remote add origin https://github.com/CortexLM/desktop
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1618335Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1619797Z ##[group]Disabling automatic garbage collection
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1621306Z [command]/usr/local/bin/git config --local gc.auto 0
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1660713Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1661596Z ##[group]Setting up auth
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1665964Z [command]/usr/local/bin/git config --local --name-only --get-regexp core\.sshCommand
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1693033Z [command]/usr/local/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1892972Z [command]/usr/local/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.1932244Z [command]/usr/local/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.2072270Z [command]/usr/local/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.2100932Z [command]/usr/local/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.2240365Z [command]/usr/local/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.2273520Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.2274590Z ##[group]Fetching the repository
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:18:48.2279410Z [command]/usr/local/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +69c83d78ed7be9243108c6fbda6ecfda5bef09b2:refs/remotes/pull/36/merge
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:00.8499074Z From https://github.com/CortexLM/desktop
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:00.8500041Z  * [new ref]         69c83d78ed7be9243108c6fbda6ecfda5bef09b2 -> pull/36/merge
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:00.8544489Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:00.8544831Z ##[group]Determining the checkout info
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:00.8545688Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:00.8550120Z [command]/usr/local/bin/git sparse-checkout disable
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:00.8581510Z [command]/usr/local/bin/git config --local --unset-all extensions.worktreeConfig
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:00.8601685Z ##[group]Checking out the ref
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:00.8604214Z [command]/usr/local/bin/git checkout --progress --force refs/remotes/pull/36/merge
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5808093Z Note: switching to 'refs/remotes/pull/36/merge'.
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5808802Z
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5809581Z You are in 'detached HEAD' state. You can look around, make experimental
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5810089Z changes and commit them, and you can discard any commits you make in this
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5810554Z state without impacting any branches by switching back to a branch.
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5810879Z
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5811146Z If you want to create a new branch to retain commits you create, you may
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5811584Z do so (now or later) by using -c with the switch command. Example:
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5811878Z
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5811996Z   git switch -c <new-branch-name>
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5812178Z
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5812299Z Or undo this operation with:
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5812456Z
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5812543Z   git switch -
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5812697Z
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5812903Z Turn off this advice by setting config variable advice.detachedHead to false
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5813188Z
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5813496Z HEAD is now at 69c83d7 Merge cc758a69fe9349d17f6a4bf7accd978421035519 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5837361Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5873821Z [command]/usr/local/bin/git log -1 --format=%H
+E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-02T17:19:01.5893636Z 69c83d78ed7be9243108c6fbda6ecfda5bef09b2
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	﻿2026-10-02T17:19:01.6369272Z ##[group]Run actions/setup-node@v4
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.6369531Z with:
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.6369702Z   node-version: 22
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.6369850Z   always-auth: false
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.6369997Z   check-latest: false
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.6371521Z   token: ***
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.6371654Z env:
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.6371821Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 691
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.6372019Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1310
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.6372199Z   GITHUB_REPO_NAME: CortexLM/desktop
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.6372366Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.7491208Z Found in cache @ /opt/hostedtoolcache/node/22.22.0/x64
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.7494727Z (node:3766) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.7495250Z (Use `node --trace-deprecation ...` to show where the warning was created)
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:01.7496042Z ##[group]Environment details
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:02.0208901Z node: v22.22.0
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:02.0209175Z npm: 10.9.4
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:02.0209425Z yarn: 1.22.22
+E2E (Playwright + Electron, Linux)	Run actions/setup-node@v4	2026-10-02T17:19:02.0210076Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	﻿2026-10-02T17:19:02.0309353Z ##[group]Run oven-sh/setup-bun@v2
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.0327288Z with:
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.0327464Z   bun-version: 1.4.2
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.0327696Z   no-cache: false
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.0329608Z   token: ***
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.0329753Z env:
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.0329906Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 691
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.0330098Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1310
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.0330280Z   GITHUB_REPO_NAME: CortexLM/desktop
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.0330457Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.1996904Z Cache hit for: bun-gmoqYqdUbaYsI0KujeXt7Zg/p0I=
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.6118495Z Received 35684135 of 35684135 (100.0%), 87.9 MBs/sec
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.6118950Z Cache Size: ~34 MB (35684135 B)
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.6139288Z [command]/usr/bin/tar -xf /home/runner/_work/_temp/a6b90506-97fb-483b-8ae3-e17c655d8c60/cache.tzst -P -C /home/runner/_work/desktop/desktop --use-compress-program unzstd
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.7409984Z Cache restored successfully
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.7434718Z [command]/home/runner/.bun/bin/bun --revision
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.7459606Z 1.4.2+744846f84
+E2E (Playwright + Electron, Linux)	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.7462360Z Using a cached version of Bun: 1.4.2+744846f84
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	﻿2026-10-02T17:19:02.7541634Z ##[group]Run bun install --frozen-lockfile && node node_modules/electron/install.js
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.7542059Z bun install --frozen-lockfile && node node_modules/electron/install.js
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.7564754Z shell: /usr/bin/bash -e {0}
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.7564942Z env:
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.7565091Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 691
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.7565284Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1310
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.7565462Z   GITHUB_REPO_NAME: CortexLM/desktop
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.7565634Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.7606837Z bun install v1.4.2 (744846f84)
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3177870Z
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3199859Z + @ai-sdk/anthropic@4.0.71
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3200390Z + @ai-sdk/google@4.0.87
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3201266Z + @ai-sdk/openai@4.0.83
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3202164Z + @ai-sdk/openai-compatible@3.0.62
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3202406Z + @babel/parser@7.29.9
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3202572Z + @babel/traverse@8.0.6
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3202734Z + @base-ui/react@1.8.0
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3202952Z + @eslint/js@10.0.1
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3203147Z + @modelcontextprotocol/sdk@1.31.0
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3203333Z + @playwright/test@1.63.0
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3203503Z + @types/node@26.6.4
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3203666Z + @types/react@19.3.0
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3203819Z + @types/react-dom@19.3.0
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3203988Z + @vitejs/plugin-react@6.1.1
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3204205Z + ai@7.0.127
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3204339Z + electron@44.5.1
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3204500Z + electron-builder@26.15.3
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3204657Z + esbuild@0.28.2
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3204794Z + eslint@10.11.0
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3204974Z + eslint-plugin-react-hooks@7.1.1
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3205146Z + hono@4.13.12
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3205351Z + pixelmatch@7.2.0
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3205509Z + playwright@1.63.0
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3205653Z + pngjs@7.0.0
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3205795Z + react@19.3.0
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3205936Z + react-dom@19.3.0
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3206078Z + typescript@5.9.3
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3206231Z + typescript-eslint@8.71.0
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3206389Z + vite@8.3.2
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3206529Z + vitest@5.0.3
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3206660Z + zod@4.6.5
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3206740Z
+E2E (Playwright + Electron, Linux)	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.3206836Z 526 packages installed [557.00ms]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	﻿2026-10-02T17:19:19.8610702Z ##[group]Run sudo apt-get update && sudo apt-get install -y xvfb
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:19.8611256Z sudo apt-get update && sudo apt-get install -y xvfb
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:19.8634938Z shell: /usr/bin/bash -e {0}
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:19.8635113Z env:
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:19.8635263Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 691
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:19.8635447Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1310
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:19.8635620Z   GITHUB_REPO_NAME: CortexLM/desktop
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:19.8635780Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:19.9515760Z Get:1 file:/etc/apt/blacksmith-ubuntu-mirrors.txt Mirrorlist [187 B]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:19.9792016Z Hit:2 http://mirror.hetzner.com/ubuntu/packages noble InRelease
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:19.9831570Z Get:3 http://mirror.hetzner.com/ubuntu/packages noble-updates InRelease [126 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:19.9832094Z Get:4 http://mirror.hetzner.com/ubuntu/packages noble-backports InRelease [126 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:19.9881329Z Get:5 http://mirror.hetzner.com/ubuntu/packages noble-security InRelease [126 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.0397582Z Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.0475813Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.0626331Z Get:8 http://mirror.hetzner.com/ubuntu/packages noble-updates/main amd64 Packages [1364 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.0774937Z Get:9 http://mirror.hetzner.com/ubuntu/packages noble-updates/main Translation-en [304 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.0807139Z Get:10 http://mirror.hetzner.com/ubuntu/packages noble-updates/main amd64 Components [180 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.0819892Z Get:11 http://mirror.hetzner.com/ubuntu/packages noble-updates/universe amd64 Packages [1699 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.0920257Z Get:12 http://mirror.hetzner.com/ubuntu/packages noble-updates/universe amd64 Components [388 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.1003679Z Get:13 http://mirror.hetzner.com/ubuntu/packages noble-updates/restricted amd64 Packages [1720 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.1103142Z Get:14 http://mirror.hetzner.com/ubuntu/packages noble-updates/restricted Translation-en [394 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.1127190Z Get:15 http://mirror.hetzner.com/ubuntu/packages noble-updates/multiverse amd64 Components [940 B]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.1135943Z Get:16 http://mirror.hetzner.com/ubuntu/packages noble-backports/main amd64 Components [5764 B]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.1143376Z Get:17 http://mirror.hetzner.com/ubuntu/packages noble-backports/universe amd64 Components [12.6 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.1903532Z Get:18 http://mirror.hetzner.com/ubuntu/packages noble-security/main amd64 Packages [1069 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.1977401Z Get:19 http://mirror.hetzner.com/ubuntu/packages noble-security/main Translation-en [221 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.1994775Z Get:20 http://mirror.hetzner.com/ubuntu/packages noble-security/main amd64 Components [46.3 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.2006556Z Get:21 http://mirror.hetzner.com/ubuntu/packages noble-security/universe amd64 Packages [1216 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.2072981Z Get:22 http://mirror.hetzner.com/ubuntu/packages noble-security/universe amd64 Components [76.3 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.2085244Z Get:23 http://mirror.hetzner.com/ubuntu/packages noble-security/restricted amd64 Packages [1566 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.2172575Z Get:24 http://mirror.hetzner.com/ubuntu/packages noble-security/restricted Translation-en [361 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.2173374Z Get:25 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [458 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.2485519Z Get:26 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [511 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:20.2625172Z Get:27 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.6 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:25.3646224Z Fetched 12.0 MB in 1s (11.8 MB/s)
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:25.9052885Z Reading package lists...
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:25.9324601Z Reading package lists...
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.0772242Z Building dependency tree...
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.0776721Z Reading state information...
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.1740612Z The following additional packages will be installed:
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.1740900Z   xserver-common
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.1743740Z Recommended packages:
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.1743938Z   xfonts-base
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.1846150Z The following packages will be upgraded:
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.1846386Z   xserver-common xvfb
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.1949242Z 2 upgraded, 0 newly installed, 0 to remove and 392 not upgraded.
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.1949757Z Need to get 912 kB of archives.
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.1950314Z After this operation, 0 B of additional disk space will be used.
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.1950878Z Get:1 file:/etc/apt/blacksmith-ubuntu-mirrors.txt Mirrorlist [187 B]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.2016722Z Get:2 http://mirror.hetzner.com/ubuntu/packages noble-updates/main amd64 xserver-common all 2:21.1.12-1ubuntu1.8 [34.8 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.2031423Z Get:3 http://mirror.hetzner.com/ubuntu/packages noble-updates/universe amd64 xvfb amd64 2:21.1.12-1ubuntu1.8 [877 kB]
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.3786836Z Fetched 912 kB in 0s (49.2 MB/s)
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.3996854Z (Reading database ...
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.3997260Z (Reading database ... 5%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.3997569Z (Reading database ... 10%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.3998191Z (Reading database ... 15%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.3998479Z (Reading database ... 20%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.3998727Z (Reading database ... 25%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.3998952Z (Reading database ... 30%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.3999173Z (Reading database ... 35%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.3999406Z (Reading database ... 40%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.3999556Z (Reading database ... 45%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.3999716Z (Reading database ... 50%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.4043885Z (Reading database ... 55%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.4167841Z (Reading database ... 60%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.4491912Z (Reading database ... 65%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.4688145Z (Reading database ... 70%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.4774036Z (Reading database ... 75%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.4940818Z (Reading database ... 80%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5045620Z (Reading database ... 85%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5148606Z (Reading database ... 90%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5266536Z (Reading database ... 95%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5266913Z (Reading database ... 100%
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5267384Z (Reading database ... 222357 files and directories currently installed.)
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5304896Z Preparing to unpack .../xserver-common_2%3a21.1.12-1ubuntu1.8_all.deb ...
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5339312Z Unpacking xserver-common (2:21.1.12-1ubuntu1.8) over (2:21.1.12-1ubuntu1.5) ...
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5532694Z Preparing to unpack .../xvfb_2%3a21.1.12-1ubuntu1.8_amd64.deb ...
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5542135Z Unpacking xvfb (2:21.1.12-1ubuntu1.8) over (2:21.1.12-1ubuntu1.5) ...
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5792372Z Setting up xserver-common (2:21.1.12-1ubuntu1.8) ...
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5802111Z Setting up xvfb (2:21.1.12-1ubuntu1.8) ...
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5813827Z Processing triggers for man-db (2.12.0-4build2) ...
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.5822608Z Not building database; man-db/auto-update is not 'true'.
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.8671329Z
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.8671835Z No services need to be restarted.
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.8672078Z
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.8672210Z No containers need to be restarted.
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.8672400Z
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.8672579Z No user sessions are running outdated binaries.
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.8672774Z
+E2E (Playwright + Electron, Linux)	Run sudo apt-get update && sudo apt-get install -y xvfb	2026-10-02T17:19:26.8672977Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+E2E (Playwright + Electron, Linux)	Run bun run build	﻿2026-10-02T17:19:26.8910011Z ##[group]Run bun run build
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:26.8910317Z bun run build
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:26.8933727Z shell: /usr/bin/bash -e {0}
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:26.8933900Z env:
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:26.8934061Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 691
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:26.8934289Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1310
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:26.8934470Z   GITHUB_REPO_NAME: CortexLM/desktop
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:26.8934717Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:26.8975534Z $ bun run build:app && bun run build:desktop
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:26.8991376Z $ cd packages/app && vite build
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.0279408Z vite v8.3.2 building client environment for production...
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.0340703Z transforming...
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.2175549Z ✓ 863 modules transformed.
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.3603986Z rendering chunks...
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5317252Z computing gzip size...
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5573633Z dist/index.html                     0.66 kB │ gzip:   0.38 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5574008Z dist/assets/index-DnnbnJQL.css    204.63 kB │ gzip:  36.08 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5574602Z dist/assets/shell-C-itNRLu.js       0.93 kB │ gzip:   0.49 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5574906Z dist/assets/shell-BCHMvIiL.js       0.96 kB │ gzip:   0.60 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5575295Z dist/assets/shell-BuotxJKs.js       0.99 kB │ gzip:   0.55 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5575615Z dist/assets/shell-Yhf1FA3F.js       0.99 kB │ gzip:   0.61 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5576363Z dist/assets/shell-CmOyaB3c.js       1.02 kB │ gzip:   0.55 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5576659Z dist/assets/shell-CYBsECV8.js       1.03 kB │ gzip:   0.56 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5576973Z dist/assets/shell-CwZdhwwk.js       1.04 kB │ gzip:   0.55 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5577277Z dist/assets/shell-DBev-A7t.js       1.08 kB │ gzip:   0.65 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5577577Z dist/assets/bots-Bm1-6BNE.js        4.91 kB │ gzip:   2.54 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5577874Z dist/assets/bots-G-GRUblJ.js        4.91 kB │ gzip:   2.12 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5578174Z dist/assets/bots-Dhnxap2k.js        5.24 kB │ gzip:   2.28 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5578478Z dist/assets/bots-C_sEU92Q.js        5.28 kB │ gzip:   2.36 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5578765Z dist/assets/bots-DEyUUREg.js        5.30 kB │ gzip:   2.29 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5579082Z dist/assets/bots-Vx_jdXt9.js        5.31 kB │ gzip:   2.52 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5579375Z dist/assets/bots-XhGdPyli.js        5.33 kB │ gzip:   2.29 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5579669Z dist/assets/bots-BdqX5oXD.js        5.75 kB │ gzip:   2.69 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5579969Z dist/assets/system-Dgm-zsfL.js      8.53 kB │ gzip:   3.50 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5580263Z dist/assets/system-6GOii8V2.js      8.58 kB │ gzip:   4.22 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5580560Z dist/assets/system-D-v_P-IN.js      9.09 kB │ gzip:   3.86 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5580853Z dist/assets/system-D9_n4Goj.js      9.12 kB │ gzip:   3.74 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5581142Z dist/assets/system-CHsH64BV.js      9.21 kB │ gzip:   4.18 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5581442Z dist/assets/system-D0-Zm1I0.js      9.35 kB │ gzip:   3.81 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5581744Z dist/assets/system-CUSSAkIm.js      9.36 kB │ gzip:   3.82 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5582040Z dist/assets/system-CAyEVNFh.js      9.95 kB │ gzip:   4.39 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5582334Z dist/assets/work-H1mXT1T-.js       13.41 kB │ gzip:   5.15 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5582622Z dist/assets/work-BFR3EcZv.js       13.47 kB │ gzip:   6.04 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5582922Z dist/assets/work-CXx4q0-W.js       14.41 kB │ gzip:   5.50 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5583212Z dist/assets/work-C3sVn7Tw.js       14.69 kB │ gzip:   6.07 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5583504Z dist/assets/work-DE4UuE7v.js       14.70 kB │ gzip:   5.58 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5583793Z dist/assets/work-DM-bn9rL.js       14.72 kB │ gzip:   5.62 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5584078Z dist/assets/work-D7wz_BjB.js       14.76 kB │ gzip:   5.78 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5584373Z dist/assets/work-EocTYN0P.js       15.94 kB │ gzip:   6.28 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5584662Z dist/assets/code-D796Wmca.js       16.38 kB │ gzip:   6.34 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5584960Z dist/assets/code-Dj63_RNm.js       16.92 kB │ gzip:   7.40 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5585620Z dist/assets/code-cF_R13w2.js       17.11 kB │ gzip:   6.72 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5585911Z dist/assets/code-1vU-fKss.js       17.25 kB │ gzip:   6.78 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5586211Z dist/assets/code-D0jaYtvL.js       17.29 kB │ gzip:   6.88 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5586511Z dist/assets/code-l1ImvW5S.js       17.35 kB │ gzip:   6.71 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5586887Z dist/assets/code-D17_EVJa.js       17.71 kB │ gzip:   7.47 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5587179Z dist/assets/chat-CvBJxFqq.js       17.90 kB │ gzip:   8.91 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5587473Z dist/assets/chat-CpUWRzSs.js       18.59 kB │ gzip:   7.49 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5587777Z dist/assets/code-D0QB2Ug8.js       18.70 kB │ gzip:   7.62 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5588065Z dist/assets/chat-C_J9W5h_.js       20.80 kB │ gzip:   8.12 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5588361Z dist/assets/chat-CGHYpLbL.js       20.84 kB │ gzip:   8.54 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5588701Z dist/assets/chat-DPP7jha6.js       21.01 kB │ gzip:   8.24 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5589006Z dist/assets/files-ChUKgMNm.js      21.02 kB │ gzip:  10.13 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5589305Z dist/assets/chat-DeCdZ0A1.js       21.07 kB │ gzip:   8.14 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5589594Z dist/assets/chat-Csrcd_Np.js       21.26 kB │ gzip:   8.86 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5589896Z dist/assets/files-PuBVWCGV.js      21.43 kB │ gzip:   8.58 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5590215Z dist/assets/chat-BGpNcO0B.js       22.08 kB │ gzip:   9.39 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5590539Z dist/assets/files-Cg4Cbij3.js      23.33 kB │ gzip:   9.59 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5590834Z dist/assets/files-8yYH43vb.js      23.62 kB │ gzip:   9.30 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5591124Z dist/assets/files-DIk1qP8R.js      23.72 kB │ gzip:   9.27 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5591593Z dist/assets/files-C3wBKb8I.js      23.85 kB │ gzip:   9.31 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5592014Z dist/assets/files-B0LnTjdG.js      24.10 kB │ gzip:  10.17 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5592409Z dist/assets/files-k2Mgqtmt.js      25.31 kB │ gzip:  10.63 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5592835Z dist/assets/index-OHtevAVL.js   2,421.55 kB │ gzip: 718.10 kB
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5593040Z
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5681580Z ✓ built in 539ms
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.5816700Z $ node packages/desktop/build.mjs
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.7694604Z
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.7695604Z   packages/desktop/dist/main.cjs      3.2mb ⚠️
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.7695934Z   packages/desktop/dist/main.cjs.map  7.2mb
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.7696110Z
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.7696193Z ⚡ Done in 158ms
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.7713726Z
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.7713969Z   packages/desktop/dist/preload.cjs      1.9kb
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.7714209Z   packages/desktop/dist/preload.cjs.map  2.3kb
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.7714337Z
+E2E (Playwright + Electron, Linux)	Run bun run build	2026-10-02T17:19:27.7714557Z ⚡ Done in 1ms
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	﻿2026-10-02T17:19:27.7804703Z ##[group]Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:27.7805271Z xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:27.7830477Z shell: /usr/bin/bash -e {0}
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:27.7830731Z env:
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:27.7830946Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 691
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:27.7831237Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1310
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:27.7831518Z   GITHUB_REPO_NAME: CortexLM/desktop
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:27.7831780Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:27.9492045Z $ playwright test
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:30.1665954Z
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:30.1666441Z Running 50 tests using 4 workers
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:30.1666640Z
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:32.8984733Z   ✓   1 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 light (2.1s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:32.9150495Z   ✓   3 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 dark (2.1s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:34.1402665Z   ✓   5 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 light (1.2s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:35.1762157Z   ✓   7 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 dark (1.0s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:39.1974266Z   ✓   2 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 dark (8.4s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:39.6163323Z   ✓   6 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 light (6.7s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:39.7846642Z   ✓   4 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 light (8.9s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:40.0397380Z   ✓   9 tests/e2e/bot-safety.spec.ts:194:1 › Bot onboarding does not navigate after leaving preview (827ms)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:40.5425249Z   ✓  11 tests/e2e/chrome.spec.ts:8:3 › native window chrome and en menu (748ms)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:40.8048302Z   ✓  12 tests/e2e/chrome.spec.ts:8:3 › native window chrome and fr menu (750ms)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:41.2188456Z   ✓  10 tests/e2e/bot-safety.spec.ts:211:1 › Preview Bot locale reset and live-mode boundary (1.6s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:41.4270906Z   ✓  13 tests/e2e/chrome.spec.ts:42:1 › reduced-motion startup inherits themed text immediately (880ms)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:41.6435856Z   ✓   8 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 dark (6.5s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:44.6648753Z   ✓  16 tests/e2e/components.spec.ts:63:40 › Components catalog: keyboard, clipboard and local demos at minimum window (light) (3.2s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:44.7284241Z   ✓  17 tests/e2e/components.spec.ts:63:40 › Components catalog: keyboard, clipboard and local demos at minimum window (dark) (3.1s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:47.0530334Z   ✓  18 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — light (2.4s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:49.4714631Z   ✓  20 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — dark (2.4s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:51.0507338Z   ✓  19 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — light (6.3s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:52.1153590Z   ✓  22 tests/e2e/engine.spec.ts:9:1 › models.dev catalog is listed and searchable through the bridge (1.0s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:54.0162121Z   ✓  23 tests/e2e/engine.spec.ts:23:1 › streamed exchange with a thinking- and image-capable model (1.9s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:55.1955670Z   ✓  24 tests/e2e/engine.spec.ts:75:1 › an image is refused for a model without image input (1.2s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:19:55.7723737Z   ✓  21 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — dark (6.3s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:01.2711951Z   ✓  26 tests/e2e/frozen-composer.spec.ts:147:3 › live composer capsule geometry, locale labels and attachment safety — light (5.5s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:01.5111054Z   ✓  25 tests/e2e/frozen-composer.spec.ts:24:3 › frozen preview actions and same-URL Chat/Code history — light (6.3s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:07.4738951Z   ✓  28 tests/e2e/frozen-composer.spec.ts:147:3 › live composer capsule geometry, locale labels and attachment safety — dark (5.9s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:08.0510462Z   ✓  27 tests/e2e/frozen-composer.spec.ts:24:3 › frozen preview actions and same-URL Chat/Code history — dark (6.8s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:19.2639381Z   ✓  29 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 960 light (11.8s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:19.9971822Z   ✓  30 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 960 dark (11.9s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:31.5139879Z   ✓  31 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 1440 light (12.2s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:32.7533183Z   ✓  32 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 1440 dark (12.7s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:35.6182166Z   ✓  33 tests/e2e/keyboard.spec.ts:4:1 › hidden navigation cannot receive focus; theme radios and Undo work from the keyboard (4.1s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:39.4530689Z   ✓  35 tests/e2e/navigation.spec.ts:4:1 › Back cancels a pending tab choice even when its label matches an older request (3.8s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:41.9211730Z   ✓  34 tests/e2e/keyboard.spec.ts:130:1 › frozen shell motion settles, latest tab wins and hidden menus close (9.2s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:42.5873227Z   ✓  36 tests/e2e/navigation.spec.ts:46:1 › a newer keyboard tab choice survives the previous route commit (3.1s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:43.2330574Z   ✓  37 tests/e2e/navigation.spec.ts:79:1 › a pending route commit preserves the outgoing Work tree and restores Bot activity (1.3s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:46.1484474Z   ✓  39 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 960 light (2.9s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:47.7781065Z   ✓  14 tests/e2e/components.spec.ts:4:40 › Components catalog: families, variants and three-preview ceiling (light) (1.1m)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:49.4136722Z   ✓  40 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 960 dark (3.3s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:50.1498177Z   ✓  15 tests/e2e/components.spec.ts:4:40 › Components catalog: families, variants and three-preview ceiling (dark) (1.1m)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:50.6193515Z   ✓  41 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 1024 light (2.8s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:52.4253375Z   ✓  42 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 1024 dark (3.0s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:52.7934189Z   ✓  43 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 1440 light (2.6s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:53.2839454Z   ✓  44 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 1440 dark (2.7s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:53.5084270Z   ✓  45 tests/e2e/responsive.spec.ts:76:1 › preview navigation loads fixtures and catches startup URL changes (1.1s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:55.7557160Z   ✓  48 tests/e2e/ui-flows.spec.ts:19:1 › a provider key saved in Settings shows only its last four characters (2.2s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:20:56.4245765Z   ✓  38 tests/e2e/navigation.spec.ts:118:1 › anchors, native menus and history preserve routes, variants and chat identities (13.8s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:21:00.0210526Z   ✓  46 tests/e2e/responsive.spec.ts:108:1 › review, diff, canvas and computer controls remain reachable in small desktop windows (7.2s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:21:00.6521884Z   ✓  49 tests/e2e/ui-flows.spec.ts:26:1 › streamed exchange with thinking and an image, driven from the composer (4.9s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:21:06.8254667Z   ✓  50 tests/e2e/ui-flows.spec.ts:64:1 › rejected sends keep the draft and attachments; retry resends the image (10.4s)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:22:39.1299559Z rendered 426 screen states
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:22:39.1338578Z   ✓  47 tests/e2e/screens.spec.ts:10:1 › every design screen and state renders (1.8m)
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:22:39.1457031Z
+E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-02T17:22:39.1459505Z   50 passed (3.2m)
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	﻿2026-10-02T17:22:39.3162814Z ##[group]Run actions/upload-artifact@v4
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.3163066Z with:
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.3163278Z   name: e2e-linux
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.3163516Z   path: test-results/
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	playwright-report/
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.3163763Z   if-no-files-found: warn
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.3164006Z   compression-level: 6
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.3164234Z   overwrite: false
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.3164452Z   include-hidden-files: false
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.3164661Z env:
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.3164852Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 691
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.3165085Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1310
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.3165330Z   GITHUB_REPO_NAME: CortexLM/desktop
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.3165580Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.4234263Z (node:9195) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.4234842Z (Use `node --trace-deprecation ...` to show where the warning was created)
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.4378892Z Multiple search paths detected. Calculating the least common ancestor of all paths
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.4380785Z The least common ancestor is /home/runner/_work/desktop/desktop. This will be the root directory of the artifact
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.4381218Z With the provided path, there will be 134 files uploaded
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.4383230Z Artifact name is valid!
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.4383622Z Root directory input is valid!
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:39.8839590Z Beginning upload of artifact content to blob storage
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:40.1221460Z (node:9195) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:41.3904706Z Uploaded bytes 8388608
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:41.6509273Z Uploaded bytes 12717648
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:41.7534126Z Finished uploading artifact content to blob storage!
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:41.7534769Z SHA256 digest of uploaded artifact zip is 099f5e0283bd241171c57728d78f7776e21ec1ef5ad7d66b7327d1994866eb15
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:41.7535252Z Finalizing artifact upload
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:42.2787058Z Artifact e2e-linux.zip successfully finalized. Artifact ID 11242071277
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:42.2787848Z Artifact e2e-linux has been successfully uploaded! Final size is 12717648 bytes. Artifact ID is 11242071277
+E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-02T17:22:42.2793625Z Artifact download URL: https://github.com/CortexLM/desktop/actions/runs/37039827971/artifacts/11242071277
+E2E (Playwright + Electron, Linux)	Post Run oven-sh/setup-bun@v2	﻿2026-10-02T17:22:42.2927166Z Post job cleanup.
+E2E (Playwright + Electron, Linux)	Post Run actions/setup-node@v4	﻿2026-10-02T17:22:42.3888940Z Post job cleanup.
+E2E (Playwright + Electron, Linux)	Post Run actions/setup-node@v4	2026-10-02T17:22:42.4610319Z (node:9216) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+E2E (Playwright + Electron, Linux)	Post Run actions/setup-node@v4	2026-10-02T17:22:42.4610932Z (Use `node --trace-deprecation ...` to show where the warning was created)
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	﻿2026-10-02T17:22:42.4707199Z Post job cleanup.
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5191413Z [command]/usr/local/bin/git version
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5233608Z git version 2.52.0
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5252870Z Temporarily overriding HOME='/home/runner/_work/_temp/ee06efa6-ac2e-4158-913c-787c959de67b' before making global git config changes
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5254327Z Adding repository directory to the temporary git global config as a safe directory
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5256475Z [command]/usr/local/bin/git config --global --add safe.directory /home/runner/_work/desktop/desktop
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5290404Z [command]/usr/local/bin/git config --local --name-only --get-regexp core\.sshCommand
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5341642Z [command]/usr/local/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5675406Z [command]/usr/local/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5694178Z http.https://github.com/.extraheader
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5699983Z [command]/usr/local/bin/git config --local --unset-all http.https://github.com/.extraheader
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5723909Z [command]/usr/local/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5836353Z [command]/usr/local/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+E2E (Playwright + Electron, Linux)	Post Run actions/checkout@v4	2026-10-02T17:22:42.5859071Z [command]/usr/local/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+E2E (Playwright + Electron, Linux)	Complete runner	﻿2026-10-02T17:22:42.6015029Z A job completed hook has been configured by the self-hosted runner administrator
+E2E (Playwright + Electron, Linux)	Complete runner	2026-10-02T17:22:42.6047207Z ##[group]Run '/job_completed.sh'
+E2E (Playwright + Electron, Linux)	Complete runner	2026-10-02T17:22:42.6060203Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+E2E (Playwright + Electron, Linux)	Complete runner	2026-10-02T17:22:42.6060440Z env:
+E2E (Playwright + Electron, Linux)	Complete runner	2026-10-02T17:22:42.6060601Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 691
+E2E (Playwright + Electron, Linux)	Complete runner	2026-10-02T17:22:42.6060799Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1310
+E2E (Playwright + Electron, Linux)	Complete runner	2026-10-02T17:22:42.6060983Z   BLACKSMITH_CHECK_RUN_ID: 110946923716
+E2E (Playwright + Electron, Linux)	Complete runner	2026-10-02T17:22:42.6061210Z   BLACKSMITH_JOB_DISPLAY_NAME: E2E (Playwright + Electron, Linux)
+E2E (Playwright + Electron, Linux)	Complete runner	2026-10-02T17:22:42.6061447Z   GITHUB_ACTIONS_CACHE_MODE: write
+E2E (Playwright + Electron, Linux)	Complete runner	2026-10-02T17:22:42.6061610Z ##[endgroup]
+E2E (Playwright + Electron, Linux)	Complete runner	2026-10-02T17:22:42.6153577Z Docker container cache not activated, skipping hash computation.
+E2E (Playwright + Electron, Linux)	Complete runner	2026-10-02T17:22:42.6387588Z No active SSH sessions detected. Proceeding with shutdown immediately.
+E2E (Playwright + Electron, Linux)	Complete job	﻿2026-10-02T17:22:42.6429055Z Cleaning up orphan processes
+E2E (Playwright + Electron, Linux)	Complete job	2026-10-02T17:22:42.6753630Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+macOS build, package, launch	Set up job	﻿2026-10-02T17:18:55.5193950Z Current runner version: '2.337.0'
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.5202130Z Runner name: 'blacksmith-6vcpu-macos-26-Runner-b85e5c5b3a'
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.5202750Z Runner group name: 'blacksmith scale sets - blacksmith-6vcpu-macos-26'
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.5203470Z Machine name: 'Mac-1789723743894'
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.5205010Z ##[group]GITHUB_TOKEN Permissions
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.5206250Z Contents: read
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.5206580Z Metadata: read
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.5206840Z ##[endgroup]
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.5208210Z Secret source: Actions
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.5208630Z Cache mode: write
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.5208960Z Prepare workflow directory
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.5579820Z Prepare all required actions
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.5615400Z Getting action download info
+macOS build, package, launch	Set up job	2026-10-02T17:18:55.8583150Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+macOS build, package, launch	Set up job	2026-10-02T17:18:56.2988740Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+macOS build, package, launch	Set up job	2026-10-02T17:18:56.3951270Z Download action repository 'oven-sh/setup-bun@v2' (SHA:0c5077e51419868618aeaa5fe8019c62421857d6)
+macOS build, package, launch	Set up job	2026-10-02T17:18:56.7100170Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+macOS build, package, launch	Set up job	2026-10-02T17:18:56.9003970Z Setting BLACKSMITH_ACTIONS_RESULTS_URL to https://results-receiver.actions.githubusercontent.com/
+macOS build, package, launch	Set up job	2026-10-02T17:18:56.9042000Z Complete job name: macOS build, package, launch
+macOS build, package, launch	Set up runner	﻿2026-10-02T17:18:56.9441780Z A job started hook has been configured by the self-hosted runner administrator
+macOS build, package, launch	Set up runner	2026-10-02T17:18:56.9575590Z ##[group]Run '/opt/blacksmith/setup_mac.sh'
+macOS build, package, launch	Set up runner	2026-10-02T17:18:56.9615630Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+macOS build, package, launch	Set up runner	2026-10-02T17:18:56.9616450Z env:
+macOS build, package, launch	Set up runner	2026-10-02T17:18:56.9616960Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	Set up runner	2026-10-02T17:18:56.9617550Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	Set up runner	2026-10-02T17:18:56.9618150Z   BLACKSMITH_CHECK_RUN_ID: 110946923997
+macOS build, package, launch	Set up runner	2026-10-02T17:18:56.9618850Z   BLACKSMITH_JOB_DISPLAY_NAME: macOS build, package, launch
+macOS build, package, launch	Set up runner	2026-10-02T17:18:56.9619500Z   GITHUB_ACTIONS_CACHE_MODE: write
+macOS build, package, launch	Set up runner	2026-10-02T17:18:56.9620030Z ##[endgroup]
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0164150Z
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0164790Z ----------------------------------------
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0166210Z View this job: https://app.blacksmith.sh/CortexLM/runs/37039827971/jobs/110946923997
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0167430Z SSH Access (using your GitHub SSH key):
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0168350Z   ssh -p 64004 runner@blacksmith-6vcpu-macos-26-runner-b85e5c5b3a.vm.blacksmith.sh
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0169210Z
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0169520Z No GitHub SSH key? Add one at:
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0170620Z https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0171630Z
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0171910Z ----------------------------------------
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0172350Z
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0172700Z VM ID: blacksmith-6vcpu-macos-26-Runner-b85e5c5b3a
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0173660Z Host: production-205.234.200.114-arm64
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0174380Z Host Agent PID: 54662
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0175050Z Host Agent Git SHA: dc54a2deb
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0175830Z Host CPU Manufacturer: Apple
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0176470Z Blacksmith Host Generation: gen 1
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0177230Z Petname: production-soft-heron-859f1a13-macos
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0178020Z Region: us-central
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0178570Z Rootfs Version: 26-20260916
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0312350Z OS Version: macOS 26.3
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0313380Z ----------------------------------------
+macOS build, package, launch	Set up runner	2026-10-02T17:18:57.0313910Z
+macOS build, package, launch	Run actions/checkout@v4	﻿2026-10-02T17:18:57.4200720Z ##[group]Run actions/checkout@v4
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4201020Z with:
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4201190Z   repository: CortexLM/desktop
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4202950Z   token: ***
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4203130Z   ssh-strict: true
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4203330Z   ssh-user: git
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4203520Z   persist-credentials: true
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4203690Z   clean: true
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4203830Z   sparse-checkout-cone-mode: true
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4204530Z   fetch-depth: 1
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4204690Z   fetch-tags: false
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4204870Z   show-progress: true
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4205070Z   lfs: false
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4205220Z   submodules: false
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4205390Z   set-safe-directory: true
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4205590Z   allow-unsafe-pr-checkout: false
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4205810Z env:
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4205970Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4206160Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4206370Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.4206580Z ##[endgroup]
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.6831720Z Syncing repository: CortexLM/desktop
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.6832540Z ##[group]Getting Git version info
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.6832760Z Working directory is '/Users/runner/_work/desktop/desktop'
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.6833100Z [command]/opt/homebrew/bin/git version
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7003060Z git version 2.54.0
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7014720Z ##[endgroup]
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7021050Z Copying '/Users/runner/.gitconfig' to '/Users/runner/_work/_temp/5cfa9901-52fd-44f0-8472-0bf1c98f66a1/.gitconfig'
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7028540Z Temporarily overriding HOME='/Users/runner/_work/_temp/5cfa9901-52fd-44f0-8472-0bf1c98f66a1' before making global git config changes
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7029300Z Adding repository directory to the temporary git global config as a safe directory
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7032960Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/_work/desktop/desktop
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7102760Z Deleting the contents of '/Users/runner/_work/desktop/desktop'
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7106850Z ##[group]Initializing the repository
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7110050Z [command]/opt/homebrew/bin/git init /Users/runner/_work/desktop/desktop
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7254560Z hint: Using 'master' as the name for the initial branch. This default branch name
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7255030Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7255440Z hint: to use in all of your new repositories, which will suppress this warning,
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7255710Z hint: call:
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7255840Z hint:
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7256080Z hint: 	git config --global init.defaultBranch <name>
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7256320Z hint:
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7256550Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7256930Z hint: 'development'. The just-created branch can be renamed via this command:
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7257190Z hint:
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7257350Z hint: 	git branch -m <name>
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7257530Z hint:
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7257750Z hint: Disable this message with "git config set advice.defaultBranchName false"
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7258110Z Initialized empty Git repository in /Users/runner/_work/desktop/desktop/.git/
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7264200Z [command]/opt/homebrew/bin/git remote add origin https://github.com/CortexLM/desktop
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7317880Z ##[endgroup]
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7318640Z ##[group]Disabling automatic garbage collection
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7320930Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7363960Z ##[endgroup]
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7364340Z ##[group]Setting up auth
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7374840Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.7413380Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.8051410Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.8101610Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.8845500Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.8869040Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.9526170Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.9579080Z ##[endgroup]
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.9579450Z ##[group]Fetching the repository
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:18:57.9584000Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +69c83d78ed7be9243108c6fbda6ecfda5bef09b2:refs/remotes/pull/36/merge
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:00.4406510Z From https://github.com/CortexLM/desktop
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:00.4407030Z  * [new ref]         69c83d78ed7be9243108c6fbda6ecfda5bef09b2 -> pull/36/merge
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:00.4481240Z ##[endgroup]
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:00.4481520Z ##[group]Determining the checkout info
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:00.4481760Z ##[endgroup]
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:00.4486950Z [command]/opt/homebrew/bin/git sparse-checkout disable
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:00.4574020Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:00.4638900Z ##[group]Checking out the ref
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:00.4644620Z [command]/opt/homebrew/bin/git checkout --progress --force refs/remotes/pull/36/merge
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:01.2824560Z HEAD is now at 69c83d7 Merge cc758a69fe9349d17f6a4bf7accd978421035519 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:01.2839820Z ##[endgroup]
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:01.2920510Z [command]/opt/homebrew/bin/git log -1 --format=%H
+macOS build, package, launch	Run actions/checkout@v4	2026-10-02T17:19:01.2973070Z 69c83d78ed7be9243108c6fbda6ecfda5bef09b2
+macOS build, package, launch	Run actions/setup-node@v4	﻿2026-10-02T17:19:01.3182320Z ##[group]Run actions/setup-node@v4
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.3182570Z with:
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.3182730Z   node-version: 22
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.3182840Z   always-auth: false
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.3182980Z   check-latest: false
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.3184690Z   token: ***
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.3184820Z env:
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.3184970Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.3185220Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.3185430Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.3185750Z ##[endgroup]
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.4324970Z Found in cache @ /Users/runner/hostedtoolcache/node/22.22.3/arm64
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.4326390Z (node:981) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.4329630Z ##[group]Environment details
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.4330030Z (Use `node --trace-deprecation ...` to show where the warning was created)
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.7766320Z node: v22.22.3
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.7766590Z npm: 10.9.8
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.7766790Z yarn: 1.22.22
+macOS build, package, launch	Run actions/setup-node@v4	2026-10-02T17:19:01.7767180Z ##[endgroup]
+macOS build, package, launch	Run oven-sh/setup-bun@v2	﻿2026-10-02T17:19:01.7852770Z ##[group]Run oven-sh/setup-bun@v2
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:01.7852990Z with:
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:01.7853110Z   bun-version: 1.4.2
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:01.7853280Z   no-cache: false
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:01.7855140Z   token: ***
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:01.7855250Z env:
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:01.7855350Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:01.7855650Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:01.7855800Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:01.7855940Z ##[endgroup]
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.1212270Z Cache hit for: bun-q9QmESoiI7cwLvhPM7UOBEdVaSY=
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.2228260Z Received 23912746 of 23912746 (100.0%), 373.9 MBs/sec
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.2230260Z Cache Size: ~23 MB (23912746 B)
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.2251230Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/_work/_temp/2d355570-bdf4-46d2-b0d7-6bd4312a52b8/cache.tzst -P -C /Users/runner/_work/desktop/desktop --delay-directory-restore --use-compress-program unzstd
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.3014370Z Cache restored successfully
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.3019440Z [command]/Users/runner/.bun/bin/bun --revision
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.3109110Z 1.4.2+744846f84
+macOS build, package, launch	Run oven-sh/setup-bun@v2	2026-10-02T17:19:02.3112310Z Using a cached version of Bun: 1.4.2+744846f84
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	﻿2026-10-02T17:19:02.3185900Z ##[group]Run bun install --frozen-lockfile && node node_modules/electron/install.js
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.3186320Z bun install --frozen-lockfile && node node_modules/electron/install.js
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.3215730Z shell: /bin/bash -e {0}
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.3215870Z env:
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.3216000Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.3216180Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.3216340Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.3216490Z ##[endgroup]
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:02.3432790Z bun install v1.4.2 (744846f84)
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9713460Z
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9714070Z + @ai-sdk/anthropic@4.0.71
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9714370Z + @ai-sdk/google@4.0.87
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9714600Z + @ai-sdk/openai@4.0.83
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9714800Z + @ai-sdk/openai-compatible@3.0.62
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9714990Z + @babel/parser@7.29.9
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9723260Z + @babel/traverse@8.0.6
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9724100Z + @base-ui/react@1.8.0
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9724360Z + @eslint/js@10.0.1
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9724570Z + @modelcontextprotocol/sdk@1.31.0
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9724760Z + @playwright/test@1.63.0
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9724920Z + @types/node@26.6.4
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9725070Z + @types/react@19.3.0
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9725330Z + @types/react-dom@19.3.0
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9725540Z + @vitejs/plugin-react@6.1.1
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9725750Z + ai@7.0.127
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9726440Z + electron@44.5.1
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9726860Z + electron-builder@26.15.3
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9727070Z + esbuild@0.28.2
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9727180Z + eslint@10.11.0
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9727350Z + eslint-plugin-react-hooks@7.1.1
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9727510Z + hono@4.13.12
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9727640Z + pixelmatch@7.2.0
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9727760Z + playwright@1.63.0
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9727890Z + pngjs@7.0.0
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9728000Z + react@19.3.0
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9728120Z + react-dom@19.3.0
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9728250Z + typescript@5.9.3
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9728390Z + typescript-eslint@8.71.0
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9728510Z + vite@8.3.2
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9728680Z + vitest@5.0.3
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9728780Z + zod@4.6.5
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9728850Z
+macOS build, package, launch	Run bun install --frozen-lockfile && node node_modules/electron/install.js	2026-10-02T17:19:03.9728960Z 525 packages installed [1.63s]
+macOS build, package, launch	Run bun run build	﻿2026-10-02T17:19:05.4838380Z ##[group]Run bun run build
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.4838630Z bun run build
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.4884130Z shell: /bin/bash -e {0}
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.4884270Z env:
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.4884400Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.4884890Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.4885050Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.4885200Z ##[endgroup]
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.5113100Z $ bun run build:app && bun run build:desktop
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.5175870Z $ cd packages/app && vite build
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.7409720Z vite v8.3.2 building client environment for production...
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.7501250Z transforming...
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.8610810Z ✓ 863 modules transformed.
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:05.9609140Z rendering chunks...
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.0856130Z computing gzip size...
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1148570Z dist/index.html                     0.66 kB │ gzip:   0.38 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1149080Z dist/assets/index-DnnbnJQL.css    204.63 kB │ gzip:  36.08 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1149530Z dist/assets/shell-C-itNRLu.js       0.93 kB │ gzip:   0.49 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1149920Z dist/assets/shell-BCHMvIiL.js       0.96 kB │ gzip:   0.60 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1150270Z dist/assets/shell-BuotxJKs.js       0.99 kB │ gzip:   0.55 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1151040Z dist/assets/shell-Yhf1FA3F.js       0.99 kB │ gzip:   0.61 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1151550Z dist/assets/shell-CmOyaB3c.js       1.02 kB │ gzip:   0.55 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1151950Z dist/assets/shell-CYBsECV8.js       1.03 kB │ gzip:   0.56 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1152270Z dist/assets/shell-CwZdhwwk.js       1.04 kB │ gzip:   0.55 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1152630Z dist/assets/shell-DBev-A7t.js       1.08 kB │ gzip:   0.65 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1152940Z dist/assets/bots-Bm1-6BNE.js        4.91 kB │ gzip:   2.54 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1153300Z dist/assets/bots-G-GRUblJ.js        4.91 kB │ gzip:   2.12 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1153660Z dist/assets/bots-Dhnxap2k.js        5.24 kB │ gzip:   2.28 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1154010Z dist/assets/bots-C_sEU92Q.js        5.28 kB │ gzip:   2.36 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1154330Z dist/assets/bots-DEyUUREg.js        5.30 kB │ gzip:   2.29 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1154660Z dist/assets/bots-Vx_jdXt9.js        5.31 kB │ gzip:   2.52 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1155060Z dist/assets/bots-XhGdPyli.js        5.33 kB │ gzip:   2.29 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1155390Z dist/assets/bots-BdqX5oXD.js        5.75 kB │ gzip:   2.69 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1155770Z dist/assets/system-Dgm-zsfL.js      8.53 kB │ gzip:   3.50 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1156260Z dist/assets/system-6GOii8V2.js      8.58 kB │ gzip:   4.22 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1156790Z dist/assets/system-D-v_P-IN.js      9.09 kB │ gzip:   3.86 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1157190Z dist/assets/system-D9_n4Goj.js      9.12 kB │ gzip:   3.74 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1164380Z dist/assets/system-CHsH64BV.js      9.21 kB │ gzip:   4.18 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1164800Z dist/assets/system-D0-Zm1I0.js      9.35 kB │ gzip:   3.81 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1165120Z dist/assets/system-CUSSAkIm.js      9.36 kB │ gzip:   3.82 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1165470Z dist/assets/system-CAyEVNFh.js      9.95 kB │ gzip:   4.39 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1165780Z dist/assets/work-H1mXT1T-.js       13.41 kB │ gzip:   5.15 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1166600Z dist/assets/work-BFR3EcZv.js       13.47 kB │ gzip:   6.04 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1167040Z dist/assets/work-CXx4q0-W.js       14.41 kB │ gzip:   5.50 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1167430Z dist/assets/work-C3sVn7Tw.js       14.69 kB │ gzip:   6.07 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1167810Z dist/assets/work-DE4UuE7v.js       14.70 kB │ gzip:   5.58 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1168150Z dist/assets/work-DM-bn9rL.js       14.72 kB │ gzip:   5.62 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1168490Z dist/assets/work-D7wz_BjB.js       14.76 kB │ gzip:   5.78 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1168770Z dist/assets/work-EocTYN0P.js       15.94 kB │ gzip:   6.28 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1169040Z dist/assets/code-D796Wmca.js       16.38 kB │ gzip:   6.34 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1169370Z dist/assets/code-Dj63_RNm.js       16.92 kB │ gzip:   7.40 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1170210Z dist/assets/code-cF_R13w2.js       17.11 kB │ gzip:   6.72 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1170540Z dist/assets/code-1vU-fKss.js       17.25 kB │ gzip:   6.78 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1170860Z dist/assets/code-D0jaYtvL.js       17.29 kB │ gzip:   6.88 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1171180Z dist/assets/code-l1ImvW5S.js       17.35 kB │ gzip:   6.71 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1171540Z dist/assets/code-D17_EVJa.js       17.71 kB │ gzip:   7.47 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1171880Z dist/assets/chat-CvBJxFqq.js       17.90 kB │ gzip:   8.91 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1172220Z dist/assets/chat-CpUWRzSs.js       18.59 kB │ gzip:   7.49 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1172520Z dist/assets/code-D0QB2Ug8.js       18.70 kB │ gzip:   7.62 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1172870Z dist/assets/chat-C_J9W5h_.js       20.80 kB │ gzip:   8.12 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1173140Z dist/assets/chat-CGHYpLbL.js       20.84 kB │ gzip:   8.54 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1173500Z dist/assets/chat-DPP7jha6.js       21.01 kB │ gzip:   8.24 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1173860Z dist/assets/files-ChUKgMNm.js      21.02 kB │ gzip:  10.13 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1174140Z dist/assets/chat-DeCdZ0A1.js       21.07 kB │ gzip:   8.14 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1174960Z dist/assets/chat-Csrcd_Np.js       21.26 kB │ gzip:   8.86 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1175510Z dist/assets/files-PuBVWCGV.js      21.43 kB │ gzip:   8.58 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1175890Z dist/assets/chat-BGpNcO0B.js       22.08 kB │ gzip:   9.39 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1176260Z dist/assets/files-Cg4Cbij3.js      23.33 kB │ gzip:   9.59 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1176610Z dist/assets/files-8yYH43vb.js      23.62 kB │ gzip:   9.30 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1176920Z dist/assets/files-DIk1qP8R.js      23.72 kB │ gzip:   9.27 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1177270Z dist/assets/files-C3wBKb8I.js      23.85 kB │ gzip:   9.31 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1177610Z dist/assets/files-B0LnTjdG.js      24.10 kB │ gzip:  10.17 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1177950Z dist/assets/files-k2Mgqtmt.js      25.31 kB │ gzip:  10.63 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1178300Z dist/assets/index-OHtevAVL.js   2,421.55 kB │ gzip: 718.10 kB
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1178420Z
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1275250Z ✓ built in 386ms
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.1492340Z $ node packages/desktop/build.mjs
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.3602890Z
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.3604250Z   packages/desktop/dist/main.cjs      3.2mb ⚠️
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.3604560Z   packages/desktop/dist/main.cjs.map  7.2mb
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.3604690Z
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.3605260Z ⚡ Done in 142ms
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.3629770Z
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.3630080Z   packages/desktop/dist/preload.cjs      1.9kb
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.3630380Z   packages/desktop/dist/preload.cjs.map  2.3kb
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.3630530Z
+macOS build, package, launch	Run bun run build	2026-10-02T17:19:06.3630670Z ⚡ Done in 1ms
+macOS build, package, launch	E2E on macOS (source build)	﻿2026-10-02T17:19:06.3699130Z ##[group]Run bun run test:e2e
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:06.3699370Z bun run test:e2e
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:06.3727910Z shell: /bin/bash -e {0}
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:06.3728070Z env:
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:06.3728250Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:06.3728460Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:06.3728660Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:06.3728850Z ##[endgroup]
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:06.3936600Z $ playwright test
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:08.1110100Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:08.1111350Z Running 50 tests using 4 workers
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:08.1111720Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:15.6086660Z   ✓   2 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 light (7.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:15.6290300Z   ✓   4 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 dark (7.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:19.4275180Z   ✓   5 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 light (3.8s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:21.5355680Z   ✓   1 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 light (13.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:21.9634930Z   ✓   7 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 dark (2.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:21.9736620Z   ✓   3 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 dark (13.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:25.0420180Z   ✓   9 tests/e2e/bot-safety.spec.ts:194:1 › Bot onboarding does not navigate after leaving preview (3.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:26.4810360Z   ✓  10 tests/e2e/bot-safety.spec.ts:211:1 › Preview Bot locale reset and live-mode boundary (4.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:26.6704500Z   ✓  11 tests/e2e/chrome.spec.ts:8:3 › native window chrome and en menu (1.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:26.6807370Z   ✓   6 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 light (11.0s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:29.2758570Z   ✓  12 tests/e2e/chrome.spec.ts:8:3 › native window chrome and fr menu (2.8s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:29.3812940Z   ✓  13 tests/e2e/chrome.spec.ts:42:1 › reduced-motion startup inherits themed text immediately (2.7s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:33.6529420Z   ✓  16 tests/e2e/components.spec.ts:63:40 › Components catalog: keyboard, clipboard and local demos at minimum window (light) (4.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:33.9686950Z   ✓   8 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 dark (12.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:37.4645240Z   ✓  18 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — light (3.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:38.1261460Z   ✓  17 tests/e2e/components.spec.ts:63:40 › Components catalog: keyboard, clipboard and local demos at minimum window (dark) (4.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:41.2824310Z   ✓  20 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — dark (3.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:45.7782360Z   ✓  19 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — light (8.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:47.2528270Z   ✓  22 tests/e2e/engine.spec.ts:9:1 › models.dev catalog is listed and searchable through the bridge (1.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:48.7053570Z   ✓  21 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — dark (7.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:49.5434420Z   ✓  23 tests/e2e/engine.spec.ts:23:1 › streamed exchange with a thinking- and image-capable model (2.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:50.4318530Z   ✓  24 tests/e2e/engine.spec.ts:75:1 › an image is refused for a model without image input (1.7s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:55.6852760Z   ✓  26 tests/e2e/frozen-composer.spec.ts:147:3 › live composer capsule geometry, locale labels and attachment safety — light (5.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:19:57.3072710Z   ✓  25 tests/e2e/frozen-composer.spec.ts:24:3 › frozen preview actions and same-URL Chat/Code history — light (7.8s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:02.2199270Z   ✓  28 tests/e2e/frozen-composer.spec.ts:147:3 › live composer capsule geometry, locale labels and attachment safety — dark (4.9s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:02.7034500Z   ✓  27 tests/e2e/frozen-composer.spec.ts:24:3 › frozen preview actions and same-URL Chat/Code history — dark (7.0s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:15.1260140Z   ✓  30 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 960 dark (12.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:15.5523720Z   ✓  29 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 960 light (13.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:18.6527310Z   ✓  15 tests/e2e/components.spec.ts:4:40 › Components catalog: families, variants and three-preview ceiling (dark) (49.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:19.1117350Z   ✓  14 tests/e2e/components.spec.ts:4:40 › Components catalog: families, variants and three-preview ceiling (light) (52.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:25.9831160Z   ✓  33 tests/e2e/keyboard.spec.ts:4:1 › hidden navigation cannot receive focus; theme radios and Undo work from the keyboard (7.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:30.3328730Z   ✓  35 tests/e2e/navigation.spec.ts:4:1 › Back cancels a pending tab choice even when its label matches an older request (4.3s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:31.0257830Z   ✓  34 tests/e2e/keyboard.spec.ts:130:1 › frozen shell motion settles, latest tab wins and hidden menus close (11.9s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:33.9872100Z   ✓  37 tests/e2e/navigation.spec.ts:79:1 › a pending route commit preserves the outgoing Work tree and restores Bot activity (3.0s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:34.0153940Z   ✓  31 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 1440 light (18.9s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:34.0931000Z   ✓  36 tests/e2e/navigation.spec.ts:46:1 › a newer keyboard tab choice survives the previous route commit (3.8s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:34.1619010Z   ✓  32 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 1440 dark (18.6s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:41.1818750Z   ✓  41 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 1024 light (7.0s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:41.1953410Z   ✓  39 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 960 light (7.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:41.5454750Z   ✓  40 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 960 dark (7.4s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:48.0074490Z   ✓  43 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 1440 light (6.8s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:48.0176620Z   ✓  42 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 1024 dark (6.8s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:48.0210560Z   ✓  44 tests/e2e/responsive.spec.ts:10:3 › Work board columns and cards remain reachable — 1440 dark (6.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:51.7509720Z   ✓  45 tests/e2e/responsive.spec.ts:76:1 › preview navigation loads fixtures and catches startup URL changes (3.7s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:54.0541280Z   ✓  38 tests/e2e/navigation.spec.ts:118:1 › anchors, native menus and history preserve routes, variants and chat identities (20.1s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:20:54.9238290Z   ✓  48 tests/e2e/ui-flows.spec.ts:19:1 › a provider key saved in Settings shows only its last four characters (3.2s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:21:00.5542460Z   ✓  49 tests/e2e/ui-flows.spec.ts:26:1 › streamed exchange with thinking and an image, driven from the composer (6.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:21:02.8231430Z   ✓  46 tests/e2e/responsive.spec.ts:108:1 › review, diff, canvas and computer controls remain reachable in small desktop windows (14.8s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:21:09.4566940Z   ✓  50 tests/e2e/ui-flows.spec.ts:64:1 › rejected sends keep the draft and attachments; retry resends the image (14.5s)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:22:18.4601470Z rendered 426 screen states
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:22:18.4631640Z   ✓  47 tests/e2e/screens.spec.ts:10:1 › every design screen and state renders (1.5m)
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:22:18.4724100Z
+macOS build, package, launch	E2E on macOS (source build)	2026-10-02T17:22:18.4726200Z   50 passed (3.2m)
+macOS build, package, launch	Package (unsigned, arm64)	﻿2026-10-02T17:22:18.6216880Z ##[group]Run npx electron-builder --mac dir zip --arm64 --publish never -c.mac.identity=null -c.mac.notarize=false
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:18.6217430Z npx electron-builder --mac dir zip --arm64 --publish never -c.mac.identity=null -c.mac.notarize=false
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:18.6453940Z shell: /bin/bash -e {0}
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:18.6454140Z env:
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:18.6454290Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:18.6454480Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:18.6454640Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:18.6454790Z ##[endgroup]
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:19.7166440Z   • electron-builder  version=26.15.3 os=25.3.0
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:19.7222380Z   • loaded configuration  file=/Users/runner/_work/desktop/desktop/electron-builder.yml
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:20.0146400Z   • detected workspace root for project using lock file  pm=bun config=undefined resolved=/Users/runner/_work/desktop/desktop projectDir=/Users/runner/_work/desktop/desktop
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:20.0172710Z   • executing @electron/rebuild  electronVersion=44.5.1 arch=arm64 buildFromSource=false workspaceRoot=/Users/runner/_work/desktop/desktop projectDir=./ appDir=./
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:20.0173270Z   • installing native dependencies  arch=arm64
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:20.1907380Z   • completed installing native dependencies
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:20.1920180Z   • packaging       platform=darwin arch=arm64 electron=44.5.1 appOutDir=dist/mac-arm64
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:20.2824670Z   • downloaded      label=electron progress=100%
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.0587720Z   • downloaded electron zip extracted successfully  output=/Users/runner/_work/desktop/desktop/dist/mac-arm64
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.0732580Z   • searching for node modules  pm=bun searchDir=/Users/runner/_work/desktop/desktop
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.0733670Z   • note: bun does not support any CLI for dependency tree extraction, utilizing file traversal collector instead
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.0734100Z   • using manual traversal of node_modules to build dependency tree
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.0747010Z   • searching for node modules  pm=traversal searchDir=/Users/runner/_work/desktop/desktop
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.0747480Z   • using manual traversal of node_modules to build dependency tree
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.0751760Z   • no node modules returned while searching directories  searchDirectories=[""]
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.2672050Z   • default Electron icon is used  reason=application icon is not set
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.2880300Z   • Current build is a part of pull request, code signing will be skipped.
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.2880750Z Set env CSC_FOR_PULL_REQUEST to true to force code signing.
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.2881400Z There are serious security concerns with CSC_FOR_PULL_REQUEST=true (see the  CircleCI documentation (https://circleci.com/docs/1.0/fork-pr-builds/) for details)
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.2882260Z If you have SSH keys, sensitive env vars or AWS credentials stored in your project settings and untrusted forks can make pull requests against your repo, then this option isn't for you.
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:22.2882950Z   • building        target=macOS zip arch=arm64 file=dist/Cortex-0.2.0-arm64-mac.zip
+macOS build, package, launch	Package (unsigned, arm64)	2026-10-02T17:22:33.2770270Z   • building block map  blockMapFile=dist/Cortex-0.2.0-arm64-mac.zip.blockmap
+macOS build, package, launch	Packaged smoke test	﻿2026-10-02T17:22:37.0181560Z ##[group]Run node scripts/smoke.mjs mac
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:37.0181770Z node scripts/smoke.mjs mac
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:37.0214120Z shell: /bin/bash -e {0}
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:37.0214300Z env:
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:37.0214430Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:37.0214610Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:37.0214780Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:37.0214940Z ##[endgroup]
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:38.0919210Z window: Cortex cortex://app/index.html
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:48.4626480Z could not create image from display
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:48.4630260Z screencapture failed: Command failed: screencapture -x out/smoke-screen.png
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:48.4630630Z could not create image from display
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:48.4630730Z
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:48.4632280Z renderer text: Chat | Work | Cortex | New chat | Create your Bot | Tools | Web search | Documents | Images | Automations | Recents | Your chats will appear here. | Getting started | 0 of 5 | What’s on today? | No model
+macOS build, package, launch	Packaged smoke test	2026-10-02T17:22:48.4632810Z SMOKE OK
+macOS build, package, launch	Crash logs	﻿2026-10-02T17:22:48.9691090Z ##[group]Run mkdir -p out && cp ~/Library/Logs/DiagnosticReports/*.ips out/ 2>/dev/null || true
+macOS build, package, launch	Crash logs	2026-10-02T17:22:48.9691520Z mkdir -p out && cp ~/Library/Logs/DiagnosticReports/*.ips out/ 2>/dev/null || true
+macOS build, package, launch	Crash logs	2026-10-02T17:22:48.9731370Z shell: /bin/bash -e {0}
+macOS build, package, launch	Crash logs	2026-10-02T17:22:48.9731560Z env:
+macOS build, package, launch	Crash logs	2026-10-02T17:22:48.9731720Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+macOS build, package, launch	Crash logs	2026-10-02T17:22:48.9731970Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	Crash logs	2026-10-02T17:22:48.9732180Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	Crash logs	2026-10-02T17:22:48.9732400Z ##[endgroup]
+macOS build, package, launch	Run actions/upload-artifact@v4	﻿2026-10-02T17:22:49.0015800Z ##[group]Run actions/upload-artifact@v4
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.0016040Z with:
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.0016190Z   name: macos
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.0016340Z   path: out/
+macOS build, package, launch	Run actions/upload-artifact@v4	test-results/
+macOS build, package, launch	Run actions/upload-artifact@v4	playwright-report/
+macOS build, package, launch	Run actions/upload-artifact@v4
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.0017030Z   if-no-files-found: warn
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.0017180Z   compression-level: 6
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.0017300Z   overwrite: false
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.0017410Z   include-hidden-files: false
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.0017540Z env:
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.0017650Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.0017790Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.0017940Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.0018100Z ##[endgroup]
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.1249210Z (node:2454) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.1250040Z (Use `node --trace-deprecation ...` to show where the warning was created)
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.1853570Z Multiple search paths detected. Calculating the least common ancestor of all paths
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.1855050Z The least common ancestor is /Users/runner/_work/desktop/desktop. This will be the root directory of the artifact
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.1855520Z With the provided path, there will be 138 files uploaded
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.1857910Z Artifact name is valid!
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.1858530Z Root directory input is valid!
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:49.8679680Z Beginning upload of artifact content to blob storage
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:50.1462390Z (node:2454) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:50.8169200Z Uploaded bytes 8388608
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:50.9495010Z Uploaded bytes 12301327
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:50.9960500Z Finished uploading artifact content to blob storage!
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.0060970Z SHA256 digest of uploaded artifact zip is cded7d49e3778b56ef85bfe454388b7cd53627d74d5d72f097c0e2b0e203172c
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.0161730Z Finalizing artifact upload
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3127840Z Artifact macos.zip successfully finalized. Artifact ID 11242850475
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3128350Z Artifact macos has been successfully uploaded! Final size is 12301327 bytes. Artifact ID is 11242850475
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3137990Z Artifact download URL: https://github.com/CortexLM/desktop/actions/runs/37039827971/artifacts/11242850475
+macOS build, package, launch	Run actions/upload-artifact@v4	﻿2026-10-02T17:22:51.3247270Z ##[group]Run actions/upload-artifact@v4
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3247520Z with:
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3247670Z   name: cortex-mac-arm64-zip
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3247860Z   path: dist/*.zip
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3248000Z   retention-days: 7
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3248150Z   if-no-files-found: warn
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3248320Z   compression-level: 6
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3248450Z   overwrite: false
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3248600Z   include-hidden-files: false
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3248770Z env:
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3248920Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3249440Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3249690Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.3249870Z ##[endgroup]
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.4293950Z (node:2474) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.4294580Z (Use `node --trace-deprecation ...` to show where the warning was created)
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.4323650Z With the provided path, there will be 1 file uploaded
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.4326700Z Artifact name is valid!
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.4327180Z Root directory input is valid!
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.6522340Z Beginning upload of artifact content to blob storage
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:51.8746620Z (node:2474) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:52.4980620Z Uploaded bytes 8388608
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:52.5468120Z Uploaded bytes 16777216
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:52.8009260Z Uploaded bytes 25165824
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:52.9647590Z Uploaded bytes 33554432
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:53.0179810Z Uploaded bytes 41943040
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:53.0957680Z Uploaded bytes 50331648
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:53.2188730Z Uploaded bytes 58720256
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:53.3853330Z Uploaded bytes 67108864
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:53.6262910Z Uploaded bytes 75497472
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:53.8767850Z Uploaded bytes 83886080
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:54.1634380Z Uploaded bytes 92274688
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:54.1928980Z Uploaded bytes 100663296
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:54.4639010Z Uploaded bytes 109051904
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:54.6741600Z Uploaded bytes 117440512
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:54.7912200Z Uploaded bytes 125829120
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:55.0289700Z Uploaded bytes 134217728
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:55.1904610Z Uploaded bytes 142606336
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:55.2445300Z Uploaded bytes 144607214
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:55.2772960Z Finished uploading artifact content to blob storage!
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:55.2825810Z SHA256 digest of uploaded artifact zip is 04c5aaf5c26bb83514f959d6e67ab1f146cd200a6a362e786dd05f698cca50de
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:55.2827610Z Finalizing artifact upload
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:55.5901740Z Artifact cortex-mac-arm64-zip.zip successfully finalized. Artifact ID 11242356217
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:55.5909070Z Artifact cortex-mac-arm64-zip has been successfully uploaded! Final size is 144607214 bytes. Artifact ID is 11242356217
+macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-02T17:22:55.5913740Z Artifact download URL: https://github.com/CortexLM/desktop/actions/runs/37039827971/artifacts/11242356217
+macOS build, package, launch	Post Run oven-sh/setup-bun@v2	﻿2026-10-02T17:22:55.5979120Z Post job cleanup.
+macOS build, package, launch	Post Run actions/setup-node@v4	﻿2026-10-02T17:22:55.7101510Z Post job cleanup.
+macOS build, package, launch	Post Run actions/setup-node@v4	2026-10-02T17:22:55.7960150Z (node:2501) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+macOS build, package, launch	Post Run actions/setup-node@v4	2026-10-02T17:22:55.7961010Z (Use `node --trace-deprecation ...` to show where the warning was created)
+macOS build, package, launch	Post Run actions/checkout@v4	﻿2026-10-02T17:22:55.8074680Z Post job cleanup.
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:55.8734820Z [command]/opt/homebrew/bin/git version
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:55.8803580Z git version 2.54.0
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:55.8820900Z Copying '/Users/runner/.gitconfig' to '/Users/runner/_work/_temp/51cfa3db-3961-4ed9-beb8-093285623bd0/.gitconfig'
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:55.8827520Z Temporarily overriding HOME='/Users/runner/_work/_temp/51cfa3db-3961-4ed9-beb8-093285623bd0' before making global git config changes
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:55.8828640Z Adding repository directory to the temporary git global config as a safe directory
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:55.8832230Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/_work/desktop/desktop
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:55.8893800Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:55.8953560Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:55.9616370Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:55.9664920Z http.https://github.com/.extraheader
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:55.9671750Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:55.9729700Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:56.0363350Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+macOS build, package, launch	Post Run actions/checkout@v4	2026-10-02T17:22:56.0415390Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+macOS build, package, launch	Complete runner	﻿2026-10-02T17:22:56.1549780Z A job completed hook has been configured by the self-hosted runner administrator
+macOS build, package, launch	Complete runner	2026-10-02T17:22:56.1606130Z ##[group]Run '/opt/blacksmith/job_completed_mac.sh'
+macOS build, package, launch	Complete runner	2026-10-02T17:22:56.1631610Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+macOS build, package, launch	Complete runner	2026-10-02T17:22:56.1631810Z env:
+macOS build, package, launch	Complete runner	2026-10-02T17:22:56.1631950Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 590
+macOS build, package, launch	Complete runner	2026-10-02T17:22:56.1632130Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 1088
+macOS build, package, launch	Complete runner	2026-10-02T17:22:56.1632300Z   BLACKSMITH_CHECK_RUN_ID: 110946923997
+macOS build, package, launch	Complete runner	2026-10-02T17:22:56.1632490Z   BLACKSMITH_JOB_DISPLAY_NAME: macOS build, package, launch
+macOS build, package, launch	Complete runner	2026-10-02T17:22:56.1632690Z   GITHUB_ACTIONS_CACHE_MODE: write
+macOS build, package, launch	Complete runner	2026-10-02T17:22:56.1632860Z ##[endgroup]
+macOS build, package, launch	Complete runner	2026-10-02T17:22:56.2082170Z No active SSH sessions detected. Proceeding with shutdown immediately.
+macOS build, package, launch	Complete job	﻿2026-10-02T17:22:56.2139480Z Cleaning up orphan processes
+macOS build, package, launch	Complete job	2026-10-02T17:22:57.5188080Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Lint, typecheck, unit tests, i18n audit	Set up job	﻿2026-10-02T17:18:42.3504226Z Current runner version: '2.337.0'
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3547624Z ##[group]Runner Image Provisioner
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3549148Z Hosted Compute Agent
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3550349Z Version: 20260901.588
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3551492Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3553309Z Build Date: 2026-09-01T19:56:44Z
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3554660Z Worker ID: {eb7a32dd-3ce1-415d-8c1e-720242a3767d}
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3555973Z Azure Region: westus2
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3557065Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3559550Z ##[group]Operating System
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3560644Z Ubuntu
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3561732Z 24.04.5
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3563036Z LTS
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3564116Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3565035Z ##[group]Runner Image
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3566034Z Image: ubuntu-24.04
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3567239Z Version: 20260927.320.1
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3569081Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3572552Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3574361Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3576394Z ##[group]GITHUB_TOKEN Permissions
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3579406Z Contents: read
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3580556Z Metadata: read
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3581563Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3585255Z Secret source: Actions
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3586822Z Cache mode: write
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.3588054Z Prepare workflow directory
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.4285139Z Prepare all required actions
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.4358877Z Getting action download info
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:42.9388587Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:43.0336797Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:43.1628533Z Download action repository 'oven-sh/setup-bun@v2' (SHA:0c5077e51419868618aeaa5fe8019c62421857d6)
+Lint, typecheck, unit tests, i18n audit	Set up job	2026-10-02T17:18:43.5309494Z Complete job name: Lint, typecheck, unit tests, i18n audit
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	﻿2026-10-02T17:18:43.6147811Z ##[group]Run actions/checkout@v4
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6148790Z with:
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6149278Z   repository: CortexLM/desktop
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6153673Z   token: ***
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6154153Z   ssh-strict: true
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6154611Z   ssh-user: git
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6155087Z   persist-credentials: true
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6155597Z   clean: true
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6156080Z   sparse-checkout-cone-mode: true
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6156633Z   fetch-depth: 1
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6157091Z   fetch-tags: false
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6157583Z   show-progress: true
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6158051Z   lfs: false
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6158485Z   submodules: false
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6159007Z   set-safe-directory: true
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6159541Z   allow-unsafe-pr-checkout: false
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.6160373Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7360821Z Syncing repository: CortexLM/desktop
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7365607Z ##[group]Getting Git version info
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7375165Z Working directory is '/home/runner/work/desktop/desktop'
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7378713Z [command]/usr/bin/git version
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7443272Z git version 2.55.0
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7464135Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7482453Z Temporarily overriding HOME='/home/runner/work/_temp/9afefa99-bca5-4429-b695-fe455b42f71b' before making global git config changes
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7485494Z Adding repository directory to the temporary git global config as a safe directory
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7488229Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/desktop/desktop
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7544105Z Deleting the contents of '/home/runner/work/desktop/desktop'
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7548525Z ##[group]Initializing the repository
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7554132Z [command]/usr/bin/git init /home/runner/work/desktop/desktop
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7693071Z hint: Using 'master' as the name for the initial branch. This default branch name
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7698317Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7703752Z hint: to use in all of your new repositories, which will suppress this warning,
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7705759Z hint: call:
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7707200Z hint:
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7708398Z hint: 	git config --global init.defaultBranch <name>
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7709984Z hint:
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7711454Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7714057Z hint: 'development'. The just-created branch can be renamed via this command:
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7715229Z hint:
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7716496Z hint: 	git branch -m <name>
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7717899Z hint:
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7719431Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7721510Z Initialized empty Git repository in /home/runner/work/desktop/desktop/.git/
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7725958Z [command]/usr/bin/git remote add origin https://github.com/CortexLM/desktop
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7770318Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7772024Z ##[group]Disabling automatic garbage collection
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7783307Z [command]/usr/bin/git config --local gc.auto 0
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7813167Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7815032Z ##[group]Setting up auth
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7821454Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.7859621Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.8223024Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.8263733Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.8513836Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.8555544Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.8796286Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.8840336Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.8842985Z ##[group]Fetching the repository
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:43.8853631Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +69c83d78ed7be9243108c6fbda6ecfda5bef09b2:refs/remotes/pull/36/merge
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:50.9182868Z From https://github.com/CortexLM/desktop
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:50.9196692Z  * [new ref]         69c83d78ed7be9243108c6fbda6ecfda5bef09b2 -> pull/36/merge
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:50.9206072Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:50.9207140Z ##[group]Determining the checkout info
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:50.9208128Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:50.9209001Z [command]/usr/bin/git sparse-checkout disable
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:50.9254298Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:50.9289393Z ##[group]Checking out the ref
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:50.9293837Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/36/merge
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7647504Z Note: switching to 'refs/remotes/pull/36/merge'.
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7648335Z
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7663013Z You are in 'detached HEAD' state. You can look around, make experimental
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7664003Z changes and commit them, and you can discard any commits you make in this
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7664973Z state without impacting any branches by switching back to a branch.
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7682975Z
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7697931Z If you want to create a new branch to retain commits you create, you may
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7699279Z do so (now or later) by using -c with the switch command. Example:
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7700330Z
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7701413Z   git switch -c <new-branch-name>
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7702146Z
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7703060Z Or undo this operation with:
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7703663Z
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7704183Z   git switch -
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7704906Z
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7705653Z Turn off this advice by setting config variable advice.detachedHead to false
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7706657Z
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7707590Z HEAD is now at 69c83d7 Merge cc758a69fe9349d17f6a4bf7accd978421035519 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7710677Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7765101Z [command]/usr/bin/git log -1 --format=%H
+Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-02T17:18:51.7793395Z 69c83d78ed7be9243108c6fbda6ecfda5bef09b2
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	﻿2026-10-02T17:18:51.8178071Z ##[group]Run actions/setup-node@v4
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:51.8178417Z with:
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:51.8178650Z   node-version: 22
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:51.8178874Z   always-auth: false
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:51.8179106Z   check-latest: false
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:51.8181812Z   token: ***
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:51.8182056Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:51.9720134Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:51.9725611Z (node:2085) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:51.9729926Z ##[group]Environment details
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:51.9741855Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:55.5558216Z node: v22.23.3
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:55.5559306Z npm: 10.9.9
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:55.5563601Z yarn: 1.22.22
+Lint, typecheck, unit tests, i18n audit	Run actions/setup-node@v4	2026-10-02T17:18:55.5565277Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	﻿2026-10-02T17:18:55.5807518Z ##[group]Run oven-sh/setup-bun@v2
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:55.5807949Z with:
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:55.5808171Z   bun-version: 1.4.2
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:55.5808474Z   no-cache: false
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:55.5813521Z   token: ***
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:55.5813757Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:56.0995038Z Cache hit for: bun-gmoqYqdUbaYsI0KujeXt7Zg/p0I=
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:57.4014329Z Received 0 of 35684133 (0.0%), 0.0 MBs/sec
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:57.7409746Z Received 35684133 of 35684133 (100.0%), 25.4 MBs/sec
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:57.7410952Z Cache Size: ~34 MB (35684133 B)
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:57.7635178Z [command]/usr/bin/tar -xf /home/runner/work/_temp/0b683840-944b-4cb3-a370-ba4ae74e53b9/cache.tzst -P -C /home/runner/work/desktop/desktop --use-compress-program unzstd
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:58.1744910Z Cache restored successfully
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:58.1780518Z [command]/home/runner/.bun/bin/bun --revision
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:58.1830041Z 1.4.2+744846f84
+Lint, typecheck, unit tests, i18n audit	Run oven-sh/setup-bun@v2	2026-10-02T17:18:58.1843507Z Using a cached version of Bun: 1.4.2+744846f84
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	﻿2026-10-02T17:18:58.3595447Z ##[group]Run bun install --frozen-lockfile
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:18:58.3595916Z bun install --frozen-lockfile
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:18:59.3680451Z shell: /usr/bin/bash -e {0}
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:18:59.3680831Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:18:59.3840853Z bun install v1.4.2 (744846f84)
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5806843Z
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5807737Z + @ai-sdk/anthropic@4.0.71
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5808312Z + @ai-sdk/google@4.0.87
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5809034Z + @ai-sdk/openai@4.0.83
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5823013Z + @ai-sdk/openai-compatible@3.0.62
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5830835Z + @babel/parser@7.29.9
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5836450Z + @babel/traverse@8.0.6
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5837167Z + @base-ui/react@1.8.0
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5837822Z + @eslint/js@10.0.1
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5838505Z + @modelcontextprotocol/sdk@1.31.0
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5839226Z + @playwright/test@1.63.0
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5839870Z + @types/node@26.6.4
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5840473Z + @types/react@19.3.0
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5841099Z + @types/react-dom@19.3.0
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5845194Z + @vitejs/plugin-react@6.1.1
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5845936Z + ai@7.0.127
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5863002Z + electron@44.5.1
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5868720Z + electron-builder@26.15.3
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5884428Z + esbuild@0.28.2
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5898998Z + eslint@10.11.0
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5899702Z + eslint-plugin-react-hooks@7.1.1
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5900314Z + hono@4.13.12
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5901004Z + pixelmatch@7.2.0
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5901426Z + playwright@1.63.0
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5901840Z + pngjs@7.0.0
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5902447Z + react@19.3.0
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5902850Z + react-dom@19.3.0
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5903237Z + typescript@5.9.3
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5903684Z + typescript-eslint@8.71.0
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5904121Z + vite@8.3.2
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5904480Z + vitest@5.0.3
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5904793Z + zod@4.6.5
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5904915Z
+Lint, typecheck, unit tests, i18n audit	Run bun install --frozen-lockfile	2026-10-02T17:19:01.5905084Z 526 packages installed [2.20s]
+Lint, typecheck, unit tests, i18n audit	Run bun run lint	﻿2026-10-02T17:19:01.5950838Z ##[group]Run bun run lint
+Lint, typecheck, unit tests, i18n audit	Run bun run lint	2026-10-02T17:19:01.5951142Z bun run lint
+Lint, typecheck, unit tests, i18n audit	Run bun run lint	2026-10-02T17:19:01.6014281Z shell: /usr/bin/bash -e {0}
+Lint, typecheck, unit tests, i18n audit	Run bun run lint	2026-10-02T17:19:01.6014572Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run bun run lint	2026-10-02T17:19:01.6120139Z $ eslint packages scripts tests
+Lint, typecheck, unit tests, i18n audit	Run bun run typecheck	﻿2026-10-02T17:19:09.8879443Z ##[group]Run bun run typecheck
+Lint, typecheck, unit tests, i18n audit	Run bun run typecheck	2026-10-02T17:19:09.8880039Z bun run typecheck
+Lint, typecheck, unit tests, i18n audit	Run bun run typecheck	2026-10-02T17:19:09.8968399Z shell: /usr/bin/bash -e {0}
+Lint, typecheck, unit tests, i18n audit	Run bun run typecheck	2026-10-02T17:19:09.8968718Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run bun run typecheck	2026-10-02T17:19:09.9123530Z $ tsc -p tsconfig.json
+Lint, typecheck, unit tests, i18n audit	Run bun run test	﻿2026-10-02T17:19:25.2703881Z ##[group]Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:25.2704209Z bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:25.2763883Z shell: /usr/bin/bash -e {0}
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:25.2764176Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:25.2862598Z $ vitest run
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:25.6159309Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:25.6163615Z  RUN  v5.0.3 /home/runner/work/desktop/desktop
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:25.6164776Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:26.1554239Z (node:2196) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:26.1570209Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:26.6935024Z  ✓ packages/core/test/services.test.ts (15 tests) 299ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:32.1283586Z  ✓ packages/desktop/test/remote.test.ts (45 tests | 1 skipped) 5183ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:32.1303365Z    ✓ remote backend through the Cortex SDK (45)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:32.1304937Z      ✓ times out a model listing whose JSON body never completes 5002ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:32.5569302Z (node:2218) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:32.5579807Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:38.8014084Z  ✓ packages/core/test/session.test.ts (6 tests) 6243ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:38.8023952Z    ✓ session runner (fake OpenAI-compatible SSE) (6)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:38.8025452Z      ✓ surfaces provider errors with a neutral code 6011ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:41.0311678Z  ✓ tests/unit/runtime-copy.test.ts (24 tests) 1341ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:41.5024352Z (node:2239) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:41.5026223Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:41.6444342Z  ✓ packages/server/test/server.test.ts (5 tests) 140ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:42.0860071Z (node:2247) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:42.0874002Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:42.1967944Z  ✓ packages/core/test/capabilities.test.ts (9 tests) 108ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:42.5547451Z  ✓ tests/unit/audit-i18n.test.ts (1 test) 226ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:43.0239095Z (node:2269) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:43.0241965Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:43.1528061Z  ✓ packages/client/test/client.test.ts (3 tests) 124ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:43.5758540Z (node:2277) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:43.5761268Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:43.9890009Z  ✓ packages/core/test/catalog.test.ts (6 tests) 411ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:43.9893674Z    ✓ catalog (6)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:43.9895443Z      ✓ live: fetches models.dev (skipped offline) 384ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:44.4004463Z (node:2289) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:44.4007024Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:44.4375853Z  ✓ packages/core/test/computer-use.test.ts (3 tests) 35ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:44.9220946Z  ✓ tests/unit/locales.test.ts (9 tests) 350ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:45.1386969Z  ✓ packages/schema/test/schema.test.ts (3 tests) 23ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:45.3972896Z  ✓ packages/protocol/test/protocol.test.ts (3 tests) 46ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:45.4022734Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:45.4034417Z  Test Files  13 passed (13)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:45.4053479Z       Tests  131 passed | 1 skipped (132)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:45.4073597Z    Start at  17:19:25
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:45.4074927Z    Duration  19.77s (tests 79%, import 16%, transform 5%)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:45.4076102Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:45.4077430Z     Isolate  13 workers spawned · ~102ms startup each (spawn + environment, per file)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:45.4079827Z              at least ~1.22s faster with isolate: false — reuses workers across files instead of one per file
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T17:19:45.4081080Z
+Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	﻿2026-10-02T17:19:45.4333831Z ##[group]Run bun run audit:i18n
+Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-02T17:19:45.4334186Z bun run audit:i18n
+Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-02T17:19:45.4395085Z shell: /usr/bin/bash -e {0}
+Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-02T17:19:45.4395359Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-02T17:19:45.4498091Z $ node scripts/audit-i18n.mjs
+Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-02T17:19:47.0887308Z i18n audit: 63 files, 2265 keys used, 3395 keys in en, 0 problem(s)
+Lint, typecheck, unit tests, i18n audit	Post Run oven-sh/setup-bun@v2	﻿2026-10-02T17:19:47.1127291Z Post job cleanup.
+Lint, typecheck, unit tests, i18n audit	Post Run actions/setup-node@v4	﻿2026-10-02T17:19:47.3033029Z Post job cleanup.
+Lint, typecheck, unit tests, i18n audit	Post Run actions/setup-node@v4	2026-10-02T17:19:47.4817089Z (node:2335) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Lint, typecheck, unit tests, i18n audit	Post Run actions/setup-node@v4	2026-10-02T17:19:47.4818832Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	﻿2026-10-02T17:19:47.4973830Z Post job cleanup.
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.5914781Z [command]/usr/bin/git version
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.5958682Z git version 2.55.0
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.6003918Z Temporarily overriding HOME='/home/runner/work/_temp/7b83ed83-220d-41bf-a157-35a7951dc9b6' before making global git config changes
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.6005916Z Adding repository directory to the temporary git global config as a safe directory
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.6008658Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/desktop/desktop
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.6053889Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.6096610Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.6358178Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.6396001Z http.https://github.com/.extraheader
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.6411415Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.6452879Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.6697332Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Lint, typecheck, unit tests, i18n audit	Post Run actions/checkout@v4	2026-10-02T17:19:47.6734143Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Lint, typecheck, unit tests, i18n audit	Complete job	﻿2026-10-02T17:19:47.7184453Z Cleaning up orphan processes
+Lint, typecheck, unit tests, i18n audit	Complete job	2026-10-02T17:19:47.7457910Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

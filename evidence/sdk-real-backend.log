@@ -1,0 +1,13 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite[39m
+
+[90mstdout[2m | packages/desktop/test/remote.test.ts[2m > [22m[2mremote backend through the Cortex SDK[2m > [22m[2mlists models from a real backend
+[22m[39mreal backend: {"status":"reachable","authRequired":true,"models":[{"id":"cortex-1-mini","name":"Cortex 1 Mini"},{"id":"cortex-teutonic-1","name":"Cortex Teutonic-1"},{"id":"cortex-image-1","name":"Cortex-Image-1"}]}
+
+ [32m✓[39m packages/desktop/test/remote.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 51[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m   Start at [22m 00:01:45
+[2m   Duration [22m 295ms[2m (import 36%, tests 32%, transform 29%, worker 3%)[22m
+

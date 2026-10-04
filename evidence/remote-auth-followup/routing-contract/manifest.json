@@ -1,0 +1,86 @@
+{
+  "checked_at": "2026-10-03T03:47:25.064856+00:00",
+  "backend_pin": "d6c71de1d99197c5e0ee5c59d0a089842d760cea",
+  "backend_sources": [
+    {
+      "path": "server/src/api/turns/create.ts",
+      "sha256": "ec10c3f0a4425dcf7425e2a252c7391b985fbb408d42c542d52ca4a304d87295"
+    },
+    {
+      "path": "server/src/api/turns/generate.ts",
+      "sha256": "5048031d8d36ce0d4c3be8f54a0ed61ba6d87c22934ca9654ad6840fae21a095"
+    },
+    {
+      "path": "server/src/api/catalog.ts",
+      "sha256": "69e437e8a1265ad23bc292fbf8dfaa81179285b36d460170364d3294043dccd8"
+    },
+    {
+      "path": "server/src/api/conversations.ts",
+      "sha256": "4472959e8281074b1265c3842c59137ff0a4011f0d7177ce6beb9619bc445c82"
+    },
+    {
+      "path": "server/src/api/library/index.ts",
+      "sha256": "8ae09e41fc76a674b503fe313e4042e0e5cf16707ac29c65a9dc6e23a97efbfa"
+    },
+    {
+      "path": "server/src/api/media.ts",
+      "sha256": "6289dcf2e1fc099f372ceef6162ae45a07701ede45593d096f1b9c3096c9fe4b"
+    },
+    {
+      "path": "server/src/inference/registry.ts",
+      "sha256": "030e2dc4acef34edcff9b7bc553937b028e0128bf5aab044069feb7dbfb2d0d3"
+    }
+  ],
+  "current_desktop_sources": [
+    {
+      "path": "packages/desktop/src/remote-session.ts",
+      "sha256": "4c4229c388a4bed9373f450b0012dd08511d22cba7bfced4cd7ea3218c279566"
+    },
+    {
+      "path": "packages/core/src/connection.ts",
+      "sha256": "47eb2ba5d2ef920c067f2af881d506e97152cae246964d76d50681810cbf68d6"
+    },
+    {
+      "path": "packages/core/src/session.ts",
+      "sha256": "8bdaadc276264e3e755c73df44bd894b884826875a6e582149dccc69086b81d4"
+    },
+    {
+      "path": "packages/core/src/bus.ts",
+      "sha256": "c809b46b5c01e56c8696055ef4a1f5c2b5ef7c02889d15c675c995d985f7e68c"
+    },
+    {
+      "path": "packages/core/src/storage.ts",
+      "sha256": "1c56b82e24b89b68733e7cf5ba38a7d241f11f66e7a3857e0561ec3728bff255"
+    },
+    {
+      "path": "packages/schema/src/index.ts",
+      "sha256": "e184483c0e9ad99eb99585282fb4e7d526df3851212fa197fc5bc66110e9236b"
+    },
+    {
+      "path": "packages/app/src/screens/chat/model-composer.tsx",
+      "sha256": "cf9fde70480feddd3030f4c430038ede8869fb823a4808d22ec69b361e27b93a"
+    },
+    {
+      "path": "packages/app/src/screens/chat/live-chat.tsx",
+      "sha256": "2a1c72aed2b979797be67d6f37612726a7d086e7a902ab5423d8d9026dc299ab"
+    },
+    {
+      "path": "packages/app/src/state/live.ts",
+      "sha256": "4c4ec7ae725dfd250f5102c273deeed827c22a3e70568eaa145435a2970119c7"
+    }
+  ],
+  "saved_owner_disposition_sha256": "ea2589cec80c164ade8b1314445c82a0ce1c915b38f8d56397f5d366dbdfd242",
+  "environment_presence": {
+    "CORTEX_TEST_BACKEND_URL": false,
+    "CORTEX_REAL_BASE_URL": false,
+    "CORTEX_REAL_API_KEY": false
+  },
+  "report_lines": 116,
+  "result": "Read-only plan plus small contract assertions; no implementation claim",
+  "report_sha256": "a1e53565bb45594984c2580193b2de982c5b6165bb21e50cc3908f4d5f24d6a4",
+  "fixtures": {
+    "check.mjs": "540d7b155660de016895da0de342b9a2654c446c1038d8402d141e0f1ac755a6",
+    "check.json": "a67a4b624409624c10fca064c44df0717eb4a47db53cdbc9dfe953831442aff9",
+    "environment-presence.json": "53b8257529f5d314c203c99ebde64f7df339b6b8850da67de31c14084d6cad9a"
+  }
+}

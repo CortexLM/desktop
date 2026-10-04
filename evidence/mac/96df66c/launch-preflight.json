@@ -1,0 +1,25 @@
+{
+  "root": "/tmp/opencode/desktop-terminal-state-memory-96df66c-a2",
+  "applicationRevision": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "observedAt": "2026-10-03T17:52:00Z",
+  "timePrecision": "minute, coordinator tool observation",
+  "attempts": [
+    {
+      "status": "refused",
+      "reason": "Ordinary Cortex was still running before the launch command.",
+      "error": "AssertionError: Coordinator must quit prior Cortex first",
+      "profileCreated": false
+    },
+    {
+      "status": "refused",
+      "reason": "Quit returned before Cortex disappeared from the process list.",
+      "error": "AssertionError: Coordinator must quit prior Cortex first",
+      "profileCreated": false
+    }
+  ],
+  "subsequentReadback": {
+    "CortexStopped": true,
+    "engineAndRendererDirectoriesAbsent": true
+  },
+  "subsequentLaunch": "Passed unchanged preflight; launch.json binds the created profile."
+}

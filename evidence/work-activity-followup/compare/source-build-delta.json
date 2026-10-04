@@ -1,0 +1,203 @@
+{
+  "previousApplication": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "added": [
+    {
+      "path": "packages/app/src/screens/work/activity.tsx",
+      "sha256": "ac08eb0411325df215cce7bcb16dae8b47f562621fd7ea87b1b74d59dc09d904"
+    }
+  ],
+  "changed": [
+    {
+      "path": "packages/app/src/screens/work/desk.tsx",
+      "priorSHA256": "1fd2ca98a9416e8da406aa64f56ab4eecb1f934a741e785ae91888d30d82aa99",
+      "currentSHA256": "0ca4769cfa95e122f61d1cf9f23093707c0265bc12d89a43aa83fa98c247d288"
+    },
+    {
+      "path": "packages/app/src/screens/work/home.tsx",
+      "priorSHA256": "61e37805bd9591619ce82e1e0e73af39fcf79b76ac0277bbf6b531a311cfd5b8",
+      "currentSHA256": "b3d1f50d603e03bd3335f299c7f80f333a7d2dd66a34e625900baf9ec2a60079"
+    },
+    {
+      "path": "packages/app/src/screens/work/work.css",
+      "priorSHA256": "8e29cb494561ef4c29454b993a2e87f3e39e75087a6e80438caf16d936916577",
+      "currentSHA256": "b030e5979a31fb9d5cebc2a38d6922766d34cf693c1ab5c2fafb9efa4f0be5c3"
+    },
+    {
+      "path": "packages/i18n/locales/de/work.json",
+      "priorSHA256": "761f1bd85943dbb35c6e911109a54364075574e1057a1f0238bd9f85783418b8",
+      "currentSHA256": "1da59c3938f731a304ab1ba7cb7a3f91c010e503f6144f1640d050ccd77c8c0b"
+    },
+    {
+      "path": "packages/i18n/locales/en/work.json",
+      "priorSHA256": "b048e9d08538c76641f215503a3e7f43216fa4c4d9b4f41c4f3de4a6de41ade9",
+      "currentSHA256": "fd6c0302aa80dbb6be7622661d0bfcb98244a387b5ba0c0b5fb51b25624d32f1"
+    },
+    {
+      "path": "packages/i18n/locales/es/work.json",
+      "priorSHA256": "4c2c062ecae0e8d8f76eb25f83311b6c21662a02a62450d6c293c3cb9dba750d",
+      "currentSHA256": "b8527b5c6e3a209b5df9e85dbc0f8049c6f72628209d878260d8b7ce1153b3f6"
+    },
+    {
+      "path": "packages/i18n/locales/fr/work.json",
+      "priorSHA256": "6222b8a078107384d90bd548698cebd55c4aeb57838c6bf4c009136887938594",
+      "currentSHA256": "37eaeea2da379f6e0814c1a9becaa81956795db3c8610ee7701c6b01ad522166"
+    },
+    {
+      "path": "packages/i18n/locales/ja/work.json",
+      "priorSHA256": "5da3b64d559fa175e5838817d8768b9d5fe268da61b1967da9ec61f29dd143ae",
+      "currentSHA256": "80e16b51527c2250b469e44c68073b4a981882a8cd34077f81efdd1a3edf4912"
+    },
+    {
+      "path": "packages/i18n/locales/ko/work.json",
+      "priorSHA256": "c95fa4561878607ef1072646c0cc1424b0db3862f37a4664ade8fe0d5bb58162",
+      "currentSHA256": "7eb374d5539e078fa5d5722be37683c1462b0984167e2517736980efbda94d19"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/work.json",
+      "priorSHA256": "538dec7c6c96a26b27f957c02cc133e2293d653b871bb54baf14a2d085c32390",
+      "currentSHA256": "0ad1c90db6d2ba47eb0f0d74a6dcd68f70aeb172c17f1a9c94d233bc61aa4ac9"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/work.json",
+      "priorSHA256": "ab97f698200005891346be581bf6f4cd960b1de1a793b79b199adf7269702415",
+      "currentSHA256": "eba9d09db69b2daa3a613aaf158f0322bff428f2395e17d0ba5617307a2fad8a"
+    }
+  ],
+  "unchangedInputs": 505,
+  "cssAddedLines": 15,
+  "otherSevenCSSByteExact": true,
+  "cssSelectorsConfinedToLiveActivity": true,
+  "WorkTaskPreviewFunctionExact": true,
+  "WorkTaskPreviewSHA256": "a33bb9f9643edecfa9b046421b6b1a7da8109f9b71ec3bc817c0399c034ad7ab",
+  "translationKeyBinding": [
+    {
+      "path": "packages/i18n/locales/de/work.json",
+      "existingValuesUnchanged": true,
+      "addedKeys": [
+        "act.completed",
+        "act.failed",
+        "act.interrupted",
+        "act.missingBot",
+        "act.recentEmptyText",
+        "act.recentEmptyTitle",
+        "act.recentScope"
+      ]
+    },
+    {
+      "path": "packages/i18n/locales/en/work.json",
+      "existingValuesUnchanged": true,
+      "addedKeys": [
+        "act.completed",
+        "act.failed",
+        "act.interrupted",
+        "act.missingBot",
+        "act.recentEmptyText",
+        "act.recentEmptyTitle",
+        "act.recentScope"
+      ]
+    },
+    {
+      "path": "packages/i18n/locales/es/work.json",
+      "existingValuesUnchanged": true,
+      "addedKeys": [
+        "act.completed",
+        "act.failed",
+        "act.interrupted",
+        "act.missingBot",
+        "act.recentEmptyText",
+        "act.recentEmptyTitle",
+        "act.recentScope"
+      ]
+    },
+    {
+      "path": "packages/i18n/locales/fr/work.json",
+      "existingValuesUnchanged": true,
+      "addedKeys": [
+        "act.completed",
+        "act.failed",
+        "act.interrupted",
+        "act.missingBot",
+        "act.recentEmptyText",
+        "act.recentEmptyTitle",
+        "act.recentScope"
+      ]
+    },
+    {
+      "path": "packages/i18n/locales/ja/work.json",
+      "existingValuesUnchanged": true,
+      "addedKeys": [
+        "act.completed",
+        "act.failed",
+        "act.interrupted",
+        "act.missingBot",
+        "act.recentEmptyText",
+        "act.recentEmptyTitle",
+        "act.recentScope"
+      ]
+    },
+    {
+      "path": "packages/i18n/locales/ko/work.json",
+      "existingValuesUnchanged": true,
+      "addedKeys": [
+        "act.completed",
+        "act.failed",
+        "act.interrupted",
+        "act.missingBot",
+        "act.recentEmptyText",
+        "act.recentEmptyTitle",
+        "act.recentScope"
+      ]
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/work.json",
+      "existingValuesUnchanged": true,
+      "addedKeys": [
+        "act.completed",
+        "act.failed",
+        "act.interrupted",
+        "act.missingBot",
+        "act.recentEmptyText",
+        "act.recentEmptyTitle",
+        "act.recentScope"
+      ]
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/work.json",
+      "existingValuesUnchanged": true,
+      "addedKeys": [
+        "act.completed",
+        "act.failed",
+        "act.interrupted",
+        "act.missingBot",
+        "act.recentEmptyText",
+        "act.recentEmptyTitle",
+        "act.recentScope"
+      ]
+    }
+  ],
+  "buildAdded": [
+    {
+      "path": "packages/app/dist/assets/index-4g_J2ofQ.css",
+      "sha256": "9d9dc52f85eade46c37195f05c01de58997a3a79070bce4bfa2361d8f686f1d5"
+    },
+    {
+      "path": "packages/app/dist/assets/index-CvqF5wGz.js",
+      "sha256": "700fa84b40ddec7a8b3e65fb73db59281e24d118504c8c41955ac6e6b6dd7c73"
+    }
+  ],
+  "buildRemoved": [
+    {
+      "path": "packages/app/dist/assets/index-BI2hVXPN.css",
+      "sha256": "6531efe4f5e496773b489657e19d46ccc4b7e355cd39b5ea1cbd997b8de16e48"
+    },
+    {
+      "path": "packages/app/dist/assets/index-BtBW9d3M.js",
+      "sha256": "af6bb76723b5de4f7774f476260362ad6d75651e118f2b02c18b0e740844d477"
+    }
+  ],
+  "buildChanged": [
+    "packages/app/dist/index.html"
+  ],
+  "mainPreloadAndMapsByteExactToMemory": true,
+  "scope": "Preview-selection/CSS evidence, not a live Activity behavior review."
+}

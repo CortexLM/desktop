@@ -1,0 +1,13 @@
+{
+  "file": "captured-source-delta.patch.gz",
+  "sha256": "5f95053270eec229daed924eb72cfec53a82d5a5a11188773d70b3d6da8eb976",
+  "bytes": 10013,
+  "encoding": "gzip",
+  "original": {
+    "name": "captured-source-delta.patch",
+    "sha256": "e6400c415a290fe8447cf4caa2c339bf665099ba5b11ac443eaebb0593a543fd",
+    "bytes": 35560
+  },
+  "losslessVerified": true,
+  "reason": "Preserve captured source delta verbatim without treating archived patch whitespace as repository source."
+}

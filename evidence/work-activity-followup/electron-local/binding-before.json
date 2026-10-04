@@ -1,0 +1,58 @@
+{
+  "at": "2026-10-03T18:55:11.837331+00:00",
+  "observedHead": "9ba8e59fbec8c1f38f93ace25414d4a3489aede3",
+  "originalDirtyBase": "906987b94c04c3c4566ecb33394584ff0e93074e",
+  "dirtyAtExecution": true,
+  "checks": [
+    {
+      "manifest": "../production/pinned-inputs.json",
+      "manifestSHA256": "6ca6cc5a6159490792675e937cf40a5c3b91555a8b343997bc620659dd38ba3b",
+      "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "paths": 517,
+      "allPathsAndHashesMatch": true
+    },
+    {
+      "manifest": "../production/pinned-inputs.json",
+      "manifestSHA256": "6ca6cc5a6159490792675e937cf40a5c3b91555a8b343997bc620659dd38ba3b",
+      "root": "/tmp/opencode/build-work-activity/source",
+      "paths": 517,
+      "allPathsAndHashesMatch": true
+    },
+    {
+      "manifest": "../production/renderer-inputs.json",
+      "manifestSHA256": "8b51e790a7a37e1916fc3bccd7eed8660ee6af3f60f08eb34500417ceebfb8b8",
+      "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "paths": 475,
+      "allPathsAndHashesMatch": true
+    },
+    {
+      "manifest": "../production/renderer-inputs.json",
+      "manifestSHA256": "8b51e790a7a37e1916fc3bccd7eed8660ee6af3f60f08eb34500417ceebfb8b8",
+      "root": "/tmp/opencode/build-work-activity/source",
+      "paths": 475,
+      "allPathsAndHashesMatch": true
+    },
+    {
+      "manifest": "../production/members.json",
+      "manifestSHA256": "368d1bf920b956e6aaa8bbe7c08a0ec4508327bb1a042494c92780311c6f7c1e",
+      "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "paths": 90,
+      "allPathsAndHashesMatch": true
+    },
+    {
+      "manifest": "../production/members.json",
+      "manifestSHA256": "368d1bf920b956e6aaa8bbe7c08a0ec4508327bb1a042494c92780311c6f7c1e",
+      "root": "/tmp/opencode/build-work-activity",
+      "paths": 90,
+      "allPathsAndHashesMatch": true
+    }
+  ],
+  "rendererFingerprint": "a4a815bac24ce5f509f813d06371b8a754908b4b472c3d786f1325dbed53b8df",
+  "asarSHA256": "22760335b8eef317c2c325cde1a7d4c09ecb888780226aaeb0e8ae4353a4bf26",
+  "laterCommitBinding": {
+    "revision": "9ba8e59fbec8c1f38f93ace25414d4a3489aede3",
+    "matched": 517,
+    "total": 517,
+    "originalDirtyRunUnchanged": true
+  }
+}

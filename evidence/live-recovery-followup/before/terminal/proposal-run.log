@@ -1,0 +1,21 @@
+
+ RUN  v5.0.3 /var/tmp/opencode/terminal-copy-repro
+
+ ✓ proposal.test.tsx > proposed core metadata preserves exact real command/model output 139ms
+ ✓ proposal.test.tsx > proposed actual CodeSession renders new annotations; preserves legacy/data in en 229ms
+ ✓ proposal.test.tsx > proposed actual CodeSession renders new annotations; preserves legacy/data in fr 290ms
+ ✓ proposal.test.tsx > proposed actual CodeSession renders new annotations; preserves legacy/data in es 244ms
+ ✓ proposal.test.tsx > proposed actual CodeSession renders new annotations; preserves legacy/data in de 236ms
+ ✓ proposal.test.tsx > proposed actual CodeSession renders new annotations; preserves legacy/data in ja 245ms
+ ✓ proposal.test.tsx > proposed actual CodeSession renders new annotations; preserves legacy/data in zh-Hans 243ms
+ ✓ proposal.test.tsx > proposed actual CodeSession renders new annotations; preserves legacy/data in pt-BR 242ms
+ ✓ proposal.test.tsx > proposed actual CodeSession renders new annotations; preserves legacy/data in ko 250ms
+ ✓ proposal.test.tsx > boundary validation, legacy ambiguity and numeric/symbolic exits preserve user text 13ms
+ ✓ proposal.test.tsx > all eight catalog proposals preserve placeholders and reuse reviewed fixture exit phrases 265ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  01:09:49
+   Duration  3.81s (tests 65%, transform 17%, import 17%)
+
+JSON report written to /tmp/opencode/terminal-copy-repro/proposal/vitest.json

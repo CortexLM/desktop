@@ -1,0 +1,226 @@
+[
+  {
+    "os": "e2e-linux",
+    "title": "Late initial Chat history cannot erase a completed stream — light",
+    "eventCounts": {
+      "message.updated": 8,
+      "part.updated": 14,
+      "session.status": 4,
+      "part.delta": 26,
+      "session.updated": 2
+    },
+    "completedAssistantIDs": [
+      "msg_01a101276cff000074c6663072206625",
+      "msg_01a1012770bf00004a3067ae2799b9d9"
+    ],
+    "domSamples": 14,
+    "nonSetupSamples": 3,
+    "final": {
+      "phase": "after-release",
+      "users": [
+        "Earlier saved message must remain.",
+        "Newest streamed message must remain."
+      ],
+      "answers": [
+        "Hello from the streaming test provider. Everything works.",
+        "Hello from the streaming test provider. Everything works."
+      ]
+    },
+    "noObservedEraseOrRevival": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "os": "e2e-linux",
+    "title": "Late initial Chat history cannot revive a deleted session — light",
+    "eventCounts": {
+      "message.updated": 4,
+      "part.updated": 7,
+      "session.status": 2,
+      "part.delta": 13,
+      "session.updated": 1,
+      "session.deleted": 1
+    },
+    "completedAssistantIDs": [
+      "msg_01a1012778340001ca23f75fa6806eee"
+    ],
+    "domSamples": 3,
+    "nonSetupSamples": 2,
+    "final": {
+      "phase": "after-release",
+      "users": [],
+      "answers": []
+    },
+    "noObservedEraseOrRevival": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "os": "e2e-linux",
+    "title": "Late initial Chat history cannot erase a completed stream — dark",
+    "eventCounts": {
+      "message.updated": 8,
+      "part.updated": 14,
+      "session.status": 4,
+      "part.delta": 26,
+      "session.updated": 2
+    },
+    "completedAssistantIDs": [
+      "msg_01a101277ff70002138a8450d4642aec",
+      "msg_01a10127839b0001aa0896e5aec6732d"
+    ],
+    "domSamples": 13,
+    "nonSetupSamples": 3,
+    "final": {
+      "phase": "after-release",
+      "users": [
+        "Earlier saved message must remain.",
+        "Newest streamed message must remain."
+      ],
+      "answers": [
+        "Hello from the streaming test provider. Everything works.",
+        "Hello from the streaming test provider. Everything works."
+      ]
+    },
+    "noObservedEraseOrRevival": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "os": "e2e-linux",
+    "title": "Late initial Chat history cannot revive a deleted session — dark",
+    "eventCounts": {
+      "message.updated": 4,
+      "part.updated": 7,
+      "session.status": 2,
+      "part.delta": 13,
+      "session.updated": 1,
+      "session.deleted": 1
+    },
+    "completedAssistantIDs": [
+      "msg_01a1012780520002d5825fb1823a1d60"
+    ],
+    "domSamples": 3,
+    "nonSetupSamples": 2,
+    "final": {
+      "phase": "after-release",
+      "users": [],
+      "answers": []
+    },
+    "noObservedEraseOrRevival": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "os": "macos",
+    "title": "Late initial Chat history cannot erase a completed stream — light",
+    "eventCounts": {
+      "message.updated": 8,
+      "part.updated": 14,
+      "session.status": 4,
+      "part.delta": 26,
+      "session.updated": 2
+    },
+    "completedAssistantIDs": [
+      "msg_01a1012a80ef0001acdd9521b2db8a47",
+      "msg_01a1012a84880002235f45ef098dc717"
+    ],
+    "domSamples": 13,
+    "nonSetupSamples": 3,
+    "final": {
+      "phase": "after-release",
+      "users": [
+        "Earlier saved message must remain.",
+        "Newest streamed message must remain."
+      ],
+      "answers": [
+        "Hello from the streaming test provider. Everything works.",
+        "Hello from the streaming test provider. Everything works."
+      ]
+    },
+    "noObservedEraseOrRevival": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "os": "macos",
+    "title": "Late initial Chat history cannot revive a deleted session — light",
+    "eventCounts": {
+      "message.updated": 4,
+      "part.updated": 7,
+      "session.status": 2,
+      "part.delta": 13,
+      "session.updated": 1,
+      "session.deleted": 1
+    },
+    "completedAssistantIDs": [
+      "msg_01a1012a8bd9000226243cc8c3f1ce5d"
+    ],
+    "domSamples": 3,
+    "nonSetupSamples": 2,
+    "final": {
+      "phase": "after-release",
+      "users": [],
+      "answers": []
+    },
+    "noObservedEraseOrRevival": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "os": "macos",
+    "title": "Late initial Chat history cannot erase a completed stream — dark",
+    "eventCounts": {
+      "message.updated": 8,
+      "part.updated": 14,
+      "session.status": 4,
+      "part.delta": 26,
+      "session.updated": 2
+    },
+    "completedAssistantIDs": [
+      "msg_01a1012a945b00000b707612955bfda6",
+      "msg_01a1012a97ec00023c965914e7618295"
+    ],
+    "domSamples": 13,
+    "nonSetupSamples": 3,
+    "final": {
+      "phase": "after-release",
+      "users": [
+        "Earlier saved message must remain.",
+        "Newest streamed message must remain."
+      ],
+      "answers": [
+        "Hello from the streaming test provider. Everything works.",
+        "Hello from the streaming test provider. Everything works."
+      ]
+    },
+    "noObservedEraseOrRevival": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "os": "macos",
+    "title": "Late initial Chat history cannot revive a deleted session — dark",
+    "eventCounts": {
+      "message.updated": 4,
+      "part.updated": 7,
+      "session.status": 2,
+      "part.delta": 13,
+      "session.updated": 1,
+      "session.deleted": 1
+    },
+    "completedAssistantIDs": [
+      "msg_01a1012a9f9f000118ee3a8f9aac06bd"
+    ],
+    "domSamples": 3,
+    "nonSetupSamples": 2,
+    "final": {
+      "phase": "after-release",
+      "users": [],
+      "answers": []
+    },
+    "noObservedEraseOrRevival": true,
+    "errors": [],
+    "rendererHttp": []
+  }
+]

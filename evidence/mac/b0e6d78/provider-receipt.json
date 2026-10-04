@@ -1,0 +1,53 @@
+{
+  "protocol": "cortex-terminal-native-v1",
+  "runID": "ce1fe908-8edd-4a3f-9e02-98a1738c7f4a",
+  "project": "/private/tmp/opencode/desktop-recovery-b0e6d78/project",
+  "platform": "darwin",
+  "port": 9456,
+  "startedAt": "2026-10-03T03:13:49.067Z",
+  "requests": [
+    {
+      "index": 1,
+      "theme": "light",
+      "phase": "exit",
+      "toolResultCount": 0,
+      "checks": {
+        "modelExact": true,
+        "exitOutputExact": null,
+        "largeOutputExact": null,
+        "exitMetadataExact": null,
+        "largeMetadataExact": null,
+        "plainReplayExact": null
+      }
+    },
+    {
+      "index": 2,
+      "theme": "light",
+      "phase": "large",
+      "toolResultCount": 1,
+      "checks": {
+        "modelExact": true,
+        "exitOutputExact": true,
+        "largeOutputExact": null,
+        "exitMetadataExact": true,
+        "largeMetadataExact": null,
+        "plainReplayExact": null
+      }
+    },
+    {
+      "index": 3,
+      "theme": "light",
+      "phase": "complete",
+      "toolResultCount": 2,
+      "checks": {
+        "modelExact": true,
+        "exitOutputExact": true,
+        "largeOutputExact": true,
+        "exitMetadataExact": true,
+        "largeMetadataExact": true,
+        "plainReplayExact": null
+      }
+    }
+  ],
+  "errors": []
+}

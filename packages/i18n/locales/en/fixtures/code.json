@@ -1,0 +1,722 @@
+{
+ "home": {
+  "repos": [
+   "cortex-web",
+   "cortex-ios",
+   "cortex-api"
+  ],
+  "branches": [
+   "main",
+   "release/2.4",
+   "feat/passkeys"
+  ],
+  "envCloud": "Cloud · ubuntu-24",
+  "envLocal": "Local MacBook Pro",
+  "envCloudShort": "Cloud",
+  "envLocalShort": "Local",
+  "tasks": [
+   [
+    "Fix invoice pagination",
+    "cortex-web · 4 min ago",
+    "run"
+   ],
+   [
+    "Move sign-in to passkeys",
+    "cortex-web · +214 −37",
+    "wait"
+   ],
+   [
+    "Add CSV exports",
+    "cortex-web · merged",
+    "ok"
+   ],
+   [
+    "Fix the crash on wake",
+    "cortex-ios · 2 failing tests",
+    "err"
+   ]
+  ]
+ },
+ "session": {
+  "title": "Fix invoice pagination",
+  "prRef": "cortex-web #482",
+  "prompt": "Page 2 of the invoices shows the same rows as page 1. Fix it and add a test.",
+  "log": [
+   [
+    "search",
+    "Reading src/billing/invoices.ts"
+   ],
+   [
+    "terminal",
+    "pnpm test billing — 2 failures"
+   ],
+   [
+    "edit",
+    "Fixed the offset (pages start at 1)"
+   ],
+   [
+    "edit",
+    "Stable sort by id as a second key"
+   ],
+   [
+    "check-circle",
+    "pnpm test billing — 48 passed"
+   ]
+  ],
+  "running": "Running tests…",
+  "answer": "The offset started at page 0 while the API receives pages starting at 1. I also added a stable sort: two invoices created in the same second could switch pages.",
+  "answerBold": "2 files changed, 48 tests passed.",
+  "file": "src/billing/invoices.ts",
+  "diff": "@@ -42,9 +42,11 @@ export async function listInvoices(q: Query) {\n-  const offset = q.page * q.size;\n+  const page = Math.max(1, q.page);\n+  const offset = (page - 1) * q.size;\n   const rows = await db.invoice.findMany({\n     where: { orgId: q.orgId },\n-    orderBy: { createdAt: \"desc\" },\n+    orderBy: [{ createdAt: \"desc\" }, { id: \"desc\" }],\n     skip: offset,\n     take: q.size,\n   });",
+  "terminal": "$ pnpm test billing\n ✓ listInvoices › returns page 1 (12 ms)\n ✓ listInvoices › returns page 2 without duplicates (9 ms)\n ✓ listInvoices › stable sort on equal timestamps (7 ms)\n\nTests: 48 passed, 48 total\nTime: 3.42 s"
+ },
+ "tasks": {
+  "repos": [
+   "cortex-web",
+   "cortex-api",
+   "cortex-ios"
+  ],
+  "list": [
+   {
+    "t": "Fix invoice pagination",
+    "repo": "cortex-web",
+    "br": "fix/invoice-pagination",
+    "st": "run",
+    "a": 3,
+    "d": 2,
+    "dur": "4 min",
+    "env": "Cloud · ubuntu-24",
+    "when": "4 min ago"
+   },
+   {
+    "t": "Speed up invoice list rendering",
+    "repo": "cortex-web",
+    "br": "perf/invoice-list",
+    "st": "run",
+    "a": 0,
+    "d": 0,
+    "dur": "7 min",
+    "env": "Cloud · ubuntu-24",
+    "when": "7 min ago",
+    "n": 4
+   },
+   {
+    "t": "Move sign-in to passkeys",
+    "repo": "cortex-web",
+    "br": "feat/passkeys",
+    "st": "review",
+    "a": 214,
+    "d": 37,
+    "dur": "18 min",
+    "env": "Cloud · ubuntu-24",
+    "when": "1 h ago"
+   },
+   {
+    "t": "Add CSV exports",
+    "repo": "cortex-web",
+    "br": "feat/export-csv",
+    "st": "merged",
+    "a": 96,
+    "d": 4,
+    "dur": "11 min",
+    "env": "Cloud · ubuntu-24",
+    "when": "yesterday"
+   },
+   {
+    "t": "Document the payment webhooks",
+    "repo": "cortex-api",
+    "br": "docs/webhooks",
+    "st": "review",
+    "a": 142,
+    "d": 8,
+    "dur": "6 min",
+    "env": "Cloud · python-3.12",
+    "when": "2 h ago"
+   },
+   {
+    "t": "Rate-limit /v1/exports",
+    "repo": "cortex-api",
+    "br": "feat/rate-limit",
+    "st": "merged",
+    "a": 61,
+    "d": 12,
+    "dur": "9 min",
+    "env": "Cloud · python-3.12",
+    "when": "Monday"
+   },
+   {
+    "t": "Fix the crash on wake",
+    "repo": "cortex-ios",
+    "br": "fix/crash-on-wake",
+    "st": "fail",
+    "a": 18,
+    "d": 5,
+    "dur": "14 min",
+    "env": "Local MacBook Pro",
+    "when": "3 h ago"
+   },
+   {
+    "t": "Move to Swift 6",
+    "repo": "cortex-ios",
+    "br": "chore/swift-6",
+    "st": "archived",
+    "a": 402,
+    "d": 388,
+    "dur": "32 min",
+    "env": "Local MacBook Pro",
+    "when": "Sep 12"
+   }
+  ]
+ },
+ "attempts": {
+  "title": "Speed up invoice list rendering",
+  "repo": "cortex-web",
+  "branch": "perf/invoice-list",
+  "env": "Cloud · ubuntu-24 · 4 containers",
+  "recommendBody": "Fastest render (p95 118 ms) and every test passes.",
+  "durations": [
+   "6 min 12 s",
+   "7 min 40 s",
+   "9 min 05 s"
+  ],
+  "items": [
+   {
+    "done": 4,
+    "a": 38,
+    "d": 21,
+    "files": 3,
+    "tests": "212 of 212",
+    "p95": "118 ms",
+    "note": "Virtualizes the list: only the 40 visible rows are rendered.",
+    "diff": [
+     "-  {invoices.map((f) => <InvoiceRow key={f.id} f={f} />)}",
+     "+  <VirtualList items={invoices} rowHeight={44} overscan={8}>",
+     "+    {(f) => <InvoiceRow key={f.id} f={f} />}"
+    ]
+   },
+   {
+    "done": 6,
+    "a": 24,
+    "d": 9,
+    "files": 2,
+    "tests": "212 of 212",
+    "p95": "164 ms",
+    "note": "Memoizes rows and moves sorting to the server.",
+    "diff": [
+     "-export function InvoiceRow({ f }: Props) {",
+     "+export const InvoiceRow = memo(function InvoiceRow({ f }: Props) {",
+     "+  const total = useMemo(() => format(f.total), [f.total]);"
+    ]
+   },
+   {
+    "done": 9,
+    "fail": true,
+    "a": 71,
+    "d": 33,
+    "files": 5,
+    "tests": "209 of 212",
+    "p95": "—",
+    "note": "Infinite pagination; 3 e2e tests fail when going back.",
+    "diff": [
+     "-  const { data } = useInvoices(page);",
+     "+  const { data, fetchNextPage } = useInfiniteInvoices();",
+     "+  useIntersection(sentinel, fetchNextPage);"
+    ]
+   },
+   {
+    "done": 13,
+    "a": 0,
+    "d": 0,
+    "files": 0,
+    "tests": "—",
+    "p95": "—",
+    "note": "Profiles rendering, then splits the table into subcomponents.",
+    "diff": []
+   }
+  ]
+ },
+ "review": {
+  "title": "Review · cortex-web #479",
+  "prTitle": "Paginate the invoice list in the API",
+  "author": [
+   "HM",
+   "Hugo Martin"
+  ],
+  "branch": "hugo/pagination-api",
+  "base": "main",
+  "src": "@@ -38,4 +38,11 @@ import { db } from \"@/lib/db\";\n export async function listInvoices(q: Query) {\n-  const rows = await db.invoice.findMany({ where: { orgId: q.orgId } });\n-  return rows.slice(q.page * q.size, (q.page + 1) * q.size);\n{page}\n+  const rows = await db.invoice.findMany({\n+    where: { orgId: q.orgId },\n+    orderBy: [{ createdAt: \"desc\" }, { id: \"desc\" }],\n+    skip: (page - 1) * q.size,\n+    take: q.size,\n+  });\n+  return { rows, page, hasMore: rows.length === q.size };\n }",
+  "pageOld": "+  const page = Math.max(1, q.page);",
+  "pageNew": "+  const page = Math.max(1, Math.trunc(Number(q.page)) || 1);",
+  "test": "@@ -0,0 +1,5 @@\n+test(\"returns page 2 without duplicates\", async () => {\n+  const a = await listInvoices({ orgId, page: 1, size: 20 });\n+  const b = await listInvoices({ orgId, page: 2, size: 20 });\n+  expect(ids(a)).not.toEqual(expect.arrayContaining(ids(b)));\n+});",
+  "srcFile": "src/billing/invoices.ts",
+  "testFile": "tests/billing/invoices.test.ts",
+  "c1": "`q.page` comes from the query string. With `?page=abc`, `Math.max` returns `NaN` and Prisma gets `skip: NaN`: the query fails with a 500.",
+  "c2": "This sort needs an index on `(orgId, createdAt, id)`. Without it the query scans the whole table: 1.4 s measured on the production copy.",
+  "c3": "Add a case with two invoices created in the same second: that is exactly what the second sort key fixes.",
+  "commit": "3f2a9c1",
+  "commitBranch": "hugo/pagination-api",
+  "prRef": "cortex-web #479"
+ },
+ "diff": {
+  "title": "Move sign-in to passkeys",
+  "branch": "feat/passkeys",
+  "files": [
+   {
+    "path": "src/auth/passkeys.ts",
+    "st": "A",
+    "a": 128,
+    "d": 0,
+    "more": "113 more lines added",
+    "src": "@@ -0,0 +1,128 @@\n+import { verifyAuthenticationResponse } from \"@simplewebauthn/server\";\n+import { db } from \"@/lib/db\";\n+\n+const RP_ID = process.env.RP_ID ?? \"app.studio-nord.fr\";\n+\n+export async function verifyPasskey(user: UserWithPasskeys, assertion: PasskeyAssertion) {\n+  const key = user.passkeys.find((k) => k.credentialId === assertion.id);\n+  if (!key) return false;\n+  const { verified, authenticationInfo } = await verifyAuthenticationResponse({\n+    response: assertion,\n+    expectedChallenge: await takeChallenge(user.id),\n+    expectedOrigin: `https://${RP_ID}`,\n+    expectedRPID: RP_ID,\n+    credential: { id: key.credentialId, publicKey: key.publicKey, counter: key.counter },\n+  });"
+   },
+   {
+    "path": "src/auth/session.ts",
+    "st": "M",
+    "a": 41,
+    "d": 22,
+    "hidden": true,
+    "src": "@@ -1,6 +1,7 @@\n import { cookies } from \"next/headers\";\n import { db } from \"@/lib/db\";\n+import { verifyPasskey } from \"./passkeys\";\n \n const SESSION_TTL = 60 * 60 * 24 * 30;\n \n~\n@@ -18,7 +19,14 @@ export async function signIn(input: SignInInput) {\n export async function signIn(input: SignInInput) {\n-  const user = await db.user.findUnique({ where: { email: input.email } });\n-  if (!user || !(await checkPassword(user, input.password))) {\n-    throw new AuthError(\"Invalid credentials\");\n-  }\n+  const user = await db.user.findUnique({\n+    where: { email: input.email },\n+    include: { passkeys: true },\n+  });\n+  if (!user) throw new AuthError(\"Account not found\");\n+  const ok = input.assertion\n+    ? await verifyPasskey(user, input.assertion)\n+    : await checkPassword(user, input.password);\n+  if (!ok) throw new AuthError(\"Invalid credentials\");\n   return createSession(user.id);\n }"
+   },
+   {
+    "path": "src/auth/magic-link.ts",
+    "st": "D",
+    "a": 0,
+    "d": 6,
+    "src": "@@ -1,6 +0,0 @@\n-// Old magic-link sign-in, replaced by passkeys.\n-export async function sendMagicLink(email: string) {\n-  const token = await createToken(email, { ttl: 15 * 60 });\n-  await mailer.send(email, \"Your sign-in link\", linkFor(token));\n-  return token;\n-}"
+   },
+   {
+    "path": "src/routes/login.tsx",
+    "st": "M",
+    "a": 32,
+    "d": 9,
+    "src": "@@ -12,9 +12,16 @@ export default function LoginPage() {\n   return (\n     <form action={signIn} className=\"login\">\n       <Field label=\"Email\" name=\"email\" type=\"email\" />\n-      <Field label=\"Password\" name=\"password\" type=\"password\" />\n-      <button type=\"submit\">Sign in</button>\n+      {mode === \"password\" && (\n+        <Field label=\"Password\" name=\"password\" type=\"password\" />\n+      )}\n+      <button type=\"submit\">\n+        {mode === \"passkey\" ? \"Continue with a passkey\" : \"Sign in\"}\n+      </button>\n+      <button type=\"button\" onClick={toggleMode} className=\"link\">\n+        {mode === \"passkey\" ? \"Use a password\" : \"Use a passkey\"}\n+      </button>\n     </form>\n   );\n }"
+   },
+   {
+    "path": "tests/auth/passkeys.test.ts",
+    "st": "A",
+    "a": 13,
+    "d": 0,
+    "src": "@@ -0,0 +1,13 @@\n+import { describe, expect, it } from \"vitest\";\n+import { verifyPasskey } from \"@/auth/passkeys\";\n+\n+describe(\"verifyPasskey\", () => {\n+  it(\"rejects an unknown key\", async () => {\n+    expect(await verifyPasskey(userWithoutKey, assertion)).toBe(false);\n+  });\n+\n+  it(\"accepts a registered key and increments the counter\", async () => {\n+    expect(await verifyPasskey(camille, assertion)).toBe(true);\n+    expect(await counterOf(camille)).toBe(8);\n+  });\n+});"
+   }
+  ],
+  "hidden": [
+   [
+    "export type SignInInput = {",
+    "  email: string;",
+    "  password: string;",
+    "  remember?: boolean;",
+    "};",
+    "",
+    "export class AuthError extends Error {",
+    "  status = 401;",
+    "}",
+    "",
+    "// Opens a 30-day session after a successful sign-in."
+   ]
+  ],
+  "tree": [
+   [
+    "src/auth",
+    [
+     0,
+     1,
+     2
+    ]
+   ],
+   [
+    "src/routes",
+    [
+     3
+    ]
+   ],
+   [
+    "tests/auth",
+    [
+     4
+    ]
+   ]
+  ],
+  "me": [
+   "CL",
+   "Camille Laurent"
+  ],
+  "comment": "This reveals that an account exists for this email. Keep a single message for both cases?",
+  "reply": "Sure, I’ll put back “Invalid credentials” for both cases and add a test.",
+  "conflictFile": "src/auth/session.ts",
+  "conflictBody": "1 conflict in src/auth/session.ts: main shortened the session length during your task.",
+  "ours": [
+   "const SESSION_TTL = 60 * 60 * 24 * 30;",
+   "const PASSKEY_TIMEOUT = 60_000;"
+  ],
+  "theirs": [
+   "const SESSION_TTL = 60 * 60 * 24 * 14; // 14 days, requested by security"
+  ],
+  "cortex": [
+   "const SESSION_TTL = 60 * 60 * 24 * 14; // 14 days, requested by security",
+   "const PASSKEY_TIMEOUT = 60_000;"
+  ],
+  "oursLabel": "feat/passkeys (your branch)",
+  "baseBranch": "main"
+ },
+ "terminal": {
+  "title": "Fix invoice pagination",
+  "base": [
+   [
+    "cmd",
+    "pnpm install --frozen-lockfile"
+   ],
+   [
+    "dim",
+    "Lockfile is up to date, resolution skipped"
+   ],
+   [
+    "dim",
+    "Packages: +1,284"
+   ],
+   [
+    "ok",
+    "Done in 6.8 s"
+   ],
+   [
+    "cmd",
+    "pnpm lint"
+   ],
+   [
+    "ok",
+    "0 problems"
+   ],
+   [
+    "cmd",
+    "pnpm test billing"
+   ]
+  ],
+  "run": [
+   [
+    "ok",
+    " ✓ listInvoices › returns page 1 (12 ms)"
+   ],
+   [
+    "ok",
+    " ✓ listInvoices › returns page 2 without duplicates (9 ms)"
+   ],
+   [
+    "ok",
+    " ✓ listInvoices › stable sort on equal timestamps (7 ms)"
+   ],
+   [
+    "ok",
+    " ✓ exportCsv › escapes semicolons (4 ms)"
+   ],
+   [
+    "dim",
+    "Tests: 48 passed, 48 total · 3.42 s"
+   ],
+   [
+    "ask",
+    "rm -rf dist"
+   ],
+   [
+    "cmd",
+    "rm -rf dist"
+   ],
+   [
+    "cmd",
+    "pnpm build"
+   ],
+   [
+    "dim",
+    "vite v6.2.0 building for production…"
+   ],
+   [
+    "dim",
+    "✓ 1,412 modules transformed"
+   ],
+   [
+    "dim",
+    "dist/assets/index-4f2a.js   412.8 kB │ gzip: 128.3 kB"
+   ],
+   [
+    "ok",
+    "✓ built in 8.91 s"
+   ]
+  ],
+  "fail": [
+   [
+    "ok",
+    " ✓ listInvoices › returns page 1 (12 ms)"
+   ],
+   [
+    "err",
+    " ✗ listInvoices › returns page 2 without duplicates (14 ms)"
+   ],
+   [
+    "dim",
+    "     expected: F-2026-0113 · received: F-2026-0101"
+   ],
+   [
+    "err",
+    " ✗ listInvoices › stable sort on equal timestamps (8 ms)"
+   ],
+   [
+    "dim",
+    "     invoices F-2026-0118 and F-2026-0119 switch pages"
+   ],
+   [
+    "ok",
+    " ✓ exportCsv › escapes semicolons (4 ms)"
+   ],
+   [
+    "dim",
+    "Tests: 2 failed, 46 passed, 48 total · 3.61 s"
+   ],
+   [
+    "err",
+    "Command exited with code 1"
+   ]
+  ],
+  "build": "pnpm build",
+  "buildAlt": "pnpm build --outDir dist-next",
+  "user": "Camille Laurent",
+  "env": "Cloud · ubuntu-24",
+  "branch": "fix/invoice-pagination",
+  "network": "Allowlist",
+  "approvals": "Destructive commands",
+  "failSub": "The offset still starts at page 0.",
+  "doneSub": "48 tests passed · built in 8.9 s",
+  "repo": "cortex-web",
+  "times": [
+   "09:41:02",
+   "09:41:11",
+   "09:41:20",
+   "09:41:29",
+   "09:41:38"
+  ]
+ },
+ "env": {
+  "envs": [
+   {
+    "name": "Cloud · ubuntu-24",
+    "ic": "cpu",
+    "image": "cortex/universal:24.04",
+    "stack": "Node 22 · pnpm 9 · Python 3.12",
+    "repos": "cortex-web, cortex-api",
+    "net": "Allowlist",
+    "cache": "1.2 GB · 2 h ago",
+    "ready": true
+   },
+   {
+    "name": "Cloud · python-3.12",
+    "ic": "cpu",
+    "image": "cortex/python:3.12-slim",
+    "stack": "Python 3.12 · uv 0.5",
+    "repos": "cortex-api",
+    "net": "None",
+    "cache": "340 MB · yesterday",
+    "ready": true
+   },
+   {
+    "name": "Local MacBook Pro",
+    "ic": "terminal",
+    "image": "macOS 15 · Xcode 17",
+    "stack": "Swift 6 · Node 22",
+    "repos": "cortex-ios",
+    "net": "Full",
+    "cache": "Off",
+    "ready": false
+   }
+  ],
+  "setup": "#!/usr/bin/env bash\nset -euo pipefail\ncorepack enable\npnpm install --frozen-lockfile\npnpm prisma generate\npnpm exec playwright install --with-deps chromium",
+  "boot": [
+   "Pulling image cortex/universal:24.04",
+   "Image cached · 1.8 GB",
+   "Cloning studio-nord/cortex-web (main)",
+   "Restoring pnpm cache · 1.2 GB",
+   "$ corepack enable",
+   "$ pnpm install --frozen-lockfile",
+   "Packages: +1,284 · done in 11.2 s",
+   "$ pnpm prisma generate",
+   "Prisma client generated (v6.4.1)",
+   "$ pnpm exec playwright install --with-deps chromium",
+   "Chromium 131 installed",
+   "✓Environment ready · 3 secrets loaded · network: allowlist (3 domains)"
+  ],
+  "images": [
+   "cortex/universal:24.04",
+   "cortex/node:22",
+   "cortex/python:3.12-slim"
+  ],
+  "domains": [
+   "npm.studio-nord.fr",
+   "api.studio-nord.fr",
+   "files.pythonhosted.org"
+  ],
+  "secrets": [
+   [
+    "NPM_TOKEN",
+    "a91f",
+    "Sep 12"
+   ],
+   [
+    "DATABASE_URL",
+    "5432",
+    "Aug 3"
+   ],
+   [
+    "MONITORING_DSN",
+    "e07b",
+    "Aug 3"
+   ]
+  ],
+  "stackHint": "Node 22, pnpm 9, Python 3.12 and Playwright are preinstalled.",
+  "cacheSub": "Dependencies and builds · 1.2 GB · expires after 12 h",
+  "cacheFreed": "1.2 GB freed",
+  "current": "Cloud · ubuntu-24",
+  "repo": "cortex-web · main",
+  "netSummary": "Allowlist · 3 domains",
+  "secretsSummary": "3 loaded",
+  "bootTime": "40 s",
+  "errLine": "Line 4 of the script: pnpm install",
+  "errBody": "pnpm couldn’t read the private registry: the NPM_TOKEN token seems expired.",
+  "domainPlaceholder": "add.a-domain.com",
+  "bootErr": [
+   "Pulling image cortex/universal:24.04",
+   "Image cached · 1.8 GB",
+   "Cloning studio-nord/cortex-web (main)",
+   "Restoring pnpm cache · 1.2 GB",
+   "$ corepack enable",
+   "$ pnpm install --frozen-lockfile",
+   "!ERR_PNPM_FETCH_403  GET https://npm.studio-nord.fr/@studio-nord%2fui: forbidden (403)",
+   "The NPM_TOKEN token has expired or can’t access the private registry.",
+   "!Setup script exited with code 1"
+  ]
+ },
+ "pr": {
+  "title": "Fix invoice pagination",
+  "ref": "cortex-web #482",
+  "desc": "## Problem\nPage 2 of the invoices showed the same rows as page 1: the offset started at 0 while the API counts pages from 1.\n\n## Changes\n- Offset computed from page 1 in listInvoices\n- Stable sort by id as a second key\n- 3 regression tests\n\n## Checks\n- pnpm test billing: 48 passed",
+  "reviewers": [
+   [
+    "HM",
+    "Hugo Martin"
+   ],
+   [
+    "LD",
+    "Léa Dubois"
+   ]
+  ],
+  "more": [
+   [
+    "NR",
+    "Nina Roux"
+   ],
+   [
+    "TB",
+    "Théo Bernard"
+   ]
+  ],
+  "branch": "fix/invoice-pagination",
+  "checks": [
+   [
+    "Lint",
+    "pnpm lint",
+    "12 s"
+   ],
+   [
+    "Types",
+    "tsc -b",
+    "24 s"
+   ],
+   [
+    "Unit tests",
+    "vitest · 48 tests",
+    "1 min 08 s"
+   ],
+   [
+    "E2E tests",
+    "playwright · 3 browsers",
+    "2 min 41 s"
+   ],
+   [
+    "Preview",
+    "preview deployment",
+    "48 s"
+   ]
+  ],
+  "ciLog": "✗ invoices › pagination › page 2 loads (webkit)\n  Timeout of 30,000 ms exceeded\n  tests/e2e/invoices.spec.ts:42",
+  "sha": "9c41e07",
+  "user": "Camille Laurent",
+  "files": 2,
+  "a": 31,
+  "d": 2,
+  "reviewerHint": "Suggested from AGENTS.md: billing, reviewed by Hugo Martin.",
+  "e2eFail": "An e2e test fails on WebKit. I can fix it.",
+  "approvedBy": "Hugo Martin"
+ },
+ "settings": {
+  "org": "Studio Nord",
+  "repos": [
+   {
+    "o": "SN",
+    "r": "studio-nord/cortex-web",
+    "s": "main · synced 2 min ago",
+    "on": true
+   },
+   {
+    "o": "SN",
+    "r": "studio-nord/cortex-api",
+    "s": "main · synced 1 h ago",
+    "on": true
+   },
+   {
+    "o": "SN",
+    "r": "studio-nord/cortex-ios",
+    "s": "develop · synced 3 h ago",
+    "on": true
+   },
+   {
+    "o": "AM",
+    "r": "atelier-morel/site-vitrine",
+    "s": "main · read only",
+    "on": false
+   }
+  ],
+  "avail": [
+   "studio-nord/design-tokens",
+   "studio-nord/infra"
+  ],
+  "agents": "# Instructions for Cortex · cortex-web\n\n## Checks\n- Run pnpm lint and pnpm test before every PR.\n- Never edit an existing migration in prisma/migrations: create a new one.\n\n## Style\n- Strict TypeScript, no any.\n- Interface copy in English, sentence case.\n\n## Pull requests\n- Title in the present tense, under 70 characters.\n- Add Hugo Martin as a reviewer for anything touching billing.",
+  "repoNames": [
+   "cortex-web",
+   "cortex-api",
+   "cortex-ios"
+  ],
+  "allow": [
+   "pnpm test",
+   "pnpm lint",
+   "git status",
+   "rm -rf dist"
+  ],
+  "fromTask": "rm -rf dist",
+  "usage": [
+   [
+    "cortex-web",
+    26,
+    268,
+    31
+   ],
+   [
+    "cortex-api",
+    9,
+    94,
+    6
+   ],
+   [
+    "cortex-ios",
+    6,
+    50,
+    3
+   ]
+  ],
+  "reset": "Resets Monday, October 5."
+ }
+}

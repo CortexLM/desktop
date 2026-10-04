@@ -1,0 +1,274 @@
+{
+  "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+  "head": "72d2926b284760d96462cc931777761eedf9e3c1",
+  "source": [
+    {
+      "path": "packages/app/src/screens/chat/live-chat.tsx",
+      "sha256": "2a1c72aed2b979797be67d6f37612726a7d086e7a902ab5423d8d9026dc299ab"
+    },
+    {
+      "path": "packages/app/src/screens/code/code.tsx",
+      "sha256": "65f25c7b534b9a8f8d032a6f67f9a794054c18a997a15de499f88ede8d8ccb89"
+    },
+    {
+      "path": "packages/app/src/screens/work/home.tsx",
+      "sha256": "61e37805bd9591619ce82e1e0e73af39fcf79b76ac0277bbf6b531a311cfd5b8"
+    },
+    {
+      "path": "packages/app/src/state/live.ts",
+      "sha256": "fde8193d44f8e943915b18a5b3dc074ef048dc1f37cd580f25db1f2bfab6ed34"
+    },
+    {
+      "path": "packages/core/src/session.ts",
+      "sha256": "8bdaadc276264e3e755c73df44bd894b884826875a6e582149dccc69086b81d4"
+    }
+  ],
+  "beforeMembers": 90,
+  "beforeAllMatch": true,
+  "transport": "Browser requests intercepted before network; real app.fetch for API; initial real SSE greeting read then cancelled. Reload-only evidence, not live-stream proof.",
+  "deletedGet": {
+    "status": 404,
+    "data": {
+      "error": {
+        "code": "not_found",
+        "message": "Unknown session ses_01a1010d586e00004958b48ea795cdcc"
+      }
+    }
+  },
+  "codeHistory": [
+    {
+      "info": {
+        "id": "msg_01a1010d58730000b90b489a8de9705b",
+        "sessionID": "ses_01a1010d58700000aa877343e5ca0052",
+        "role": "user",
+        "time": {
+          "created": 1791019014259
+        },
+        "model": {
+          "providerID": "fake",
+          "modelID": "reasoner"
+        },
+        "agent": "build",
+        "usage": {
+          "input": 0,
+          "output": 0,
+          "reasoning": 0,
+          "cost": 0
+        }
+      },
+      "parts": [
+        {
+          "id": "prt_01a1010d58730001a8f7dd33a648c9cb",
+          "sessionID": "ses_01a1010d58700000aa877343e5ca0052",
+          "messageID": "msg_01a1010d58730000b90b489a8de9705b",
+          "type": "text",
+          "text": "Return a controlled refusal"
+        }
+      ]
+    },
+    {
+      "info": {
+        "id": "msg_01a1010d587400006cf042b1f532d999",
+        "sessionID": "ses_01a1010d58700000aa877343e5ca0052",
+        "role": "assistant",
+        "time": {
+          "created": 1791019014260,
+          "completed": 1791019014286
+        },
+        "model": {
+          "providerID": "fake",
+          "modelID": "reasoner"
+        },
+        "agent": "build",
+        "usage": {
+          "input": 0,
+          "output": 0,
+          "reasoning": 0,
+          "cost": 0
+        },
+        "error": {
+          "code": "provider_auth_failed",
+          "message": "Provider rejected the credentials (status 401)"
+        }
+      },
+      "parts": []
+    }
+  ],
+  "codeStatuses": [
+    {
+      "type": "session.status",
+      "properties": {
+        "sessionID": "ses_01a1010d58700000aa877343e5ca0052",
+        "status": {
+          "type": "busy"
+        }
+      }
+    },
+    {
+      "type": "session.status",
+      "properties": {
+        "sessionID": "ses_01a1010d58700000aa877343e5ca0052",
+        "status": {
+          "type": "error",
+          "error": {
+            "code": "provider_auth_failed",
+            "message": "Provider rejected the credentials (status 401)"
+          }
+        }
+      }
+    },
+    {
+      "type": "session.status",
+      "properties": {
+        "sessionID": "ses_01a1010d58700000aa877343e5ca0052",
+        "status": {
+          "type": "idle"
+        }
+      }
+    }
+  ],
+  "deletedChat": {
+    "alert": "Something went wrong.\nYour message is kept. Try again in a moment.",
+    "users": 0,
+    "composerMounted": 1
+  },
+  "codeInitial": {
+    "badge": "Ready",
+    "badgeClass": "badge ok",
+    "error": "The task stopped\nCheck the provider in Settings, then ask again."
+  },
+  "codeReload": {
+    "badge": "Ready",
+    "badgeClass": "badge ok",
+    "error": "The task stopped\nCheck the provider in Settings, then ask again."
+  },
+  "pageErrors": [],
+  "afterMembers": 90,
+  "afterAllMatch": true,
+  "confirmed": [
+    "Deleted Chat displays retryable retained-message copy on actual not_found",
+    "Persisted failed Code displays Ready badge and failure banner together after reload"
+  ],
+  "providerCalls": [
+    "https://provider.invalid/v1/chat/completions"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "path": "/api/bots",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/events",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/sessions",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/providers",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/sessions/ses_01a1010d586e00004958b48ea795cdcc",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/sessions/ses_01a1010d586e00004958b48ea795cdcc/messages",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/permissions",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/providers",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/catalog/providers/fake/models",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/catalog/providers/fake/models",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/sessions",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/sessions/ses_01a1010d58700000aa877343e5ca0052",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/sessions/ses_01a1010d58700000aa877343e5ca0052/messages",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/permissions",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/providers",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/catalog/providers/fake/models",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/sessions",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/events",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/sessions/ses_01a1010d58700000aa877343e5ca0052",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/sessions/ses_01a1010d58700000aa877343e5ca0052/messages",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/permissions",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/providers",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/catalog/providers/fake/models",
+      "status": 200
+    }
+  ],
+  "blockedExternalRequests": [],
+  "cleanup": "Browser closed; in-memory core closed; no listening server created."
+}

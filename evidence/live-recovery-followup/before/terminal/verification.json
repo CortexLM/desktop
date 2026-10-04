@@ -1,0 +1,32 @@
+{
+  "sourcesUnchanged": true,
+  "sourceFileCount": 14,
+  "runs": {
+    "current": {
+      "exit": 0,
+      "passed": 4,
+      "failed": 0,
+      "pending": 0
+    },
+    "negative": {
+      "exit": 1,
+      "passed": 2,
+      "failed": 2,
+      "pending": 0
+    },
+    "proposal": {
+      "exit": 0,
+      "passed": 11,
+      "failed": 0,
+      "pending": 0
+    }
+  },
+  "actualCodeSessionRenders": {
+    "current": 4,
+    "negative": 4,
+    "proposal": 64
+  },
+  "proposalAppliedToRepository": false,
+  "modelReplay": "Exact output equality for tools enabled and disabled in proposed run",
+  "scope": "Real core bash execution; actual CodeSession SSR; mocked navigation/data hooks; JSON reopen; no SQLite, IPC, Electron, build, CI or native UI verification"
+}

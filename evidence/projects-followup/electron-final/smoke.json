@@ -1,0 +1,11 @@
+{
+  "resultLog": "../production/smoke-production.log",
+  "result": "SMOKE OK",
+  "processLog": "source/smoke-process.log.gz",
+  "processLogSHA256": "309b90c2034190fe55a88c064e50b4e9f691dbf175176a6155a2024da7559055",
+  "asarSHA256": "5a92b306afc07184af30404d3d04ae596554ea9800bf31e3a0e3f2fd5c74d9ad",
+  "headlessDbusDiagnostics": 9,
+  "crashClaim": "No crash in the recorded launch; no independent OS-wide crash inventory.",
+  "screenshotInspected": false,
+  "note": "Existing smoke receipt and bytes verified; no new launch or smoke screenshot review."
+}

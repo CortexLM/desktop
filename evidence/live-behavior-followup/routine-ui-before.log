@@ -1,0 +1,680 @@
+$ playwright test "tests/e2e/routines.spec.ts" "--workers=1" "--reporter=list" "--output=/tmp/opencode/routines-ui-before-artifacts"
+
+Running 4 tests using 1 worker
+
+  ✘  1 tests/e2e/routines.spec.ts:37:3 › Routine history reflects running, interruption and latest results — light (12.4s)
+  ✘  2 tests/e2e/routines.spec.ts:98:3 › Routine actions retain honest feedback when the engine refuses — light (8.9s)
+  ✘  3 tests/e2e/routines.spec.ts:37:3 › Routine history reflects running, interruption and latest results — dark (12.7s)
+  ✘  4 tests/e2e/routines.spec.ts:98:3 › Routine actions retain honest feedback when the engine refuses — dark (8.9s)
+
+
+  1) tests/e2e/routines.spec.ts:37:3 › Routine history reflects running, interruption and latest results — light
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  locator('.travail-hist tbody tr').first().locator('.badge')
+    Expected: "Running"
+    Received: "Succeeded"
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "soft toHaveText" locator('.travail-hist tbody tr').first().locator('.badge') with timeout 2000ms
+      - waiting for locator('.travail-hist tbody tr').first().locator('.badge')
+        21 × locator resolved to <span class="badge ok">Succeeded</span>
+           - unexpected value "Succeeded"
+
+
+      59 |       const permission = (await call<Permission[]>(page, "/api/permissions"))[0];
+      60 |       expect((await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs[0]).toMatchObject({ status: "running", sessionID: permission.sessionID });
+    > 61 |       await expect.soft(history.first().locator(".badge")).toHaveText("Running", { timeout: 2000 });
+         |                                                            ^
+      62 |       await expect.soft(dots.last()).toHaveAttribute("data-s", "run", { timeout: 2000 });
+      63 |       await capture(page, `routine-running-${theme}`);
+      64 |
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:61:60
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('.travail-runs i').last()
+    Expected: "run"
+    Received: "skip"
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "soft toHaveAttribute" locator('.travail-runs i').last() with timeout 2000ms
+      - waiting for locator('.travail-runs i').last()
+        21 × locator resolved to <i data-s="skip"></i>
+           - unexpected value "skip"
+
+
+      60 |       expect((await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs[0]).toMatchObject({ status: "running", sessionID: permission.sessionID });
+      61 |       await expect.soft(history.first().locator(".badge")).toHaveText("Running", { timeout: 2000 });
+    > 62 |       await expect.soft(dots.last()).toHaveAttribute("data-s", "run", { timeout: 2000 });
+         |                                      ^
+      63 |       await capture(page, `routine-running-${theme}`);
+      64 |
+      65 |       await options.click();
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:62:38
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('menuitem', { name: 'Run now', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "soft toBeDisabled" getByRole('menuitem', { name: 'Run now', exact: true }) with timeout 2000ms
+      - waiting for getByRole('menuitem', { name: 'Run now', exact: true })
+        21 × locator resolved to <div tabindex="-1" class="mitem" role="menuitem" id="base-ui-_r_1o_">…</div>
+           - unexpected value "enabled"
+
+
+      64 |
+      65 |       await options.click();
+    > 66 |       await expect.soft(run).toBeDisabled({ timeout: 2000 });
+         |                              ^
+      67 |       await page.keyboard.press("Escape");
+      68 |       const duplicate = await request(page, `/api/tasks/${task.id}/run`, "POST");
+      69 |       expect.soft(duplicate.status).toBe(409);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:66:30
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 409
+    Received: 202
+
+      67 |       await page.keyboard.press("Escape");
+      68 |       const duplicate = await request(page, `/api/tasks/${task.id}/run`, "POST");
+    > 69 |       expect.soft(duplicate.status).toBe(409);
+         |                                     ^
+      70 |       expect.soft(duplicate.body).toMatchObject({ error: { code: "conflict" } });
+      71 |       expect.soft((await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs).toHaveLength(1);
+      72 |       expect.soft(await call<Session[]>(page, "/api/sessions")).toHaveLength(1);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:69:37
+
+    Error: expect(received).toMatchObject(expected)
+
+    - Expected  - 3
+    + Received  + 1
+
+      Object {
+    -   "error": Object {
+    -     "code": "conflict",
+    -   },
+    +   "accepted": true,
+      }
+
+      68 |       const duplicate = await request(page, `/api/tasks/${task.id}/run`, "POST");
+      69 |       expect.soft(duplicate.status).toBe(409);
+    > 70 |       expect.soft(duplicate.body).toMatchObject({ error: { code: "conflict" } });
+         |                                   ^
+      71 |       expect.soft((await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs).toHaveLength(1);
+      72 |       expect.soft(await call<Session[]>(page, "/api/sessions")).toHaveLength(1);
+      73 |
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:70:35
+
+    Error: expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 2
+    Received array:  [{"id": "run_01a0fea8ef3e0000956c816e3bc80840", "sessionID": "ses_01a0fea8ef3e0001c26d073e8fe220b1", "status": "success", "taskID": "tsk_01a0fea8d55b0000d1c98441c7229c35", "time": {"end": 1790978879330, "start": 1790978879294}}, {"id": "run_01a0fea8d6a60000377d14f247558d28", "sessionID": "ses_01a0fea8d6a70000fa47e9792a0bb18a", "status": "running", "taskID": "tsk_01a0fea8d55b0000d1c98441c7229c35", "time": {"start": 1790978872998}}]
+
+      69 |       expect.soft(duplicate.status).toBe(409);
+      70 |       expect.soft(duplicate.body).toMatchObject({ error: { code: "conflict" } });
+    > 71 |       expect.soft((await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs).toHaveLength(1);
+         |                                                                                    ^
+      72 |       expect.soft(await call<Session[]>(page, "/api/sessions")).toHaveLength(1);
+      73 |
+      74 |       await call(page, `/api/sessions/${permission.sessionID}/abort`, "POST");
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:71:84
+
+    Error: expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 2
+    Received array:  [{"agent": "build", "botID": "bot_01a0fea8d5490000fb8b8ad203597d00", "directory": "/tmp/cortex-e2e-EVrpQF", "id": "ses_01a0fea8ef3e0001c26d073e8fe220b1", "kind": "bot", "model": {"modelID": "reasoner", "providerID": "fake"}, "time": {"created": 1790978879294, "updated": 1790978879329}, "title": "Controlled routine"}, {"agent": "build", "botID": "bot_01a0fea8d5490000fb8b8ad203597d00", "directory": "/tmp/cortex-e2e-EVrpQF", "id": "ses_01a0fea8d6a70000fa47e9792a0bb18a", "kind": "bot", "model": {"modelID": "reasoner", "providerID": "fake"}, "time": {"created": 1790978872999, "updated": 1790978872999}, "title": "Controlled routine"}]
+
+      70 |       expect.soft(duplicate.body).toMatchObject({ error: { code: "conflict" } });
+      71 |       expect.soft((await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs).toHaveLength(1);
+    > 72 |       expect.soft(await call<Session[]>(page, "/api/sessions")).toHaveLength(1);
+         |                                                                 ^
+      73 |
+      74 |       await call(page, `/api/sessions/${permission.sessionID}/abort`, "POST");
+      75 |       await expect.poll(async () => (await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs.find((r) => r.sessionID === permission.sessionID)?.status).not.toBe("running");
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:72:65
+
+    Error: expect(received).toMatchObject(expected)
+
+    - Expected  - 4
+    + Received  + 1
+
+      Object {
+    -   "error": Object {
+    -     "code": "aborted",
+    -   },
+    -   "status": "error",
+    +   "status": "success",
+      }
+
+      75 |       await expect.poll(async () => (await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs.find((r) => r.sessionID === permission.sessionID)?.status).not.toBe("running");
+      76 |       const interrupted = (await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs.find((r) => r.sessionID === permission.sessionID);
+    > 77 |       expect.soft(interrupted).toMatchObject({ status: "error", error: { code: "aborted" } });
+         |                                ^
+      78 |       expect((await call<MessageWithParts[]>(page, `/api/sessions/${permission.sessionID}/messages`)).at(-1)?.info.error?.code).toBe("aborted");
+      79 |       expect(await call<Permission[]>(page, "/api/permissions")).toEqual([]);
+      80 |       await expect.soft(history.locator(".badge.err")).toHaveText("Failed", { timeout: 2000 });
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:77:32
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('.travail-hist tbody tr').locator('.badge.err')
+    Expected: "Failed"
+    Timeout: 2000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "soft toHaveText" locator('.travail-hist tbody tr').locator('.badge.err') with timeout 2000ms
+      - waiting for locator('.travail-hist tbody tr').locator('.badge.err')
+
+
+      78 |       expect((await call<MessageWithParts[]>(page, `/api/sessions/${permission.sessionID}/messages`)).at(-1)?.info.error?.code).toBe("aborted");
+      79 |       expect(await call<Permission[]>(page, "/api/permissions")).toEqual([]);
+    > 80 |       await expect.soft(history.locator(".badge.err")).toHaveText("Failed", { timeout: 2000 });
+         |                                                        ^
+      81 |       await page.reload();
+      82 |       await expect.soft(history.locator(".badge.err")).toHaveText("Failed", { timeout: 2000 });
+      83 |       await capture(page, `routine-interrupted-${theme}`);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:80:56
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('.travail-hist tbody tr').locator('.badge.err')
+    Expected: "Failed"
+    Timeout: 2000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "soft toHaveText" locator('.travail-hist tbody tr').locator('.badge.err') with timeout 2000ms
+      - waiting for locator('.travail-hist tbody tr').locator('.badge.err')
+
+
+      80 |       await expect.soft(history.locator(".badge.err")).toHaveText("Failed", { timeout: 2000 });
+      81 |       await page.reload();
+    > 82 |       await expect.soft(history.locator(".badge.err")).toHaveText("Failed", { timeout: 2000 });
+         |                                                        ^
+      83 |       await capture(page, `routine-interrupted-${theme}`);
+      84 |
+      85 |       // Nine real runs distinguish the latest eight from the oldest eight.
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:82:56
+
+    attachment #1: routine-running-light (image/png) ───────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-history-r-71513--and-latest-results-—-light/attachments/routine-running-light-73ea69f98dac7c480118122bbc6846b4fd3248ce.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: routine-interrupted-light (image/png) ───────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-history-r-71513--and-latest-results-—-light/attachments/routine-interrupted-light-b7b6dcfc3348c5373b18bda18e95fae04d4e5548.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-history-r-71513--and-latest-results-—-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-history-r-71513--and-latest-results-—-light/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-history-r-71513--and-latest-results-—-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-history-r-71513--and-latest-results-—-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/routines.spec.ts:98:3 › Routine actions retain honest feedback when the engine refuses — light
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('html')
+    Expected: "1"
+    Received: "2"
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "soft toHaveAttribute" locator('html') with timeout 2000ms
+      - waiting for locator('html')
+        20 × locator resolved to <html lang="en" data-theme="light" data-routine-writes="2">…</html>
+           - unexpected value "2"
+
+
+      125 |       await options.click();
+      126 |       await run.evaluate((item: HTMLElement) => { item.click(); item.click(); });
+    > 127 |       await expect.soft(page.locator("html")).toHaveAttribute("data-routine-writes", "1", { timeout: 2000 });
+          |                                               ^
+      128 |       await expect.soft(page.getByText("Run started", { exact: true })).toHaveCount(0, { timeout: 1000 });
+      129 |       await options.click();
+      130 |       await expect.soft(run).toBeDisabled({ timeout: 2000 });
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:127:47
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByText('Run started', { exact: true })
+    Expected: 0
+    Received: 2
+    Timeout:  1000ms
+
+    Call log:
+      - Expect "soft toHaveCount" getByText('Run started', { exact: true }) with timeout 1000ms
+      - waiting for getByText('Run started', { exact: true })
+        11 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      126 |       await run.evaluate((item: HTMLElement) => { item.click(); item.click(); });
+      127 |       await expect.soft(page.locator("html")).toHaveAttribute("data-routine-writes", "1", { timeout: 2000 });
+    > 128 |       await expect.soft(page.getByText("Run started", { exact: true })).toHaveCount(0, { timeout: 1000 });
+          |                                                                         ^
+      129 |       await options.click();
+      130 |       await expect.soft(run).toBeDisabled({ timeout: 2000 });
+      131 |       await page.keyboard.press("Escape");
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:128:73
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('menuitem', { name: 'Run now', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "soft toBeDisabled" getByRole('menuitem', { name: 'Run now', exact: true }) with timeout 2000ms
+      - waiting for getByRole('menuitem', { name: 'Run now', exact: true })
+        21 × locator resolved to <div tabindex="-1" class="mitem" role="menuitem" id="base-ui-_r_1p_">…</div>
+           - unexpected value "enabled"
+
+
+      128 |       await expect.soft(page.getByText("Run started", { exact: true })).toHaveCount(0, { timeout: 1000 });
+      129 |       await options.click();
+    > 130 |       await expect.soft(run).toBeDisabled({ timeout: 2000 });
+          |                              ^
+      131 |       await page.keyboard.press("Escape");
+      132 |       await page.evaluate(() => window.dispatchEvent(new Event("release-routine-run")));
+      133 |       await expect(page.getByText("Couldn’t start the routine.", { exact: true }).first()).toBeVisible();
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:130:30
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Couldn’t save. Try again.', { exact: true })
+    Expected: visible
+    Timeout: 2000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "soft toBeVisible" getByText('Couldn’t save. Try again.', { exact: true }) with timeout 2000ms
+      - waiting for getByText('Couldn’t save. Try again.', { exact: true })
+
+
+      139 |       await expect(run).toBeEnabled();
+      140 |       await page.getByRole("menuitem", { name: "Delete", exact: true }).click();
+    > 141 |       await expect.soft(page.getByText("Couldn’t save. Try again.", { exact: true })).toBeVisible({ timeout: 2000 });
+          |                                                                                       ^
+      142 |       expect(await call<ScheduledTask[]>(page, "/api/tasks")).toEqual([]);
+      143 |       expect(errors).toEqual([]);
+      144 |     } finally { await app.close(); }
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:141:87
+
+    attachment #1: routine-start-refused-light (image/png) ─────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-actions-r-37a92--the-engine-refuses-—-light/attachments/routine-start-refused-light-3fa28f22039feb46d0ad7e6a6f702fd3b5056a64.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-actions-r-37a92--the-engine-refuses-—-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-actions-r-37a92--the-engine-refuses-—-light/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-actions-r-37a92--the-engine-refuses-—-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-actions-r-37a92--the-engine-refuses-—-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/e2e/routines.spec.ts:37:3 › Routine history reflects running, interruption and latest results — dark
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  locator('.travail-hist tbody tr').first().locator('.badge')
+    Expected: "Running"
+    Received: "Succeeded"
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "soft toHaveText" locator('.travail-hist tbody tr').first().locator('.badge') with timeout 2000ms
+      - waiting for locator('.travail-hist tbody tr').first().locator('.badge')
+        21 × locator resolved to <span class="badge ok">Succeeded</span>
+           - unexpected value "Succeeded"
+
+
+      59 |       const permission = (await call<Permission[]>(page, "/api/permissions"))[0];
+      60 |       expect((await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs[0]).toMatchObject({ status: "running", sessionID: permission.sessionID });
+    > 61 |       await expect.soft(history.first().locator(".badge")).toHaveText("Running", { timeout: 2000 });
+         |                                                            ^
+      62 |       await expect.soft(dots.last()).toHaveAttribute("data-s", "run", { timeout: 2000 });
+      63 |       await capture(page, `routine-running-${theme}`);
+      64 |
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:61:60
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('.travail-runs i').last()
+    Expected: "run"
+    Received: "skip"
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "soft toHaveAttribute" locator('.travail-runs i').last() with timeout 2000ms
+      - waiting for locator('.travail-runs i').last()
+        21 × locator resolved to <i data-s="skip"></i>
+           - unexpected value "skip"
+
+
+      60 |       expect((await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs[0]).toMatchObject({ status: "running", sessionID: permission.sessionID });
+      61 |       await expect.soft(history.first().locator(".badge")).toHaveText("Running", { timeout: 2000 });
+    > 62 |       await expect.soft(dots.last()).toHaveAttribute("data-s", "run", { timeout: 2000 });
+         |                                      ^
+      63 |       await capture(page, `routine-running-${theme}`);
+      64 |
+      65 |       await options.click();
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:62:38
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('menuitem', { name: 'Run now', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "soft toBeDisabled" getByRole('menuitem', { name: 'Run now', exact: true }) with timeout 2000ms
+      - waiting for getByRole('menuitem', { name: 'Run now', exact: true })
+        21 × locator resolved to <div tabindex="-1" class="mitem" role="menuitem" id="base-ui-_r_1o_">…</div>
+           - unexpected value "enabled"
+
+
+      64 |
+      65 |       await options.click();
+    > 66 |       await expect.soft(run).toBeDisabled({ timeout: 2000 });
+         |                              ^
+      67 |       await page.keyboard.press("Escape");
+      68 |       const duplicate = await request(page, `/api/tasks/${task.id}/run`, "POST");
+      69 |       expect.soft(duplicate.status).toBe(409);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:66:30
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 409
+    Received: 202
+
+      67 |       await page.keyboard.press("Escape");
+      68 |       const duplicate = await request(page, `/api/tasks/${task.id}/run`, "POST");
+    > 69 |       expect.soft(duplicate.status).toBe(409);
+         |                                     ^
+      70 |       expect.soft(duplicate.body).toMatchObject({ error: { code: "conflict" } });
+      71 |       expect.soft((await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs).toHaveLength(1);
+      72 |       expect.soft(await call<Session[]>(page, "/api/sessions")).toHaveLength(1);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:69:37
+
+    Error: expect(received).toMatchObject(expected)
+
+    - Expected  - 3
+    + Received  + 1
+
+      Object {
+    -   "error": Object {
+    -     "code": "conflict",
+    -   },
+    +   "accepted": true,
+      }
+
+      68 |       const duplicate = await request(page, `/api/tasks/${task.id}/run`, "POST");
+      69 |       expect.soft(duplicate.status).toBe(409);
+    > 70 |       expect.soft(duplicate.body).toMatchObject({ error: { code: "conflict" } });
+         |                                   ^
+      71 |       expect.soft((await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs).toHaveLength(1);
+      72 |       expect.soft(await call<Session[]>(page, "/api/sessions")).toHaveLength(1);
+      73 |
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:70:35
+
+    Error: expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 2
+    Received array:  [{"id": "run_01a0fea9497e0000f849f8d5207737c2", "sessionID": "ses_01a0fea9497e0001f03434734a13fb6d", "status": "success", "taskID": "tsk_01a0fea92f600000b4590e434f7cd2a7", "time": {"end": 1790978902440, "start": 1790978902398}}, {"id": "run_01a0fea930900000483a65d5b61787e9", "sessionID": "ses_01a0fea930910000f3f111eacf1b2755", "status": "running", "taskID": "tsk_01a0fea92f600000b4590e434f7cd2a7", "time": {"start": 1790978896017}}]
+
+      69 |       expect.soft(duplicate.status).toBe(409);
+      70 |       expect.soft(duplicate.body).toMatchObject({ error: { code: "conflict" } });
+    > 71 |       expect.soft((await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs).toHaveLength(1);
+         |                                                                                    ^
+      72 |       expect.soft(await call<Session[]>(page, "/api/sessions")).toHaveLength(1);
+      73 |
+      74 |       await call(page, `/api/sessions/${permission.sessionID}/abort`, "POST");
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:71:84
+
+    Error: expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 2
+    Received array:  [{"agent": "build", "botID": "bot_01a0fea92f32000072d543b3a16d1691", "directory": "/tmp/cortex-e2e-Lp7ze5", "id": "ses_01a0fea9497e0001f03434734a13fb6d", "kind": "bot", "model": {"modelID": "reasoner", "providerID": "fake"}, "time": {"created": 1790978902398, "updated": 1790978902439}, "title": "Controlled routine"}, {"agent": "build", "botID": "bot_01a0fea92f32000072d543b3a16d1691", "directory": "/tmp/cortex-e2e-Lp7ze5", "id": "ses_01a0fea930910000f3f111eacf1b2755", "kind": "bot", "model": {"modelID": "reasoner", "providerID": "fake"}, "time": {"created": 1790978896017, "updated": 1790978896017}, "title": "Controlled routine"}]
+
+      70 |       expect.soft(duplicate.body).toMatchObject({ error: { code: "conflict" } });
+      71 |       expect.soft((await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs).toHaveLength(1);
+    > 72 |       expect.soft(await call<Session[]>(page, "/api/sessions")).toHaveLength(1);
+         |                                                                 ^
+      73 |
+      74 |       await call(page, `/api/sessions/${permission.sessionID}/abort`, "POST");
+      75 |       await expect.poll(async () => (await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs.find((r) => r.sessionID === permission.sessionID)?.status).not.toBe("running");
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:72:65
+
+    Error: expect(received).toMatchObject(expected)
+
+    - Expected  - 4
+    + Received  + 1
+
+      Object {
+    -   "error": Object {
+    -     "code": "aborted",
+    -   },
+    -   "status": "error",
+    +   "status": "success",
+      }
+
+      75 |       await expect.poll(async () => (await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs.find((r) => r.sessionID === permission.sessionID)?.status).not.toBe("running");
+      76 |       const interrupted = (await call<ScheduledTask>(page, `/api/tasks/${task.id}`)).runs.find((r) => r.sessionID === permission.sessionID);
+    > 77 |       expect.soft(interrupted).toMatchObject({ status: "error", error: { code: "aborted" } });
+         |                                ^
+      78 |       expect((await call<MessageWithParts[]>(page, `/api/sessions/${permission.sessionID}/messages`)).at(-1)?.info.error?.code).toBe("aborted");
+      79 |       expect(await call<Permission[]>(page, "/api/permissions")).toEqual([]);
+      80 |       await expect.soft(history.locator(".badge.err")).toHaveText("Failed", { timeout: 2000 });
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:77:32
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('.travail-hist tbody tr').locator('.badge.err')
+    Expected: "Failed"
+    Timeout: 2000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "soft toHaveText" locator('.travail-hist tbody tr').locator('.badge.err') with timeout 2000ms
+      - waiting for locator('.travail-hist tbody tr').locator('.badge.err')
+
+
+      78 |       expect((await call<MessageWithParts[]>(page, `/api/sessions/${permission.sessionID}/messages`)).at(-1)?.info.error?.code).toBe("aborted");
+      79 |       expect(await call<Permission[]>(page, "/api/permissions")).toEqual([]);
+    > 80 |       await expect.soft(history.locator(".badge.err")).toHaveText("Failed", { timeout: 2000 });
+         |                                                        ^
+      81 |       await page.reload();
+      82 |       await expect.soft(history.locator(".badge.err")).toHaveText("Failed", { timeout: 2000 });
+      83 |       await capture(page, `routine-interrupted-${theme}`);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:80:56
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('.travail-hist tbody tr').locator('.badge.err')
+    Expected: "Failed"
+    Timeout: 2000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "soft toHaveText" locator('.travail-hist tbody tr').locator('.badge.err') with timeout 2000ms
+      - waiting for locator('.travail-hist tbody tr').locator('.badge.err')
+
+
+      80 |       await expect.soft(history.locator(".badge.err")).toHaveText("Failed", { timeout: 2000 });
+      81 |       await page.reload();
+    > 82 |       await expect.soft(history.locator(".badge.err")).toHaveText("Failed", { timeout: 2000 });
+         |                                                        ^
+      83 |       await capture(page, `routine-interrupted-${theme}`);
+      84 |
+      85 |       // Nine real runs distinguish the latest eight from the oldest eight.
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:82:56
+
+    attachment #1: routine-running-dark (image/png) ────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-history-r-3a54b-n-and-latest-results-—-dark/attachments/routine-running-dark-663602f4da30accee704969d6d10a976ce4e5229.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: routine-interrupted-dark (image/png) ────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-history-r-3a54b-n-and-latest-results-—-dark/attachments/routine-interrupted-dark-2ce73153377e5ab6da687002b19b75c6fb8a229f.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-history-r-3a54b-n-and-latest-results-—-dark/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-history-r-3a54b-n-and-latest-results-—-dark/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-history-r-3a54b-n-and-latest-results-—-dark/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-history-r-3a54b-n-and-latest-results-—-dark/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests/e2e/routines.spec.ts:98:3 › Routine actions retain honest feedback when the engine refuses — dark
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('html')
+    Expected: "1"
+    Received: "2"
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "soft toHaveAttribute" locator('html') with timeout 2000ms
+      - waiting for locator('html')
+        20 × locator resolved to <html lang="en" data-theme="dark" data-routine-writes="2">…</html>
+           - unexpected value "2"
+
+
+      125 |       await options.click();
+      126 |       await run.evaluate((item: HTMLElement) => { item.click(); item.click(); });
+    > 127 |       await expect.soft(page.locator("html")).toHaveAttribute("data-routine-writes", "1", { timeout: 2000 });
+          |                                               ^
+      128 |       await expect.soft(page.getByText("Run started", { exact: true })).toHaveCount(0, { timeout: 1000 });
+      129 |       await options.click();
+      130 |       await expect.soft(run).toBeDisabled({ timeout: 2000 });
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:127:47
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByText('Run started', { exact: true })
+    Expected: 0
+    Received: 2
+    Timeout:  1000ms
+
+    Call log:
+      - Expect "soft toHaveCount" getByText('Run started', { exact: true }) with timeout 1000ms
+      - waiting for getByText('Run started', { exact: true })
+        11 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      126 |       await run.evaluate((item: HTMLElement) => { item.click(); item.click(); });
+      127 |       await expect.soft(page.locator("html")).toHaveAttribute("data-routine-writes", "1", { timeout: 2000 });
+    > 128 |       await expect.soft(page.getByText("Run started", { exact: true })).toHaveCount(0, { timeout: 1000 });
+          |                                                                         ^
+      129 |       await options.click();
+      130 |       await expect.soft(run).toBeDisabled({ timeout: 2000 });
+      131 |       await page.keyboard.press("Escape");
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:128:73
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('menuitem', { name: 'Run now', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "soft toBeDisabled" getByRole('menuitem', { name: 'Run now', exact: true }) with timeout 2000ms
+      - waiting for getByRole('menuitem', { name: 'Run now', exact: true })
+        21 × locator resolved to <div tabindex="-1" class="mitem" role="menuitem" id="base-ui-_r_1p_">…</div>
+           - unexpected value "enabled"
+
+
+      128 |       await expect.soft(page.getByText("Run started", { exact: true })).toHaveCount(0, { timeout: 1000 });
+      129 |       await options.click();
+    > 130 |       await expect.soft(run).toBeDisabled({ timeout: 2000 });
+          |                              ^
+      131 |       await page.keyboard.press("Escape");
+      132 |       await page.evaluate(() => window.dispatchEvent(new Event("release-routine-run")));
+      133 |       await expect(page.getByText("Couldn’t start the routine.", { exact: true }).first()).toBeVisible();
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:130:30
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Couldn’t save. Try again.', { exact: true })
+    Expected: visible
+    Timeout: 2000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "soft toBeVisible" getByText('Couldn’t save. Try again.', { exact: true }) with timeout 2000ms
+      - waiting for getByText('Couldn’t save. Try again.', { exact: true })
+
+
+      139 |       await expect(run).toBeEnabled();
+      140 |       await page.getByRole("menuitem", { name: "Delete", exact: true }).click();
+    > 141 |       await expect.soft(page.getByText("Couldn’t save. Try again.", { exact: true })).toBeVisible({ timeout: 2000 });
+          |                                                                                       ^
+      142 |       expect(await call<ScheduledTask[]>(page, "/api/tasks")).toEqual([]);
+      143 |       expect(errors).toEqual([]);
+      144 |     } finally { await app.close(); }
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/routines.spec.ts:141:87
+
+    attachment #1: routine-start-refused-dark (image/png) ──────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-actions-r-f9f82-n-the-engine-refuses-—-dark/attachments/routine-start-refused-dark-0ed548f39f46c1b17b31c7b4fe4b083dc10c22ec.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-actions-r-f9f82-n-the-engine-refuses-—-dark/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-actions-r-f9f82-n-the-engine-refuses-—-dark/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-actions-r-f9f82-n-the-engine-refuses-—-dark/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/routines-ui-before-artifacts/routines-Routine-actions-r-f9f82-n-the-engine-refuses-—-dark/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    tests/e2e/routines.spec.ts:37:3 › Routine history reflects running, interruption and latest results — light
+    tests/e2e/routines.spec.ts:98:3 › Routine actions retain honest feedback when the engine refuses — light
+    tests/e2e/routines.spec.ts:37:3 › Routine history reflects running, interruption and latest results — dark
+    tests/e2e/routines.spec.ts:98:3 › Routine actions retain honest feedback when the engine refuses — dark
+error: script "test:e2e" exited with code 1

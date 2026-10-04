@@ -1,0 +1,112 @@
+{
+  "timestamp": "2026-10-02T02:47:51.673Z",
+  "model": "cx/gpt-6-astra",
+  "platform": "linux",
+  "scope": "Built Electron renderer IPC bridge and local engine; real remote inference; not packaged-app or visual acceptance.",
+  "transport": "Configured gateway; private base URL omitted; response bytes forwarded unchanged.",
+  "alias": "Test-only loopback proxy replaces only the catalog request model ID with cx/gpt-6-astra. Catalog capabilities are unchanged.",
+  "image": {
+    "width": 128,
+    "height": 128,
+    "background": "blue",
+    "center": "red",
+    "shape": "square",
+    "prompt": "Identify the background color and the center shape color in this image. Reply only with a JSON object with keys \"background\" and \"center\", using lowercase color names. Do not use tools.",
+    "sha256": "f6b5ba85ccd59f203118a175c30b4eea3a3f10fb264347e272d242f98aed2495"
+  },
+  "criteria": {
+    "catalog": "Live models.dev entry declares reasoning and image input.",
+    "image": "Public answer parses as JSON with background=\"blue\" and center=\"red\".",
+    "streaming": "At least one nonempty text delta and one nonempty reasoning delta arrive through Electron IPC; matching persisted parts exist.",
+    "transport": "Exactly one real upstream streamed request per attempt, requested model cx/gpt-6-astra; no generated response or altered capabilities.",
+    "completion": "Engine returns idle without error within 120 seconds; no tools offered or invoked.",
+    "credentials": "Key installed in main, never supplied to renderer; temporary credentials and history removed."
+  },
+  "attempts": [
+    {
+      "providerID": "openai",
+      "catalogModelID": "gpt-6-astra",
+      "protocol": "Responses SSE",
+      "endpoint": "/v1/responses",
+      "deadlineMs": 120000,
+      "upstreamRequests": 1,
+      "blockedRetries": 0,
+      "upstream": {
+        "status": 200,
+        "streamed": true,
+        "bytes": 49283,
+        "textDeltas": 9,
+        "reasoningDeltas": 1
+      },
+      "request": {
+        "model": "cx/gpt-6-astra",
+        "stream": true,
+        "tools": 0,
+        "image": true,
+        "reasoning": {
+          "effort": "medium",
+          "summary": "auto"
+        }
+      },
+      "bridge": {
+        "catalog": {
+          "id": "gpt-6-astra",
+          "capabilities": {
+            "reasoning": true,
+            "imageInput": true,
+            "pdfInput": true,
+            "tools": true,
+            "contextWindow": 1050000,
+            "maxOutput": 128000,
+            "cost": {
+              "input": 10,
+              "output": 50,
+              "cacheRead": 1,
+              "cacheWrite": 12.5
+            }
+          },
+          "reasoningOptions": [
+            {
+              "type": "effort",
+              "values": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
+              ]
+            }
+          ]
+        },
+        "keyAvailable": true,
+        "keyFieldAbsent": true,
+        "textDeltas": 9,
+        "reasoningDeltas": 1,
+        "textCharacters": 36,
+        "reasoningCharacters": 27,
+        "idle": true,
+        "toolParts": 0,
+        "publicAnswer": "{\"background\":\"blue\",\"center\":\"red\"}",
+        "persistedTextParts": 1,
+        "persistedReasoningParts": 1,
+        "imagePersisted": true
+      },
+      "checks": {
+        "catalog": true,
+        "image": true,
+        "streaming": true,
+        "transport": true,
+        "completion": true,
+        "credentials": true
+      },
+      "passed": true,
+      "temporaryDataRemoved": true,
+      "elapsedMs": 8924
+    }
+  ],
+  "passed": true,
+  "baseProtocol": "HTTP",
+  "build": {
+    "mainSha256": "102e8fceb249492c0a5d57b394838db124b83474ca3597dd5a9e423f9cb0d6f4"
+  }
+}

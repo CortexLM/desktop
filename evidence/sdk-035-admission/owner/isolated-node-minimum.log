@@ -1,0 +1,237 @@
+npm warn cli npm v11.19.0 does not support Node.js v20.9.0. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+
+added 2 packages, and audited 3 packages in 596ms
+
+found 0 vulnerabilities
+TAP version 13
+# Subtest: AgentEvent automatically reconnects with UUID since, preserving query parameters
+ok 1 - AgentEvent automatically reconnects with UUID since, preserving query parameters
+  ---
+  duration_ms: 30.958096
+  ...
+# Subtest: turn replay retains original POST, bytes, key and numeric Last-Event-ID
+ok 2 - turn replay retains original POST, bytes, key and numeric Last-Event-ID
+  ---
+  duration_ms: 15.2102
+  ...
+# Subtest: fresh invocation needs original key; invalid replay identity makes no request
+ok 3 - fresh invocation needs original key; invalid replay identity makes no request
+  ---
+  duration_ms: 0.921159
+  ...
+# Subtest: stream_expired followed by socket failure never starts another turn; caller reloads durable transcript
+ok 4 - stream_expired followed by socket failure never starts another turn; caller reloads durable transcript
+  ---
+  duration_ms: 5.467028
+  ...
+# Subtest: realtime advances fresh numeric sequence after room reset, never hello zero
+ok 5 - realtime advances fresh numeric sequence after room reset, never hello zero
+  ---
+  duration_ms: 3.627368
+  ...
+# Subtest: refresh 401 through the same client rejects instead of waiting on itself
+ok 6 - refresh 401 through the same client rejects instead of waiting on itself
+  ---
+  duration_ms: 2.88757
+  ...
+# Subtest: concurrent 401s share one successful refresh, null does not resend stale credentials
+ok 7 - concurrent 401s share one successful refresh, null does not resend stale credentials
+  ---
+  duration_ms: 5.272106
+  ...
+# Subtest: embedded Fetch subscriptions and turns abort an idle response body
+ok 8 - embedded Fetch subscriptions and turns abort an idle response body
+  ---
+  duration_ms: 13.415501
+  ...
+# Subtest: a terminal event ends an open socket and acknowledges its cursor
+ok 9 - a terminal event ends an open socket and acknowledges its cursor
+  ---
+  duration_ms: 4.680569
+  ...
+# Subtest: turn done preserves same-chunk and delayed image completion before cancelling
+ok 10 - turn done preserves same-chunk and delayed image completion before cancelling
+  ---
+  duration_ms: 10.666463
+  ...
+# Subtest: pending image IDs settle independently; error and EOF still finish a turn
+ok 11 - pending image IDs settle independently; error and EOF still finish a turn
+  ---
+  duration_ms: 8.342938
+  ...
+# Subtest: reader and account cancellation reject an idle post-done image tail
+ok 12 - reader and account cancellation reject an idle post-done image tail
+  ---
+  duration_ms: 3.447566
+  ...
+# Subtest: abort stops frames already buffered in the same chunk
+ok 13 - abort stops frames already buffered in the same chunk
+  ---
+  duration_ms: 2.673108
+  ...
+# Subtest: a request and a turn replay never cross a changed token source
+ok 14 - a request and a turn replay never cross a changed token source
+  ---
+  duration_ms: 7.272476
+  ...
+# Subtest: new sign-in aborts a late refresh before it can replace the new cookie
+ok 15 - new sign-in aborts a late refresh before it can replace the new cookie
+  ---
+  duration_ms: 4.540758
+  ...
+# Subtest: adopting a sign-in token preserves its refresh cookie; a rejected sign-in preserves the guest
+ok 16 - adopting a sign-in token preserves its refresh cookie; a rejected sign-in preserves the guest
+  ---
+  duration_ms: 7.128095
+  ...
+# Subtest: a reactive request during refresh adopts the issued token and cookie
+ok 17 - a reactive request during refresh adopts the issued token and cookie
+  ---
+  duration_ms: 2.381715
+  ...
+# Subtest: external refresh reconciles reactive token changes before replay
+ok 18 - external refresh reconciles reactive token changes before replay
+  ---
+  duration_ms: 3.946422
+  ...
+# Subtest: external refresh can await another SDK call without waiting on itself
+ok 19 - external refresh can await another SDK call without waiting on itself
+  ---
+  duration_ms: 2.89063
+  ...
+# Subtest: token removal refuses a private turn replay
+ok 20 - token removal refuses a private turn replay
+  ---
+  duration_ms: 3.123523
+  ...
+# Subtest: successful sign-in invalidates a private request admitted during sign-in
+ok 21 - successful sign-in invalidates a private request admitted during sign-in
+  ---
+  duration_ms: 2.587097
+  ...
+# Subtest: native Fetch sign-in remains readable without cloning after replacing account lifetime
+ok 22 - native Fetch sign-in remains readable without cloning after replacing account lifetime
+  ---
+  duration_ms: 23.881291
+  ...
+# Subtest: auth JSON reads preserve original read errors and account abort reasons
+ok 23 - auth JSON reads preserve original read errors and account abort reasons
+  ---
+  duration_ms: 1.655777
+  ...
+# Subtest: auth JSON accepts a bodyless 204 and refuses malformed JSON
+ok 24 - auth JSON accepts a bodyless 204 and refuses malformed JSON
+  ---
+  duration_ms: 2.708478
+  ...
+# Subtest: successful logout clears an SDK-cached bearer
+ok 25 - successful logout clears an SDK-cached bearer
+  ---
+  duration_ms: 1.933451
+  ...
+# Subtest: account abort cancels buffered turn frames and an idle embedded subscription
+ok 26 - account abort cancels buffered turn frames and an idle embedded subscription
+  ---
+  duration_ms: 7.365608
+  ...
+# Subtest: generated OTP inputs, void acknowledgement, raw upload and public MFA error
+ok 27 - generated OTP inputs, void acknowledgement, raw upload and public MFA error
+  ---
+  duration_ms: 12.862525
+  ...
+# Subtest: generated screenshot upload preserves File and Blob bytes and filename
+ok 28 - generated screenshot upload preserves File and Blob bytes and filename
+  ---
+  duration_ms: 4.515037
+  ...
+# Subtest: generated methods preserve HeadersInit forms and explicit header removal
+ok 29 - generated methods preserve HeadersInit forms and explicit header removal
+  ---
+  duration_ms: 8.666691
+  ...
+# Subtest: HTTP media types match parsers; generated SSE returns before EOF; WS plain HTTP refuses
+ok 30 - HTTP media types match parsers; generated SSE returns before EOF; WS plain HTTP refuses
+  ---
+  duration_ms: 3.693108
+  ...
+# Subtest: generated turn and edit methods accept legacy JSON bodies and return raw streams
+ok 31 - generated turn and edit methods accept legacy JSON bodies and return raw streams
+  ---
+  duration_ms: 11.727334
+  ...
+# Subtest: binding an account signal keeps explicit credentials and replay headers
+ok 32 - binding an account signal keeps explicit credentials and replay headers
+  ---
+  duration_ms: 1.742528
+  ...
+# Subtest: AgentEvent JSON methods preserve Headers and tuples and pin their transport
+ok 33 - AgentEvent JSON methods preserve Headers and tuples and pin their transport
+  ---
+  duration_ms: 1.335844
+  ...
+# Subtest: low-level SSE removes a reset cursor without dropping the initial caller cursor
+ok 34 - low-level SSE removes a reset cursor without dropping the initial caller cursor
+  ---
+  duration_ms: 3.459466
+  ...
+1..34
+# tests 34
+# suites 0
+# pass 34
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 381.346624
+npm: packed pair imports, public types and runtime checks passed
+bun add v1.4.2 (744846f84)
+Resolving dependencies
+Resolved, downloaded and extracted [2]
+Saved lockfile
+
+installed @cortex/api-types@/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/cortex-api-types-0.2.0.tgz
+installed @cortex/sdk@/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/cortex-sdk-0.3.5.tgz
+
+2 packages installed [12.00ms]
+bun test v1.4.2 (744846f84)
+
+runtime.test.mjs:
+(pass) AgentEvent automatically reconnects with UUID since, preserving query parameters [9.61ms]
+(pass) turn replay retains original POST, bytes, key and numeric Last-Event-ID [3.32ms]
+(pass) fresh invocation needs original key; invalid replay identity makes no request [0.68ms]
+(pass) stream_expired followed by socket failure never starts another turn; caller reloads durable transcript [2.00ms]
+(pass) realtime advances fresh numeric sequence after room reset, never hello zero [1.68ms]
+(pass) refresh 401 through the same client rejects instead of waiting on itself [1.23ms]
+(pass) concurrent 401s share one successful refresh, null does not resend stale credentials [1.16ms]
+(pass) embedded Fetch subscriptions and turns abort an idle response body [11.42ms]
+(pass) a terminal event ends an open socket and acknowledges its cursor [0.74ms]
+(pass) turn done preserves same-chunk and delayed image completion before cancelling [6.20ms]
+(pass) pending image IDs settle independently; error and EOF still finish a turn [1.26ms]
+(pass) reader and account cancellation reject an idle post-done image tail [0.95ms]
+(pass) abort stops frames already buffered in the same chunk [0.78ms]
+(pass) a request and a turn replay never cross a changed token source [2.18ms]
+(pass) new sign-in aborts a late refresh before it can replace the new cookie [1.41ms]
+(pass) adopting a sign-in token preserves its refresh cookie; a rejected sign-in preserves the guest [1.46ms]
+(pass) a reactive request during refresh adopts the issued token and cookie [0.73ms]
+(pass) external refresh reconciles reactive token changes before replay [0.45ms]
+(pass) external refresh can await another SDK call without waiting on itself [0.78ms]
+(pass) token removal refuses a private turn replay [1.61ms]
+(pass) successful sign-in invalidates a private request admitted during sign-in [0.72ms]
+(pass) native Fetch sign-in remains readable without cloning after replacing account lifetime [17.99ms]
+(pass) auth JSON reads preserve original read errors and account abort reasons [1.42ms]
+(pass) auth JSON accepts a bodyless 204 and refuses malformed JSON [1.36ms]
+(pass) successful logout clears an SDK-cached bearer [0.90ms]
+(pass) account abort cancels buffered turn frames and an idle embedded subscription [6.02ms]
+(pass) generated OTP inputs, void acknowledgement, raw upload and public MFA error [1.98ms]
+(pass) generated screenshot upload preserves File and Blob bytes and filename [0.82ms]
+(pass) generated methods preserve HeadersInit forms and explicit header removal [1.32ms]
+(pass) HTTP media types match parsers; generated SSE returns before EOF; WS plain HTTP refuses [1.63ms]
+(pass) generated turn and edit methods accept legacy JSON bodies and return raw streams [1.51ms]
+(pass) binding an account signal keeps explicit credentials and replay headers [0.41ms]
+(pass) AgentEvent JSON methods preserve Headers and tuples and pin their transport [0.50ms]
+(pass) low-level SSE removes a reset cursor without dropping the initial caller cursor [2.29ms]
+
+ 34 pass
+ 0 fail
+Ran 34 tests across 1 file. [133.00ms]
+bun: packed pair imports, public types and runtime checks passed

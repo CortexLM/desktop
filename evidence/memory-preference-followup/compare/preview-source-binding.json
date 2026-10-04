@@ -1,0 +1,60 @@
+{
+  "authority": "Only copied initial frozen source. These source observations do not validate live owner-race behavior.",
+  "files": [
+    {
+      "path": "packages/app/src/App.tsx",
+      "initialSHA256": "8e70b0f8e145da3a89d5337330c84f6bfdaa2ce2f24d629466f375d7887aba7d",
+      "lines": [
+        58,
+        66
+      ],
+      "observation": "RuntimeShell checks preview/shot before legacy localStorage pause; preview renders Shell without migration content."
+    },
+    {
+      "path": "packages/app/src/state/runtime-settings.ts",
+      "initialSHA256": "481982a480a648639a8361f5e2b2fd30c3c9edba853ef0d2887e7e3b421360b3",
+      "lines": [
+        19,
+        48
+      ],
+      "observation": "Initial hook excludes preview/shot/gallery; disabled preview has no active settings owner. Later race correction is separate.",
+      "archive": "raw/initial-runtime-settings.ts.gz"
+    },
+    {
+      "path": "packages/app/src/screens/system/projects.tsx",
+      "initialSHA256": "7928365a51f542d6c1af0a1dab3f11c3d7a80560e105130746b39adabb425011",
+      "lines": [
+        377,
+        391
+      ],
+      "observation": "Preview Memory keeps original on/off copy and faded rows; live-specific copy remains in live branches."
+    },
+    {
+      "path": "packages/app/src/screens/system/settings.tsx",
+      "initialSHA256": "8b012ffa2b1b464bb82b7f050b82275564ecb1dc9708dce2be35a64aefcd6d48",
+      "lines": [
+        47,
+        61
+      ],
+      "observation": "Privacy preview retains original description and local preview switch; live copy/recovery branches excluded."
+    },
+    {
+      "path": "packages/app/src/screens/bots/team.tsx",
+      "initialSHA256": "1953d41d75427d9d5b55f3baec75102443149df6b802900e0d8ed513562eb14c",
+      "lines": [
+        238,
+        254
+      ],
+      "observation": "Bot-memory fixture list and learning row remain preview; new empty-live copy outside these captures."
+    },
+    {
+      "path": "packages/app/src/kit/ui.tsx",
+      "initialSHA256": "df465e775780fca2e8022cd591a6e33a6865191c4b1a8818c32eb664f238bd50",
+      "lines": [
+        109,
+        111
+      ],
+      "observation": "Optional disabled prop; unchanged Switch markup/classes."
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "source": "source/files-final11.ts.gz",
+  "sourceSHA256": "a7bd52dbc4577825bbaf2b50fff0de17801faa521ca98c6369c37b53e0f1e498",
+  "cases": [
+    {
+      "line": 148,
+      "title": "Saved image identity, fit, native original download and provider-disabled restart — light",
+      "durationMs": 4660,
+      "claim": "Exact duplicate-name JPEG part opened by keyboard; native displayed dimensions/byte size; actual keyboard+drag movement; Fit/resize; WebP completed byte-equal download; persisted provider disabled after restart and no additional inference."
+    },
+    {
+      "line": 148,
+      "title": "Saved image identity, fit, native original download and provider-disabled restart — dark",
+      "durationMs": 4670,
+      "claim": "Same lifecycle assertions in dark theme."
+    },
+    {
+      "line": 188,
+      "title": "Saved image sources and tuples refuse unsafe/oversized bytes before native assignment",
+      "durationMs": 4639,
+      "claim": "Real saved unsafe sources/tuples rejected before renderer source/decode;50MP header/APNG refused;30-byte WebP reaches native decoder and fails; missing tuple uses Upload."
+    },
+    {
+      "line": 214,
+      "title": "Saved image read failures offer one real pending Retry",
+      "durationMs": 2366,
+      "claim": "Real protocol validation refusal for session/history; one pending Retry; successful recovery."
+    },
+    {
+      "line": 226,
+      "title": "Deletion fences held history and download validation, clearing visible pixels immediately",
+      "durationMs": 3516,
+      "claim": "Held successful history/download validation cannot resurrect deleted owner; immediate visible-image/control/minimap/metadata removal; revoked URL and no dispatched download."
+    },
+    {
+      "line": 238,
+      "title": "Native decode and canceled preview callbacks cannot restore an older attachment owner",
+      "durationMs": 2760,
+      "claim": "Native decode completion held across tuple replacement/deletion; canceled actual preview/Back preserves Activity-independent viewer owner and rereads authoritative history."
+    },
+    {
+      "line": 256,
+      "title": "Opening a saved attachment preserves dirty, refused, reading and submitting Chat drafts",
+      "durationMs": 4686,
+      "claim": "Dirty/read/attached/capability-refused/submitting/no-model drafts remain; accepted Open latches composer, canceled Back restores interaction."
+    },
+    {
+      "line": 281,
+      "title": "Saved image metadata and controls remain reachable in all eight locales at minimum size",
+      "durationMs": 5429,
+      "claim": "Eight dark locales at960×640: real labels and element-box/ancestor-bound checks; eight captures, no serialized text-Range evidence."
+    },
+    {
+      "line": 292,
+      "title": "Saved attachment Open waits for the single pending Chat rename",
+      "durationMs": 2715,
+      "claim": "Rename re-entry refused while accepted PATCH response held; single write; Open blocks until settlement then opens."
+    },
+    {
+      "line": 314,
+      "title": "Same image owner preserves zoom and a held download across shell changes",
+      "durationMs": 2939,
+      "claim": "Same tuple retains src/150% zoom and held download across sidebar/focus/theme; exact one byte-equal PNG download; deletion remains unavailable."
+    },
+    {
+      "line": 345,
+      "title": "A 5000-character saved filename keeps the image and controls reachable in both themes",
+      "durationMs": 3692,
+      "claim": "5000-character name preserved in focusable overflow; clipped image pane≥120×120;Home/End scroll,Tab to Download, controls trial-clickable;both themes."
+    }
+  ],
+  "limits": [
+    "Native will-download+setSavePath determines the test destination; no installed Mac default Save dialog acceptance.",
+    "No raw Files JSON download/geometry attachment; claims derive from preserved source assertions and report results.",
+    "Renderer request observer starts after admission; no claim of complete main/provider network audit.",
+    "Same-owner test preserves zoom/src, not nonzero pan.",
+    "End scroll asserts positive offset, not exact bottom.",
+    "Native decode success does not certify original entropy/CRC or sanitized metadata."
+  ]
+}

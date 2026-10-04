@@ -1,0 +1,560 @@
+{
+  "linux": [
+    {
+      "test": "skipped native route and theme transitions preserve updates and report callback errors",
+      "name": "skipped-native-transitions",
+      "value": {
+        "records": [
+          {
+            "kind": "route",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          },
+          {
+            "kind": "theme",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          }
+        ],
+        "unhandled": [],
+        "errors": []
+      }
+    },
+    {
+      "test": "skipped native route and theme transitions preserve updates and report callback errors",
+      "name": "native-callback-errors",
+      "value": {
+        "records": [
+          {
+            "kind": "route",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          },
+          {
+            "kind": "theme",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          },
+          {
+            "kind": "route",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          },
+          {
+            "kind": "theme",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          }
+        ],
+        "unhandled": [
+          {
+            "source": "updateCallbackDone",
+            "kind": "route",
+            "name": "Error",
+            "message": "Native route callback failed"
+          },
+          {
+            "source": "finished",
+            "kind": "route",
+            "name": "Error",
+            "message": "Native route callback failed"
+          },
+          {
+            "source": "updateCallbackDone",
+            "kind": "theme",
+            "name": "Error",
+            "message": "Native theme callback failed"
+          }
+        ],
+        "errors": [
+          "Native route callback failed",
+          "Native route callback failed",
+          "Native theme callback failed"
+        ]
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 light",
+      "name": "cold-fonts-light",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 409,
+          "height": 1068,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 light",
+      "name": "warm-fonts-light",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 light",
+      "name": "user-wheel-light",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 229,
+          "height": 1068,
+          "viewport": 659,
+          "gap": 180,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 229,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 163,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 light",
+      "name": "variant-change-light",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 179,
+          "height": 786,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 162,
+          "height": 769,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+      "name": "cold-fonts-dark",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 409,
+          "height": 1068,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+      "name": "warm-fonts-dark",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+      "name": "user-wheel-dark",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 229,
+          "height": 1068,
+          "viewport": 659,
+          "gap": 180,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 229,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 163,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+      "name": "variant-change-dark",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 179,
+          "height": 786,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 162,
+          "height": 769,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    }
+  ],
+  "macos": [
+    {
+      "test": "skipped native route and theme transitions preserve updates and report callback errors",
+      "name": "skipped-native-transitions",
+      "value": {
+        "records": [
+          {
+            "kind": "route",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          },
+          {
+            "kind": "theme",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          }
+        ],
+        "unhandled": [],
+        "errors": []
+      }
+    },
+    {
+      "test": "skipped native route and theme transitions preserve updates and report callback errors",
+      "name": "native-callback-errors",
+      "value": {
+        "records": [
+          {
+            "kind": "route",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          },
+          {
+            "kind": "theme",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          },
+          {
+            "kind": "route",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          },
+          {
+            "kind": "theme",
+            "callbacks": 1,
+            "readyHandled": true,
+            "readyError": "AbortError",
+            "native": true
+          }
+        ],
+        "unhandled": [
+          {
+            "source": "updateCallbackDone",
+            "kind": "route",
+            "name": "Error",
+            "message": "Native route callback failed"
+          },
+          {
+            "source": "finished",
+            "kind": "route",
+            "name": "Error",
+            "message": "Native route callback failed"
+          },
+          {
+            "source": "updateCallbackDone",
+            "kind": "theme",
+            "name": "Error",
+            "message": "Native theme callback failed"
+          }
+        ],
+        "errors": [
+          "Native route callback failed",
+          "Native route callback failed",
+          "Native theme callback failed"
+        ]
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 light",
+      "name": "cold-fonts-light",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 410,
+          "height": 1069,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 light",
+      "name": "warm-fonts-light",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 light",
+      "name": "user-wheel-light",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 230,
+          "height": 1069,
+          "viewport": 659,
+          "gap": 180,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 230,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 162,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 light",
+      "name": "variant-change-light",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 179,
+          "height": 786,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 162,
+          "height": 769,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+      "name": "cold-fonts-dark",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 410,
+          "height": 1069,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+      "name": "warm-fonts-dark",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+      "name": "user-wheel-dark",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 230,
+          "height": 1069,
+          "viewport": 659,
+          "gap": 180,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 230,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 162,
+          "fonts": "loaded"
+        }
+      }
+    },
+    {
+      "test": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+      "name": "variant-change-dark",
+      "value": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 179,
+          "height": 786,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 162,
+          "height": 769,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    }
+  ]
+}

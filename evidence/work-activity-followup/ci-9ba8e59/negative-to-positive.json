@@ -1,0 +1,45 @@
+{
+  "oldApplication": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "baselineBehaviorSHA256": "0166d765dd10a8c332da09563af8c2418ea995cfd2ee07bcdd19b7438a347851",
+  "baselineCases": 6,
+  "baselineFailures": 6,
+  "baselineStops": "Five first populated-row assertions; one first source-error assertion. Real persisted fixtures precede stops; downstream identity/restart/race claims not reached.",
+  "initialTarget": {
+    "passed": 5,
+    "failed": 2,
+    "reason": "Saved innerText compared with default textContent at line109; matching content differs by separators, not lost outcome. Later reload/replacement/restart assertions did not run."
+  },
+  "innerTextCorrection": "Exactly three useInnerText:true comparison options; no weakened equality.",
+  "localFull": {
+    "passed": 132,
+    "testSHA256": "5740841a75bda4c688f5407122b870bda049698c1b5e80c6746ce55b82ba4af0",
+    "laterStrongerChecksExecuted": false
+  },
+  "finalTarget": {
+    "passed": 6,
+    "testSHA256": "d98c9205c5dbddfe349a06a4271b4a2a1c135248cf84817705b6d81e11916744"
+  },
+  "finalCI": {
+    "passedPerOS": 132,
+    "activityCasesPerOS": 7,
+    "allFinalSourceAssertionsExecuted": true,
+    "testSHA256": "d98c9205c5dbddfe349a06a4271b4a2a1c135248cf84817705b6d81e11916744"
+  },
+  "localeBaseline": {
+    "testSHA256": "d40d9be095b26db813fe442233f139d67228aa036971f081f5974238d68fd0fc",
+    "failed": 1,
+    "measurements": 0,
+    "reason": "First recent-scope label missing; no later geometry/populated states reached."
+  },
+  "localeCorrection": {
+    "testSHA256": "bfda7f43480e7f20e8101480950c28c5ea149b0f6f3bedf231d56c3ed7a5e087",
+    "measurementCountPerOS": 112,
+    "change": "Each text-node parent through all clipping ancestors, including descendant spans."
+  },
+  "limits": [
+    "All Activity prompts use real IPC, not composer sends; UI filters/Retry/row keyboard-pointer navigation are exercised.",
+    "Providers are controlled local fixtures; no real Cloud/model-quality evidence.",
+    "Behavior failure is HTTP200 SSE error; locale failure is HTTP400. Routine fixture completes successfully; abort is real session API abort.",
+    "SIGKILL is deliberate restart stimulus; incomplete tails retain earlier historical outcomes, never synthesized completion."
+  ]
+}

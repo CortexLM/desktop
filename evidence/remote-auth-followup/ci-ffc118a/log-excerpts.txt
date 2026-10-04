@@ -1,0 +1,34 @@
+2_Lint, typecheck, unit tests, i18n audit.txt
+2026-10-03T03:50:45.4273951Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9615aa0ca582aad3ee2395a81fd51832bca9c7f3:refs/remotes/pull/36/merge
+2026-10-03T03:51:15.3199920Z  * [new ref]         9615aa0ca582aad3ee2395a81fd51832bca9c7f3 -> pull/36/merge
+2026-10-03T03:51:17.2229555Z 9615aa0ca582aad3ee2395a81fd51832bca9c7f3
+2026-10-03T03:52:24.8740400Z  Test Files  18 passed (18)
+2026-10-03T03:52:24.8754316Z       Tests  201 passed | 1 skipped (202)
+2026-10-03T03:52:26.6522838Z i18n audit: 64 files, 2272 keys used, 3405 keys in en, 0 problem(s)
+0_macOS build, package, launch.txt
+2026-10-03T03:51:02.8842350Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9615aa0ca582aad3ee2395a81fd51832bca9c7f3:refs/remotes/pull/36/merge
+2026-10-03T03:51:29.0651640Z  * [new ref]         9615aa0ca582aad3ee2395a81fd51832bca9c7f3 -> pull/36/merge
+2026-10-03T03:51:30.5251890Z 9615aa0ca582aad3ee2395a81fd51832bca9c7f3
+2026-10-03T03:58:59.0271050Z rendered 426 screen states
+2026-10-03T04:00:30.2824440Z   92 passed (8.9m)
+2026-10-03T04:00:48.8127460Z window: Cortex cortex://app/index.html
+2026-10-03T04:00:59.1542360Z could not create image from display
+2026-10-03T04:00:59.1545340Z screencapture failed: Command failed: screencapture -x out/smoke-screen.png
+2026-10-03T04:00:59.1546380Z could not create image from display
+2026-10-03T04:00:59.1547890Z renderer text: Chat | Work | Cortex | New chat | Create your Bot | Tools | Web search | Documents | Images | Automations | Recents | Your chats will appear here. | Getting started | 0 of 5 | What’s on today? | No model
+2026-10-03T04:00:59.1548370Z SMOKE OK
+2026-10-03T04:01:01.0491040Z SHA256 digest of uploaded artifact zip is 9038d9dcb5d397d4e7f6dbe26428026e8e3fa00b506dd0033436eadd9f2bef7f
+2026-10-03T04:01:01.3096570Z Artifact macos.zip successfully finalized. Artifact ID 11262754604
+2026-10-03T04:01:01.3097250Z Artifact macos has been successfully uploaded! Final size is 24234945 bytes. Artifact ID is 11262754604
+2026-10-03T04:01:04.9595560Z SHA256 digest of uploaded artifact zip is eb5c88db8629ba80f1b9da329d429628ec0df1d640fc7cf547f8c510fc633136
+2026-10-03T04:01:05.2636010Z Artifact cortex-mac-arm64-zip.zip successfully finalized. Artifact ID 11263628650
+2026-10-03T04:01:05.2636590Z Artifact cortex-mac-arm64-zip has been successfully uploaded! Final size is 144638433 bytes. Artifact ID is 11263628650
+1_E2E (Playwright + Electron, Linux).txt
+2026-10-03T03:50:53.3891364Z [command]/usr/local/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9615aa0ca582aad3ee2395a81fd51832bca9c7f3:refs/remotes/pull/36/merge
+2026-10-03T03:51:31.2983046Z  * [new ref]         9615aa0ca582aad3ee2395a81fd51832bca9c7f3 -> pull/36/merge
+2026-10-03T03:51:32.9268107Z 9615aa0ca582aad3ee2395a81fd51832bca9c7f3
+2026-10-03T03:54:58.1455468Z rendered 426 screen states
+2026-10-03T03:54:58.1644270Z   92 passed (3.2m)
+2026-10-03T03:55:01.2331051Z SHA256 digest of uploaded artifact zip is e3cb089016fb586d1eac3c868751a143908a2bb80d465a6536cafe5d079cea40
+2026-10-03T03:55:01.7253716Z Artifact e2e-linux.zip successfully finalized. Artifact ID 11264045278
+2026-10-03T03:55:01.7254229Z Artifact e2e-linux has been successfully uploaded! Final size is 24930818 bytes. Artifact ID is 11264045278

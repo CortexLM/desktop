@@ -1,0 +1,930 @@
+{
+  "validJSONAttachments": 132,
+  "malformedJSONAttachments": 0,
+  "attachments": [
+    {
+      "os": "e2e-linux",
+      "file": "appearance-theme.spec.ts",
+      "name": "appearance-theme-observations-light",
+      "bytes": 7795,
+      "sha256": "d3c0b11bab6f487e1632dc5c8c67590a04696427104f73dda081c447af23b767"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "appearance-theme.spec.ts",
+      "name": "appearance-theme-observations-dark",
+      "bytes": 7791,
+      "sha256": "f688d1adab79fb932d41e392108c22115a5bc7fbbe9fa728782f6e1b6327c8f4"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "bot-owner.spec.ts",
+      "name": "bot-owner-evidence",
+      "bytes": 12226,
+      "sha256": "0a6c86700dc87cc8e21693f168cfabaac0fe00bbbb0adce8d7178bbcd8ad1852"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "bot-owner.spec.ts",
+      "name": "bot-owner-evidence",
+      "bytes": 12225,
+      "sha256": "7d93a2f9e3a37c054b32458edb81c269325e5818aef613f7a539eac89c4057cb"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "chat-missing.spec.ts",
+      "name": "chat-missing-evidence",
+      "bytes": 4847,
+      "sha256": "66bf91f6072bc04e7e47486e09681211792d5c5a67dbe56dac1219c29afd36df"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "chat-missing.spec.ts",
+      "name": "chat-missing-evidence",
+      "bytes": 4846,
+      "sha256": "670ef808f58e9a9c2c4281fe9be9cd5efe33961c6ffb771186b57d151094a965"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-960-light-0",
+      "bytes": 373,
+      "sha256": "350b488f255e52d013de856221079f72daf6bdd31aeede628391e5649ded2d4d"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-960-light-1",
+      "bytes": 378,
+      "sha256": "6c0275792f871f35c3939bec573c0c8b06788241c43c996081f7de6e77837909"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-960-light-2",
+      "bytes": 386,
+      "sha256": "cd20316071f5de49f49b03228715b60365c6a0ead756811e7a17f92cf0041f37"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-960-dark-0",
+      "bytes": 373,
+      "sha256": "350b488f255e52d013de856221079f72daf6bdd31aeede628391e5649ded2d4d"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-960-dark-1",
+      "bytes": 378,
+      "sha256": "6c0275792f871f35c3939bec573c0c8b06788241c43c996081f7de6e77837909"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-960-dark-2",
+      "bytes": 386,
+      "sha256": "cd20316071f5de49f49b03228715b60365c6a0ead756811e7a17f92cf0041f37"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-1440-light-0",
+      "bytes": 377,
+      "sha256": "428bb7ad9feafae3fd13997127e80c08d485b815940b06b5076dd901f4d16ee6"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-1440-light-1",
+      "bytes": 382,
+      "sha256": "8214e50dbd1e14d0a16a3388e9d608dea0715467b8d1028ff0abf63a13f37c53"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-1440-light-2",
+      "bytes": 390,
+      "sha256": "d53e158caa0c425a3392df389e83b215ef52cd8af2b7a6f6f8f3b64b56d0c555"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-1440-dark-0",
+      "bytes": 377,
+      "sha256": "428bb7ad9feafae3fd13997127e80c08d485b815940b06b5076dd901f4d16ee6"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-1440-dark-1",
+      "bytes": 382,
+      "sha256": "8214e50dbd1e14d0a16a3388e9d608dea0715467b8d1028ff0abf63a13f37c53"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-1440-dark-2",
+      "bytes": 390,
+      "sha256": "d53e158caa0c425a3392df389e83b215ef52cd8af2b7a6f6f8f3b64b56d0c555"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-models.spec.ts",
+      "name": "code-failure-evidence",
+      "bytes": 42356,
+      "sha256": "13452f814a9233a64198114f01ac10b38e47c974d7f06085a7b1ec2810e11466"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "code-models.spec.ts",
+      "name": "code-failure-evidence",
+      "bytes": 42355,
+      "sha256": "53c30b797f0d632ff81a74f955712b5319453e113c88ea51162203d6cd4910c6"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "live-state.spec.ts",
+      "name": "held-real-history",
+      "bytes": 1658,
+      "sha256": "4860dc29d445eea8b6f358c08cd10f1989e0f637c96479acd8455c5365e17a2e"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "live-state.spec.ts",
+      "name": "live-state-errors",
+      "bytes": 31,
+      "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "live-state.spec.ts",
+      "name": "live-state-evidence",
+      "bytes": 22237,
+      "sha256": "9617a2dbed1915bbd8c03d73051f861674218db7dd1a68348982885569271b0c"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "live-state.spec.ts",
+      "name": "held-real-history",
+      "bytes": 1658,
+      "sha256": "73a8fa631adf2f5453e7accc18acc2aa7bedab39996fb84e96a703724f4a01cd"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "live-state.spec.ts",
+      "name": "live-state-errors",
+      "bytes": 31,
+      "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "live-state.spec.ts",
+      "name": "live-state-evidence",
+      "bytes": 10197,
+      "sha256": "bedadf977554ca4c9e195e12c32651d03d6cec70bf2a7c008eacc13d3163fa12"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "live-state.spec.ts",
+      "name": "held-real-history",
+      "bytes": 1658,
+      "sha256": "cbd9a8b8fa25b67af2ace529467546304fbf8f1bb3a4f5bc1de897c7493264d3"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "live-state.spec.ts",
+      "name": "live-state-errors",
+      "bytes": 31,
+      "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "live-state.spec.ts",
+      "name": "live-state-evidence",
+      "bytes": 22237,
+      "sha256": "3ccd5d6688b5061a5bdef8b7b182ca503288dd0214fd3d530f572d20b5b3b5bc"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "live-state.spec.ts",
+      "name": "held-real-history",
+      "bytes": 1658,
+      "sha256": "d487ebc7fdc0765c1e24e6df7a9c3e52254edc5d6ab1041163b6b86420b21b40"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "live-state.spec.ts",
+      "name": "live-state-errors",
+      "bytes": 31,
+      "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "live-state.spec.ts",
+      "name": "live-state-evidence",
+      "bytes": 10197,
+      "sha256": "6b5d7670c9bfe393727b4ac084a5743022e519cc44e37b4c1722993c4accef95"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "memory-localization.spec.ts",
+      "name": "memory-locale-geometry",
+      "bytes": 31394,
+      "sha256": "d0bd3476b8ba4edb5a1a40b1a0daf30cb2b3aaeb348a2036ff47b774b593c39b"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "navigation.spec.ts",
+      "name": "skipped-native-transitions",
+      "bytes": 338,
+      "sha256": "80f621bdca8b5a01a4f1a32b88c92457a87f9cacee0cf962bc1003ca1a1681f4"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "navigation.spec.ts",
+      "name": "native-callback-errors",
+      "bytes": 1157,
+      "sha256": "f64a709ce8e81d59e0f1ea8f636137ef773fdfd138dd45db03fbcfc4e5218286"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "navigation.spec.ts",
+      "name": "preview-departure-errors",
+      "bytes": 60,
+      "sha256": "04c2d340cfae02d5b14d54b8d839e8c8b92bb1f2a8b828d8425b84692bb93048"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "provider-draft.spec.ts",
+      "name": "provider-draft-observation-light",
+      "bytes": 2984,
+      "sha256": "8b8da008dbb1b6b7fa4f86481474d33bc58b46653fa9e0ed06e020ba45b762c5"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "provider-draft.spec.ts",
+      "name": "provider-draft-observation-dark",
+      "bytes": 2983,
+      "sha256": "b72857e5faf50f67c8e0f1d0d536f933df732cf5ace9be6cc942a490560fd381"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "provider-key-pending.spec.ts",
+      "name": "provider-key-pending-evidence",
+      "bytes": 3833,
+      "sha256": "1a39a9777f094dabf070ee7d5da27d5b7ede2beab2493124c1946b5d70104cbf"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "provider-key-pending.spec.ts",
+      "name": "provider-key-pending-evidence",
+      "bytes": 3832,
+      "sha256": "e2312099a1e3783952514c347044ccf51c5e2b6f7b81d98c0684f20a4a9dfe67"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "remote-auth.spec.ts",
+      "name": "auth-locale-geometry",
+      "bytes": 212232,
+      "sha256": "c9d4776bc950206e975789b5986ef917f9980259cf58cb7d3999e76a006b5896"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "remote-auth.spec.ts",
+      "name": "auth-locale-fonts",
+      "bytes": 5683,
+      "sha256": "d4c13d505d57b5387c17d12f8c24766a64177429f21aaa4f1f8414ec058ef1c2"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "responsive.spec.ts",
+      "name": "approval-description-geometry",
+      "bytes": 671,
+      "sha256": "21e44f36838ee6cc7cc49a5683e3f5f29f3932751924702553bc2da8ce30593f"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "responsive.spec.ts",
+      "name": "approval-description-geometry",
+      "bytes": 671,
+      "sha256": "21e44f36838ee6cc7cc49a5683e3f5f29f3932751924702553bc2da8ce30593f"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "responsive.spec.ts",
+      "name": "approval-description-geometry",
+      "bytes": 564,
+      "sha256": "50ce2e416c71c228b7b4cbf07b0dd6ba8da139b90538841ca62f28d99df9bd6f"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "responsive.spec.ts",
+      "name": "approval-description-geometry",
+      "bytes": 564,
+      "sha256": "50ce2e416c71c228b7b4cbf07b0dd6ba8da139b90538841ca62f28d99df9bd6f"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "runtime-settings.spec.ts",
+      "name": "memory-context",
+      "bytes": 1380,
+      "sha256": "8eedd242d61f5591e49ffdbbe6abd66d9edc538ce88e4ae54ef007659507deb0"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "runtime-settings.spec.ts",
+      "name": "memory-context",
+      "bytes": 1380,
+      "sha256": "81a8366d80a8bc93af87b23b0486de8c1158f17fe3c47a38e43e4c3aa09fa1e8"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "runtime-settings.spec.ts",
+      "name": "settings-real-responses",
+      "bytes": 3329,
+      "sha256": "38fa81e60052d6191de86155aba716929fc5652cf7a5e1e58edc9785ec99cf28"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "runtime-settings.spec.ts",
+      "name": "cancelled-preview-settings",
+      "bytes": 1510,
+      "sha256": "29fec750b1c5c513dc614ed405582ca8efebbd9df702ed104758c1a60b4d53b2"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "terminal-copy.spec.ts",
+      "name": "terminal-copy-fr-960-light-viewport",
+      "bytes": 490,
+      "sha256": "57aa780711fae68446e1442b078aca502746ac16f17d77f18520a90ecb4e49dc"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "terminal-copy.spec.ts",
+      "name": "terminal-copy-fr-960-dark-viewport",
+      "bytes": 490,
+      "sha256": "57aa780711fae68446e1442b078aca502746ac16f17d77f18520a90ecb4e49dc"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "terminal-copy.spec.ts",
+      "name": "terminal-copy-fr-1024-light-viewport",
+      "bytes": 491,
+      "sha256": "74018101337d399425e16b0ca7c361afa8182362a964d33cd1bfa4a14bf1deb4"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "terminal-copy.spec.ts",
+      "name": "terminal-copy-fr-1024-dark-viewport",
+      "bytes": 491,
+      "sha256": "74018101337d399425e16b0ca7c361afa8182362a964d33cd1bfa4a14bf1deb4"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "terminal-copy.spec.ts",
+      "name": "terminal-copy-fr-1440-light-viewport",
+      "bytes": 503,
+      "sha256": "b949a2100a39743616638138c274343801c7aa14b700715225ab2df0d0642c7e"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "terminal-copy.spec.ts",
+      "name": "terminal-copy-fr-1440-dark-viewport",
+      "bytes": 503,
+      "sha256": "b949a2100a39743616638138c274343801c7aa14b700715225ab2df0d0642c7e"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "work-activity-localization.spec.ts",
+      "name": "activity-locale-geometry",
+      "bytes": 131596,
+      "sha256": "fee2ca7c04a1ce5d1f52fa248e321b3ab9f7bfb738c5cee5f1ec40aec6ab970d"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "work-activity.spec.ts",
+      "name": "activity-refusals",
+      "bytes": 2677,
+      "sha256": "8d35667dd4f287a6e4941f40af7b71297b5f760123d4dd80495d41c854a47026"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "work-scroll.spec.ts",
+      "name": "cold-fonts-light",
+      "bytes": 344,
+      "sha256": "170ceed4b9f9ef5a3a2cd87685221c409506fc025ce2cb187bd520c0fe0ac919"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "work-scroll.spec.ts",
+      "name": "warm-fonts-light",
+      "bytes": 343,
+      "sha256": "41e41fb8d312eaf85d98fb964ce47b21d47efabb3eec3297f4c76c001e4a06aa"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "work-scroll.spec.ts",
+      "name": "user-wheel-light",
+      "bytes": 348,
+      "sha256": "054c5193b77fd5dd9af75cef38b72c3757bd9ad11120e2ea17d47d0302c75297"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "work-scroll.spec.ts",
+      "name": "variant-change-light",
+      "bytes": 342,
+      "sha256": "b7baf082c5e4df6e79f691871db8f39b5e838d597af786cfd147d3ed66034944"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "work-scroll.spec.ts",
+      "name": "cold-fonts-dark",
+      "bytes": 344,
+      "sha256": "170ceed4b9f9ef5a3a2cd87685221c409506fc025ce2cb187bd520c0fe0ac919"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "work-scroll.spec.ts",
+      "name": "warm-fonts-dark",
+      "bytes": 343,
+      "sha256": "41e41fb8d312eaf85d98fb964ce47b21d47efabb3eec3297f4c76c001e4a06aa"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "work-scroll.spec.ts",
+      "name": "user-wheel-dark",
+      "bytes": 348,
+      "sha256": "f031e16cf8aacb024e629ee4ae0fc343c7959d85da917b26c1953527b8eff464"
+    },
+    {
+      "os": "e2e-linux",
+      "file": "work-scroll.spec.ts",
+      "name": "variant-change-dark",
+      "bytes": 342,
+      "sha256": "b7baf082c5e4df6e79f691871db8f39b5e838d597af786cfd147d3ed66034944"
+    },
+    {
+      "os": "macos",
+      "file": "appearance-theme.spec.ts",
+      "name": "appearance-theme-observations-light",
+      "bytes": 7795,
+      "sha256": "d3c0b11bab6f487e1632dc5c8c67590a04696427104f73dda081c447af23b767"
+    },
+    {
+      "os": "macos",
+      "file": "appearance-theme.spec.ts",
+      "name": "appearance-theme-observations-dark",
+      "bytes": 7791,
+      "sha256": "f688d1adab79fb932d41e392108c22115a5bc7fbbe9fa728782f6e1b6327c8f4"
+    },
+    {
+      "os": "macos",
+      "file": "bot-owner.spec.ts",
+      "name": "bot-owner-evidence",
+      "bytes": 12226,
+      "sha256": "cd590eed74fd3ee910c850cad3bed80207a05e911acff2c19d3738f79abdfecc"
+    },
+    {
+      "os": "macos",
+      "file": "bot-owner.spec.ts",
+      "name": "bot-owner-evidence",
+      "bytes": 12225,
+      "sha256": "ab204e834a49bf2dff98ea76833f51ccc0fb2097817542a467bacb7d501086f1"
+    },
+    {
+      "os": "macos",
+      "file": "chat-missing.spec.ts",
+      "name": "chat-missing-evidence",
+      "bytes": 4891,
+      "sha256": "a2ed73638b1d761655b0886e6e50d33d458b846f4304f488c6ca224bd0c49c12"
+    },
+    {
+      "os": "macos",
+      "file": "chat-missing.spec.ts",
+      "name": "chat-missing-evidence",
+      "bytes": 4890,
+      "sha256": "7f42eb32ac38f2aa0f05b467c7efe661ec9b1d992e43ce1544fa945c46bc7bd1"
+    },
+    {
+      "os": "macos",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-960-light-0",
+      "bytes": 373,
+      "sha256": "350b488f255e52d013de856221079f72daf6bdd31aeede628391e5649ded2d4d"
+    },
+    {
+      "os": "macos",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-960-light-1",
+      "bytes": 378,
+      "sha256": "6c0275792f871f35c3939bec573c0c8b06788241c43c996081f7de6e77837909"
+    },
+    {
+      "os": "macos",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-960-light-2",
+      "bytes": 386,
+      "sha256": "cd20316071f5de49f49b03228715b60365c6a0ead756811e7a17f92cf0041f37"
+    },
+    {
+      "os": "macos",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-960-dark-0",
+      "bytes": 373,
+      "sha256": "350b488f255e52d013de856221079f72daf6bdd31aeede628391e5649ded2d4d"
+    },
+    {
+      "os": "macos",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-960-dark-1",
+      "bytes": 378,
+      "sha256": "6c0275792f871f35c3939bec573c0c8b06788241c43c996081f7de6e77837909"
+    },
+    {
+      "os": "macos",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-960-dark-2",
+      "bytes": 386,
+      "sha256": "cd20316071f5de49f49b03228715b60365c6a0ead756811e7a17f92cf0041f37"
+    },
+    {
+      "os": "macos",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-1440-light-0",
+      "bytes": 377,
+      "sha256": "428bb7ad9feafae3fd13997127e80c08d485b815940b06b5076dd901f4d16ee6"
+    },
+    {
+      "os": "macos",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-1440-light-1",
+      "bytes": 382,
+      "sha256": "8214e50dbd1e14d0a16a3388e9d608dea0715467b8d1028ff0abf63a13f37c53"
+    },
+    {
+      "os": "macos",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-1440-light-2",
+      "bytes": 390,
+      "sha256": "d53e158caa0c425a3392df389e83b215ef52cd8af2b7a6f6f8f3b64b56d0c555"
+    },
+    {
+      "os": "macos",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-1440-dark-0",
+      "bytes": 377,
+      "sha256": "428bb7ad9feafae3fd13997127e80c08d485b815940b06b5076dd901f4d16ee6"
+    },
+    {
+      "os": "macos",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-1440-dark-1",
+      "bytes": 382,
+      "sha256": "8214e50dbd1e14d0a16a3388e9d608dea0715467b8d1028ff0abf63a13f37c53"
+    },
+    {
+      "os": "macos",
+      "file": "code-diff-scroll.spec.ts",
+      "name": "diff-header-1440-dark-2",
+      "bytes": 390,
+      "sha256": "d53e158caa0c425a3392df389e83b215ef52cd8af2b7a6f6f8f3b64b56d0c555"
+    },
+    {
+      "os": "macos",
+      "file": "code-models.spec.ts",
+      "name": "code-failure-evidence",
+      "bytes": 42708,
+      "sha256": "9a01b370cf8b195fb80a18c468cc789b4d89211fef55e2db3054935f82e0bf7d"
+    },
+    {
+      "os": "macos",
+      "file": "code-models.spec.ts",
+      "name": "code-failure-evidence",
+      "bytes": 42707,
+      "sha256": "fb212d3b694493ed3d2947e7afa64551cec2cf60e9d5c590c111b945b1088703"
+    },
+    {
+      "os": "macos",
+      "file": "live-state.spec.ts",
+      "name": "held-real-history",
+      "bytes": 1658,
+      "sha256": "d836df72e116251677a3507de2924c7d64663542b001a64fdc172f4436198f80"
+    },
+    {
+      "os": "macos",
+      "file": "live-state.spec.ts",
+      "name": "live-state-errors",
+      "bytes": 31,
+      "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938"
+    },
+    {
+      "os": "macos",
+      "file": "live-state.spec.ts",
+      "name": "live-state-evidence",
+      "bytes": 22089,
+      "sha256": "9b7d8c72ce5d725e154e4522837dd7d90a2465ab557f7b918034772f4a058bb4"
+    },
+    {
+      "os": "macos",
+      "file": "live-state.spec.ts",
+      "name": "held-real-history",
+      "bytes": 1658,
+      "sha256": "55ae1c26e3d21623234c89c76c8908e22d28482c74f41e366233abdd9816d452"
+    },
+    {
+      "os": "macos",
+      "file": "live-state.spec.ts",
+      "name": "live-state-errors",
+      "bytes": 31,
+      "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938"
+    },
+    {
+      "os": "macos",
+      "file": "live-state.spec.ts",
+      "name": "live-state-evidence",
+      "bytes": 10197,
+      "sha256": "839c0674459467c866ff0d85ae4d0bfde39b88cb402814171405887fa075571a"
+    },
+    {
+      "os": "macos",
+      "file": "live-state.spec.ts",
+      "name": "held-real-history",
+      "bytes": 1658,
+      "sha256": "3e5be6ead51897021a23886807143c1c99f35a75a06ad47dbf166f247e4e949d"
+    },
+    {
+      "os": "macos",
+      "file": "live-state.spec.ts",
+      "name": "live-state-errors",
+      "bytes": 31,
+      "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938"
+    },
+    {
+      "os": "macos",
+      "file": "live-state.spec.ts",
+      "name": "live-state-evidence",
+      "bytes": 22089,
+      "sha256": "d19bc167ffc0c1a99375cd13e6d1c6b2538977d5318e582019f6efd9ee62b7c9"
+    },
+    {
+      "os": "macos",
+      "file": "live-state.spec.ts",
+      "name": "held-real-history",
+      "bytes": 1658,
+      "sha256": "413e32c1dbe4c05fd87d7783101b280bf42f40249d996743f3d3dd290e3708cf"
+    },
+    {
+      "os": "macos",
+      "file": "live-state.spec.ts",
+      "name": "live-state-errors",
+      "bytes": 31,
+      "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938"
+    },
+    {
+      "os": "macos",
+      "file": "live-state.spec.ts",
+      "name": "live-state-evidence",
+      "bytes": 10197,
+      "sha256": "54f57856064d62a9d651f3292a20f9c012451724a7fd6d1e54da6ffab5405ccf"
+    },
+    {
+      "os": "macos",
+      "file": "memory-localization.spec.ts",
+      "name": "memory-locale-geometry",
+      "bytes": 31394,
+      "sha256": "d0bd3476b8ba4edb5a1a40b1a0daf30cb2b3aaeb348a2036ff47b774b593c39b"
+    },
+    {
+      "os": "macos",
+      "file": "navigation.spec.ts",
+      "name": "skipped-native-transitions",
+      "bytes": 338,
+      "sha256": "80f621bdca8b5a01a4f1a32b88c92457a87f9cacee0cf962bc1003ca1a1681f4"
+    },
+    {
+      "os": "macos",
+      "file": "navigation.spec.ts",
+      "name": "native-callback-errors",
+      "bytes": 1157,
+      "sha256": "f64a709ce8e81d59e0f1ea8f636137ef773fdfd138dd45db03fbcfc4e5218286"
+    },
+    {
+      "os": "macos",
+      "file": "navigation.spec.ts",
+      "name": "preview-departure-errors",
+      "bytes": 60,
+      "sha256": "04c2d340cfae02d5b14d54b8d839e8c8b92bb1f2a8b828d8425b84692bb93048"
+    },
+    {
+      "os": "macos",
+      "file": "provider-draft.spec.ts",
+      "name": "provider-draft-observation-light",
+      "bytes": 2984,
+      "sha256": "8b8da008dbb1b6b7fa4f86481474d33bc58b46653fa9e0ed06e020ba45b762c5"
+    },
+    {
+      "os": "macos",
+      "file": "provider-draft.spec.ts",
+      "name": "provider-draft-observation-dark",
+      "bytes": 2983,
+      "sha256": "b72857e5faf50f67c8e0f1d0d536f933df732cf5ace9be6cc942a490560fd381"
+    },
+    {
+      "os": "macos",
+      "file": "provider-key-pending.spec.ts",
+      "name": "provider-key-pending-evidence",
+      "bytes": 3833,
+      "sha256": "1a39a9777f094dabf070ee7d5da27d5b7ede2beab2493124c1946b5d70104cbf"
+    },
+    {
+      "os": "macos",
+      "file": "provider-key-pending.spec.ts",
+      "name": "provider-key-pending-evidence",
+      "bytes": 3832,
+      "sha256": "e2312099a1e3783952514c347044ccf51c5e2b6f7b81d98c0684f20a4a9dfe67"
+    },
+    {
+      "os": "macos",
+      "file": "remote-auth.spec.ts",
+      "name": "auth-locale-geometry",
+      "bytes": 212668,
+      "sha256": "9b255e6bd7d5b923c8b6b55e563823877c30c781e6921491bc4c832ba5cc8b3e"
+    },
+    {
+      "os": "macos",
+      "file": "remote-auth.spec.ts",
+      "name": "auth-locale-fonts",
+      "bytes": 5677,
+      "sha256": "03a54bb7a09862f4fea64621be498aa4c713f8484434fa5cbc3b66b270480da4"
+    },
+    {
+      "os": "macos",
+      "file": "responsive.spec.ts",
+      "name": "approval-description-geometry",
+      "bytes": 671,
+      "sha256": "d79082ebf1a65dba3f2fb27eafe0fbcca49c16fa23f297d1ec451700f9c0d555"
+    },
+    {
+      "os": "macos",
+      "file": "responsive.spec.ts",
+      "name": "approval-description-geometry",
+      "bytes": 671,
+      "sha256": "d79082ebf1a65dba3f2fb27eafe0fbcca49c16fa23f297d1ec451700f9c0d555"
+    },
+    {
+      "os": "macos",
+      "file": "responsive.spec.ts",
+      "name": "approval-description-geometry",
+      "bytes": 564,
+      "sha256": "50ce2e416c71c228b7b4cbf07b0dd6ba8da139b90538841ca62f28d99df9bd6f"
+    },
+    {
+      "os": "macos",
+      "file": "responsive.spec.ts",
+      "name": "approval-description-geometry",
+      "bytes": 564,
+      "sha256": "0107c43a0d61807202e67f7daf2950e99972f62cf8bb2696fcb8c98312c51ff1"
+    },
+    {
+      "os": "macos",
+      "file": "runtime-settings.spec.ts",
+      "name": "memory-context",
+      "bytes": 1380,
+      "sha256": "71ea5a78f18128877e68f1870f30f954234edb589a6c506fa806642a16b7c986"
+    },
+    {
+      "os": "macos",
+      "file": "runtime-settings.spec.ts",
+      "name": "memory-context",
+      "bytes": 1380,
+      "sha256": "9bc8cff6851c51dca34f3db0bf1feae6f746fa27a2ee0605b7c02f33d70a3814"
+    },
+    {
+      "os": "macos",
+      "file": "runtime-settings.spec.ts",
+      "name": "settings-real-responses",
+      "bytes": 3329,
+      "sha256": "38fa81e60052d6191de86155aba716929fc5652cf7a5e1e58edc9785ec99cf28"
+    },
+    {
+      "os": "macos",
+      "file": "runtime-settings.spec.ts",
+      "name": "cancelled-preview-settings",
+      "bytes": 1510,
+      "sha256": "29fec750b1c5c513dc614ed405582ca8efebbd9df702ed104758c1a60b4d53b2"
+    },
+    {
+      "os": "macos",
+      "file": "terminal-copy.spec.ts",
+      "name": "terminal-copy-fr-960-light-viewport",
+      "bytes": 490,
+      "sha256": "57aa780711fae68446e1442b078aca502746ac16f17d77f18520a90ecb4e49dc"
+    },
+    {
+      "os": "macos",
+      "file": "terminal-copy.spec.ts",
+      "name": "terminal-copy-fr-960-dark-viewport",
+      "bytes": 490,
+      "sha256": "57aa780711fae68446e1442b078aca502746ac16f17d77f18520a90ecb4e49dc"
+    },
+    {
+      "os": "macos",
+      "file": "terminal-copy.spec.ts",
+      "name": "terminal-copy-fr-1024-light-viewport",
+      "bytes": 491,
+      "sha256": "74018101337d399425e16b0ca7c361afa8182362a964d33cd1bfa4a14bf1deb4"
+    },
+    {
+      "os": "macos",
+      "file": "terminal-copy.spec.ts",
+      "name": "terminal-copy-fr-1024-dark-viewport",
+      "bytes": 491,
+      "sha256": "74018101337d399425e16b0ca7c361afa8182362a964d33cd1bfa4a14bf1deb4"
+    },
+    {
+      "os": "macos",
+      "file": "terminal-copy.spec.ts",
+      "name": "terminal-copy-fr-1440-light-viewport",
+      "bytes": 503,
+      "sha256": "b949a2100a39743616638138c274343801c7aa14b700715225ab2df0d0642c7e"
+    },
+    {
+      "os": "macos",
+      "file": "terminal-copy.spec.ts",
+      "name": "terminal-copy-fr-1440-dark-viewport",
+      "bytes": 503,
+      "sha256": "b949a2100a39743616638138c274343801c7aa14b700715225ab2df0d0642c7e"
+    },
+    {
+      "os": "macos",
+      "file": "work-activity-localization.spec.ts",
+      "name": "activity-locale-geometry",
+      "bytes": 131316,
+      "sha256": "9825226fbd5a594120e4cb99b189c3e89dddea2cdef9de0c05a91db315ed3b81"
+    },
+    {
+      "os": "macos",
+      "file": "work-activity.spec.ts",
+      "name": "activity-refusals",
+      "bytes": 2677,
+      "sha256": "dc90402f2bf87a382911a34154520784b8443d1124b67cebe7106f3c0be52179"
+    },
+    {
+      "os": "macos",
+      "file": "work-scroll.spec.ts",
+      "name": "cold-fonts-light",
+      "bytes": 344,
+      "sha256": "69be02d282273067fa04c4d8df77ea768d5e74cea84118641f9133ffbf3fcf45"
+    },
+    {
+      "os": "macos",
+      "file": "work-scroll.spec.ts",
+      "name": "warm-fonts-light",
+      "bytes": 343,
+      "sha256": "41e41fb8d312eaf85d98fb964ce47b21d47efabb3eec3297f4c76c001e4a06aa"
+    },
+    {
+      "os": "macos",
+      "file": "work-scroll.spec.ts",
+      "name": "user-wheel-light",
+      "bytes": 348,
+      "sha256": "a4429d5660299313d07e18362a636fc2c2aa73eb7256f9f85f5e0235c8051655"
+    },
+    {
+      "os": "macos",
+      "file": "work-scroll.spec.ts",
+      "name": "variant-change-light",
+      "bytes": 342,
+      "sha256": "b7baf082c5e4df6e79f691871db8f39b5e838d597af786cfd147d3ed66034944"
+    },
+    {
+      "os": "macos",
+      "file": "work-scroll.spec.ts",
+      "name": "cold-fonts-dark",
+      "bytes": 344,
+      "sha256": "69be02d282273067fa04c4d8df77ea768d5e74cea84118641f9133ffbf3fcf45"
+    },
+    {
+      "os": "macos",
+      "file": "work-scroll.spec.ts",
+      "name": "warm-fonts-dark",
+      "bytes": 343,
+      "sha256": "41e41fb8d312eaf85d98fb964ce47b21d47efabb3eec3297f4c76c001e4a06aa"
+    },
+    {
+      "os": "macos",
+      "file": "work-scroll.spec.ts",
+      "name": "user-wheel-dark",
+      "bytes": 348,
+      "sha256": "a4429d5660299313d07e18362a636fc2c2aa73eb7256f9f85f5e0235c8051655"
+    },
+    {
+      "os": "macos",
+      "file": "work-scroll.spec.ts",
+      "name": "variant-change-dark",
+      "bytes": 342,
+      "sha256": "b7baf082c5e4df6e79f691871db8f39b5e838d597af786cfd147d3ed66034944"
+    }
+  ]
+}

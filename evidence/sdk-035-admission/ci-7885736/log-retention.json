@@ -1,0 +1,42 @@
+[
+  {
+    "original": "/var/tmp/opencode/ci-7885736-review/logs/0_Lint, typecheck, unit tests, i18n audit.txt",
+    "originalSHA256": "f005bd1b433a5a59cf2e084644590096c4cd2821e529834869f37bd6ba3c67af",
+    "originalBytes": 25875,
+    "normalized": "logs/0_Lint-typecheck-unit-tests-i18n-audit.txt",
+    "normalizedSHA256": "437d9fe62386267287eff856fa45db235f79827ee8f1bcaf91944c1cd0b9af0a",
+    "retainedOriginal": "logs/0_Lint-typecheck-unit-tests-i18n-audit.txt.gz",
+    "gzipSHA256": "3793b6f4c1f3698819d40bf5c72a278ddd157caeef5202b5189ee389e97e8171",
+    "transformation": "BOM/ANSI removed; trailing whitespace stripped per line; LF-terminated. Original bytes preserved losslessly in gzip."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-7885736-review/logs/1_macOS build, package, launch.txt",
+    "originalSHA256": "41af69deeac2bf56edd830be43ac8dfd4260ec2c4376f044ea9caa81d957659e",
+    "originalBytes": 55295,
+    "normalized": "logs/1_macOS-build-package-launch.txt",
+    "normalizedSHA256": "f8850bd6bb1d1a11e0adb2bd1bd7e74cc43fc95834caede845f46e5025dab5b7",
+    "retainedOriginal": "logs/1_macOS-build-package-launch.txt.gz",
+    "gzipSHA256": "bc2e5dce49a9b9fd390a3f92bf7fa9b1898883c618512b926971c0904e34de44",
+    "transformation": "BOM/ANSI removed; trailing whitespace stripped per line; LF-terminated. Original bytes preserved losslessly in gzip."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-7885736-review/logs/2_E2E (Playwright + Electron, Linux).txt",
+    "originalSHA256": "945071bcdf1a20850f6a829d7a657e75b924279cec21c2f4de18e96b3c2ea5a4",
+    "originalBytes": 55920,
+    "normalized": "logs/2_E2E-(Playwright-+-Electron-Linux).txt",
+    "normalizedSHA256": "98fdb4c8e313a04a4a94e493676b5ed7212caf6371a686d905fe7068d40194c4",
+    "retainedOriginal": "logs/2_E2E-(Playwright-+-Electron-Linux).txt.gz",
+    "gzipSHA256": "07569e618287f024d349ae2a7f62cf1d9d627e77aa03d4d51f81d629c6fbbc18",
+    "transformation": "BOM/ANSI removed; trailing whitespace stripped per line; LF-terminated. Original bytes preserved losslessly in gzip."
+  },
+  {
+    "original": "/var/tmp/opencode/ci-7885736-review/macos/out/smoke.log",
+    "originalSHA256": "2d6ffabb2e957c942bf7e913137ea2f6e8b58d18b7b9b32ce8f6adc430965196",
+    "originalBytes": 97,
+    "normalized": "logs/smoke.log",
+    "normalizedSHA256": "2d6ffabb2e957c942bf7e913137ea2f6e8b58d18b7b9b32ce8f6adc430965196",
+    "retainedOriginal": "logs/smoke.log.gz",
+    "gzipSHA256": "de592f57e0886b07c87d4efc52f28bb5934a1b79debeadcb2b9bfa5d8ab76ea8",
+    "transformation": "BOM/ANSI removed; trailing whitespace stripped per line; LF-terminated. Original bytes preserved losslessly in gzip."
+  }
+]

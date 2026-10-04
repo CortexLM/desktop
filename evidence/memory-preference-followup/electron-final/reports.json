@@ -1,0 +1,159 @@
+{
+  "final-full": {
+    "raw": "/tmp/opencode/memory-preference/final-full.json",
+    "sha256": "e26bc26fb91da192ba9e05a8668afc45de61f414b5ff2264d561ee49d4e53ce8",
+    "bytes": 1400657,
+    "retained": "../final/final-full.json.gz",
+    "retainedSHA256": "3fc625be430b8f4bd2a4b5ab6dc262ed5544871040311470df69476ad9125c51",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T17:03:18.396Z",
+      "duration": 293094.633,
+      "expected": 125,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "topLevelErrors": [],
+    "cases": 125,
+    "attempts": 125,
+    "retryAttempts": 0,
+    "resultErrors": 0,
+    "attachmentCounts": {
+      "image/png": 175,
+      "application/json": 64
+    },
+    "renderVisits": 426,
+    "renderStdout": "rendered 426 screen states\n"
+  },
+  "boundary-targeted": {
+    "raw": "/tmp/opencode/memory-preference/boundary-targeted.json",
+    "sha256": "9598694f30ff61b1fb745139358ef82b295d6a1c06b20f73ed1129c454cf2649",
+    "bytes": 91589,
+    "retained": "../final/boundary-targeted.json.gz",
+    "retainedSHA256": "8f1f0a985706ef9433c97d091caebe718262e03bff1dc822f14a90a6c91ede7f",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T17:01:53.357Z",
+      "duration": 24173.827999999998,
+      "expected": 21,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "topLevelErrors": [],
+    "cases": 21,
+    "attempts": 21,
+    "retryAttempts": 0,
+    "resultErrors": 0,
+    "attachmentCounts": {
+      "image/png": 26,
+      "application/json": 8
+    }
+  },
+  "targeted": {
+    "raw": "/tmp/opencode/memory-preference/targeted.json",
+    "sha256": "33d377a81ccea276880bbacc1fa872fcdacac5cd9edd0aaf748636a7f87c0805",
+    "bytes": 78754,
+    "retained": "../checks/targeted.json.gz",
+    "retainedSHA256": "08bf6db36f084a32e86a2c5f1e89819dbc2fc6108c8c71358eee870948dd5216",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T16:45:21.947Z",
+      "duration": 14503.44,
+      "expected": 14,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "topLevelErrors": [],
+    "cases": 14,
+    "attempts": 14,
+    "retryAttempts": 0,
+    "resultErrors": 0,
+    "attachmentCounts": {
+      "image/png": 26,
+      "application/json": 4
+    }
+  },
+  "full": {
+    "raw": "/tmp/opencode/memory-preference/full.json",
+    "sha256": "702ec6624c2d7f7b242f842559f42f6a3f6adb02a6b705b4929749a68abc936f",
+    "bytes": 1396127,
+    "retained": "../checks/full.json.gz",
+    "retainedSHA256": "4e05f57078efa851b8ac15d37241906880531f7badfdd8edeb9d19f51d8db185",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T16:46:38.007Z",
+      "duration": 294900.95999999996,
+      "expected": 124,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "topLevelErrors": [],
+    "cases": 124,
+    "attempts": 124,
+    "retryAttempts": 0,
+    "resultErrors": 0,
+    "attachmentCounts": {
+      "image/png": 175,
+      "application/json": 63
+    },
+    "renderVisits": 426,
+    "renderStdout": "rendered 426 screen states\n"
+  },
+  "navigation-baseline": {
+    "raw": "/tmp/opencode/memory-preference/navigation-baseline.json",
+    "sha256": "62ff46271f77e4ddd9b74aa210ff96d7b108a608e7e0212b0a3fc5ba30664df4",
+    "bytes": 15046,
+    "retained": "../navigation/navigation-baseline.json.gz",
+    "retainedSHA256": "828a6d821eb72e81ad65cf3c02a82923b9eebcd4872a7b4240756cf6fe881fbd",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T16:58:23.031Z",
+      "duration": 7205.296,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "topLevelErrors": [],
+    "cases": 1,
+    "attempts": 1,
+    "retryAttempts": 0,
+    "resultErrors": 2,
+    "attachmentCounts": {
+      "application/json": 1,
+      "image/png": 1,
+      "text/markdown": 1,
+      "application/zip": 1
+    }
+  },
+  "baseline": {
+    "raw": "/tmp/opencode/memory-preference/baseline.json",
+    "sha256": "b1030f1905b681c6560f53169d00e475986fffd3b9be41c8b3032f198318d675",
+    "bytes": 32060,
+    "retained": "../checks/baseline.json.gz",
+    "retainedSHA256": "df1dcaba1f3ba850937a67850fe58ef646e01fa727043a0efc097b3fcf084d0b",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T16:43:54.175Z",
+      "duration": 19092.603,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 5,
+      "flaky": 0
+    },
+    "topLevelErrors": [],
+    "cases": 5,
+    "attempts": 5,
+    "retryAttempts": 0,
+    "resultErrors": 5,
+    "attachmentCounts": {
+      "image/png": 5,
+      "text/markdown": 5,
+      "application/zip": 5
+    }
+  }
+}

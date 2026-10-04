@@ -1,0 +1,126 @@
+{
+  "status": "passed-scoped-audit",
+  "runtimeStatus": "passed",
+  "startedAt": "2026-10-03T07:46:57.171Z",
+  "finishedAt": "2026-10-03T07:54:35.712Z",
+  "elapsedSeconds": 458.541,
+  "locales": [
+    "en",
+    "fr",
+    "es",
+    "de",
+    "ja",
+    "zh-Hans",
+    "pt-BR",
+    "ko"
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "states": [
+    "code_sent",
+    "signed_in",
+    "mfa_enrollment"
+  ],
+  "geometryViews": 48,
+  "primaryTextRows": 352,
+  "initialControlRows": 144,
+  "keyboardTargets": 144,
+  "fontNodeRecords": 112,
+  "fullSizeWrongCodeImagesReviewed": 16,
+  "signedInOrEnrollmentImagesInThisBatch": 0,
+  "privateInspectionsPassed": 48,
+  "counterBefore": {
+    "email": 6,
+    "code": 8,
+    "finishedCode": 8,
+    "wrongCode": 2,
+    "session": 2,
+    "enrollment": 2,
+    "logout": 0,
+    "abortedReply": 2,
+    "discovery": 0,
+    "inspections": 10,
+    "inspectionsPassed": 10,
+    "errors": 0
+  },
+  "counterAfter": {
+    "email": 38,
+    "code": 56,
+    "finishedCode": 56,
+    "wrongCode": 18,
+    "session": 18,
+    "enrollment": 18,
+    "logout": 0,
+    "abortedReply": 2,
+    "discovery": 0,
+    "inspections": 58,
+    "inspectionsPassed": 58,
+    "errors": 0
+  },
+  "counterDelta": {
+    "email": 32,
+    "code": 48,
+    "finishedCode": 48,
+    "wrongCode": 16,
+    "session": 16,
+    "enrollment": 16,
+    "logout": 0,
+    "abortedReply": 0,
+    "discovery": 0,
+    "inspections": 48,
+    "inspectionsPassed": 48,
+    "errors": 0
+  },
+  "errors": [],
+  "rendererHttp": [],
+  "dialogs": 0,
+  "scriptCleanup": {
+    "connectionRestoredSignedOut": true,
+    "routeLocaleThemeRestored": true
+  },
+  "nativePID": 52666,
+  "nativeWindowID": 8396,
+  "viewport": [
+    960,
+    640
+  ],
+  "asarSHA256": "d34d6d8609045f56851a6004f5c7bb185108cd743732ff8b79d6e3689df7f14c",
+  "originalPNGBytes": 1180551,
+  "retainedWebPBytes": 401526,
+  "exactPriorSixReuses": 0,
+  "previousEnglishPixelDifferences": [
+    {
+      "theme": "light",
+      "previous": "evidence/mac/f5bf305/auth/remote-code-refused-light.webp",
+      "previousRGBA": "53328a59248f86a4432540552c2fb011613cb2944eafca8f09d966658d7f669b",
+      "currentRGBA": "72c352c00109d7579e679fb1d5792eb7d22c76690862359ec78ddc642a82de46",
+      "changedPixels": 256,
+      "boundingBox": [
+        623,
+        513,
+        669,
+        535
+      ]
+    },
+    {
+      "theme": "dark",
+      "previous": "evidence/mac/f5bf305/auth/remote-code-refused-dark.webp",
+      "previousRGBA": "f507f46da7fbef55696ec08d322f4a386e08afacffe04b78966711da4500f807",
+      "currentRGBA": "cff97a92007743c003863448f4952870c1f52cd37ae4444391c3fae0b935b8d3",
+      "changedPixels": 256,
+      "boundingBox": [
+        623,
+        513,
+        669,
+        535
+      ]
+    }
+  ],
+  "rawManifestBytes": 449301,
+  "geometryEvidenceLimit": "Recorded Range/readability flags and passed focus assertions; hit testing and clipping are not re-executed offline.",
+  "fontEvidenceLimit": "glyphCount > 0 cannot establish character coverage; all 16 actual wrong-code images reviewed full-size. Other two states have geometry/font records only.",
+  "pixelScope": "CGWindow capture excludes other windows, including the reported top-right Tips notification. No whole-desktop/no-OS-notifications claim.",
+  "scope": "Real IPC/main SDK with controlled fixture authentication only; no live Cloud, remote inference or private Chat execution claim."
+}

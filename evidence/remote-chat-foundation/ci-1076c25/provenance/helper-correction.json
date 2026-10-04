@@ -1,0 +1,11 @@
+{
+  "kind": "Intake-helper parsing correction; no application run",
+  "initialCommand": "python3 /tmp/opencode/remote-ci-intake/bind.py",
+  "initialResult": "AttributeError: 'NoneType' object has no attribute 'encode'",
+  "cause": "Source map has 19 third-party entries with null sourcesContent",
+  "correction": "Record those entries explicitly; bind only available content; require all eight runtime source pins, every mapped workspace source and all 16 Cortex SDK modules to match",
+  "secondResult": "AssertionError: generated <define:import.meta.env> was incorrectly treated as a repository source",
+  "secondCorrection": "Record the single generated define separately; require Git equality for all actual workspace source entries",
+  "applicationFailure": false,
+  "buildOrTestRerun": false
+}

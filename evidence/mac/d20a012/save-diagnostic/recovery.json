@@ -1,0 +1,14 @@
+{
+  "diagnosticStatus": "failed",
+  "cause": "Cleanup expected a Go button; observed Go to Folder has a focused AXTextField but no Go button",
+  "flowMs": 14398,
+  "durationMs": 19609,
+  "scope": "Actual Save and nested-folder AX shape observed, no Save click or downloaded bytes",
+  "recovery": "Coordinator visually verified nested sheet; guarded PID76250 Escape via System Events, Cancel via mac-computer pointer558,431; screenshots confirm modal closed",
+  "helpersStopped": [
+    76247,
+    76248
+  ],
+  "originalDark": true,
+  "nativeAcceptance": false
+}

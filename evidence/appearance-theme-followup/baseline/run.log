@@ -1,0 +1,481 @@
+
+Running 2 tests using 1 worker
+
+  ✘  1 tests/e2e/appearance-theme.spec.ts:10:49 › Appearance theme keyboard and rail synchronization — 960 light (9.8s)
+  ✘  2 tests/e2e/appearance-theme.spec.ts:10:49 › Appearance theme keyboard and rail synchronization — 960 dark (8.6s)
+
+
+  1) tests/e2e/appearance-theme.spec.ts:10:49 › Appearance theme keyboard and rail synchronization — 960 light
+
+    Error: Appearance has exactly one Tab stop at its selected radio
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+    -   -1,
+        0,
+    -   -1,
+    +   0,
+    +   0,
+      ]
+
+      35 |       await record("main pointer selection");
+      36 |     });
+    > 37 |     expect.soft(await main.getByRole("radio").evaluateAll((elements) => elements.map((el) => (el as HTMLElement).tabIndex)), "Appearance has exactly one Tab stop at its selected radio").toEqual(theme === "light" ? [-1, 0, -1] : [-1, -1, 0]);
+         |                                                                                                                                                                                           ^
+      38 |
+      39 |     for (const [key, next] of [["ArrowRight", theme === "light" ? "dark" : "system"], ["ArrowLeft", theme === "light" ? "system" : "light"]] as const) {
+      40 |       await test.step(`${key} selects and focuses the adjacent theme`, async () => {
+        at tests/e2e/appearance-theme.spec.ts:37:187
+
+    Error: ArrowRight: adjacent radio is selected and focused
+
+    ArrowRight: adjacent radio is selected and focused
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "checked": "true",
+    -   "focused": true,
+    +   "checked": "false",
+    +   "focused": false,
+      }
+
+    Call Log:
+    - Timeout 1000ms exceeded while waiting on the predicate
+
+      44 |         await radio(theme).focus();
+      45 |         await page.keyboard.press(key);
+    > 46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute("aria-checked"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: "true", focused: true });
+         |                                                                                                                                                                                                                    ^
+      47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === "system" ? theme : next, stored: next });
+      48 |         await record(key);
+      49 |       });
+        at tests/e2e/appearance-theme.spec.ts:46:212
+        at tests/e2e/appearance-theme.spec.ts:40:7
+
+    Error: ArrowRight: selection is applied and saved
+
+    ArrowRight: selection is applied and saved
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "stored": "dark",
+    -   "theme": "dark",
+    +   "stored": "light",
+    +   "theme": "light",
+      }
+
+    Call Log:
+    - Timeout 1000ms exceeded while waiting on the predicate
+
+      45 |         await page.keyboard.press(key);
+      46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute("aria-checked"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: "true", focused: true });
+    > 47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === "system" ? theme : next, stored: next });
+         |                                                                                                     ^
+      48 |         await record(key);
+      49 |       });
+      50 |     }
+        at tests/e2e/appearance-theme.spec.ts:47:101
+        at tests/e2e/appearance-theme.spec.ts:40:7
+
+    Error: ArrowLeft: adjacent radio is selected and focused
+
+    ArrowLeft: adjacent radio is selected and focused
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "checked": "true",
+    -   "focused": true,
+    +   "checked": "false",
+    +   "focused": false,
+      }
+
+    Call Log:
+    - Timeout 1000ms exceeded while waiting on the predicate
+
+      44 |         await radio(theme).focus();
+      45 |         await page.keyboard.press(key);
+    > 46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute("aria-checked"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: "true", focused: true });
+         |                                                                                                                                                                                                                    ^
+      47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === "system" ? theme : next, stored: next });
+      48 |         await record(key);
+      49 |       });
+        at tests/e2e/appearance-theme.spec.ts:46:212
+        at tests/e2e/appearance-theme.spec.ts:40:7
+
+    Error: ArrowLeft: selection is applied and saved
+
+    ArrowLeft: selection is applied and saved
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "stored": "system",
+    +   "stored": "light",
+        "theme": "light",
+      }
+
+    Call Log:
+    - Timeout 1000ms exceeded while waiting on the predicate
+
+      45 |         await page.keyboard.press(key);
+      46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute("aria-checked"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: "true", focused: true });
+    > 47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === "system" ? theme : next, stored: next });
+         |                                                                                                     ^
+      48 |         await record(key);
+      49 |       });
+      50 |     }
+        at tests/e2e/appearance-theme.spec.ts:47:101
+        at tests/e2e/appearance-theme.spec.ts:40:7
+
+    Error: Tab exits Appearance's theme group to Language
+
+    expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('main').getByRole('button', { name: 'English', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  1000ms
+
+    Call log:
+      - Tab exits Appearance's theme group to Language getByRole('main').getByRole('button', { name: 'English', exact: true }) with timeout 1000ms
+      - waiting for getByRole('main').getByRole('button', { name: 'English', exact: true })
+        11 × locator resolved to <button tabindex="0" type="button" id="base-ui-_r_16_" aria-haspopup="menu" class="btn secondary" aria-expanded="false">…</button>
+           - unexpected value "inactive"
+
+
+      53 |     await radio(theme).focus();
+      54 |     await page.keyboard.press("Tab");
+    > 55 |     await expect.soft(page.getByRole("main").getByRole("button", { name: "English", exact: true }), "Tab exits Appearance's theme group to Language").toBeFocused({ timeout: 1_000 });
+         |                                                                                                                                                       ^
+      56 |     await record("Tab after selected radio");
+      57 |
+      58 |     const opposite = theme === "light" ? "dark" : "light";
+        at tests/e2e/appearance-theme.spec.ts:55:151
+
+    Error: Appearance follows the rail's explicit preference
+
+    expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'Dark', exact: true })
+    Expected: "true"
+    Received: "false"
+    Timeout:  1000ms
+
+    Call log:
+      - Appearance follows the rail's explicit preference getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'Dark', exact: true }) with timeout 1000ms
+      - waiting for getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'Dark', exact: true })
+        11 × locator resolved to <button role="radio" class="pg-theme" aria-checked="false">…</button>
+           - unexpected value "false"
+
+
+      63 |       await expect(target).toHaveAttribute("aria-checked", "true");
+      64 |       await expect.poll(() => applied(page)).toEqual({ theme: opposite, stored: opposite });
+    > 65 |       await expect.soft(radio(opposite), "Appearance follows the rail's explicit preference").toHaveAttribute("aria-checked", "true", { timeout: 1_000 });
+         |                                                                                               ^
+      66 |       await record("rail opposite selection");
+      67 |       await page.evaluate(() => document.fonts.ready);
+      68 |       const path = test.info().outputPath(`appearance-theme-${opposite}.png`);
+        at tests/e2e/appearance-theme.spec.ts:65:95
+        at tests/e2e/appearance-theme.spec.ts:59:5
+
+    Error: Appearance keeps System selected under light OS appearance
+
+    expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })
+    Expected: "true"
+    Received: "false"
+    Timeout:  1000ms
+
+    Call log:
+      - Appearance keeps System selected under light OS appearance getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true }) with timeout 1000ms
+      - waiting for getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })
+        11 × locator resolved to <button role="radio" class="pg-theme" aria-checked="false">…</button>
+           - unexpected value "false"
+
+
+      78 |       await expect(system).toHaveAttribute("aria-checked", "true");
+      79 |       await expect.poll(() => applied(page)).toEqual({ theme: scheme, stored: "system" });
+    > 80 |       await expect.soft(radio("system"), `Appearance keeps System selected under ${scheme} OS appearance`).toHaveAttribute("aria-checked", "true", { timeout: 1_000 });
+         |                                                                                                            ^
+      81 |       await record(`System under ${scheme} OS appearance`);
+      82 |     }
+      83 |     await page.reload();
+        at tests/e2e/appearance-theme.spec.ts:80:108
+
+    Error: Appearance keeps System selected under dark OS appearance
+
+    expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })
+    Expected: "true"
+    Received: "false"
+    Timeout:  1000ms
+
+    Call log:
+      - Appearance keeps System selected under dark OS appearance getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true }) with timeout 1000ms
+      - waiting for getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })
+        11 × locator resolved to <button role="radio" class="pg-theme" aria-checked="false">…</button>
+           - unexpected value "false"
+
+
+      78 |       await expect(system).toHaveAttribute("aria-checked", "true");
+      79 |       await expect.poll(() => applied(page)).toEqual({ theme: scheme, stored: "system" });
+    > 80 |       await expect.soft(radio("system"), `Appearance keeps System selected under ${scheme} OS appearance`).toHaveAttribute("aria-checked", "true", { timeout: 1_000 });
+         |                                                                                                            ^
+      81 |       await record(`System under ${scheme} OS appearance`);
+      82 |     }
+      83 |     await page.reload();
+        at tests/e2e/appearance-theme.spec.ts:80:108
+
+    attachment #1: appearance-theme-dark (image/png) ───────────────────────────────────────────────
+    images/dark.webp
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: raw/error-context-light.md
+
+  2) tests/e2e/appearance-theme.spec.ts:10:49 › Appearance theme keyboard and rail synchronization — 960 dark
+
+    Error: Appearance has exactly one Tab stop at its selected radio
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+    -   -1,
+    -   -1,
+    +   0,
+    +   0,
+        0,
+      ]
+
+      35 |       await record("main pointer selection");
+      36 |     });
+    > 37 |     expect.soft(await main.getByRole("radio").evaluateAll((elements) => elements.map((el) => (el as HTMLElement).tabIndex)), "Appearance has exactly one Tab stop at its selected radio").toEqual(theme === "light" ? [-1, 0, -1] : [-1, -1, 0]);
+         |                                                                                                                                                                                           ^
+      38 |
+      39 |     for (const [key, next] of [["ArrowRight", theme === "light" ? "dark" : "system"], ["ArrowLeft", theme === "light" ? "system" : "light"]] as const) {
+      40 |       await test.step(`${key} selects and focuses the adjacent theme`, async () => {
+        at tests/e2e/appearance-theme.spec.ts:37:187
+
+    Error: ArrowRight: adjacent radio is selected and focused
+
+    ArrowRight: adjacent radio is selected and focused
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "checked": "true",
+    -   "focused": true,
+    +   "checked": "false",
+    +   "focused": false,
+      }
+
+    Call Log:
+    - Timeout 1000ms exceeded while waiting on the predicate
+
+      44 |         await radio(theme).focus();
+      45 |         await page.keyboard.press(key);
+    > 46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute("aria-checked"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: "true", focused: true });
+         |                                                                                                                                                                                                                    ^
+      47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === "system" ? theme : next, stored: next });
+      48 |         await record(key);
+      49 |       });
+        at tests/e2e/appearance-theme.spec.ts:46:212
+        at tests/e2e/appearance-theme.spec.ts:40:7
+
+    Error: ArrowRight: selection is applied and saved
+
+    ArrowRight: selection is applied and saved
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "stored": "system",
+    +   "stored": "dark",
+        "theme": "dark",
+      }
+
+    Call Log:
+    - Timeout 1000ms exceeded while waiting on the predicate
+
+      45 |         await page.keyboard.press(key);
+      46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute("aria-checked"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: "true", focused: true });
+    > 47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === "system" ? theme : next, stored: next });
+         |                                                                                                     ^
+      48 |         await record(key);
+      49 |       });
+      50 |     }
+        at tests/e2e/appearance-theme.spec.ts:47:101
+        at tests/e2e/appearance-theme.spec.ts:40:7
+
+    Error: ArrowLeft: adjacent radio is selected and focused
+
+    ArrowLeft: adjacent radio is selected and focused
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "checked": "true",
+    -   "focused": true,
+    +   "checked": "false",
+    +   "focused": false,
+      }
+
+    Call Log:
+    - Timeout 1000ms exceeded while waiting on the predicate
+
+      44 |         await radio(theme).focus();
+      45 |         await page.keyboard.press(key);
+    > 46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute("aria-checked"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: "true", focused: true });
+         |                                                                                                                                                                                                                    ^
+      47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === "system" ? theme : next, stored: next });
+      48 |         await record(key);
+      49 |       });
+        at tests/e2e/appearance-theme.spec.ts:46:212
+        at tests/e2e/appearance-theme.spec.ts:40:7
+
+    Error: ArrowLeft: selection is applied and saved
+
+    ArrowLeft: selection is applied and saved
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "stored": "light",
+    -   "theme": "light",
+    +   "stored": "dark",
+    +   "theme": "dark",
+      }
+
+    Call Log:
+    - Timeout 1000ms exceeded while waiting on the predicate
+
+      45 |         await page.keyboard.press(key);
+      46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute("aria-checked"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: "true", focused: true });
+    > 47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === "system" ? theme : next, stored: next });
+         |                                                                                                     ^
+      48 |         await record(key);
+      49 |       });
+      50 |     }
+        at tests/e2e/appearance-theme.spec.ts:47:101
+        at tests/e2e/appearance-theme.spec.ts:40:7
+
+    Error: Appearance follows the rail's explicit preference
+
+    expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'Light', exact: true })
+    Expected: "true"
+    Received: "false"
+    Timeout:  1000ms
+
+    Call log:
+      - Appearance follows the rail's explicit preference getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'Light', exact: true }) with timeout 1000ms
+      - waiting for getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'Light', exact: true })
+        11 × locator resolved to <button role="radio" class="pg-theme" aria-checked="false">…</button>
+           - unexpected value "false"
+
+
+      63 |       await expect(target).toHaveAttribute("aria-checked", "true");
+      64 |       await expect.poll(() => applied(page)).toEqual({ theme: opposite, stored: opposite });
+    > 65 |       await expect.soft(radio(opposite), "Appearance follows the rail's explicit preference").toHaveAttribute("aria-checked", "true", { timeout: 1_000 });
+         |                                                                                               ^
+      66 |       await record("rail opposite selection");
+      67 |       await page.evaluate(() => document.fonts.ready);
+      68 |       const path = test.info().outputPath(`appearance-theme-${opposite}.png`);
+        at tests/e2e/appearance-theme.spec.ts:65:95
+        at tests/e2e/appearance-theme.spec.ts:59:5
+
+    Error: Appearance keeps System selected under light OS appearance
+
+    expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })
+    Expected: "true"
+    Received: "false"
+    Timeout:  1000ms
+
+    Call log:
+      - Appearance keeps System selected under light OS appearance getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true }) with timeout 1000ms
+      - waiting for getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })
+        11 × locator resolved to <button role="radio" class="pg-theme" aria-checked="false">…</button>
+           - unexpected value "false"
+
+
+      78 |       await expect(system).toHaveAttribute("aria-checked", "true");
+      79 |       await expect.poll(() => applied(page)).toEqual({ theme: scheme, stored: "system" });
+    > 80 |       await expect.soft(radio("system"), `Appearance keeps System selected under ${scheme} OS appearance`).toHaveAttribute("aria-checked", "true", { timeout: 1_000 });
+         |                                                                                                            ^
+      81 |       await record(`System under ${scheme} OS appearance`);
+      82 |     }
+      83 |     await page.reload();
+        at tests/e2e/appearance-theme.spec.ts:80:108
+
+    Error: Appearance keeps System selected under dark OS appearance
+
+    expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })
+    Expected: "true"
+    Received: "false"
+    Timeout:  1000ms
+
+    Call log:
+      - Appearance keeps System selected under dark OS appearance getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true }) with timeout 1000ms
+      - waiting for getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })
+        11 × locator resolved to <button role="radio" class="pg-theme" aria-checked="false">…</button>
+           - unexpected value "false"
+
+
+      78 |       await expect(system).toHaveAttribute("aria-checked", "true");
+      79 |       await expect.poll(() => applied(page)).toEqual({ theme: scheme, stored: "system" });
+    > 80 |       await expect.soft(radio("system"), `Appearance keeps System selected under ${scheme} OS appearance`).toHaveAttribute("aria-checked", "true", { timeout: 1_000 });
+         |                                                                                                            ^
+      81 |       await record(`System under ${scheme} OS appearance`);
+      82 |     }
+      83 |     await page.reload();
+        at tests/e2e/appearance-theme.spec.ts:80:108
+
+    attachment #1: appearance-theme-light (image/png) ──────────────────────────────────────────────
+    images/light.webp
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: raw/error-context-dark.md
+
+  2 failed
+    tests/e2e/appearance-theme.spec.ts:10:49 › Appearance theme keyboard and rail synchronization — 960 light
+    tests/e2e/appearance-theme.spec.ts:10:49 › Appearance theme keyboard and rail synchronization — 960 dark

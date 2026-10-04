@@ -1,0 +1,54 @@
+$ vitest run packages/core/test/scheduler.test.ts -t "deleted routine history"
+
+ RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+ ❯ packages/core/test/scheduler.test.ts (4 tests | 1 failed | 3 skipped) 94ms
+   ❯ scheduled run outcomes (4)
+     ↓ marks persisted running records interrupted when the scheduler restarts
+     ↓ persists interruption as an error instead of a successful routine run
+     ↓ refuses duplicate starts before creating another session or run
+     × does not recreate deleted routine history when an active run finishes 93ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/core/test/scheduler.test.ts > scheduled run outcomes > does not recreate deleted routine history when an active run finishes
+AssertionError: expected [ { …(6) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "error": {
++       "code": "aborted",
++       "message": "Request aborted",
++     },
++     "id": "run_01a0fead503b0000f87aa565326dd1f6",
++     "sessionID": "ses_01a0fead503b00013cea9cf25caa6b06",
++     "status": "error",
++     "taskID": "tsk_01a0fead50390000046e8d7b57b291a1",
++     "time": {
++       "end": 1790979166335,
++       "start": 1790979166267,
++     },
++   },
++ ]
+
+ ❯ packages/core/test/scheduler.test.ts:73:53
+     71|       await core.sessions.abort(sessionID)
+     72|       await running
+     73|       expect(core.storage.listDocs("run", task.id)).toEqual([])
+       |                                                     ^
+     74|       expect(events).toEqual([])
+     75|     } finally { await core.close(); await srv.close(); rmSync(dir, { r…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 skipped (4)
+   Start at  22:12:45
+   Duration  792ms (import 48%, transform 36%, tests 15%, worker 1%)
+
+error: script "test" exited with code 1

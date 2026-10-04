@@ -1,0 +1,83 @@
+{
+  "scope": "Initial uncommitted renderer candidate; offline retained-run audit, independent implementation review separate",
+  "runs": {
+    "races": {
+      "startTime": "2026-10-03T07:38:23.615Z",
+      "duration": 12721.461,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "cases": 4,
+      "workers": 1,
+      "retries": 0,
+      "pngFiles": 16,
+      "uniqueFilePNGs": 6
+    },
+    "e2e-full": {
+      "startTime": "2026-10-03T07:39:28.493Z",
+      "duration": 265136.24299999996,
+      "expected": 101,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "cases": 101,
+      "workers": 4,
+      "retries": 0,
+      "pngFiles": 258,
+      "uniqueFilePNGs": 125
+    }
+  },
+  "newCases": [
+    {
+      "file": "live-state.spec.ts",
+      "title": "Late initial Chat history cannot erase a completed stream — dark"
+    },
+    {
+      "file": "live-state.spec.ts",
+      "title": "Late initial Chat history cannot erase a completed stream — light"
+    },
+    {
+      "file": "live-state.spec.ts",
+      "title": "Late initial Chat history cannot revive a deleted session — dark"
+    },
+    {
+      "file": "live-state.spec.ts",
+      "title": "Late initial Chat history cannot revive a deleted session — light"
+    }
+  ],
+  "registeredRenderChecks": 426,
+  "registeredRenderPNGs": 0,
+  "fullSuiteImageAttachments": 133,
+  "fullSuiteInlinePNGAttachments": 4,
+  "fullSuiteUniqueImages": 129,
+  "combinedUniqueImages": 130,
+  "contactSheets": 17,
+  "retentionCounts": {
+    "existing identical PNG": 70,
+    "new RGBA-exact WebP": 56,
+    "existing RGBA-exact WebP": 4
+  },
+  "locale": {
+    "primaryStates": 48,
+    "allMeasurements": 80,
+    "stateCounts": {
+      "option-unavailable": 16,
+      "send-failed": 16,
+      "code_sent": 16,
+      "signed_in": 16,
+      "mfa_enrollment": 16
+    },
+    "textRows": 384,
+    "tabStops": 144,
+    "allTextReadable": true,
+    "allTabsReachable": true,
+    "exactPriorPNGs": 8
+  },
+  "raceImagesFullVsIsolatedExact": 6,
+  "fullSizeRequired": 16,
+  "visualReview": "bounded approval",
+  "fullSizeCaptureViewsReviewed": 22,
+  "fullSizeUniqueImagesReviewed": 19,
+  "contactImagesReviewed": 129
+}

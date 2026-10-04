@@ -1,0 +1,2524 @@
+[
+  {
+    "name": "home-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:49:47.626Z",
+    "reference": {
+      "route": "home",
+      "variant": "",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:56:58.406Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "dcad4f6aeba27aa7ced225a42c8420d5f00f28c0575e5bb86b4f8b10545bc190",
+      "consoleErrors": [],
+      "file": "home-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/home-dark.app.png",
+        "sha256": "778570d6b1c4627df9e33ebada9e72c74614f4c176b33c63f42a5762de883a53",
+        "bytes": 665837
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/home-dark.design.png",
+        "sha256": "dcad4f6aeba27aa7ced225a42c8420d5f00f28c0575e5bb86b4f8b10545bc190",
+        "bytes": 667121
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/home-dark.diff.png",
+        "sha256": "10c849d841a4a164d1b10af8d51a87706c4a01892aa9c40744cc2ca08e8b2950",
+        "bytes": 214819
+      }
+    },
+    "ref": "home-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "home-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:49:50.833Z",
+    "reference": {
+      "route": "home",
+      "variant": "",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:00.362Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "94a423d1b913938e83207f62d3092c5b6dd5cb898bf960ee35db48fe37df9b6a",
+      "consoleErrors": [],
+      "file": "home-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/home-light.app.png",
+        "sha256": "9b430933625c5827d26c1717a7cd2635f686c056ffe102cf0253092ea2d76c89",
+        "bytes": 653375
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/home-light.design.png",
+        "sha256": "94a423d1b913938e83207f62d3092c5b6dd5cb898bf960ee35db48fe37df9b6a",
+        "bytes": 653429
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/home-light.diff.png",
+        "sha256": "97830aa938c6c508c2a423fdf990d4e1c0434125f9dbb7a27cbc2b7990cbb332",
+        "bytes": 218942
+      }
+    },
+    "ref": "home-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "chat-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:49:53.925Z",
+    "reference": {
+      "route": "chat",
+      "variant": "",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:02.364Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "8df08514fb95847abf2588a02c98b00888978588758c0f092cc56bb48dbabce8",
+      "consoleErrors": [],
+      "file": "chat-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-dark.app.png",
+        "sha256": "c5b77fe96af45d6721c4bc51ea720d98757c9dfef3679d42cb4036ea27431aa2",
+        "bytes": 715285
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-dark.design.png",
+        "sha256": "8df08514fb95847abf2588a02c98b00888978588758c0f092cc56bb48dbabce8",
+        "bytes": 715778
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-dark.diff.png",
+        "sha256": "4f8137705b787bfdabb1147bafe7eb3f0edbbb9b563e9a2f25bae430d85bfcf5",
+        "bytes": 298437
+      }
+    },
+    "ref": "chat-dark.png",
+    "diffPct": 0.15
+  },
+  {
+    "name": "chat-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:49:57.027Z",
+    "reference": {
+      "route": "chat",
+      "variant": "",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:04.511Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "367f1215b83a7d80a89588a1bb90eda8d228beafec0a3fc75f3721c2dbd70957",
+      "consoleErrors": [],
+      "file": "chat-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-light.app.png",
+        "sha256": "e34dff28f1edcfe82b00cc18b0472c38331771cd56e1d107f36b23f3cbedd4e0",
+        "bytes": 700436
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-light.design.png",
+        "sha256": "367f1215b83a7d80a89588a1bb90eda8d228beafec0a3fc75f3721c2dbd70957",
+        "bytes": 701019
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-light.diff.png",
+        "sha256": "af01b56fa0d04fe5e4ba2a1e8b664746eec6cf73e45ece6e5ae96091aa6fe436",
+        "bytes": 303374
+      }
+    },
+    "ref": "chat-light.png",
+    "diffPct": 0.15
+  },
+  {
+    "name": "chat-states~sending-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:00.049Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "envoi",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:47.307Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "d2ad27e08fa8e9de32e7037aadb46627eb51c33f1ea694af21ebcd99a836d92e",
+      "consoleErrors": [],
+      "file": "chat-states~envoi-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~sending-dark.app.png",
+        "sha256": "a668f70f1f2c8ad24b454baab543c8e4aa8d9c8aa590ee8274fb27bc7bbe5402",
+        "bytes": 693873
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~sending-dark.design.png",
+        "sha256": "d2ad27e08fa8e9de32e7037aadb46627eb51c33f1ea694af21ebcd99a836d92e",
+        "bytes": 694747
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~sending-dark.diff.png",
+        "sha256": "21c08389fb96c66204e5d99c7e9c4f7e1e0a98897084649187839c5f588428f1",
+        "bytes": 261032
+      }
+    },
+    "ref": "chat-states~envoi-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~sending-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:03.124Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "envoi",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:49.345Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "e4172ade42623ba773ec779f59a3e00b8bb9e89f9c44f7d81159fc67659979dc",
+      "consoleErrors": [],
+      "file": "chat-states~envoi-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~sending-light.app.png",
+        "sha256": "a649fa275c429a697954a10ea0b88da3301cbd0741e4164e5c165182ea6c2b18",
+        "bytes": 677772
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~sending-light.design.png",
+        "sha256": "e4172ade42623ba773ec779f59a3e00b8bb9e89f9c44f7d81159fc67659979dc",
+        "bytes": 678506
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~sending-light.diff.png",
+        "sha256": "c3c5b95bfac7c94a63b8156ff2a950516affcddc2a23c364b4bc1e79aff8cf9b",
+        "bytes": 268481
+      }
+    },
+    "ref": "chat-states~envoi-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~thinking-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:06.240Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "reflexion",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:51.445Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "cf1f2cb6b030e2ce744f16dd6478218d3cfede2eda7aea1ac7be59d3965620cc",
+      "consoleErrors": [],
+      "file": "chat-states~reflexion-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~thinking-dark.app.png",
+        "sha256": "75d0ab4477c8bca774ed5dd5eb675ae78f3440395dfe81a35aaedaca6d1176a3",
+        "bytes": 704800
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~thinking-dark.design.png",
+        "sha256": "cf1f2cb6b030e2ce744f16dd6478218d3cfede2eda7aea1ac7be59d3965620cc",
+        "bytes": 707201
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~thinking-dark.diff.png",
+        "sha256": "8baac989fe380d97084a6c0d4f8703dc2fb530603f470ebf72eaa83f3d59d42c",
+        "bytes": 275181
+      }
+    },
+    "ref": "chat-states~reflexion-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~thinking-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:09.368Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "reflexion",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:53.490Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "7cbd9503cec618532180585e10c32e0913144758b74599c37db8d092efbd733a",
+      "consoleErrors": [],
+      "file": "chat-states~reflexion-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~thinking-light.app.png",
+        "sha256": "c58e04001d8bb694ba0e9f52c0a335fbec72f528ee475265bd10ffb98e3507ed",
+        "bytes": 689932
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~thinking-light.design.png",
+        "sha256": "7cbd9503cec618532180585e10c32e0913144758b74599c37db8d092efbd733a",
+        "bytes": 690774
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~thinking-light.diff.png",
+        "sha256": "9c4eef2aeaeaf73f0fa065494e27cc1a795396f75e60825cfbe47a5c3dd04def",
+        "bytes": 280856
+      }
+    },
+    "ref": "chat-states~reflexion-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~streaming-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:12.478Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "streaming",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:55.564Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "d108798b6dac7e32c2894d901e0cfce2d1f3589be64a007bfdbe874d19dfd9fb",
+      "consoleErrors": [],
+      "file": "chat-states~streaming-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~streaming-dark.app.png",
+        "sha256": "464aa2dded07cc131f9a08e8fb3c44c3498f372b8231e927c8749134cae8f528",
+        "bytes": 709276
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~streaming-dark.design.png",
+        "sha256": "d108798b6dac7e32c2894d901e0cfce2d1f3589be64a007bfdbe874d19dfd9fb",
+        "bytes": 709263
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~streaming-dark.diff.png",
+        "sha256": "34db22244b5b42d5daf38496b69e06ee703fe96789170ae69aedde5c463fc8d1",
+        "bytes": 287500
+      }
+    },
+    "ref": "chat-states~streaming-dark.png",
+    "diffPct": 0.02
+  },
+  {
+    "name": "chat-states~streaming-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:15.531Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "streaming",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:57.634Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "94016e82eacbd5dc72e2d9e02897b0e21d6667ca0b4e350d45ff962f6ec63d98",
+      "consoleErrors": [],
+      "file": "chat-states~streaming-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~streaming-light.app.png",
+        "sha256": "71bccb6caa98177f9d515cecbda4b7a3424c61d90f7ea0b315cccedd3db2a13b",
+        "bytes": 692782
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~streaming-light.design.png",
+        "sha256": "94016e82eacbd5dc72e2d9e02897b0e21d6667ca0b4e350d45ff962f6ec63d98",
+        "bytes": 693533
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~streaming-light.diff.png",
+        "sha256": "fa74f60c7b161db073e6d334925eb363dcffe37eea35f952372d1cf5d04e8f02",
+        "bytes": 292558
+      }
+    },
+    "ref": "chat-states~streaming-light.png",
+    "diffPct": 0.02
+  },
+  {
+    "name": "chat-states~searching-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:18.741Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "recherche",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:59.689Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "873d176886ec7ef134a5f98c1093884e6f0abcdc167a3419676a8cd6847fa516",
+      "consoleErrors": [],
+      "file": "chat-states~recherche-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~searching-dark.app.png",
+        "sha256": "dd717b73da548fca42a83e25109af5fe3835a8bee5c89b466e7c6d482ca6f0f5",
+        "bytes": 700349
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~searching-dark.design.png",
+        "sha256": "873d176886ec7ef134a5f98c1093884e6f0abcdc167a3419676a8cd6847fa516",
+        "bytes": 699476
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~searching-dark.diff.png",
+        "sha256": "0dd5800a49d63fc9b76418f390ae942ee2924ebba2891efcf33c147939c9bca1",
+        "bytes": 255787
+      }
+    },
+    "ref": "chat-states~recherche-dark.png",
+    "diffPct": 0.13
+  },
+  {
+    "name": "chat-states~searching-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:21.892Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "recherche",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:01.788Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "37cd77ceab8e2ac71e7050c44672da433e8cf7624c66d817b583682e9239d162",
+      "consoleErrors": [],
+      "file": "chat-states~recherche-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~searching-light.app.png",
+        "sha256": "cdcf46bdfdc18124c81cb880e154ccc10d4d1a52c286fca01c4cd6bc1d63a38d",
+        "bytes": 686439
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~searching-light.design.png",
+        "sha256": "37cd77ceab8e2ac71e7050c44672da433e8cf7624c66d817b583682e9239d162",
+        "bytes": 685196
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~searching-light.diff.png",
+        "sha256": "0a372f034affbf94bd3a87dea4ec9ca0944125da8d441ed3aa6b00e2ebfb609e",
+        "bytes": 257509
+      }
+    },
+    "ref": "chat-states~recherche-light.png",
+    "diffPct": 0.13
+  },
+  {
+    "name": "chat-states~sources-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:24.923Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "sources",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:03.940Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "b98f1442a514e2a84688c297d97ca0db08fc9576ab32b232faa8c7d14fc2f336",
+      "consoleErrors": [],
+      "file": "chat-states~sources-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~sources-dark.app.png",
+        "sha256": "8970b98c06e76f6af45263b0b617c2cd1c78f68231f0acd65b7152a5149a7b51",
+        "bytes": 845740
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~sources-dark.design.png",
+        "sha256": "b98f1442a514e2a84688c297d97ca0db08fc9576ab32b232faa8c7d14fc2f336",
+        "bytes": 846901
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~sources-dark.diff.png",
+        "sha256": "3c54b81a4c84a2b36f3b2227d70761c80537b0d8791a6835c8f55ad82a62d3e8",
+        "bytes": 453112
+      }
+    },
+    "ref": "chat-states~sources-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~sources-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:28.091Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "sources",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:06.103Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "76bb3e146a838db0606425d0d561193dd2e2fef6d2fffeaf5f76a4227b3950b3",
+      "consoleErrors": [],
+      "file": "chat-states~sources-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~sources-light.app.png",
+        "sha256": "1c0f505e3b996a3ff8b39bf22eb112603553ff8bd21aa9198f382ade4e0961e7",
+        "bytes": 835111
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~sources-light.design.png",
+        "sha256": "76bb3e146a838db0606425d0d561193dd2e2fef6d2fffeaf5f76a4227b3950b3",
+        "bytes": 836156
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~sources-light.diff.png",
+        "sha256": "bbcec98a1309ae01818380e066392fd9d4ae450bb9fbf88d459a6e032fcadbf9",
+        "bytes": 465316
+      }
+    },
+    "ref": "chat-states~sources-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~rich-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:31.174Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "riche",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:08.161Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "8f1aecc277c60a2414b92bf9cfb15e908528ce927347e89c9b132983431db1ea",
+      "consoleErrors": [],
+      "file": "chat-states~riche-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~rich-dark.app.png",
+        "sha256": "452d5c683670e852c5f5536918646ce93dd783b6a6c1a60efc50b99a8ced5408",
+        "bytes": 776451
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~rich-dark.design.png",
+        "sha256": "8f1aecc277c60a2414b92bf9cfb15e908528ce927347e89c9b132983431db1ea",
+        "bytes": 777622
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~rich-dark.diff.png",
+        "sha256": "499630117ce3c0ac074d06ed93766aee42dd17842e5d554fbaff5b9fdd5d8902",
+        "bytes": 360617
+      }
+    },
+    "ref": "chat-states~riche-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~rich-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:34.299Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "riche",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:10.250Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "f0bf01387bd519ebaec0376939bb98f029b623b15e454a91cbe90fbed65ede57",
+      "consoleErrors": [],
+      "file": "chat-states~riche-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~rich-light.app.png",
+        "sha256": "45c97913427104eef94f6afd52e535d01e6b4dfee651f291415c6c03ce1f5e9d",
+        "bytes": 761588
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~rich-light.design.png",
+        "sha256": "f0bf01387bd519ebaec0376939bb98f029b623b15e454a91cbe90fbed65ede57",
+        "bytes": 762517
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~rich-light.diff.png",
+        "sha256": "3d7ddca3227cafc1cb4726904dedb7b539ea197048ee4aec422f2ca9a2ca7c96",
+        "bytes": 366492
+      }
+    },
+    "ref": "chat-states~riche-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~tool-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:37.434Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "outil",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:12.245Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "700e98819c07d66780368173ec403523086ad0fe0f8d28aebed0f6ca42905c91",
+      "consoleErrors": [],
+      "file": "chat-states~outil-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~tool-dark.app.png",
+        "sha256": "46cfa1f1f0fc47b42931944e61a66fec52b4984ff5e05116a720607ce4322bd9",
+        "bytes": 691063
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~tool-dark.design.png",
+        "sha256": "700e98819c07d66780368173ec403523086ad0fe0f8d28aebed0f6ca42905c91",
+        "bytes": 692234
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~tool-dark.diff.png",
+        "sha256": "5401e49fd00eb56cf73d54a3f560fa67e64798a4d57475eb6ad325bde2e24890",
+        "bytes": 235545
+      }
+    },
+    "ref": "chat-states~outil-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~tool-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:40.526Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "outil",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:14.243Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "28f8d5b0ba094f2bb2bb7a181a88ec70c6615cb174bb2f1b70b6062661f22753",
+      "consoleErrors": [],
+      "file": "chat-states~outil-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~tool-light.app.png",
+        "sha256": "e28c5a6365ae4fe19d1dc288ee0aa3b08c556255bd34f7bc62068e7a4c14947f",
+        "bytes": 675492
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~tool-light.design.png",
+        "sha256": "28f8d5b0ba094f2bb2bb7a181a88ec70c6615cb174bb2f1b70b6062661f22753",
+        "bytes": 676276
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~tool-light.diff.png",
+        "sha256": "30835dd19942f663cdd880c73229d9519ff3cbb29e1a25fd56ff27c84c660fc8",
+        "bytes": 241690
+      }
+    },
+    "ref": "chat-states~outil-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~attachments-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:43.674Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "pieces",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:16.338Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "719185d455a2291374c05b5a7d3660c4ae01832edb41226076808caf25a40397",
+      "consoleErrors": [],
+      "file": "chat-states~pieces-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~attachments-dark.app.png",
+        "sha256": "d03bf9f15cfc2d8bc8ec9fa648987469ae01c2004a95a3f92321993e29b2f572",
+        "bytes": 734032
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~attachments-dark.design.png",
+        "sha256": "719185d455a2291374c05b5a7d3660c4ae01832edb41226076808caf25a40397",
+        "bytes": 735101
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~attachments-dark.diff.png",
+        "sha256": "b5ce280217fc73ec8ecd0047f1950895e7a2b57d68c427630fc50f7acc7a52e2",
+        "bytes": 291647
+      }
+    },
+    "ref": "chat-states~pieces-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~attachments-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:46.798Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "pieces",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:18.495Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "208697508438e1f1c4c2d0339dc65f2184016c6fb8c8e1efe0d4fb08a412c2d0",
+      "consoleErrors": [],
+      "file": "chat-states~pieces-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~attachments-light.app.png",
+        "sha256": "e7d25f3ac643db04eaf88c571dee54719caa1d925c03790f52b4c9574fad2205",
+        "bytes": 720594
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~attachments-light.design.png",
+        "sha256": "208697508438e1f1c4c2d0339dc65f2184016c6fb8c8e1efe0d4fb08a412c2d0",
+        "bytes": 721353
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~attachments-light.diff.png",
+        "sha256": "81d8d37c2a4e2b2ebb5cc9172749121f3b3641dd3cab05a4d5249b11d65051af",
+        "bytes": 300347
+      }
+    },
+    "ref": "chat-states~pieces-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~edited-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:49.935Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "edition",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:20.629Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "6b4feb714bded6553d072e3870eb0d14d34153441df69703d8cba27ec3287811",
+      "consoleErrors": [],
+      "file": "chat-states~edition-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~edited-dark.app.png",
+        "sha256": "fb7e260e49a25004c51ba5ca548d6a414a3053e5cb7629b310eea4a247fc4b47",
+        "bytes": 702939
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~edited-dark.design.png",
+        "sha256": "6b4feb714bded6553d072e3870eb0d14d34153441df69703d8cba27ec3287811",
+        "bytes": 704298
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~edited-dark.diff.png",
+        "sha256": "91a6bfc2c8debaea66cb6bc3fcbd1d1b30f472ea60612e844938aa4f578a6e2a",
+        "bytes": 264093
+      }
+    },
+    "ref": "chat-states~edition-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~edited-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:53.101Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "edition",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:22.823Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "5fc3203e96bbf5e40483c8b7c3606096700730c8996273bfc34436400341bccf",
+      "consoleErrors": [],
+      "file": "chat-states~edition-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~edited-light.app.png",
+        "sha256": "2c08503ba14a108f93c5d72f2ddf461082dee945529036848cbb7c0d79d31912",
+        "bytes": 687537
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~edited-light.design.png",
+        "sha256": "5fc3203e96bbf5e40483c8b7c3606096700730c8996273bfc34436400341bccf",
+        "bytes": 688553
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~edited-light.diff.png",
+        "sha256": "d9a205c91cb8176ebc29cb9b35ee5b93f9cb8fa3225278721fbe58b6f94c843b",
+        "bytes": 270261
+      }
+    },
+    "ref": "chat-states~edition-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~regenerating-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:56.023Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "regeneration",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:24.871Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "1e03f65a419b8009d1ae28dfe995b1a94affa5608f4215d45e068453a94ecd49",
+      "consoleErrors": [],
+      "file": "chat-states~regeneration-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~regenerating-dark.app.png",
+        "sha256": "246f1be2ef864e49898d563058a2dce85dc3c9fd56357b773764ff6dbe2d0cd6",
+        "bytes": 714628
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~regenerating-dark.design.png",
+        "sha256": "1e03f65a419b8009d1ae28dfe995b1a94affa5608f4215d45e068453a94ecd49",
+        "bytes": 715809
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~regenerating-dark.diff.png",
+        "sha256": "92925f454bdedfdf6c3dc79444139d21ae48f273d903a67819ad57562a8eead0",
+        "bytes": 295700
+      }
+    },
+    "ref": "chat-states~regeneration-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "chat-states~regenerating-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:50:59.068Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "regeneration",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:26.998Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "6e33cd3142be08db98e57f21fd886f634612f75192861b3738124a66f8e86bb5",
+      "consoleErrors": [],
+      "file": "chat-states~regeneration-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~regenerating-light.app.png",
+        "sha256": "ec80f186ece5fdfcdabd78e9d41d4c5626ae05d177d4cef19babadda5b85d9e9",
+        "bytes": 699803
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~regenerating-light.design.png",
+        "sha256": "6e33cd3142be08db98e57f21fd886f634612f75192861b3738124a66f8e86bb5",
+        "bytes": 700654
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~regenerating-light.diff.png",
+        "sha256": "e083eac8c8cd3ca5fe46d5983dc9d130186940d399ca22339ccd6f8e69382c06",
+        "bytes": 302873
+      }
+    },
+    "ref": "chat-states~regeneration-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~error-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:02.109Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "erreur",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:29.075Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "244edffa2bf306580c1a462b5ffc1e50024a7c2f43995140641645e508844561",
+      "consoleErrors": [],
+      "file": "chat-states~erreur-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~error-dark.app.png",
+        "sha256": "bd4fa0c12f02f85ded38bda1321bcadb2607e8c77516fc2254d12307d3026add",
+        "bytes": 712740
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~error-dark.design.png",
+        "sha256": "244edffa2bf306580c1a462b5ffc1e50024a7c2f43995140641645e508844561",
+        "bytes": 713832
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~error-dark.diff.png",
+        "sha256": "776f029a3c1b5a37514acbe9be6befcd4093c91ddf2b743bbadf59ec3f14cd87",
+        "bytes": 283761
+      }
+    },
+    "ref": "chat-states~erreur-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "chat-states~error-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:05.187Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "erreur",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:31.182Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "3c3efe54ee29f545268df50503453db800165a0b62651bdb8eb4e793e5d6f6dc",
+      "consoleErrors": [],
+      "file": "chat-states~erreur-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~error-light.app.png",
+        "sha256": "8744c468a3f747c65223653226b3b2b97d9afedaa894652826b957d08f4b9634",
+        "bytes": 698571
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~error-light.design.png",
+        "sha256": "3c3efe54ee29f545268df50503453db800165a0b62651bdb8eb4e793e5d6f6dc",
+        "bytes": 699452
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~error-light.diff.png",
+        "sha256": "02b3d42cc9bcbaf99df9b1d7c171bf7b5d2e3473b9c151e6802e811881cebcd3",
+        "bytes": 292423
+      }
+    },
+    "ref": "chat-states~erreur-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~limit-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:08.341Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "limite",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:33.235Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "abdead6f9cb402fb27e5545ce68ac61f61787683d364d046729e809eeffa9942",
+      "consoleErrors": [],
+      "file": "chat-states~limite-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~limit-dark.app.png",
+        "sha256": "4aa0806d559c957652fa56be439ff0d79bc46aee8a35386ef90b74cccf4e9700",
+        "bytes": 733858
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~limit-dark.design.png",
+        "sha256": "abdead6f9cb402fb27e5545ce68ac61f61787683d364d046729e809eeffa9942",
+        "bytes": 735136
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~limit-dark.diff.png",
+        "sha256": "0a69ca7f9e7cbe2e187682cc56513372d6718bf58469d4074c5b955aa4bedbbd",
+        "bytes": 312704
+      }
+    },
+    "ref": "chat-states~limite-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~limit-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:11.421Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "limite",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:35.310Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "880d2aa17f283b5bba3acbd80b8e9bc7dc8934f57d70cccbf48c01f063c3191d",
+      "consoleErrors": [],
+      "file": "chat-states~limite-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~limit-light.app.png",
+        "sha256": "d71802e4b376b95c8b9b50883592e8f84996822c664226c08d41d705e101e74c",
+        "bytes": 719313
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~limit-light.design.png",
+        "sha256": "880d2aa17f283b5bba3acbd80b8e9bc7dc8934f57d70cccbf48c01f063c3191d",
+        "bytes": 720181
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~limit-light.diff.png",
+        "sha256": "2d4f0276e25473f7f34e3ebce4b16d820b6269459d137824442a75d4c80df658",
+        "bytes": 322048
+      }
+    },
+    "ref": "chat-states~limite-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~stopped-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:14.506Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "arrete",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:37.450Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "d9a1be4392870b41980335c77b476a62c4ae82b37e40a8be1ba3718fe3e28661",
+      "consoleErrors": [],
+      "file": "chat-states~arrete-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~stopped-dark.app.png",
+        "sha256": "5960791e364f323291647b3e84a6ad9c758b8fafc25679f1f4016acea997e556",
+        "bytes": 725216
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~stopped-dark.design.png",
+        "sha256": "d9a1be4392870b41980335c77b476a62c4ae82b37e40a8be1ba3718fe3e28661",
+        "bytes": 726469
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~stopped-dark.diff.png",
+        "sha256": "52b83ba47fbc7e009ad906aa9954e035e66a1df086d92903dfde43609a1a4f31",
+        "bytes": 307724
+      }
+    },
+    "ref": "chat-states~arrete-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~stopped-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:17.576Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "arrete",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:39.567Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "00cbd171f11efa96c2dedee6f67149046d8d1f48b8cee66351607f6f3377fa35",
+      "consoleErrors": [],
+      "file": "chat-states~arrete-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~stopped-light.app.png",
+        "sha256": "50bf75d8b4958f40f78912c74769c63e7aa7839a1d446e8752dce5fec5238b51",
+        "bytes": 710846
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~stopped-light.design.png",
+        "sha256": "00cbd171f11efa96c2dedee6f67149046d8d1f48b8cee66351607f6f3377fa35",
+        "bytes": 711917
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~stopped-light.diff.png",
+        "sha256": "81e1031e54ea7cb1a3a6eba6e1da779dd5f8fd438c6994ab288a3fdf5c33d04b",
+        "bytes": 315062
+      }
+    },
+    "ref": "chat-states~arrete-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~long-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:20.654Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "longue",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:41.702Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "9c49e3f3734214e85c8cc38a04d9c5ad445ee483d61e009a88e2d0bcd95b026d",
+      "consoleErrors": [],
+      "file": "chat-states~longue-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~long-dark.app.png",
+        "sha256": "1dadd4a07c0a89842168f0b0b29f1365e4af146e682b84502e12ee8f16f09272",
+        "bytes": 804265
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~long-dark.design.png",
+        "sha256": "9c49e3f3734214e85c8cc38a04d9c5ad445ee483d61e009a88e2d0bcd95b026d",
+        "bytes": 808536
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~long-dark.diff.png",
+        "sha256": "c69e2363dfd7105141eaa2f42bc3e4398f5d0a447d4472120ec4e84d9633bab8",
+        "bytes": 475102
+      }
+    },
+    "ref": "chat-states~longue-dark.png",
+    "diffPct": 1.73
+  },
+  {
+    "name": "chat-states~long-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:23.830Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "longue",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:43.765Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "6881ef29d3b3d005fc53d9752ad999d1b6afc28d62b675f19c0aed9bd603b0e8",
+      "consoleErrors": [],
+      "file": "chat-states~longue-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~long-light.app.png",
+        "sha256": "b39e6993b988e6e0036826ed6ae51e231cec63534c8b7fa719ec42a5d7e36184",
+        "bytes": 790416
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~long-light.design.png",
+        "sha256": "6881ef29d3b3d005fc53d9752ad999d1b6afc28d62b675f19c0aed9bd603b0e8",
+        "bytes": 790664
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~long-light.diff.png",
+        "sha256": "5a9addde6413a4229054f90723a13b6c6fa274b387dbb230182807eb2c02ae69",
+        "bytes": 456665
+      }
+    },
+    "ref": "chat-states~longue-light.png",
+    "diffPct": 1.73
+  },
+  {
+    "name": "chat-states~feedback-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:26.926Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "feedback",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:45.757Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "02797b4122fba71424ec8b6da7691d045f3811a7d937d7b0a3e81feacaccc23a",
+      "consoleErrors": [],
+      "file": "chat-states~feedback-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~feedback-dark.app.png",
+        "sha256": "b5bb2bc6ea1632e9a36903f8ecca4d28717560c78ddeed58bc2a0f1b3df3016a",
+        "bytes": 756303
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~feedback-dark.design.png",
+        "sha256": "02797b4122fba71424ec8b6da7691d045f3811a7d937d7b0a3e81feacaccc23a",
+        "bytes": 757301
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~feedback-dark.diff.png",
+        "sha256": "05fe015598737652d4960ea4691551dd31911cded42da2944579cc223b37afbc",
+        "bytes": 326932
+      }
+    },
+    "ref": "chat-states~feedback-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "chat-states~feedback-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:29.989Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "feedback",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:47.795Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "4e3a5abc802275f5233f1f2cda11e1e49d9ae6b4c2c1f50abaddfd2ba34b6fe6",
+      "consoleErrors": [],
+      "file": "chat-states~feedback-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~feedback-light.app.png",
+        "sha256": "dbc67515a573ac7620570cdb38c57df87bb1b6edb6dd157633eebe574b32f063",
+        "bytes": 738132
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~feedback-light.design.png",
+        "sha256": "4e3a5abc802275f5233f1f2cda11e1e49d9ae6b4c2c1f50abaddfd2ba34b6fe6",
+        "bytes": 738903
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~feedback-light.diff.png",
+        "sha256": "0b6f9d09193cfb651eee9f69a039b965efc194b6f6f74357ff2614a42e5c4a3b",
+        "bytes": 339326
+      }
+    },
+    "ref": "chat-states~feedback-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~empty-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:32.997Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "vide",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:49.977Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "ceead2bd4f59fc98c97090949b51d2f7fc797643f88eb7d8f9b92e7a637536a1",
+      "consoleErrors": [],
+      "file": "chat-states~vide-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~empty-dark.app.png",
+        "sha256": "2835b3df1393f2901de7f5926643720d657264ad6169a94ac988a4e9f2305d15",
+        "bytes": 680913
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~empty-dark.design.png",
+        "sha256": "ceead2bd4f59fc98c97090949b51d2f7fc797643f88eb7d8f9b92e7a637536a1",
+        "bytes": 681950
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~empty-dark.diff.png",
+        "sha256": "b6a60f3d650af4455b5391d7288874b99c3f58c54ef1252c8b51cc7353e77511",
+        "bytes": 229312
+      }
+    },
+    "ref": "chat-states~vide-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "chat-states~empty-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:36.041Z",
+    "reference": {
+      "route": "chat-states",
+      "variant": "vide",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:58:52.081Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "1de55b4563fba27c219a289702e3c69cc18506fe46fb33136b9e790e7369ace1",
+      "consoleErrors": [],
+      "file": "chat-states~vide-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~empty-light.app.png",
+        "sha256": "930ff25e8f4f1bc124e076bf0324dbbd4d80e2e7ec971a965abdcbc8beb54d34",
+        "bytes": 665902
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~empty-light.design.png",
+        "sha256": "1de55b4563fba27c219a289702e3c69cc18506fe46fb33136b9e790e7369ace1",
+        "bytes": 666740
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/chat-states~empty-light.diff.png",
+        "sha256": "9c4e81f5aa4d85a937930b0f203e3dae009d780135c891e788ddbf7fb57d2316",
+        "bytes": 233484
+      }
+    },
+    "ref": "chat-states~vide-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "code-settings~repos-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:39.152Z",
+    "reference": {
+      "route": "code-settings",
+      "variant": "depots",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:02:35.141Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "b36cbe2f0fc26f3ce9675f5f70d8960d0f4b3c593e564771e4a4da37944b0553",
+      "consoleErrors": [],
+      "file": "code-settings~depots-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~repos-dark.app.png",
+        "sha256": "f9adf85c8f1b73684c1fb2e5e2e7f80f8f59d33706bd699642986830e1a0adb5",
+        "bytes": 711732
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~repos-dark.design.png",
+        "sha256": "b36cbe2f0fc26f3ce9675f5f70d8960d0f4b3c593e564771e4a4da37944b0553",
+        "bytes": 712646
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~repos-dark.diff.png",
+        "sha256": "fb258e87e5951ba3a602a7f2b2073aa642c108c76749583919b28295855f0677",
+        "bytes": 268691
+      }
+    },
+    "ref": "code-settings~depots-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "code-settings~repos-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:42.322Z",
+    "reference": {
+      "route": "code-settings",
+      "variant": "depots",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:02:37.257Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "406a6422f11e6c08b8a797909993f3ef0d619306160187409711b7e18f452573",
+      "consoleErrors": [],
+      "file": "code-settings~depots-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~repos-light.app.png",
+        "sha256": "fca069c78788a9cdc8daa245a1e2d51253534ea87b538d0b7d973f0581242a66",
+        "bytes": 699691
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~repos-light.design.png",
+        "sha256": "406a6422f11e6c08b8a797909993f3ef0d619306160187409711b7e18f452573",
+        "bytes": 700382
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~repos-light.diff.png",
+        "sha256": "5f7b12b43fa66f280590309f85a150cfe918f564a59172b18db945dc38973d7c",
+        "bytes": 277162
+      }
+    },
+    "ref": "code-settings~depots-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "code-settings~instructions-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:45.466Z",
+    "reference": {
+      "route": "code-settings",
+      "variant": "instructions",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:02:39.337Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "686144c7030b94c40cb6853d8f83a8e440d8ee9767c434ac886102ef421de715",
+      "consoleErrors": [],
+      "file": "code-settings~instructions-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~instructions-dark.app.png",
+        "sha256": "2127f82d172ba48a0da0f89c682d77ed85adbd8f930e23d15b6eacc4632b607b",
+        "bytes": 721422
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~instructions-dark.design.png",
+        "sha256": "686144c7030b94c40cb6853d8f83a8e440d8ee9767c434ac886102ef421de715",
+        "bytes": 722270
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~instructions-dark.diff.png",
+        "sha256": "a1df909a49c05e704abaa025e63bfe9872c61838b9c05d7541e915441eb046ed",
+        "bytes": 307327
+      }
+    },
+    "ref": "code-settings~instructions-dark.png",
+    "diffPct": 0.02
+  },
+  {
+    "name": "code-settings~instructions-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:48.509Z",
+    "reference": {
+      "route": "code-settings",
+      "variant": "instructions",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:02:41.412Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "a5f906f5d9d198fb8814dfa8e5a1c179ee46e87c879356670ac47a9cceedd276",
+      "consoleErrors": [],
+      "file": "code-settings~instructions-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~instructions-light.app.png",
+        "sha256": "9ecf7420efe792530c8c54ade51d2dd74071ede818e9e7f217b3ece511a13748",
+        "bytes": 709150
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~instructions-light.design.png",
+        "sha256": "a5f906f5d9d198fb8814dfa8e5a1c179ee46e87c879356670ac47a9cceedd276",
+        "bytes": 709805
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~instructions-light.diff.png",
+        "sha256": "99813d811f4706bcbad3e171519a5fb061aa6bc5c391f8098469070b601dfeeb",
+        "bytes": 311298
+      }
+    },
+    "ref": "code-settings~instructions-light.png",
+    "diffPct": 0.02
+  },
+  {
+    "name": "code-settings~approvals-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:51.622Z",
+    "reference": {
+      "route": "code-settings",
+      "variant": "approbations",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:02:43.592Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "4585bb7d8cd905295f7132599cf8b168e435c180e76f5a61467e0c9f1fe797b6",
+      "consoleErrors": [],
+      "file": "code-settings~approbations-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~approvals-dark.app.png",
+        "sha256": "c42bbdd4148fd1d3a32ec2405f8c11d2ea7da144018aca771adc5c5e8c8a1c95",
+        "bytes": 747127
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~approvals-dark.design.png",
+        "sha256": "4585bb7d8cd905295f7132599cf8b168e435c180e76f5a61467e0c9f1fe797b6",
+        "bytes": 748235
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~approvals-dark.diff.png",
+        "sha256": "ec03546ec3ce174a40a83a38e62ffc026d185cd691b2ff157ad3953de92ea3aa",
+        "bytes": 326414
+      }
+    },
+    "ref": "code-settings~approbations-dark.png",
+    "diffPct": 0.04
+  },
+  {
+    "name": "code-settings~approvals-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:54.892Z",
+    "reference": {
+      "route": "code-settings",
+      "variant": "approbations",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:02:45.722Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "41b3fb2b911d3029c2e60708bb0852c7062b10ab28907f84af4be4321ea52256",
+      "consoleErrors": [],
+      "file": "code-settings~approbations-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~approvals-light.app.png",
+        "sha256": "6ebf1b461d85089f9ca8aa7cac1e18a5adbe4b8c42877e9d2271fe71b09dc418",
+        "bytes": 734646
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~approvals-light.design.png",
+        "sha256": "41b3fb2b911d3029c2e60708bb0852c7062b10ab28907f84af4be4321ea52256",
+        "bytes": 735393
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~approvals-light.diff.png",
+        "sha256": "f546d35540cf2d8b289fa8612356fa63fb8b55c84f50afcb4f4da62a721d15e2",
+        "bytes": 338753
+      }
+    },
+    "ref": "code-settings~approbations-light.png",
+    "diffPct": 0.05
+  },
+  {
+    "name": "code-settings~usage-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:51:58.030Z",
+    "reference": {
+      "route": "code-settings",
+      "variant": "usage",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:02:47.956Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "c88ce306e7a62c93bb63a5f13cc1a7a398d9794474189a370af5532dc75e7b2c",
+      "consoleErrors": [],
+      "file": "code-settings~usage-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~usage-dark.app.png",
+        "sha256": "8900890a4318aafc37f78ec9ffa69a9c855b38663f9ee081c99d2df8692ab01f",
+        "bytes": 713115
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~usage-dark.design.png",
+        "sha256": "c88ce306e7a62c93bb63a5f13cc1a7a398d9794474189a370af5532dc75e7b2c",
+        "bytes": 714081
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~usage-dark.diff.png",
+        "sha256": "bb6ae6a76ccf1f250217a046a2c39e003729e450b6e1ce9fbd87e4a02285a214",
+        "bytes": 262553
+      }
+    },
+    "ref": "code-settings~usage-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "code-settings~usage-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:01.211Z",
+    "reference": {
+      "route": "code-settings",
+      "variant": "usage",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:02:50.097Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "1722636b9bf10902e905aa0f39159d6850f4bf101d930e10392ae8b1cc993848",
+      "consoleErrors": [],
+      "file": "code-settings~usage-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~usage-light.app.png",
+        "sha256": "e615afbe0571d86d5b294071bcfbf262bbb1f30f28e26eacecd6564dbf11acbd",
+        "bytes": 702525
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~usage-light.design.png",
+        "sha256": "1722636b9bf10902e905aa0f39159d6850f4bf101d930e10392ae8b1cc993848",
+        "bytes": 703220
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/code-settings~usage-light.diff.png",
+        "sha256": "71668ed8defa376e8c4e39a831011110014bfeb2e5ddec2d12a424a46c879dfa",
+        "bytes": 270650
+      }
+    },
+    "ref": "code-settings~usage-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "components-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:04.929Z",
+    "reference": {
+      "route": "components",
+      "variant": "",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:42.557Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "ea53874cd57bcbdd5905fd6fcec009bdde6bdce3250a69b8873afed94b3fa763",
+      "consoleErrors": [],
+      "file": "components-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/components-dark.app.png",
+        "sha256": "870d03e86e781afaecf7e476b59eb93402ee9aa18be1766f8cf445ab2e11ba2f",
+        "bytes": 749789
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/components-dark.design.png",
+        "sha256": "ea53874cd57bcbdd5905fd6fcec009bdde6bdce3250a69b8873afed94b3fa763",
+        "bytes": 746974
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/components-dark.diff.png",
+        "sha256": "66491d797f3fde5d8ecd2cedb1da4c26f65d4879975eee2aa316b8d357efb7a9",
+        "bytes": 366851
+      }
+    },
+    "ref": "components-dark.png",
+    "diffPct": 1.2
+  },
+  {
+    "name": "components-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:08.657Z",
+    "reference": {
+      "route": "components",
+      "variant": "",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:45.312Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "cada06b445fd7c123d35ff5042d1cfb52c53e017a600cadbefac73fd2fdb326c",
+      "consoleErrors": [],
+      "file": "components-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/components-light.app.png",
+        "sha256": "7ccb3cde14e8ff185a4375d153f4a60d0f75e039bf5a685d4dc0f749f8df010a",
+        "bytes": 736804
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/components-light.design.png",
+        "sha256": "cada06b445fd7c123d35ff5042d1cfb52c53e017a600cadbefac73fd2fdb326c",
+        "bytes": 735151
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/components-light.diff.png",
+        "sha256": "0b075084c0dd0675a06a13fd2db6b9882c0b865dc57d0672b5ab2ea35cb1bec8",
+        "bytes": 352700
+      }
+    },
+    "ref": "components-light.png",
+    "diffPct": 1.2
+  },
+  {
+    "name": "work-task~running-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:11.793Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "encours",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:02.433Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "2058f623dbc7e2b6d05095a66311defbac40a155e3dd2d19ac3cfdf866b5195c",
+      "consoleErrors": [],
+      "file": "work-task~encours-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~running-dark.app.png",
+        "sha256": "d35c9652e520d0e20bed40d91cecb5bc692301183f972db1611d2988345d09e2",
+        "bytes": 791357
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~running-dark.design.png",
+        "sha256": "2058f623dbc7e2b6d05095a66311defbac40a155e3dd2d19ac3cfdf866b5195c",
+        "bytes": 792675
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~running-dark.diff.png",
+        "sha256": "70515130bc44e5ff59cceb1c5d9ae3925bc7e1bddcadf20b4623e5f3bed3a36d",
+        "bytes": 369238
+      }
+    },
+    "ref": "work-task~encours-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "work-task~running-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:14.898Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "encours",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:04.688Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "3c1ef5f8543e18ad6543c58c96f4d02b0d0083f6177a95d263d33908406239fa",
+      "consoleErrors": [],
+      "file": "work-task~encours-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~running-light.app.png",
+        "sha256": "3ed95f7ee8b866e833f3c8de04b5826cdf525260cf0e808af8b5d37ea76b5f8f",
+        "bytes": 780087
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~running-light.design.png",
+        "sha256": "3c1ef5f8543e18ad6543c58c96f4d02b0d0083f6177a95d263d33908406239fa",
+        "bytes": 781105
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~running-light.diff.png",
+        "sha256": "0a6fe4f843a9bda1ff4c38698e9d443e42d931c2d58bec48a65ff88611815404",
+        "bytes": 379874
+      }
+    },
+    "ref": "work-task~encours-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "work-task~computer-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:18.159Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "apercu",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:07.118Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "2e7e8afb0da648ffda0334b920b2c2d4708c05135ac44afe44b7094b8f902779",
+      "consoleErrors": [],
+      "file": "work-task~apercu-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~computer-dark.app.png",
+        "sha256": "e52d14fd97c81853448cf65d95828a1dfa77a7ad5731d03b95eb1af0d9f691ff",
+        "bytes": 1169928
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~computer-dark.design.png",
+        "sha256": "2e7e8afb0da648ffda0334b920b2c2d4708c05135ac44afe44b7094b8f902779",
+        "bytes": 1171888
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~computer-dark.diff.png",
+        "sha256": "a06a4dd255bd44da3da0f94e77c58cad1b1e725491bf0ef80971d000f822f6c8",
+        "bytes": 468123
+      }
+    },
+    "ref": "work-task~apercu-dark.png",
+    "diffPct": 0.02
+  },
+  {
+    "name": "work-task~computer-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:21.458Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "apercu",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:09.570Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "76f86dd9c8c1d3ad5eb16399107f9be310d245ab91935fd7ad56f54db3fea580",
+      "consoleErrors": [],
+      "file": "work-task~apercu-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~computer-light.app.png",
+        "sha256": "dbdd4286350194eafed929592bd78a21e76b498cc5ec4359165f6bc306f8c919",
+        "bytes": 1161769
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~computer-light.design.png",
+        "sha256": "76f86dd9c8c1d3ad5eb16399107f9be310d245ab91935fd7ad56f54db3fea580",
+        "bytes": 1163540
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~computer-light.diff.png",
+        "sha256": "44c4126f6a7b52d334297478faaf985d34ad08bc96827f1687d0622e1d61c437",
+        "bytes": 480951
+      }
+    },
+    "ref": "work-task~apercu-light.png",
+    "diffPct": 0.02
+  },
+  {
+    "name": "work-task~takeover-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:25.013Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "main",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:12.209Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "aa1f053a37df5e536bb945fc36b20d130f6fc59606c0e063c5f74188ac970b85",
+      "consoleErrors": [],
+      "file": "work-task~main-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~takeover-dark.app.png",
+        "sha256": "8f59599e5c4513203d28dc6339fdb49d0c6b9c1e16a2e036936f3141a509089a",
+        "bytes": 1321375
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~takeover-dark.design.png",
+        "sha256": "aa1f053a37df5e536bb945fc36b20d130f6fc59606c0e063c5f74188ac970b85",
+        "bytes": 1322754
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~takeover-dark.diff.png",
+        "sha256": "5535bd449b8034982fae39280de38b4950025a96ad1773a1994c3e4adbcd366d",
+        "bytes": 339348
+      }
+    },
+    "ref": "work-task~main-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "work-task~takeover-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:28.503Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "main",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:14.898Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "ab0ced8e68446bc4b7e5d7d6c7e11958657ff071c14a6761a055b73aa3737c5b",
+      "consoleErrors": [],
+      "file": "work-task~main-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~takeover-light.app.png",
+        "sha256": "f5221642cc5aed989354a92d96ad66f9dc1c677200404e28adf33a06e424f1c7",
+        "bytes": 1309587
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~takeover-light.design.png",
+        "sha256": "ab0ced8e68446bc4b7e5d7d6c7e11958657ff071c14a6761a055b73aa3737c5b",
+        "bytes": 1310938
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~takeover-light.diff.png",
+        "sha256": "05f4c71a291b0fdb559d8b46a5c0e1df9355512b268a2b1fd4538a0ef9b2de38",
+        "bytes": 346853
+      }
+    },
+    "ref": "work-task~main-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "work-task~approval-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:31.582Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "validation",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:17.024Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "3bcd1c04850b8871bd3439c81e045a7d8fe355dbacc0286d1b60f7746512abc7",
+      "consoleErrors": [],
+      "file": "work-task~validation-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~approval-dark.app.png",
+        "sha256": "559275b90e9b5cd20723d746370b3cd142aba2788466ccc326c0bc6b55303d68",
+        "bytes": 788902
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~approval-dark.design.png",
+        "sha256": "3bcd1c04850b8871bd3439c81e045a7d8fe355dbacc0286d1b60f7746512abc7",
+        "bytes": 790267
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~approval-dark.diff.png",
+        "sha256": "82fb380b441b26d0467e7463a0e34d2c09d51c9e9c472de12cc4695ec5eca9e5",
+        "bytes": 366098
+      }
+    },
+    "ref": "work-task~validation-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "work-task~approval-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:34.506Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "validation",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:19.132Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "176c6ee9e1248c55e0b1176ba2fad94034b4d06ee6d8dd9f05bd3c45d89fd77c",
+      "consoleErrors": [],
+      "file": "work-task~validation-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~approval-light.app.png",
+        "sha256": "107ff4fca95abd9aace7fadc6b94c5ba88990fd1bd1d855750c0ff302e159593",
+        "bytes": 777017
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~approval-light.design.png",
+        "sha256": "176c6ee9e1248c55e0b1176ba2fad94034b4d06ee6d8dd9f05bd3c45d89fd77c",
+        "bytes": 778160
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~approval-light.diff.png",
+        "sha256": "58b21238db3f7327064aad231cc4dfa880bbada90e807507dcc378d5b656a7ba",
+        "bytes": 376352
+      }
+    },
+    "ref": "work-task~validation-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "work-task~blocked-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:37.532Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "bloque",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:21.231Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "15b066c4998e1059f03794fc1ed203a51d096df8493fedf46b10c070d52830ce",
+      "consoleErrors": [],
+      "file": "work-task~bloque-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~blocked-dark.app.png",
+        "sha256": "2a01a8f0080084253031cd9a9211ea7904fc3b795a8d8fbbacd309d8b11deff2",
+        "bytes": 760200
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~blocked-dark.design.png",
+        "sha256": "15b066c4998e1059f03794fc1ed203a51d096df8493fedf46b10c070d52830ce",
+        "bytes": 761744
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~blocked-dark.diff.png",
+        "sha256": "d04e2445dba7530b94356958b62682129a132058794096678f20617f32eee4e4",
+        "bytes": 338122
+      }
+    },
+    "ref": "work-task~bloque-dark.png",
+    "diffPct": 0.03
+  },
+  {
+    "name": "work-task~blocked-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:40.647Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "bloque",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:23.377Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "b8281f05aaa7fb6731c60e11d46b77ce4212584df3068661db7f207ce16b6f1f",
+      "consoleErrors": [],
+      "file": "work-task~bloque-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~blocked-light.app.png",
+        "sha256": "820f067c5cf0c93344f1a492d28a35fbd0d50e62edba202d4b797b5af686dc04",
+        "bytes": 746951
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~blocked-light.design.png",
+        "sha256": "b8281f05aaa7fb6731c60e11d46b77ce4212584df3068661db7f207ce16b6f1f",
+        "bytes": 748327
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~blocked-light.diff.png",
+        "sha256": "f12c6fae000f175ab618cebd626018322c0f2dbbf55f6faa5e70ed5bac0daad0",
+        "bytes": 349113
+      }
+    },
+    "ref": "work-task~bloque-light.png",
+    "diffPct": 0.04
+  },
+  {
+    "name": "work-task~done-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:43.671Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "termine",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:25.696Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "52871588544e6658034f0ab67f7dbbe817b3649acb2fa19aa29a0c1cceef0341",
+      "consoleErrors": [],
+      "file": "work-task~termine-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~done-dark.app.png",
+        "sha256": "6c462cf6c998a961c8d321030d92cec94ba0a7d8343ec98648e813b73e8fa256",
+        "bytes": 755287
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~done-dark.design.png",
+        "sha256": "52871588544e6658034f0ab67f7dbbe817b3649acb2fa19aa29a0c1cceef0341",
+        "bytes": 755958
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~done-dark.diff.png",
+        "sha256": "51efc3fbd34d179330ab769e48ccc634547e71070586a1bbeca3e8e8e51594bb",
+        "bytes": 324147
+      }
+    },
+    "ref": "work-task~termine-dark.png",
+    "diffPct": 0.42
+  },
+  {
+    "name": "work-task~done-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:46.841Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "termine",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:27.979Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "4aa37ded3a69122b5a54036d1209395a4397cfc64945b7fd5b259a99614be317",
+      "consoleErrors": [],
+      "file": "work-task~termine-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~done-light.app.png",
+        "sha256": "35025231b794109bfce362c814085d748f6f3df90ae78d27a3007e4a4dc528a5",
+        "bytes": 744474
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~done-light.design.png",
+        "sha256": "4aa37ded3a69122b5a54036d1209395a4397cfc64945b7fd5b259a99614be317",
+        "bytes": 745244
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~done-light.diff.png",
+        "sha256": "2638242db2c7820e0699b4fb378d67a41407c0910cb5fe3b8e626c077ba24f2d",
+        "bytes": 307607
+      }
+    },
+    "ref": "work-task~termine-light.png",
+    "diffPct": 0.45
+  },
+  {
+    "name": "work-task~failed-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:49.871Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "echec",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:30.165Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "c79898e2d8a4966ba02482d72ffb03d79e3d9e09ff4fc3937410b490582726ba",
+      "consoleErrors": [],
+      "file": "work-task~echec-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~failed-dark.app.png",
+        "sha256": "969e46049351ffe96f5a7ac3dc0f16803ea3a893f474d3e214a57f9bdccd103c",
+        "bytes": 780374
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~failed-dark.design.png",
+        "sha256": "c79898e2d8a4966ba02482d72ffb03d79e3d9e09ff4fc3937410b490582726ba",
+        "bytes": 781402
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~failed-dark.diff.png",
+        "sha256": "301052c6c568bef6082b4b6c34e0bf3c3754580813d9f0b901a7c5f06c3fb38a",
+        "bytes": 371727
+      }
+    },
+    "ref": "work-task~echec-dark.png",
+    "diffPct": 0.02
+  },
+  {
+    "name": "work-task~failed-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:52.871Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "echec",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:32.313Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "aecd9d30e01fc4a4f9fc402975971a3625e1f5668a9a905f125c79b1c59002be",
+      "consoleErrors": [],
+      "file": "work-task~echec-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~failed-light.app.png",
+        "sha256": "49956051300e2f99f1aab714489b172598e3086ffa62b370c7c66789a6944046",
+        "bytes": 768800
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~failed-light.design.png",
+        "sha256": "aecd9d30e01fc4a4f9fc402975971a3625e1f5668a9a905f125c79b1c59002be",
+        "bytes": 769760
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~failed-light.diff.png",
+        "sha256": "3939fa0edc0ca4ce5c650167031eee0109cde5c5592990e15ad61b63914060f6",
+        "bytes": 381823
+      }
+    },
+    "ref": "work-task~echec-light.png",
+    "diffPct": 0.02
+  },
+  {
+    "name": "work-task~paused-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:55.919Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "pause",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:34.427Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "8a846e283c87cb2fcb8b5d14f758ce331bb57561f265036ea092adff9a4c9df5",
+      "consoleErrors": [],
+      "file": "work-task~pause-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~paused-dark.app.png",
+        "sha256": "7e8195f8e225a243f195c52682231f82d085e3c47d6aa7836c492759632ddfb3",
+        "bytes": 772548
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~paused-dark.design.png",
+        "sha256": "8a846e283c87cb2fcb8b5d14f758ce331bb57561f265036ea092adff9a4c9df5",
+        "bytes": 773881
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~paused-dark.diff.png",
+        "sha256": "17e3ad6c108c434bf0d02534be6c6e0b3d0d5da44116b31f1991eb9cc0f7de43",
+        "bytes": 356351
+      }
+    },
+    "ref": "work-task~pause-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "work-task~paused-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:52:58.968Z",
+    "reference": {
+      "route": "work-task",
+      "variant": "pause",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:36.553Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "5b8872b861b62b8f4ab0bb46a05e0a2c99ced45f6a0ebee296011fa0b585f809",
+      "consoleErrors": [],
+      "file": "work-task~pause-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~paused-light.app.png",
+        "sha256": "ee5ff9ac789da5fcd7a663806e46c4e785456d4a2de1eb8d7e3eb084acf04a55",
+        "bytes": 758309
+      },
+      "design": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~paused-light.design.png",
+        "sha256": "5b8872b861b62b8f4ab0bb46a05e0a2c99ced45f6a0ebee296011fa0b585f809",
+        "bytes": 759553
+      },
+      "diff": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/work-task~paused-light.diff.png",
+        "sha256": "d06457fc00b13b3582bda61e872aa92b1d23b22b68d2ded6c28f369c28a7db1f",
+        "bytes": 368146
+      }
+    },
+    "ref": "work-task~pause-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "home+menu-dark",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:53:02.089Z",
+    "reference": {
+      "route": "home",
+      "variant": "",
+      "theme": "dark",
+      "interaction": "menu",
+      "status": "no-design-shot",
+      "reason": "No matching frozen manifest record"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/home+menu-dark.app.png",
+        "sha256": "d1e6a64bdffe604e531dea8ca56b0401a17e7e3208442a2bbf90d1ce7bd506d9",
+        "bytes": 683529
+      }
+    },
+    "status": "no-design-shot"
+  },
+  {
+    "name": "home+menu-light",
+    "run": "2026-10-02T14-49-45-141Z-jNhlkd",
+    "capturedAt": "2026-10-02T14:53:04.339Z",
+    "reference": {
+      "route": "home",
+      "variant": "",
+      "theme": "light",
+      "interaction": "menu",
+      "status": "no-design-shot",
+      "reason": "No matching frozen manifest record"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-02T14-49-45-141Z-jNhlkd/home+menu-light.app.png",
+        "sha256": "2cb87b40d2c4e0a2730fa7b0be2cf790aa44d86575231d31ab71414957de5f82",
+        "bytes": 668670
+      }
+    },
+    "status": "no-design-shot"
+  }
+]

@@ -1,0 +1,480 @@
+> @cortex/sdk@0.3.5 test:integration
+> npm run build && node test/integration/run.mjs
+
+
+> @cortex/sdk@0.3.5 build
+> tsc -p tsconfig.json
+
+bun install v1.4.2 (744846f84)
+
+Checked 10 installs across 11 packages (no changes) [2.00ms]
+cortex-migrate: applied 0 migration(s)
+cortex-api ready at http://127.0.0.1:42623 (log /tmp/opencode/sdk-it-42623/api.log)
+cortex-migrate: applied 0 migration(s)
+cortex-api ready at http://127.0.0.1:36441 (log /tmp/opencode/sdk-it-42623/selfhost/api.log)
+TAP version 13
+# Subtest: health / models / plans (public)
+    # Subtest: probes answer and the catalogue lists the chat models
+    ok 1 - probes answer and the catalogue lists the chat models
+      ---
+      duration_ms: 18.195801
+      type: 'test'
+      ...
+    1..1
+ok 1 - health / models / plans (public)
+  ---
+  duration_ms: 92.07448
+  type: 'suite'
+  ...
+# Subtest: auth
+    # Subtest: generated email/MFA methods preserve all continuations and the empty send acknowledgement
+    ok 1 - generated email/MFA methods preserve all continuations and the empty send acknowledgement
+      ---
+      duration_ms: 59.469236
+      type: 'test'
+      ...
+    # Subtest: guest session is idempotent and unauthenticated calls are typed
+    ok 2 - guest session is idempotent and unauthenticated calls are typed
+      ---
+      duration_ms: 20.312834
+      type: 'test'
+      ...
+    # Subtest: a forged bearer is invalid_credential; refresh without a cookie is unauthenticated
+    ok 3 - a forged bearer is invalid_credential; refresh without a cookie is unauthenticated
+      ---
+      duration_ms: 4.979112
+      type: 'test'
+      ...
+    # Subtest: logout ends a member session without error
+    ok 4 - logout ends a member session without error
+      ---
+      duration_ms: 15.18936
+      type: 'test'
+      ...
+    1..4
+ok 2 - auth
+  ---
+  duration_ms: 100.451987
+  type: 'suite'
+  ...
+# Subtest: me
+    # Subtest: profile, update, consents, devices, mfa
+    ok 1 - profile, update, consents, devices, mfa
+      ---
+      duration_ms: 121.866572
+      type: 'test'
+      ...
+    1..1
+ok 3 - me
+  ---
+  duration_ms: 122.526859
+  type: 'suite'
+  ...
+# Subtest: conversations, turns, messages, canvases, research, shares, chat
+    # Subtest: a streamed turn persists a conversation with messages
+    ok 1 - a streamed turn persists a conversation with messages
+      ---
+      duration_ms: 282.542004
+      type: 'test'
+      ...
+    # Subtest: turn validation and model errors are typed before the stream opens
+    ok 2 - turn validation and model errors are typed before the stream opens
+      ---
+      duration_ms: 15.557404
+      type: 'test'
+      ...
+    # Subtest: chat skills list is readable
+    ok 3 - chat skills list is readable
+      ---
+      duration_ms: 9.019195
+      type: 'test'
+      ...
+    # Subtest: a guest can chat too
+    ok 4 - a guest can chat too
+      ---
+      duration_ms: 100.362816
+      type: 'test'
+      ...
+    1..4
+ok 4 - conversations, turns, messages, canvases, research, shares, chat
+  ---
+  duration_ms: 408.202156
+  type: 'suite'
+  ...
+# Subtest: memory / search
+    # Subtest: import, list, settings, export, delete all
+    ok 1 - import, list, settings, export, delete all
+      ---
+      duration_ms: 48.081906
+      type: 'test'
+      ...
+    1..1
+ok 5 - memory / search
+  ---
+  duration_ms: 48.336239
+  type: 'suite'
+  ...
+# Subtest: code
+    # Subtest: capabilities, sessions, tickets, automations, hosts, providers, usage
+    ok 1 - capabilities, sessions, tickets, automations, hosts, providers, usage
+      ---
+      duration_ms: 315.641302
+      type: 'test'
+      ...
+    # Subtest: a runtime cannot start without the compute farm
+    ok 2 - a runtime cannot start without the compute farm
+      ---
+      duration_ms: 7.834193
+      type: 'test'
+      ...
+    1..2
+ok 6 - code
+  ---
+  duration_ms: 323.805818
+  type: 'suite'
+  ...
+# Subtest: mascots (bots) and bot
+    # Subtest: create a bot and drive its sub-resources
+    ok 1 - create a bot and drive its sub-resources
+      ---
+      duration_ms: 216.083434
+      type: 'test'
+      ...
+    1..1
+ok 7 - mascots (bots) and bot
+  ---
+  duration_ms: 216.367477
+  type: 'suite'
+  ...
+# Subtest: channels
+    # Subtest: create, read, post, delete
+    ok 1 - create, read, post, delete
+      ---
+      duration_ms: 39.084161
+      type: 'test'
+      ...
+    1..1
+ok 8 - channels
+  ---
+  duration_ms: 39.355534
+  type: 'suite'
+  ...
+# Subtest: skills
+    # Subtest: author, read, delete a user skill
+    ok 1 - author, read, delete a user skill
+      ---
+      duration_ms: 37.913899
+      type: 'test'
+      ...
+    1..1
+ok 9 - skills
+  ---
+  duration_ms: 38.167212
+  type: 'suite'
+  ...
+# Subtest: library / exports / artifacts / canvases
+    # Subtest: upload, note, read, rename, delete; usage
+    ok 1 - upload, note, read, rename, delete; usage
+      ---
+      duration_ms: 131.619035
+      type: 'test'
+      ...
+    # Subtest: exports outline needs a model answer; artifacts and canvases are typed
+    ok 2 - exports outline needs a model answer; artifacts and canvases are typed
+      ---
+      duration_ms: 18.457764
+      type: 'test'
+      ...
+    1..2
+ok 10 - library / exports / artifacts / canvases
+  ---
+  duration_ms: 150.461884
+  type: 'suite'
+  ...
+# Subtest: feedback / support / bounty
+    # Subtest: a bug report is filed with a ticket
+    ok 1 - a bug report is filed with a ticket
+      ---
+      duration_ms: 75.485365
+      type: 'test'
+      ...
+    # Subtest: bounty public transparency is unauthenticated
+    ok 2 - bounty public transparency is unauthenticated
+      ---
+      duration_ms: 53.664394
+      type: 'test'
+      ...
+    1..2
+ok 11 - feedback / support / bounty
+  ---
+  duration_ms: 129.450783
+  type: 'suite'
+  ...
+# Subtest: integrations / plugins / org / data / workspace / github
+    # Subtest: connections read honestly when nothing is configured
+    ok 1 - connections read honestly when nothing is configured
+      ---
+      duration_ms: 42.71544
+      type: 'test'
+      ...
+    1..1
+ok 12 - integrations / plugins / org / data / workspace / github
+  ---
+  duration_ms: 42.949353
+  type: 'suite'
+  ...
+# Subtest: notifications / task-plans / scheduled-tasks
+    # Subtest: notifications, plans with steps, scheduled tasks
+    ok 1 - notifications, plans with steps, scheduled tasks
+      ---
+      duration_ms: 52.865537
+      type: 'test'
+      ...
+    1..1
+ok 13 - notifications / task-plans / scheduled-tasks
+  ---
+  duration_ms: 53.035039
+  type: 'suite'
+  ...
+# Subtest: projects / design / science
+    # Subtest: a project with a text source
+    ok 1 - a project with a text source
+      ---
+      duration_ms: 60.472457
+      type: 'test'
+      ...
+    # Subtest: design canvases
+    ok 2 - design canvases
+      ---
+      duration_ms: 30.869855
+      type: 'test'
+      ...
+    # Subtest: science runs and refused compute
+    ok 3 - science runs and refused compute
+      ---
+      duration_ms: 26.094845
+      type: 'test'
+      ...
+    1..3
+ok 14 - projects / design / science
+  ---
+  duration_ms: 117.80154
+  type: 'suite'
+  ...
+# Subtest: security / spend / ssh / audio / billing / approval-policy / computer / realtime
+    # Subtest: reads answer for a member
+    ok 1 - reads answer for a member
+      ---
+      duration_ms: 65.780212
+      type: 'test'
+      ...
+    # Subtest: admin routes refuse a non-staff member
+    ok 2 - admin routes refuse a non-staff member
+      ---
+      duration_ms: 8.936654
+      type: 'test'
+      ...
+    1..2
+ok 15 - security / spend / ssh / audio / billing / approval-policy / computer / realtime
+  ---
+  duration_ms: 74.944799
+  type: 'suite'
+  ...
+# Subtest: instance
+    # Subtest: a self-host instance needs no sign-in; Cortex Cloud does
+    ok 1 - a self-host instance needs no sign-in; Cortex Cloud does
+      ---
+      duration_ms: 30.36639
+      type: 'test'
+      ...
+    # Subtest: the OpenAPI document is served
+    ok 2 - the OpenAPI document is served
+      ---
+      duration_ms: 30.072087
+      type: 'test'
+      ...
+    1..2
+ok 16 - instance
+  ---
+  duration_ms: 63.642059
+  type: 'suite'
+  ...
+# Subtest: providers
+    # Subtest: lists models.dev providers with the operator configuration
+    ok 1 - lists models.dev providers with the operator configuration
+      ---
+      duration_ms: 14.392502
+      type: 'test'
+      ...
+    # Subtest: is a self-host surface: Cortex Cloud answers 404
+    ok 2 - is a self-host surface: Cortex Cloud answers 404
+      ---
+      duration_ms: 3.176063
+      type: 'test'
+      ...
+    1..2
+ok 17 - providers
+  ---
+  duration_ms: 17.840098
+  type: 'suite'
+  ...
+# Subtest: registry
+    # Subtest: models carry capabilities and filter by them
+    ok 1 - models carry capabilities and filter by them
+      ---
+      duration_ms: 16.063029
+      type: 'test'
+      ...
+    1..1
+ok 18 - registry
+  ---
+  duration_ms: 16.315762
+  type: 'suite'
+  ...
+# Subtest: self-host turns
+    # Subtest: a registry model streams thinking through the operator provider
+    ok 1 - a registry model streams thinking through the operator provider
+      ---
+      duration_ms: 200.412089
+      type: 'test'
+      ...
+    1..1
+ok 19 - self-host turns
+  ---
+  duration_ms: 201.018526
+  type: 'suite'
+  ...
+# smoke: 421 operations { ok: 98, problem: 323 }
+# Subtest: every generated operation answers with data or a typed problem
+ok 20 - every generated operation answers with data or a typed problem
+  ---
+  duration_ms: 1773.435546
+  type: 'test'
+  ...
+# Subtest: chat turn streaming
+    # Subtest: automatic network reconnect preserves the original POST bytes, key and cursor
+    ok 1 - automatic network reconnect preserves the original POST bytes, key and cursor
+      ---
+      duration_ms: 1026.736767
+      type: 'test'
+      ...
+    # Subtest: text deltas arrive in order and the turn ends with done
+    ok 2 - text deltas arrive in order and the turn ends with done
+      ---
+      duration_ms: 78.381976
+      type: 'test'
+      ...
+    # Subtest: a follow-up turn continues the same conversation
+    ok 3 - a follow-up turn continues the same conversation
+      ---
+      duration_ms: 149.622675
+      type: 'test'
+      ...
+    # Subtest: thinking streams reasoning_delta then reasoning_done before the answer
+    ok 4 - thinking streams reasoning_delta then reasoning_done before the answer
+      ---
+      duration_ms: 71.728385
+      type: 'test'
+      ...
+    # Subtest: resume: the same Idempotency-Key with Last-Event-ID replays only the rest of the buffer
+    ok 5 - resume: the same Idempotency-Key with Last-Event-ID replays only the rest of the buffer
+      ---
+      duration_ms: 990.166791
+      type: 'test'
+      ...
+    # Subtest: resume mid-flight: a dropped connection is resumed by the SDK
+    ok 6 - resume mid-flight: a dropped connection is resumed by the SDK
+      ---
+      duration_ms: 1126.118673
+      type: 'test'
+      ...
+    # Subtest: an upstream failure is an in-band error event with a typed code
+    ok 7 - an upstream failure is an in-band error event with a typed code
+      ---
+      duration_ms: 56.504435
+      type: 'test'
+      ...
+    1..7
+ok 21 - chat turn streaming
+  ---
+  duration_ms: 3538.240572
+  type: 'suite'
+  ...
+# Subtest: realtime
+    # Subtest: AgentEvent UUID reconnect reaches the real since query and skips the prior row
+    ok 1 - AgentEvent UUID reconnect reaches the real since query and skips the prior row
+      ---
+      duration_ms: 107.570203
+      type: 'test'
+      ...
+    # Subtest: subscribe() receives hello, mirrors a chat turn, and resumes from Last-Event-ID
+    ok 2 - subscribe() receives hello, mirrors a chat turn, and resumes from Last-Event-ID
+      ---
+      duration_ms: 98.348385
+      type: 'test'
+      ...
+    # Subtest: a guest can subscribe; an anonymous caller gets a typed 401
+    ok 3 - a guest can subscribe; an anonymous caller gets a typed 401
+      ---
+      duration_ms: 16.727906
+      type: 'test'
+      ...
+    1..3
+ok 22 - realtime
+  ---
+  duration_ms: 223.417231
+  type: 'suite'
+  ...
+# Subtest: images
+    # Subtest: generate_image streams image_generation queued → generating → done with a Library file
+    ok 1 - generate_image streams image_generation queued → generating → done with a Library file
+      ---
+      duration_ms: 148.18166
+      type: 'test'
+      ...
+    # Subtest: an image attachment is withheld from a model without vision, but the turn succeeds
+    ok 2 - an image attachment is withheld from a model without vision, but the turn succeeds
+      ---
+      duration_ms: 110.340011
+      type: 'test'
+      ...
+    # Subtest: an attachment id the caller does not own is refused before the stream
+    ok 3 - an attachment id the caller does not own is refused before the stream
+      ---
+      duration_ms: 16.311682
+      type: 'test'
+      ...
+    1..3
+ok 23 - images
+  ---
+  duration_ms: 275.355338
+  type: 'suite'
+  ...
+# Subtest: error typing
+    # Subtest: pre-stream refusals are ApiError with problem fields; code turns refuse guests
+    ok 1 - pre-stream refusals are ApiError with problem fields; code turns refuse guests
+      ---
+      duration_ms: 9.927954
+      type: 'test'
+      ...
+    1..1
+ok 24 - error typing
+  ---
+  duration_ms: 10.185877
+  type: 'suite'
+  ...
+1..24
+# tests 48
+# suites 23
+# pass 48
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 18291.692387
+coverage: 421/421 operations called, 171 by a dedicated test; groups with a dedicated test 51/51
+report: /tmp/opencode/sdk-it-42623/coverage/coverage.md
+ok   embedded.ts
+ok   quickstart.mjs
+ok   resume.mjs
+ok   self-host.mjs

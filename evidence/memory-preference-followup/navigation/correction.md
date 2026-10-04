@@ -1,0 +1,19 @@
+# Memory boundary correction — applied after baseline authorization
+- Deliverable: `/tmp/opencode/memory-boundary-fix.patch` (apply_patch envelope).
+- Target: `packages/app/src/state/runtime-settings.ts` only; +8 net lines.
+- Prepared against `/tmp/opencode/build-memory-preference/source/packages/app/src/state/runtime-settings.ts`; applied only to the current hook after coordinator reported baseline failure.
+- P2: actual preview entry drops replies; canceled React route commit previously never rearmed the owner.
+- Effect lifetime now follows committed permission; `currententrychange` observes actual live/preview/gallery boundaries.
+- Preview departure synchronously nulls owner, invalidating GET/PUT callbacks and queued refresh.
+- UI reset waits for live re-entry: preserves outgoing tree, avoids prematurely rendering preview fixtures before PreviewGate commits.
+- Re-entry clears loading/busy/error, creates fresh owner, reloads authoritative engine state when permitted.
+- Track actual mode even while `enabled` is false: Back triggers a render so callers using `!isPreview()` can re-enable.
+- Committed preview remains forbidden; actual-URL mutation guards remain intact.
+- Live-to-live navigation does nothing; no additional normal-startup settings request.
+- Already-admitted PUT may persist; returning GET reads its actual value. Late old-owner replies stay rejected.
+- Legacy bootstrap remains shared/absent-only; inactive replies cannot remove its key. Re-entry retries initialization safely.
+- Source review only: held GET, admitted PUT, legacy import, committed preview, live-to-live, cleanup interleavings inspected.
+- Baseline execution was coordinator-reported; corrected tests/build/native checks remain coordinator-owned, unexecuted here.
+- Applied hook: `a441e7e520e803c49f1fb5a5755c8e2cb0efed9dcdb4f30ce284a789f44e8c00` (SHA-256).
+- Preserved patch: `c3d0f19aac8cb37fec5914e14ce315656828a76468e3bceec4ac4b1a6fb2d78e` (SHA-256).
+- Only hash calculation executed; no other product writes, build/test/native actions or delegation. Independent review pending.

@@ -1,0 +1,35 @@
+{
+  "offlineExecuted": [
+    {
+      "source": "/tmp/opencode/text-compare-audit/audit.py",
+      "sha256": "2d49e4aebc23d58030e03a011684d5cc690da666a779753fbc2876797e20c26b",
+      "archive": "raw/audit.py.gz",
+      "archiveSHA256": "3bc8cd64a2a213af179001f5fb164afb25ce5ca1ee77e91e306f5a0139264e52"
+    },
+    {
+      "source": "/tmp/opencode/text-compare-audit/pixels.mjs",
+      "sha256": "c7710095fda1c943e9994546c3a438619e9a78256f1346126554da6841eef7c6",
+      "archive": "raw/pixels.mjs.gz",
+      "archiveSHA256": "38576bfe42842d8156a759ad70975782ae7577a491590db276241d124482dbc1"
+    },
+    {
+      "source": "/tmp/opencode/text-compare-audit/finish.py",
+      "sha256": "8b95215216618638e6ccbccfbb76137f93a7f060672626ac5abe832c69af2aea",
+      "archive": "raw/finish.py.gz",
+      "archiveSHA256": "5fd750c7960eaeb75a0c861a16c9f245aea8afe2a584bfb4daaf7367130d4bcb"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "pngjs",
+      "entry": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/pngjs@7.0.0/node_modules/pngjs/lib/png.js",
+      "sha256": "e02cecbd36327829758386dc3f0ca4a36a2339ccb5d5e824ca3556e2c3f89726"
+    },
+    {
+      "name": "pixelmatch",
+      "entry": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/pixelmatch@7.2.0/node_modules/pixelmatch/index.js",
+      "sha256": "52c6026c4916a07548d4ce55090ec4ed918d353e15095406dabc3a8a5135d788"
+    }
+  ],
+  "comparatorExecutedByReviewer": false
+}

@@ -1,0 +1,19 @@
+
+Running 14 tests using 4 workers
+
+  ✓   3 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 dark (2.3s)
+  ✓   1 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 light (5.7s)
+  ✓   5 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 light (6.0s)
+  ✓   4 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 dark (10.0s)
+  ✓   2 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 light (12.1s)
+  ✓   7 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 dark (5.9s)
+  ✓   6 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 light (11.1s)
+  ✓   9 tests/e2e/bot-safety.spec.ts:192:1 › Bot onboarding does not navigate after leaving preview (5.1s)
+  ✓   8 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 dark (7.8s)
+  ✓  10 tests/e2e/bot-safety.spec.ts:209:1 › Preview Bot locale reset and live-mode boundary (4.8s)
+  ✓  12 tests/e2e/frozen-composer.spec.ts:147:3 › live composer capsule geometry, locale labels and attachment safety — light (9.5s)
+  ✓  14 tests/e2e/frozen-composer.spec.ts:147:3 › live composer capsule geometry, locale labels and attachment safety — dark (9.5s)
+  ✓  13 tests/e2e/frozen-composer.spec.ts:24:3 › frozen preview actions and same-URL Chat/Code history — dark (16.9s)
+  ✓  11 tests/e2e/frozen-composer.spec.ts:24:3 › frozen preview actions and same-URL Chat/Code history — light (20.8s)
+
+  14 passed (38.5s)

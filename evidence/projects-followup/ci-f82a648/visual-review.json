@@ -1,0 +1,27 @@
+{
+  "application": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+  "reviewedAt": "2026-10-03T15:42:30.813561+00:00",
+  "uniqueImages": 316,
+  "pngCopies": 952,
+  "contactSheets": 28,
+  "allContactsInspected": true,
+  "fullsizeProjectViews": 20,
+  "fullsizeHistoricalNegativeViews": 4,
+  "inheritedFullsizeLocaleViews": 16,
+  "newLocaleFullsizeViews": 0,
+  "observations": {
+    "project-create": "New project dialog: Café preparation, selected Rocket/Orange, Name/Icon/Color/Instructions, amber instructions and Cancel/Create project readable at 960×640.",
+    "project-overview": "Café preparation, 1 chat, Prepare the project handoff, Not available yet and amber instructions readable; two same-name sidebar records visible.",
+    "project-instructions": "Instructions selected, Use the updated amber instructions., Edit and Instructions saved readable; toast clears short instruction card.",
+    "project-long-input": "48-W heading wraps onto three lines, New chat stays separate; Project instructions/Edit visible, W instructions wrap within panel; Project created toast description wraps onto two lines inside toast. Sidebar intentionally ellipsizes. Lower instructions extend below scrollport and temporary toast covers some visible rows.",
+    "projects-persisted": "1440×900 surviving Café preparation card with 0 chats, New project tile/button, detached Prepare the project handoff in Recents."
+  },
+  "qualifications": [
+    "Four long-input captures establish horizontal wrapping at 960×640; lower instruction text is outside the viewport; temporary toast overlaps lower visible lines.",
+    "No long-input creation/grid/Library screenshot in CI; successful assertions cover those surfaces after former capture failure.",
+    "15 of 16 short-input Project frames exactly match 8e3fd79; macOS dark creation has 12 color-control pixels of unknown origin.",
+    "Contact-only non-targets do not establish full-resolution acceptance. Historical login decoration clipping, stacked/overlapping toasts, narrow Code placeholder truncation and scrollport crops remain.",
+    "All locale frames match same-OS prior PNG/RGBA exactly; prior full-size CJK/copy review inherited, translation and regional glyph preference not newly approved.",
+    "Native display capture still fails; cause unknown. CI renderer images do not verify installed native chrome or menus."
+  ]
+}

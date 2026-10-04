@@ -1,0 +1,134 @@
+{
+  "head": "b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874",
+  "merge": "c2e737a4a47feed85a3f7be5a858708a5473e500",
+  "identicalTree": "a9bffe5628d8bcbfa3de27df80ba81431fb588d6",
+  "headCommit": {
+    "sha": "b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874",
+    "node_id": "C_kwDOT6_8YtoAKGIwZTZkNzhiZGZlNWE0Y2M3NGFlZDNmZGVmYjZlY2Y0MDAxY2I4NzQ",
+    "url": "https://api.github.com/repos/CortexLM/desktop/git/commits/b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874",
+    "html_url": "https://github.com/CortexLM/desktop/commit/b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874",
+    "author": {
+      "name": "echobt",
+      "email": "154886644+echobt@users.noreply.github.com",
+      "date": "2026-10-03T02:48:29Z"
+    },
+    "committer": {
+      "name": "echobt",
+      "email": "154886644+echobt@users.noreply.github.com",
+      "date": "2026-10-03T02:48:29Z"
+    },
+    "tree": {
+      "sha": "a9bffe5628d8bcbfa3de27df80ba81431fb588d6",
+      "url": "https://api.github.com/repos/CortexLM/desktop/git/trees/a9bffe5628d8bcbfa3de27df80ba81431fb588d6"
+    },
+    "message": "fix(app): handle skipped native transitions without masking update failures",
+    "parents": [
+      {
+        "sha": "4fea24a804ee971009f94d36e2464988c58fafda",
+        "url": "https://api.github.com/repos/CortexLM/desktop/git/commits/4fea24a804ee971009f94d36e2464988c58fafda",
+        "html_url": "https://github.com/CortexLM/desktop/commit/4fea24a804ee971009f94d36e2464988c58fafda"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "mergeCommit": {
+    "sha": "c2e737a4a47feed85a3f7be5a858708a5473e500",
+    "node_id": "C_kwDOT6_8YtoAKGMyZTczN2E0YTQ3ZmVlZDg1YTNmN2JlNWE4NTg3MDhhNTQ3M2U1MDA",
+    "url": "https://api.github.com/repos/CortexLM/desktop/git/commits/c2e737a4a47feed85a3f7be5a858708a5473e500",
+    "html_url": "https://github.com/CortexLM/desktop/commit/c2e737a4a47feed85a3f7be5a858708a5473e500",
+    "author": {
+      "name": "Mathis",
+      "email": "154886644+echobt@users.noreply.github.com",
+      "date": "2026-10-03T02:48:40Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-10-03T02:48:40Z"
+    },
+    "tree": {
+      "sha": "a9bffe5628d8bcbfa3de27df80ba81431fb588d6",
+      "url": "https://api.github.com/repos/CortexLM/desktop/git/trees/a9bffe5628d8bcbfa3de27df80ba81431fb588d6"
+    },
+    "message": "Merge b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+    "parents": [
+      {
+        "sha": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+        "url": "https://api.github.com/repos/CortexLM/desktop/git/commits/9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+        "html_url": "https://github.com/CortexLM/desktop/commit/9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+      },
+      {
+        "sha": "b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874",
+        "url": "https://api.github.com/repos/CortexLM/desktop/git/commits/b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874",
+        "html_url": "https://github.com/CortexLM/desktop/commit/b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874"
+      }
+    ],
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqwG0ICRC1aQ7uu5UhlAAAsa8QAGaEBhsimsAu6DkDr1Bv8xjr\nEY6p649Kr+Y9sgtQRNcMoxmtAn1PnTBBU3CC6f+zOWJVB+45xfJzQMLGusUtiUMW\nPJ68Z3h1sVu/3t3880KMcVzxKBXSmhhcxZi6IEusFhUjOqBdnh0Wbm9nfL3CjbL0\n5TGR8BPUacl7suIeXqsf63OOVncBcO+fl6+ZFNoGIkL3S9Yr14O0gQ3cN/fMWNSD\n4XVvPpcbkXqDQi5KsQdpYMgo7AW9UUZt17FQZc7DKU7gxFVSqMt4coRjl39GC3Es\nHyB/b4c1mr4EkZoo9cKlAbEzXsk9T/9KfBDqtlmW2S9mNgGLQhMsagMD2Xpl+eAB\nJrNpAQlmLNyomefwbwXW+MIiXZ/Crz8YQ91CtnpMLHNpWvlnrFFXpq8CKizNz+YJ\nkhBOQErL9mlsZreEn674Y50f76bn7BbUOFkFQquYPMQk4ReumGhZevgXyJDYoI1f\nO8fc8cTflsl25ZLm6fatt1CcWhJJOz79N6pv8ocLBw3LA694a0U963Cv91WD560Q\nH9aLjbpt4EMVsN/lba8UCJr5RF/S1uP738OjSYY8ChIZL96izwFNvhMCAR+ruWYD\nXv/fWXiIe4Kku+BddCjWCCt5z7GgacntYAGwsriNygdjTquOWlvTnfvIc2Lqadn1\nS6iLJN+Bem/AQ2AOhpkI\n=PAlH\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree a9bffe5628d8bcbfa3de27df80ba81431fb588d6\nparent 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d\nparent b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874\nauthor Mathis <154886644+echobt@users.noreply.github.com> 1790995720 +0000\ncommitter GitHub <noreply@github.com> 1790995720 +0000\n\nMerge b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d\n",
+      "verified_at": "2026-10-03T02:48:40Z"
+    }
+  },
+  "pinnedFiles": {
+    ".github/workflows/ci.yml": {
+      "gitBlob": "864e36efa34d7efd1b4198d504703eb87698729f",
+      "sha256": "5daf1215067f335ce04fd4ce012911e0f58686f53fc1cd5ba578b7e823f88874"
+    },
+    "playwright.config.ts": {
+      "gitBlob": "daaa65b2f9f9e45abd4b300c8ed076679b8a38a6",
+      "sha256": "71d48d4d40ea1950d9f95d1e3fef79704984d3faf21592793d0860b26b71d707"
+    },
+    "scripts/smoke.mjs": {
+      "gitBlob": "7f0f1446fae57f6f8b4d60e3087e800727f8e4cb",
+      "sha256": "804b6a1aa619c14f5c477de1e6589692a1365c7a448e96eeb68a88c27df3592c"
+    },
+    "tests/e2e/navigation.spec.ts": {
+      "gitBlob": "c55d5f228ccde6ff63d149815e15c44e862d0828",
+      "sha256": "c75dee35eab42626507bddc8a0b625f3d05d5ba4d060f33b2d9d9b44d0f93a44"
+    },
+    "tests/e2e/screens.spec.ts": {
+      "gitBlob": "f3a0cfce1a1afcca3755d341e32442debe5aa3b8",
+      "sha256": "f55899bf1861cbcd0c8e6c01fa7e87b52dc3a609c1e2268cfad3dbde659ba54c"
+    },
+    "tests/e2e/work-scroll.spec.ts": {
+      "gitBlob": "65e6f8fd35087ccbee2d9994a194583a28362852",
+      "sha256": "0b2f0c3a9cd73e0e1e7484ea9c7a1f70cd3baf67a751ff627c9ee4b79698379b"
+    },
+    "tests/e2e/responsive.spec.ts": {
+      "gitBlob": "7705ce23ee604e3ad8c87434f23b347b3dbbbb73",
+      "sha256": "6e53b0a5ca79a020a5fbb4a5c565df503caa5cb05653017c778e5d4ed5087662"
+    },
+    "tests/e2e/memory-safety.spec.ts": {
+      "gitBlob": "987e5078838d288023ea5c520685d22ab1e425de",
+      "sha256": "d04b2a96257cc4bba2ea4108ed3d391dda798bd9699121f7aa4d15b61ada561a"
+    },
+    "tests/e2e/ui-flows.spec.ts": {
+      "gitBlob": "74aeb381313bcfd3de03687a3458638dc1f8b4c6",
+      "sha256": "86483759ea299f97faa0e09d6210b37876d535af4486651e141f46650cccc36b"
+    },
+    "tests/e2e/terminal-copy.spec.ts": {
+      "gitBlob": "51ee939e7dc5c39855316b54912734b52abfe73c",
+      "sha256": "8d150030d6b8f146ecf5d90f6a30f7e6f54a57cd14bd0b41e6cca3140401386c"
+    },
+    "packages/desktop/test/remote.test.ts": {
+      "gitBlob": "2145ee0e557a9a816e1020184b653ecf8743926f",
+      "sha256": "c7a9b3ffcc6da477552ab83ff73fb207b866e975893178158a0b3f131ab56bc4"
+    },
+    "packages/app/src/App.tsx": {
+      "gitBlob": "40d75e03aa6d0b4916de33367d4be26c55534dfd",
+      "sha256": "48364d76d0b6253807701e64e45f503a27d2c40083cdc477d6c70aa311753a83"
+    },
+    "packages/app/src/shell/shell.tsx": {
+      "gitBlob": "7579fa2261c460731e8eb944e33b8f1ef6e74e3c",
+      "sha256": "249cd485e33aa9b693c026cceb71434e5794e8e6268aa17ff61b58784277ea13"
+    }
+  }
+}

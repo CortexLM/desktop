@@ -1,0 +1,59 @@
+{
+  "capturedAt": "2026-10-03T06:09:59.778136+00:00",
+  "sources": [
+    {
+      "path": "packages/desktop/src/remote-chat.ts",
+      "capture": "/tmp/opencode/remote-chat-replay-review/corrected-source/packages/desktop/src/remote-chat.ts",
+      "sha256": "733860681cb7d1681460d0b4820bd020f76c6d54aaa0ebd86afdbf7a22a1a725",
+      "bytes": 24314
+    },
+    {
+      "path": "packages/desktop/src/remote-session.ts",
+      "capture": "/tmp/opencode/remote-chat-replay-review/corrected-source/packages/desktop/src/remote-session.ts",
+      "sha256": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+      "bytes": 13947
+    }
+  ],
+  "preservedInputs": [
+    {
+      "path": "source-pins.json",
+      "sha256": "26234936b56c62e9b38a0fef9ed70cac620b92d958fb921d2a8e3962bb31a8fa",
+      "bytes": 1433
+    },
+    {
+      "path": "probes.test.ts",
+      "sha256": "f806ae35a70cb60ba5d45dabe0c4a57f0e0c5fbb7dee01a3d05f0a7d7279d982",
+      "bytes": 8486
+    },
+    {
+      "path": "probes.log",
+      "sha256": "49db96a7f489f5f0ea099965a489119adea11de035bf00f8ca064186e47f31d0",
+      "bytes": 5579
+    },
+    {
+      "path": "probes.json",
+      "sha256": "409eccd9bd3b2645db0f22a1e038e47a83b3fd8ea44200697b93bc40a995df2e",
+      "bytes": 3252
+    },
+    {
+      "path": "execution.json",
+      "sha256": "2fa26715cfb35a22455483981597866ba41f252f36feeb5bdad7d0947c09c270",
+      "bytes": 637
+    },
+    {
+      "path": "vitest.config.mjs",
+      "sha256": "012ea3745d332e2e448f441e64c0d99bddf61f973ac25a97fc6ef3098a9a5316",
+      "bytes": 653
+    },
+    {
+      "path": "core-exports.ts",
+      "sha256": "e9fd47dcc90e171842668e023b342a852ace05dcae0f8b35ae512129014cfc2e",
+      "bytes": 212
+    },
+    {
+      "path": "core-seam.md",
+      "sha256": "f98d8fbc8c00288229fec0caa4d5aee8350b347399f33dfad921afd0780d6213",
+      "bytes": 10616
+    }
+  ]
+}

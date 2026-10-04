@@ -1,0 +1,7 @@
+{
+  "initialInvocation": "node --input-type=module - <inline import>",
+  "initialResult": "ENOENT resolving process.argv[1] == \"-\" in backend CLI identity guard; no server started",
+  "correctedInvocation": "node --input-type=module -e <inline import>",
+  "correctedResult": "validateFixture passed393bytes exactCRC/chunks/zlib/pixels; no server started",
+  "scope": "Fixture and import invocation check only; no packaged app execution"
+}

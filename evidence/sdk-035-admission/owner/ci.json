@@ -1,0 +1,1910 @@
+{
+  "run": {
+    "id": 37094557684,
+    "name": "CI",
+    "node_id": "WFR_kwLOUDgm-s8AAAAIowIH9A",
+    "head_branch": "goal/typescript-sdk",
+    "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+    "path": ".github/workflows/ci.yml",
+    "display_title": "Add @cortex/sdk, generated from the OpenAPI contract, with embedded mode and integration CI",
+    "run_number": 2703,
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 342036656,
+    "check_suite_id": 100479112601,
+    "check_suite_node_id": "CS_kwDOUDgm-s8AAAAXZQWVmQ",
+    "url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+    "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684",
+    "pull_requests": [
+      {
+        "url": "https://api.github.com/repos/CortexLM/backend/pulls/447",
+        "id": 4710953750,
+        "number": 447,
+        "head": {
+          "ref": "goal/typescript-sdk",
+          "sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+          "repo": {
+            "id": 1345857274,
+            "url": "https://api.github.com/repos/CortexLM/backend",
+            "name": "backend"
+          }
+        },
+        "base": {
+          "ref": "goal/self-host-providers",
+          "sha": "70a3056f7223a7eb9257d984848d4d33fee7ec12",
+          "repo": {
+            "id": 1345857274,
+            "url": "https://api.github.com/repos/CortexLM/backend",
+            "name": "backend"
+          }
+        }
+      }
+    ],
+    "created_at": "2026-10-03T03:51:01Z",
+    "updated_at": "2026-10-03T03:53:43Z",
+    "actor": {
+      "login": "echobt",
+      "id": 154886644,
+      "node_id": "U_kgDOCTth9A",
+      "avatar_url": "https://avatars.githubusercontent.com/u/154886644?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/echobt",
+      "html_url": "https://github.com/echobt",
+      "followers_url": "https://api.github.com/users/echobt/followers",
+      "following_url": "https://api.github.com/users/echobt/following{/other_user}",
+      "gists_url": "https://api.github.com/users/echobt/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/echobt/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/echobt/subscriptions",
+      "organizations_url": "https://api.github.com/users/echobt/orgs",
+      "repos_url": "https://api.github.com/users/echobt/repos",
+      "events_url": "https://api.github.com/users/echobt/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/echobt/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-10-03T03:51:01Z",
+    "triggering_actor": {
+      "login": "echobt",
+      "id": 154886644,
+      "node_id": "U_kgDOCTth9A",
+      "avatar_url": "https://avatars.githubusercontent.com/u/154886644?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/echobt",
+      "html_url": "https://github.com/echobt",
+      "followers_url": "https://api.github.com/users/echobt/followers",
+      "following_url": "https://api.github.com/users/echobt/following{/other_user}",
+      "gists_url": "https://api.github.com/users/echobt/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/echobt/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/echobt/subscriptions",
+      "organizations_url": "https://api.github.com/users/echobt/orgs",
+      "repos_url": "https://api.github.com/users/echobt/repos",
+      "events_url": "https://api.github.com/users/echobt/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/echobt/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684/jobs",
+    "logs_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684/logs",
+    "check_suite_url": "https://api.github.com/repos/CortexLM/backend/check-suites/100479112601",
+    "artifacts_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684/artifacts",
+    "cancel_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684/cancel",
+    "rerun_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/CortexLM/backend/actions/workflows/342036656",
+    "head_commit": {
+      "id": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+      "tree_id": "b3f1519dd5c00e523e83867f9038f33e10468693",
+      "message": "Read auth responses once and abort expired test streams",
+      "timestamp": "2026-10-03T03:50:49Z",
+      "author": {
+        "name": "echobt",
+        "email": "154886644+echobt@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "echobt",
+        "email": "154886644+echobt@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 1345857274,
+      "node_id": "R_kgDOUDgm-g",
+      "name": "backend",
+      "full_name": "CortexLM/backend",
+      "private": true,
+      "owner": {
+        "login": "CortexLM",
+        "id": 149313037,
+        "node_id": "O_kgDOCOZWDQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/149313037?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/CortexLM",
+        "html_url": "https://github.com/CortexLM",
+        "followers_url": "https://api.github.com/users/CortexLM/followers",
+        "following_url": "https://api.github.com/users/CortexLM/following{/other_user}",
+        "gists_url": "https://api.github.com/users/CortexLM/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/CortexLM/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/CortexLM/subscriptions",
+        "organizations_url": "https://api.github.com/users/CortexLM/orgs",
+        "repos_url": "https://api.github.com/users/CortexLM/repos",
+        "events_url": "https://api.github.com/users/CortexLM/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/CortexLM/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/CortexLM/backend",
+      "description": null,
+      "fork": false,
+      "url": "https://api.github.com/repos/CortexLM/backend",
+      "forks_url": "https://api.github.com/repos/CortexLM/backend/forks",
+      "keys_url": "https://api.github.com/repos/CortexLM/backend/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/CortexLM/backend/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/CortexLM/backend/teams",
+      "hooks_url": "https://api.github.com/repos/CortexLM/backend/hooks",
+      "issue_events_url": "https://api.github.com/repos/CortexLM/backend/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/CortexLM/backend/events",
+      "assignees_url": "https://api.github.com/repos/CortexLM/backend/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/CortexLM/backend/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/CortexLM/backend/tags",
+      "blobs_url": "https://api.github.com/repos/CortexLM/backend/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/CortexLM/backend/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/CortexLM/backend/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/CortexLM/backend/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/CortexLM/backend/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/CortexLM/backend/languages",
+      "stargazers_url": "https://api.github.com/repos/CortexLM/backend/stargazers",
+      "contributors_url": "https://api.github.com/repos/CortexLM/backend/contributors",
+      "subscribers_url": "https://api.github.com/repos/CortexLM/backend/subscribers",
+      "subscription_url": "https://api.github.com/repos/CortexLM/backend/subscription",
+      "commits_url": "https://api.github.com/repos/CortexLM/backend/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/CortexLM/backend/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/CortexLM/backend/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/CortexLM/backend/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/CortexLM/backend/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/CortexLM/backend/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/CortexLM/backend/merges",
+      "archive_url": "https://api.github.com/repos/CortexLM/backend/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/CortexLM/backend/downloads",
+      "issues_url": "https://api.github.com/repos/CortexLM/backend/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/CortexLM/backend/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/CortexLM/backend/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/CortexLM/backend/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/CortexLM/backend/labels{/name}",
+      "releases_url": "https://api.github.com/repos/CortexLM/backend/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/CortexLM/backend/deployments"
+    },
+    "head_repository": {
+      "id": 1345857274,
+      "node_id": "R_kgDOUDgm-g",
+      "name": "backend",
+      "full_name": "CortexLM/backend",
+      "private": true,
+      "owner": {
+        "login": "CortexLM",
+        "id": 149313037,
+        "node_id": "O_kgDOCOZWDQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/149313037?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/CortexLM",
+        "html_url": "https://github.com/CortexLM",
+        "followers_url": "https://api.github.com/users/CortexLM/followers",
+        "following_url": "https://api.github.com/users/CortexLM/following{/other_user}",
+        "gists_url": "https://api.github.com/users/CortexLM/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/CortexLM/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/CortexLM/subscriptions",
+        "organizations_url": "https://api.github.com/users/CortexLM/orgs",
+        "repos_url": "https://api.github.com/users/CortexLM/repos",
+        "events_url": "https://api.github.com/users/CortexLM/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/CortexLM/received_events",
+        "type": "Organization",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/CortexLM/backend",
+      "description": null,
+      "fork": false,
+      "url": "https://api.github.com/repos/CortexLM/backend",
+      "forks_url": "https://api.github.com/repos/CortexLM/backend/forks",
+      "keys_url": "https://api.github.com/repos/CortexLM/backend/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/CortexLM/backend/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/CortexLM/backend/teams",
+      "hooks_url": "https://api.github.com/repos/CortexLM/backend/hooks",
+      "issue_events_url": "https://api.github.com/repos/CortexLM/backend/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/CortexLM/backend/events",
+      "assignees_url": "https://api.github.com/repos/CortexLM/backend/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/CortexLM/backend/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/CortexLM/backend/tags",
+      "blobs_url": "https://api.github.com/repos/CortexLM/backend/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/CortexLM/backend/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/CortexLM/backend/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/CortexLM/backend/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/CortexLM/backend/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/CortexLM/backend/languages",
+      "stargazers_url": "https://api.github.com/repos/CortexLM/backend/stargazers",
+      "contributors_url": "https://api.github.com/repos/CortexLM/backend/contributors",
+      "subscribers_url": "https://api.github.com/repos/CortexLM/backend/subscribers",
+      "subscription_url": "https://api.github.com/repos/CortexLM/backend/subscription",
+      "commits_url": "https://api.github.com/repos/CortexLM/backend/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/CortexLM/backend/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/CortexLM/backend/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/CortexLM/backend/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/CortexLM/backend/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/CortexLM/backend/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/CortexLM/backend/merges",
+      "archive_url": "https://api.github.com/repos/CortexLM/backend/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/CortexLM/backend/downloads",
+      "issues_url": "https://api.github.com/repos/CortexLM/backend/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/CortexLM/backend/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/CortexLM/backend/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/CortexLM/backend/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/CortexLM/backend/labels{/name}",
+      "releases_url": "https://api.github.com/repos/CortexLM/backend/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/CortexLM/backend/deployments"
+    }
+  },
+  "jobs": {
+    "total_count": 12,
+    "jobs": [
+      {
+        "id": 111121713270,
+        "run_id": 37094557684,
+        "workflow_name": "CI",
+        "head_branch": "goal/typescript-sdk",
+        "run_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUDgm-s8AAAAZ317Idg",
+        "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+        "url": "https://api.github.com/repos/CortexLM/backend/actions/jobs/111121713270",
+        "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684/job/111121713270",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-03T03:51:02Z",
+        "started_at": "2026-10-03T03:51:21Z",
+        "completed_at": "2026-10-03T03:51:33Z",
+        "name": "Docs site",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T03:51:21Z",
+            "completed_at": "2026-10-03T03:51:23Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T03:51:23Z",
+            "completed_at": "2026-10-03T03:51:25Z"
+          },
+          {
+            "name": "Run ./.github/actions/linux-arm-host",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T03:51:25Z",
+            "completed_at": "2026-10-03T03:51:25Z"
+          },
+          {
+            "name": "Check out the public documentation",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-03T03:51:25Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Name the fix when the documentation checkout fails",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 5,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Check the docs site against the app API",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:28Z"
+          },
+          {
+            "name": "Test scripts/check-docs-site.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-03T03:51:28Z",
+            "completed_at": "2026-10-03T03:51:29Z"
+          },
+          {
+            "name": "Test the public documentation validator",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-03T03:51:29Z",
+            "completed_at": "2026-10-03T03:51:31Z"
+          },
+          {
+            "name": "Post Check out the public documentation",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-03T03:51:31Z",
+            "completed_at": "2026-10-03T03:51:32Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-10-03T03:51:32Z",
+            "completed_at": "2026-10-03T03:51:32Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-03T03:51:32Z",
+            "completed_at": "2026-10-03T03:51:32Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/CortexLM/backend/check-runs/111121713270",
+        "labels": [
+          "codebuild-cortex-gha-arm64-37094557684-1"
+        ],
+        "runner_id": 170702,
+        "runner_name": "04e3dd63-653f-44d4-baa2-bb77bd197b86",
+        "runner_group_id": 1,
+        "runner_group_name": "default"
+      },
+      {
+        "id": 111121713336,
+        "run_id": 37094557684,
+        "workflow_name": "CI",
+        "head_branch": "goal/typescript-sdk",
+        "run_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUDgm-s8AAAAZ317IuA",
+        "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+        "url": "https://api.github.com/repos/CortexLM/backend/actions/jobs/111121713336",
+        "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684/job/111121713336",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-03T03:51:02Z",
+        "started_at": "2026-10-03T03:51:21Z",
+        "completed_at": "2026-10-03T03:53:02Z",
+        "name": "Web",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T03:51:21Z",
+            "completed_at": "2026-10-03T03:51:23Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T03:51:23Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Run ./.github/actions/linux-arm-host",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:39Z"
+          },
+          {
+            "name": "Build the API type contract",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-03T03:51:39Z",
+            "completed_at": "2026-10-03T03:51:41Z"
+          },
+          {
+            "name": "Install",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-03T03:51:41Z",
+            "completed_at": "2026-10-03T03:51:47Z"
+          },
+          {
+            "name": "Generate the route types",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-03T03:51:47Z",
+            "completed_at": "2026-10-03T03:51:47Z"
+          },
+          {
+            "name": "Cache TypeScript build information",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-03T03:51:47Z",
+            "completed_at": "2026-10-03T03:51:48Z"
+          },
+          {
+            "name": "Check web and marketing",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-03T03:51:48Z",
+            "completed_at": "2026-10-03T03:52:51Z"
+          },
+          {
+            "name": "Test parallel web check failures",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-10-03T03:52:51Z",
+            "completed_at": "2026-10-03T03:52:56Z"
+          },
+          {
+            "name": "Smoke the isolated marketing standalone",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-10-03T03:52:56Z",
+            "completed_at": "2026-10-03T03:52:57Z"
+          },
+          {
+            "name": "Install Helm for the two-workload contract",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-03T03:52:57Z",
+            "completed_at": "2026-10-03T03:52:58Z"
+          },
+          {
+            "name": "Test the pinned Helm installer",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-03T03:52:58Z",
+            "completed_at": "2026-10-03T03:52:58Z"
+          },
+          {
+            "name": "Test marketing packaging and isolated Helm workloads",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-03T03:52:58Z",
+            "completed_at": "2026-10-03T03:52:59Z"
+          },
+          {
+            "name": "Post Cache TypeScript build information",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 26,
+            "started_at": "2026-10-03T03:52:59Z",
+            "completed_at": "2026-10-03T03:52:59Z"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 27,
+            "started_at": "2026-10-03T03:52:59Z",
+            "completed_at": "2026-10-03T03:52:59Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 28,
+            "started_at": "2026-10-03T03:52:59Z",
+            "completed_at": "2026-10-03T03:52:59Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 29,
+            "started_at": "2026-10-03T03:52:59Z",
+            "completed_at": "2026-10-03T03:52:59Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/CortexLM/backend/check-runs/111121713336",
+        "labels": [
+          "codebuild-cortex-gha-arm64-37094557684-1"
+        ],
+        "runner_id": 170701,
+        "runner_name": "d1378a51-d157-48c5-b6ec-e00565015362",
+        "runner_group_id": 1,
+        "runner_group_name": "default"
+      },
+      {
+        "id": 111121713344,
+        "run_id": 37094557684,
+        "workflow_name": "CI",
+        "head_branch": "goal/typescript-sdk",
+        "run_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUDgm-s8AAAAZ317IwA",
+        "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+        "url": "https://api.github.com/repos/CortexLM/backend/actions/jobs/111121713344",
+        "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684/job/111121713344",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-03T03:51:02Z",
+        "started_at": "2026-10-03T03:51:07Z",
+        "completed_at": "2026-10-03T03:51:19Z",
+        "name": "API type contract",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T03:51:08Z",
+            "completed_at": "2026-10-03T03:51:09Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T03:51:09Z",
+            "completed_at": "2026-10-03T03:51:11Z"
+          },
+          {
+            "name": "Run ./.github/actions/linux-arm-host",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T03:51:11Z",
+            "completed_at": "2026-10-03T03:51:11Z"
+          },
+          {
+            "name": "Check that no committed migration was modified",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-03T03:51:11Z",
+            "completed_at": "2026-10-03T03:51:13Z"
+          },
+          {
+            "name": "Test scripts/check-migrations-immutable.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-03T03:51:13Z",
+            "completed_at": "2026-10-03T03:51:13Z"
+          },
+          {
+            "name": "Test pre-commit hooks and installation",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-03T03:51:13Z",
+            "completed_at": "2026-10-03T03:51:14Z"
+          },
+          {
+            "name": "Check the TypeScript contract against the server source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-03T03:51:14Z",
+            "completed_at": "2026-10-03T03:51:14Z"
+          },
+          {
+            "name": "Typecheck",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-03T03:51:14Z",
+            "completed_at": "2026-10-03T03:51:16Z"
+          },
+          {
+            "name": "Build declarations",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-03T03:51:16Z",
+            "completed_at": "2026-10-03T03:51:17Z"
+          },
+          {
+            "name": "Test",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-10-03T03:51:17Z",
+            "completed_at": "2026-10-03T03:51:18Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20,
+            "started_at": "2026-10-03T03:51:18Z",
+            "completed_at": "2026-10-03T03:51:18Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21,
+            "started_at": "2026-10-03T03:51:18Z",
+            "completed_at": "2026-10-03T03:51:18Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/CortexLM/backend/check-runs/111121713344",
+        "labels": [
+          "ubuntu-24.04-arm"
+        ],
+        "runner_id": 1000047324,
+        "runner_name": "GitHub Actions 1000047324",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 111121713351,
+        "run_id": 37094557684,
+        "workflow_name": "CI",
+        "head_branch": "goal/typescript-sdk",
+        "run_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUDgm-s8AAAAZ317Ixw",
+        "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+        "url": "https://api.github.com/repos/CortexLM/backend/actions/jobs/111121713351",
+        "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684/job/111121713351",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-03T03:51:02Z",
+        "started_at": "2026-10-03T03:51:22Z",
+        "completed_at": "2026-10-03T03:53:42Z",
+        "name": "Test",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T03:51:23Z",
+            "completed_at": "2026-10-03T03:51:24Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T03:51:24Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Run ./.github/actions/linux-arm-host",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Build the test image",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:52:20Z"
+          },
+          {
+            "name": "Start Postgres, Redis and OpenBao",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-03T03:52:20Z",
+            "completed_at": "2026-10-03T03:52:36Z"
+          },
+          {
+            "name": "Verify migrations apply to a clean database",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-03T03:52:36Z",
+            "completed_at": "2026-10-03T03:52:37Z"
+          },
+          {
+            "name": "Test",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-03T03:52:37Z",
+            "completed_at": "2026-10-03T03:53:40Z"
+          },
+          {
+            "name": "Stop Postgres, Redis and OpenBao",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-03T03:53:40Z",
+            "completed_at": "2026-10-03T03:53:41Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-10-03T03:53:41Z",
+            "completed_at": "2026-10-03T03:53:41Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-03T03:53:41Z",
+            "completed_at": "2026-10-03T03:53:41Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/CortexLM/backend/check-runs/111121713351",
+        "labels": [
+          "codebuild-cortex-gha-arm64-37094557684-1-xlarge"
+        ],
+        "runner_id": 170711,
+        "runner_name": "48278e5f-36b9-4e55-8d81-57474f3f8fb6",
+        "runner_group_id": 1,
+        "runner_group_name": "default"
+      },
+      {
+        "id": 111121713366,
+        "run_id": 37094557684,
+        "workflow_name": "CI",
+        "head_branch": "goal/typescript-sdk",
+        "run_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUDgm-s8AAAAZ317I1g",
+        "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+        "url": "https://api.github.com/repos/CortexLM/backend/actions/jobs/111121713366",
+        "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684/job/111121713366",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-03T03:51:02Z",
+        "started_at": "2026-10-03T03:51:21Z",
+        "completed_at": "2026-10-03T03:52:58Z",
+        "name": "SDK",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T03:51:22Z",
+            "completed_at": "2026-10-03T03:51:24Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T03:51:24Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Run ./.github/actions/linux-arm-host",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:30Z"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-03T03:51:30Z",
+            "completed_at": "2026-10-03T03:51:34Z"
+          },
+          {
+            "name": "Build the API type contract and the SDK",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-03T03:51:34Z",
+            "completed_at": "2026-10-03T03:51:39Z"
+          },
+          {
+            "name": "Check the generated SDK against the OpenAPI document",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-03T03:51:39Z",
+            "completed_at": "2026-10-03T03:51:41Z"
+          },
+          {
+            "name": "Check SDK runtime and consumer types",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-03T03:51:41Z",
+            "completed_at": "2026-10-03T03:51:48Z"
+          },
+          {
+            "name": "Install and verify the packed SDK pair with npm and Bun",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-03T03:51:48Z",
+            "completed_at": "2026-10-03T03:51:54Z"
+          },
+          {
+            "name": "Start Postgres, Redis and OpenBao",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-03T03:51:54Z",
+            "completed_at": "2026-10-03T03:52:11Z"
+          },
+          {
+            "name": "Integration tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-10-03T03:52:11Z",
+            "completed_at": "2026-10-03T03:52:38Z"
+          },
+          {
+            "name": "Stop the API and datastores",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-10-03T03:52:38Z",
+            "completed_at": "2026-10-03T03:52:40Z"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21,
+            "started_at": "2026-10-03T03:52:40Z",
+            "completed_at": "2026-10-03T03:52:57Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22,
+            "started_at": "2026-10-03T03:52:57Z",
+            "completed_at": "2026-10-03T03:52:57Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23,
+            "started_at": "2026-10-03T03:52:57Z",
+            "completed_at": "2026-10-03T03:52:57Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/CortexLM/backend/check-runs/111121713366",
+        "labels": [
+          "codebuild-cortex-gha-arm64-37094557684-1"
+        ],
+        "runner_id": 170700,
+        "runner_name": "bf48fbaa-1bbd-4357-9386-0ce96818ee2c",
+        "runner_group_id": 1,
+        "runner_group_name": "default"
+      },
+      {
+        "id": 111121713376,
+        "run_id": 37094557684,
+        "workflow_name": "CI",
+        "head_branch": "goal/typescript-sdk",
+        "run_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUDgm-s8AAAAZ317I4A",
+        "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+        "url": "https://api.github.com/repos/CortexLM/backend/actions/jobs/111121713376",
+        "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684/job/111121713376",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-03T03:51:02Z",
+        "started_at": "2026-10-03T03:51:21Z",
+        "completed_at": "2026-10-03T03:51:41Z",
+        "name": "Helm chart",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T03:51:22Z",
+            "completed_at": "2026-10-03T03:51:24Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T03:51:24Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Run ./.github/actions/linux-arm-host",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Install helm",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:27Z"
+          },
+          {
+            "name": "Lint cortex-eks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-03T03:51:27Z",
+            "completed_at": "2026-10-03T03:51:27Z"
+          },
+          {
+            "name": "Test admin NodePort wiring",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-03T03:51:27Z",
+            "completed_at": "2026-10-03T03:51:27Z"
+          },
+          {
+            "name": "Check the production overlay refuses a placeholder farm endpoint",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-03T03:51:27Z",
+            "completed_at": "2026-10-03T03:51:27Z"
+          },
+          {
+            "name": "Check the staging overlay refuses a placeholder farm endpoint",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-03T03:51:27Z",
+            "completed_at": "2026-10-03T03:51:27Z"
+          },
+          {
+            "name": "Lint cortex-web",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-03T03:51:27Z",
+            "completed_at": "2026-10-03T03:51:27Z"
+          },
+          {
+            "name": "Test Cortex Security GitHub App helm contract",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-10-03T03:51:27Z",
+            "completed_at": "2026-10-03T03:51:28Z"
+          },
+          {
+            "name": "Test staging Chat Mini inference overlay",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-10-03T03:51:28Z",
+            "completed_at": "2026-10-03T03:51:30Z"
+          },
+          {
+            "name": "Test shared object storage contract",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-03T03:51:30Z",
+            "completed_at": "2026-10-03T03:51:32Z"
+          },
+          {
+            "name": "Test support mail and automation configuration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-03T03:51:32Z",
+            "completed_at": "2026-10-03T03:51:32Z"
+          },
+          {
+            "name": "Test application log shipper",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-03T03:51:32Z",
+            "completed_at": "2026-10-03T03:51:33Z"
+          },
+          {
+            "name": "Test the Chat stream edge contract",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-03T03:51:33Z",
+            "completed_at": "2026-10-03T03:51:35Z"
+          },
+          {
+            "name": "Staging overlays stay private",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-10-03T03:51:35Z",
+            "completed_at": "2026-10-03T03:51:38Z"
+          },
+          {
+            "name": "Test the dated holding window",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-03T03:51:38Z",
+            "completed_at": "2026-10-03T03:51:39Z"
+          },
+          {
+            "name": "Check the production overlays render no kind the cluster lacks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-10-03T03:51:39Z",
+            "completed_at": "2026-10-03T03:51:39Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 36,
+            "started_at": "2026-10-03T03:51:39Z",
+            "completed_at": "2026-10-03T03:51:39Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 37,
+            "started_at": "2026-10-03T03:51:39Z",
+            "completed_at": "2026-10-03T03:51:39Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/CortexLM/backend/check-runs/111121713376",
+        "labels": [
+          "codebuild-cortex-gha-arm64-37094557684-1"
+        ],
+        "runner_id": 170699,
+        "runner_name": "357ed860-3265-4de7-98eb-d5307eb9669d",
+        "runner_group_id": 1,
+        "runner_group_name": "default"
+      },
+      {
+        "id": 111121713379,
+        "run_id": 37094557684,
+        "workflow_name": "CI",
+        "head_branch": "goal/typescript-sdk",
+        "run_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUDgm-s8AAAAZ317I4w",
+        "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+        "url": "https://api.github.com/repos/CortexLM/backend/actions/jobs/111121713379",
+        "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684/job/111121713379",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-03T03:51:02Z",
+        "started_at": "2026-10-03T03:51:21Z",
+        "completed_at": "2026-10-03T03:51:32Z",
+        "name": "Supply chain",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T03:51:22Z",
+            "completed_at": "2026-10-03T03:51:24Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T03:51:24Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Run ./.github/actions/linux-arm-host",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:30Z"
+          },
+          {
+            "name": "bun audit",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-03T03:51:30Z",
+            "completed_at": "2026-10-03T03:51:30Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-03T03:51:30Z",
+            "completed_at": "2026-10-03T03:51:30Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-03T03:51:30Z",
+            "completed_at": "2026-10-03T03:51:30Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/CortexLM/backend/check-runs/111121713379",
+        "labels": [
+          "codebuild-cortex-gha-arm64-37094557684-1"
+        ],
+        "runner_id": 170703,
+        "runner_name": "6210c00d-20ea-42c3-b3c4-e899797079a1",
+        "runner_group_id": 1,
+        "runner_group_name": "default"
+      },
+      {
+        "id": 111121713380,
+        "run_id": 37094557684,
+        "workflow_name": "CI",
+        "head_branch": "goal/typescript-sdk",
+        "run_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUDgm-s8AAAAZ317I5A",
+        "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+        "url": "https://api.github.com/repos/CortexLM/backend/actions/jobs/111121713380",
+        "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684/job/111121713380",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-03T03:51:02Z",
+        "started_at": "2026-10-03T03:51:22Z",
+        "completed_at": "2026-10-03T03:53:24Z",
+        "name": "Deploy preflight scripts",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T03:51:22Z",
+            "completed_at": "2026-10-03T03:51:24Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T03:51:24Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Run ./.github/actions/linux-arm-host",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Test scripts/helm-crd-preflight.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:27Z"
+          },
+          {
+            "name": "Test Cortex Security GitHub App helm contract",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-03T03:51:27Z",
+            "completed_at": "2026-10-03T03:51:27Z"
+          },
+          {
+            "name": "Test staging Chat Mini inference overlay",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-03T03:51:27Z",
+            "completed_at": "2026-10-03T03:51:27Z"
+          },
+          {
+            "name": "Test application log shipper (no helm)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-03T03:51:27Z",
+            "completed_at": "2026-10-03T03:51:27Z"
+          },
+          {
+            "name": "Test the dated holding window (no helm)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-03T03:51:27Z",
+            "completed_at": "2026-10-03T03:51:29Z"
+          },
+          {
+            "name": "Test scripts/release-images-published.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-03T03:51:29Z",
+            "completed_at": "2026-10-03T03:51:29Z"
+          },
+          {
+            "name": "Test scripts/staging-account-ready.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-10-03T03:51:29Z",
+            "completed_at": "2026-10-03T03:51:29Z"
+          },
+          {
+            "name": "Test scripts/staging-vpn-ready.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-10-03T03:51:29Z",
+            "completed_at": "2026-10-03T03:51:30Z"
+          },
+          {
+            "name": "Test scripts/staging-mirror-images.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-03T03:51:30Z",
+            "completed_at": "2026-10-03T03:51:32Z"
+          },
+          {
+            "name": "Test scripts/ensure-staging-ecr.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-03T03:51:32Z",
+            "completed_at": "2026-10-03T03:51:32Z"
+          },
+          {
+            "name": "Test scripts/grant-staging-ecr-pull.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-03T03:51:32Z",
+            "completed_at": "2026-10-03T03:51:32Z"
+          },
+          {
+            "name": "Test scripts/apply-staging-oidc.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-03T03:51:32Z",
+            "completed_at": "2026-10-03T03:51:33Z"
+          },
+          {
+            "name": "Test scripts/apply-staging-farm.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-10-03T03:51:33Z",
+            "completed_at": "2026-10-03T03:51:33Z"
+          },
+          {
+            "name": "Test computer-farm-hosts user-data size",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-03T03:51:33Z",
+            "completed_at": "2026-10-03T03:51:33Z"
+          },
+          {
+            "name": "Test guest rootfs pipeline",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-10-03T03:51:33Z",
+            "completed_at": "2026-10-03T03:51:37Z"
+          },
+          {
+            "name": "Test scripts/publish-staging-farm-guest-artifacts.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-10-03T03:51:37Z",
+            "completed_at": "2026-10-03T03:51:38Z"
+          },
+          {
+            "name": "Test scripts/staging-farm-endpoint.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20,
+            "started_at": "2026-10-03T03:51:38Z",
+            "completed_at": "2026-10-03T03:51:38Z"
+          },
+          {
+            "name": "Test scripts/apply-gha-x64.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21,
+            "started_at": "2026-10-03T03:51:38Z",
+            "completed_at": "2026-10-03T03:51:43Z"
+          },
+          {
+            "name": "Test scripts/bootstrap-gha-x64.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22,
+            "started_at": "2026-10-03T03:51:43Z",
+            "completed_at": "2026-10-03T03:51:43Z"
+          },
+          {
+            "name": "Test scripts/staging-secrets-isolated.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23,
+            "started_at": "2026-10-03T03:51:43Z",
+            "completed_at": "2026-10-03T03:51:43Z"
+          },
+          {
+            "name": "Test scripts/staging-secrets-present.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 24,
+            "started_at": "2026-10-03T03:51:43Z",
+            "completed_at": "2026-10-03T03:51:44Z"
+          },
+          {
+            "name": "Test scripts/staging-image-tag.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 25,
+            "started_at": "2026-10-03T03:51:44Z",
+            "completed_at": "2026-10-03T03:51:44Z"
+          },
+          {
+            "name": "Test scripts/staging-requires-main-tip.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 26,
+            "started_at": "2026-10-03T03:51:44Z",
+            "completed_at": "2026-10-03T03:51:44Z"
+          },
+          {
+            "name": "Test scripts/agent-staging-commands.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 27,
+            "started_at": "2026-10-03T03:51:44Z",
+            "completed_at": "2026-10-03T03:51:47Z"
+          },
+          {
+            "name": "Test scripts/staging-from-main.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 28,
+            "started_at": "2026-10-03T03:51:47Z",
+            "completed_at": "2026-10-03T03:51:47Z"
+          },
+          {
+            "name": "Test machine release receipts",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 29,
+            "started_at": "2026-10-03T03:51:47Z",
+            "completed_at": "2026-10-03T03:51:49Z"
+          },
+          {
+            "name": "Test support deployment receipts",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 30,
+            "started_at": "2026-10-03T03:51:49Z",
+            "completed_at": "2026-10-03T03:51:50Z"
+          },
+          {
+            "name": "Test scoped admin tunnel configuration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 31,
+            "started_at": "2026-10-03T03:51:50Z",
+            "completed_at": "2026-10-03T03:51:50Z"
+          },
+          {
+            "name": "Test self-host OpenBao interrupted provisioning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 32,
+            "started_at": "2026-10-03T03:51:50Z",
+            "completed_at": "2026-10-03T03:52:09Z"
+          },
+          {
+            "name": "Test both web workload rollout checks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 33,
+            "started_at": "2026-10-03T03:52:09Z",
+            "completed_at": "2026-10-03T03:52:09Z"
+          },
+          {
+            "name": "Test staging web image compatibility preflight",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 34,
+            "started_at": "2026-10-03T03:52:09Z",
+            "completed_at": "2026-10-03T03:52:09Z"
+          },
+          {
+            "name": "Test production checkout pin",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 35,
+            "started_at": "2026-10-03T03:52:09Z",
+            "completed_at": "2026-10-03T03:52:10Z"
+          },
+          {
+            "name": "Test the deploy lock (GIT-9)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 36,
+            "started_at": "2026-10-03T03:52:10Z",
+            "completed_at": "2026-10-03T03:52:10Z"
+          },
+          {
+            "name": "Test scripts/cursor-staging-access.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 37,
+            "started_at": "2026-10-03T03:52:10Z",
+            "completed_at": "2026-10-03T03:52:18Z"
+          },
+          {
+            "name": "Test scripts/staging-same-origin-proxy.py",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 38,
+            "started_at": "2026-10-03T03:52:18Z",
+            "completed_at": "2026-10-03T03:52:23Z"
+          },
+          {
+            "name": "Test scripts/install-terraform.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 39,
+            "started_at": "2026-10-03T03:52:23Z",
+            "completed_at": "2026-10-03T03:52:23Z"
+          },
+          {
+            "name": "Install Terraform",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 40,
+            "started_at": "2026-10-03T03:52:23Z",
+            "completed_at": "2026-10-03T03:52:24Z"
+          },
+          {
+            "name": "Test ingress counts without AWS access",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 41,
+            "started_at": "2026-10-03T03:52:24Z",
+            "completed_at": "2026-10-03T03:52:44Z"
+          },
+          {
+            "name": "Test marketing network cutover without AWS access",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 42,
+            "started_at": "2026-10-03T03:52:44Z",
+            "completed_at": "2026-10-03T03:52:48Z"
+          },
+          {
+            "name": "Validate staging-oidc Terraform",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 43,
+            "started_at": "2026-10-03T03:52:48Z",
+            "completed_at": "2026-10-03T03:52:53Z"
+          },
+          {
+            "name": "Test scripts/validate-staging-oidc.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 44,
+            "started_at": "2026-10-03T03:52:53Z",
+            "completed_at": "2026-10-03T03:52:56Z"
+          },
+          {
+            "name": "Validate staging-farm Terraform",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 45,
+            "started_at": "2026-10-03T03:52:56Z",
+            "completed_at": "2026-10-03T03:53:06Z"
+          },
+          {
+            "name": "Test scripts/validate-staging-farm.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 46,
+            "started_at": "2026-10-03T03:53:06Z",
+            "completed_at": "2026-10-03T03:53:10Z"
+          },
+          {
+            "name": "Test GitHub workflow contract",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 47,
+            "started_at": "2026-10-03T03:53:10Z",
+            "completed_at": "2026-10-03T03:53:15Z"
+          },
+          {
+            "name": "Test farm agent rails",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 48,
+            "started_at": "2026-10-03T03:53:15Z",
+            "completed_at": "2026-10-03T03:53:18Z"
+          },
+          {
+            "name": "Test staging private lock (no helm)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 49,
+            "started_at": "2026-10-03T03:53:18Z",
+            "completed_at": "2026-10-03T03:53:20Z"
+          },
+          {
+            "name": "Test the Chat stream edge contract (no helm)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 50,
+            "started_at": "2026-10-03T03:53:20Z",
+            "completed_at": "2026-10-03T03:53:22Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 100,
+            "started_at": "2026-10-03T03:53:22Z",
+            "completed_at": "2026-10-03T03:53:22Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 101,
+            "started_at": "2026-10-03T03:53:22Z",
+            "completed_at": "2026-10-03T03:53:22Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/CortexLM/backend/check-runs/111121713380",
+        "labels": [
+          "codebuild-cortex-gha-arm64-37094557684-1"
+        ],
+        "runner_id": 170706,
+        "runner_name": "54df99b6-b9f2-48f7-b0d1-36bd8bf98bc0",
+        "runner_group_id": 1,
+        "runner_group_name": "default"
+      },
+      {
+        "id": 111121713389,
+        "run_id": 37094557684,
+        "workflow_name": "CI",
+        "head_branch": "goal/typescript-sdk",
+        "run_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUDgm-s8AAAAZ317I7Q",
+        "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+        "url": "https://api.github.com/repos/CortexLM/backend/actions/jobs/111121713389",
+        "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684/job/111121713389",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-03T03:51:02Z",
+        "started_at": "2026-10-03T03:51:22Z",
+        "completed_at": "2026-10-03T03:51:44Z",
+        "name": "Typecheck and lint",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T03:51:23Z",
+            "completed_at": "2026-10-03T03:51:24Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T03:51:24Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Run ./.github/actions/linux-arm-host",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:30Z"
+          },
+          {
+            "name": "Install",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-03T03:51:30Z",
+            "completed_at": "2026-10-03T03:51:30Z"
+          },
+          {
+            "name": "Typecheck",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-03T03:51:30Z",
+            "completed_at": "2026-10-03T03:51:42Z"
+          },
+          {
+            "name": "Lint",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-03T03:51:42Z",
+            "completed_at": "2026-10-03T03:51:43Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-03T03:51:43Z",
+            "completed_at": "2026-10-03T03:51:43Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-03T03:51:43Z",
+            "completed_at": "2026-10-03T03:51:43Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/CortexLM/backend/check-runs/111121713389",
+        "labels": [
+          "codebuild-cortex-gha-arm64-37094557684-1"
+        ],
+        "runner_id": 170704,
+        "runner_name": "59597e1d-ef47-44c7-ad89-79efedac7709",
+        "runner_group_id": 1,
+        "runner_group_name": "default"
+      },
+      {
+        "id": 111121713405,
+        "run_id": 37094557684,
+        "workflow_name": "CI",
+        "head_branch": "goal/typescript-sdk",
+        "run_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUDgm-s8AAAAZ317I_Q",
+        "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+        "url": "https://api.github.com/repos/CortexLM/backend/actions/jobs/111121713405",
+        "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684/job/111121713405",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-03T03:51:02Z",
+        "started_at": "2026-10-03T03:51:22Z",
+        "completed_at": "2026-10-03T03:51:34Z",
+        "name": "Image publish script",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T03:51:23Z",
+            "completed_at": "2026-10-03T03:51:24Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T03:51:24Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Run ./.github/actions/linux-arm-host",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:26Z"
+          },
+          {
+            "name": "Test scripts/ecr-publish.sh",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-03T03:51:26Z",
+            "completed_at": "2026-10-03T03:51:32Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-03T03:51:32Z",
+            "completed_at": "2026-10-03T03:51:32Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-03T03:51:32Z",
+            "completed_at": "2026-10-03T03:51:32Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/CortexLM/backend/check-runs/111121713405",
+        "labels": [
+          "codebuild-cortex-gha-arm64-37094557684-1"
+        ],
+        "runner_id": 170708,
+        "runner_name": "331da4b5-663e-4360-a070-6ce58f574b12",
+        "runner_group_id": 1,
+        "runner_group_name": "default"
+      },
+      {
+        "id": 111121713437,
+        "run_id": 37094557684,
+        "workflow_name": "CI",
+        "head_branch": "goal/typescript-sdk",
+        "run_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUDgm-s8AAAAZ317JHQ",
+        "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+        "url": "https://api.github.com/repos/CortexLM/backend/actions/jobs/111121713437",
+        "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684/job/111121713437",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-03T03:51:02Z",
+        "started_at": "2026-10-03T03:51:23Z",
+        "completed_at": "2026-10-03T03:52:22Z",
+        "name": "Dockerfile",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T03:51:23Z",
+            "completed_at": "2026-10-03T03:51:25Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T03:51:25Z",
+            "completed_at": "2026-10-03T03:51:27Z"
+          },
+          {
+            "name": "Run ./.github/actions/linux-arm-host",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T03:51:27Z",
+            "completed_at": "2026-10-03T03:51:27Z"
+          },
+          {
+            "name": "Check the build graph",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-03T03:51:27Z",
+            "completed_at": "2026-10-03T03:51:29Z"
+          },
+          {
+            "name": "Build every target",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-03T03:51:29Z",
+            "completed_at": "2026-10-03T03:52:08Z"
+          },
+          {
+            "name": "Smoke the images",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-03T03:52:08Z",
+            "completed_at": "2026-10-03T03:52:20Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-03T03:52:20Z",
+            "completed_at": "2026-10-03T03:52:21Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-03T03:52:21Z",
+            "completed_at": "2026-10-03T03:52:21Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/CortexLM/backend/check-runs/111121713437",
+        "labels": [
+          "codebuild-cortex-gha-arm64-37094557684-1"
+        ],
+        "runner_id": 170710,
+        "runner_name": "c1da5c31-9694-4d90-ba43-8cdcf714a177",
+        "runner_group_id": 1,
+        "runner_group_name": "default"
+      },
+      {
+        "id": 111121714018,
+        "run_id": 37094557684,
+        "workflow_name": "CI",
+        "head_branch": "goal/typescript-sdk",
+        "run_url": "https://api.github.com/repos/CortexLM/backend/actions/runs/37094557684",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUDgm-s8AAAAZ317LYg",
+        "head_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+        "url": "https://api.github.com/repos/CortexLM/backend/actions/jobs/111121714018",
+        "html_url": "https://github.com/CortexLM/backend/actions/runs/37094557684/job/111121714018",
+        "status": "completed",
+        "conclusion": "skipped",
+        "created_at": "2026-10-03T03:51:02Z",
+        "started_at": "2026-10-03T03:51:02Z",
+        "completed_at": "2026-10-03T03:51:01Z",
+        "name": "Probe CodeQL CodeBuild x64",
+        "steps": [],
+        "check_run_url": "https://api.github.com/repos/CortexLM/backend/check-runs/111121714018",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": null,
+        "runner_name": null,
+        "runner_group_id": null,
+        "runner_group_name": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "full": {
+    "raw": "/tmp/opencode/files-live/full.json",
+    "sha256": "431874f7606bb4e79a9ec685d6af76feef93e81234e94227d8c1dbe2495929f5",
+    "retained": "../checks/full.json.gz",
+    "retainedSHA256": "f8e20a168bfa0a4ee07c4b3616b6f9627f69d5475f865a478f67670fab02e099",
+    "stats": {
+      "startTime": "2026-10-03T20:51:29.290Z",
+      "duration": 303294.42600000004,
+      "expected": 143,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": 143,
+    "attempts": 143,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 0,
+    "attachments": {
+      "image/png": 201,
+      "application/json": 66
+    },
+    "renderVisits": 426,
+    "renderStdout": "rendered 426 screen states\n"
+  },
+  "corrected-targeted": {
+    "raw": "/tmp/opencode/files-live/corrected-targeted.json",
+    "sha256": "61c4c813a2dc8733e212b392eea35172c788724d4de5a94ceb6bef7a09661706",
+    "retained": "../checks/corrected-targeted.json.gz",
+    "retainedSHA256": "53651ec68218bf025bcdbfff3f1737051ce3a3f2b19c237bf0a94b4fb21dd625",
+    "stats": {
+      "startTime": "2026-10-03T20:50:26.214Z",
+      "duration": 17183.195,
+      "expected": 11,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": 11,
+    "attempts": 11,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 0,
+    "attachments": {
+      "image/png": 14
+    }
+  },
+  "rename-before": {
+    "raw": "/tmp/opencode/files-live/rename-before.json",
+    "sha256": "daf8e7f0bbe3632c1645a4b06903d6b94d8ecda33a52d70315d5b15fc670e0a4",
+    "retained": "../checks/rename-before.json.gz",
+    "retainedSHA256": "bdeaded9e4c9fb1ea244e079fee8e96de698b282f4e4c45b499e66e4370728c9",
+    "stats": {
+      "startTime": "2026-10-03T20:28:13.859Z",
+      "duration": 4666.335,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "cases": 1,
+    "attempts": 1,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 1,
+    "attachments": {
+      "image/png": 1,
+      "text/markdown": 1,
+      "application/zip": 1
+    }
+  },
+  "viewer-before": {
+    "raw": "/tmp/opencode/files-live/viewer-before.json",
+    "sha256": "ea0f537e0335ca489c6348a37a21774cced0fdeae6d6e0da0707981fb9c62897",
+    "retained": "../checks/viewer-before.json.gz",
+    "retainedSHA256": "d8c379da9ddf6d1c644344461b9b9ff3df06867bb01dfa00304011daa39c5c3b",
+    "stats": {
+      "startTime": "2026-10-03T20:38:01.166Z",
+      "duration": 4612.455,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 2,
+      "flaky": 0
+    },
+    "cases": 2,
+    "attempts": 2,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 2,
+    "attachments": {
+      "image/png": 2,
+      "text/markdown": 2,
+      "application/zip": 2
+    }
+  },
+  "initial-targeted": {
+    "raw": "/tmp/opencode/files-live/initial-targeted.json",
+    "sha256": "ec3fab251cebd09203c055d9429883ea03c0e0f46a5ae359ed1685466169848d",
+    "retained": "../checks/initial-targeted.json.gz",
+    "retainedSHA256": "fd8a791695dd1a1d509f0951dbb202d28d11c4d2c3b85d4788e2f1323a6c71a5",
+    "stats": {
+      "startTime": "2026-10-03T20:13:57.311Z",
+      "duration": 28128.593999999997,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 2,
+      "flaky": 0
+    },
+    "cases": 8,
+    "attempts": 8,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 2,
+    "attachments": {
+      "image/png": 14,
+      "text/markdown": 2,
+      "application/zip": 2
+    }
+  },
+  "baseline": {
+    "raw": "/tmp/opencode/files-live/baseline.json",
+    "sha256": "70a92f216c809bcb0a49923b9c0cce06b6fcd61acc75ca29b44cdfc70c74b581",
+    "retained": "../baseline/baseline.json.gz",
+    "retainedSHA256": "6506e16aec4a0be8dcfb138f434eca2c868430ac3eb8b6038b602ac0f3b4f1ff",
+    "stats": {
+      "startTime": "2026-10-03T20:11:31.355Z",
+      "duration": 53744.348000000005,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 8,
+      "flaky": 0
+    },
+    "cases": 8,
+    "attempts": 8,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 8,
+    "attachments": {
+      "image/png": 8,
+      "text/markdown": 8,
+      "application/zip": 8
+    }
+  }
+}
