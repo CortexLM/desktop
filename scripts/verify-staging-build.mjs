@@ -11,8 +11,9 @@ const data = await mkdtemp(path.join(os.tmpdir(), "cortex-staging-check-"));
 let app;
 try {
   app = await electron.launch({
-    args: [path.resolve("packages/desktop/dist/main.cjs"), ...(process.platform === "linux" ? ["--no-sandbox"] : [])],
-    env: { ...process.env, XDG_CONFIG_HOME: data, CORTEX_DATA_DIR: path.join(data, "engine"), CORTEX_STAGING_API_ORIGIN: "https://runtime-must-not-win.example.test" },
+    ...(process.env.CORTEX_STAGING_EXECUTABLE ? { executablePath: path.resolve(process.env.CORTEX_STAGING_EXECUTABLE) } : {}),
+    args: [...(process.env.CORTEX_STAGING_EXECUTABLE ? [] : [path.resolve("packages/desktop/dist/main.cjs")]), ...(process.platform === "linux" ? ["--no-sandbox"] : [])],
+    env: { ...process.env, APPDATA: data, XDG_CONFIG_HOME: data, CORTEX_DATA_DIR: path.join(data, "engine"), CORTEX_STAGING_API_ORIGIN: "https://runtime-must-not-win.example.test" },
   });
   const userData = await app.evaluate(({ app }) => app.getPath("userData"));
   assert.equal(path.basename(userData), "Cortex-staging");

@@ -26,6 +26,7 @@ env:
   STAGING_FEED_ENABLED: ${{ vars.STAGING_FEED_ENABLED }}
   STAGING_SOFTWARE_BUCKET: ${{ vars.STAGING_SOFTWARE_BUCKET }}
   CORTEX_STAGING_API_ORIGIN: ${{ vars.CORTEX_STAGING_API_ORIGIN }}
+  STAGING_WINDOWS_PUBLISHER_NAME: ${{ vars.STAGING_WINDOWS_PUBLISHER_NAME }}
 
 jobs:
   verify:
@@ -50,8 +51,8 @@ jobs:
           set -euo pipefail
           git cat-file -e "$INPUT_SHA^{commit}"
           git merge-base --is-ancestor "$INPUT_SHA" origin/main
-          node scripts/staging-config.mjs config
-      - name: Require successful existing CI at exactly this SHA
+          node scripts/staging-config.mjs config win
+      - name: Require successful existing CI at exactly this SHA and protected signing environment
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -63,14 +64,12 @@ jobs:
             (read -r SHA; [[ "$SHA" == "$INPUT_SHA" ]])
           gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs/$RUN/jobs?filter=latest&per_page=100" \
             --jq '.jobs[] | [.name, .conclusion] | @tsv' > ci-jobs.tsv
-          for NAME in 'Lint, typecheck, unit tests, i18n audit' 'E2E (Playwright + Electron, Linux)' 'macOS build, package, launch'; do
+          for NAME in 'Lint, typecheck, unit tests, i18n audit' 'E2E (Playwright + Electron, Linux)' 'macOS build, package, launch' 'Windows build, package, launch'; do
             awk -F '\t' -v name="$NAME" '$1 == name && $2 == "success" { found=1 } END { exit !found }' ci-jobs.tsv
           done
-          if [[ "$PUBLISH_FEED" == true ]]; then
-            gh api "repos/$GITHUB_REPOSITORY/environments/staging" \
-              --jq '[.protection_rules[] | select(.type == "required_reviewers" and (.reviewers | length) > 0)] | length' | \
-              (read -r COUNT; [[ "$COUNT" -gt 0 ]])
-          fi
+          gh api "repos/$GITHUB_REPOSITORY/environments/staging" \
+            --jq '[.protection_rules[] | select(.type == "required_reviewers" and (.reviewers | length) > 0)] | length' | \
+            (read -r COUNT; [[ "$COUNT" -gt 0 ]])
 
   package:
     needs: verify
@@ -119,12 +118,93 @@ jobs:
             dist/latest-linux.yml
             dist/inventory.json
 
+  windows:
+    needs: verify
+    runs-on: windows-2025
+    timeout-minutes: 60
+    environment: staging
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      CORTEX_RELEASE_CHANNEL: staging
+      CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      E2E_WORKERS: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Select verified main commit
+        run: |
+          if ($env:INPUT_SHA -cnotmatch '^[0-9a-f]{40}$') { throw 'Invalid SHA' }
+          git cat-file -e "$env:INPUT_SHA^{commit}"
+          if ($LASTEXITCODE -ne 0) { throw 'Commit missing' }
+          git merge-base --is-ancestor $env:INPUT_SHA origin/main
+          if ($LASTEXITCODE -ne 0) { throw 'Commit is not on main' }
+          git switch --detach $env:INPUT_SHA
+          if ($LASTEXITCODE -ne 0) { throw 'Checkout failed' }
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: 1.4.2
+      # Secrets are deliberately absent from dependency installation, build and tests.
+      - run: node scripts/staging-config.mjs config win
+      - run: bun install --frozen-lockfile
+      - run: node node_modules/electron/install.js
+      - run: bun run build
+        env:
+          NODE_ENV: production
+      - run: bun run test
+        env:
+          NODE_ENV: test
+      - name: Verify staging main origin and isolated profile
+        run: node scripts/verify-staging-build.mjs
+      - name: Sign Windows x64 NSIS installer with staging-only credentials
+        env:
+          CSC_LINK: ${{ secrets.STAGING_WINDOWS_CSC_LINK }}
+          CSC_KEY_PASSWORD: ${{ secrets.STAGING_WINDOWS_CSC_KEY_PASSWORD }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:CSC_LINK) -or [string]::IsNullOrWhiteSpace($env:CSC_KEY_PASSWORD)) {
+            throw 'Both staging Windows signing secrets are required'
+          }
+          bunx --no-install electron-builder --win nsis --x64 --publish never --config .staging-builder.json
+          if ($LASTEXITCODE -ne 0) { throw 'Signed Windows packaging failed' }
+      - name: Require valid Authenticode and exact publisher
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:STAGING_WINDOWS_PUBLISHER_NAME)) { throw 'Expected publisher is required' }
+          foreach ($file in @("dist/Cortex-$env:INPUT_SHA-x64.exe", 'dist/win-unpacked/Cortex-staging.exe')) {
+            $signature = Get-AuthenticodeSignature -LiteralPath $file
+            if ($signature.Status -ne 'Valid') { throw "Invalid Authenticode signature: $file" }
+            $publisher = $signature.SignerCertificate.GetNameInfo([System.Security.Cryptography.X509Certificates.X509NameType]::SimpleName, $false)
+            if ($publisher -cne $env:STAGING_WINDOWS_PUBLISHER_NAME) { throw "Unexpected signing publisher: $file" }
+          }
+      - name: Prove Windows manifest and blockmap hashes
+        run: node scripts/staging-config.mjs inventory dist win
+      - name: Verify signed packaged main origin and isolated profile
+        run: node scripts/verify-staging-build.mjs
+        env:
+          CORTEX_STAGING_EXECUTABLE: dist/win-unpacked/Cortex-staging.exe
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: staging-windows-${{ inputs.sha }}
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            dist/Cortex-${{ inputs.sha }}-x64.exe
+            dist/Cortex-${{ inputs.sha }}-x64.exe.blockmap
+            dist/latest.yml
+            dist/inventory.json
+
   publish:
-    needs: [verify, package]
+    needs: [verify, package, windows]
     if: ${{ inputs.publish_feed }}
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    # Must have required reviewers; verify refuses publication without that protection.
+    # Must have required reviewers; verify refuses signing/publication without protection.
     environment: staging
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -136,12 +216,17 @@ jobs:
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: staging-linux-${{ inputs.sha }}
-          path: artifacts
-      - name: Revalidate publication configuration and exact artifact inventory
+          path: artifacts/linux
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: staging-windows-${{ inputs.sha }}
+          path: artifacts/win
+      - name: Revalidate publication configuration and exact artifact inventories
         run: |
-          node scripts/staging-config.mjs config
-          node scripts/staging-config.mjs verify artifacts
-      - name: Publish immutable installers before mutable manifest
+          node scripts/staging-config.mjs config win
+          node scripts/staging-config.mjs verify artifacts/linux
+          node scripts/staging-config.mjs verify artifacts/win win
+      - name: Publish immutable installers and blockmap before mutable manifests
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_R2_SECRET_ACCESS_KEY }}
@@ -154,12 +239,18 @@ jobs:
           [[ "$STAGING_CLOUDFLARE_ACCOUNT_ID" =~ ^[0-9a-f]{32}$ ]]
           [[ "$STAGING_FEED_ENABLED" == true && "$STAGING_SOFTWARE_BUCKET" == cortex-software-staging ]]
           ENDPOINT="https://${STAGING_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com"
-          for EXT in AppImage deb; do
+          for EXT in AppImage deb exe exe.blockmap; do
+            PLATFORM=linux
+            [[ "$EXT" != exe* ]] || PLATFORM=win
             FILE="Cortex-${INPUT_SHA}-x64.$EXT"
             aws --endpoint-url "$ENDPOINT" s3api put-object \
-              --bucket "$STAGING_SOFTWARE_BUCKET" --key "staging/$FILE" --body "artifacts/$FILE" \
+              --bucket "$STAGING_SOFTWARE_BUCKET" --key "staging/$FILE" --body "artifacts/$PLATFORM/$FILE" \
               --if-none-match '*' --cache-control 'public,max-age=31536000,immutable'
           done
-          aws --endpoint-url "$ENDPOINT" s3api put-object \
-            --bucket "$STAGING_SOFTWARE_BUCKET" --key staging/latest-linux.yml \
-            --body artifacts/latest-linux.yml --content-type application/yaml --cache-control no-cache
+          for PLATFORM in linux win; do
+            MANIFEST=latest-linux.yml
+            [[ "$PLATFORM" != win ]] || MANIFEST=latest.yml
+            aws --endpoint-url "$ENDPOINT" s3api put-object \
+              --bucket "$STAGING_SOFTWARE_BUCKET" --key "staging/$MANIFEST" \
+              --body "artifacts/$PLATFORM/$MANIFEST" --content-type application/yaml --cache-control no-cache
+          done

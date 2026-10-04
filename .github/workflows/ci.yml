@@ -11,6 +11,37 @@ permissions:
   contents: read
 
 jobs:
+  windows:
+    name: Windows build, package, launch
+    runs-on: windows-2025
+    timeout-minutes: 40
+    env:
+      CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      E2E_WORKERS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.2 }
+      - run: bun install --frozen-lockfile
+      - run: node node_modules/electron/install.js
+      - run: bun run build
+      - name: E2E on Windows (source build)
+        run: bun run test:e2e
+      - name: Package (unsigned validation only, x64)
+        run: bunx --no-install electron-builder --win dir --x64 --publish never
+      - name: Packaged smoke test
+        run: node scripts/smoke.mjs win
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-validation
+          path: |
+            out/
+            test-results/
+            playwright-report/
+
   checks:
     name: Lint, typecheck, unit tests, i18n audit
     runs-on: ${{ startsWith(vars.CORTEX_LINUX_X64_RUNNER, 'codebuild-') && format('{0}-{1}-{2}', vars.CORTEX_LINUX_X64_RUNNER, github.run_id, github.run_attempt) || vars.CORTEX_LINUX_X64_RUNNER || 'ubuntu-latest' }}

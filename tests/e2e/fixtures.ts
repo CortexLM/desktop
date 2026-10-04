@@ -2,8 +2,9 @@ import { test as base, _electron as electron, type ElectronApplication, type Pag
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-export const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
+export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
 export async function launch(opts: { hash?: string; env?: Record<string, string>; locale?: string } = {}) {
   const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), "cortex-e2e-"));

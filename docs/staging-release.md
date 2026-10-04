@@ -17,6 +17,7 @@ Set repository variables before dispatch:
 | `CORTEX_STAGING_API_ORIGIN` | Accepted non-production HTTPS origin without credentials/path/query/fragment |
 | `STAGING_SOFTWARE_BUCKET` | `cortex-software-staging`, an isolated bucket provisioned and approved by the operator |
 | `STAGING_FEED_ENABLED` | `true` only when publication is authorized; not required for build-only dispatch |
+| `STAGING_WINDOWS_PUBLISHER_NAME` | Exact code-signing certificate publisher checked against Authenticode |
 
 Configure the `staging` GitHub environment with required reviewers and these
 **distinct environment secrets**, never copied from production:
@@ -24,6 +25,15 @@ Configure the `staging` GitHub environment with required reviewers and these
 - `STAGING_R2_ACCESS_KEY_ID`
 - `STAGING_R2_SECRET_ACCESS_KEY`
 - `STAGING_CLOUDFLARE_ACCOUNT_ID`
+- `STAGING_WINDOWS_CSC_LINK` — securely provisioned certificate input supported by electron-builder
+- `STAGING_WINDOWS_CSC_KEY_PASSWORD` — nonempty certificate password
+
+Windows requires a valid trusted code-signing certificate and timestamp/trust-chain
+connectivity on the runner. Installer and application must have `Valid` Authenticode
+signatures matching the exact publisher. No unsigned publication fallback exists.
+If signing requires hardware-backed keys, adapt to the approved signing service;
+do not export protected keys to satisfy this certificate-input workflow. SmartScreen
+reputation and device trust remain native acceptance checks.
 
 Restrict the R2 credential to the isolated staging bucket. Configure the serving
 layer so `https://software.cortex.foundation/staging/` reads its `staging/` keys.
@@ -57,22 +67,26 @@ for each surface, and report unsupported remote behavior rather than invent it.
 No real staging origin or eligible account/model has yet been supplied to this
 desktop session. Hosted artifact generation, installer download/hash readback,
 feed availability and packaged real-backend acceptance remain open. The staging
-workflow currently builds Linux x64 only; it establishes no Windows installer or
-Windows acceptance. Review-comment authorization is separate from code push and
+workflow now defines Linux x64 and signed Windows x64 NSIS; no accepted Windows
+installer or Windows acceptance is established yet. Review-comment authorization is separate from code push and
 does not follow from this runbook.
 
-Configuration inventory at this session's latest read: all three staging repository
-variables and all three distinct staging secret names above are absent; the staging
+Configuration inventory at this session's latest read: the three original staging repository
+variables and three R2 staging secret names are absent; Windows signing configuration
+has not been supplied either. The staging
 environment has zero variables/secrets. Existing production-named or unqualified
-repository credentials are not substitutes. Device selection remains pending in
-the coordinator's current user session. Historical `c9e25ac0` staging evidence does
+repository credentials are not substitutes. The user selected **PC Windows**;
+Windows device access and canonical HTTPS routing still require coordination.
+Historical `c9e25ac0` staging evidence does
 not validate the rewrite.
 
 The base builder declares macOS x64/arm64 DMG/ZIP, Windows x64/ia32 NSIS plus x64
 portable, and Linux x64/arm64 AppImage/deb. Those declarations are not successful
-installer runs: current staging publication implements Linux x64 AppImage/deb only;
-existing macOS CI builds an unsigned arm64 package. Windows has no CI acceptance.
-Do not infer the user's selected device or claim other staging installer platforms.
+installer runs: staging publication implements Linux x64 AppImage/deb and Windows
+x64 signed NSIS. Existing macOS CI builds an unsigned arm64 package. New Windows
+CI runs full Electron tests plus unsigned package smoke, never publishing that package.
+Windows staging installer/feed implementation and native acceptance are now required;
+the earlier Linux-only validation does not satisfy that requirement.
 
 ## Build and publication gates
 
@@ -81,7 +95,8 @@ Do not infer the user's selected device or claim other staging installer platfor
 2. Complete desktop acceptance against that backend, including usable account and
    eligible image/reasoning model. Keep native Mac evidence separate from Linux.
 3. Coordinator merges the accepted desktop revision. Existing `CI` must succeed on
-   that exact main push SHA, including checks, Linux Electron and macOS packaging.
+   that exact main push SHA, including checks, Linux Electron, macOS packaging and
+   Windows build/package/launch. Signing also requires protected staging approval.
 4. After checking current user/session authority, dispatch `publish-staging.yml`
    from main with the full lowercase SHA. Default `publish_feed=false` builds only.
 5. Publishing additionally requires explicit `publish_feed=true`, enabled feed,
@@ -89,7 +104,12 @@ Do not infer the user's selected device or claim other staging installer platfor
    or secrets fails; no successful skipped publication is presented as delivery.
 
 The workflow uses Node 22, Bun 1.4.2, installed Electron and unsigned Linux x64
-AppImage/deb targets. No storage credentials enter dependency installation/build.
+AppImage/deb targets plus signed Windows x64 NSIS. Signing credentials enter only
+the signing step; no storage credentials enter dependency installation/build.
+The staging app ID, executable, shortcuts and uninstall name are distinct from
+production. Intended Windows URL is `https://software.cortex.foundation/staging/Cortex-<full-SHA>-x64.exe`,
+with `.exe.blockmap` alongside and feed `https://software.cortex.foundation/staging/latest.yml`.
+These are destination contracts, not available downloads or observed hashes.
 An inventory verifies SHA-512 feed references and artifact identities before
 the publishing job. Immutable installer uploads precede the mutable feed manifest;
 existing installer objects are not overwritten. A partial upload must be inspected
