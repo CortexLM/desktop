@@ -70,11 +70,11 @@
       "name": "@cortex/desktop",
       "version": "0.2.0",
       "dependencies": {
-        "@cortex/api-types": "file:/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-live-calls-st01a10f26/cortex-api-types-0.2.0.tgz",
+        "@cortex/api-types": "file:../../vendor/live-calls-st01a10f26/cortex-api-types-0.2.0.tgz",
         "@cortex/core": "workspace:*",
         "@cortex/i18n": "workspace:*",
         "@cortex/schema": "workspace:*",
-        "@cortex/sdk": "file:/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-live-calls-st01a10f26/cortex-sdk-0.3.5.tgz",
+        "@cortex/sdk": "file:../../vendor/live-calls-st01a10f26/cortex-sdk-0.3.5.tgz",
         "@cortex/server": "workspace:*",
       },
     },
@@ -160,7 +160,7 @@
 
     "@cacheable/utils": ["@cacheable/utils@2.5.0", "", { "dependencies": { "hashery": "^1.5.1", "keyv": "^5.6.0" } }, "sha512-buipgOVDkkPXNR5+xBpDw7Zk2n1EvU7qBJCNUcL7rhQ//kfpOXPAvQ511Os0vpLYJ1pZnvudNytkQt2hst3wqA=="],
 
-    "@cortex/api-types": ["@cortex/api-types@/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-live-calls-st01a10f26/cortex-api-types-0.2.0.tgz", {}, "sha512-5UIGeCID1J4mMAoj3y689y4fnxuMFqVIdVf1ju63ipuhz1FG9+VvJfMtNbC93piEVDLsVn40ezl8Uox2oP9TYA=="],
+    "@cortex/api-types": ["@cortex/api-types@../../vendor/live-calls-st01a10f26/cortex-api-types-0.2.0.tgz", {}, "sha512-5UIGeCID1J4mMAoj3y689y4fnxuMFqVIdVf1ju63ipuhz1FG9+VvJfMtNbC93piEVDLsVn40ezl8Uox2oP9TYA=="],
 
     "@cortex/app": ["@cortex/app@workspace:packages/app"],
 
@@ -176,7 +176,7 @@
 
     "@cortex/schema": ["@cortex/schema@workspace:packages/schema"],
 
-    "@cortex/sdk": ["@cortex/sdk@/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-live-calls-st01a10f26/cortex-sdk-0.3.5.tgz", { "peerDependencies": { "@cortex/api-types": "0.2.0" }, "optionalPeers": ["@cortex/api-types"] }, "sha512-689+pDP4tqKjboWpEHVTTzzWuhwW0tRs1qFvpwAVEmtKTd5Z4AHkWfvoMoxl85J9kgVH0DKFXKfolWNSpgULmQ=="],
+    "@cortex/sdk": ["@cortex/sdk@../../vendor/live-calls-st01a10f26/cortex-sdk-0.3.5.tgz", { "peerDependencies": { "@cortex/api-types": "0.2.0" }, "optionalPeers": ["@cortex/api-types"] }, "sha512-689+pDP4tqKjboWpEHVTTzzWuhwW0tRs1qFvpwAVEmtKTd5Z4AHkWfvoMoxl85J9kgVH0DKFXKfolWNSpgULmQ=="],
 
     "@cortex/server": ["@cortex/server@workspace:packages/server"],
 

@@ -1,6 +1,25 @@
 # Vendored packages
 
-## Active Task8 activity-projection successor
+## Active Task16 live-calls pair
+
+`packages/desktop/package.json` and `bun.lock` select `live-calls-st01a10f26/` through
+`file:../../vendor/...`, so CI resolves it from this checkout. The archives are byte-identical
+copies of the independently approved Task6/Task10 pair
+`/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-live-calls-st01a10f26/`
+(gate `cortex-completion-task6/.omo/evidence/task6-live-calls-gate-review.md`, verifier `st_01a10f49`;
+provenance `cortex-completion-task6/.omo/LiveCallsSDKProvenance-st01a10f26.json`).
+
+| Archive | SHA-256 |
+| --- | --- |
+| `live-calls-st01a10f26/cortex-sdk-0.3.5.tgz` | `a283c1627af0810dc1e312213ccb2b0f31df73e17a05026bcd49e594b3317973` |
+| `live-calls-st01a10f26/cortex-api-types-0.2.0.tgz` | `81b5c1977f2f72789296c54254a4183e1705b6bb45d5cb51733c2055654d2bb2` |
+
+Adds the `cortex-live-v1` Bot call contract (`liveMediaUrl`, `LIVE_FRAME`, frame codec,
+`parseAudioCapabilities`) to the activity-projection pair below. The generated routines
+`Resume` class is renamed `Resume2`; no consumer imports it by name. Older pairs, including
+the absolute-path selections recorded below, are historical.
+
+## Previous Task8 activity-projection successor
 
 Exact independently approved pair selected by desktop manifest/lock:
 `/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-activity-projection-st01a10ecc/`.
