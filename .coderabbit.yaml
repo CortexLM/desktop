@@ -1,0 +1,12 @@
+# CodeRabbit config. Reference: https://docs.coderabbit.ai/reference/configuration
+language: en-US
+reviews:
+  profile: assertive
+  high_level_summary: true
+  request_changes_workflow: false
+  auto_review:
+    enabled: true
+    drafts: false
+  path_instructions:
+    - path: "**"
+      instructions: "Prioritise correctness, security and missing tests. Do not repeat what the linter already enforces. Read AGENTS.md and .rules/ for repo conventions."
