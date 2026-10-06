@@ -23,7 +23,7 @@ const routes = new Map<string, (res: http.ServerResponse, req: Seen) => void>();
 const sessions: RemoteSession[] = [];
 let server: http.Server, origin = "";
 const json = (body: unknown, status = 200) => (res: http.ServerResponse) => { res.writeHead(status, { "content-type": "application/json" }); res.end(JSON.stringify(body)); };
-const frame = (id: number, event: unknown) => `id: ${id}\ndata: ${JSON.stringify(event)}\n\n`;
+const frame = (id: number | string, event: unknown) => `id: ${typeof id === "number" ? `${id}-0` : id}\ndata: ${JSON.stringify(event)}\n\n`;
 const headers = (res: http.ServerResponse, conversation = cnv, assistant = msg) => {
   res.writeHead(200, { "content-type": "text/event-stream", "x-conversation-id": conversation, "x-message-id": assistant });
   res.flushHeaders();
@@ -142,7 +142,7 @@ describe("private remote Chat binding", () => {
     expect(replay.path).toBe(first.path);
     expect(replay.bytes).toEqual(first.bytes);
     expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]);
-    expect(replay.headers["last-event-id"]).toBe("7");
+    expect(replay.headers["last-event-id"]).toBe("7-0");
     expect(o.ids).toEqual(Array(2).fill({ conversationID: cnv, assistantID: msg }));
     expect((await binding.history(cnv)).modelSlug).toBe("fixture");
     for (const value of [
@@ -320,7 +320,7 @@ describe("private remote Chat binding", () => {
     reply.end(frame(10, events[9]));
     await expect(delivery.completion).resolves.toEqual({ admission: { conversationID: cnv, assistantID: msg }, terminal: done, projection: "limited" });
     expect(delivery.admissionState).toBe("admitted");
-    expect(o.events).toEqual(events); expect(o.cursors.at(-1)).toBe("10");
+    expect(o.events).toEqual(events); expect(o.cursors.at(-1)).toBe("10-0");
     const history = await binding.history(cnv);
     expect(history).toMatchObject({ title: "Saved title", modelSlug: "fixture", limit: 100, limited: true, projection: "text-and-attachments", reasoningAndTools: "omitted" });
     expect(history.items[0]).not.toHaveProperty("reasoning");
@@ -345,14 +345,14 @@ describe("private remote Chat binding", () => {
     const delivery = binding.turn(value, o.observer);
     expect(delivery.admissionState).toBe("pending");
     const rejected = expect(delivery.completion).rejects.toMatchObject({ code: "provider_error" });
-    await vi.waitFor(() => expect(o.cursors).toEqual(["1"]));
+    await vi.waitFor(() => expect(o.cursors).toEqual(["1-0"]));
     value.message = "changed draft"; value.attachmentIDs.push(fileID);
     response.destroy(); await rejected;
     expect(delivery.admissionState).toBe("admitted");
     expect(() => binding.turn(prompt(), o.observer)).toThrow();
     routes.set("/v1/conversations/turns", (res) => { response = res; headers(res); res.write(frame(2, { type: "text_delta", message_id: msg, delta: "B" })); });
     const resumed = delivery.resume(o.observer), detached = expect(resumed).rejects.toMatchObject({ code: "aborted" });
-    await vi.waitFor(() => expect(o.cursors).toEqual(["1", "2"]));
+    await vi.waitFor(() => expect(o.cursors).toEqual(["1-0", "2-0"]));
     delivery.detach(); await detached;
     expect(delivery.admissionState).toBe("admitted");
     routes.set("/v1/conversations/turns", (res) => { headers(res); res.end(frame(3, done)); });
@@ -362,37 +362,37 @@ describe("private remote Chat binding", () => {
     expect(new Set(seen.map((r) => r.path))).toEqual(new Set(["/v1/conversations/turns"]));
     expect(new Set(seen.map((r) => r.headers["idempotency-key"])).size).toBe(1);
     expect(new Set(seen.map((r) => r.bytes.toString())).size).toBe(1);
-    expect(seen.map((r) => r.headers["last-event-id"])).toEqual([undefined, "1", "2"]);
+    expect(seen.map((r) => r.headers["last-event-id"])).toEqual([undefined, "1-0", "2-0"]);
     expect(o.ids).toEqual(Array(3).fill({ conversationID: cnv, assistantID: msg }));
     expect(o.events.map((e) => e.type)).toEqual(["text_delta", "text_delta", "done"]);
     await expect(delivery.resume(o.observer)).rejects.toMatchObject({ code: "conflict" });
   });
 
-  it("delivers both equal-ID frames and replays without ID-only deduplication", async () => {
+  it("suppresses repeated meaningful IDs across exact opaque-cursor replay", async () => {
     const binding = (await signIn()).bind(origin), o = observe(), order: string[] = [];
     let reply!: http.ServerResponse;
     const delta = (text: string) => ({ type: "text_delta", message_id: msg, delta: text });
-    routes.set("/v1/conversations/turns", (res) => { reply = res; headers(res); res.write(frame(1, delta("A")) + frame(1, delta("B"))); });
+    const cursor = deferred();
+    routes.set("/v1/conversations/turns", (res) => { reply = res; headers(res); res.write(frame("9007199254740993-1", delta("A")) + frame("9007199254740993-1", delta("A"))); });
     const observer: MainRemoteObserver = { ...o.observer,
       event(e) { order.push(e.type === "text_delta" ? `event:${e.delta}` : e.type); o.observer.event(e); },
-      cursor(id) { order.push(`cursor:${id}`); o.observer.cursor?.(id); },
+      cursor(id) { order.push(`cursor:${id}`); o.observer.cursor?.(id); cursor.resolve(); },
     };
     const original = prompt(), delivery = binding.turn(original, observer);
     const disconnected = expect(delivery.completion).rejects.toMatchObject({ code: "provider_error" });
-    await vi.waitFor(() => expect(o.events).toHaveLength(2));
-    expect(order).toEqual(["event:A", "cursor:1", "event:B"]);
-    expect(o.cursors).toEqual(["1"]);
-    expect(o.events.flatMap((e) => e.type === "text_delta" ? e.delta : []).join("")).toBe("AB");
+    await cursor.promise;
+    expect(order).toEqual(["event:A", "cursor:9007199254740993-1"]);
+    expect(o.cursors).toEqual(["9007199254740993-1"]);
+    expect(o.events.flatMap((e) => e.type === "text_delta" ? e.delta : []).join("")).toBe("A");
     original.message = "edited after sending";
     reply.destroy(); await disconnected;
-    // The numeric backend cursor can replay the second Redis sub-entry; retain it rather than drop a new equal-ID event.
-    routes.set("/v1/conversations/turns", (res) => { headers(res); res.end(frame(1, delta("B")) + frame(2, done)); });
+    routes.set("/v1/conversations/turns", (res) => { headers(res); res.end(frame("9007199254740993-1", delta("A")) + frame("9007199254740993-2", delta("B")) + frame("9007199254740993-3", done)); });
     await delivery.resume(observer);
-    expect(order).toEqual(["event:A", "cursor:1", "event:B", "event:B", "done", "cursor:2"]);
+    expect(order).toEqual(["event:A", "cursor:9007199254740993-1", "event:B", "cursor:9007199254740993-2", "done", "cursor:9007199254740993-3"]);
     const [first, replay] = turnRequests();
     expect(replay.path).toBe(first.path); expect(replay.path).toBe("/v1/conversations/turns");
     expect(replay.bytes).toEqual(first.bytes); expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]);
-    expect(replay.headers["last-event-id"]).toBe("1");
+    expect(replay.headers["last-event-id"]).toBe("9007199254740993-1");
   });
 
   it.each(["event", "cursor"] as const)("does not acknowledge an observer %s failure before replay", async (failure) => {
@@ -405,22 +405,22 @@ describe("private remote Chat binding", () => {
         o.observer.event(e);
       },
       cursor(id) {
-        if (failure === "cursor" && id === "2") throw new Error("fixture-private-observer-error");
+        if (failure === "cursor" && id === "2-0") throw new Error("fixture-private-observer-error");
         o.observer.cursor?.(id);
       },
     };
     const delivery = binding.turn(prompt(), observer);
     const error = await delivery.completion.catch((e: unknown) => e);
     expect(error).toMatchObject({ code: "provider_error" }); expect(JSON.stringify(error)).not.toContain("fixture-private");
-    expect(o.cursors).toEqual(["1"]);
+    expect(o.cursors).toEqual(["1-0"]);
     expect(o.events).toEqual(failure === "event" ? [a] : [a, b]);
     routes.set("/v1/conversations/turns", (res) => { headers(res); res.end(frame(2, b) + frame(3, done)); });
     await delivery.resume(o.observer);
-    expect(o.cursors).toEqual(["1", "2", "3"]);
+    expect(o.cursors).toEqual(["1-0", "2-0", "3-0"]);
     expect(o.events).toEqual(failure === "event" ? [a, b, done] : [a, b, b, done]);
     const [first, replay] = turnRequests();
     expect(replay.path).toBe(first.path); expect(replay.bytes).toEqual(first.bytes);
-    expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]); expect(replay.headers["last-event-id"]).toBe("1");
+    expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]); expect(replay.headers["last-event-id"]).toBe("1-0");
   });
 
   it("reannounces matching headers before replay events after the first admission observer fails", async () => {

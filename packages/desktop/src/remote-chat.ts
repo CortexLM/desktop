@@ -329,7 +329,8 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
         onEventId(id) {
           try {
             guard(delivery);
-            if (!/^\d{1,16}$/.test(id) || !Number.isSafeInteger(Number(id))) throw failed();
+            // SDK 0.4.0 resumes only from complete Redis stream IDs (ms-seq, each u64).
+            if (!/^(0|[1-9]\d{0,19})-(0|[1-9]\d{0,19})$/.test(id) || id.split("-").some((part) => BigInt(part) > 18446744073709551615n)) throw failed();
             observer.cursor?.(id);
             guard(delivery);
             ledger.cursor = id;
