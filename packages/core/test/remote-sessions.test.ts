@@ -1,4 +1,7 @@
 import { afterEach, expect, it, vi } from "vitest"
+import fs from "node:fs"
+import os from "node:os"
+import path from "node:path"
 import { Event, RemoteHistoryWindow, RemoteMessageView, RemoteModel, RemoteSessionView, type RemoteAuthState } from "@cortex/schema"
 import { createServer } from "../../server/src/index"
 import { CLOUD_URL, CortexError, createCore, memoryCredentials, type Core, type CoreRemoteBinding, type CoreRemoteDelivery, type CoreRemoteHost } from "../src/index"
@@ -27,7 +30,7 @@ function delivery(first: Observer) {
     handle,
     admit(value = ids()) { state = "admitted"; observer.admitted(value) },
     emit(event: unknown, cursor = "1") { observer.event(event); observer.cursor?.(cursor) },
-    resolve(terminal = finish(), admission = ids()) { active.resolve({ admission, terminal }) },
+    resolve(terminal: Result["terminal"] = finish() as Result["terminal"], admission = ids()) { active.resolve({ admission, terminal }) },
     reject(next: CoreRemoteDelivery["admissionState"], error: unknown = new Error("private backend detail")) { state = next; active.reject(error) },
     get observer() { return observer },
   }
@@ -61,8 +64,69 @@ function setup() {
 const counts = (core: Core) => ["event", "session", "message", "part"].map((table) => (core.storage.db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get() as { n: number }).n)
 const historyWindow = (n = 1): RemoteHistoryWindow => ({
   conversationID: ids(n).conversationID, title: "Known conversation", modelSlug: model.slug,
-  items: [{ id: ids(n).assistantID, role: "assistant", text: "server text", created_at: "2026-10-03T00:00:00Z", version_index: 2, version_count: 1, is_active_version: true, finish_reason: "stop" }],
-  limit: 100, limited: true, projection: "text-and-attachments", reasoningAndTools: "omitted",
+  items: [{ id: ids(n).assistantID, parent_message_id: null, role: "assistant", text: "server text", created_at: "2026-10-03T00:00:00Z", version_index: 2, version_count: 1, is_active_version: true, finish_reason: "stop" }],
+  limit: 200, limited: false, projection: "retained-parts", reasoningAndTools: "retained",
+})
+
+it("restores only origin/account-owned records from SQLite and fences late discovery", async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "cortex-remote-records-"))
+  let accountID = remoteID("usr", 1), controller = new AbortController()
+  const discovery = deferred<{ conversationID: string; title: string; modelSlug: string }[]>()
+  let delayed = false
+  const make = () => {
+    const binding: CoreRemoteBinding = { accountID, epoch: crypto.randomUUID(), signal: controller.signal,
+      models: async () => [model], upload: async () => { throw new Error("Unused") }, turn: () => { throw new Error("Unused") },
+      history: async () => historyWindow(), discover: () => delayed ? discovery.promise : Promise.resolve([{ conversationID: ids().conversationID, title: "Owned", modelSlug: model.slug }]),
+    }
+    const host: CoreRemoteHost = { bind: () => binding }
+    const core = createCore({ dataDir: dir, credentials: memoryCredentials(), remoteChat: host })
+    core.connection.set({ mode: "cloud", signedIn: false })
+    return core
+  }
+  let core = make()
+  try {
+    const rows = await core.remoteSessions.discover(), id = rows[0].id
+    expect(rows[0].scope).toBe("account")
+    expect(core.storage.listDocs("remote-record")).toHaveLength(1)
+    const oldEpoch = rows[0].epoch
+    await core.close(); controller = new AbortController(); core = make()
+    expect(core.remoteSessions.get(id).epoch).not.toBe(oldEpoch)
+    expect((await core.remoteSessions.history(id)).title).toBe("Known conversation")
+    await core.close(); accountID = remoteID("usr", 2); controller = new AbortController(); core = make()
+    expect(core.remoteSessions.list()).toEqual([])
+    expect(() => core.remoteSessions.get(id)).toThrowError(expect.objectContaining({ code: "not_found" }))
+    delayed = true
+    const pending = core.remoteSessions.discover()
+    controller.abort()
+    discovery.resolve([{ conversationID: ids(2).conversationID, title: "Late foreign row", modelSlug: model.slug }])
+    await expect(pending).rejects.toMatchObject({ code: "aborted" })
+    expect(core.storage.listDocs("remote-record")).toHaveLength(1)
+    expect(counts(core)).toEqual([0, 0, 0, 0])
+  } finally { await core.close(); fs.rmSync(dir, { recursive: true, force: true }) }
+})
+
+it("keeps reset delivery history-only without replay or duplicate local effects", async () => {
+  const f = setup(), session = await f.create()
+  const pending = f.service.prompt(session.id, { message: "original draft", attachmentIDs: [] }), d = f.controls[0]
+  d.admit(); const accepted = await pending
+  d.emit({ type: "text_delta", message_id: ids().assistantID, delta: "A" }, "9007199254740993-0")
+  d.emit({ type: "text_delta", message_id: ids().assistantID, delta: "B" }, "")
+  d.reject("admitted")
+  expect(await accepted.done).toMatchObject({ state: "history_required", complete: false })
+  await expect(f.service.resume(session.id)).rejects.toMatchObject({ code: "conflict" })
+  expect(f.service.messages(session.id)[1].parts).toMatchObject([{ type: "text", text: "AB" }])
+  expect(f.turn).toHaveBeenCalledTimes(1); expect(d.handle.resume).not.toHaveBeenCalled()
+  expect(counts(f.core)).toEqual([0, 0, 0, 0]); expect(f.network).not.toHaveBeenCalled()
+})
+
+it.each(["incomplete", "blocked", "cancelled"] as const)("preserves %s terminal outcome without promoting stop to success", async (outcome) => {
+  const f = setup(), session = await f.create()
+  const pending = f.service.prompt(session.id, { message: "request", attachmentIDs: [] }), d = f.controls[0]
+  d.admit(); const accepted = await pending
+  const terminal = { ...finish(), outcome, termination_reason: "contradictory_terminal" }
+  d.emit(terminal); d.resolve(terminal)
+  expect(await accepted.done).toMatchObject({ complete: false, terminalOutcome: outcome, terminationReason: "contradictory_terminal" })
+  expect(f.service.messages(session.id)[1]).toMatchObject({ terminalOutcome: outcome, terminationReason: "contradictory_terminal" })
 })
 
 it("admits only after headers with a local user ID; projects deltas and measured usage without local side effects", async () => {
@@ -202,6 +266,25 @@ it("keeps the one-off on the original delivery and omits it on the next ordinary
   second.emit(terminal); second.resolve(terminal, admission); await ordinary.done
 })
 
+it("marks expired replay partial before complete retained history without rewriting the live snapshot", async () => {
+  const f = setup(), session = await f.create()
+  const pending = f.service.prompt(session.id, { message: "original", attachmentIDs: [] }), d = f.controls[0]
+  d.admit(); const accepted = await pending
+  d.emit({ type: "text_delta", message_id: ids().assistantID, delta: "before gap" })
+  d.reject("admitted"); await accepted.done
+  const replay = f.service.resume(session.id); d.admit(); const resumed = await replay
+  const terminal = { type: "error", code: "provider_error", recovery: "history" } as const
+  d.emit(terminal); d.resolve(terminal)
+  expect(await resumed.done).toMatchObject({ state: "history_required", complete: false, partial: true })
+  await expect(f.service.resume(session.id)).rejects.toMatchObject({ code: "conflict" })
+  f.history.mockResolvedValueOnce(historyWindow())
+  expect(await f.service.history(session.id)).toEqual(historyWindow())
+  expect(f.service.get(session.id).outcome).toMatchObject({ state: "settled", complete: false, partial: true })
+  expect(f.service.messages(session.id)[1].parts).toContainEqual(expect.objectContaining({ type: "text", text: "before gap" }))
+  expect(f.service.messages(session.id)[1].parts).toContainEqual(expect.objectContaining({ type: "unsupported", kind: "history" }))
+  expect(f.turn).toHaveBeenCalledTimes(1); expect(d.handle.resume).toHaveBeenCalledTimes(1)
+})
+
 it("owns uploaded file IDs per session and snapshots bytes/metadata without fetching caller URLs", async () => {
   const f = setup(), a = await f.create(), b = f.service.create({ epoch: a.epoch, modelSlug: model.slug, effort: "high" })
   const pending = deferred<Awaited<ReturnType<CoreRemoteBinding["upload"]>>>()
@@ -250,7 +333,7 @@ it("releases definitive refusals, retains ambiguous admission and resumes only t
   const second = await replay
   expect(second.messageID).toBe(accepted.messageID)
   expect(f.service.messages(session.id)).toEqual(visible)
-  d.emit(finish()); d.resolve(); expect(await second.done).toMatchObject({ complete: false, partial: true, finishReason: "stop" })
+  d.emit(finish()); d.resolve(); expect(await second.done).toMatchObject({ complete: true, partial: false, finishReason: "stop" })
   expect(d.handle.resume).toHaveBeenCalledTimes(2)
   expect(f.turn).toHaveBeenCalledTimes(3); expect(f.upload).not.toHaveBeenCalled()
 })
@@ -274,7 +357,7 @@ it("repeats matching header admission after a callback interruption without dupl
   expect(f.service.messages(session.id).map((m) => m.id)).toEqual(originals)
   expect(admitted.messageID).toBe(originals[0])
   d.emit(finish()); d.resolve()
-  expect(await admitted.done).toMatchObject({ partial: true, complete: false })
+  expect(await admitted.done).toMatchObject({ partial: false, complete: true })
   expect(f.turn).toHaveBeenCalledTimes(1)
 })
 
@@ -303,7 +386,7 @@ it("detaches before headers without admitting a draft; replay waits for matching
   expect(() => old.admitted(ids())).toThrow(CortexError)
   d.admit(); const result = await pending
   d.emit(finish()); d.resolve()
-  expect(await result.done).toMatchObject({ complete: false, partial: true })
+  expect(await result.done).toMatchObject({ complete: true, partial: false })
   expect(f.turn).toHaveBeenCalledTimes(1)
 })
 
@@ -368,7 +451,7 @@ it("keeps incomplete media and expired replay reserved until bounded known-histo
   d.emit(finish()); d.reject("admitted")
   expect(await accepted.done).toMatchObject({ state: "history_required", complete: false })
   await expect(f.service.resume(session.id)).rejects.toMatchObject({ code: "conflict" })
-  f.history.mockResolvedValueOnce({ ...historyWindow(), limited: false } as never)
+  f.history.mockResolvedValueOnce({ ...historyWindow(), limited: true } as never)
   await expect(f.service.history(session.id)).rejects.toMatchObject({ code: "provider_error" })
   f.history.mockResolvedValueOnce(historyWindow())
   const history = await f.service.history(session.id)

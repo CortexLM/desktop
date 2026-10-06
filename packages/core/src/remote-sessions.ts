@@ -1,12 +1,13 @@
 import { z } from "zod"
 import {
   ErrorCode, newId, RemoteEpoch, RemoteFile, RemoteFinish, RemoteHistoryWindow, RemoteMessageView,
-  RemoteModel, RemoteNoticeText, RemotePart, RemotePromptInput, RemoteSessionCreateInput, RemoteUploadInput,
-  type RemoteOutcome, type RemoteSessionView,
+  RemoteModel, RemoteNoticeText, RemotePart, RemotePromptInput, RemoteSessionCreateInput, RemoteUploadInput, RemoteTerminalOutcome, RemoteTerminationReason,
+  RemoteSessionView, type RemoteOutcome,
 } from "@cortex/schema"
 import type { Bus } from "./bus"
 import type { ConnectionService } from "./connection"
 import { CortexError } from "./error"
+import type { Storage } from "./storage"
 
 type Admission = { conversationID: string; assistantID: string }
 type Observer = { admitted(ids: Admission): void; event(event: unknown): void; cursor?(id: string): void }
@@ -20,14 +21,16 @@ export type CoreRemoteDelivery = {
   resume(observer: Observer, signal?: AbortSignal): Promise<HostResult>
 }
 export interface CoreRemoteBinding {
+  readonly accountID?: string
   readonly epoch: string
   readonly signal: AbortSignal
+  discover?(signal?: AbortSignal): Promise<{ conversationID: string; title: string; modelSlug: string }[]>
   models(signal?: AbortSignal): Promise<RemoteModel[]>
   upload(input: { body: Blob; filename: string; conversationID?: string }, signal?: AbortSignal): Promise<HostFile>
   turn(input: HostTurn, observer: Observer, signal?: AbortSignal): CoreRemoteDelivery
   history(conversationID: string, signal?: AbortSignal): Promise<{
     conversationID: string; title: string; modelSlug: string; items: unknown[]
-    limit: 100; limited: true; projection: "text-and-attachments"; reasoningAndTools: "omitted"
+    limit: 200; limited: false; projection: "retained-parts"; reasoningAndTools: "retained"
   }>
 }
 export interface CoreRemoteHost { bind(origin: string): CoreRemoteBinding }
@@ -40,7 +43,7 @@ const Text = z.string().max(16 * 1024 * 1024)
 const Upload = z.object({ body: z.instanceof(Blob).refine((b) => b.size > 0 && b.size <= 8 * 1024 * 1024), filename: RemoteFile.shape.filename, oneOffModelSlug: RemoteUploadInput.shape.oneOffModelSlug }).strict()
 const Envelope = z.object({ type: z.string().min(1).max(100), message_id: AdmissionSchema.shape.assistantID.optional(), conversation_id: AdmissionSchema.shape.conversationID.optional() })
 const Terminal = z.discriminatedUnion("type", [
-  z.object({ type: z.literal("done"), message_id: AdmissionSchema.shape.assistantID, finish_reason: RemoteFinish }),
+  z.object({ type: z.literal("done"), message_id: AdmissionSchema.shape.assistantID, finish_reason: RemoteFinish, outcome: RemoteTerminalOutcome.optional(), termination_reason: RemoteTerminationReason.optional() }),
   z.object({ type: z.literal("error"), code: z.enum(["provider_error", "provider_auth_failed", "provider_rate_limited"]), recovery: z.enum(["history", "none"]) }),
 ])
 const Tool = RemotePart.options[5]
@@ -60,15 +63,15 @@ type Owner = { binding: CoreRemoteBinding; origin: string; controller: AbortCont
 type RecordState = { owner: Owner; view: RemoteSessionView; messages: RemoteMessageView[]; files: Map<string, { file: RemoteFile; body: Blob; filename: string }>; uploads: number; historyRead: number; turn?: Turn }
 type Accepted = { messageID: string; done: Promise<RemoteOutcome> }
 type Attempt = { controller: AbortController; active: boolean; wireSettled: boolean; admission: ReturnType<typeof deferred<Accepted>>; done: ReturnType<typeof deferred<RemoteOutcome>> }
-type Turn = { record: RecordState; input: HostTurn; user: RemoteMessageView; assistant: RemoteMessageView; delivery?: CoreRemoteDelivery; ids?: Admission; terminal?: z.infer<typeof Terminal>; attempt?: Attempt; characters: number }
+type Turn = { record: RecordState; input: HostTurn; user: RemoteMessageView; assistant: RemoteMessageView; delivery?: CoreRemoteDelivery; ids?: Admission; terminal?: z.infer<typeof Terminal>; attempt?: Attempt; characters: number; reset?: boolean }
 
-/** Ephemeral remote projections. No local provider, tool, plugin or storage dependency. */
+/** Owner-scoped remote projections; durable snapshots use the existing doc table, never local execution events. */
 export class RemoteSessionService {
   private owner?: Owner
   private records = new Map<string, RecordState>()
   private pending?: Turn
   private closed = false
-  constructor(private bus: Bus, private connection: ConnectionService, private host?: CoreRemoteHost) {}
+  constructor(private bus: Bus, private connection: ConnectionService, private host?: CoreRemoteHost, private storage?: Storage) {}
 
   private binding(): Owner {
     if (this.closed) throw problem("aborted")
@@ -84,6 +87,19 @@ export class RemoteSessionService {
       const abort = () => { if (this.owner === owner) this.clear() }
       owner.off = () => binding.signal.removeEventListener("abort", abort)
       this.owner = owner
+      if (binding.accountID && this.storage) {
+        const parent = JSON.stringify([origin, binding.accountID])
+        for (const value of this.storage.listDocs<{ view: RemoteSessionView; messages: RemoteMessageView[] }>("remote-record", parent)) {
+          const view = parse(RemoteSessionView, value.view), messages = parse(z.array(RemoteMessageView), value.messages)
+          view.epoch = binding.epoch
+          if (["streaming", "detached", "admitting", "uncertain"].includes(view.state)) {
+            view.state = "history_required"
+            view.outcome = { state: "history_required", complete: false, partial: true }
+            for (const message of messages) if (message.role === "assistant") message.partial = true
+          }
+          this.records.set(view.id, { owner, view, messages, files: new Map(), uploads: 0, historyRead: 0 })
+        }
+      }
       binding.signal.addEventListener("abort", abort, { once: true })
       if (binding.signal.aborted) { this.clear(); throw problem("aborted") }
       return owner
@@ -102,7 +118,12 @@ export class RemoteSessionService {
   }
 
   private changed(record: RecordState) {
+    this.guard(record.owner, record)
     record.view.time.updated = Date.now()
+    if (record.owner.binding.accountID && this.storage) {
+      const parent = JSON.stringify([record.owner.origin, record.owner.binding.accountID])
+      this.storage.putDoc("remote-record", JSON.stringify([parent, record.view.id]), { view: record.view, messages: record.messages }, parent, record.view.time.updated)
+    }
     this.bus.publish("remote.session.changed", { sessionID: record.view.id, epoch: record.view.epoch }, "remote")
   }
 
@@ -134,7 +155,7 @@ export class RemoteSessionService {
     if (!model) throw problem("model_not_found")
     if ((model.reasoning === true) !== (value.effort !== undefined)) throw problem("invalid_request")
     const now = Date.now()
-    const view: RemoteSessionView = { id: newId("session"), source: "remote", epoch: value.epoch, scope: "process", title: "", modelSlug: value.modelSlug, ...(value.effort ? { effort: value.effort } : {}), state: "ready", time: { created: now, updated: now } }
+    const view: RemoteSessionView = { id: newId("session"), source: "remote", epoch: value.epoch, scope: owner.binding.accountID ? "account" : "process", title: "", modelSlug: value.modelSlug, ...(value.effort ? { effort: value.effort } : {}), state: "ready", time: { created: now, updated: now } }
     const record: RecordState = { owner, view, messages: [], files: new Map(), uploads: 0, historyRead: 0 }
     this.records.set(view.id, record)
     this.changed(record)
@@ -144,6 +165,21 @@ export class RemoteSessionService {
 
   get(id: string): RemoteSessionView { return structuredClone(this.record(id).view) }
   list(): RemoteSessionView[] { this.binding(); return structuredClone([...this.records.values()].map((r) => r.view)) }
+  async discover(): Promise<RemoteSessionView[]> {
+    const owner = this.binding()
+    if (!owner.binding.accountID || !owner.binding.discover) return this.list()
+    const rows = parse(z.array(z.object({ conversationID: AdmissionSchema.shape.conversationID, title: z.string().max(1024), modelSlug: z.string().min(1) })), await this.wait(owner, () => owner.binding.discover!(owner.controller.signal)))
+    this.guard(owner)
+    if (new Set(rows.map((row) => row.conversationID)).size !== rows.length) throw problem()
+    for (const row of rows) {
+      if ([...this.records.values()].some((r) => r.view.conversationID === row.conversationID)) continue
+      const now = Date.now()
+      const view: RemoteSessionView = { id: newId("session"), source: "remote", scope: "account", epoch: owner.binding.epoch, ...row, state: "history_required", time: { created: now, updated: now } }
+      const record: RecordState = { owner, view, messages: [], files: new Map(), uploads: 0, historyRead: 0 }
+      this.records.set(view.id, record); this.changed(record)
+    }
+    return this.list()
+  }
   messages(id: string): RemoteMessageView[] { return structuredClone(this.record(id).messages) }
 
   async upload(id: string, input: unknown): Promise<RemoteFile> {
@@ -165,6 +201,7 @@ export class RemoteSessionService {
   async prompt(id: string, input: unknown): Promise<Accepted> {
     const record = this.record(id), value = parse(RemotePromptInput, input, "invalid_request")
     if (this.pending || record.uploads) throw problem("session_busy")
+    if (record.view.state === "history_required") throw problem("conflict")
     const files = value.attachmentIDs.map((id) => { const saved = record.files.get(id); if (!saved) throw problem("invalid_request"); return saved.file })
     const base = { sessionID: id, time: { created: Date.now() }, partial: false }
     const user: RemoteMessageView = { ...base, id: newId("message"), role: "user", parts: [
@@ -181,8 +218,6 @@ export class RemoteSessionService {
   async resume(id: string): Promise<Accepted> {
     const record = this.record(id), turn = record.turn
     if (!turn?.delivery || this.pending !== turn || !turn.attempt?.wireSettled || !["uncertain", "detached"].includes(record.view.state)) throw problem("conflict")
-    // ponytail: numeric cursors can replay equal-ID frames; exact reconstruction needs a per-frame position.
-    this.unsupported(turn, "history", false)
     return this.start(turn, true)
   }
 
@@ -239,7 +274,7 @@ export class RemoteSessionService {
         catch (error) { this.unsupported(turn, "unknown", true); this.changed(record); throw neutral(error) }
         this.changed(record); guard()
       },
-      cursor: () => guard(), // Main owns the acknowledged cursor; equal-ID frames remain distinct.
+      cursor: (id) => { guard(); turn.reset = id === "" },
     }
     try {
       guard()
@@ -262,7 +297,7 @@ export class RemoteSessionService {
     if (turn.attempt !== attempt || this.records.get(record.view.id) !== record || this.owner !== record.owner) return
     try { this.guard(record.owner, record) } catch { return }
     const refused = !turn.ids && (!turn.delivery || turn.delivery.admissionState === "refused")
-    const state = refused ? "ready" : turn.terminal ? "history_required" : !attempt.active ? record.view.state : "uncertain"
+    const state = refused ? "ready" : turn.terminal || turn.reset ? "history_required" : !attempt.active ? record.view.state : "uncertain"
     attempt.active = false
     if (refused) this.pending = undefined
     const code = neutral(error).code
@@ -285,8 +320,10 @@ export class RemoteSessionService {
       turn.assistant.partial = true
     }
     const state = terminal.type === "error" && terminal.recovery === "history" ? "history_required" : "settled"
-    const outcome: RemoteOutcome = { state, complete: terminal.type === "done" && terminal.finish_reason === "stop" && !turn.assistant.partial, partial: turn.assistant.partial,
-      ...(terminal.type === "done" ? { finishReason: terminal.finish_reason } : { errorCode: terminal.code }) }
+    if (state === "history_required") this.unsupported(turn, "history", false)
+    const outcome: RemoteOutcome = { state, complete: terminal.type === "done" && terminal.finish_reason === "stop" && !terminal.outcome && !turn.assistant.partial, partial: turn.assistant.partial,
+      ...(terminal.type === "done" ? { finishReason: terminal.finish_reason, ...(terminal.outcome ? { terminalOutcome: terminal.outcome } : {}), ...(terminal.termination_reason ? { terminationReason: terminal.termination_reason } : {}) } : { errorCode: terminal.code }) }
+    if (!turn.record.owner.binding.accountID) turn.assistant.partial = true
     if (state === "settled") this.pending = undefined
     attempt.active = false
     turn.record.view.state = state; turn.record.view.outcome = outcome
@@ -334,6 +371,8 @@ export class RemoteSessionService {
         turn.terminal = terminal
         if (terminal.type === "done") {
           assistant.finishReason = terminal.finish_reason
+          assistant.terminalOutcome = terminal.outcome
+          assistant.terminationReason = terminal.termination_reason
           if (parse(z.object({ metadata: z.unknown().optional() }), raw).metadata !== undefined) this.unsupported(turn, "structured", true)
         } else assistant.errorCode = terminal.code
         break
@@ -372,6 +411,10 @@ export class RemoteSessionService {
     if (history.conversationID !== conversationID || history.modelSlug !== record.view.modelSlug) throw problem()
     record.view.title = history.title
     const completed = turn?.ids && history.items.find((m) => m.role === "assistant" && m.id === turn.ids!.assistantID && m.finish_reason !== undefined)
+    if (!turn && record.view.state === "history_required" && history.items.every((message) => message.role !== "assistant" || message.finish_reason !== undefined)) {
+      record.view.state = "settled"
+      record.view.outcome = { state: "settled", complete: false, partial: true }
+    }
     if (turn && this.pending === turn && completed) {
       this.pending = undefined
       turn.assistant.finishReason = completed.finish_reason

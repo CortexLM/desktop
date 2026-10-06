@@ -25,7 +25,10 @@ protocol.registerSchemesAsPrivileged([{ scheme: "cortex", privileges: { standard
 let win: BrowserWindow | undefined;
 
 async function boot() {
-  const remote = new RemoteSession();
+  const remote = new RemoteSession({ openExternal: url => shell.openExternal(url), credentials: fileCredentials(path.join(dataDir, "remote-credentials.json"), {
+    isEncryptionAvailable: () => safeStorage.isEncryptionAvailable() && (process.platform !== "linux" || safeStorage.getSelectedStorageBackend() !== "basic_text"),
+    encryptString: (value) => safeStorage.encryptString(value), decryptString: (value) => safeStorage.decryptString(value),
+  }, true) });
   const core = createCore({
     dataDir,
     credentials: fileCredentials(path.join(dataDir, "credentials.json"), safeStorage),
@@ -34,10 +37,13 @@ async function boot() {
     remoteProbe: (url) => probeRemote(url),
     remoteAuth: remote,
     remoteChat: remote,
+    remoteCode: remote,
+    remoteWorkBot: remote,
     skills: { builtin: path.join(resources, "skills"), personal: path.join(app.getPath("home"), ".cortex", "skills") },
     plugins: { personal: path.join(app.getPath("home"), ".cortex", "plugins") },
   });
   await core.start({ computerUse: findCuaDriver() });
+  if (core.connection.get().mode !== "local") await remote.restore(core.connection.remoteOrigin());
   // Test hook: route one provider to a local endpoint (E2E streaming without network). Ignored in packaged builds.
   const testBase = !app.isPackaged && process.env.CORTEX_TEST_PROVIDER_BASEURL;
   if (testBase) { const [id, url] = testBase.split("="); await core.providers.update(id, { baseURL: url }); }

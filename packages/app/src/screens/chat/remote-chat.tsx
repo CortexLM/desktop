@@ -210,8 +210,8 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
 
   const base = models.find((item) => item.slug === (session?.modelSlug ?? model));
   const effective = models.find((item) => item.slug === (draft.oneOff || session?.modelSlug || model));
-  const historyImages = messages.some((message) => message.parts.some((part) => part.type === "file"))
-    || !!history?.items.some((message) => message.attachments?.some((file) => file.content_type.startsWith("image/")));
+  const historyImages = (session?.scope !== "account" || effective?.vision !== true) && (messages.some((message) => message.parts.some((part) => part.type === "file"))
+    || !!history?.items.some((message) => message.attachments?.some((file) => file.content_type?.startsWith("image/"))));
   const deliveryBusy = !!session && !["ready", "settled"].includes(session.state);
   const modelValid = !!base && !!effective && (!session || base.reasoning !== true || session.effort !== undefined);
   const fileBlocked = draft.files.length > 0 && effective?.vision !== true;
@@ -479,7 +479,7 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
     </div>
     <div className="thread remote-chat"><div className="thread-inner" style={{ overflowWrap: "anywhere" }}>
       <div className="banner info" role="status" style={{ display: "block" }}>
-        <b>{t("chat.remote.limited")}</b><p>{t("chat.remote.limitedBody")}</p>
+        <b>{t("chat.remote.limited")}</b><p>{t(session?.scope === "account" ? "chat.remote.accountBody" : "chat.remote.limitedBody")}</p>
         {history && <p>{t("chat.remote.returnedCount", { count: history.items.length })}</p>}
       </div>
       {!loaded && !error && <p role="status">{t("system.variant.loading")}</p>}
@@ -500,9 +500,15 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
         <h3>{t("chat.remote.knownHistory")}</h3>
         {history.items.map((message) => <article key={message.id}>
           <b>{t(`chat.remote.role.${message.role}`)}</b>
-          <div style={{ whiteSpace: "pre-wrap" }}>{message.text}</div>
-          {message.attachments?.map((file) => <Att key={file.file_id} name={file.filename}
-            meta={t("chat.remote.fileMetadata", { mime: file.content_type, bytes: file.byte_size })} />)}
+          {message.parts?.length ? message.parts.map((part) => <section key={part.id} data-testid="remote-history-part">
+            {part.kind === "text" ? <Paras text={part.text ?? ""} /> : <details>
+              <summary>{t(`chat.remote.historyPart.${part.kind}`)} - {t(`chat.remote.retention.${part.retention}`)}</summary>
+              {part.text !== undefined && <div style={{ whiteSpace: "pre-wrap" }}>{part.text}</div>}
+              {part.metadata && <pre style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}>{JSON.stringify(part.metadata, null, 2)}</pre>}
+            </details>}
+          </section>) : <div style={{ whiteSpace: "pre-wrap" }}>{message.text}</div>}
+          {message.attachments?.map((file, index) => <Att key={file.file_id ?? index} name={file.filename ?? t("chat.remote.unknown")}
+            meta={t("chat.remote.fileMetadata", { mime: file.content_type ?? t("chat.remote.unknown"), bytes: file.byte_size ?? t("chat.remote.unknown") })} />)}
         </article>)}
       </section>}
       {messages.length > 0 && <h3>{t("chat.remote.liveProjection")}</h3>}
@@ -512,6 +518,7 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
           {message.partial && <p className="chat-note">{t("chat.remote.partial")}</p>}
           {message.errorCode && <p className="chat-err" role="alert">{t("chat.remote.deliveryError")}</p>}
           {message.finishReason && <p className="chat-note">{t(`chat.remote.finish.${message.finishReason}`)}</p>}
+          {message.terminalOutcome && <p className="chat-err" role="status">{t("chat.remote.incompleteTerminal", { outcome: message.terminalOutcome, reason: message.terminationReason ?? t("chat.remote.unknown") })}</p>}
         </>;
         return message.role === "user"
           ? <div className="chat-ucol" key={message.id}><div className="msg-user msg-user-live">{content}</div></div>

@@ -12,6 +12,7 @@ import { bashOutput, toolName, toolTitle } from "../../state/tool-label";
 import { ModelComposer, type SendOptions } from "../chat/model-composer";
 import { TestIdComposer, basename, useAgo } from "./parts";
 import type { CodeFx } from "./fixtures";
+import { CodeConnection, RemoteCodeSession } from "./remote-code";
 
 const STATUS: Record<string, string> = { run: "code.status.running", wait: "code.status.toReview", ok: "code.status.done", err: "code.status.failed" };
 const toPrompt = (text: string, files: ComposerAttachment[], options: SendOptions): PromptInput => ({
@@ -21,7 +22,7 @@ const toPrompt = (text: string, files: ComposerAttachment[], options: SendOption
 /* =====================================================================
    Home
    ===================================================================== */
-export function CodeHome() { return isPreview() ? <HomePreview /> : <HomeLive />; }
+export function CodeHome() { return isPreview() ? <HomePreview /> : <CodeConnection local={<HomeLive />} />; }
 
 function HomePreview() {
   const t = useT();
@@ -121,7 +122,7 @@ function HomeLive() {
 export function CodeSession() {
   const { params } = useNav();
   const start = previewChatStart();
-  return isPreview() ? <SessionPreview start={start} /> : <SessionLive key={params.get("id")} />;
+  return isPreview() ? <SessionPreview start={start} /> : params.get("source") === "code-api" ? <RemoteCodeSession key={params.get("id")} /> : <SessionLive key={params.get("id")} />;
 }
 
 const diffClass = (l: string) => (l[0] === "+" ? "add" : l[0] === "-" ? "del" : l.startsWith("@@") ? "hunk" : "");
