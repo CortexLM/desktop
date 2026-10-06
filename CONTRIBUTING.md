@@ -61,6 +61,8 @@ New behaviour gets a test. See [docs/testing.md](./docs/testing.md).
 
 ## Pull requests
 
+Run `bun run lint` before opening a pull request.
+
 Title `type: short description` (`feat`, `fix`, `docs`, `test`, `refactor`). Fill in the
 template and its attestation block honestly ([`.rules/07-git-and-prs.md`](./.rules/07-git-and-prs.md)).
 Docs ship in the same PR ([`.rules/05-documentation.md`](./.rules/05-documentation.md)).
