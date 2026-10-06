@@ -1,8 +1,19 @@
 import { z } from "zod";
 import type { CortexClient, CodeSession, CodeSessionCreateRequest, CodeTurnRequest, CodeLocalTaskResult, CodeCloudTaskResult } from "@cortex/sdk";
-import { CodeSnapshot, type CodeCreateInput, type CodeSessionView } from "@cortex/schema";
+import { CodeSnapshot, CodeEnvironmentView, CodeUsageView, type CodeCreateInput, type CodeFileView, type CodeSessionView, type CodeSettingsView, type CodeWorkspaceView } from "@cortex/schema";
 import { CortexError, type CodeBinding } from "@cortex/core";
-import type { MainRemoteChatBinding } from "./remote-chat";
+import { CodeWorkspaceRefused, type MainRemoteChatBinding } from "./remote-chat";
+
+// Live workspace read: real `git diff` from the session's own runtime, or the producer's refusal tag. No local fallback.
+async function workspace(client: CortexClient, path: { id: string }): Promise<CodeWorkspaceView> {
+  try {
+    const result = z.object({ diff: z.string().max(4 * 1024 * 1024), exit_code: z.number().int() }).parse(await client.code.sessions.diff.list({ path }));
+    return result.exit_code === 0 ? { state: "ready", diff: result.diff } : { state: "refused", reason: "unavailable" };
+  } catch (error) {
+    if (error instanceof CodeWorkspaceRefused) return { state: "refused", reason: error.reason };
+    throw error;
+  }
+}
 
 const id = (value: string) => {
   if (!/^cnv_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$/.test(value)) throw new CortexError("invalid_request", "Invalid Code session");
@@ -23,11 +34,23 @@ export function createRemoteCodeBinding(client: CortexClient, chat: MainRemoteCh
   const guard = () => { check(); chat.signal.throwIfAborted(); };
   const view = (session: CodeSession): CodeSessionView => {
     if (session.runtime !== "local" && session.runtime !== "cloud") throw new CortexError("provider_unsupported", "This Code runtime is outside the admitted desktop subset");
-    return { id: id(session.id), epoch: chat.epoch, runtime: session.runtime, modelSlug: session.model_slug, title: session.title, state: session.state, delivery: "ready" };
+    return { id: id(session.id), epoch: chat.epoch, runtime: session.runtime, modelSlug: session.model_slug, title: session.title, state: session.state, delivery: "ready",
+      ...(session.repo ? { repo: session.repo } : {}), ...(session.branch ? { branch: session.branch } : {}), ...(session.base_branch ? { baseBranch: session.base_branch } : {}) };
+  };
+  const cloud = async (): Promise<{ available: boolean; reason?: "code_compute_not_configured" }> => {
+    guard();
+    const result = z.object({ runtimes: z.object({ available: z.boolean(), unavailable_reason: z.string().optional() }) }).parse(await client.code.capabilities.list());
+    guard();
+    return result.runtimes.available ? { available: true } : { available: false, reason: "code_compute_not_configured" };
+  };
+  // Main-process refusal: no cloud create or prompt reaches the producer unless it admits a cloud runtime now.
+  const admitCloud = async () => {
+    if (!(await cloud()).available) throw new CortexError("provider_unsupported", "Cloud runtimes are not available for this account");
   };
   return {
     epoch: chat.epoch, accountID: chat.accountID, signal: chat.signal,
     models: () => chat.models(),
+    cloud,
     async list() {
       guard();
       const page = await client.code.sessions.list();
@@ -37,6 +60,7 @@ export function createRemoteCodeBinding(client: CortexClient, chat: MainRemoteCh
     async create(input: CodeCreateInput) {
       guard();
       if (input.epoch !== chat.epoch || input.runtime === "local" && input.repo) throw new CortexError("invalid_request", "LOCAL uses the configured owned developer workspace");
+      if (input.runtime === "cloud") await admitCloud();
       const body: CodeSessionCreateRequest = { runtime: input.runtime, model_slug: input.modelSlug, interaction: "agent", title: input.title, ...(input.runtime === "cloud" && input.repo ? { repo: input.repo } : {}) };
       const session = await client.code.sessions.create({ body });
       guard();
@@ -46,9 +70,9 @@ export function createRemoteCodeBinding(client: CortexClient, chat: MainRemoteCh
       guard();
       const path = { id: id(rawID) };
       const session = view(await client.code.sessions.get({ path }));
-      const [messages, permissions] = await Promise.all([client.code.sessions.messages.list({ path }), client.code.sessions.permissions.list({ path })]);
+      const [messages, permissions, live] = await Promise.all([client.code.sessions.messages.list({ path }), client.code.sessions.permissions.list({ path }), workspace(client, path)]);
       guard();
-      const result = CodeSnapshot.parse({ session, messages: z.object({ items: CodeSnapshot.shape.messages }).parse(messages).items, permissions: permissions.items });
+      const result = CodeSnapshot.parse({ session, messages: z.object({ items: CodeSnapshot.shape.messages }).parse(messages).items, permissions: permissions.items, workspace: live });
       for (const message of result.messages) for (const tool of message.tools) if (tool.tool_name === "task" && tool.result) {
         let parsed: unknown;
         try { parsed = JSON.parse(tool.result); } catch { continue; }
@@ -61,6 +85,8 @@ export function createRemoteCodeBinding(client: CortexClient, chat: MainRemoteCh
       const sessionID = id(rawID), controller = new AbortController();
       const body: CodeTurnRequest = { message, mode: "code", interaction: "agent" };
       const done = (async () => {
+        if (view(await client.code.sessions.get({ path: { id: sessionID }, signal: AbortSignal.any([controller.signal, chat.signal]) })).runtime === "cloud") await admitCloud();
+        guard();
         for await (const event of client.streamCodeTurn(sessionID, { body, idempotencyKey: crypto.randomUUID() }, {
           signal: AbortSignal.any([controller.signal, chat.signal]), maxReconnects: 0,
           onResponse(response) {
@@ -103,5 +129,48 @@ export function createRemoteCodeBinding(client: CortexClient, chat: MainRemoteCh
       guard();
     },
     async stop(rawID) { guard(); await client.code.sessions.cancel.create({ path: { id: id(rawID) } }); guard(); },
+    // Read-only environment state: cloud availability and the owner's runtimes/images. No start, prepare or restore here.
+    async environment() {
+      const [capabilities, runtimes, images] = await Promise.all([cloud(), client.code.runtimes.list(), client.code.runtimes.images.list()]);
+      guard();
+      return CodeEnvironmentView.parse({ epoch: chat.epoch, cloud: capabilities, runtimes: runtimes.items, images: images.items });
+    },
+    async usage() {
+      guard();
+      const result = CodeUsageView.omit({ epoch: true }).parse(await client.code.usage.list());
+      guard();
+      return { epoch: chat.epoch, ...result };
+    },
+    async settings(): Promise<CodeSettingsView> {
+      guard();
+      const result = z.object({ providers: z.array(z.object({ key: z.string(), models: z.array(z.object({ id: z.string(), name: z.string() })) })), settings: z.object({ default_model: z.string().nullable() }) }).parse(await client.code.providers.list());
+      guard();
+      return { epoch: chat.epoch, defaultModel: result.settings.default_model, models: result.providers.flatMap(p => p.models.map(m => ({ ref: `${p.key}/${m.id}`, name: m.name }))) };
+    },
+    async setDefaultModel(ref) {
+      guard();
+      z.object({ ok: z.literal(true) }).parse(await client.code.settings.put({ body: { default_model: ref } }));
+      guard();
+    },
+    // Draft PR preparation: title/branch/base stored on the session. Nothing is pushed and no PR is opened.
+    async prepare(rawID, input) {
+      guard();
+      const session = await client.code.sessions.update({ path: { id: id(rawID) }, body: { ...(input.title !== undefined ? { title: input.title } : {}), ...(input.branch ? { branch: input.branch } : {}), ...(input.baseBranch ? { base_branch: input.baseBranch } : {}) } });
+      guard();
+      return view(session);
+    },
+    async instructions(rawID): Promise<CodeFileView> {
+      guard();
+      try {
+        const result = z.object({ path: z.literal("AGENTS.md"), content: z.string().max(262144) }).parse(await client.http.get({ url: "/v1/code/sessions/{id}/file", path: { id: id(rawID) }, query: { path: "AGENTS.md" }, throwOnError: true }));
+        guard();
+        return { state: "ready", ...result };
+      } catch (error) {
+        if (error instanceof CodeWorkspaceRefused) return { state: "refused", reason: error.reason };
+        // A bound workspace that refuses this one fixed path answers not-found: the repository has no AGENTS.md.
+        if (error instanceof CortexError && error.code === "invalid_request") return { state: "missing" };
+        throw error;
+      }
+    },
   };
 }

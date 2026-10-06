@@ -12,6 +12,7 @@ export const CodeSessionView = z.object({
   id: ID, epoch: z.string(), runtime: z.enum(["local", "cloud"]), modelSlug: z.string(), title: z.string(),
   state: z.enum(["cloud_only", "connecting", "connected", "disconnected", "running", "permission_blocked", "failed", "unpaired", "waiting", "completed", "interrupted", "local"]),
   delivery: z.enum(["ready", "admitting", "streaming", "history_required", "settled"]), errorCode: z.string().optional(),
+  repo: z.string().optional(), branch: z.string().optional(), baseBranch: z.string().optional(),
 })
 export type CodeSessionView = z.infer<typeof CodeSessionView>
 export const CodePermissionView = z.object({
@@ -29,5 +30,47 @@ export const CodeMessageView = z.object({
   tools: z.array(CodeToolView).default([]),
 })
 export type CodeMessageView = z.infer<typeof CodeMessageView>
-export const CodeSnapshot = z.object({ session: CodeSessionView, messages: z.array(CodeMessageView), permissions: z.array(CodePermissionView) })
+// Producer `box_error` tags that refuse a session workspace. Anything else is `unavailable`, never a fallback.
+export const CodeWorkspaceRefusal = z.enum(["code_compute_not_configured", "code_runtime_not_attached", "code_runtime_not_running", "environment_preparing", "github_not_connected", "github_needs_reconnect", "repo_unresolved", "host_not_connected", "unavailable"])
+export type CodeWorkspaceRefusal = z.infer<typeof CodeWorkspaceRefusal>
+export const CodeWorkspaceView = z.discriminatedUnion("state", [
+  z.object({ state: z.literal("ready"), diff: Text }),
+  z.object({ state: z.literal("refused"), reason: CodeWorkspaceRefusal }),
+])
+export type CodeWorkspaceView = z.infer<typeof CodeWorkspaceView>
+// Only whether isolated cloud runtimes exist; the unavailable reason is the producer's public tag.
+export const CodeCapabilitiesView = z.object({ epoch: z.string(), cloud: z.object({ available: z.boolean(), reason: z.literal("code_compute_not_configured").optional() }) })
+export type CodeCapabilitiesView = z.infer<typeof CodeCapabilitiesView>
+// Producer environments: cloud availability plus the owner's runtimes and saved images. LOCAL has no runtime row.
+export const CodeEnvironmentView = z.object({
+  epoch: z.string(), cloud: CodeCapabilitiesView.shape.cloud,
+  runtimes: z.array(z.object({ id: z.string(), status: z.string(), prepare_status: z.string(), repo_url: z.string(), repo_ref: z.string(), environment_version: z.string() })),
+  images: z.array(z.object({ id: z.string(), repo_url: z.string(), repo_ref: z.string(), environment_version: z.string() })),
+})
+export type CodeEnvironmentView = z.infer<typeof CodeEnvironmentView>
+const Sums = { quantity: z.number(), input_tokens: z.number(), output_tokens: z.number(), cost_usd: z.number() }
+export const CodeUsageView = z.object({
+  epoch: z.string(), from: z.string(), to: z.string(), days: z.number(), total_cost_usd: z.number(), total_quantity: z.number(),
+  by_kind: z.array(z.object({ kind: z.string(), ...Sums })), by_model: z.array(z.object({ model_slug: z.string(), ...Sums })),
+})
+export type CodeUsageView = z.infer<typeof CodeUsageView>
+// Producer model refs are `provider/model`.
+const ModelRef = z.string().min(3).max(200).regex(/^[^/\s][^\s]*\/[^\s]+$/)
+export const CodeSettingsView = z.object({ epoch: z.string(), defaultModel: z.string().nullable(), models: z.array(z.object({ ref: z.string(), name: z.string() })) })
+export type CodeSettingsView = z.infer<typeof CodeSettingsView>
+export const CodeSettingsInput = CodeOwner.extend({ defaultModel: ModelRef }).strict()
+export type CodeSettingsInput = z.infer<typeof CodeSettingsInput>
+const Ref = z.string().trim().min(1).max(200)
+// Draft PR preparation persists only what the producer session stores; it never opens a PR.
+export const CodeSessionPatch = CodeOwner.extend({ title: z.string().trim().max(200).optional(), branch: Ref.optional(), baseBranch: Ref.optional() }).strict()
+export type CodeSessionPatch = z.infer<typeof CodeSessionPatch>
+// Only the repository instructions file is readable from the desktop.
+export const CodeInstructionsInput = CodeOwner.extend({ path: z.literal("AGENTS.md") }).strict()
+export const CodeFileView = z.discriminatedUnion("state", [
+  z.object({ state: z.literal("ready"), path: z.string(), content: Text }),
+  z.object({ state: z.literal("missing") }),
+  z.object({ state: z.literal("refused"), reason: CodeWorkspaceRefusal }),
+])
+export type CodeFileView = z.infer<typeof CodeFileView>
+export const CodeSnapshot = z.object({ session: CodeSessionView, messages: z.array(CodeMessageView), permissions: z.array(CodePermissionView), workspace: CodeWorkspaceView.optional() })
 export type CodeSnapshot = z.infer<typeof CodeSnapshot>

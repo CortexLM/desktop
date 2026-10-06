@@ -1,4 +1,4 @@
-import { CodeCreateInput, CodePromptInput, CodeSnapshot, CodeOwner, CodeDecisionInput, type CodeSessionView, type RemoteModel } from "@cortex/schema"
+import { CodeCreateInput, CodePromptInput, CodeSnapshot, CodeOwner, CodeDecisionInput, CodeSessionPatch, CodeSettingsInput, CodeInstructionsInput, type CodeEnvironmentView, type CodeFileView, type CodeSessionView, type CodeSettingsView, type CodeUsageView, type RemoteModel } from "@cortex/schema"
 import { CortexError } from "./error"
 import type { Bus } from "./bus"
 import type { ConnectionService } from "./connection"
@@ -8,6 +8,7 @@ export interface CodeBinding {
   readonly accountID?: string
   readonly signal: AbortSignal
   models(): Promise<RemoteModel[]>
+  cloud(): Promise<{ available: boolean; reason?: "code_compute_not_configured" }>
   list(): Promise<CodeSessionView[]>
   create(input: CodeCreateInput): Promise<CodeSessionView>
   snapshot(id: string): Promise<CodeSnapshot>
@@ -15,6 +16,12 @@ export interface CodeBinding {
   watch(id: string, changed: () => void): { ready: Promise<void>; close(): void }
   decide(id: string, permissionID: string, decision: "allow" | "deny"): Promise<void>
   stop(id: string): Promise<void>
+  environment(): Promise<CodeEnvironmentView>
+  usage(): Promise<CodeUsageView>
+  settings(): Promise<CodeSettingsView>
+  setDefaultModel(ref: string): Promise<void>
+  prepare(id: string, input: Omit<CodeSessionPatch, "epoch">): Promise<CodeSessionView>
+  instructions(id: string): Promise<CodeFileView>
 }
 export interface CodeHost { bindCode(origin: string): CodeBinding }
 type RecordState = { owner: CodeBinding; view: CodeSessionView; admission?: symbol; stopping?: boolean; delivery?: ReturnType<CodeBinding["turn"]>; watch?: ReturnType<CodeBinding["watch"]> }
@@ -57,6 +64,11 @@ export class CodeService {
     const owner = this.binding(), models = await owner.models()
     this.guard(owner)
     return { epoch: owner.epoch, models: models.filter(m => m.tools === true) }
+  }
+  async capabilities() {
+    const owner = this.binding(), cloud = await owner.cloud()
+    this.guard(owner)
+    return { epoch: owner.epoch, cloud }
   }
   async list() {
     const owner = this.binding(), rows = await owner.list()
@@ -149,6 +161,30 @@ export class CodeService {
     record.view.delivery = "history_required"
     this.changed(record)
   }
+  // Owner-fenced producer reads/writes outside a turn. An owner change while in flight refuses the result.
+  private async owned<T>(epoch: string, run: (owner: CodeBinding) => Promise<T>): Promise<T> {
+    const owner = this.binding()
+    if (owner.epoch !== epoch) throw new CortexError("aborted", "Code owner changed")
+    const result = await run(owner)
+    this.guard(owner)
+    return result
+  }
+  async environment(input: unknown) { return this.owned(CodeOwner.parse(input).epoch, owner => owner.environment()) }
+  async usage(input: unknown) { return this.owned(CodeOwner.parse(input).epoch, owner => owner.usage()) }
+  async settings(input: unknown) { return this.owned(CodeOwner.parse(input).epoch, owner => owner.settings()) }
+  async setDefaultModel(input: unknown) {
+    const { epoch, defaultModel } = CodeSettingsInput.parse(input)
+    await this.owned(epoch, owner => owner.setDefaultModel(defaultModel))
+    return this.settings({ epoch })
+  }
+  async prepare(id: string, input: unknown) {
+    const { epoch, ...patch } = CodeSessionPatch.parse(input), record = this.record(id, epoch)
+    const view = await this.owned(epoch, owner => owner.prepare(id, patch))
+    record.view = { ...record.view, ...view, delivery: record.view.delivery, errorCode: record.view.errorCode }
+    this.changed(record)
+    return view
+  }
+  async instructions(id: string, input: unknown) { return this.owned(CodeInstructionsInput.parse(input).epoch, owner => owner.instructions(id)) }
   close() {
     for (const record of this.records.values()) { record.delivery?.detach(); record.watch?.close() }
     this.records.clear()

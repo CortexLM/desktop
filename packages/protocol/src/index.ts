@@ -9,6 +9,7 @@ import {
   CodeOwner,
   CodePromptInput,
   CodeDecisionInput,
+  CodeSessionPatch, CodeSettingsInput, CodeInstructionsInput,
   WorkBotOwner, WorkBotCreate, WorkBotUpdate, WorkJobCreate, WorkBotParentInput,
   BotCopyCreate, BotCopyInviteInput, BotCopyAccept,
   AppCatalogInput, AppConsent, ConnectorEnable, ToolRuleInput,
@@ -41,6 +42,7 @@ import {
   TaskCreateInput,
   TaskUpdateInput,
   type ApiError,
+  WorkMemoryAdd,
 } from "@cortex/schema"
 
 type Method = "get" | "post" | "put" | "patch" | "delete"
@@ -95,12 +97,19 @@ export const routes = {
   "remoteSession.history": r("get", "/api/remote/sessions/:id/history"),
 
   "code.models": r("get", "/api/code/models"),
+  "code.capabilities": r("get", "/api/code/capabilities"),
   "code.list": r("get", "/api/code/sessions"),
   "code.create": r("post", "/api/code/sessions", { body: CodeCreateInput, status: 201 }),
   "code.snapshot": r("post", "/api/code/sessions/:id/snapshot", { body: CodeOwner }),
   "code.prompt": r("post", "/api/code/sessions/:id/prompt", { body: CodePromptInput, status: 202 }),
   "code.stop": r("post", "/api/code/sessions/:id/stop", { body: CodeOwner }),
   "code.decide": r("post", "/api/code/sessions/:id/permissions/:permissionID", { body: CodeDecisionInput }),
+  "code.environment": r("post", "/api/code/environment", { body: CodeOwner }),
+  "code.usage": r("post", "/api/code/usage", { body: CodeOwner }),
+  "code.settings": r("post", "/api/code/settings", { body: CodeOwner }),
+  "code.setDefaultModel": r("put", "/api/code/settings", { body: CodeSettingsInput }),
+  "code.prepare": r("patch", "/api/code/sessions/:id", { body: CodeSessionPatch }),
+  "code.instructions": r("post", "/api/code/sessions/:id/instructions", { body: CodeInstructionsInput }),
 
   "workBot.list": r("get", "/api/work-bot"),
   "workBot.channelList": r("post", "/api/work-channels", { body: WorkBotOwner }),
@@ -131,6 +140,9 @@ export const routes = {
   "workBot.appAuthorize": r("post", "/api/bot-apps/:slug/authorize", { body: WorkBotOwner }),
   "workBot.appConsent": r("post", "/api/bot-apps/:slug/consent", { body: AppConsent }),
   "workBot.appRevoke": r("post", "/api/bot-apps/:slug/revoke", { body: WorkBotOwner }),
+  "workBot.memoryList": r("post", "/api/work-bot/:id/memory", { body: WorkBotOwner }),
+  "workBot.memoryAdd": r("post", "/api/work-bot/:id/memory/add", { body: WorkMemoryAdd, status: 201 }),
+  "workBot.memoryRemove": r("post", "/api/work-bot/:id/memory/:memoryID/remove", { body: WorkBotOwner }),
   "workBot.appConnectors": r("post", "/api/work-bot/:id/connectors", { body: WorkBotOwner }),
   "workBot.appEnable": r("post", "/api/work-bot/:id/connectors/:connectionID", { body: ConnectorEnable }),
   "workBot.toolRules": r("post", "/api/work-bot/:id/rules", { body: WorkBotOwner }),

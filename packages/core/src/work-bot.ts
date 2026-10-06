@@ -9,6 +9,14 @@ import { WorkRoutineInput, WorkRoutineEvent, type WorkRoutine, type WorkRoutineR
 import { WorkInboxReadInput, WorkNotificationID, type WorkInboxSnapshot, type WorkInboxReadResult } from "@cortex/schema"
 import { WorkChannelCreateInput, WorkChannelUpdateInput, type WorkChannel } from "@cortex/schema"
 import type { WorkActivity } from "@cortex/schema"
+import { WorkMemoryAdd, type WorkMemoryItem, type WorkMemoryTier } from "@cortex/schema"
+
+/** Owner-scoped Bot memory rows; the producer seals text and owns retention. */
+export interface WorkMemoryBinding {
+  list(id: string): Promise<WorkMemoryItem[]>
+  add(id: string, tier: WorkMemoryTier, text: string): Promise<WorkMemoryItem>
+  remove(id: string, memoryID: string): Promise<{ deleted: number }>
+}
 
 /** Process-local, non-durable Bot activity: projected public metadata only, never actions. */
 export interface WorkActivityBinding {
@@ -80,6 +88,7 @@ export interface WorkBotBinding {
   readonly routines?: WorkRoutinesBinding
   readonly apps?: BotAppsBinding
   readonly copy?: BotCopyBinding
+  readonly memory?: WorkMemoryBinding
   readonly epoch: string
   readonly signal: AbortSignal
   list(): Promise<WorkBotView[]>
@@ -295,6 +304,17 @@ export class WorkBotService {
     WorkBotID.parse(id)
     return this.copyRequest(WorkBotOwner.parse(input).epoch, copy => copy.decline(id))
   }
+  private async memoryRequest<T>(epoch: string, id: string, action: (memory: WorkMemoryBinding) => Promise<T>) {
+    WorkBotID.parse(id)
+    const owner = this.owner(epoch)
+    if (!owner.memory) throw new CortexError("provider_unsupported", "Bot memory transport is unavailable")
+    const result = await action(owner.memory)
+    this.guard(owner)
+    return result
+  }
+  memoryList(id: string, input: unknown) { return this.memoryRequest(WorkBotOwner.parse(input).epoch, id, memory => memory.list(id)) }
+  memoryAdd(id: string, input: unknown) { const { epoch, tier, text } = WorkMemoryAdd.parse(input); return this.memoryRequest(epoch, id, memory => memory.add(id, tier, text)) }
+  memoryRemove(id: string, memoryID: string, input: unknown) { WorkBotID.parse(memoryID); return this.memoryRequest(WorkBotOwner.parse(input).epoch, id, memory => memory.remove(id, memoryID)) }
   private async appsRequest<T>(epoch: string, action: (apps: BotAppsBinding) => Promise<T>) {
     const owner = this.owner(epoch)
     if (!owner.apps) throw new CortexError("provider_unsupported", "App configuration transport is unavailable")

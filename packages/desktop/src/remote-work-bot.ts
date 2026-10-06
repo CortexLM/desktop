@@ -1,6 +1,6 @@
 import type { CortexClient, BotCreateRequest, BotUpdateRequest, BotTaskCreateRequest, BotMessageCreateRequest, BotMessageCreateResponse } from "@cortex/sdk";
 import type { BotCapabilities, RealtimeMessage } from "@cortex/api-types";
-import { WorkBotView, WorkJob, WorkBotSnapshot, WorkBotParentResponse } from "@cortex/schema";
+import { WorkBotView, WorkJob, WorkBotSnapshot, WorkBotParentResponse, WorkMemoryList, WorkMemoryItem, WorkMemoryDeleted } from "@cortex/schema";
 import { CortexError, type WorkBotBinding } from "@cortex/core";
 import type { MainRemoteChatBinding } from "./remote-chat";
 import { BotCopyStatus, BotCopyIssued, BotCopyInvite, BotCopyInbox, BotCopyPreview, BotCopyResult, BotCopyDecline } from "@cortex/schema";
@@ -16,6 +16,11 @@ export function createRemoteWorkBotBinding(client: CortexClient, chat: MainRemot
   return {
     epoch: chat.epoch, signal: chat.signal,
     apps: createBotAppsBinding(client, guard, openExternal),
+    memory: {
+      async list(id) { guard(); const result = WorkMemoryList.parse(await client.mascots.memory.list({ path: { id } })); guard(); return result.items; },
+      async add(id, tier, text) { guard(); const result = WorkMemoryItem.parse(await client.mascots.memory.create({ path: { id }, body: { tier, text } })); guard(); return result; },
+      async remove(id, memoryID) { guard(); const result = WorkMemoryDeleted.parse(await client.http.delete({ url: "/v1/mascots/{id}/memory", path: { id }, query: { id: memoryID }, throwOnError: true })); guard(); if (result.deleted !== 1) throw new CortexError("not_found", "Memory entry no longer exists"); return result; },
+    },
     routines: createWorkRoutinesBinding(client, guard),
     inbox: createWorkInboxBinding(client, chat.signal, guard),
     activity: createWorkActivityBinding(client, chat.signal, guard),
@@ -127,9 +132,14 @@ export async function workBotFetch(request: Request, owner: { origin: string; fe
     if (!body || typeof body !== "object" || Object.keys(body).length !== 1 || !("action" in body) || !["allow", "deny"].includes(String(body.action))) throw new CortexError("invalid_request", "Invalid approval decision");
   }
   const appWrite = pluginConnect || plugin && ["PATCH", "DELETE"].includes(request.method) || request.method === "PUT" && new RegExp(`^/v1/mascots/${uuid}/connectors/pcn_[0-7][0-9A-HJKMNP-TV-Z]{25}$`).test(url.pathname) || request.method === "POST" && new RegExp(`^/v1/mascots/${uuid}/approvals$`).test(url.pathname) || request.method === "DELETE" && new RegExp(`^/v1/mascots/${uuid}/approvals/${uuid}$`).test(url.pathname);
+  const memoryPath = new RegExp(`^/v1/mascots/${uuid}/memory$`).test(url.pathname);
+  // Delete only one row by id; tier-wide deletion stays outside the desktop seam.
+  const memoryDelete = memoryPath && request.method === "DELETE" && [...url.searchParams].length === 1 && new RegExp(`^${uuid}$`).test(url.searchParams.get("id") ?? "");
+  if (memoryDelete && (await request.clone().arrayBuffer()).byteLength) throw new CortexError("invalid_request", "Memory removal requires an empty body");
+  const memory = memoryPath && !url.search && (request.method === "GET" || request.method === "POST") || memoryDelete;
   const get = request.method === "GET" && (url.pathname === "/v1/mascots" || url.pathname === "/v1/bot/capabilities" || item.test(url.pathname) || tasks.test(url.pathname) || new RegExp(`^/v1/mascots/${uuid}/(?:messages|tasks/${uuid})$`).test(url.pathname));
   const write = request.method === "POST" && (url.pathname === "/v1/mascots" || tasks.test(url.pathname) || new RegExp(`^/v1/mascots/${uuid}/(?:messages|tasks/${uuid}/cancel)$`).test(url.pathname)) || request.method === "PATCH" && item.test(url.pathname);
-  if (url.origin !== owner.origin || url.search && !catalog && !evaluations && !notifications && !activityEvents || !get && !write && !stream && !activityEvents && !copyRead && !copyWrite && !appRead && !appWrite && !pendingRead && !decision && !evaluations && !routine && !inboxRead && !inboxWrite && !notifications && !notificationWrite && !channel) throw new CortexError("invalid_request", "Invalid Bot request");
+  if (url.origin !== owner.origin || url.search && !catalog && !evaluations && !notifications && !activityEvents && !memoryDelete || !get && !write && !stream && !activityEvents && !copyRead && !copyWrite && !appRead && !appWrite && !pendingRead && !decision && !evaluations && !routine && !inboxRead && !inboxWrite && !notifications && !notificationWrite && !channel && !memory) throw new CortexError("invalid_request", "Invalid Bot request");
   const signal = AbortSignal.any([request.signal, owner.signal, ...(stream ? [] : [AbortSignal.timeout(10000)])]);
   let response: Response | undefined;
   let rejectAbort!: (error: unknown) => void;
@@ -142,9 +152,11 @@ export async function workBotFetch(request: Request, owner: { origin: string; fe
     owner.check(); signal.throwIfAborted();
     if (response.redirected || response.url && new URL(response.url).origin !== owner.origin) throw new Error("Bot redirect refused");
     if (response.status === 401) owner.unauthorized();
-    const expected = channelList && request.method === "POST" ? 201 : notificationWrite ? 204 : copyDecline ? 200 : (copyShare || plugin) && request.method === "DELETE" ? 204 : copyWrite || request.method === "POST" && (routineList || new RegExp(`^/v1/mascots/${uuid}/approvals$`).test(url.pathname)) ? 201 : request.method === "POST" && url.pathname === "/v1/mascots" ? 201 : request.method === "POST" && tasks.test(url.pathname) ? 202 : 200;
+    // The producer answers 201 for a new memory row and 200 when the same text already exists.
+    const expected = memory ? (request.method === "POST" && response.status === 201 ? 201 : 200) : channelList && request.method === "POST" ? 201 : notificationWrite ? 204 : copyDecline ? 200 : (copyShare || plugin) && request.method === "DELETE" ? 204 : copyWrite || request.method === "POST" && (routineList || new RegExp(`^/v1/mascots/${uuid}/approvals$`).test(url.pathname)) ? 201 : request.method === "POST" && url.pathname === "/v1/mascots" ? 201 : request.method === "POST" && tasks.test(url.pathname) ? 202 : 200;
+    if (memory && response.status !== expected) throw new CortexError(response.status === 404 ? "not_found" : response.status === 422 ? "invalid_request" : response.status === 401 || response.status === 403 ? "provider_auth_failed" : "provider_error", "Memory request did not complete");
     if (channel && response.status !== expected) throw new CortexError(response.status === 404 ? "not_found" : response.status === 422 ? "invalid_request" : response.status === 409 ? "conflict" : response.status === 401 || response.status === 403 ? "provider_auth_failed" : "provider_error", "Channel request did not complete");
-    if (response.status !== expected) throw new CortexError(response.status === 401 ? "provider_auth_failed" : (notificationWrite || routine || decision || pendingRead || evaluations || activityEvents) && response.status === 404 ? "not_found" : (inboxWrite || notificationWrite || routine || decision || pendingRead || evaluations) && response.status === 422 ? "invalid_request" : "provider_error", "Bot request did not complete");
+    if (!memory && response.status !== expected) throw new CortexError(response.status === 401 ? "provider_auth_failed" : (notificationWrite || routine || decision || pendingRead || evaluations || activityEvents) && response.status === 404 ? "not_found" : (inboxWrite || notificationWrite || routine || decision || pendingRead || evaluations) && response.status === 422 ? "invalid_request" : "provider_error", "Bot request did not complete");
     if (expected === 204) { owner.check(); return new Response(null, { status: 204 }); }
     if (stream) {
       if (!response.headers.get("content-type")?.includes("text/event-stream") || !response.body) throw new Error("Invalid Bot events");

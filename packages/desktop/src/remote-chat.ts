@@ -3,7 +3,7 @@ import { randomUUID } from "node:crypto";
 import { PRODUCTION_CLOUD_URL, CortexError } from "@cortex/core";
 import type { CortexClient } from "@cortex/sdk";
 import { isId, type StreamEvent, type HistoryMessage as HistoryDTO } from "@cortex/api-types";
-import { RemoteHistoryWindow } from "@cortex/schema";
+import { RemoteHistoryWindow, CodeWorkspaceRefusal } from "@cortex/schema";
 import { z } from "zod";
 
 const Name = z.string().trim().min(1).max(1024);
@@ -98,6 +98,8 @@ const failed = () => new CortexError("provider_error", "Could not complete the r
 // A definitive pre-admission refusal can release a draft; a transport failure cannot.
 class Refused extends CortexError {}
 class InstanceNotFound extends Refused {}
+/** Producer refused the session workspace; `reason` is its `box_error` tag, already narrowed to the public enum. */
+export class CodeWorkspaceRefused extends Refused { constructor(readonly reason: CodeWorkspaceRefusal) { super("provider_unsupported", "The Code workspace is unavailable"); } }
 const aborted = () => new CortexError("aborted", "Remote delivery was detached");
 const invalid = () => new CortexError("invalid_request", "Invalid remote request");
 const neutral = (error: unknown) => error instanceof CortexError ? error : failed();
@@ -113,12 +115,17 @@ export async function remoteChatFetch(request: Request, owner: {
 }): Promise<Response> {
   owner.check();
   const url = new URL(request.url);
-  const codeSession = /^\/v1\/code\/sessions\/cnv_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}(?:\/(?:messages|permissions|events|turns|cancel)|\/permissions\/prm_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26})?$/.test(url.pathname);
+  const codeSession = /^\/v1\/code\/sessions\/cnv_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}(?:\/(?:messages|permissions|events|turns|cancel|diff|file)|\/permissions\/prm_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26})?$/.test(url.pathname);
+  // Environment/usage/settings reads, the default-model write, draft-PR metadata PATCH and the AGENTS.md read only.
+  const codeOwned = (request.method === "GET" && ["/v1/code/runtimes", "/v1/code/runtimes/images", "/v1/code/usage", "/v1/code/providers"].includes(url.pathname))
+    || (request.method === "PUT" && url.pathname === "/v1/code/settings")
+    || (codeSession && request.method === "PATCH" && /^\/v1\/code\/sessions\/cnv_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$/.test(url.pathname))
+    || (codeSession && request.method === "GET" && url.pathname.endsWith("/file") && url.searchParams.get("path") === "AGENTS.md");
   const codeStream = codeSession && ((request.method === "POST" && url.pathname.endsWith("/turns")) || (request.method === "GET" && url.pathname.endsWith("/events") && request.headers.get("accept")?.includes("text/event-stream")));
-  const codeJSON = (url.pathname === "/v1/code/sessions" && ["GET", "POST"].includes(request.method)) || (codeSession && ((request.method === "GET" && /^\/v1\/code\/sessions\/cnv_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}(?:\/(?:messages|permissions|events))?$/.test(url.pathname)) || (request.method === "POST" && (url.pathname.endsWith("/cancel") || /\/permissions\/prm_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$/.test(url.pathname)))));
+  const codeJSON = (url.pathname === "/v1/code/sessions" && ["GET", "POST"].includes(request.method)) || (url.pathname === "/v1/code/capabilities" && request.method === "GET") || (codeSession && ((request.method === "GET" && /^\/v1\/code\/sessions\/cnv_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}(?:\/(?:messages|permissions|events|diff))?$/.test(url.pathname)) || (request.method === "POST" && (url.pathname.endsWith("/cancel") || /\/permissions\/prm_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$/.test(url.pathname))))) || codeOwned;
   const code = codeStream || codeJSON;
   if (code) {
-    const allowedQuery = url.pathname.endsWith("/events") ? ["since", "limit"] : [];
+    const allowedQuery = url.pathname.endsWith("/events") ? ["since", "limit"] : url.pathname.endsWith("/file") ? ["path"] : [];
     if ([...url.searchParams.keys()].some(key => !allowedQuery.includes(key) || url.searchParams.getAll(key).length !== 1)) throw invalid();
   }
   const stream = codeStream || (request.method === "POST" && /^\/v1\/conversations(?:\/cnv_[\da-zA-Z]{26})?\/turns$/.test(url.pathname));
@@ -162,6 +169,14 @@ export async function remoteChatFetch(request: Request, owner: {
       throw failed();
     }
     const successStatus = codeJSON && request.method === "POST" && url.pathname === "/v1/code/sessions" ? 201 : 200;
+    if (response.status !== successStatus && request.method === "GET" && (url.pathname.endsWith("/diff") || url.pathname.endsWith("/file")) && [422, 503].includes(response.status)) {
+      // Only the bounded problem tag crosses; producer detail text never reaches the renderer.
+      const text = await response.text().catch(() => "");
+      let tag: unknown;
+      try { tag = text.length <= 16384 ? (JSON.parse(text) as { box_error?: unknown }).box_error : undefined; } catch { tag = undefined; }
+      const reason = CodeWorkspaceRefusal.safeParse(tag);
+      throw new CodeWorkspaceRefused(reason.success ? reason.data : "unavailable");
+    }
     if (response.status !== successStatus) {
       void response.body?.cancel().catch(() => undefined);
       if (response.status === 401) { owner.unauthorized(); throw new CortexError("provider_auth_failed", "Remote sign-in is required"); }

@@ -11,6 +11,16 @@ it("connector and rule transport preserves exact statuses and refuses policy wri
   expect(network).toHaveBeenCalledTimes(count)
 })
 
+it("memory transport admits list, add and single-row delete only, never tier-wide deletion", async () => {
+  const origin = "http://127.0.0.1:4040", id = "00000000-0000-4000-8000-000000000001", row = "00000000-0000-4000-8000-0000000000aa"
+  const network = vi.fn(async (request: Request) => new Response("{}", { status: request.method === "POST" ? 201 : 200 }))
+  const owner = { origin, fetch: network as typeof fetch, signal: new AbortController().signal, check() {}, unauthorized() {} }
+  for (const [method, path] of [["GET", `/v1/mascots/${id}/memory`], ["POST", `/v1/mascots/${id}/memory`], ["DELETE", `/v1/mascots/${id}/memory?id=${row}`]] as const) expect((await workBotFetch(new Request(origin + path, { method }), owner)).status).toBe(method === "POST" ? 201 : 200)
+  const count = network.mock.calls.length
+  for (const [method, path] of [["DELETE", `/v1/mascots/${id}/memory?tier=profile`], ["DELETE", `/v1/mascots/${id}/memory`], ["DELETE", `/v1/mascots/${id}/memory?id=${row}&tier=log`], ["GET", `/v1/mascots/${id}/memory?tier=note`], ["PUT", `/v1/mascots/${id}/memory`], ["DELETE", `/v1/mascots/${id}/memory?id=not-a-uuid`]] as const) await expect(workBotFetch(new Request(origin + path, { method }), owner)).rejects.toMatchObject({ code: "invalid_request" })
+  expect(network).toHaveBeenCalledTimes(count)
+})
+
 it("independent copy transport preserves exact statuses and refuses public token calls", async () => {
   const origin = "http://127.0.0.1:4040", id = "00000000-0000-4000-8000-000000000001"
   const network = vi.fn(async (request: Request) => new Response(request.method === "DELETE" ? null : "{}", { status: request.method === "DELETE" ? 204 : request.method === "POST" ? 201 : 200 }))

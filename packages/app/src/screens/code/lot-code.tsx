@@ -15,6 +15,7 @@ import { api } from "../../api";
 import { useSessions, useQuery } from "../../state/live";
 import { Agent, Av, Badge, CiIcon, Delta, LiveEmpty, Split, Unified, basename, ix, parse, rich, unfold, useAgo, type CS } from "./parts";
 import type { CodeFx, St, TaskFx, TK } from "./fixtures";
+import { RemoteCodeSettings } from "./remote-code";
 
 /** Git and file identifiers, not copy. */
 const BASE_BRANCH = "main";
@@ -782,7 +783,8 @@ export function SettingsScreen() {
       </nav>
       <div className="pg-panel" key={v}>
         <div className="page-title">{t(SECS.find((s) => s[0] === v)?.[1] ?? SECS[0][1])}</div>
-        {v === "approvals" ? (preview ? <SetApprovals /> : <SetApprovalsLive />) : !preview ? <Unavailable /> : v === "instructions" ? <SetAgents /> : v === "usage" ? <SetUsage /> : <SetRepos />}
+        {preview ? (v === "approvals" ? <SetApprovals /> : v === "instructions" ? <SetAgents /> : v === "usage" ? <SetUsage /> : <SetRepos />)
+          : <RemoteCodeSettings key={v} section={v} local={v === "approvals" ? <SetApprovalsLive /> : <Unavailable />} />}
       </div>
     </div></div>
   </>);

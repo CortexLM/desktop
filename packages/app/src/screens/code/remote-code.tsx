@@ -40,16 +40,18 @@ function CodeComposer({ models, model, setModel, text, setText, busy, send }: {
 
 function RemoteCodeHome() {
   const t = useT(), { go } = useNav();
-  const catalog = useQuery(() => api.code.models(), []), sessions = useQuery(() => api.code.list(), []);
+  const catalog = useQuery(() => api.code.models(), []), sessions = useQuery(() => api.code.list(), []), capabilities = useQuery(() => api.code.capabilities(), []);
   const owns = useOwner(catalog.state === "ready" ? catalog.data.epoch : "");
   const [runtime, setRuntime] = React.useState<"local" | "cloud">("local");
   const [model, setModel] = React.useState(""), [text, setText] = React.useState(""), [repo, setRepo] = React.useState("");
   const [busy, setBusy] = React.useState(false), [error, setError] = React.useState(false);
+  // No farm: cloud is refused before any request; the draft stays and nothing falls back to this computer.
+  const cloudRefused = runtime === "cloud" && capabilities.state === "ready" && !capabilities.data.cloud.available;
   const retained = React.useRef<{ id: string; epoch: string; runtime: string; model: string; repo: string } | undefined>(undefined);
   const draft = React.useRef(text);
   const editText = (value: string) => { draft.current = value; setText(value); };
   const send = async () => {
-    if (busy || catalog.state !== "ready") return;
+    if (busy || catalog.state !== "ready" || cloudRefused) return;
     setBusy(true); setError(false);
     try {
       const stamp = `${runtime}:${model}:${repo}`;
@@ -71,10 +73,123 @@ function RemoteCodeHome() {
       <button className="btn secondary" data-testid="code-mode-cloud" aria-pressed={runtime === "cloud"} disabled={busy} onClick={() => setRuntime("cloud")}>{t("code.remote.cloud")}</button>
     </div>
     <p>{t(runtime === "local" ? "code.remote.localBody" : "code.remote.cloudBody")}</p>
+    {cloudRefused && <div className="banner warn" role="status" data-testid="code-cloud-unavailable" data-reason={capabilities.state === "ready" ? capabilities.data.cloud.reason : undefined}><span>{t("code.workspace.refused.code_compute_not_configured")}</span></div>}
     {runtime === "cloud" && <input className="input" aria-label={t("code.remote.repository")} placeholder={t("code.remote.repository")} value={repo} disabled={busy} onChange={e => setRepo(e.target.value)} />}
-    <CodeComposer models={catalog.state === "ready" ? catalog.data.models : []} model={model} setModel={setModel} text={text} setText={editText} busy={busy} send={() => void send()} />
+    <CodeComposer models={catalog.state === "ready" ? catalog.data.models : []} model={model} setModel={setModel} text={text} setText={editText} busy={busy || cloudRefused} send={() => void send()} />
     {(catalog.state === "error" || sessions.state === "error" || error) && <div className="banner err" role="alert"><span>{t("code.remote.unavailable")}</span><button className="btn secondary" onClick={() => { catalog.reload(); sessions.reload(); }}>{t("code.retry")}</button></div>}
     {sessions.state === "ready" && <div className="tasks">{sessions.data.map(s => <button className="task" key={s.id} onClick={() => go("code-session", { source: "code-api", id: s.id, epoch: s.epoch })}><span className="grow"><b>{s.title || t("code.untitled")}</b><span className="sub">{t(s.runtime === "local" ? "code.remote.local" : "code.remote.cloud")}</span></span></button>)}</div>}
+  </div>;
+}
+
+// LOCAL: the producer's configured developer workspace (no runtime row). Cloud: the owner's runtimes and images, read-only.
+function SessionEnvironment({ epoch, runtime }: { epoch: string; runtime?: "local" | "cloud" }) {
+  const t = useT();
+  const env = useQuery(() => api.code.environment(epoch), [epoch]);
+  if (env.state === "error") return <div className="banner err" role="alert" data-testid="code-env-error">{t("code.remote.unavailable")}</div>;
+  if (env.state !== "ready") return null;
+  return <div className="code-card code-kv" data-testid="code-environment" data-runtime={runtime} data-cloud={env.data.cloud.available ? "available" : "unavailable"}>
+    <div><span>{t("code.remote.execution")}</span><b data-testid="code-env-runtime">{t(runtime === "local" ? "code.remote.local" : "code.remote.cloud")}</b></div>
+    <div><span>{t("code.remote.cloud")}</span><b data-testid="code-env-cloud">{t(env.data.cloud.available ? "code.remote.envCloudReady" : "code.workspace.refused.code_compute_not_configured")}</b></div>
+    {runtime === "local" && <p className="sub" data-testid="code-env-local">{t("code.remote.localBody")}</p>}
+    {runtime === "cloud" && (env.data.runtimes.length ? env.data.runtimes.map(r => <div key={r.id} data-testid="code-env-runtime-row" data-status={r.status}><span className="mono">{r.repo_url}@{r.repo_ref}</span><b>{r.status} · {r.prepare_status}</b></div>) : <p className="sub" data-testid="code-env-no-runtime">{t("code.remote.envNoRuntime")}</p>)}
+    <div><span>{t("code.remote.envImages")}</span><b data-testid="code-env-images">{env.data.images.length}</b></div>
+  </div>;
+}
+
+// Draft PR preparation only: the title and branches are stored on the producer session; nothing is pushed or opened.
+function PrDraft({ session, diff }: { session: CodeSnapshot["session"]; diff: string }) {
+  const t = useT(), owns = useOwner();
+  const [title, setTitle] = React.useState(session.title), [branch, setBranch] = React.useState(session.branch ?? ""), [base, setBase] = React.useState(session.baseBranch ?? "");
+  const [state, setState] = React.useState<"idle" | "busy" | "saved" | "error">("idle");
+  const files = [...diff.matchAll(/^diff --git a\/(\S+)/gm)].map(m => m[1]);
+  const save = async () => {
+    setState("busy");
+    try { await api.code.prepare(session.id, { epoch: session.epoch, title: title.trim(), ...(branch.trim() ? { branch: branch.trim() } : {}), ...(base.trim() ? { baseBranch: base.trim() } : {}) }); if (owns()) setState("saved"); }
+    catch { if (owns()) setState("error"); }
+  };
+  return <form className="code-prbody" data-testid="code-pr-draft" onSubmit={e => { e.preventDefault(); if (state !== "busy" && title.trim()) void save(); }}>
+    <p className="sub">{t("code.remote.prDraftBody")}</p>
+    <label className="field">{t("code.pr.titleLabel")}<input className="input" data-testid="code-pr-title" value={title} maxLength={200} onChange={e => { setTitle(e.target.value); setState("idle"); }} /></label>
+    <label className="field">{t("code.remote.prBranch")}<input className="input mono" data-testid="code-pr-branch" value={branch} maxLength={200} onChange={e => { setBranch(e.target.value); setState("idle"); }} /></label>
+    <label className="field">{t("code.remote.prBase")}<input className="input mono" data-testid="code-pr-base" value={base} maxLength={200} onChange={e => { setBase(e.target.value); setState("idle"); }} /></label>
+    <p className="sub" data-testid="code-pr-files" data-count={files.length}>{t("code.pr.files", { count: files.length })}</p>
+    <div className="ctx-bar"><button className="btn primary" data-testid="code-pr-prepare" disabled={state === "busy" || !title.trim()} type="submit">{t("code.remote.prPrepare")}</button></div>
+    {state === "saved" && <div className="banner" role="status" data-testid="code-pr-prepared">{t("code.remote.prPrepared")}</div>}
+    {state === "error" && <div className="banner err" role="alert" data-testid="code-pr-error">{t("code.remote.unavailable")}</div>}
+    <p className="code-hint" data-testid="code-pr-no-open">{t("code.remote.prNoOpen")}</p>
+  </form>;
+}
+
+// Code settings against the signed-in producer; anything else keeps the local section.
+export function RemoteCodeSettings({ section, local }: { section: string; local: React.ReactNode }) {
+  const connection = useQuery(() => api.connection.get(), []);
+  if (connection.state !== "ready") return null;
+  if (connection.data.mode === "local" || !connection.data.signedIn || !["usage", "instructions", "approvals"].includes(section)) return local;
+  return <RemoteSettingsBody section={section} local={local} />;
+}
+
+function RemoteSettingsBody({ section, local }: { section: string; local: React.ReactNode }) {
+  const t = useT();
+  const catalog = useQuery(() => api.code.models(), []);
+  if (catalog.state === "error") return <div className="banner err" role="alert">{t("code.remote.unavailable")}</div>;
+  if (catalog.state !== "ready") return null;
+  const epoch = catalog.data.epoch;
+  return section === "usage" ? <RemoteUsage epoch={epoch} /> : section === "instructions" ? <RemoteInstructions epoch={epoch} /> : <><RemoteDefaultModel epoch={epoch} />{local}</>;
+}
+
+function RemoteUsage({ epoch }: { epoch: string }) {
+  const t = useT();
+  const usage = useQuery(() => api.code.usage(epoch), [epoch]);
+  if (usage.state === "error") return <div className="banner err" role="alert" data-testid="code-usage-error">{t("code.remote.unavailable")}<button className="btn secondary" onClick={usage.reload}>{t("code.retry")}</button></div>;
+  if (usage.state !== "ready") return null;
+  const u = usage.data;
+  return <div data-testid="code-usage" data-quantity={u.total_quantity}>
+    <p className="code-lead">{t("code.remote.usagePeriod", { days: u.days })}</p>
+    <div className="list">
+      <div className="li"><span className="grow ttl">{t("code.remote.usageTotal")}</span><span className="code-meta code-num" data-testid="code-usage-total">{u.total_quantity}</span></div>
+      {u.by_model.map(m => <div className="li" key={m.model_slug} data-testid="code-usage-model"><span className="grow mono">{m.model_slug}</span><span className="code-meta code-num">{t("code.remote.usageTokens", { input: m.input_tokens, output: m.output_tokens })}</span></div>)}
+      {!u.by_model.length && <p className="sub" data-testid="code-usage-empty">{t("code.remote.usageEmpty")}</p>}
+    </div>
+  </div>;
+}
+
+function RemoteDefaultModel({ epoch }: { epoch: string }) {
+  const t = useT();
+  const settings = useQuery(() => api.code.settings(epoch), [epoch]);
+  const [saving, setSaving] = React.useState(false), [failed, setFailed] = React.useState(false);
+  if (settings.state === "error") return <div className="banner err" role="alert" data-testid="code-settings-error">{t("code.remote.unavailable")}</div>;
+  if (settings.state !== "ready") return null;
+  const choose = async (ref: string) => {
+    setSaving(true); setFailed(false);
+    try { await api.code.setDefaultModel(epoch, ref); settings.reload(); } catch { setFailed(true); } finally { setSaving(false); }
+  };
+  return <div className="list code-approval-defaults">
+    <label className="li"><span className="grow"><span className="ttl">{t("code.settings.defaultModel")}</span><span className="sub">{t("code.settings.defaultModelSub")}</span></span>
+      <select className="input" data-testid="code-default-model" disabled={saving} value={settings.data.defaultModel ?? ""} onChange={e => { if (e.target.value) void choose(e.target.value); }}>
+        <option value="">{t("code.remote.chooseModel")}</option>{settings.data.models.map(m => <option key={m.ref} value={m.ref}>{m.name}</option>)}
+      </select></label>
+    {failed && <div className="banner err" role="alert" data-testid="code-default-model-error">{t("code.settings.rulesSaveFailed")}</div>}
+  </div>;
+}
+
+// Read-only: the producer exposes the session workspace file read; it has no instructions write route.
+function RemoteInstructions({ epoch }: { epoch: string }) {
+  const t = useT();
+  const sessions = useQuery(() => api.code.list(), []);
+  const [id, setID] = React.useState("");
+  const file = useQuery(() => id ? api.code.instructions(id, epoch) : Promise.resolve(undefined), [id, epoch]);
+  if (sessions.state === "error") return <div className="banner err" role="alert">{t("code.remote.unavailable")}</div>;
+  if (sessions.state !== "ready") return null;
+  return <div data-testid="code-instructions">
+    <p className="code-lead">{t("code.remote.instructionsLead")}</p>
+    <select className="input" data-testid="code-instructions-session" aria-label={t("code.remote.instructionsSession")} value={id} onChange={e => setID(e.target.value)}>
+      <option value="">{t("code.remote.instructionsSession")}</option>{sessions.data.map(s => <option key={s.id} value={s.id}>{s.title || t("code.untitled")} · {t(s.runtime === "local" ? "code.remote.local" : "code.remote.cloud")}</option>)}
+    </select>
+    {file.state === "ready" && file.data?.state === "ready" && <div className="diff code-file"><div className="code-head">{file.data.path}</div><pre data-testid="code-instructions-content">{file.data.content}</pre></div>}
+    {file.state === "ready" && file.data?.state === "missing" && <p className="sub" data-testid="code-instructions-missing">{t("code.remote.instructionsMissing")}</p>}
+    {file.state === "ready" && file.data?.state === "refused" && <div className="banner warn" role="status" data-testid="code-instructions-refused" data-reason={file.data.reason}>{t(`code.workspace.refused.${file.data.reason}`)}</div>}
+    {file.state === "error" && <div className="banner err" role="alert">{t("code.remote.unavailable")}</div>}
+    <p className="code-hint">{t("code.remote.instructionsReadOnly")}</p>
   </div>;
 }
 
@@ -108,7 +223,8 @@ function OwnedCodeSession() {
   const send = () => void mutate(async () => { const request = text; await api.code.prompt(id, { epoch, message: request }); if (owns()) submitted.current = request; });
   const asks = data?.permissions.filter(p => !p.decision) ?? [];
   const running = data?.session.delivery === "streaming" || data?.session.delivery === "admitting" || data?.session.state === "running" || asks.length > 0;
-  const views = [t("code.session.changes"), t("code.session.terminal")];
+  const views = [t("code.session.changes"), t("code.session.terminal"), t("code.remote.environment"), t("code.remote.pr")];
+  const keys = ["changes", "terminal", "environment", "pr"];
   return <div className="code-api code-api-session">
     <div className="content-top"><span className="title">{data?.session.title || t("code.untitled")}</span><span className="badge" role="status">{running ? t("code.status.running") : data?.session.state === "failed" || data?.session.state === "interrupted" || data?.session.errorCode ? t("code.status.failed") : t("code.status.ready")}</span><div className="spacer" />
       <button className="btn secondary" data-testid="code-reconnect" disabled={busy} onClick={() => snapshot.reload()}>{t("code.remote.reconnect")}</button>
@@ -127,11 +243,15 @@ function OwnedCodeSession() {
         <CodeComposer models={catalog.state === "ready" ? catalog.data.models : []} model={model} setModel={() => {}} text={text} setText={setText} busy={busy || running} send={send} />
       </div>
       <div className="split-r">
-        <div className="pane-head"><Segmented items={views} value={views[view === "changes" ? 0 : 1]} onChange={v => setView(v === views[0] ? "changes" : "terminal")} /></div>
-        {view === "terminal" ? <pre className="term" data-testid="code-real-terminal">{data?.messages.flatMap(m => m.tools.filter(p => ["bash", "task", "read_file"].includes(p.tool_name)).map(p => `${JSON.stringify(p.arguments)}\n${p.result ?? ""}${p.result_omitted_chars ? `\n${t("code.terminal.truncated", { count: p.result_omitted_chars })}` : ""}`)).join("\n\n") || t("code.session.noCommands")}</pre>
-          : <>{data?.permissions.filter(p => p.proposed_diff && p.decision === "allow").map(p => <div className="diff" key={p.id}><div className="code-head"><span>{p.path}</span></div><pre>{p.proposed_diff}</pre></div>)}
+        <div className="pane-head"><Segmented items={views} value={views[Math.max(0, keys.indexOf(view))]} onChange={v => setView(keys[views.indexOf(v)] ?? "changes")} /></div>
+        {view === "environment" ? <SessionEnvironment epoch={epoch} runtime={data?.session.runtime} />
+          : view === "pr" ? (data ? <PrDraft key={data.session.id} session={data.session} diff={data.workspace?.state === "ready" ? data.workspace.diff : ""} /> : null)
+          : view === "terminal" ? <pre className="term" data-testid="code-real-terminal">{data?.messages.flatMap(m => m.tools.filter(p => ["bash", "task", "read_file"].includes(p.tool_name)).map(p => `${JSON.stringify(p.arguments)}\n${p.result ?? ""}${p.result_omitted_chars ? `\n${t("code.terminal.truncated", { count: p.result_omitted_chars })}` : ""}`)).join("\n\n") || t("code.session.noCommands")}</pre>
+          : <>{data?.workspace?.state === "refused" && <div className="banner warn" role="status" data-testid="code-workspace-refused" data-reason={data.workspace.reason}><span>{t(`code.workspace.refused.${data.workspace.reason}`)}</span></div>}
+            {data?.workspace?.state === "ready" && (data.workspace.diff ? <div className="diff"><div className="code-head"><span>{t("code.workspace.liveDiff")}</span></div><pre data-testid="code-live-diff">{data.workspace.diff}</pre></div> : <p className="sub" data-testid="code-live-diff-empty">{t("code.workspace.clean")}</p>)}
+            {data?.permissions.filter(p => p.proposed_diff && p.decision === "allow").map(p => <div className="diff" key={p.id}><div className="code-head"><span>{p.path}</span></div><pre>{p.proposed_diff}</pre></div>)}
             {data?.messages.flatMap(m => m.tools.filter(p => p.tool_name === "read_file").map((p, i) => <div className="diff" key={m.id + i}><div className="code-head">{JSON.stringify(p.arguments)}</div><pre data-testid="code-real-file">{p.result}</pre></div>))}
-            {!data?.permissions.some(p => p.proposed_diff && p.decision === "allow") && <div className="empty"><Icon name="diff" /><p>{t("code.session.noChanges")}</p></div>}</>}
+            {!data?.workspace && !data?.permissions.some(p => p.proposed_diff && p.decision === "allow") && <div className="empty"><Icon name="diff" /><p>{t("code.session.noChanges")}</p></div>}</>}
       </div>
     </div>
   </div>;

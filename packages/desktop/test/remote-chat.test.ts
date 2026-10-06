@@ -1,9 +1,11 @@
 // Real SDK, native Fetch and loopback HTTP: account ownership and stream admission, not inference fixtures.
 import http from "node:http";
-import { CLOUD_URL } from "@cortex/core";
+import { CLOUD_URL, createCore, memoryCredentials } from "@cortex/core";
+import { createServer } from "@cortex/server";
 import { createCortexClient } from "@cortex/sdk";
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { RemoteSession } from "../src/remote-session";
+import { createRemoteCodeBinding } from "../src/remote-code";
 import { createRemoteChatBinding, remoteChatFetch, type MainRemoteAdmission, type MainRemoteEvent, type MainRemoteObserver, type MainRemoteTurn } from "../src/remote-chat";
 
 const suffix = "01h45ytscbeewvwm6xr90nbxp4";
@@ -114,6 +116,62 @@ it("admits only exact Code methods and paths with the original main-only authent
   controller.abort();
   await expect(remoteChatFetch(new Request(origin + "/v1/code/sessions"), owner)).rejects.toBeDefined();
   expect(requests).toHaveLength(admitted);
+});
+
+it("admits only the read-only Code environment/usage/settings, the default-model PUT, metadata PATCH and the AGENTS.md read", async () => {
+  const owner = { origin, fetch: globalThis.fetch, signal: new AbortController().signal, check: () => {}, unauthorized: () => {} };
+  for (const path of ["/v1/code/runtimes", "/v1/code/runtimes/images", "/v1/code/usage", "/v1/code/providers", "/v1/code/settings", `/v1/code/sessions/${cnv}`, `/v1/code/sessions/${cnv}/file`]) routes.set(path, json({ ok: true }));
+  for (const [method, path] of [["GET", "/v1/code/runtimes"], ["GET", "/v1/code/runtimes/images"], ["GET", "/v1/code/usage"], ["GET", "/v1/code/providers"], ["PUT", "/v1/code/settings"], ["PATCH", `/v1/code/sessions/${cnv}`], ["GET", `/v1/code/sessions/${cnv}/file?path=AGENTS.md`]]) {
+    expect((await remoteChatFetch(new Request(origin + path, { method, ...(method === "GET" ? {} : { body: "{}" }) }), owner)).status).toBe(200);
+  }
+  const admitted = requests.length;
+  for (const [method, path] of [["POST", "/v1/code/runtimes"], ["DELETE", "/v1/code/runtimes/images/x"], ["PUT", "/v1/code/providers/openai"], ["GET", `/v1/code/sessions/${cnv}/file?path=.env`], ["GET", `/v1/code/sessions/${cnv}/file`], ["GET", `/v1/code/sessions/${cnv}/file?path=AGENTS.md&path=x`], ["GET", "/v1/code/usage?days=1"], ["PATCH", "/v1/code/sessions"], ["POST", `/v1/code/sessions/${cnv}/run`], ["GET", `/v1/code/sessions/${cnv}/files`]]) {
+    await expect(remoteChatFetch(new Request(origin + path, { method, ...(method === "GET" || method === "DELETE" ? {} : { body: "{}" }) }), owner)).rejects.toMatchObject({ code: "invalid_request" });
+  }
+  expect(requests).toHaveLength(admitted);
+});
+
+it("narrows a refused live diff to its public workspace tag and never exposes producer detail", async () => {
+  const owner = { origin, fetch: globalThis.fetch, signal: new AbortController().signal, check: () => {}, unauthorized: () => {} };
+  const diff = `/v1/code/sessions/${cnv}/diff`;
+  const refuse = (status: number, body: unknown) => routes.set(diff, (res) => { res.writeHead(status, { "content-type": "application/problem+json" }); res.end(JSON.stringify(body)); });
+  refuse(422, { code: "invalid_state", detail: "secret producer path /srv/x", box_error: "code_runtime_not_running" });
+  const refused = await remoteChatFetch(new Request(origin + diff), owner).catch((e: unknown) => e);
+  expect(refused).toMatchObject({ reason: "code_runtime_not_running", code: "provider_unsupported" });
+  expect(JSON.stringify(refused) + String(refused)).not.toContain("secret");
+  refuse(503, { code: "service_unavailable", box_error: "invented_tag" });
+  await expect(remoteChatFetch(new Request(origin + diff), owner)).rejects.toMatchObject({ reason: "unavailable" });
+  routes.set(diff, (res) => { res.writeHead(200, { "content-type": "application/json" }); res.end(JSON.stringify({ diff: "", exit_code: 0 })); });
+  expect((await remoteChatFetch(new Request(origin + diff), owner)).status).toBe(200);
+  await expect(remoteChatFetch(new Request(origin + diff, { method: "POST" }), owner)).rejects.toMatchObject({ code: "invalid_request" });
+});
+
+it("refuses IPC-forced cloud create and cloud prompt in main with no producer write while no farm is admitted", async () => {
+  routes.set("/v1/code/capabilities", json({ runtimes: { available: false, unavailable_reason: "code_compute_not_configured" } }));
+  routes.set("/v1/code/sessions", json({ id: cnv, runtime: "cloud", model_slug: "fixture", title: "", state: "cloud_only" }, 201));
+  routes.set(`/v1/code/sessions/${cnv}`, json({ id: cnv, runtime: "cloud", model_slug: "fixture", title: "", state: "cloud_only" }));
+  routes.set(`/v1/code/sessions/${cnv}/messages`, json({ items: [] }));
+  routes.set(`/v1/code/sessions/${cnv}/permissions`, json({ items: [] }));
+  routes.set(`/v1/code/sessions/${cnv}/diff`, json({ diff: "", exit_code: 0 }));
+  routes.set(`/v1/code/sessions/${cnv}/events`, (res) => { res.writeHead(200, { "content-type": "text/event-stream" }); });
+  routes.set(`/v1/code/sessions/${cnv}/turns`, (res) => { headers(res); res.end(frame(1, done)); });
+  const signal = new AbortController().signal, client = createCortexClient({ baseUrl: origin });
+  const chat = createRemoteChatBinding(client, origin, "fixture-epoch", signal, () => {}, "usr_fixture");
+  const code = createRemoteCodeBinding(client, chat, () => {});
+  const core = createCore({ dataDir: ":memory:", credentials: memoryCredentials(), remoteCode: { bindCode: () => code } });
+  core.connection.set({ mode: "cloud", signedIn: false });
+  // Same path as window.cortex.request: main rebuilds the request for the typed engine server.
+  const ipc = (path: string, body: unknown) => createServer(core).fetch(new Request(`http://local${path}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }));
+  const writes = () => requests.filter((r) => r.method === "POST" && r.path.startsWith("/v1/code/"));
+  try {
+    const created = await ipc("/api/code/sessions", { epoch: "fixture-epoch", runtime: "cloud", modelSlug: "fixture" });
+    expect(created.status).toBeGreaterThanOrEqual(400);
+    expect(await created.text()).not.toContain(cnv);
+    const prompted = await ipc(`/api/code/sessions/${cnv}/prompt`, { epoch: "fixture-epoch", message: "Forced cloud turn" });
+    expect(prompted.status).toBeGreaterThanOrEqual(400);
+    expect(writes()).toEqual([]);
+    expect(requests.filter((r) => r.path === "/v1/code/capabilities")).toHaveLength(2);
+  } finally { await core.close(); }
 });
 
 describe("private remote Chat binding", () => {

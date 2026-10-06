@@ -12,6 +12,7 @@ export * from "./work-routines"
 export * from "./work-inbox"
 export * from "./work-activity"
 export * from "./work-channels"
+export * from "./work-memory"
 
 // ---------- ids ----------
 const PREFIX = { session: "ses", message: "msg", part: "prt", permission: "per", bot: "bot", memory: "mem", task: "tsk", run: "run", space: "spc", project: "prj" } as const
