@@ -47,7 +47,7 @@ external database. Details: [`docs/architecture.md`](./docs/architecture.md).
 | `packages/app` | Renderer: React 19 + `@base-ui/react` + Vite 8 |
 | `packages/desktop` | Electron main + preload, credentials, menu, Cortex Cloud probe and process-lifetime sign-in |
 
-`vendor/` holds unmodified `@cortex/sdk` 0.4.0 and its optional peer `@cortex/api-types`
+`vendor/` holds unmodified `@cortex/sdk` 0.4.1 and its optional peer `@cortex/api-types`
 0.3.0 (Task6 cumulative pair; turn cursors are full Redis stream IDs), used by the main-process remote probe ([`vendor/README.md`](./vendor/README.md)).
 The SDK-owner handoff against schema blob `c8f6a7f0` passes scoped desktop admission;
 earlier archives remain retained. Main owns email-code sign-in and sanitized authentication state.

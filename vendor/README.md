@@ -1,8 +1,10 @@
 # Vendored packages
 
-## Current pair: SDK 0.4.0 / api-types 0.3.0 (Task6 final contracts)
+## Current pair: SDK 0.4.1 / api-types 0.3.0 (Task6 final contracts, gate round 2)
 
-This pair supersedes the 0.3.5/0.2.0 pair below; those archives stay as history.
+This pair supersedes the 0.3.5/0.2.0 pair below; those archives stay as history. SDK 0.4.1 replaces the
+unadmitted 0.4.0 draft: it restores the approved runtime exports `ActiveVersion`, `ApprovalPolicy`, `Computer`,
+`Device`, `PageTools`, `SpendBudget` and `VncTicket` (colliding DTOs are now `<Name>Response`).
 It is cumulative: it contains every type, path and method of the approved Task6
 pairs (owned channels SDK `4b30c45e`/types `b3401002`, live calls `a283c162`/`81b5c197`,
 activity projection `bca20356`/`ed4e5e68`), plus precise DTOs for every account, history,
@@ -11,14 +13,14 @@ Bot, Code, approval, task and call route that was still generic, and typed turn 
 stream helper keeps `onDiscardedFrame`.
 
 Source: backend branch `cursor/task6-contracts-final` (base `53caa91e`, uncommitted
-working tree). Canonical schema `openapi/cortex.openapi.json` SHA-256 `41527a8985e40175a9e49fe849d686da42091789709b4dd607a07705d61db4d4`.
+working tree). Canonical schema `openapi/cortex.openapi.json` SHA-256 `d6b9989c4158d3b61f870bca91adb0c77b3eae50527a0f939f344f4458e81508`.
 Public problem codes follow CortexLM/docs `problems/` at `ed7e41f9a2f59182ef73dda2cef718dbb19351f8`
 (24 codes, equal to the server's `ERROR_CODES`). Immutable source directory:
-`/root/cortex-dev/worktrees/task6-contracts-final/.omo/archive-pair-contracts-final/`.
+`/root/cortex-dev/worktrees/task6-contracts-final/.omo/archive-pair-contracts-final-r2/`.
 
 | Archive | SHA-256 |
 | --- | --- |
-| `cortex-sdk-0.4.0.tgz` | `4e2b821a017d301809d5f481c271617ba752f113b0a3ec926114a82a38a8ef73` |
+| `cortex-sdk-0.4.1.tgz` | `226a5f0f5ca437b18fc8adca90a69aafecd0357721b9ee00f5dbf044b90caed8` |
 | `cortex-api-types-0.3.0.tgz` | `ccf5007ecd9b301cc99745168d58a1d5fb47ca00d8980a5e36a856fbe6f0fcb8` |
 
 Breaking for callers: `TurnInput.body` is typed per route, and `/v1/conversations/turns`
