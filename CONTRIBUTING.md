@@ -66,6 +66,8 @@ template and its attestation block honestly ([`.rules/07-git-and-prs.md`](./.rul
 Docs ship in the same PR ([`.rules/05-documentation.md`](./.rules/05-documentation.md)).
 Maintainers squash-merge.
 
+Run `bun run lint` before opening a pull request.
+
 ## Security
 
 See [SECURITY.md](./SECURITY.md). Never paste keys, tokens or session cookies into
