@@ -9,6 +9,7 @@ import { fileCredentials } from "./credentials";
 import { buildMenu } from "./menu";
 import { probeRemote } from "./remote";
 import { RemoteSession } from "./remote-session";
+import { createCallHost } from "./remote-call";
 
 const APP_NAME = "Cortex";
 declare const __CORTEX_RELEASE_CHANNEL__: string;
@@ -25,7 +26,10 @@ protocol.registerSchemesAsPrivileged([{ scheme: "cortex", privileges: { standard
 let win: BrowserWindow | undefined;
 
 async function boot() {
-  const remote = new RemoteSession();
+  const remote = new RemoteSession({ openExternal: url => shell.openExternal(url), credentials: fileCredentials(path.join(dataDir, "remote-credentials.json"), {
+    isEncryptionAvailable: () => safeStorage.isEncryptionAvailable() && (process.platform !== "linux" || safeStorage.getSelectedStorageBackend() !== "basic_text"),
+    encryptString: (value) => safeStorage.encryptString(value), decryptString: (value) => safeStorage.decryptString(value),
+  }, true) });
   const core = createCore({
     dataDir,
     credentials: fileCredentials(path.join(dataDir, "credentials.json"), safeStorage),
@@ -34,10 +38,13 @@ async function boot() {
     remoteProbe: (url) => probeRemote(url),
     remoteAuth: remote,
     remoteChat: remote,
+    remoteCode: remote,
+    remoteWorkBot: remote,
     skills: { builtin: path.join(resources, "skills"), personal: path.join(app.getPath("home"), ".cortex", "skills") },
     plugins: { personal: path.join(app.getPath("home"), ".cortex", "plugins") },
   });
   await core.start({ computerUse: findCuaDriver() });
+  if (core.connection.get().mode !== "local") await remote.restore(core.connection.remoteOrigin());
   // Test hook: route one provider to a local endpoint (E2E streaming without network). Ignored in packaged builds.
   const testBase = !app.isPackaged && process.env.CORTEX_TEST_PROVIDER_BASEURL;
   if (testBase) { const [id, url] = testBase.split("="); await core.providers.update(id, { baseURL: url }); }
@@ -50,6 +57,27 @@ async function boot() {
     const res = await server.fetch(new Request(`http://local${u.pathname}${u.search}`, { method: req.method, headers: req.headers, body: req.body }));
     return { status: res.status, headers: [...res.headers], body: await res.text() };
   });
+  // Bot calls: main owns the ticket, socket and bearer; the renderer only moves PCM.
+  const calls = createCallHost((origin) => remote.callAuth(origin));
+  const callOrigin = () => { if (core.connection.get().mode === "local") throw new Error("Bot calls need a Cortex account"); return core.connection.remoteOrigin(); };
+  ipcMain.handle("cortex:call:available", () => { try { return calls.available(callOrigin()); } catch { return "hidden"; } });
+  ipcMain.handle("cortex:call:start", async (e, botId: string) => {
+    const send = (channel: string, ...args: unknown[]) => { if (!e.sender.isDestroyed()) e.sender.send(channel, ...args); };
+    e.sender.once("destroyed", calls.end);
+    e.sender.once("did-start-navigation", calls.end);
+    await calls.start(callOrigin(), String(botId), {
+      snapshot: (s) => send("cortex:call:snapshot", s),
+      play: (pcm, sequence, generation) => send("cortex:call:play", pcm, sequence, generation),
+      flush: () => send("cortex:call:flush"),
+    });
+  });
+  ipcMain.on("cortex:call:capture", (_e, pcm: Uint8Array) => { if (pcm instanceof Uint8Array && pcm.byteLength === 640) calls.capture(pcm); });
+  ipcMain.on("cortex:call:played", (_e, sequence: number, generation: number) => calls.played(Number(sequence), Number(generation)));
+  ipcMain.on("cortex:call:mute", (_e, muted: boolean) => calls.mute(muted === true));
+  ipcMain.on("cortex:call:interrupt", () => calls.interrupt());
+  ipcMain.on("cortex:call:end", () => calls.end());
+  // Test hook for E2E receipts (frame counts). Ignored in packaged builds.
+  if (!app.isPackaged) ipcMain.handle("cortex:call:stats", () => calls.stats() ?? null);
   // Server-sent events cannot cross invoke(); they are pumped over a dedicated channel.
   const streams = new Map<number, ReadableStreamDefaultReader<Uint8Array>>();
   ipcMain.on("cortex:events:stop", (e) => { void streams.get(e.sender.id)?.cancel(); streams.delete(e.sender.id); });

@@ -25,6 +25,16 @@ afterEach(() => {
 });
 
 describe("file credentials", () => {
+  it("requires native encryption for persistent session material without plaintext fallback", () => {
+    credentials = fileCredentials(file, cipher, true);
+    credentials.set("remote-session", "fixture-pair");
+    expect(fileCredentials(file, cipher, true).get("remote-session")).toBe("fixture-pair");
+    vi.spyOn(cipher, "isEncryptionAvailable").mockReturnValue(false);
+    expect(() => credentials.get("remote-session")).toThrow("Credential protection unavailable");
+    expect(() => credentials.set("remote-session", "replacement")).toThrow("Credential protection unavailable");
+    credentials.delete("remote-session");
+    expect(credentials.get("remote-session")).toBeUndefined();
+  });
   it("treats a missing file as empty and creates its parent on first write", () => {
     file = path.join(dir, "nested", "credentials.json");
     credentials = fileCredentials(file, cipher);

@@ -1,5 +1,11 @@
 # @cortex/core — local agent engine
 
+Verified native remote accounts persist owner-tagged snapshots in the existing SQLite
+`doc` table. Main retains credentials separately under OS encryption; `/me.id` plus origin
+partitions records, fresh epochs fence restart and account changes. Remote events never
+execute local providers/tools/plugins. See `../../docs/connection-modes.md` for discovery
+ceilings and retained-history restart recovery; older process-only notes below are historical.
+
 Runs in the Electron main process (Node 22+). No native addons: persistence is `node:sqlite`.
 
 ```
@@ -11,6 +17,10 @@ server = protocol routes bound to core handlers → `app.fetch(Request)`; deskto
 ```
 
 ## Services (`createCore({ dataDir, credentials, fetch?, catalogUrl? })`)
+
+Signed-in `workBot` injects main-owned remote Bot/routine bindings. Routine UUID/body
+validation and epoch fences precede SDK transport; backend occurrence/history remains
+authoritative. Reads never execute inference. Local scheduler behavior below is separate.
 
 | Service | File | Notes |
 | --- | --- | --- |

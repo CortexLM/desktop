@@ -1,5 +1,162 @@
 # Connection modes
 
+## Task8 bounded Work/Bot
+
+Work/Bot -> Channels uses the exact e5e-approved SDK pair for owned group metadata.
+List/filter/create/get/rename/member replacement/delete project only id/name/members.
+Rename-only PATCH omits members. Null/omission preserves, [] clears; edited selections
+replace the entire set, including stored members absent from the loaded roster until
+explicitly removed. Failures preserve drafts with neutral distinct refusal copy;
+reconnect rechecks ownership, replacement epoch clears drafts and fences late responses.
+Delete requires confirmation, returns200 deleted:true, cascades group history but not
+delivered Bot inbox messages. No transcript/send or runtime/provider-delivery toggle.
+Seven non-English channel catalogs retain English copy; translation quality unclaimed.
+
+Signed-in Work notifications uses owned home inbox and in-app notification safe DTOs
+from main's exact approved SDK. Home ordinary read/unread/read-all returns `{ok:true,
+updated}`; pending approval pseudo-items remain unread, no settlement via inbox read.
+Notifications list up to100; bodyless item/read-all204, foreign item404. Filters/search
+and counts cover the loaded windows (home50 plus pending50), not a durable full activity
+feed or unseen account total. Reconnect always reads a fresh owner-bound snapshot;
+process-local512 SSE ring resets, IDs are not durable and notification ID is not its
+resume cursor. No arbitrary payload projection, action replay, inbox handoff/send or
+provider inference occurs. Existing approval/routine/lead/parent/copy/connector seams
+remain separate. No notification push, OS delivery or broad preferences completion.
+
+Signed-in Work -> Routines reads exact owned Bot routines through main's typed SDK.
+Create/edit/delete and bodyless pause/resume use durable server responses. The editor
+sends required name/prompt and an explicit schedule on PATCH, retaining body, quiet
+preference and trigger extensions. Refresh reads up to 100 retained runs per routine
+without inference. Running, Completed, Failed and Interrupted are server history, not
+task promises. Pause affects future occurrences, not an active run; task cancellation
+remains a separate Work action. No routine-run cancellation or manual cron tick UI exists.
+Scheduling displays the exact cron and fixed UTC offset. Offset stays fixed across DST;
+timezone labels are metadata, not conversion. Without an offset, Paris seasonal rules
+apply. Explicit event delivery uses saved instructions, a UUID delivery ID, no payload.
+Duplicate delivery and concurrent live runs are excluded by the producer, not optimistic
+renderer state. Zero completed runs can mean paused/duplicate/busy/offline failure.
+Read actual history; no automatic retry/replay. Seven non-English catalogs temporarily
+retain English copy for this new namespace; translation quality is not claimed.
+
+The approved pending-approvals pair supplies account `/v1/bot/approvals` and owned-Bot
+`/v1/mascots/{id}/approvals/pending` reads. The roster shows account pending requests;
+each owned Bot shows its own list and existing policy evaluation audit. Linked widgets
+permit explicit Allow once/Deny; unstamped rows cannot be decided. Only safe metadata
+crosses IPC, without arguments/secrets or returned tool content. After a successful
+decision, the renderer re-reads the actual pending list before confirming removal.
+`resumed` reports allowed, not successful tool execution. Deny skips the parked tool
+but can resume model inference. A refusal or interrupted request remains unconfirmed;
+refresh reads state without automatically resubmitting. Policy run/deny/pause is an
+audit, not execution outcome. No outcome GET or approval invalidation event exists.
+Late results cannot update a replacement account. Full Task8 remains open.
+
+The exact independently approved copy pair enables sharing from owned Bot
+configuration and recipient invitations from the roster. Owner actions enable an
+independent copy, invite an existing account, list invitations and revoke future
+acceptance. Recipients preview allowlisted configuration and accept once; routine
+invitations optionally target an owned Bot. Replay returns refusal with no second copy.
+Conversations, memory, secrets, connections, channels and the owner's computer stay
+private. Plugin names copy; recipients supply their own credentials. Recipients can
+decline from the existing preview. Main sends the approved bodyless POST and validates
+the invitation ID, terminal state and server timestamp. Only its successful durable
+response clears the preview; failure retains it for reconnect. Sender DTOs retain
+optional decision fields. Declined inbox/preview/accept and decline replay are closed.
+Reinvitation cannot reset a decision; separately acquired public tokens are not banned.
+
+Signed-in Work and Bot routes read the selected account's actual Bot roster, save
+name/instructions/label/look/status/notification configuration, enqueue bounded
+`explore` tasks through the existing Task4 async worker and display durable backend
+status/results and retained original-channel notices. The task row is durable; this
+is not an integration with the separate Jobs queue subsystem. Main admits only the
+exact typed Bot paths. Epoch checks fence late requests and account replacements.
+
+Cancel acknowledges only the backend response. Failed requests show unconfirmed;
+running cancellation can leave `execution_unknown` external effects. Native restart
+and reconnect read stored results/notices without new inference. Earned autonomy
+accounting and cloud computers are unavailable; no desktop host fallback runs.
+
+The independently approved Bot-parent SDK supplies precise required text and JSON
+message/replies DTOs. Sending an explicit message to the original Bot runs a parent
+turn with exact retained terminal child context through migration 0151. Receipt
+attachment is durable once per task; reading results or reconnecting does not send
+a parent message or replay child effects. Owner notices alone are not parent receipts.
+Owned Bot configuration reads the real app catalog and account connections, saves
+Chat/Bot consent and always/changes/important preferences, disconnects apps and
+toggles exact owned-Bot enables under account grants. Authorization links stay in
+main, never in renderer responses, and open only on explicit user action.
+Per-Bot tool rules use always_allow/require_approval/deny with tool/connector/category
+matches. Organization rules and the separate global ask/always_ask matrix can tighten
+access. Upserts re-list durable rule IDs; deletion requires one confirmed deleted row.
+Owned hierarchy uses required UUID-or-null `lead_id` from the exact approved successor
+SDK. The roster switches between owned cards and stored parent/child relationships;
+configuration selects an owned lead or no lead. Create omission/null roots, PATCH
+omission preserves, explicit null detaches. Hierarchy saves send only `lead_id`,
+preserving unrelated configuration. Cycle/self422 and missing/foreign404 refuse;
+serialization failures remain unconfirmed. Reconnect reads durable state; another
+save is explicit, never an automatic overwrite/retry. Deleting a lead detaches its
+direct children; independent copies are roots. No runtime dispatch, permission
+inheritance or earned autonomy follows. Full Task8 remains excluded. The decline fixture
+binds the actual approved producer and its migration stack through 0156; acceptance
+of the combined Task6 assembled producer migration stack remains unverified.
+
+## Task8 bounded desktop Code
+
+Signed-in remote/self-host connections show explicit LOCAL/Cloud Code selection. LOCAL
+means the approved backend's configured, account/session-scoped developer workspace, not
+the desktop folder picker or a hidden host fallback. Cloud requires an admitted farm guest;
+unavailable capacity refuses and retains the draft. Model tool arguments launch bounded
+children through the approved Task3 turn API; no Task HTTP route is invented.
+
+Main owns SDK credentials, refresh and `/v1/me.id` identity. The exact Code allowlist admits
+session list/create/get, transcript, permissions/decision, events, turns and cancellation only.
+The renderer receives owner epochs and public DTOs, never tokens or arbitrary proxy paths.
+Exact write diffs and command actions require Allow once or Deny. Tool results come from the
+durable transcript. Stop calls the backend cancellation API; reconnect/restart reads retained
+history and parent results, never regenerates or delivers a client-side duplicate result.
+
+This subset does not admit Work/Bot teams/connectors, cloud provisioning success, SSH/pairing,
+PR publication, automation, arbitrary folder execution or a new design-supplement import.
+
+## Task7 retained-history consumer
+
+The active immutable dependency pair is recorded in `vendor/README.md`. Main stores complete
+opaque Redis IDs without numeric conversion. Empty IDs clear resumability while retaining
+their payloads; truncated reset delivery becomes history-only. Neither main nor core retries
+that turn without a valid cursor. Exact replay retains original path/body/idempotency key;
+repeated meaningful IDs are suppressed by the admitted SDK. Its discarded-frame callback
+marks only affected projections limited. Explicit incomplete/blocked/cancelled outcomes and
+termination reasons remain visible in core snapshots and never become successful stop.
+
+Known-history reads paginate backward at 200 items per request until `has_older:false`,
+returning chronological active-parent order. Duplicate records, repeated/missing cursors,
+changed-parent paths and the backend 10,000-message ceiling fail before replacing the renderer
+snapshot. All retained DTO fields, ordered parts, reasoning, tool results and retention metadata
+remain available. The renderer displays retained part text/metadata as inert text, never HTML
+or executable links. Deleted/unavailable/not-retained states are explicit. Image-bearing
+follow-ups require confirmed vision and rely on the admitted backend's owned-byte hydration.
+
+Expired replay marks the live message projection partial immediately. Loading complete retained
+history releases the pending turn and shows that history separately; it does not rebuild or
+replace the live projection, so the live message remains partial and never claims complete.
+
+Explicit device sign-in returns the existing native bearer/refresh pair through
+`/v1/auth/device/token`. Main stores one origin-bound pair in `remote-credentials.json`
+using OS encryption only, refuses Linux `basic_text`, validates stable `/v1/me.id` after
+issuance and rotation, and single-flights refresh. JWT `exp` schedules rotation only;
+no refresh expiry or client-supplied SID is invented. Logout erases local credentials,
+finishes an in-flight rotation before bearer revocation, then erases again. Failed/revoked
+refresh signs out without starting another login. Email-code grants remain process-only.
+
+Verified native accounts persist remote snapshots in the existing SQLite `doc` table,
+partitioned by canonical origin and `/me.id`. Restart rebinds snapshots to a new epoch;
+unfinished delivery requires retained-history recovery, never a new generation/replay.
+Account discovery reads active and archived conversation lists through the approved
+Task7 pagination producer, using typed `sort=created`, `limit=100` and owner-bound
+cursors until `has_more=false`. Pages are bounded; total records have no artificial cap.
+Repeated discovery preserves admitted image hydration requirements.
+Local Project Chat and local provider execution are unchanged.
+Older receipts and limits below describe the historical pair, not this new consumer admission.
+
 **Today: saved preferences, reachability probes and process-lifetime email-code sign-in.**
 All three modes keep chat sessions, prompts, tools and storage on the local engine.
 Cortex backend prompt routing is not wired; the local engine still calls configured providers.

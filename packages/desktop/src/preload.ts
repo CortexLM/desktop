@@ -18,6 +18,29 @@ contextBridge.exposeInMainWorld("cortex", {
   },
   openExternal: (url: string) => ipcRenderer.send("cortex:open-external", url),
   pickDirectory: (): Promise<string | null> => ipcRenderer.invoke("cortex:pick-directory"),
+  /** Bot call: main holds the ticket and socket; this side only moves PCM and controls. */
+  call: {
+    available: (): Promise<"offer" | "unavailable" | "hidden"> => ipcRenderer.invoke("cortex:call:available"),
+    start: (botId: string, on: { snapshot(s: unknown): void; play(pcm: Uint8Array, sequence: number, generation: number): void; flush(): void }) => {
+      const snapshot = (_: unknown, s: unknown) => on.snapshot(s);
+      const play = (_: unknown, pcm: Uint8Array, sequence: number, generation: number) => on.play(pcm, sequence, generation);
+      const flush = () => on.flush();
+      ipcRenderer.on("cortex:call:snapshot", snapshot);
+      ipcRenderer.on("cortex:call:play", play);
+      ipcRenderer.on("cortex:call:flush", flush);
+      const stop = () => {
+        ipcRenderer.removeListener("cortex:call:snapshot", snapshot);
+        ipcRenderer.removeListener("cortex:call:play", play);
+        ipcRenderer.removeListener("cortex:call:flush", flush);
+      };
+      return { started: ipcRenderer.invoke("cortex:call:start", botId), stop };
+    },
+    capture: (pcm: Uint8Array) => ipcRenderer.send("cortex:call:capture", pcm),
+    played: (sequence: number, generation: number) => ipcRenderer.send("cortex:call:played", sequence, generation),
+    mute: (muted: boolean) => ipcRenderer.send("cortex:call:mute", muted),
+    interrupt: () => ipcRenderer.send("cortex:call:interrupt"),
+    end: () => ipcRenderer.send("cortex:call:end"),
+  },
   onMenu: (cb: (cmd: string) => void) => {
     const f = (_: unknown, cmd: string) => cb(cmd);
     ipcRenderer.on("cortex:menu", f);

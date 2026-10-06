@@ -12,6 +12,17 @@ type Bridge = {
   openExternal?: (url: string) => void;
   pickDirectory?: () => Promise<string | null>;
   onMenu?: (cb: (cmd: string) => void) => () => void;
+  call?: CallBridge;
+};
+export type CallSnapshot = { phase: "connecting" | "listening" | "hearing" | "thinking" | "speaking" | "reconnecting" | "ended" | "error"; muted: boolean; heard: string[]; end?: "ended" | "auth_revoked" | "superseded" | "unavailable" | "busy" | "failed" };
+export type CallBridge = {
+  available(): Promise<"offer" | "unavailable" | "hidden">;
+  start(botId: string, on: { snapshot(s: CallSnapshot): void; play(pcm: Uint8Array, sequence: number, generation: number): void; flush(): void }): { started: Promise<void>; stop(): void };
+  capture(pcm: Uint8Array): void;
+  played(sequence: number, generation: number): void;
+  mute(muted: boolean): void;
+  interrupt(): void;
+  end(): void;
 };
 declare global { interface Window { cortex?: Bridge } }
 

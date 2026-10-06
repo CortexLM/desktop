@@ -1,9 +1,10 @@
 // Real SDK, native Fetch and loopback HTTP: account ownership and stream admission, not inference fixtures.
 import http from "node:http";
 import { CLOUD_URL } from "@cortex/core";
+import { createCortexClient } from "@cortex/sdk";
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { RemoteSession } from "../src/remote-session";
-import type { MainRemoteAdmission, MainRemoteEvent, MainRemoteObserver, MainRemoteTurn } from "../src/remote-chat";
+import { createRemoteChatBinding, remoteChatFetch, type MainRemoteAdmission, type MainRemoteEvent, type MainRemoteObserver, type MainRemoteTurn } from "../src/remote-chat";
 
 const suffix = "01h45ytscbeewvwm6xr90nbxp4";
 const cnv = `cnv_${suffix}`, msg = `msg_${suffix}`, fileID = `lbf_${suffix}`;
@@ -23,7 +24,7 @@ const routes = new Map<string, (res: http.ServerResponse, req: Seen) => void>();
 const sessions: RemoteSession[] = [];
 let server: http.Server, origin = "";
 const json = (body: unknown, status = 200) => (res: http.ServerResponse) => { res.writeHead(status, { "content-type": "application/json" }); res.end(JSON.stringify(body)); };
-const frame = (id: number, event: unknown) => `id: ${id}\ndata: ${JSON.stringify(event)}\n\n`;
+const frame = (id: number | string, event: unknown) => `id: ${typeof id === "number" ? `${id}-0` : id}\ndata: ${JSON.stringify(event)}\n\n`;
 const headers = (res: http.ServerResponse, conversation = cnv, assistant = msg) => {
   res.writeHead(200, { "content-type": "text/event-stream", "x-conversation-id": conversation, "x-message-id": assistant });
   res.flushHeaders();
@@ -32,8 +33,15 @@ const deferred = () => { let resolve!: () => void; const promise = new Promise<v
 const observe = () => {
   const ids: MainRemoteAdmission[] = [], events: MainRemoteEvent[] = [], cursors: string[] = [];
   const ready = deferred();
-  const observer: MainRemoteObserver = { admitted(id) { ids.push(id); ready.resolve(); }, event(e) { events.push(e); }, cursor(id) { cursors.push(id); } };
-  return { ids, events, cursors, ready, observer };
+  const waits = new Set<() => void>();
+  const changed = () => { for (const check of waits) check(); };
+  const observer: MainRemoteObserver = { admitted(id) { ids.push(id); ready.resolve(); changed(); }, event(e) { events.push(e); changed(); }, cursor(id) { cursors.push(id); changed(); } };
+  const until = (predicate: () => boolean) => new Promise<void>((resolve, reject) => {
+    const timer = setTimeout(() => { waits.delete(check); reject(new Error("Observer event timeout")); }, 5000);
+    const check = () => { if (predicate()) { clearTimeout(timer); waits.delete(check); resolve(); } };
+    waits.add(check); check();
+  });
+  return { ids, events, cursors, ready, observer, until };
 };
 const signIn = async (transport?: typeof fetch, base = origin) => {
   const session = new RemoteSession({ fetch: transport }); sessions.push(session);
@@ -83,15 +91,131 @@ beforeEach(() => {
   routes.set("/v1/conversations/turns", (res) => { headers(res); res.end(frame(1, done)); });
   routes.set(`/v1/conversations/${cnv}/turns`, (res) => { headers(res, cnv, otherMsg); res.end(frame(1, { ...done, message_id: otherMsg })); });
   routes.set(`/v1/conversations/${cnv}`, json({ id: cnv, title: "Saved title", model_slug: "fixture", message_count: 2 }));
-  routes.set(`/v1/conversations/${cnv}/messages`, json({ items: [{ id: msg, role: "assistant", text: "Saved answer", created_at: new Date().toISOString(),
-    version_index: 0, version_count: 1, is_active_version: true, finish_reason: "stop", reasoning: "not in the public projection" }], has_more: false }));
+  routes.set(`/v1/conversations/${cnv}/messages`, json({ items: [{ id: msg, parent_message_id: null, role: "assistant", text: "Saved answer", created_at: new Date().toISOString(),
+    version_index: 0, version_count: 1, is_active_version: true, finish_reason: "stop", reasoning: "Retained reasoning" }], has_more: false, has_older: false, has_newer: false }));
 });
 afterEach(() => { for (const session of sessions.splice(0)) session.clear(); vi.restoreAllMocks(); });
 afterAll(async () => {
   await new Promise<void>((resolve, reject) => { server.close((e) => e ? reject(e) : resolve()); server.closeAllConnections(); });
 });
 
+it("admits only exact Code methods and paths with the original main-only authenticated owner", async () => {
+  const controller = new AbortController();
+  const owner = { origin, fetch: globalThis.fetch, signal: controller.signal, check: () => controller.signal.throwIfAborted(), unauthorized: () => {} };
+  routes.set("/v1/code/sessions", (res) => { res.writeHead(201, { "content-type": "application/json" }); res.end(JSON.stringify({ id: cnv })); });
+  const response = await remoteChatFetch(new Request(origin + "/v1/code/sessions", { method: "POST", headers: { authorization: "Bearer main-only-code-token" }, body: "{}" }), owner);
+  expect(response.status).toBe(201);
+  expect(requests.at(-1)?.headers.authorization).toBe("Bearer main-only-code-token");
+  const admitted = requests.length;
+  for (const [method, path] of [["GET", `/v1/code/sessions/${cnv}/terminal`], ["GET", `/v1/code/sessions/${cnv}/file?path=secret`], ["DELETE", `/v1/code/sessions/${cnv}`], ["POST", `/v1/code/sessions/${cnv}/messages`], ["GET", "/v1/code/sessions?arbitrary=1"], ["POST", `/v1/code/sessions/${cnv}/permissions/prm_bad`]]) {
+    await expect(remoteChatFetch(new Request(origin + path, { method }), owner)).rejects.toMatchObject({ code: "invalid_request" });
+  }
+  expect(requests).toHaveLength(admitted);
+  controller.abort();
+  await expect(remoteChatFetch(new Request(origin + "/v1/code/sessions"), owner)).rejects.toBeDefined();
+  expect(requests).toHaveLength(admitted);
+});
+
 describe("private remote Chat binding", () => {
+  it("discovers all 205 owned rows through typed created-order pages without a total cap", async () => {
+    const rows = Array.from({ length: 205 }, (_, n) => ({ id: `cnv_${String(n + 1).padStart(26, "0")}`, title: "Saved title", model_slug: "fixture", message_count: 2 }));
+    routes.set("/v1/conversations", (res, req) => {
+      expect(req.url.searchParams.get("sort")).toBe("created");
+      expect(req.url.searchParams.get("limit")).toBe("100");
+      const offset = Number(req.url.searchParams.get("cursor") ?? 0);
+      json(req.url.searchParams.get("archived") === "true" ? { items: [], has_more: false } : { items: rows.slice(offset, offset + 100), has_more: offset + 100 < rows.length, ...(offset + 100 < rows.length ? { next_cursor: String(offset + 100) } : {}) })(res);
+    });
+    const binding = createRemoteChatBinding(createCortexClient({ baseUrl: origin }), origin, "fixture-epoch", new AbortController().signal, () => {}, "usr_fixture");
+    if (!binding.discover) throw new Error("Missing account discovery");
+    expect((await binding.discover()).map((row) => row.conversationID)).toEqual(rows.map((row) => row.id));
+    expect(requests.filter((r) => r.path === "/v1/conversations")).toHaveLength(4);
+    expect(turnRequests()).toHaveLength(0);
+  });
+
+  it("preserves image hydration requirements across repeated owner discovery", async () => {
+    routes.set("/v1/conversations", (res, req) => json({ items: req.url.searchParams.get("archived") === "true" ? [] : [{ id: cnv, title: "Saved title", model_slug: "fixture", message_count: 2 }], has_more: false })(res));
+    const binding = createRemoteChatBinding(createCortexClient({ baseUrl: origin }), origin, "fixture-epoch", new AbortController().signal, () => {}, "usr_fixture");
+    await binding.models();
+    const file = await binding.upload(image());
+    await binding.turn({ ...prompt(), attachmentIDs: [file.id] }, observe().observer).completion;
+    if (!binding.discover) throw new Error("Missing account discovery");
+    await binding.discover();
+    routes.set("/v1/models", json({ items: [model, { ...model, slug: "text-only", supports_vision: false }], has_more: false }));
+    await binding.models();
+    await expect(binding.turn({ ...prompt(), conversationID: cnv, oneOffModelSlug: "text-only" }, observe().observer).completion).rejects.toMatchObject({ code: "model_no_image_input" });
+    expect(turnRequests()).toHaveLength(1);
+  });
+
+  it("preserves full opaque cursors and empty reset payloads without a second turn", async () => {
+    const binding = (await signIn()).bind(origin), o = observe();
+    const ids = ["9007199254740993-18446744073709551613", "", "", ""];
+    const terminal = { ...done, finish_reason: "length", outcome: "incomplete", termination_reason: "upstream_eof" };
+    routes.set("/v1/conversations/turns", (res) => {
+      headers(res); res.end(frame(ids[0], { type: "text_delta", message_id: msg, delta: "initial" })
+        + frame(ids[1], { type: "text_delta", message_id: msg, delta: "A" })
+        + frame(ids[2], { type: "text_delta", message_id: msg, delta: "B" }) + frame(ids[3], terminal));
+    });
+    await expect(binding.turn(prompt(), o.observer).completion).resolves.toMatchObject({ terminal });
+    expect(o.events.filter((e) => e.type === "text_delta").map((e) => e.delta).join("")).toBe("initialAB");
+    expect(o.cursors).toEqual(ids);
+    expect(turnRequests()).toHaveLength(1);
+  });
+
+  it("refuses replay after unbuffered EOF, keeping the admitted request reserved for history", async () => {
+    const binding = (await signIn()).bind(origin), o = observe();
+    routes.set("/v1/conversations/turns", (res) => {
+      headers(res); res.end(frame("9007199254740993-0", { type: "text_delta", message_id: msg, delta: "initial" })
+        + frame("", { type: "text_delta", message_id: msg, delta: "A" }) + frame("", { type: "text_delta", message_id: msg, delta: "B" }));
+    });
+    const delivery = binding.turn(prompt(), o.observer);
+    await expect(delivery.completion).rejects.toMatchObject({ code: "provider_error" });
+    await expect(delivery.resume(o.observer)).rejects.toMatchObject({ code: "conflict" });
+    expect(o.events.filter((e) => e.type === "text_delta").map((e) => e.delta).join("")).toBe("initialAB");
+    expect(turnRequests()).toHaveLength(1);
+    expect(() => binding.turn(prompt(), o.observer)).toThrow();
+  });
+
+  it("loads every active-path page retaining ordered parts and parent identity", async () => {
+    const binding = (await signIn()).bind(origin);
+    await binding.turn(prompt(), observe().observer).completion;
+    const older = { id: otherMsg, parent_message_id: null, role: "user", text: "Question", created_at: "2026-10-04T00:00:00Z",
+      version_index: 0, version_count: 1, is_active_version: true,
+      parts: [{ id: "block-user", sequence: 0, kind: "text", text: "Question", retention: "retained" }] };
+    const newer = { id: msg, parent_message_id: otherMsg, role: "assistant", text: "Answer", created_at: "2026-10-04T00:00:01Z",
+      version_index: 0, version_count: 1, is_active_version: true, finish_reason: "stop",
+      parts: [{ id: "block-reason", sequence: 0, kind: "reasoning", text: "Consider", retention: "retained" },
+        { id: "block-tool", sequence: 1, kind: "tool_result", text: "{\"rows\":[1]}", retention: "retained", metadata: { outcome: "ok" } },
+        { id: "block-answer", sequence: 2, kind: "text", text: "Answer", retention: "retained" }] };
+    routes.set(`/v1/conversations/${cnv}/messages`, (res, req) => json(req.url.searchParams.has("before")
+      ? { items: [older], has_more: false, has_older: false, has_newer: true, next_after_cursor: otherMsg }
+      : { items: [newer], has_more: true, has_older: true, has_newer: false, next_cursor: msg })(res));
+    const history = await binding.history(cnv);
+    expect(history.items).toEqual([older, newer]);
+    expect(requests.filter((r) => r.path.endsWith("/messages")).map((r) => r.url.searchParams.get("before"))).toEqual([null, msg]);
+  });
+
+  it("reconstructs 257 messages and refuses repeated or changed-path history without another turn", async () => {
+    const binding = (await signIn()).bind(origin);
+    await binding.turn(prompt(), observe().observer).completion;
+    const rows = Array.from({ length: 257 }, (_, n) => ({ id: `msg_${String(n + 1).padStart(26, "0")}`,
+      parent_message_id: n ? `msg_${String(n).padStart(26, "0")}` : null, role: n % 2 ? "assistant" : "user",
+      text: `Message ${n}`, created_at: "2026-10-04T00:00:00Z", version_index: 0, version_count: 1, is_active_version: true,
+      parts: [{ id: `part-${n}`, sequence: 0, kind: "text", text: `Message ${n}`, retention: "retained" }] }));
+    routes.set(`/v1/conversations/${cnv}/messages`, (res, req) => {
+      const before = req.url.searchParams.get("before"), end = before ? rows.findIndex((r) => r.id === before) : rows.length;
+      const start = Math.max(0, end - 73);
+      json({ items: rows.slice(start, end), has_more: start > 0, has_older: start > 0, has_newer: end < rows.length,
+        ...(start ? { next_cursor: rows[start].id } : {}), ...(end < rows.length ? { next_after_cursor: rows[end - 1].id } : {}) })(res);
+    });
+    expect((await binding.history(cnv)).items).toEqual(rows);
+    expect(requests.filter((r) => r.path.endsWith("/messages"))).toHaveLength(4);
+    routes.set(`/v1/conversations/${cnv}/messages`, json({ items: [rows[256]], has_more: true, has_older: true, has_newer: false, next_cursor: rows[256].id }));
+    await expect(binding.history(cnv)).rejects.toMatchObject({ code: "provider_error" });
+    routes.set(`/v1/conversations/${cnv}/messages`, json({ items: [rows[0], { ...rows[1], parent_message_id: msg }], has_more: false, has_older: false, has_newer: false }));
+    await expect(binding.history(cnv)).rejects.toMatchObject({ code: "provider_error" });
+    expect(turnRequests()).toHaveLength(1);
+  });
+
   it("binds a promoted identity, sanitizes models and preserves the active epoch during refused replacement", async () => {
     const fresh = new RemoteSession(); sessions.push(fresh);
     expect(() => fresh.bind(origin)).toThrow();
@@ -104,7 +228,7 @@ describe("private remote Chat binding", () => {
     expect(session.bind(`${origin}/`)).toBe(binding);
     expect(() => session.bind("https://other.example")).toThrow();
     expect(binding.signal.aborted).toBe(false);
-    expect(Object.keys(binding).sort()).toEqual(["epoch", "history", "models", "signal", "turn", "upload"]);
+    expect(Object.keys(binding).sort()).toEqual(["accountID", "discover", "epoch", "history", "models", "signal", "turn", "upload"]);
     const models = await binding.models();
     expect(models).toEqual([{ slug: "fixture", name: "Cortex Fixture", reasoning: true, vision: true, tools: true, contextTokens: 8192, outputTokens: 1024, source: "cloud" }]);
     expect(requests.at(-1)?.headers).toMatchObject({ authorization: "Bearer fixture-token", cookie: "cortex_rt=fixture-cookie" });
@@ -142,7 +266,7 @@ describe("private remote Chat binding", () => {
     expect(replay.path).toBe(first.path);
     expect(replay.bytes).toEqual(first.bytes);
     expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]);
-    expect(replay.headers["last-event-id"]).toBe("7");
+    expect(replay.headers["last-event-id"]).toBe("7-0");
     expect(o.ids).toEqual(Array(2).fill({ conversationID: cnv, assistantID: msg }));
     expect((await binding.history(cnv)).modelSlug).toBe("fixture");
     for (const value of [
@@ -198,19 +322,20 @@ describe("private remote Chat binding", () => {
     expect((await binding.history(cnv)).modelSlug).toBe("fixture");
   });
 
-  it("retains admitted image requirements across text-only follow-ups and refuses missing history hydration", async () => {
+  it("retains admitted image requirements across hydrated text-only follow-ups", async () => {
     const binding = (await signIn()).bind(origin), file = await binding.upload(image());
     await binding.turn({ ...prompt(), attachmentIDs: [file.id] }, observe().observer).completion;
     for (const vision of [false, true]) {
       routes.set("/v1/models", json({ items: [{ ...model, supports_vision: vision }, { ...model, slug: "compatible" }], has_more: false }));
       await binding.models();
       const delivery = binding.turn({ ...prompt(), message: "What about the earlier image?", conversationID: cnv }, observe().observer);
-      await expect(delivery.completion).rejects.toMatchObject({ code: vision ? "provider_unsupported" : "model_no_image_input" });
-      expect(delivery.admissionState).toBe("refused");
+      if (vision) await expect(delivery.completion).resolves.toMatchObject({ terminal: { type: "done" } });
+      else await expect(delivery.completion).rejects.toMatchObject({ code: "model_no_image_input" });
+      expect(delivery.admissionState).toBe(vision ? "admitted" : "refused");
       const override = binding.turn({ ...prompt(), message: "Use another model", conversationID: cnv, oneOffModelSlug: "compatible" }, observe().observer);
-      await expect(override.completion).rejects.toMatchObject({ code: "provider_unsupported" });
-      expect(override.admissionState).toBe("refused");
-      expect(turnRequests()).toHaveLength(1);
+      await expect(override.completion).resolves.toMatchObject({ terminal: { type: "done" } });
+      expect(override.admissionState).toBe("admitted");
+      expect(turnRequests()).toHaveLength(vision ? 4 : 2);
     }
   });
 
@@ -313,28 +438,29 @@ describe("private remote Chat binding", () => {
       done,
       { type: "image_generation", generation_id: "fixture-generation", status: "done", file_id: fileID, filename: "fixture.png", content_type: "image/png", byte_size: png.length },
     ];
+    const mediaReady = o.until(() => o.events.length === 9);
     reply.write(events.slice(0, -1).map((e, i) => frame(i + 1, e)).join(""));
-    await vi.waitFor(() => expect(o.events).toHaveLength(9));
+    await mediaReady;
     let settled = false; void delivery.completion.then(() => { settled = true; });
     expect(settled).toBe(false);
     reply.end(frame(10, events[9]));
-    await expect(delivery.completion).resolves.toEqual({ admission: { conversationID: cnv, assistantID: msg }, terminal: done, projection: "limited" });
+    await expect(delivery.completion).resolves.toEqual({ admission: { conversationID: cnv, assistantID: msg }, terminal: done });
     expect(delivery.admissionState).toBe("admitted");
-    expect(o.events).toEqual(events); expect(o.cursors.at(-1)).toBe("10");
+    expect(o.events).toEqual(events); expect(o.cursors.at(-1)).toBe("10-0");
     const history = await binding.history(cnv);
-    expect(history).toMatchObject({ title: "Saved title", modelSlug: "fixture", limit: 100, limited: true, projection: "text-and-attachments", reasoningAndTools: "omitted" });
-    expect(history.items[0]).not.toHaveProperty("reasoning");
+    expect(history).toMatchObject({ title: "Saved title", modelSlug: "fixture", limit: 200, limited: false, projection: "retained-parts", reasoningAndTools: "retained" });
+    expect(history.items[0].reasoning).toBe("Retained reasoning");
     // Stored version indices can have gaps after deletion; sibling count is not an upper index bound.
-    routes.set(`/v1/conversations/${cnv}/messages`, json({ items: [{ ...history.items[0], version_index: 3, version_count: 1 }], has_more: false }));
+    routes.set(`/v1/conversations/${cnv}/messages`, json({ items: [{ ...history.items[0], version_index: 3, version_count: 1 }], has_more: false, has_older: false, has_newer: false }));
     expect((await binding.history(cnv)).items[0]).toMatchObject({ version_index: 3, version_count: 1 });
     expect(() => binding.turn({ ...prompt(), conversationID: cnv, effort: "low" }, o.observer)).toThrow();
     await expect(binding.history(otherCnv)).rejects.toMatchObject({ code: "invalid_request" });
     await binding.upload({ ...image(), conversationID: cnv });
     expect(() => binding.turn({ ...prompt(), attachmentIDs: [fileID] }, o.observer)).toThrow();
     const followUp = binding.turn({ ...prompt(), conversationID: cnv }, observe().observer);
-    await expect(followUp.completion).rejects.toMatchObject({ code: "provider_unsupported" });
-    expect(followUp.admissionState).toBe("refused");
-    expect(turnRequests()).toHaveLength(1);
+    await expect(followUp.completion).resolves.toMatchObject({ terminal: { type: "done" } });
+    expect(followUp.admissionState).toBe("admitted");
+    expect(turnRequests()).toHaveLength(2);
   });
 
   it("replays immutable new-chat path/body/key and the last acknowledged cursor after disconnect or detach", async () => {
@@ -342,17 +468,19 @@ describe("private remote Chat binding", () => {
     let response!: http.ServerResponse;
     routes.set("/v1/conversations/turns", (res) => { response = res; headers(res); res.write(frame(1, { type: "text_delta", message_id: msg, delta: "A" })); });
     const o = observe(), value = prompt();
+    const firstCursor = o.until(() => o.cursors.length === 1);
     const delivery = binding.turn(value, o.observer);
     expect(delivery.admissionState).toBe("pending");
     const rejected = expect(delivery.completion).rejects.toMatchObject({ code: "provider_error" });
-    await vi.waitFor(() => expect(o.cursors).toEqual(["1"]));
+    await firstCursor;
     value.message = "changed draft"; value.attachmentIDs.push(fileID);
     response.destroy(); await rejected;
     expect(delivery.admissionState).toBe("admitted");
     expect(() => binding.turn(prompt(), o.observer)).toThrow();
     routes.set("/v1/conversations/turns", (res) => { response = res; headers(res); res.write(frame(2, { type: "text_delta", message_id: msg, delta: "B" })); });
+    const nextCursor = o.until(() => o.cursors.length === 2);
     const resumed = delivery.resume(o.observer), detached = expect(resumed).rejects.toMatchObject({ code: "aborted" });
-    await vi.waitFor(() => expect(o.cursors).toEqual(["1", "2"]));
+    await nextCursor;
     delivery.detach(); await detached;
     expect(delivery.admissionState).toBe("admitted");
     routes.set("/v1/conversations/turns", (res) => { headers(res); res.end(frame(3, done)); });
@@ -362,37 +490,37 @@ describe("private remote Chat binding", () => {
     expect(new Set(seen.map((r) => r.path))).toEqual(new Set(["/v1/conversations/turns"]));
     expect(new Set(seen.map((r) => r.headers["idempotency-key"])).size).toBe(1);
     expect(new Set(seen.map((r) => r.bytes.toString())).size).toBe(1);
-    expect(seen.map((r) => r.headers["last-event-id"])).toEqual([undefined, "1", "2"]);
+    expect(seen.map((r) => r.headers["last-event-id"])).toEqual([undefined, "1-0", "2-0"]);
     expect(o.ids).toEqual(Array(3).fill({ conversationID: cnv, assistantID: msg }));
     expect(o.events.map((e) => e.type)).toEqual(["text_delta", "text_delta", "done"]);
     await expect(delivery.resume(o.observer)).rejects.toMatchObject({ code: "conflict" });
   });
 
-  it("delivers both equal-ID frames and replays without ID-only deduplication", async () => {
+  it("suppresses repeated meaningful IDs across exact opaque-cursor replay", async () => {
     const binding = (await signIn()).bind(origin), o = observe(), order: string[] = [];
     let reply!: http.ServerResponse;
     const delta = (text: string) => ({ type: "text_delta", message_id: msg, delta: text });
-    routes.set("/v1/conversations/turns", (res) => { reply = res; headers(res); res.write(frame(1, delta("A")) + frame(1, delta("B"))); });
+    const cursor = deferred();
+    routes.set("/v1/conversations/turns", (res) => { reply = res; headers(res); res.write(frame("9007199254740993-1", delta("A")) + frame("9007199254740993-1", delta("A"))); });
     const observer: MainRemoteObserver = { ...o.observer,
       event(e) { order.push(e.type === "text_delta" ? `event:${e.delta}` : e.type); o.observer.event(e); },
-      cursor(id) { order.push(`cursor:${id}`); o.observer.cursor?.(id); },
+      cursor(id) { order.push(`cursor:${id}`); o.observer.cursor?.(id); cursor.resolve(); },
     };
     const original = prompt(), delivery = binding.turn(original, observer);
     const disconnected = expect(delivery.completion).rejects.toMatchObject({ code: "provider_error" });
-    await vi.waitFor(() => expect(o.events).toHaveLength(2));
-    expect(order).toEqual(["event:A", "cursor:1", "event:B"]);
-    expect(o.cursors).toEqual(["1"]);
-    expect(o.events.flatMap((e) => e.type === "text_delta" ? e.delta : []).join("")).toBe("AB");
+    await cursor.promise;
+    expect(order).toEqual(["event:A", "cursor:9007199254740993-1"]);
+    expect(o.cursors).toEqual(["9007199254740993-1"]);
+    expect(o.events.flatMap((e) => e.type === "text_delta" ? e.delta : []).join("")).toBe("A");
     original.message = "edited after sending";
     reply.destroy(); await disconnected;
-    // The numeric backend cursor can replay the second Redis sub-entry; retain it rather than drop a new equal-ID event.
-    routes.set("/v1/conversations/turns", (res) => { headers(res); res.end(frame(1, delta("B")) + frame(2, done)); });
+    routes.set("/v1/conversations/turns", (res) => { headers(res); res.end(frame("9007199254740993-1", delta("A")) + frame("9007199254740993-2", delta("B")) + frame("9007199254740993-3", done)); });
     await delivery.resume(observer);
-    expect(order).toEqual(["event:A", "cursor:1", "event:B", "event:B", "done", "cursor:2"]);
+    expect(order).toEqual(["event:A", "cursor:9007199254740993-1", "event:B", "cursor:9007199254740993-2", "done", "cursor:9007199254740993-3"]);
     const [first, replay] = turnRequests();
     expect(replay.path).toBe(first.path); expect(replay.path).toBe("/v1/conversations/turns");
     expect(replay.bytes).toEqual(first.bytes); expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]);
-    expect(replay.headers["last-event-id"]).toBe("1");
+    expect(replay.headers["last-event-id"]).toBe("9007199254740993-1");
   });
 
   it.each(["event", "cursor"] as const)("does not acknowledge an observer %s failure before replay", async (failure) => {
@@ -405,22 +533,22 @@ describe("private remote Chat binding", () => {
         o.observer.event(e);
       },
       cursor(id) {
-        if (failure === "cursor" && id === "2") throw new Error("fixture-private-observer-error");
+        if (failure === "cursor" && id === "2-0") throw new Error("fixture-private-observer-error");
         o.observer.cursor?.(id);
       },
     };
     const delivery = binding.turn(prompt(), observer);
     const error = await delivery.completion.catch((e: unknown) => e);
     expect(error).toMatchObject({ code: "provider_error" }); expect(JSON.stringify(error)).not.toContain("fixture-private");
-    expect(o.cursors).toEqual(["1"]);
+    expect(o.cursors).toEqual(["1-0"]);
     expect(o.events).toEqual(failure === "event" ? [a] : [a, b]);
     routes.set("/v1/conversations/turns", (res) => { headers(res); res.end(frame(2, b) + frame(3, done)); });
     await delivery.resume(o.observer);
-    expect(o.cursors).toEqual(["1", "2", "3"]);
+    expect(o.cursors).toEqual(["1-0", "2-0", "3-0"]);
     expect(o.events).toEqual(failure === "event" ? [a, b, done] : [a, b, b, done]);
     const [first, replay] = turnRequests();
     expect(replay.path).toBe(first.path); expect(replay.bytes).toEqual(first.bytes);
-    expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]); expect(replay.headers["last-event-id"]).toBe("1");
+    expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]); expect(replay.headers["last-event-id"]).toBe("1-0");
   });
 
   it("reannounces matching headers before replay events after the first admission observer fails", async () => {
@@ -436,11 +564,13 @@ describe("private remote Chat binding", () => {
       reply = res; headers(res); res.write(frame(1, { type: "text_delta", message_id: msg, delta: "Recovered" }));
     });
     const order: string[] = [], next = observe();
+    const replayEvent = next.until(() => next.events.length === 1);
     const resumed = delivery.resume({ ...next.observer,
       admitted(ids) { order.push("admitted"); next.observer.admitted(ids); },
       event(event) { order.push(event.type); next.observer.event(event); },
     });
-    await vi.waitFor(() => expect(order).toEqual(["admitted", "text_delta"]));
+    await replayEvent;
+    expect(order).toEqual(["admitted", "text_delta"]);
     expect(next.ids).toEqual([{ conversationID: cnv, assistantID: msg }]);
     reply.end(frame(2, done));
     await expect(resumed).resolves.toMatchObject({ terminal: done });

@@ -4,6 +4,15 @@ import { z } from "zod"
 // Shared contracts must initialize under the renderer's CSP without probing dynamic evaluation.
 z.config({ jitless: true })
 
+export * from "./code"
+export * from "./work-bot"
+export * from "./bot-copy"
+export * from "./bot-apps"
+export * from "./work-routines"
+export * from "./work-inbox"
+export * from "./work-activity"
+export * from "./work-channels"
+
 // ---------- ids ----------
 const PREFIX = { session: "ses", message: "msg", part: "prt", permission: "per", bot: "bot", memory: "mem", task: "tsk", run: "run", space: "spc", project: "prj" } as const
 export type IdKind = keyof typeof PREFIX
@@ -235,6 +244,8 @@ const remoteID = (prefix: string) => z.string().regex(new RegExp(`^${prefix}_[0-
 export const RemoteEpoch = z.string().min(1).max(256)
 export const RemoteEffort = z.enum(["low", "medium", "high"])
 export const RemoteFinish = z.enum(["stop", "length", "tool_calls", "interrupted", "error"])
+export const RemoteTerminalOutcome = z.enum(["incomplete", "blocked", "cancelled"])
+export const RemoteTerminationReason = z.enum(["upstream_eof", "output_limit", "missing_tool_calls", "round_budget", "tool_budget", "tool_refused", "content_filter", "error", "contradictory_terminal"])
 export const RemoteDeliveryState = z.enum(["ready", "admitting", "streaming", "detached", "uncertain", "history_required", "settled"])
 export const RemoteModel = z.object({
   slug: RemoteName, name: RemoteName,
@@ -272,10 +283,11 @@ export const RemotePromptInput = z.object({
 export type RemotePromptInput = z.infer<typeof RemotePromptInput>
 export const RemoteOutcome = z.object({
   state: RemoteDeliveryState, complete: z.boolean(), partial: z.boolean(), finishReason: RemoteFinish.optional(), errorCode: ErrorCode.optional(),
+  terminalOutcome: RemoteTerminalOutcome.optional(), terminationReason: RemoteTerminationReason.optional(),
 })
 export type RemoteOutcome = z.infer<typeof RemoteOutcome>
 export const RemoteSessionView = z.object({
-  id: z.string(), source: z.literal("remote"), epoch: RemoteEpoch, scope: z.literal("process"),
+  id: z.string(), source: z.literal("remote"), epoch: RemoteEpoch, scope: z.enum(["process", "account"]),
   conversationID: remoteID("cnv").optional(), title: z.string().max(1024), modelSlug: RemoteName, effort: RemoteEffort.optional(),
   state: RemoteDeliveryState, time: z.object({ created: RemoteTime, updated: RemoteTime }), outcome: RemoteOutcome.optional(),
 })
@@ -295,19 +307,34 @@ export type RemotePart = z.infer<typeof RemotePart>
 export const RemoteMessageView = z.object({
   id: z.string(), sessionID: z.string(), remoteID: remoteID("msg").optional(), role: z.enum(["user", "assistant"]),
   time: z.object({ created: RemoteTime, completed: RemoteTime.optional() }), parts: z.array(RemotePart), partial: z.boolean(),
-  finishReason: RemoteFinish.optional(), errorCode: ErrorCode.optional(),
+  finishReason: RemoteFinish.optional(), errorCode: ErrorCode.optional(), terminalOutcome: RemoteTerminalOutcome.optional(), terminationReason: RemoteTerminationReason.optional(),
   usage: z.object({ input: RemoteCount.optional(), output: RemoteCount.optional(), reasoning: RemoteCount.optional(), cached: RemoteCount.optional(), cost: RemoteTime.optional() }).optional(),
 })
 export type RemoteMessageView = z.infer<typeof RemoteMessageView>
+export const RemoteHistoryPart = z.object({
+  id: z.string().min(1).max(256), sequence: RemoteCount.nullable(),
+  kind: z.enum(["text", "reasoning", "tool_call", "tool_result", "citation", "artifact", "summary", "research_plan", "research_report", "code_plan", "generated_image", "generated_file", "origin_check", "user_attachment", "chart", "data_dashboard"]),
+  text: z.string().max(4 * 1024 * 1024).optional(), metadata: z.record(z.string(), z.json()).optional(),
+  retention: z.enum(["retained", "deleted", "unavailable", "not_retained"]),
+})
+export type RemoteHistoryPart = z.infer<typeof RemoteHistoryPart>
+const RemoteHistoryMetadata = z.object({ file_id: remoteID("lbf").optional(), filename: RemoteName.optional(), content_type: RemoteName.optional(), byte_size: RemoteCount.optional(), retention: RemoteHistoryPart.shape.retention.optional() }).catchall(z.json())
 export const RemoteHistoryWindow = z.object({
   conversationID: remoteID("cnv"), title: z.string().max(1024), modelSlug: RemoteName,
   items: z.array(z.object({
-    id: remoteID("msg"), role: z.enum(["user", "assistant", "system", "tool"]), text: z.string().max(4 * 1024 * 1024),
+    id: remoteID("msg"), parent_message_id: remoteID("msg").nullable(), role: z.enum(["user", "assistant", "system", "tool"]), text: z.string().max(4 * 1024 * 1024),
     created_at: z.iso.datetime({ offset: true }), version_index: RemoteCount, version_count: RemoteCount.positive(), is_active_version: z.literal(true),
     finish_reason: RemoteFinish.optional(), model_name: RemoteName.optional(),
-    attachments: z.array(z.object({ file_id: remoteID("lbf"), filename: RemoteName, content_type: RemoteName, byte_size: RemoteCount })).max(20).optional(),
-  })).max(100).refine((items) => new Set(items.map((m) => m.id)).size === items.length),
-  limit: z.literal(100), limited: z.literal(true), projection: z.literal("text-and-attachments"), reasoningAndTools: z.literal("omitted"),
+    reasoning: z.string().max(4 * 1024 * 1024).optional(), reasoning_duration_ms: RemoteTime.optional(),
+    parts: z.array(RemoteHistoryPart).max(20000).optional(),
+    attachments: z.array(RemoteHistoryMetadata).max(20).optional(),
+    bounty_terms: z.record(z.string(), z.json()).optional(), bounty_link: z.record(z.string(), z.json()).optional(),
+    research_plan: z.record(z.string(), z.json()).optional(),
+    citations: z.array(z.record(z.string(), z.json())).optional(), generated_images: z.array(z.record(z.string(), z.json())).optional(),
+    generated_files: z.array(z.record(z.string(), z.json())).optional(), charts: z.array(z.record(z.string(), z.json())).optional(),
+    origin_checks: z.array(z.record(z.string(), z.json())).optional(), data_dashboards: z.array(z.record(z.string(), z.json())).optional(),
+  })).max(10000).refine((items) => new Set(items.map((m) => m.id)).size === items.length),
+  limit: z.literal(200), limited: z.literal(false), projection: z.literal("retained-parts"), reasoningAndTools: z.literal("retained"),
 })
 export type RemoteHistoryWindow = z.infer<typeof RemoteHistoryWindow>
 
@@ -476,14 +503,17 @@ export type ConnectionProbe = z.infer<typeof ConnectionProbe>
 export const RemoteAuthOwner = z.object({ origin: ConnectionUrl, revision: z.uuid() })
 export type RemoteAuthOwner = z.infer<typeof RemoteAuthOwner>
 export const RemoteAuthState = z.object({
-  status: z.enum(["signed_out", "code_sent", "signed_in", "verify_email", "mfa_challenge", "mfa_enrollment"]),
+  status: z.enum(["signed_out", "code_sent", "device_pending", "signed_in", "verify_email", "mfa_challenge", "mfa_enrollment"]),
   signedIn: z.boolean(),
   email: z.string().email().optional(),
   owner: RemoteAuthOwner.nullable(),
   candidate: z.uuid().optional(),
+  device: z.object({ userCode: z.string(), verificationURL: z.string().url() }).optional(),
 }).refine((state) => state.owner !== null || (state.status === "signed_out" && !state.signedIn && state.candidate === undefined && state.email === undefined))
 export type RemoteAuthState = z.infer<typeof RemoteAuthState>
 export const RemoteAuthInput = z.discriminatedUnion("action", [
+  z.object({ action: z.literal("device"), owner: RemoteAuthOwner }),
+  z.object({ action: z.literal("device_poll"), owner: RemoteAuthOwner }),
   z.object({ action: z.literal("email"), owner: RemoteAuthOwner, email: z.string().email().max(254) }),
   z.object({ action: z.literal("code"), owner: RemoteAuthOwner, code: z.string().length(6).regex(/^\d{6}$/) }),
   z.object({ action: z.literal("local"), owner: RemoteAuthOwner, email: z.string().email().max(254), password: z.string().min(1).max(4096) }),
@@ -573,6 +603,10 @@ export const Event = z.discriminatedUnion("type", [
   ev("project.deleted", { projectID: ProjectID }),
   ev("remote.session.changed", { sessionID: z.string(), epoch: RemoteEpoch }),
   ev("remote.session.removed", { sessionID: z.string(), epoch: RemoteEpoch }),
+  ev("code.session.changed", { sessionID: z.string(), epoch: RemoteEpoch }),
+  ev("workBot.changed", { botID: z.string().optional(), epoch: RemoteEpoch }),
+  ev("workInbox.changed", { epoch: RemoteEpoch, state: z.enum(["changed", "connected", "disconnected"]) }),
+  ev("workActivity.changed", { epoch: RemoteEpoch, botID: z.string(), state: z.enum(["changed", "connected", "disconnected"]) }),
   ev("session.created", { session: Session }),
   ev("session.updated", { session: Session }),
   ev("session.deleted", { sessionID: z.string() }),
