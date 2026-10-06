@@ -849,5 +849,15 @@
   "motion.sidebar.name": "사이드바 ⌘B / 포커스 ⌘\\",
   "motion.sidebar.desc": "너비 → 0, 크롬이 블러와 함께 페이드, 이후 전체 화면 프레임",
   "motion.sidebar.time": "240ms + 320ms",
-  "motion.sidebar.ease": "ease-out"
+  "motion.sidebar.ease": "ease-out",
+  "update.check": "업데이트 확인",
+  "update.checking": "업데이트를 확인하는 중…",
+  "update.upToDate": "Cortex가 최신 상태입니다",
+  "update.downloadingBackground": "새 버전이 있으며 다운로드하는 중입니다",
+  "update.readyVersion": "버전 {v}이(가) 준비되었습니다. 설치하려면 Cortex를 다시 시작하세요.",
+  "update.error.unsupported": "이 시스템에서는 자동 업데이트를 사용할 수 없습니다. 새 버전은 cortex.foundation에서 다운로드하세요.",
+  "update.error.not_configured": "이 빌드에는 업데이트 채널이 없습니다.",
+  "update.error.feed_invalid": "이 빌드의 업데이트 채널이 올바르지 않습니다.",
+  "update.error.not_signed": "이 Cortex 사본은 서명되지 않아 스스로 업데이트할 수 없습니다.",
+  "update.error.check_failed": "업데이트를 확인하거나 다운로드할 수 없습니다. 연결을 확인하고 다시 시도하세요."
 }

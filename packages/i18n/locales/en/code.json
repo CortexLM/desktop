@@ -467,5 +467,8 @@
   "remote.instructionsLead": "Choose a session to read the AGENTS.md of its workspace.",
   "remote.instructionsSession": "Choose a session",
   "remote.instructionsMissing": "This workspace has no AGENTS.md.",
-  "remote.instructionsReadOnly": "Instructions are read-only here. Edit AGENTS.md in the repository."
+  "remote.instructionsReadOnly": "Instructions are read-only here. Edit AGENTS.md in the repository.",
+  "status.cancelled": "Cancelled",
+  "remote.prInvalidRef": "Branch names may use only letters, digits and . _ / - +, and cannot start with - or contain \"..\".",
+  "remote.approvalsLocalScope": "The rules below apply to this computer’s local engine only. Tasks on the connected backend ask for approval through that backend."
 }

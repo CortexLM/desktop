@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { CodeSnapshot, RemoteModel } from "@cortex/schema";
+import { CodeSessionPatch, type CodeSnapshot, type RemoteModel } from "@cortex/schema";
 import { api } from "../../api";
 import { useT } from "../../i18n";
 import { Icon, Segmented } from "../../kit/ui";
@@ -101,19 +101,23 @@ function PrDraft({ session, diff }: { session: CodeSnapshot["session"]; diff: st
   const t = useT(), owns = useOwner();
   const [title, setTitle] = React.useState(session.title), [branch, setBranch] = React.useState(session.branch ?? ""), [base, setBase] = React.useState(session.baseBranch ?? "");
   const [state, setState] = React.useState<"idle" | "busy" | "saved" | "error">("idle");
+  // Same branch rule as the producer; a bad name is refused here before any request.
+  const badRef = (v: string) => !!v.trim() && !CodeSessionPatch.shape.branch.safeParse(v).success;
+  const invalid = badRef(branch) || badRef(base);
   const files = [...diff.matchAll(/^diff --git a\/(\S+)/gm)].map(m => m[1]);
   const save = async () => {
     setState("busy");
     try { await api.code.prepare(session.id, { epoch: session.epoch, title: title.trim(), ...(branch.trim() ? { branch: branch.trim() } : {}), ...(base.trim() ? { baseBranch: base.trim() } : {}) }); if (owns()) setState("saved"); }
     catch { if (owns()) setState("error"); }
   };
-  return <form className="code-prbody" data-testid="code-pr-draft" onSubmit={e => { e.preventDefault(); if (state !== "busy" && title.trim()) void save(); }}>
+  return <form className="code-prbody" data-testid="code-pr-draft" onSubmit={e => { e.preventDefault(); if (state !== "busy" && title.trim() && !invalid) void save(); }}>
     <p className="sub">{t("code.remote.prDraftBody")}</p>
     <label className="field">{t("code.pr.titleLabel")}<input className="input" data-testid="code-pr-title" value={title} maxLength={200} onChange={e => { setTitle(e.target.value); setState("idle"); }} /></label>
     <label className="field">{t("code.remote.prBranch")}<input className="input mono" data-testid="code-pr-branch" value={branch} maxLength={200} onChange={e => { setBranch(e.target.value); setState("idle"); }} /></label>
     <label className="field">{t("code.remote.prBase")}<input className="input mono" data-testid="code-pr-base" value={base} maxLength={200} onChange={e => { setBase(e.target.value); setState("idle"); }} /></label>
     <p className="sub" data-testid="code-pr-files" data-count={files.length}>{t("code.pr.files", { count: files.length })}</p>
-    <div className="ctx-bar"><button className="btn primary" data-testid="code-pr-prepare" disabled={state === "busy" || !title.trim()} type="submit">{t("code.remote.prPrepare")}</button></div>
+    <div className="ctx-bar"><button className="btn primary" data-testid="code-pr-prepare" disabled={state === "busy" || !title.trim() || invalid} type="submit">{t("code.remote.prPrepare")}</button></div>
+    {invalid && <div className="banner err" role="alert" data-testid="code-pr-invalid-ref">{t("code.remote.prInvalidRef")}</div>}
     {state === "saved" && <div className="banner" role="status" data-testid="code-pr-prepared">{t("code.remote.prPrepared")}</div>}
     {state === "error" && <div className="banner err" role="alert" data-testid="code-pr-error">{t("code.remote.unavailable")}</div>}
     <p className="code-hint" data-testid="code-pr-no-open">{t("code.remote.prNoOpen")}</p>
@@ -134,7 +138,7 @@ function RemoteSettingsBody({ section, local }: { section: string; local: React.
   if (catalog.state === "error") return <div className="banner err" role="alert">{t("code.remote.unavailable")}</div>;
   if (catalog.state !== "ready") return null;
   const epoch = catalog.data.epoch;
-  return section === "usage" ? <RemoteUsage epoch={epoch} /> : section === "instructions" ? <RemoteInstructions epoch={epoch} /> : <><RemoteDefaultModel epoch={epoch} />{local}</>;
+  return section === "usage" ? <RemoteUsage epoch={epoch} /> : section === "instructions" ? <RemoteInstructions epoch={epoch} /> : <><RemoteDefaultModel epoch={epoch} /><p className="code-hint" data-testid="code-approvals-local-scope">{t("code.remote.approvalsLocalScope")}</p>{local}</>;
 }
 
 function RemoteUsage({ epoch }: { epoch: string }) {
@@ -226,7 +230,7 @@ function OwnedCodeSession() {
   const views = [t("code.session.changes"), t("code.session.terminal"), t("code.remote.environment"), t("code.remote.pr")];
   const keys = ["changes", "terminal", "environment", "pr"];
   return <div className="code-api code-api-session">
-    <div className="content-top"><span className="title">{data?.session.title || t("code.untitled")}</span><span className="badge" role="status">{running ? t("code.status.running") : data?.session.state === "failed" || data?.session.state === "interrupted" || data?.session.errorCode ? t("code.status.failed") : t("code.status.ready")}</span><div className="spacer" />
+    <div className="content-top"><span className="title">{data?.session.title || t("code.untitled")}</span><span className="badge" role="status">{running ? t("code.status.running") : data?.session.state === "interrupted" ? t("code.status.cancelled") : data?.session.state === "failed" || data?.session.errorCode ? t("code.status.failed") : t("code.status.ready")}</span><div className="spacer" />
       <button className="btn secondary" data-testid="code-reconnect" disabled={busy} onClick={() => snapshot.reload()}>{t("code.remote.reconnect")}</button>
       <button className="btn secondary" data-testid="code-stop" disabled={busy} onClick={() => void mutate(() => api.code.stop(id, epoch))}>{t("code.terminal.stop")}</button>
       <button className="btn secondary" onClick={() => go("code")}>{t("code.newTask")}</button>

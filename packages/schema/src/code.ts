@@ -60,7 +60,9 @@ export const CodeSettingsView = z.object({ epoch: z.string(), defaultModel: z.st
 export type CodeSettingsView = z.infer<typeof CodeSettingsView>
 export const CodeSettingsInput = CodeOwner.extend({ defaultModel: ModelRef }).strict()
 export type CodeSettingsInput = z.infer<typeof CodeSettingsInput>
-const Ref = z.string().trim().min(1).max(200)
+// Mirrors the producer `gitRefName` (code-sessions.ts): check-ref-format rules plus a strict charset, so shell
+// metacharacters never reach a stored branch.
+const Ref = z.string().trim().min(1).max(200).regex(/^[A-Za-z0-9._/+-]+$/).refine((v) => !(v.startsWith("-") || v.startsWith("/") || v.endsWith("/") || v.endsWith(".") || v.includes("..") || v.includes("//") || v === "@" || v.split("/").some((p) => p.startsWith(".") || p.endsWith(".lock"))))
 // Draft PR preparation persists only what the producer session stores; it never opens a PR.
 export const CodeSessionPatch = CodeOwner.extend({ title: z.string().trim().max(200).optional(), branch: Ref.optional(), baseBranch: Ref.optional() }).strict()
 export type CodeSessionPatch = z.infer<typeof CodeSessionPatch>

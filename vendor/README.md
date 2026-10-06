@@ -2,7 +2,8 @@
 
 ## Active Task8 activity-projection successor
 
-Exact independently approved pair selected by desktop manifest/lock:
+Exact independently approved pair selected by desktop manifest/lock, vendored byte-identical at
+`activity-projection-st01a10ecc/` (`file:../../vendor/...`, lock integrity unchanged) from
 `/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-activity-projection-st01a10ecc/`.
 SDK SHA-256 `bca203567634ad4e9940bd978d35c5a44d3946afda9f42f28599b86634c56088`;
 types SHA-256 `ed4e5e68e221bc43824c8bfc084059a06bd8570d123ea9c26b9e0a1e4df22ae0`.

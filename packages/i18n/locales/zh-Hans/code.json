@@ -467,5 +467,8 @@
   "remote.instructionsLead": "选择一个会话以读取其工作区的 AGENTS.md。",
   "remote.instructionsSession": "选择会话",
   "remote.instructionsMissing": "此工作区没有 AGENTS.md。",
-  "remote.instructionsReadOnly": "此处的说明为只读。请在仓库中编辑 AGENTS.md。"
+  "remote.instructionsReadOnly": "此处的说明为只读。请在仓库中编辑 AGENTS.md。",
+  "status.cancelled": "已取消",
+  "remote.prInvalidRef": "分支名只能包含字母、数字和 . _ / - +，不能以 - 开头或包含 \"..\"。",
+  "remote.approvalsLocalScope": "以下规则仅适用于这台电脑的本地引擎。已连接后端上的任务会通过该后端请求批准。"
 }

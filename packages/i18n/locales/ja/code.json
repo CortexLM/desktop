@@ -467,5 +467,8 @@
   "remote.instructionsLead": "セッションを選ぶと、そのワークスペースの AGENTS.md を表示します。",
   "remote.instructionsSession": "セッションを選択",
   "remote.instructionsMissing": "このワークスペースには AGENTS.md がありません。",
-  "remote.instructionsReadOnly": "ここでは指示は読み取り専用です。AGENTS.md はリポジトリで編集してください。"
+  "remote.instructionsReadOnly": "ここでは指示は読み取り専用です。AGENTS.md はリポジトリで編集してください。",
+  "status.cancelled": "キャンセル済み",
+  "remote.prInvalidRef": "ブランチ名に使えるのは英数字と . _ / - + のみです。- で始めたり \"..\" を含めたりできません。",
+  "remote.approvalsLocalScope": "以下のルールはこのコンピューターのローカルエンジンにのみ適用されます。接続先バックエンドのタスクは、そのバックエンドを通じて承認を求めます。"
 }
