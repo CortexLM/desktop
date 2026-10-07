@@ -846,6 +846,7 @@ test("new chat shows an empty state and a header model picker that sends at once
   await expect(page.getByTestId("remote-effort-option")).toHaveCount(3);
   await expect(page.locator('[data-testid="remote-effort-option"][data-value="medium"]')).toHaveAttribute("aria-checked", "true");
   // Arrow keys move between models; Enter selects and closes.
+  await expect(modelOption(page, "fixture")).toBeFocused();
   await page.keyboard.press("ArrowDown");
   await expect(modelOption(page, "fixture-next")).toBeFocused();
   await page.keyboard.press("Enter");
