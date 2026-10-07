@@ -4,7 +4,7 @@ import { pathToFileURL } from "node:url";
 import { app, autoUpdater, BrowserWindow, dialog, ipcMain, nativeTheme, protocol, net, safeStorage, session, shell } from "electron";
 import { createCore, findCuaDriver } from "@cortex/core";
 import { createServer } from "@cortex/server";
-import { createTranslator, resolveLocale } from "@cortex/i18n";
+import { createTranslator, preferredLocale, type Locale } from "@cortex/i18n";
 import { nodeCatalogs } from "@cortex/i18n/node";
 import { fileCredentials } from "./credentials";
 import { buildMenu } from "./menu";
@@ -143,6 +143,8 @@ async function boot() {
   app.on("before-quit", () => void core.close());
 }
 
+// Menu and renderer default share one locale; a choice saved in Settings still wins in the renderer.
+let locale: Locale = "fr";
 function createWindow() {
   const mac = process.platform === "darwin";
   win = new BrowserWindow({
@@ -153,7 +155,7 @@ function createWindow() {
     titleBarStyle: mac ? "hiddenInset" : "hidden",
     trafficLightPosition: { x: 20, y: 15 },
     ...(mac ? {} : { titleBarOverlay: { color: "#00000000", symbolColor: nativeTheme.shouldUseDarkColors ? "#ffffff" : "#000000", height: 44 } }),
-    webPreferences: { additionalArguments: [`--cortex-version=${app.getVersion()}`], preload: path.join(__dirname, "preload.cjs"), contextIsolation: true, sandbox: true, nodeIntegration: false, spellcheck: true },
+    webPreferences: { additionalArguments: [`--cortex-version=${app.getVersion()}`, `--cortex-locale=${locale}`], preload: path.join(__dirname, "preload.cjs"), contextIsolation: true, sandbox: true, nodeIntegration: false, spellcheck: true },
   });
   win.once("ready-to-show", () => win?.show());
   win.webContents.setWindowOpenHandler(({ url }) => { if (/^https:\/\//.test(url)) void shell.openExternal(url); return { action: "deny" }; });
@@ -166,7 +168,7 @@ app.whenReady().then(async () => {
   bootStage("app-ready");
   await boot();
   bootStage("menu");
-  const locale = resolveLocale([process.env.CORTEX_LOCALE ?? "", ...app.getPreferredSystemLanguages()]);
+  locale = preferredLocale(process.env.CORTEX_LOCALE ?? "", app.getPreferredSystemLanguages());
   buildMenu(createTranslator(locale, nodeCatalogs(path.join(resources, app.isPackaged ? "locales" : "packages/i18n/locales"))), () => win, APP_NAME);
   bootStage("window");
   createWindow();

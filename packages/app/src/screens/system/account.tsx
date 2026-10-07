@@ -11,6 +11,7 @@ import { isPreview } from "../../preview";
 import { api } from "../../api";
 import { useQuery } from "../../state/live";
 import { Top, BotEmpty, useFx, useBotCfg, css, setTheme, currentThemePref, NB } from "./common";
+import { LiveProfile } from "../live/platform";
 
 /* ---------- Onboarding ---------- */
 const DONE_KEY = "cortex.onboarding.done";
@@ -422,7 +423,8 @@ export function ProfileScreen() {
   const { go } = useNav();
   const conn = useQuery(() => api.connection.get(), []);
   if (isPreview()) return <ProfilePreview />;
-  // Live: the account lives in Cortex Cloud; without a signed-in connection there is no profile to show.
+  // Live: the account lives in Cortex Cloud or a self-hosted server; signed in, it is read from `/v1/me`.
+  if (conn.state === "ready" && conn.data.mode !== "local" && conn.data.signedIn) return <LiveProfile />;
   return (<>
     <Top title={t("system.profile.title")} />
     {conn.state === "loading" ? null : <BotEmpty title={t("system.profile.signedOutTitle")} text={t("system.profile.signedOutText")}>

@@ -9,8 +9,8 @@ import { NavCtx, useNav, go, navigation, type readHash, type Route } from "./nav
 import { VariantPicker, type Theme, type ThemePref } from "../App";
 import { useT } from "../i18n";
 import { isPreview, useFixtures, usePreviewBot } from "../preview";
-import { platform } from "../api";
-import { useSessions, useBots, useProjects } from "../state/live";
+import { api, platform } from "../api";
+import { useSessions, useBots, useProjects, useQuery } from "../state/live";
 import { useRemoteSessions } from "../state/remote-list";
 import { NotFound } from "./not-found";
 import { previewChatStart, startPreviewChat } from "../components/composer";
@@ -196,7 +196,24 @@ function ThemeSwitch({ theme, setTheme }: { theme: ThemePref; setTheme: (theme: 
 
 function Avatar() {
   const fx = useFixtures<{ user?: { initials: string } }>("shell");
-  return <div className="avatar-dot" aria-hidden>{isPreview() ? fx.user?.initials : <Icon name="user" size={14} />}</div>;
+  const account = useAccount();
+  const initials = isPreview() ? fx.user?.initials : account?.initials;
+  return <div className="avatar-dot" aria-hidden data-testid="rail-avatar">{initials || <Icon name="user" size={14} />}</div>;
+}
+
+const initialsOf = (name: string) => name.split(/[\s._@-]+/).filter(Boolean).slice(0, 2).map((w) => w[0]!.toLocaleUpperCase()).join("");
+/** Signed-in remote account: initials for the rail and the first owned Bot for the sidebar shortcut. Refreshed per navigation. */
+function useAccount() {
+  const { entryKey } = useNav();
+  const q = useQuery(async () => {
+    if (isPreview()) return undefined;
+    const connection = await api.connection.get();
+    if (connection.mode === "local" || !connection.signedIn) return undefined;
+    const auth = await api.connection.auth.get().catch(() => undefined);
+    const bots = await api.workBot.list().catch(() => undefined);
+    return { initials: auth?.email ? initialsOf(auth.email.split("@")[0]!) : "", bot: bots?.bots[0] ? { epoch: bots.epoch, bot: bots.bots[0] } : undefined };
+  }, [entryKey]);
+  return q.state === "ready" ? q.data : undefined;
 }
 
 type ShellFx = {
@@ -217,13 +234,18 @@ function CortexNav({ route, go }: { route: Route; go: (r: Route, p?: Record<stri
   const remote = useRemoteSessions();
   const projects = useProjects();
   const [open, setOpen] = React.useState(true);
+  const local = sessions.state === "ready" ? sessions.data.filter((s) => !s.parentID && !s.projectID) : [];
   const start = previewChatStart();
-  const firstBot = !preview && bots.state === "ready" ? bots.data[0] : undefined;
+  const account = useAccount();
+  const remoteBot = account?.bot;
+  const firstBot = !preview && !remoteBot && bots.state === "ready" ? bots.data[0] : undefined;
   const cfg: MascotConfig = previewBot?.cfg ?? (firstBot ? { name: firstBot.name, ...(firstBot.mascot as Omit<MascotConfig, "name">) } : { name: "", ...DEFAULT_MASCOT });
   return (<>
     <div className="sb-group">
       <Row label={t("shell.nav.newChat")} icon="compose" onClick={() => go("home")} active={route === "home"} />
-      {preview || firstBot
+      {remoteBot
+        ? <Row label={remoteBot.bot.name} lead={<Mascot cfg={{ name: remoteBot.bot.name, ...DEFAULT_MASCOT }} state={remoteBot.bot.status === "awake" ? "working" : "idle"} size={16} />} meta={remoteBot.bot.label || undefined} active={["bot", "bot-studio", "bot-settings"].includes(route) && params.get("id") === remoteBot.bot.id} onClick={() => go("bot", { source: "work-bot-api", id: remoteBot.bot.id, epoch: remoteBot.epoch })} />
+        : preview || firstBot
         ? <Row label={cfg.name} lead={<Mascot cfg={cfg} state={previewBot ? previewBot.live.on ? previewBot.live.state : "asleep" : "idle"} size={16} />} meta={previewBot ? previewBot.live.on ? previewBot.live.doing : t("bots.paused") : undefined} active={["bot", "bot-new", "bot-studio"].includes(route)} onClick={() => go("bot", firstBot ? { id: firstBot.id } : undefined)} />
         : <Row label={t("shell.nav.createBot")} icon="plus" active={route === "bot-new"} onClick={() => go("bot-new")} />}
     </div>
@@ -233,6 +255,14 @@ function CortexNav({ route, go }: { route: Route; go: (r: Route, p?: Record<stri
       <Row label={t("shell.nav.documents")} gel="documents" active={route.startsWith("file-") || route === "upload"} onClick={() => go(preview ? "file-pdf" : "upload")} />
       <Row label={t("shell.nav.images")} gel="images" active={route === "image-gen"} onClick={() => go("image-gen")} />
       <Row label={t("shell.nav.automations")} gel="automatisations" active={route.startsWith("automation")} onClick={() => go("automations")} />
+    </div>
+    <div className="sb-group" data-testid="sidebar-workspace">
+      <Section title={t("shell.nav.workspace")} />
+      <Row label={t("shell.nav.space")} icon="folder-open" active={route.startsWith("space")} onClick={() => go("space")} />
+      <Row label={t("shell.nav.scheduled")} icon="calendar" active={route.startsWith("scheduled")} onClick={() => go("scheduled")} />
+      <Row label={t("shell.nav.planning")} icon="list" active={route.startsWith("planning")} onClick={() => go("planning")} />
+      <Row label={t("shell.nav.browser")} icon="globe" active={route === "browser-authorization"} onClick={() => go("browser-authorization")} />
+      <Row label={t("shell.nav.plugins")} icon="plug" active={["plugins", "plugin-detail", "skills", "mcp-add"].includes(route)} onClick={() => go("plugins")} />
     </div>
     {preview ? (
       <div className="sb-group">
@@ -256,24 +286,21 @@ function CortexNav({ route, go }: { route: Route; go: (r: Route, p?: Record<stri
         {sessions.state === "error" && <div role="alert"><div className="sb-empty">{t("work.error.loadTitle")}</div><Row label={t("common.retry")} icon="refresh" onClick={sessions.reload} /></div>}
         {projects.state === "ready" && !projects.data.length && <Row label={t("system.projects.title")} icon="folder" onClick={() => go("projects")} />}
       </div>
-      <div className="sb-group">
+      {/* One Recents list: account chats first, then chats kept on this computer; one empty state for both. */}
+      <div className="sb-group" data-testid="sidebar-recents">
         <Section title={t("shell.nav.recents")} action={<IconBtn icon="plus" label={t("shell.nav.newChat")} onClick={() => go("home")} />} />
-        {sessions.state === "ready" && sessions.data.filter((s) => !s.parentID && !s.projectID).slice(0, 12).map((s) => (
-          <Row key={s.id} label={s.title || t("shell.nav.untitled")} child active={route === "chat" && params.get("source") !== "remote" && params.get("id") === s.id} onClick={() => go("chat", { id: s.id })} />
-        ))}
-        {sessions.state === "ready" && !sessions.data.length && <div className="sb-empty">{t("shell.nav.noChats")}</div>}
-      </div>
-      {remote.state !== "hidden" && <div className="sb-group">
-        <Section title={t("chat.remote.recents")} />
         {remote.state === "loading" && <div className="sb-empty thinking" role="status">{t("system.variant.loading")}</div>}
         {remote.state === "error" && <div role="alert"><div className="sb-empty">{t("chat.remote.unavailable")}</div><Row label={t("common.retry")} icon="refresh" onClick={remote.reload} /></div>}
-        {remote.state === "ready" && remote.data.slice(0, 12).map((s) => (
+        {remote.state === "ready" && remote.data.length > 0 && <div data-testid="sidebar-remote-recents">{remote.data.slice(0, 12).map((s) => (
           <Row key={`${s.epoch}:${s.id}`} label={s.title || t("shell.nav.untitled")} child
             active={route === "chat" && params.get("source") === "remote" && params.get("epoch") === s.epoch && params.get("id") === s.id}
             onClick={() => go("chat", { source: "remote", epoch: s.epoch, id: s.id })} />
+        ))}</div>}
+        {sessions.state === "ready" && local.slice(0, 12).map((s) => (
+          <Row key={s.id} label={s.title || t("shell.nav.untitled")} child active={route === "chat" && params.get("source") !== "remote" && params.get("id") === s.id} onClick={() => go("chat", { id: s.id })} />
         ))}
-        {remote.state === "ready" && !remote.data.length && <div className="sb-empty">{t("shell.nav.noChats")}</div>}
-      </div>}
+        {sessions.state === "ready" && !local.length && remote.state !== "loading" && remote.state !== "error" && !(remote.state === "ready" && remote.data.length) && <div className="sb-empty">{t("shell.nav.noChats")}</div>}
+      </div>
     </>)}
   </>);
 }

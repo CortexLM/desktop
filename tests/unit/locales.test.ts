@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { LOCALES } from "@cortex/i18n";
+import { LOCALES, preferredLocale } from "@cortex/i18n";
 import { nodeCatalogs } from "@cortex/i18n/node";
 
 const dir = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../../packages/i18n/locales");
@@ -12,6 +12,23 @@ const vars = (s: string) => [...s.matchAll(/\{(\w+)\}/g)].map((m) => m[1]).sort(
 describe("locale catalogs", () => {
   it("declares the backend's locale list", () => {
     expect(LOCALES).toEqual(["en", "fr", "es", "de", "ja", "zh-Hans", "pt-BR", "ko"]);
+  });
+  it("defaults to French unless the user or system names another supported language", () => {
+    expect(preferredLocale("", ["en-US"])).toBe("fr");
+    expect(preferredLocale("", ["xx-YY", "en-GB"])).toBe("fr");
+    expect(preferredLocale("", ["en-US", "de-DE"])).toBe("de");
+    expect(preferredLocale("", ["pt-PT"])).toBe("pt-BR");
+    expect(preferredLocale("en", ["de-DE"])).toBe("en");
+    expect(preferredLocale("ja", [])).toBe("ja");
+    expect(preferredLocale("xx", ["en-US"])).toBe("fr");
+  });
+  it("translates every French value that is not a brand or technical token", () => {
+    // Values that stay identical in French on purpose: product names, file formats, code and CSS easing names.
+    const SAME = /^(?:Cortex(?: [A-Z][a-z]+)*|Studio Cortex|Word \(\.docx\)|Google Docs|Pull request|pnpm build|SIL Open Font License 1\.1|Micro-interactions|refs\/.*|ease-[a-z-]+|https:\/\/\S+|-{3}[\s\S]*|(?:Bot|Code|Cortex Code) · (?:invitation|session))$/;
+    const fr = nodeCatalogs(dir)("fr"), en = nodeCatalogs(dir)("en");
+    const same = Object.entries(en).filter(([n]) => n !== "components").flatMap(([n, keys]) => Object.entries(keys)
+      .filter(([k, v]) => fr[n]?.[k] === v && (v.replace(/\{\w+\}/g, "").match(/\b[A-Za-z]{3,}\b/g) ?? []).length >= 2 && !SAME.test(v)).map(([k]) => `${n}.${k}`));
+    expect(same).toEqual([]);
   });
   it("does not load translation source stamps as runtime catalogs", () => {
     const catalogs = nodeCatalogs(dir)("fr");

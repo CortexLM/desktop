@@ -27,6 +27,16 @@ export function resolveLocale(wanted: readonly string[]): Locale {
   return SOURCE_LOCALE;
 }
 
+const english = (w: string) => /^en(?:-|$)/i.test(w);
+const supported = (w: string) => english(w) || resolveLocale([w]) !== SOURCE_LOCALE;
+/** The design copy is French: an explicit choice wins, then a supported non-English system language, then French. */
+export const DEFAULT_LOCALE: Locale = "fr";
+export function preferredLocale(explicit: string, system: readonly string[]): Locale {
+  if (explicit && supported(explicit)) return resolveLocale([explicit]);
+  const other = system.find((w) => !english(w) && supported(w));
+  return other ? resolveLocale([other]) : DEFAULT_LOCALE;
+}
+
 export function createTranslator(locale: Locale, load: CatalogSource) {
   const source = flatten(load(SOURCE_LOCALE));
   const cat = locale === SOURCE_LOCALE ? source : { ...source, ...flatten(load(locale)) };

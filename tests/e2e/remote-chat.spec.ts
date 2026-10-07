@@ -329,7 +329,7 @@ test("remote Home admits selected model and effort only after backend headers", 
   expect(messages[1]).toMatchObject({ role: "assistant", remoteID: assistantID, partial: true, finishReason: "stop" });
   expect(await call<Session[]>(page, "/api/sessions")).toEqual([]);
   expect(backend.turns).toHaveLength(1);
-  const recents = page.locator(".sb-group").filter({ hasText: chatCopy["remote.recents"] });
+  const recents = page.getByTestId("sidebar-remote-recents");
   await expect(recents).toContainText(session.title);
   await show(page, "history");
   const remoteHistory = page.locator("section").filter({ has: page.getByRole("heading", { name: chatCopy["remote.recents"], exact: true }) });
@@ -1199,7 +1199,7 @@ for (const size of [{ width: 960, height: 640 }, { width: 1280, height: 900 }]) 
       await expect(remoteHistory.getByRole("button")).toHaveCount(1);
       await expect(page.locator("main.content .thinking")).toHaveCount(0);
       await expect(page.locator("main.content [role=alert]")).toHaveCount(0);
-      await expect(page.locator(".sb-group").filter({ hasText: chatCopy["remote.recents"] })).toContainText(session.title);
+      await expect(page.getByTestId("sidebar-remote-recents")).toContainText(session.title);
       await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
       await captureRemoteVisual(page, `${prefix}-history`);
       expect(backend.turns).toHaveLength(1);
@@ -1246,7 +1246,7 @@ test("remote lists reject pre-logout snapshots delivered after removal", async (
   const session = await routedSession(page);
   turn.response.end(doneFrame());
   await settled(page, session.id);
-  const recents = page.locator(".sb-group").filter({ hasText: chatCopy["remote.recents"] });
+  const recents = page.getByTestId("sidebar-remote-recents");
   await expect(recents).toContainText(session.title);
 
   const gate = await app.evaluateHandle(({ ipcMain }, sessionID) => {
