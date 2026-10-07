@@ -11,7 +11,7 @@ type Item = { id: string; mine: boolean; text: string; at: string };
 
 const GAP = 10 * 60_000;
 
-export function BotThread({ snapshot, cfg, approvals, sending, onStop }: { snapshot: WorkBotSnapshot; cfg: MascotConfig; approvals?: React.ReactNode; sending?: boolean; onStop?: (job: string) => void }) {
+export function BotThread({ snapshot, cfg, approvals, sending, outgoing, onStop }: { snapshot: WorkBotSnapshot; cfg: MascotConfig; approvals?: React.ReactNode; sending?: boolean; outgoing?: string; onStop?: (job: string) => void }) {
   const t = useT(), date = useDate(), end = React.useRef<HTMLDivElement>(null);
   const items: Item[] = [
     ...snapshot.messages.filter(m => !m.dismissed && m.text.trim()).map((m: Message) => ({ id: m.id, mine: m.sender === "user", text: m.text, at: m.at })),
@@ -34,6 +34,7 @@ export function BotThread({ snapshot, cfg, approvals, sending, onStop }: { snaps
           : <div className="msg-bot-row bot-thread-row" data-testid="bot-thread-message" data-sender="bot">{tail ? <Mascot cfg={cfg} state="idle" size={24} /> : <span className="bot-thread-pad" />}<div className="bot-bubble">{m.text}</div></div>}
       </React.Fragment>;
     })}
+    {outgoing && !items.some(m => m.mine && m.text === outgoing) && <div className="bot-bubble bot-bubble-me" data-testid="bot-thread-message" data-sender="user" data-pending="">{outgoing}</div>}
     {approvals}
     {typing && <div className="msg-bot-row bot-thread-row" data-testid="bot-typing" role="status" aria-label={t("workBot.thread.typing", { name: cfg.name })}><Mascot cfg={cfg} state="thinking" size={24} /><div className="bot-bubble bot-bubble-typing"><span className="typing"><i /><i /><i /></span></div>{running && onStop && <button className="bot-thread-stop" data-testid="work-bot-cancel" onClick={() => onStop(running.id)}>{t("workBot.thread.stop")}</button>}</div>}
     {(waiting || failed) && <p className="bot-thread-note" role="status" data-testid="bot-thread-note">{t(failed ? "workBot.thread.failed" : "workBot.thread.waiting", { name: cfg.name })}</p>}

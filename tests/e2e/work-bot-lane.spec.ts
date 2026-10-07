@@ -49,6 +49,7 @@ for (const theme of ["dark", "light"]) test(`Bot thread shows bubbles and a typi
     await page.getByTestId("work-bot-parent-input").fill("Hi again");
     await page.getByTestId("work-bot-parent-send").click();
     await expect(page.getByTestId("bot-typing")).toBeVisible();
+    await expect(thread.locator("[data-sender=user][data-pending]")).toHaveText("Hi again");
     await expect(page.getByText(/is typing…|écrit…/)).toHaveCount(0);
     await app.evaluate(() => (globalThis as unknown as { lane: State }).lane.release?.());
     await expect(page.getByTestId("bot-typing")).toHaveCount(0);

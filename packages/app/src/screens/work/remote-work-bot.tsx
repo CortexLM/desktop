@@ -45,6 +45,7 @@ function WorkBotOwner() {
   const [lead, setLead] = React.useState<string | null>(null), [leadError, setLeadError] = React.useState(false);
   const [hierarchy, setHierarchy] = React.useState(false), [section, setSection] = React.useState<"general" | "permissions" | "memory">("general");
   const [busy, setBusy] = React.useState(false), [error, setError] = React.useState(false), [unconfirmed, setUnconfirmed] = React.useState(false);
+  const [outgoing, setOutgoing] = React.useState("");
   const admission = React.useRef(false), initialized = React.useRef(false);
   React.useEffect(() => {
     if (data && !initialized.current) { const b = data.bot; setConfig({ name: b.name, description: b.description, label: b.label, look: b.look, shape: b.shape, notifications: b.notifications, status: b.status === "awake" || b.status === "hibernating" ? b.status : "idle" }); setLead(b.lead_id); initialized.current = true; }
@@ -125,8 +126,8 @@ const listed = !!epoch && list.state === "ready" && list.data.epoch === epoch;
     </div>
   </div></div>, pill);
   const cfg = lookMascot(data.bot);
-  const thread = <div className="bot-chat" data-testid="work-bot-parent"><BotThread snapshot={data} cfg={cfg} sending={busy} onStop={job => void mutate(async () => { await api.workBot.cancel(id, job, epoch); }, true)} approvals={listed && <BotPending key={`inline:${epoch}:${id}`} epoch={epoch} id={id} owns={owns} inline={cfg} />} /></div>;
-  const ask = async (text: string) => { let ok = false; await mutate(async () => { await api.workBot.parent(id, { epoch, text }); ok = true; }); return ok; };
+  const thread = <div className="bot-chat" data-testid="work-bot-parent"><BotThread snapshot={data} cfg={cfg} sending={busy} outgoing={outgoing} onStop={job => void mutate(async () => { await api.workBot.cancel(id, job, epoch); }, true)} approvals={listed && <BotPending key={`inline:${epoch}:${id}`} epoch={epoch} id={id} owns={owns} inline={cfg} />} /></div>;
+  const ask = async (text: string) => { let ok = false; setOutgoing(text); try { await mutate(async () => { await api.workBot.parent(id, { epoch, text }); ok = true; }); } finally { if (owns()) setOutgoing(""); } return ok; };
   if (route === "work-task") return screen(data.bot.name, <div className="bot-chat-page">{banners}{thread}
     <div className="dock"><Composer placeholder={t("bots.page.ask", { name: data.bot.name })} onSend={ask} testId="work-bot-parent" disabled={busy} /></div>
   </div>, pill);
