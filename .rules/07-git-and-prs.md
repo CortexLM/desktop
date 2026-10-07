@@ -63,8 +63,9 @@ Then read your own diff top to bottom.
 | Job | Runner | Steps |
 | --- | --- | --- |
 | `checks` | `vars.CORTEX_LINUX_X64_RUNNER` — a CodeBuild label gets `-<run_id>-<run_attempt>` appended; falls back to `ubuntu-latest` | lint, typecheck, test, audit:i18n |
-| `e2e` | `blacksmith-4vcpu-ubuntu-2404` | build, serial `test:e2e` under `xvfb-run` (shared clipboard/focus) |
-| `macos` | `blacksmith-6vcpu-macos-26` | build, E2E, unsigned arm64 `dir zip` package, `node scripts/smoke.mjs mac` |
+| `e2e` | `blacksmith-4vcpu-ubuntu-2404` | build, serial `test:e2e --shard=N/4` under `xvfb-run` (shared clipboard/focus), 4 shards |
+| `macos` | `blacksmith-6vcpu-macos-26` | build, E2E `--shard=N/4` (4 shards); shard 1 also packages unsigned arm64 `dir zip` and runs `node scripts/smoke.mjs mac` |
+| `windows` | `windows-2025` | build, serial E2E `--shard=N/6` (6 shards); shard 1 also packages the unsigned x64 directory and runs `node scripts/smoke.mjs win` |
 
 There is no release, publish or signing workflow in this tree. A red check is your
 problem, including when it looks unrelated.
