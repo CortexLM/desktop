@@ -116,6 +116,12 @@ function useCommands(): Cmd[] {
     { id: "g-mem", label: t("system.cmd.memory"), icon: "key", sec: G, to: "memory" },
     { id: "g-set", label: t("system.cmd.settings"), icon: "settings", sec: G, kbd: "⌘,", to: "settings" },
     { id: "g-keys", label: t("system.cmd.shortcuts"), icon: "command", sec: G, kbd: "⌘/", to: "shortcuts" },
+    { id: "g-plan", label: t("extras.link.planning"), icon: "history", sec: G, to: "planning" },
+    { id: "g-widgets", label: t("extras.link.widgets"), icon: "projects", sec: G, to: "library-dashboard" },
+    { id: "g-browser", label: t("extras.link.browser"), icon: "globe", sec: G, to: "browser-authorization" },
+    { id: "g-org", label: t("extras.link.organisation"), icon: "agent", sec: G, to: "settings-organisation" },
+    { id: "g-policy", label: t("extras.link.approvals"), icon: "shield-check", sec: G, to: "settings-approvals" },
+    { id: "g-news", label: t("extras.link.whatsNew"), icon: "info", sec: G, to: "whats-new" },
   ];
   if (hasBot) list.push(
     { id: "b-ask", label: t("system.cmd.askBot", { name: bot.name }), icon: "bot", sec: B, to: "bot", params: botId ? { id: botId } : undefined, meta: preview ? fx.bot.doing : undefined },
