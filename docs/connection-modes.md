@@ -491,6 +491,13 @@ through `packages/desktop/src/remote-chat-features.ts`. The renderer names an op
 for `search` only, `q`. Main validates `cnv_`/`cvs_` ids and share UUIDs, sends the bearer token itself, refuses
 redirects and returns bounded JSON or a typed refusal. A 401 invalidates the identity as other remote routes do.
 Operations: conversations, messages, shares (list, create, revoke), canvases (list, read), search, research
-report, audio capabilities and live preferences. Not admitted: temporary chats (the trunk accepts
-`temporary` only on the first turn of a new chat, and the desktop composer does not send it yet), image
-generation outside a chat turn, and live calls.
+report, audio capabilities, live preferences, tool turns (`turn.start`, `turn.continue`), the owned image list
+(`library.images`, `artifact_kind=image`) and owned image content (`file.content`).
+
+Tool turns back the signed-in Web search, Deep research, Images and Temporary chat pages. Main validates a strict
+`ChatTurnBody` (message, optional model slug, `temporary` on `turn.start` only, research `plan` or `run` with a
+plan of 1 to 32 questions), sends it with a fresh `Idempotency-Key`, reads `x-conversation-id`/`x-message-id`,
+cancels the event stream and returns only those ids. The trunk keeps generating after the stream closes; the page
+then re-reads stored messages until the answer has a finish reason. The model chooses web search and image
+generation; Deep Research is the explicit `research` request. `file.content` returns PNG, JPEG, WebP or GIF up to
+8 MiB as a data URL; any other type is refused. Not admitted: image editing, research cancellation and live calls.

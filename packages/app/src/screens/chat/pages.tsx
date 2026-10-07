@@ -8,7 +8,8 @@ import { useRemoteSessions } from "../../state/remote-list";
 import { useNav } from "../../shell/nav";
 import { useT, useI18n } from "../../i18n";
 import { isPreview } from "../../preview";
-import { useFx } from "./shared";
+import { Mascot } from "../../mascot/Mascot";
+import { useBotCfg, useFx } from "./shared";
 
 const css = (i: number) => ({ ["--i" as string]: i }) as React.CSSProperties;
 const norm = (s: string) => s.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
@@ -33,6 +34,7 @@ const KIND_ICON: Record<Kind, string> = { projects: "folder", files: "file", ima
 export function Library() {
   const t = useT();
   const fx = useFx();
+  const bot = useBotCfg();
   const { go } = useNav();
   const preview = isPreview();
   const projects = useProjects();
@@ -64,7 +66,13 @@ export function Library() {
             </button>
           ))}
         </div>
-      ) : <div className="pg-empty">{q ? t("chat.library.noMatch", { q }) : t("chat.library.empty")}</div>}
+      ) : q || f !== "all" ? <div className="pg-empty">{q ? t("chat.library.noMatch", { q }) : t("chat.library.empty")}</div>
+        : <div className="empty chat-empty" data-testid="library-empty">
+          <Mascot cfg={bot} state="idle" size={72} track interactive />
+          <h2>{t("chat.library.emptyTitle")}</h2><p>{t("chat.library.emptyBody")}</p>
+          <div className="chat-row"><button className="btn secondary" onClick={() => go("upload")}><Icon name="paperclip" size={16} />{t("chat.library.import")}</button>
+            <button className="btn primary" data-testid="library-new-project" onClick={() => go("projects", { v: "create" })}><Icon name="plus" size={16} />{t("chat.library.newProject")}</button></div>
+        </div>}
     </div>
   </>);
 }
