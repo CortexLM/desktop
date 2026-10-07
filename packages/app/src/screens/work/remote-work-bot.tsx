@@ -110,7 +110,7 @@ const listed = !!epoch && list.state === "ready" && list.data.epoch === epoch;
   if (!data) return screen(t("workBot.work"), <div className="page">{banners}<p role="status">{t("workBot.loading")}</p></div>);
   const mascot = { name: data.bot.name, ...DEFAULT_MASCOT };
   const live = data.bot.status === "awake" ? "working" : "idle";
-  const pill = <span className="bot-pill" data-on={data.bot.status !== "paused" || undefined} role="status"><i />{data.bot.status}</span>;
+  const pill = <span className="bot-pill" data-on={data.bot.status !== "paused" || undefined} role="status"><i />{t(data.bot.status === "paused" ? "workBot.status.paused" : `workBot.${data.bot.status}`)}</span>;
   if (route === "bot-studio") return screen(t("bots.studio.title", { name: data.bot.name }), <div className="studio">
     <section className="stage"><div className="stage-canvas"><Mascot cfg={mascot} state={live} size={160} track /><div className="stage-caption"><b>{data.bot.name}</b><span>{data.bot.label}</span></div></div></section>
     <section className="editor work-bot-api">{banners}{configForm}</section>

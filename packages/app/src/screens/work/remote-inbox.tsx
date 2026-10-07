@@ -13,7 +13,8 @@ import { toolName } from "../../state/tool-label";
 import { TabBar, Top, css, lookMascot, useAgo } from "./common";
 
 const useSignedIn = () => {
-  const connection = useQuery(() => api.connection.get(), []);
+  const { entryKey } = useNav();
+  const connection = useQuery(() => api.connection.get(), [entryKey]);
   return !isPreview() && connection.state === "ready" && connection.data.mode !== "local" && connection.data.signedIn;
 };
 
