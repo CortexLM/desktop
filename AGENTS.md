@@ -71,6 +71,12 @@ reconnect/reselect/save, never automatic retry. Metadata grants no autonomy or d
 Full Task8 remains open. Combined assembled
 migration-stack acceptance remains separate from this source-bound producer fixture.
 
+Shell/settings: the Cortex sidebar adds a Workspace group (Space, Scheduled tasks, Planning, Local browser,
+Extensions and skills) and the signed-in account's first Bot; remote and local chats share one Recents list.
+Signed-in Profile reads `/v1/me` (`app.me`); the rail shows account initials. Settings links Models,
+Organization and Approvals; Providers is hidden for Cortex Cloud. Models show display names and context
+as approximate pages, never slugs or raw token counts.
+
 Todo 6b registers 31 signed-in owner screens under `packages/app/src/screens/live`
 (Bot channel/invites/share/computer/companion/create, Code automations/connect,
 connection, providers, models, model picker, remote chat, tool approval, space,
@@ -221,7 +227,7 @@ preview fixtures. Only visible gallery iframes load; offscreen previews unload t
 | `CORTEX_STAGING_API_ORIGIN` | same | Required non-production HTTPS origin for staging; embedded in main only, invalid or ambiguous configuration fails build |
 | `CORTEX_DATA_DIR` | `packages/desktop/src/main.ts`, `scripts/dev-api.ts` | Engine data dir (default `<userData>/engine`) |
 | `CORTEX_CATALOG_URL` | same | Override `https://models.dev/api.json` |
-| `CORTEX_LOCALE` | `main.ts` | Force the native menu locale |
+| `CORTEX_LOCALE` | `main.ts` | Native menu locale and the app default when Settings has no saved locale (fallback: first supported OS language, else English) |
 | `CORTEX_START_HASH` | `main.ts` | Initial route hash, e.g. `#/settings?section=providers` |
 | `CORTEX_RENDERER_URL` | `main.ts` | Load the renderer from a dev server |
 | `CORTEX_TEST_PROVIDER_BASEURL` | `main.ts` | `id=url` provider base URL override; **ignored when packaged** |

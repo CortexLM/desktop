@@ -11,7 +11,7 @@ for (const theme of ["light", "dark"]) test(`Components catalog: families, varia
     await expect(page.locator(".cmp-block")).toHaveCount(94);
     await expect(page.locator(".cmp-sec")).toHaveCount(12);
     await expect(page.locator(".cmp-family")).toHaveCount(31);
-    await expect(page.locator(".cmp-icons figure")).toHaveCount(80);
+    await expect(page.locator(".cmp-icons figure")).toHaveCount(85);
     await expect(page.locator("[data-accessory]")).toHaveCount(19);
     await expect(page.locator(".cmp-motion-table tbody tr")).toHaveCount(30);
     await expect(page.locator('[data-family="voice"] select')).toHaveValue("listening");

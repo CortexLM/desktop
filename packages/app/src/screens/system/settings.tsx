@@ -74,18 +74,26 @@ function MemoryToggle() {
   </>;
 }
 
+// Design pages.tsx SETTINGS_LINKS: account pages that open their own screen.
+const LINKS: [string, string, string][] = [["models", "settings.link.models", "cpu"], ["settings-organisation", "settings.link.organisation", "users"], ["settings-approvals", "settings.link.approvals", "shield-check"]];
+
 export function SettingsScreen() {
   const t = useT();
-  const { params } = useNav();
+  const { params, go, entryKey } = useNav();
   const [v, setV] = useVariant();
-  const sec = SECTIONS.some(([s]) => s === v) ? v : SECTIONS.some(([s]) => s === params.get("section")) ? params.get("section")! : "general";
+  // Provider keys are a local/self-hosted concern; a Cortex Cloud account never manages them.
+  const conn = useQuery(() => (isPreview() ? Promise.resolve(undefined) : api.connection.get()), [entryKey]);
+  const cloud = conn.state === "ready" && conn.data?.mode === "cloud";
+  const sections = SECTIONS.filter(([s]) => !(cloud && s === "providers"));
+  const sec = sections.some(([s]) => s === v) ? v : sections.some(([s]) => s === params.get("section")) ? params.get("section")! : "general";
   return (<>
     <div className="content-top"><span className="title">{t("system.settings.title")}</span></div>
     <div className="page"><div className="pg-set">
       <nav className="pg-nav" aria-label={t("system.settings.sections")}>
-        {SECTIONS.map(([s, g]) => (
+        {sections.map(([s, g]) => (
           <button key={s} className="pg-nav-i" data-testid={`settings-nav-${s}`} aria-current={sec === s || undefined} onClick={() => setV(s)}><Gel name={g} size={16} />{t(`system.settings.sec.${s}`)}</button>
         ))}
+        {LINKS.map(([id, label, icon]) => <button key={id} className="pg-nav-i" data-testid={`settings-link-${id}`} onClick={() => go(id)}><Icon name={icon} />{t(`system.${label}`)}</button>)}
       </nav>
       <div className="pg-panel" key={sec}>
         <div className="page-title">{t(`system.settings.sec.${sec}`)}</div>
@@ -99,6 +107,7 @@ export function SettingsScreen() {
         </div>}
         {sec === "account" && <Account />}
         {TOGGLES[sec] && sec !== "appearance" && <div className="list">{TOGGLES[sec].map(([id, d]) => sec === "general" && id === "enter" ? <EnterToggle key={id} /> : sec === "privacy" && id === "memory" ? <MemoryToggle key={id} /> : <Toggle key={id} sec={sec} id={id} def={d} />)}</div>}
+        {sec === "general" && <button className="btn secondary" style={{ marginTop: 16 }} data-testid="settings-whats-new" onClick={() => go("whats-new")}><Icon name="info" />{t("extras.link.whatsNew")}</button>}
       </div>
     </div></div>
   </>);
