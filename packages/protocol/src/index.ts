@@ -9,7 +9,7 @@ import {
   CodeOwner,
   CodePromptInput,
   CodeDecisionInput,
-  CodeSessionPatch, CodeSettingsInput, CodeInstructionsInput, CodeReviewInput, CodeLocalInstructionsInput, CodeBranchesInput,
+  ContractCall, CodeSessionPatch, CodeSettingsInput, CodeInstructionsInput, CodeReviewInput, CodeLocalInstructionsInput, CodeBranchesInput,
   WorkBotOwner, WorkBotCreate, WorkBotUpdate, WorkJobCreate, WorkBotParentInput,
   BotCopyCreate, BotCopyInviteInput, BotCopyAccept,
   AppCatalogInput, AppConsent, ConnectorEnable, ToolRuleInput,
@@ -115,6 +115,7 @@ export const routes = {
   "code.prepare": r("patch", "/api/code/sessions/:id", { body: CodeSessionPatch }),
   "code.instructions": r("post", "/api/code/sessions/:id/instructions", { body: CodeInstructionsInput }),
   "code.review": r("post", "/api/code/sessions/:id/review", { body: CodeReviewInput }),
+  "code.contract": r("post", "/api/code/contract", { body: ContractCall }),
   "code.localInstructions": r("post", "/api/code/local-instructions", { body: CodeLocalInstructionsInput }),
 
   "workBot.list": r("get", "/api/work-bot"),

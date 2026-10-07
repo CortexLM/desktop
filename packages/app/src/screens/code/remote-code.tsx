@@ -7,6 +7,8 @@ import { useNav, readHash } from "../../shell/nav";
 import { useQuery } from "../../state/live";
 import { useSendEnter } from "../../state/send-enter";
 import { splitRows } from "./split-rows";
+import { LiveEmpty } from "./parts";
+import { ContractError, useContract, LiveAttempts, LiveComments, LivePrReview, LiveRepoToggle, LiveResolve, LiveRuntimeAdmin, LiveSessionGrant } from "./contract-panels";
 
 function useOwner(epoch = "") {
   const { entryKey, params } = useNav();
@@ -162,15 +164,29 @@ function PrDraft({ session, diff }: { session: CodeSnapshot["session"]; diff: st
     {invalid && <div className="banner err" role="alert" data-testid="code-pr-invalid-ref">{t("code.remote.prInvalidRef")}</div>}
     {state === "saved" && <div className="banner" role="status" data-testid="code-pr-prepared">{t("code.remote.prPrepared")}</div>}
     {state === "error" && <div className="banner err" role="alert" data-testid="code-pr-error">{t("code.remote.unavailable")}</div>}
-    <p className="code-hint" data-testid="code-pr-no-open">{t("code.remote.prNoOpen")}</p>
+    {session.runtime === "cloud" && <OpenDraftPr session={session} title={title.trim()} ready={state === "saved"} />}
   </form>;
 }
 
+function OpenDraftPr({ session, title, ready }: { session: CodeSnapshot["session"]; title: string; ready: boolean }) {
+  const t = useT(), c = useContract(), [pr, setPr] = React.useState<{ number: number; url: string }>();
+  return <div className="ctx-bar" data-testid="code-pr-open-bar">
+    <button className="btn secondary" type="button" data-testid="code-pr-open" disabled={c.busy || !ready || !!pr || !title} onClick={() => void c.run(async () => setPr((await api.code.contract({ epoch: session.epoch, op: "code.pr.open", params: { session: session.id }, body: { title } })).data as { number: number; url: string }))}>{t("code.contract.openDraftPr")}</button>
+    {pr && <span className="code-meta" data-testid="code-pr-opened" data-number={pr.number}>{t("code.contract.prOpened", { n: pr.number })}</span>}
+    <ContractError code={c.error} />
+  </div>;
+}
+
 // Code settings against the signed-in producer; anything else keeps the local section.
+export function CodeMachines() {
+  const t = useT();
+  return <><div className="content-top"><span className="title">{t("code.contract.machines")}</span></div><div className="page"><RemoteCodeSettings section="machines" local={<LiveEmpty />} /></div></>;
+}
+
 export function RemoteCodeSettings({ section, local }: { section: string; local: React.ReactNode }) {
   const connection = useQuery(() => api.connection.get(), []);
   if (connection.state !== "ready") return null;
-  if (connection.data.mode === "local" || !connection.data.signedIn || !["usage", "instructions", "approvals"].includes(section)) return local;
+  if (connection.data.mode === "local" || !connection.data.signedIn || !["usage", "instructions", "approvals", "repos", "machines"].includes(section)) return local;
   return <RemoteSettingsBody section={section} local={local} />;
 }
 
@@ -180,7 +196,16 @@ function RemoteSettingsBody({ section, local }: { section: string; local: React.
   if (catalog.state === "error") return <div className="banner err" role="alert">{t("code.remote.unavailable")}</div>;
   if (catalog.state !== "ready") return null;
   const epoch = catalog.data.epoch;
-  return section === "usage" ? <RemoteUsage epoch={epoch} /> : section === "instructions" ? <RemoteInstructions epoch={epoch} /> : <><RemoteDefaultModel epoch={epoch} /><p className="code-hint" data-testid="code-approvals-local-scope">{t("code.remote.approvalsLocalScope")}</p>{local}</>;
+  return section === "machines" ? <LiveRuntimeAdmin epoch={epoch} /> : section === "repos" ? <RemoteRepos epoch={epoch} /> : section === "usage" ? <RemoteUsage epoch={epoch} /> : section === "instructions" ? <RemoteInstructions epoch={epoch} /> : <><RemoteDefaultModel epoch={epoch} /><p className="code-hint" data-testid="code-approvals-local-scope">{t("code.remote.approvalsLocalScope")}</p>{local}</>;
+}
+
+function RemoteRepos({ epoch }: { epoch: string }) {
+  const t = useT();
+  const repos = useQuery(() => api.code.repositories(epoch), [epoch]);
+  if (repos.state === "error") return <div className="banner err" role="alert">{t("code.remote.unavailable")}</div>;
+  return <div data-testid="code-repos-live">{repos.state === "ready" && repos.data.items.map(r => <div key={r.fullName} className="li" data-testid="code-repo-row">
+    <span className="grow mono">{r.fullName}</span><LiveRepoToggle epoch={epoch} fullName={r.fullName} reload={repos.reload} />
+  </div>)}</div>;
 }
 
 function RemoteUsage({ epoch }: { epoch: string }) {
@@ -267,6 +292,8 @@ function LiveDiff({ session, diff, reload }: { session: CodeSnapshot["session"];
       </div>
       {decided[f.path] && <p className="sub" role="status" data-testid="code-diff-decided">{t(decided[f.path] === "approve" ? "code.remote.reviewApproved" : "code.remote.reviewRejected")}</p>}
       {failed === f.path && <div className="banner err" role="alert" data-testid="code-diff-review-error">{t("code.remote.unavailable")}</div>}
+      {session.runtime === "cloud" && <LiveResolve epoch={session.epoch} session={session.id} path={f.path} />}
+      <LiveComments epoch={session.epoch} session={session.id} path={f.path} />
       {!folded.includes(f.path) && (mode === "unified" ? <pre>{f.text}</pre>
         : <div className="code-split mono" data-testid="code-diff-split" aria-label={t("code.diff.splitLabel")}>{splitRows(f.text).map((r, i) => <div className="code-sr" key={i}>{[r.left, r.right].map((h, j) => <div className="code-half" key={j} data-k={h.k}><span className="code-src">{h.text}</span></div>)}</div>)}</div>)}
     </div>)}
@@ -325,8 +352,8 @@ function OwnedCodeSession() {
   const send = () => void mutate(async () => { const request = text; await api.code.prompt(id, { epoch, message: request }); if (owns()) submitted.current = request; });
   const asks = data?.permissions.filter(p => !p.decision) ?? [];
   const running = data?.session.delivery === "streaming" || data?.session.delivery === "admitting" || data?.session.state === "running" || asks.length > 0;
-  const views = [t("code.session.changes"), t("code.session.terminal"), t("code.remote.environment"), t("code.remote.pr")];
-  const keys = ["changes", "terminal", "environment", "pr"];
+  const views = [t("code.session.changes"), t("code.session.terminal"), t("code.remote.environment"), t("code.remote.pr"), t("code.contract.attempts")];
+  const keys = ["changes", "terminal", "environment", "pr", "attempts"];
   return <div className="code-api code-api-session">
     <div className="content-top"><span className="title">{data?.session.title || t("code.untitled")}</span><span className="badge" role="status">{running ? t("code.status.running") : data?.session.state === "interrupted" ? t("code.status.cancelled") : data?.session.state === "failed" || data?.session.errorCode ? t("code.status.failed") : t("code.status.ready")}</span><div className="spacer" />
       <button className="btn secondary" data-testid="code-reconnect" disabled={busy} onClick={() => snapshot.reload()}>{t("code.remote.reconnect")}</button>
@@ -341,13 +368,15 @@ function OwnedCodeSession() {
           <b>{t("code.terminal.approvalRequired")}</b><pre>{p.exact_action_preview ?? p.detail}</pre>
           {p.proposed_diff && <div className="diff"><div className="code-head">{p.path}</div><pre data-testid="code-proposed-diff">{p.proposed_diff}</pre></div>}
           <div className="ctx-bar"><button className="btn primary" data-testid="permission-allow-once" disabled={busy} onClick={() => void mutate(() => api.code.decide(id, p.id, epoch, "allow"))}>{t("code.terminal.allowOnce")}</button><button className="btn secondary" data-testid="permission-deny" disabled={busy} onClick={() => void mutate(() => api.code.decide(id, p.id, epoch, "deny"))}>{t("code.terminal.deny")}</button></div>
+          {p.tool_name === "bash" && <LiveSessionGrant epoch={epoch} session={id} />}
         </div>)}
         <CodeComposer models={catalog.state === "ready" ? catalog.data.models : []} model={model} setModel={() => {}} text={text} setText={setText} busy={busy || running} send={send} />
       </div>
       <div className="split-r">
         <div className="pane-head"><Segmented items={views} value={views[Math.max(0, keys.indexOf(view))]} onChange={v => setView(keys[views.indexOf(v)] ?? "changes")} /></div>
         {view === "environment" ? <SessionEnvironment epoch={epoch} runtime={data?.session.runtime} />
-          : view === "pr" ? (data ? <PrDraft key={data.session.id} session={data.session} diff={data.workspace?.state === "ready" ? data.workspace.diff : ""} /> : null)
+          : view === "pr" ? (data ? <><PrDraft key={data.session.id} session={data.session} diff={data.workspace?.state === "ready" ? data.workspace.diff : ""} />{data.session.runtime === "cloud" && <LivePrReview epoch={epoch} session={id} />}</> : null)
+          : view === "attempts" ? <LiveAttempts epoch={epoch} session={id} />
           : view === "terminal" ? <pre className="term" data-testid="code-real-terminal">{data?.messages.flatMap(m => m.tools.filter(p => ["bash", "task", "read_file"].includes(p.tool_name)).map(p => `${JSON.stringify(p.arguments)}\n${p.result ?? ""}${p.result_omitted_chars ? `\n${t("code.terminal.truncated", { count: p.result_omitted_chars })}` : ""}`)).join("\n\n") || t("code.session.noCommands")}</pre>
           : <>{data?.workspace?.state === "refused" && <div className="banner warn" role="status" data-testid="code-workspace-refused" data-reason={data.workspace.reason}><span>{t(`code.workspace.refused.${data.workspace.reason}`)}</span></div>}
             {data?.workspace?.state === "ready" && (data.workspace.diff ? <LiveDiff session={data.session} diff={data.workspace.diff} reload={snapshot.reload} /> : <p className="sub" data-testid="code-live-diff-empty">{t("code.workspace.clean")}</p>)}
