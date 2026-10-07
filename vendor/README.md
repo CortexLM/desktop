@@ -1,13 +1,20 @@
 # Vendored Cortex SDK
 
-## Current pair: SDK 0.4.5 / api-types 0.3.4 (backend trunk)
+## Current pair: SDK 0.4.6 / api-types 0.3.5 (backend trunk)
 
 The only vendored pair, in `trunk/`. Packed with `packages/sdk/scripts/pack.mjs` (umask 077) from a
-`git archive` export of backend branch `integration/backend` at `2af7ebba`; byte-identical to the
+`git archive` export of backend branch `integration/backend` at `17bb982b`; byte-identical to the
 backend's `apps/web/vendor` copies. Turn resume cursors are full Redis stream IDs (`<ms>-<seq>`); the
 SDK refuses any other cursor before opening a request, and the trunk API answers 422 to one. Selected by
 `packages/desktop/package.json`, `packages/app/package.json` and `bun.lock` through relative
 `file:../../vendor/trunk/...` paths. Every older pair was removed; the provenance below is history only.
+
+| Archive | SHA-256 |
+| --- | --- |
+| `trunk/cortex-sdk-0.4.6.tgz` | `1715d93b6432740edc10af6469b6da61b7338580d9da83bdaf49dcdaa81e24b3` |
+| `trunk/cortex-api-types-0.3.5.tgz` | `d902d27699c8b579550d5838df93d904a9d7b233e62f331362dbfa4596a922bb` |
+
+## Former pair: SDK 0.4.5 / api-types 0.3.4 (backend trunk at `2af7ebba`, removed)
 
 | Archive | SHA-256 |
 | --- | --- |
