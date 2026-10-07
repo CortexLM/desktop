@@ -75,15 +75,13 @@ test("self-hosted Settings keeps Providers", async () => {
   } finally { await app.close(); fs.rmSync(dataDir, { recursive: true, force: true }); }
 });
 
-test("French is the default, the sidebar has the Workspace group, the Bot shortcut and one Recents list", async () => {
-  // Unsupported system language and no saved choice: the app falls back to the design's French.
-  const { app, page, dataDir } = await launch({ env: { CORTEX_LOCALE: "" } });
+test("French users get the Workspace group, the Bot shortcut and one Recents list in French", async () => {
+  // CORTEX_LOCALE reaches the renderer through preload; the system-language fallback is covered in tests/unit/locales.test.ts.
+  const { app, page, dataDir } = await launch({ locale: "fr" });
   try {
     await signedIn(app, "cloud");
     await page.evaluate(() => { location.hash = "#/home"; });
-    await expect(page.locator("html")).toHaveAttribute("lang", /^(fr|es|de|ja|zh-Hans|pt-BR|ko)$/);
-    const lang = await page.locator("html").getAttribute("lang");
-    test.skip(lang !== "fr", `host system language ${lang} is supported, so it wins over the French default`);
+    await expect(page.locator("html")).toHaveAttribute("lang", "fr");
     const workspace = page.getByTestId("sidebar-workspace");
     await expect(workspace).toContainText(shellFr["nav.workspace"]);
     for (const k of ["nav.space", "nav.scheduled", "nav.planning", "nav.browser", "nav.plugins"] as const) await expect(workspace.getByRole("button", { name: shellFr[k], exact: true })).toBeVisible();

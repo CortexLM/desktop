@@ -144,7 +144,7 @@ async function boot() {
 }
 
 // Menu and renderer default share one locale; a choice saved in Settings still wins in the renderer.
-let locale: Locale = "fr";
+let locale: Locale = "en";
 function createWindow() {
   const mac = process.platform === "darwin";
   win = new BrowserWindow({

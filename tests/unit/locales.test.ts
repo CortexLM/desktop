@@ -13,14 +13,16 @@ describe("locale catalogs", () => {
   it("declares the backend's locale list", () => {
     expect(LOCALES).toEqual(["en", "fr", "es", "de", "ja", "zh-Hans", "pt-BR", "ko"]);
   });
-  it("defaults to French unless the user or system names another supported language", () => {
-    expect(preferredLocale("", ["en-US"])).toBe("fr");
-    expect(preferredLocale("", ["xx-YY", "en-GB"])).toBe("fr");
-    expect(preferredLocale("", ["en-US", "de-DE"])).toBe("de");
+  it("follows the explicit choice, then the first supported system language, else English", () => {
+    expect(preferredLocale("", ["en-US"])).toBe("en");
+    expect(preferredLocale("", ["en-US", "de-DE"])).toBe("en");
+    expect(preferredLocale("", ["xx-YY", "fr-FR"])).toBe("fr");
     expect(preferredLocale("", ["pt-PT"])).toBe("pt-BR");
+    expect(preferredLocale("", ["xx-YY"])).toBe("en");
+    expect(preferredLocale("", [])).toBe("en");
     expect(preferredLocale("en", ["de-DE"])).toBe("en");
-    expect(preferredLocale("ja", [])).toBe("ja");
-    expect(preferredLocale("xx", ["en-US"])).toBe("fr");
+    expect(preferredLocale("fr", ["en-US"])).toBe("fr");
+    expect(preferredLocale("xx", ["de-DE"])).toBe("de");
   });
   it("translates every French value that is not a brand or technical token", () => {
     // Values that stay identical in French on purpose: product names, file formats, code and CSS easing names.

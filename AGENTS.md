@@ -227,7 +227,7 @@ preview fixtures. Only visible gallery iframes load; offscreen previews unload t
 | `CORTEX_STAGING_API_ORIGIN` | same | Required non-production HTTPS origin for staging; embedded in main only, invalid or ambiguous configuration fails build |
 | `CORTEX_DATA_DIR` | `packages/desktop/src/main.ts`, `scripts/dev-api.ts` | Engine data dir (default `<userData>/engine`) |
 | `CORTEX_CATALOG_URL` | same | Override `https://models.dev/api.json` |
-| `CORTEX_LOCALE` | `main.ts` | Force the app and native menu locale (default: supported non-English OS language, else French) |
+| `CORTEX_LOCALE` | `main.ts` | Force the app and native menu locale (default: first supported OS language, else English) |
 | `CORTEX_START_HASH` | `main.ts` | Initial route hash, e.g. `#/settings?section=providers` |
 | `CORTEX_RENDERER_URL` | `main.ts` | Load the renderer from a dev server |
 | `CORTEX_TEST_PROVIDER_BASEURL` | `main.ts` | `id=url` provider base URL override; **ignored when packaged** |

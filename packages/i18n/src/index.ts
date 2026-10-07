@@ -29,12 +29,10 @@ export function resolveLocale(wanted: readonly string[]): Locale {
 
 const english = (w: string) => /^en(?:-|$)/i.test(w);
 const supported = (w: string) => english(w) || resolveLocale([w]) !== SOURCE_LOCALE;
-/** The design copy is French: an explicit choice wins, then a supported non-English system language, then French. */
-export const DEFAULT_LOCALE: Locale = "fr";
+/** An explicit choice (Settings, then CORTEX_LOCALE) wins, then the first supported system language, else English. */
 export function preferredLocale(explicit: string, system: readonly string[]): Locale {
   if (explicit && supported(explicit)) return resolveLocale([explicit]);
-  const other = system.find((w) => !english(w) && supported(w));
-  return other ? resolveLocale([other]) : DEFAULT_LOCALE;
+  return resolveLocale(system);
 }
 
 export function createTranslator(locale: Locale, load: CatalogSource) {
