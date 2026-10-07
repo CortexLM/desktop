@@ -25,6 +25,23 @@ describe("remote contract transport", () => {
     await expect(contractFetch({ epoch: "e", op: "plans.step.update", params: { plan: "tpl_01J0000000000000000000000A", step: "cnv_01J0000000000000000000000A" } }, owner(fetch))).rejects.toMatchObject({ code: "invalid_request" });
     expect(fetch).not.toHaveBeenCalled();
   });
+  it("routes the Todo 6b app operations with typed segments, query and text bodies", async () => {
+    const seen: Request[] = [];
+    const fetch = vi.fn(async (r: RequestInfo | URL) => { seen.push(r as Request); return new Response("# Note", { status: 200 }); }) as unknown as typeof globalThis.fetch;
+    const file = "lbf_01J0000000000000000000000A";
+    expect(await contractFetch({ epoch: "e", op: "app.file.content", params: { file } }, owner(fetch))).toEqual({ status: 200, data: "# Note" });
+    expect(seen[0]!.url).toBe(`${origin}/v1/library/${file}/content`);
+    const json = vi.fn(async (r: RequestInfo | URL) => { seen.push(r as Request); return Response.json({ items: [] }); }) as unknown as typeof globalThis.fetch;
+    await contractFetch({ epoch: "e", op: "app.skills", params: {} }, owner(json));
+    expect(seen[1]!.url).toBe(`${origin}/v1/skills?surface=chat`);
+    await contractFetch({ epoch: "e", op: "app.permission.decide", params: { conversation: "cnv_01J0000000000000000000000A", prompt: "prm_01J0000000000000000000000A" }, body: { decision: "allow" } }, owner(json));
+    expect(seen[2]!.method).toBe("POST");
+    const none = vi.fn() as unknown as typeof globalThis.fetch;
+    await expect(contractFetch({ epoch: "e", op: "app.share.preview", params: { token: "not-hex/.." } }, owner(none))).rejects.toMatchObject({ code: "invalid_request" });
+    await expect(contractFetch({ epoch: "e", op: "app.file", params: { file: "cnv_01J0000000000000000000000A" } }, owner(none))).rejects.toMatchObject({ code: "invalid_request" });
+    await expect(contractFetch({ epoch: "e", op: "app.channel", params: { channel: "x" } }, owner(none))).rejects.toMatchObject({ code: "invalid_request" });
+    expect(none).not.toHaveBeenCalled();
+  });
   it("routes task-plan step updates to the exact trunk path", async () => {
     const seen: Request[] = [];
     const fetch = vi.fn(async (r: RequestInfo | URL) => { seen.push(r as Request); return Response.json({ status: "done" }); }) as unknown as typeof globalThis.fetch;
