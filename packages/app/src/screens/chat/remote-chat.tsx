@@ -199,8 +199,8 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
         if (binding.current && binding.current !== catalog.epoch) fail();
         binding.current = catalog.epoch;
         setModels(catalog.models);
-        // A new chat starts on the first offered model so Send works at once.
-        setModel((slug) => catalog.models.some((item) => item.slug === slug) ? slug : catalog.models[0]?.slug ?? "");
+        // A new chat starts on the first offered model so Send works at once; a chosen model that vanished stays so modelValid blocks Send.
+        setModel((slug) => slug || (catalog.models[0]?.slug ?? ""));
         if (id || record.current) await read();
         else { setLoaded(true); setError(""); }
       } catch { if (valid()) { setLoaded(false); setError("unavailable"); } }
