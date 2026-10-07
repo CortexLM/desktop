@@ -4,6 +4,7 @@ import "./jitless"
 import { z } from "zod"
 
 export * from "./code"
+export * from "./contracts"
 export * from "./work-bot"
 export * from "./bot-copy"
 export * from "./bot-apps"

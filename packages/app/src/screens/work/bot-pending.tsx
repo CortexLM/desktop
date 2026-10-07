@@ -2,6 +2,7 @@ import * as React from "react";
 import type { PendingApprovals, PolicyEvaluations } from "@cortex/schema";
 import { api } from "../../api";
 import { useT } from "../../i18n";
+import { LiveApprovalTransfer } from "./contract-panels";
 
 export function BotPending({ epoch, id, owns }: { epoch: string; id?: string; owns(): boolean }) {
   const t = useT();
@@ -72,6 +73,7 @@ export function BotPending({ epoch, id, owns }: { epoch: string; id?: string; ow
         <button className="btn primary" data-testid="bot-pending-always-confirm" disabled={busy || !alwaysAck || !row.message_id} onClick={() => { setAlwaysFor(undefined); void decide(row, "allow", true); }}>{t("workBot.pending.alwaysGrant")}</button>
         <button className="btn secondary" onClick={() => setAlwaysFor(undefined)}>{t("workBot.skills.cancel")}</button>
       </div>}
+      <LiveApprovalTransfer epoch={epoch} approval={row.id} done={() => void load()} />
     </article>)}
     {id && <><h3>{t("workBot.pending.evaluations")}</h3><p>{t("workBot.pending.auditBoundary")}</p>{audit?.items.map(item => <p key={item.id} data-testid="bot-policy-evaluation">{item.tool_name} · {t(`workBot.pending.evaluation.${item.evaluation}`)} · {t(`workBot.pending.source.${item.source}`)}</p>)}</>}
   </section>;

@@ -23,7 +23,7 @@ export const WorkJobCreate = WorkBotOwner.extend({ kind: z.enum(["explore", "gen
 export type WorkJobCreate = z.infer<typeof WorkJobCreate>
 export const WorkBotParentInput = WorkBotOwner.extend({ text: z.string().trim().min(1).refine(v => [...v].length <= 20000) }).strict()
 export type WorkBotParentInput = z.infer<typeof WorkBotParentInput>
-export const WorkJob = z.object({ id: WorkBotID, kind: z.string(), goal: z.string(), status: z.enum(["queued", "running", "done", "failed", "cancelled"]), created_at: z.string(), error_code: z.string().optional(), result: z.unknown().optional() })
+export const WorkJob = z.object({ id: WorkBotID, kind: z.string(), goal: z.string(), status: z.enum(["queued", "running", "paused", "done", "failed", "cancelled"]), created_at: z.string(), error_code: z.string().optional(), result: z.unknown().optional() })
 export type WorkJob = z.infer<typeof WorkJob>
 export const WorkBotMessage = z.object({ id: WorkBotID, sender: z.string(), kind: z.string(), text: z.string(), at: z.string(), dismissed: z.boolean(), responded: z.boolean(), payload: z.unknown().optional() })
 export const WorkBotParentResponse = z.object({ message: WorkBotMessage, replies: z.array(WorkBotMessage), reply: WorkBotMessage.optional() })

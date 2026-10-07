@@ -1,4 +1,4 @@
-import { CodeCreateInput, CodePromptInput, CodeSnapshot, CodeOwner, CodeDecisionInput, CodeSessionPatch, CodeSettingsInput, CodeInstructionsInput, CodeReviewInput, CodeLocalInstructionsInput, CodeBranchesInput, type CodeReviewView, type CodeRepositoriesView, type CodeBranchesView, type CodeEnvironmentView, type CodeFileView, type CodeSessionView, type CodeSettingsView, type CodeUsageView, type RemoteModel } from "@cortex/schema"
+import { ContractCall, type ContractResult, CodeCreateInput, CodePromptInput, CodeSnapshot, CodeOwner, CodeDecisionInput, CodeSessionPatch, CodeSettingsInput, CodeInstructionsInput, CodeReviewInput, CodeLocalInstructionsInput, CodeBranchesInput, type CodeReviewView, type CodeRepositoriesView, type CodeBranchesView, type CodeEnvironmentView, type CodeFileView, type CodeSessionView, type CodeSettingsView, type CodeUsageView, type RemoteModel } from "@cortex/schema"
 import { lstat, readFile } from "node:fs/promises"
 import { isAbsolute, join } from "node:path"
 import { CortexError } from "./error"
@@ -27,6 +27,7 @@ export interface CodeBinding {
   prepare(id: string, input: Omit<CodeSessionPatch, "epoch">): Promise<CodeSessionView>
   instructions(id: string): Promise<CodeFileView>
   review(id: string, path: string, decision: "approve" | "reject"): Promise<CodeReviewView>
+  contract?(input: ContractCall): Promise<ContractResult>
 }
 export interface CodeHost { bindCode(origin: string): CodeBinding }
 type RecordState = { owner: CodeBinding; view: CodeSessionView; admission?: symbol; stopping?: boolean; delivery?: ReturnType<CodeBinding["turn"]>; watch?: ReturnType<CodeBinding["watch"]> }
@@ -173,6 +174,10 @@ export class CodeService {
     const result = await run(owner)
     this.guard(owner)
     return result
+  }
+  async contract(input: unknown) {
+    const call = ContractCall.parse(input)
+    return this.owned(call.epoch, owner => { if (!owner.contract) throw new CortexError("provider_unsupported", "Remote contracts are unavailable"); return owner.contract(call) })
   }
   async environment(input: unknown) { return this.owned(CodeOwner.parse(input).epoch, owner => owner.environment()) }
   async usage(input: unknown) { return this.owned(CodeOwner.parse(input).epoch, owner => owner.usage()) }

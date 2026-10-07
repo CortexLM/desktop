@@ -9,6 +9,7 @@ import { createRemoteCodeBinding } from "./remote-code";
 import type { CodeBinding } from "@cortex/core";
 import type { WorkBotBinding } from "@cortex/core";
 import { createRemoteWorkBotBinding, workBotFetch } from "./remote-work-bot";
+import { contractFetch } from "./remote-contracts";
 
 const Secret = z.string().min(1).refine((value) => !/\s/.test(value));
 const Session = z.object({ status: z.literal("session"), access_token: Secret.regex(/^[A-Za-z0-9._~+/-]+=*$/) }).strict();
@@ -168,7 +169,17 @@ export class RemoteSession {
     identity.chatLifetime = new AbortController();
     identity.chat = createRemoteChatBinding(identity.client, this.#origin!, crypto.randomUUID(),
       AbortSignal.any([identity.lifetime.signal, identity.chatLifetime.signal]), () => this.#checkActive(identity), identity.accountID);
-    identity.code = createRemoteCodeBinding(identity.client, identity.chat, () => this.#checkActive(identity));
+    const code = createRemoteCodeBinding(identity.client, identity.chat, () => this.#checkActive(identity));
+    identity.code = { ...code, contract: (call) => contractFetch(call, {
+      origin: this.#origin!, signal: identity.chat!.signal, check: () => this.#checkActive(identity),
+      unauthorized: () => { this.#invalidate(identity); void this.#store().catch(() => undefined); },
+      fetch: async (input: RequestInfo | URL) => {
+        const request = new Request(input);
+        if (identity.refreshToken && identity.expiresAt! <= Date.now()) await this.#refresh(identity, this.#origin!);
+        const headers = new Headers(request.headers); headers.set("Authorization", `Bearer ${identity.token}`);
+        return this.#fetch(new Request(request, { headers }));
+      },
+    }) };
     this.#watchExpiry(identity);
   }
 
@@ -364,8 +375,15 @@ export class RemoteSession {
         candidate.token = result.access_token;
         candidate.expiresAt = "expires_at" in result ? Date.parse(result.expires_at) : undefined;
         // Durable email-code identity: rotate the cookie grant once into a stored native pair bound to the verified account.
-        if (candidate.refreshToken && input.action !== "local") await this.#refresh(candidate, selectedOrigin);
-        candidate.lifetime.signal.throwIfAborted();
+        if (candidate.refreshToken && input.action !== "local") {
+          // A producer that refuses the rotation keeps the previous process-local session; the cookie grant is dropped.
+          try {
+            const rotated = await this.#native(candidate, selectedOrigin, "/v1/auth/refresh", { refresh_token: candidate.refreshToken });
+            if (rotated.status !== 200) throw new Error("Native refresh refused");
+            await this.#pair(candidate, selectedOrigin, await rotated.json());
+          } catch { candidate.refreshToken = undefined; }
+          candidate.lifetime.signal.throwIfAborted();
+        }
         // One promotion path for email-code and device sign-in, so Chat and Code bindings always exist together.
         this.#promote(candidate);
       } else if (result?.status === "verify_email") {

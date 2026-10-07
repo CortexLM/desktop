@@ -100,7 +100,7 @@ describe("persistent main native device authentication", () => {
       const sent = await first.authenticate(origin, { action: "email", owner: first.state(origin).owner!, email: "native@example.test" });
       expect((await first.authenticate(origin, { action: "code", owner: sent.owner!, code: "424242" })).signedIn).toBe(true);
       expect(first.bind(origin).accountID).toBe(account);
-      const stored = JSON.parse(credentials.get("remote-session")!);
+      const stored = JSON.parse((await credentials.get("remote-session"))!);
       expect(stored.accountID).toBe(account);
       expect(JSON.stringify(first.state(origin))).not.toContain("fixture-refresh");
       first.clear();

@@ -113,6 +113,7 @@ export function createServer(core: Core): Hono {
     "code.prepare": ({ params, body }) => core.code.prepare(params.id!, body),
     "code.instructions": ({ params, body }) => core.code.instructions(params.id!, body),
     "code.review": ({ params, body }) => core.code.review(params.id!, body),
+    "code.contract": ({ body }) => core.code.contract(body),
     "code.localInstructions": ({ body }) => core.code.localInstructions(body),
 
     "workBot.list": () => core.workBot.list(),
