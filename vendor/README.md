@@ -1,13 +1,20 @@
 # Vendored Cortex SDK
 
-## Current pair: SDK 0.4.2 / api-types 0.3.2 (backend trunk)
+## Current pair: SDK 0.4.4 / api-types 0.3.3 (backend trunk)
 
-The only vendored pair, in `trunk/`. Packed with `packages/sdk/scripts/pack.mjs` from a `git archive`
-export of backend branch `integration/backend` at `1e35f614` (Task6 contracts + Task10 + Task16
-call-session types). Selected by `packages/desktop/package.json`, `packages/app/package.json` and
-`bun.lock` through relative `file:../../vendor/trunk/...` paths. Every older pair was removed; the
-provenance below is history only. Todo 2 of cortex-finish-fast will publish 0.4.4 / 0.3.3, which
-replaces this pair.
+The only vendored pair, in `trunk/`. Packed with `packages/sdk/scripts/pack.mjs` (umask 077) from a
+`git archive` export of backend branch `integration/backend` at `280d2765`; byte-identical to the
+backend's `apps/web/vendor` and `apps/mobile/vendor` copies. Turn resume cursors are full Redis
+stream IDs (`<ms>-<seq>`); the SDK refuses any other cursor before opening a request. Selected by
+`packages/desktop/package.json`, `packages/app/package.json` and `bun.lock` through relative
+`file:../../vendor/trunk/...` paths. Every older pair was removed; the provenance below is history only.
+
+| Archive | SHA-256 |
+| --- | --- |
+| `trunk/cortex-sdk-0.4.4.tgz` | `213cfa10ee93d7beb61b9736f7727a814c2a8168d3fd45a0e786c3f4806fcf8c` |
+| `trunk/cortex-api-types-0.3.3.tgz` | `d727777ee9542fb596f7eeaa6e31498cfba3b1d6d749b175b62fa93817d37257` |
+
+## Former pair: SDK 0.4.2 / api-types 0.3.2 (backend trunk at `1e35f614`, removed)
 
 | Archive | SHA-256 |
 | --- | --- |

@@ -47,7 +47,7 @@
       "name": "@cortex/app",
       "version": "0.2.0",
       "dependencies": {
-        "@cortex/api-types": "file:../../vendor/trunk/cortex-api-types-0.3.2.tgz",
+        "@cortex/api-types": "file:../../vendor/trunk/cortex-api-types-0.3.3.tgz",
         "@cortex/client": "workspace:*",
         "@cortex/i18n": "workspace:*",
         "@cortex/schema": "workspace:*",
@@ -71,11 +71,11 @@
       "name": "@cortex/desktop",
       "version": "0.2.0",
       "dependencies": {
-        "@cortex/api-types": "file:../../vendor/trunk/cortex-api-types-0.3.2.tgz",
+        "@cortex/api-types": "file:../../vendor/trunk/cortex-api-types-0.3.3.tgz",
         "@cortex/core": "workspace:*",
         "@cortex/i18n": "workspace:*",
         "@cortex/schema": "workspace:*",
-        "@cortex/sdk": "file:../../vendor/trunk/cortex-sdk-0.4.2.tgz",
+        "@cortex/sdk": "file:../../vendor/trunk/cortex-sdk-0.4.4.tgz",
         "@cortex/server": "workspace:*",
       },
     },
@@ -161,7 +161,7 @@
 
     "@cacheable/utils": ["@cacheable/utils@2.5.0", "", { "dependencies": { "hashery": "^1.5.1", "keyv": "^5.6.0" } }, "sha512-buipgOVDkkPXNR5+xBpDw7Zk2n1EvU7qBJCNUcL7rhQ//kfpOXPAvQ511Os0vpLYJ1pZnvudNytkQt2hst3wqA=="],
 
-    "@cortex/api-types": ["@cortex/api-types@../../vendor/trunk/cortex-api-types-0.3.2.tgz", {}, "sha512-ILZcpkdzvDP4pRe6qmdyfPr1fNb1eoea6KD/TDCElWlobFyeF2O2ycCRqEJvZ3pQRNbxTq2pPVa2ws5uPO4ZHQ=="],
+    "@cortex/api-types": ["@cortex/api-types@../../vendor/trunk/cortex-api-types-0.3.3.tgz", {}, "sha512-o40QMe6X2SsPIzyafyvTr8+WVpAfhBuJ6uK0BrbFmWA1/jGkZWOlrK/Ii78uZCIqkmZzGZ8IR68q8HQBLuuugg=="],
 
     "@cortex/app": ["@cortex/app@workspace:packages/app"],
 
@@ -177,7 +177,7 @@
 
     "@cortex/schema": ["@cortex/schema@workspace:packages/schema"],
 
-    "@cortex/sdk": ["@cortex/sdk@../../vendor/trunk/cortex-sdk-0.4.2.tgz", { "peerDependencies": { "@cortex/api-types": "0.3.2" }, "optionalPeers": ["@cortex/api-types"] }, "sha512-KO3BwPjjB5+Ah8lbOcUb8JlvPzMUgc4WKWIWWUI8p0SjO/0NbEqydUcjjZDDFwEESRUv52rXKt0HcVA1+i7vKA=="],
+    "@cortex/sdk": ["@cortex/sdk@../../vendor/trunk/cortex-sdk-0.4.4.tgz", { "peerDependencies": { "@cortex/api-types": "0.3.3" }, "optionalPeers": ["@cortex/api-types"] }, "sha512-Q5gEJ4zK3N/brW7jz+3Qs0p/MPx6Ck84gyWc3VB0kPX6gipHyQTCo/l5e+lVKSwmpkrSgBeL+4Gm08Zb39oWAw=="],
 
     "@cortex/server": ["@cortex/server@workspace:packages/server"],
 

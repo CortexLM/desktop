@@ -219,6 +219,21 @@ describe("private remote Chat binding", () => {
     expect(turnRequests()).toHaveLength(1);
   });
 
+  it("rejects the old integer cursor format on both sides of the trunk stream", async () => {
+    // Pre-trunk clients resumed from a bare integer; SDK 0.4.4 refuses it before any request.
+    const sdk = createCortexClient({ baseUrl: origin });
+    await expect(sdk.streamTurn({ body: { message: "hi", model_slug: "fixture" }, idempotencyKey: "old-cursor" }, { lastEventId: "7" }).next())
+      .rejects.toThrow("Turn resume cursor must be a Redis stream ID");
+    expect(turnRequests()).toHaveLength(0);
+    // An old-format event id from a stream is never acknowledged as a resume point.
+    const binding = (await signIn()).bind(origin), o = observe();
+    routes.set("/v1/conversations/turns", (res) => { headers(res); res.end("id: 7\ndata: " + JSON.stringify({ type: "text_delta", message_id: msg, delta: "A" }) + "\n\n" + frame(8, done)); });
+    const delivery = binding.turn(prompt(), o.observer);
+    await expect(delivery.completion).rejects.toMatchObject({ code: "provider_error" });
+    expect(o.cursors).toEqual([]);
+    expect(turnRequests().map((r) => r.headers["last-event-id"])).toEqual([undefined]);
+  });
+
   it("refuses replay after unbuffered EOF, keeping the admitted request reserved for history", async () => {
     const binding = (await signIn()).bind(origin), o = observe();
     routes.set("/v1/conversations/turns", (res) => {
