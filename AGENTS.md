@@ -1,5 +1,93 @@
 # AGENTS.md
 
+Signed-in Work/Bot Channels manages owned group metadata through the approved exact
+channel SDK pair. List/filter/create/get/rename/full member replacement/delete only.
+Rename omits membership until explicitly edited; unlisted stored members remain
+selected, null/omission preserves, [] explicitly clears. Failed changes keep drafts;
+owner replacement discards them and late responses are fenced. Delete confirms200
+deleted:true; foreign404, malformed422 and duplicate409 are distinct refusals.
+No enabled/provider settings, transcript/send/spawnWake or delivery is admitted.
+Full Task8, arbitrary activity/durable feed and combined runtime remain open.
+
+Signed-in Work Activity renders one owned Bot's latest 200 AgentEvents through the
+approved activity-projection SDK pair (`projectAgentEvent`). Only strict projected
+metadata crosses IPC: ask_user widget kind, video_ready title, otherwise opaque
+generic rows; payload, user_id and detail never cross. Rows are non-actionable.
+Process-local SSE hints re-read a fresh owner page; no since cursor, durable or
+complete history, or replay. Owner epochs fence late pages and hints.
+
+Signed-in Work notifications now expose bounded owned home inbox and in-app
+notifications through the approved immutable inbox SDK pair, typed main-only
+transport and owner epochs. Public metadata only; arbitrary action payloads never
+cross. Mark home read/unread changes ordinary rows only; approval pseudo-items stay
+unread until separately settled. Notification reads are bodyless204, foreign404;
+foreign home read is200 updated0. Counts describe loaded windows, not totals.
+Process-local SSE hints invalidate owner snapshots; fresh reconnect has no resume
+cursor or action replay. Notification identity is not SSE cursor. Durable activity,
+arbitrary event projection, push preferences, full Task8/combined runtime remain open.
+
+Signed-in Work routines use the approved immutable Work-routines SDK pair, main-only
+typed transport and owner epoch fences. Existing Automations list/editor now read owned
+Bot routines, create/edit/delete, pause/resume and retained run history. PATCH sends
+name/prompt plus the stored schedule/body/trigger/quiet fields; trigger extensions survive.
+Fixed UTC offset controls cron matching; timezone is metadata only, otherwise Paris
+seasonal fallback applies. Pause never cancels active work. Explicit saved-event delivery
+uses a UUID once-only occurrence, ignores edited drafts and accepts no event payload.
+Zero completed runs is not proof of no execution; history supplies the outcome.
+Routine cancellation/tick UI is not invented. Full Task8 remains open.
+
+The approved pending-approvals successor adds account and owned-Bot pending lists,
+linked-widget Allow once/Deny and policy evaluation reads to signed-in Work/Bot.
+Only safe metadata and decision acknowledgment cross IPC; arguments and returned tool
+content stay private. Decisions re-read actual pending rows before reporting removal.
+`resumed` means allowed, never tool success; deny skips the parked tool but can resume
+inference. Failed/terminal/foreign requests remain unconfirmed, with explicit refresh,
+no automatic decision retry. No approval outcome GET or invalidation event is invented.
+Main and renderer retain actual owner epoch fences. Full Task8 remains open.
+
+Task8 bounded signed-in Work/Bot routes use the immutable Bot-parent pair recorded
+in `vendor/README.md`. Main owns exact Bot CRUD/task/read/cancel/parent transport. Actual
+Task4 workers persist task rows and retained notices; reconnect never starts a model.
+The admitted `bot-share-b1-st01a10cdc` SDK pair adds owner independent-copy
+share/invite/list/revoke and recipient inbox/preview/accept on roster/configuration.
+Main uses existing account epoch fences. Copies exclude private conversations,
+memory and credentials; recipients reconnect their own apps. Replay is refused,
+revocation prevents future acceptance, existing copies remain independent.
+Recipient decline uses the exact immutable decline successor SDK pair. The existing
+copy preview posts bodyless recipient decline; only the durable server decision and
+timestamp confirm success. Terminal preview/accept/replay refuse without a copy.
+Cloud computer execution and earned autonomy remain unavailable. An explicit parent
+message uses typed JSON POST and consumes durable 0151 child context; retained notices
+alone are not parent receipts. Owned Bot configuration also exposes app catalog,
+account consent/revoke, per-Bot connector enables and tool rules through the exact
+connector/plugin pair. Authorization links remain in main; only explicit user
+actions open them. Connection modes, Bot rule effects and account-global policy
+are distinct. Upserts re-list stored rule IDs before deletion; zero deleted rows
+never report success. The approved hierarchy SDK pair adds required nullable lead_id:
+create omission/null roots, PATCH omission preserves, null detaches. Signed-in owned
+roster exposes stored hierarchy and explicit lead selection. Lead-only PATCH avoids
+overwriting unrelated configuration. Failed changes remain unconfirmed with explicit
+reconnect/reselect/save, never automatic retry. Metadata grants no autonomy or dispatch.
+Full Task8 remains open. Combined assembled
+migration-stack acceptance remains separate from this source-bound producer fixture.
+
+Todo 6b registers 31 signed-in owner screens under `packages/app/src/screens/live`
+(Bot channel/invites/share/computer/companion/create, Code automations/connect,
+connection, providers, models, model picker, remote chat, tool approval, space,
+scheduled tasks, plugins, skills, MCP add) through `app.*` contract operations onto
+trunk `/v1` routes. Providers and the registry catalog answer only on self-hosted
+trunks. Bot room has no trunk route and shows an honest unavailable state.
+
+Task7 native device sign-in uses the existing device grant, encrypted origin-bound
+credential pairs, `/v1/me.id` owner checks and single-flight refresh. OS encryption
+is required; Linux `basic_text` refuses persistence. Access-only web grants remain
+process-local. Verified native remote snapshots use the existing SQLite `doc` table,
+partitioned by origin/account; restart requires history recovery for unfinished turns.
+Active/archive discovery follows typed created-order cursors with 100 rows per page,
+without a total record cap, against the approved Task7 pagination producer.
+See `docs/connection-modes.md` for the current contract; older process-only notes below
+describe the earlier admission.
+
 ## Read this first (mandatory)
 
 Every contributor — human or agent — **must** read this file and the rule files in
@@ -47,21 +135,24 @@ external database. Details: [`docs/architecture.md`](./docs/architecture.md).
 | `packages/app` | Renderer: React 19 + `@base-ui/react` + Vite 8 |
 | `packages/desktop` | Electron main + preload, credentials, menu, Cortex Cloud probe and process-lifetime sign-in |
 
-`vendor/` holds unmodified `@cortex/sdk` 0.3.5 and its optional peer `@cortex/api-types`
-0.2.0, used by the main-process remote probe ([`vendor/README.md`](./vendor/README.md)).
+`vendor/trunk/` holds unmodified `@cortex/sdk` 0.4.6 and its optional peer `@cortex/api-types`
+0.3.5 (backend trunk pair; turn cursors are full Redis stream IDs), used by the main-process remote probe ([`vendor/README.md`](./vendor/README.md)).
 The SDK-owner handoff against schema blob `c8f6a7f0` passes scoped desktop admission;
 earlier archives remain retained. Main owns email-code sign-in and sanitized authentication state.
 G2's later canonical schema `232505fc` reconciles the screenshot contract; its only delta
 from the admitted schema is VNC-description prose. SDK successor and exact desktop design
 import decisions remain separate. See [`docs/connection-modes.md`](./docs/connection-modes.md).
 The new SDK fixes media-terminal delivery, raw screenshot upload, generated turn-body typing
-and native auth response cloning. Precise account/history contracts remain incomplete.
+and native auth response cloning. Persistent account identity remains incomplete.
 An internal `RemoteSession.bind(origin)` supplies epoch-owned model discovery, raw image
 upload, streamed turns/replay and limited known-history reads. Core's `remoteSessions` service
 keeps projections in memory, admits local user IDs only after backend headers and marks
-resumed/unsupported output partial. SDK 0.3.5 hides discarded-frame notifications, so its
-projection always remains limited. Fresh image-history follow-ups refuse pending backend
-pixel hydration. Nine JSON routes under `/api/remote` expose the process-owned service
+unsupported output partial. The admitted reset-id SDK/type pair preserves opaque uint64
+Redis cursors, empty reset IDs and discarded-frame notifications. Reset EOF is history-only,
+never a new generation or replay. Known history loads every active-path page (200 per request,
+10,000 backend path ceiling), retaining ordered parts and retention metadata. Image-history
+follow-ups reach backend hydration only with confirmed vision. Persistent refresh, durable
+identity, account-wide discovery and restart restoration remain gated. Nine JSON routes under `/api/remote` expose the process-owned service
 through the typed client, plus a strict base64 upload route capped at 8 MiB before
 decoding. Optional one-off model selection reaches main without changing recorded
 model/effort or original-request replay. A scoped Chat renderer now calls these routes;
@@ -155,6 +246,13 @@ preview fixtures. Only visible gallery iframes load; offscreen previews unload t
   successful credential storage; failed migration preserves data and refuses connection. Hosts
   with persistent storage must supply `mcpCredentials`; in-memory engines use an in-memory store.
   See [`docs/engine.md`](./docs/engine.md).
+
+- **Bot calls stay in main.** `window.cortex.call` (`cortex:call:*`, `main.ts`/`preload.ts`)
+  moves PCM, playback receipts and controls only; main holds the ticket, socket and bearer
+  (`src/remote-call.ts`). The protocol is the shared `CallSession` from the vendored
+  `@cortex/api-types` with main's `timerEnv`; the renderer shares only `resampleTo16k`.
+  Malformed binary frames end the call `failed` with `protocol_error`, never a throw in
+  main. Channels, payloads and lifetime: [`docs/bot-calls.md`](./docs/bot-calls.md).
 
 ## Product scope (do not invent a different app)
 

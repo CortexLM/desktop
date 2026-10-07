@@ -114,7 +114,7 @@ export function LoginScreen() {
   const [authError, setAuthError] = React.useState("");
   const request = React.useRef<symbol | null>(null);
   const startedCandidate = React.useRef<{ origin: string; candidate: string } | null>(null);
-  const v = preview ? variant : auth?.status === "signed_in" ? "signed-in" : auth?.status === "code_sent" ? "code" : auth?.status === "verify_email" || auth?.status === "mfa_challenge" ? auth.status : auth && auth.status !== "signed_out" ? "unavailable" : "email";
+  const v = preview ? variant : auth?.status === "signed_in" ? "signed-in" : auth?.status === "device_pending" ? "device" : auth?.status === "code_sent" ? "code" : auth?.status === "verify_email" || auth?.status === "mfa_challenge" ? auth.status : auth && auth.status !== "signed_out" ? "unavailable" : "email";
   const seed = (x: string) => (preview ? (x === "error" ? fx.login.bad : x === "loading" ? fx.login.good : "") : "");
   const [email, setEmail] = React.useState(preview ? fx.login.email : "");
   const [code, setCode] = React.useState(seed(v));
@@ -160,7 +160,7 @@ export function LoginScreen() {
         return;
       }
       let captured = auth;
-      if (input.action === "email") {
+      if (input.action === "email" || input.action === "device") {
         const connection = await api.connection.get();
         if (request.current !== owner) return;
         if (connection.mode === "local") {
@@ -171,7 +171,7 @@ export function LoginScreen() {
         if (request.current !== owner) return;
       }
       if (!captured?.owner) { setAuthError("system.auth.failed"); return; }
-      if (input.action === "email" || input.action === "local") startedCandidate.current = { origin: captured.owner.origin, candidate: captured.owner.revision };
+      if (input.action === "email" || input.action === "local" || input.action === "device") startedCandidate.current = { origin: captured.owner.origin, candidate: captured.owner.revision };
       const state = await api.connection.auth.submit(input.action === "logout" ? input : { ...input, owner: captured.owner });
       if (request.current !== owner) return;
       startedCandidate.current = null;
@@ -219,8 +219,14 @@ export function LoginScreen() {
           </form>
           <div className="systeme-or">{t("system.login.or")}</div>
           {providers}
-          <button className="systeme-prov" style={{ marginTop: 8 }} onClick={preview ? undefined : unavailable}><Icon name="key" />{t("system.login.sso")}</button>
+          <button className="systeme-prov" style={{ marginTop: 8 }} disabled={busy || (!preview && !auth)} onClick={preview ? undefined : () => void submit({ action: "device" })}><Icon name="key" />{t("system.login.sso")}</button>
           <p className="systeme-legal">{t("system.login.legalA")} <button className="systeme-textbtn">{t("system.login.terms")}</button> {t("system.login.legalB")} <button className="systeme-textbtn">{t("system.login.privacy")}</button>{t("system.login.legalC")}</p>
+        </>}
+        {!preview && auth?.status === "device_pending" && auth.device && <>
+          <h1>{t("system.login.sso")}</h1>
+          <p className="systeme-lead"><code>{auth.device.userCode}</code></p>
+          <button className="btn primary big" onClick={() => window.cortex?.openExternal?.(auth.device!.verificationURL)}>{t("system.onb.continue")}</button>
+          <button className="btn secondary big" disabled={busy} onClick={() => void submit({ action: "device_poll" })}>{t("system.login.verifying")}</button>
         </>}
         {(v === "code" || v === "error" || v === "loading") && <>
           <span className="li-ic" style={{ margin: "0 auto", width: 44, height: 44, borderRadius: 14 }}><Icon name="mail" size={20} /></span>

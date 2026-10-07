@@ -7,7 +7,7 @@ import { windowsCredentials } from "./windows-credentials";
 
 export type Cipher = { isEncryptionAvailable(): boolean; encryptString(s: string): Buffer; decryptString(b: Buffer): string };
 
-export function fileCredentials(file: string, cipher: Cipher): Credentials {
+export function fileCredentials(file: string, cipher: Cipher, requireEncryption = false): Credentials {
   const windows = process.platform === "win32";
   const read = (): Record<string, string> => {
     let all: unknown;
@@ -36,12 +36,16 @@ export function fileCredentials(file: string, cipher: Cipher): Credentials {
       fs.renameSync(temp, file);
     } catch (error) { fs.rmSync(temp, { force: true }); throw error; }
   };
-  const enc = (s: string) => windows ? "d:" + windowsCredentials.protect(s) : (cipher.isEncryptionAvailable() ? "e:" + cipher.encryptString(s).toString("base64") : "p:" + Buffer.from(s).toString("base64"));
+  const enc = (s: string) => {
+    if (requireEncryption && !windows && !cipher.isEncryptionAvailable()) throw new Error("Credential protection unavailable");
+    return windows ? "d:" + windowsCredentials.protect(s) : (cipher.isEncryptionAvailable() ? "e:" + cipher.encryptString(s).toString("base64") : "p:" + Buffer.from(s).toString("base64"));
+  };
   const dec = (s: string) => (s.startsWith("e:") ? cipher.decryptString(Buffer.from(s.slice(2), "base64")) : Buffer.from(s.slice(2), "base64").toString());
   return {
     get: (id) => {
       const all = read(); const value = all[id];
       if (!value) return undefined;
+      if (requireEncryption && !windows && (!cipher.isEncryptionAvailable() || !value.startsWith("e:"))) throw new Error("Credential protection unavailable");
       if (!windows) return dec(value);
       if (value.startsWith("d:")) return windowsCredentials.unprotect(value.slice(2));
       if (!value.startsWith("e:") && !value.startsWith("p:")) throw new Error("Invalid credential store");

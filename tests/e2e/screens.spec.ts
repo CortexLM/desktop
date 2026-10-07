@@ -28,7 +28,7 @@ test("every design screen and state renders", async () => {
           .flatMap((el) => ["aria-label", "aria-description", "title", "placeholder", "alt"].map((attr) => el.getAttribute(attr) ?? ""))].join("\n"));
         // Components documents these source files; neither filenames nor hostnames are translation keys.
         const raw = [...new Set(text.match(RAW_KEY) ?? [])].filter((k) => !/\.(org|com|dev|io|net)$/.test(k)
-          && !(s.id === "components" && ["shell.tsx", "code.tsx", "work.css", "mascot.css", "chat.css", "system.css"].includes(k)));
+          && !(s.id === "components" && ["shell.tsx", "code.tsx", "work.css", "mascot.css", "chat.css", "system.css", "extras.tsx"].includes(k)));
         if (!text.trim()) failures.push(`${hash}: blank`);
         if (raw.length) failures.push(`${hash}: raw keys ${raw.slice(0, 5).join(", ")}`);
         count++;

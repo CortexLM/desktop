@@ -849,5 +849,15 @@
   "motion.sidebar.name": "サイドバー ⌘B / フォーカス ⌘\\",
   "motion.sidebar.desc": "幅 → 0、クロームがblurしながらフェード、その後フルスクリーンフレームに",
   "motion.sidebar.time": "240 ms + 320 ms",
-  "motion.sidebar.ease": "ease-out"
+  "motion.sidebar.ease": "ease-out",
+  "update.check": "アップデートを確認",
+  "update.checking": "アップデートを確認しています…",
+  "update.upToDate": "Cortex は最新です",
+  "update.downloadingBackground": "新しいバージョンがあり、ダウンロードしています",
+  "update.readyVersion": "バージョン {v} の準備ができました。Cortex を再起動してインストールしてください。",
+  "update.error.unsupported": "このシステムでは自動アップデートを利用できません。新しいバージョンは cortex.foundation からダウンロードしてください。",
+  "update.error.not_configured": "このビルドにはアップデートチャネルがありません。",
+  "update.error.feed_invalid": "このビルドのアップデートチャネルが無効です。",
+  "update.error.not_signed": "この Cortex は署名されていないため、自動でアップデートできません。",
+  "update.error.check_failed": "アップデートを確認またはダウンロードできませんでした。接続を確認して、もう一度お試しください。"
 }

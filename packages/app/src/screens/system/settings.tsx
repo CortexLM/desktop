@@ -280,7 +280,7 @@ function ProviderDetail({ p, cfg, onChange, toast }: { p: Prov; cfg?: ProviderCo
 type Mode = "local" | "cloud" | "selfhost";
 type Check = "idle" | "checking" | "invalid" | ConnectionProbe["status"];
 
-function Connection() {
+export function Connection() {
   const t = useT();
   const toast = useToast();
   const { go } = useNav();

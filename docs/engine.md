@@ -9,6 +9,27 @@ closes MCP and storage. The optional `remoteAuth` host owns process-local creden
 
 Service table and file map: [`packages/core/README.md`](../packages/core/README.md).
 
+## Signed-in Work routines
+
+`workBot.channels` exposes five validated owner-epoch metadata operations through
+main's precise channel SDK. Core fences late responses; the allowlist excludes
+transcript/send, enable/disable, provider settings and channel query cursors.
+Only id/name/members cross IPC. Nullable preserve/full replacement are retained;
+delete validates exact200 deleted:true. No local worker or channel wake is added.
+
+`workBot.inbox` forwards owner-epoch snapshot/read/read-all through main. Snapshot strips
+unlisted fields; realtime contains no UI data projection, only owner invalidation.
+Reconnect opens fresh process-local stream and rereads durable owner state. No local
+worker/inference, durable stream promise or notification action dispatch is introduced.
+
+`workBot` forwards typed owned-Bot routine CRUD, pause/resume, retained history and
+authenticated saved-event delivery to its main-owned SDK binding. Core validates UUIDs,
+required PATCH name/prompt and owner epochs before transport; late responses are fenced.
+The backend owns occurrence deduplication, live-run exclusion, scheduling and outcomes.
+No local scheduler, provider or worker executes remote routines. Explicit fixed offset
+controls matching, timezone labels are metadata, absent offset uses Paris seasonal rules.
+History reads do not infer. Event payloads and routine-run cancellation are unsupported.
+
 ## Renderer keyboard preference
 
 Settings General's Send with Enter uses the existing device-local
@@ -21,6 +42,13 @@ behavior with an unavailable message. Writes publish only after accepted storage
 preview controls remain temporary. This does not change prompt admission or permissions.
 
 ## Internal remote sessions
+
+Verified native accounts now retain remote snapshots in the existing `doc` table, scoped
+by canonical origin plus stable `/v1/me.id`; remote bus events still skip the local event
+journal and plugin hooks. Rebinding after restart assigns a fresh epoch and requires retained
+history for unfinished turns. No generation is automatically reissued. The cursorless producer
+list returns at most 100 active and 100 archived conversations; full discovery needs producer
+pagination. Earlier process-only descriptions below record the historical adapter.
 
 `core.remoteSessions` uses the optional main-only `remoteChat` host; desktop supplies the
 same owner as `remoteAuth`. It has no public route or renderer caller yet. Models, selected

@@ -303,6 +303,9 @@ mark.systeme-mark { background: color-mix(in srgb, var(--yellow) 32%, transparen
 .systeme-track { height: 6px; border-radius: 3px; background: var(--subtle); overflow: hidden; }
 .systeme-bar { height: 100%; border-radius: 3px; background: var(--blue); width: var(--p, 0%); transition: width 400ms var(--ease-out), background var(--d-swap) linear; }
 .systeme-bar[data-complete] { background: var(--green); }
+.systeme-bar-indeterminate { width: 40%; animation: systeme-indet 1.2s var(--ease-out) infinite; }
+@keyframes systeme-indet { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+@media (prefers-reduced-motion: reduce) { .systeme-bar-indeterminate { animation: none; width: 100%; opacity: .5; } }
 .systeme-prog-meta { display: flex; justify-content: space-between; color: var(--t2); font-size: 11px; font-variant-numeric: tabular-nums; margin-top: 6px; }
 .systeme-notes { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .systeme-notes li { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 20px; }

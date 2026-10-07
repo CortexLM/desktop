@@ -849,5 +849,15 @@
   "motion.sidebar.name": "侧边栏 ⌘B / 聚焦 ⌘\\",
   "motion.sidebar.desc": "宽度 → 0，界面元素带模糊渐隐，随后进入全屏框架",
   "motion.sidebar.time": "240 毫秒 + 320 毫秒",
-  "motion.sidebar.ease": "ease-out"
+  "motion.sidebar.ease": "ease-out",
+  "update.check": "检查更新",
+  "update.checking": "正在检查更新…",
+  "update.upToDate": "Cortex 已是最新版本",
+  "update.downloadingBackground": "有新版本可用，正在下载",
+  "update.readyVersion": "版本 {v} 已就绪。重启 Cortex 即可安装。",
+  "update.error.unsupported": "此系统不支持自动更新。请从 cortex.foundation 下载新版本。",
+  "update.error.not_configured": "此版本没有更新渠道。",
+  "update.error.feed_invalid": "此版本的更新渠道无效。",
+  "update.error.not_signed": "此 Cortex 副本未签名，无法自行更新。",
+  "update.error.check_failed": "无法检查或下载更新。请检查网络连接后重试。"
 }

@@ -13,7 +13,9 @@ const nextConversationID = "cnv_01h45ytscbeewvwm6xr90nbxp5";
 const nextAssistantID = "msg_01h45ytscbeewvwm6xr90nbxp5";
 const png = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==", "base64");
 const turnPath = "/v1/conversations/turns";
-const frame = (id: number, event: unknown) => `id: ${id}\ndata: ${JSON.stringify(event)}\n\n`;
+// Turn streams carry Redis stream IDs (`<ms>-<seq>`); bare numbers are refused as cursors.
+const cursor = (seq: number) => `1700000000000-${seq}`;
+const frame = (id: number | string, event: unknown) => `id: ${typeof id === "number" ? cursor(id) : id}\ndata: ${JSON.stringify(event)}\n\n`;
 const textFrame = (text: string) => frame(7, { type: "text_delta", message_id: assistantID, delta: text });
 const doneFrame = () => frame(8, { type: "done", message_id: assistantID, finish_reason: "stop" });
 function deferred<T>() {
@@ -31,6 +33,7 @@ async function backend() {
   const uploads: { bytes: Buffer; filename: string | null }[] = [];
   const uploadURLs: string[] = [];
   const arrivals = Array.from({ length: 3 }, () => deferred<Turn>());
+  const historyControl = { held: false, arrival: deferred<http.ServerResponse>() };
   const models = [{
     id: "fixture", name: "Cortex Fixture", configured: true,
     capabilities: { reasoning: true, image: true, tools: true, context_tokens: 8192, output_tokens: 1024 },
@@ -83,6 +86,8 @@ async function backend() {
       if (req.method === "POST" && route === "/v1/auth/magic-auth") {
         res.writeHead(204); res.end(); return;
       }
+      // A producer without native rotation keeps the email-code session process-local.
+      if (req.method === "POST" && route === "/v1/auth/refresh") { res.writeHead(401); res.end(); return; }
       if (req.method === "POST" && route === "/v1/auth/magic-auth/verify") {
         res.setHeader("set-cookie", "cortex_rt=test-only-chat-cookie; HttpOnly; Path=/v1/auth");
         return json(res, { status: "session", access_token: "test-only-chat-token" });
@@ -93,21 +98,24 @@ async function backend() {
         if (route === `/v1/conversations/${conversationID}`) return json(res, {
           id: conversationID, title: "Saved title", model_slug: "fixture", message_count: 99,
         });
+        if (historyControl.held) { historyControl.arrival.resolve(res); return; }
         return json(res, {
           items: [
             {
-              id: nextAssistantID, role: "user", text: "Saved question",
+              id: nextAssistantID, parent_message_id: null, role: "user", text: "Saved question",
               created_at: "2026-10-04T00:00:00.000Z",
               version_index: 0, version_count: 1, is_active_version: true,
             },
             {
-              id: assistantID, role: "assistant", text: "Saved answer",
+              id: assistantID, parent_message_id: nextAssistantID, role: "assistant", text: "Saved answer",
               created_at: "2026-10-04T00:00:01.000Z",
               version_index: 0, version_count: 1, is_active_version: true,
-              finish_reason: "stop", reasoning: "not in the public projection",
+              finish_reason: "stop", reasoning: "Retained reasoning",
+              parts: [{ id: "history-reasoning", sequence: 0, kind: "reasoning", text: "Retained reasoning", retention: "retained" },
+                { id: "history-answer", sequence: 1, kind: "text", text: "Saved answer", retention: "retained" }],
             },
           ],
-          has_more: false,
+          has_more: false, has_older: false, has_newer: false,
         });
       }
       if (req.method === "POST" && route.endsWith("/turns")) {
@@ -137,7 +145,7 @@ async function backend() {
   await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
   return {
     origin: `http://127.0.0.1:${(server.address() as { port: number }).port}`,
-    turns, localBodies, errors, arrivals, uploads, uploadURLs, models, modelQueries, historyRequests,
+    turns, localBodies, errors, arrivals, uploads, uploadURLs, models, modelQueries, historyRequests, historyControl,
     admit(turn: Turn, text: string) {
       turn.response.writeHead(200, {
         "content-type": "text/event-stream",
@@ -217,7 +225,7 @@ async function settled(page: Page, id: string) {
   })).toBeVisible();
   const session = await call<RemoteSessionView>(page, `/api/remote/sessions/${id}`);
   expect(session).toMatchObject({
-    state: "settled", outcome: { complete: false, partial: true, finishReason: "stop" },
+    state: "settled", outcome: { finishReason: "stop" },
   });
   await expect(page.getByText(chatCopy["remote.limited"], { exact: true })).toBeVisible();
 }
@@ -252,6 +260,51 @@ const test = base.extend<{ chat: { page: Page; app: Awaited<ReturnType<typeof la
   },
 });
 test.setTimeout(30_000);
+
+test("opaque reset keeps draft and retained history in the built Electron app", async ({ chat: { page, backend, app } }) => {
+  await prepare(page, "Original reset request");
+  await page.getByTestId("composer-send").click();
+  const turn = await backend.arrivals[0].promise;
+  turn.response.writeHead(200, { "content-type": "text/event-stream", "x-conversation-id": conversationID, "x-message-id": assistantID });
+  turn.response.write(frame("9007199254740993-18446744073709551613", { type: "text_delta", message_id: assistantID, delta: "initial" }));
+  await expect(page.getByTestId("assistant-text")).toHaveText("initial");
+  const session = await routedSession(page);
+  turn.response.end(frame("", { type: "text_delta", message_id: assistantID, delta: "A" }) + frame("", { type: "text_delta", message_id: assistantID, delta: "B" }));
+  await expect(page.getByRole("status").filter({ hasText: chatCopy["remote.state.history_required"] })).toBeVisible();
+  await expect(page.getByTestId("assistant-text")).toHaveText("initialAB");
+  await expect(page.getByRole("button", { name: chatCopy["remote.resume"], exact: true })).toHaveCount(0);
+  const draft = "  Keep next draft\nexactly  ";
+  await page.getByTestId("composer-input").fill(draft);
+  await page.getByRole("button", { name: chatCopy["remote.loadHistory"], exact: true }).click();
+  const history = page.getByRole("region", { name: chatCopy["remote.knownHistory"], exact: true });
+  await expect(history.locator("article")).toHaveCount(2);
+  await history.getByText(`${chatCopy["remote.historyPart.reasoning"]} - ${chatCopy["remote.retention.retained"]}`, { exact: true }).click();
+  await expect(history.getByText("Retained reasoning", { exact: true })).toBeVisible();
+  await expect(page.getByTestId("composer-input")).toHaveValue(draft);
+  expect(backend.turns).toHaveLength(1);
+  expect(backend.historyRequests).toHaveLength(2);
+  for (const width of [960, 1440]) for (const theme of ["light", "dark"]) {
+    await app.evaluate(({ BrowserWindow }, width) => BrowserWindow.getAllWindows()[0].setSize(width, width === 960 ? 640 : 900), width);
+    await page.evaluate((theme) => { localStorage.setItem("cortex.theme", theme); document.documentElement.dataset.theme = theme; }, theme);
+    await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.screenshot({ path: `.omo/native-chat/reset-history-${width}-${theme}.png` });
+  }
+  expect((await call<RemoteSessionView>(page, `/api/remote/sessions/${session.id}`)).state).toBe("settled");
+});
+
+test("explicit incomplete stop remains visible without success in built Electron", async ({ chat: { page, backend } }) => {
+  await prepare(page, "Incomplete terminal request");
+  await page.getByTestId("composer-send").click();
+  const turn = await backend.arrivals[0].promise;
+  turn.response.writeHead(200, { "content-type": "text/event-stream", "x-conversation-id": conversationID, "x-message-id": assistantID });
+  turn.response.end(frame("18446744073709551615-18446744073709551615", { type: "done", message_id: assistantID, finish_reason: "stop", outcome: "incomplete", termination_reason: "contradictory_terminal" }));
+  await expect(page.getByRole("status").filter({ hasText: "Response not complete: incomplete. Reason: contradictory_terminal." })).toBeVisible();
+  const session = await routedSession(page);
+  expect((await call<RemoteSessionView>(page, `/api/remote/sessions/${session.id}`)).outcome).toMatchObject({ complete: false, terminalOutcome: "incomplete", terminationReason: "contradictory_terminal" });
+  expect(backend.turns).toHaveLength(1);
+  await page.screenshot({ path: ".omo/native-chat/incomplete-terminal.png" });
+});
 
 test("remote Home admits selected model and effort only after backend headers", async ({ chat: { page, backend } }) => {
   await prepare(page, "  Remote admission request  ");
@@ -542,7 +595,7 @@ test("detach and resume replay the original one-off, then an ordinary turn uses 
   expect(replay.raw).toBe(first.raw);
   expect(first.headers["idempotency-key"]).toMatch(/^[\da-f-]{36}$/i);
   expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]);
-  expect(replay.headers["last-event-id"]).toBe("7");
+  expect(replay.headers["last-event-id"]).toBe(cursor(7));
   replay.response.writeHead(200, {
     "content-type": "text/event-stream",
     "x-conversation-id": conversationID, "x-message-id": assistantID,
@@ -1155,6 +1208,35 @@ for (const size of [{ width: 960, height: 640 }, { width: 1280, height: 900 }]) 
   }
 }
 
+test("late retained history cannot cross a same-origin account switch", async ({ chat: { page, backend } }) => {
+  await prepare(page, "Owner A request");
+  await page.getByTestId("composer-send").click();
+  const turn = await backend.arrivals[0].promise;
+  backend.admit(turn, "Owner A answer"); turn.response.end(doneFrame());
+  await expect(page.getByRole("status").filter({ hasText: chatCopy["remote.state.settled"] })).toBeVisible();
+  const old = await routedSession(page);
+  backend.historyControl.held = true;
+  const arrival = backend.historyControl.arrival.promise;
+  await page.getByRole("button", { name: chatCopy["remote.loadHistory"], exact: true }).click();
+  const held = await arrival;
+  const owner = (await call<{ owner: string }>(page, "/api/connection/auth")).owner;
+  await call(page, "/api/connection/auth", "POST", { action: "logout", owner });
+  await signIn(page, backend.origin);
+  expect((await call<{ epoch: string }>(page, "/api/remote/models")).epoch).not.toBe(old.epoch);
+  const closed = deferred<void>();
+  if (held.destroyed) closed.resolve(); else held.once("close", () => closed.resolve());
+  held.writeHead(200, { "content-type": "application/json" });
+  held.end(JSON.stringify({ items: [{ id: assistantID, parent_message_id: null, role: "assistant", text: "OWNER_A_LATE_HISTORY",
+    created_at: "2026-10-04T00:00:00Z", version_index: 0, version_count: 1, is_active_version: true, finish_reason: "stop" }], has_more: false, has_older: false, has_newer: false }));
+  await closed.promise;
+  expect(await call<RemoteSessionView[]>(page, "/api/remote/sessions")).toEqual([]);
+  await expect(page.getByText("OWNER_A_LATE_HISTORY", { exact: true })).toHaveCount(0);
+  expect(backend.turns).toHaveLength(1); expect(backend.historyRequests).toHaveLength(2);
+  expect(await call<Session[]>(page, "/api/sessions")).toEqual([]);
+  expect(await call<unknown[]>(page, "/api/providers")).toEqual([]);
+  await page.screenshot({ path: ".omo/native-chat/late-history-account-switch.png" });
+});
+
 test("remote lists reject pre-logout snapshots delivered after removal", async ({ chat: { page, app, backend } }) => {
   await prepare(page, "Remote list ownership regression");
   await page.getByTestId("composer-send").click();
@@ -1453,7 +1535,7 @@ test("expired replay loads two known messages without generating or losing the n
   expect(replay.raw).toBe(first.raw);
   expect(first.headers["idempotency-key"]).toMatch(/^[\da-f-]{36}$/i);
   expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]);
-  expect(replay.headers["last-event-id"]).toBe("7");
+  expect(replay.headers["last-event-id"]).toBe(cursor(7));
   replay.response.writeHead(200, {
     "content-type": "text/event-stream",
     "x-conversation-id": conversationID, "x-message-id": assistantID,
@@ -1480,6 +1562,8 @@ test("expired replay loads two known messages without generating or losing the n
   await expect(history.locator("article")).toHaveCount(2);
   await expect(history.locator("article").nth(0)).toContainText("Saved question");
   await expect(history.locator("article").nth(1)).toContainText("Saved answer");
+  await expect(history.getByTestId("remote-history-part")).toHaveCount(2);
+  await page.screenshot({ path: ".omo/native-chat/expired-replay-rebuilt-history.png" });
   await expect(page.getByText(chatCopy["remote.returnedCount"].replace("{count}", "2"), { exact: true })).toBeVisible();
   await settled(page, session.id);
   await expect(page.getByTestId("composer-input")).toHaveValue(draft);

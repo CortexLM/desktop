@@ -17,6 +17,11 @@ Details, fixtures and hooks: [`docs/testing.md`](../docs/testing.md). If the hos
 
 ## 8.2 New behaviour gets a test
 
+Remote Chat uses full opaque Redis cursor fixtures. Empty `id:` clears replay authority
+without discarding its payload. Reset EOF tests assert one POST, retained draft and history-only
+recovery; history tests cover complete pagination, active-parent order and repeated-cursor refusal.
+Run with `TMPDIR=/var/tmp` when the shared `/tmp` inode quota is exhausted; never delete unowned files.
+
 The PR that adds behaviour adds the test. A bug fix gets a test that fails before the fix;
 if you cannot write one, say why in the PR. Engine tests use
 `createCore({ dataDir: ":memory:", credentials: memoryCredentials() })`.

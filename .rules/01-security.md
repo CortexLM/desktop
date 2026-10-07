@@ -28,7 +28,10 @@ return { providerID: id, enabled: c.enabled, hasKey: !!key, keyHint: key ? c.key
 
 Cortex Cloud session material follows the same rule: `packages/desktop/src/remote-session.ts`
 runs in main; only status, active `signedIn` and validated email cross to the renderer.
-Its cookies/tokens/continuation secrets are process-local, never persisted. Origin/account
+Native device pairs persist in a separate `remote-credentials.json`, OS-encrypted only:
+Windows CurrentUser DPAPI or safeStorage with Linux `basic_text` refused. Pair replacement
+is serialized and atomic; `/v1/me.id` must match before refresh commits. No SID or refresh
+expiry is projected. Access-only web cookies/tokens/continuation secrets remain process-local. Origin/account
 changes invalidate old clients and pending authentication; remote redirects are refused.
 MCP connection material is also write-only: command, arguments, environment, URL and headers
 are stored in main's separate `mcp-credentials.json`. Public `McpServer` exposes only name,
@@ -48,6 +51,10 @@ work; move the feature into main.
 - CSP in `packages/app/index.html`: `default-src 'self'`, `connect-src 'self'`.
 - Preload exposes plain-data functions only (`packages/desktop/src/preload.ts`). A new
   bridge function is a security review item.
+- Bot calls (`cortex:call:*`): main validates every renderer payload (Bot UUID, exactly
+  640-byte capture, numeric receipts, boolean mute) and never sends a ticket or bearer to
+  the renderer. Data from the media socket is untrusted: a frame that does not decode
+  ends the call, it never throws in main. See [`docs/bot-calls.md`](../docs/bot-calls.md).
 
 **Bad**: `webPreferences: { contextIsolation: false }` or `--disable-web-security`.
 

@@ -849,5 +849,15 @@
   "motion.sidebar.name": "Barra lateral ⌘B / foco ⌘\\",
   "motion.sidebar.desc": "ancho → 0, el chrome se desvanece con desenfoque, luego marco de pantalla completa",
   "motion.sidebar.time": "240 ms + 320 ms",
-  "motion.sidebar.ease": "ease-out"
+  "motion.sidebar.ease": "ease-out",
+  "update.check": "Buscar actualizaciones",
+  "update.checking": "Buscando actualizaciones…",
+  "update.upToDate": "Cortex está actualizado",
+  "update.downloadingBackground": "Hay una nueva versión disponible y se está descargando",
+  "update.readyVersion": "La versión {v} está lista. Reinicia Cortex para instalarla.",
+  "update.error.unsupported": "Las actualizaciones automáticas no están disponibles en este sistema. Descarga las nuevas versiones desde cortex.foundation.",
+  "update.error.not_configured": "Esta compilación no tiene canal de actualizaciones.",
+  "update.error.feed_invalid": "El canal de actualizaciones de esta compilación no es válido.",
+  "update.error.not_signed": "Esta copia de Cortex no está firmada, así que no puede actualizarse sola.",
+  "update.error.check_failed": "No se pudo comprobar ni descargar la actualización. Revisa la conexión e inténtalo de nuevo."
 }

@@ -1,6 +1,23 @@
 /* Cortex Code area: tasks, review, diff, terminal, environments, PR, settings. Classes prefixed code-. */
 
 /* ---------- Shared ---------- */
+.code-api { min-width: 0; }
+.home.code-api { width: min(760px, 100%); margin-inline: auto; }
+.home.code-api form { width: 100%; }
+.code-api .banner { width: 100%; }
+.code-api .ctx-bar { flex-wrap: wrap; }
+.code-api .btn, .code-api select { min-height: 44px; }
+.code-api textarea { width: 100%; min-height: 100px; resize: vertical; }
+.code-api select { min-width: 0; flex: 1; }
+.code-pickers { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.code-pickers .input { width: 100%; }
+.code-api .code-diff-modes { max-width: none; padding: 0; margin: 0 0 8px; }
+.code-api-session { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.code-api-session .split { flex: 1; min-height: 0; }
+.code-api-session .split-l { overflow: auto; }
+.code-api-session pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.code-api-session .code-ask pre { max-height: 240px; overflow: auto; }
+.code-api-session .content-top { flex-wrap: wrap; height: auto; min-height: 60px; }
 .code-h28 { height: 28px; padding: 0 10px; }
 .code-grow { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .code-ell { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

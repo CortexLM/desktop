@@ -7,6 +7,8 @@ import { BotService } from "./bot"
 import { Bus } from "./bus"
 import { Catalog } from "./catalog"
 import { ConnectionService, type RemoteAuth, type RemoteProbe } from "./connection"
+import { CodeService, type CodeHost } from "./code"
+import { WorkBotService, type WorkBotHost } from "./work-bot"
 import { COMPUTER_USE_SERVER, computerUsePreset } from "./computer-use"
 import { CortexError } from "./error"
 import { McpService } from "./mcp"
@@ -32,6 +34,8 @@ export interface CoreOptions {
   /** Main-only remote session owner; credentials never enter engine storage. */
   remoteAuth?: RemoteAuth
   remoteChat?: CoreRemoteHost
+  remoteCode?: CodeHost
+  remoteWorkBot?: WorkBotHost
   fetch?: typeof fetch
   catalogUrl?: string
   /** Catalog cache directory; defaults to `<dataDir>/cache`. No cache when dataDir is ":memory:" unless given. */
@@ -110,7 +114,9 @@ export function createCore(opts: CoreOptions) {
   bots.scheduler = scheduler
   const space = new SpaceService(storage)
   const connection = new ConnectionService(storage, opts.fetch, opts.remoteProbe, opts.remoteAuth)
-  const remoteSessions = new RemoteSessionService(bus, connection, opts.remoteChat)
+  const remoteSessions = new RemoteSessionService(bus, connection, opts.remoteChat, storage)
+  const code = new CodeService(bus, connection, opts.remoteCode)
+  const workBot = new WorkBotService(bus, connection, opts.remoteWorkBot)
   bus.subscribe((e, source) => { if (source === "local") void plugins.trigger("event", e).catch(() => undefined) })
 
   return {
@@ -127,6 +133,8 @@ export function createCore(opts: CoreOptions) {
     mcp,
     sessions,
     remoteSessions,
+    code,
+    workBot,
     bots,
     projects,
     scheduler,
@@ -142,6 +150,8 @@ export function createCore(opts: CoreOptions) {
     },
     async close() {
       remoteSessions.close()
+      code.close()
+      workBot.close()
       opts.remoteAuth?.clear()
       scheduler.stop()
       for (const s of storage.sessions()) await sessions.abort(s.id)
@@ -152,6 +162,8 @@ export function createCore(opts: CoreOptions) {
 }
 
 export * from "./agent"
+export * from "./code"
+export * from "./work-bot"
 export * from "./bot"
 export * from "./bus"
 export * from "./catalog"

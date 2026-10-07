@@ -14,10 +14,10 @@ const prompt = { message: "hello", attachmentIDs: [] }
 const historyWindow: RemoteHistoryWindow = {
   conversationID: ids.conversationID, title: "Known conversation", modelSlug: model.slug,
   items: [{
-    id: ids.assistantID, role: "assistant", text: "Known answer", created_at: "2026-10-03T00:00:00Z",
+    id: ids.assistantID, parent_message_id: null, role: "assistant", text: "Known answer", created_at: "2026-10-03T00:00:00Z",
     version_index: 0, version_count: 1, is_active_version: true, finish_reason: "stop",
   }],
-  limit: 100, limited: true, projection: "text-and-attachments", reasoningAndTools: "omitted",
+  limit: 200, limited: false, projection: "retained-parts", reasoningAndTools: "retained",
 }
 type Observer = Parameters<CoreRemoteBinding["turn"]>[1]
 type Result = Awaited<CoreRemoteDelivery["completion"]>
@@ -365,7 +365,7 @@ it("holds admission for headers, returns only the user ID before completion and 
   try { control.finish(); await settled.promise } finally { off() }
   expect(await remote.history(session.id)).toEqual(historyWindow)
   expect(f.history).toHaveBeenCalledWith(ids.conversationID, expect.any(AbortSignal))
-  expect((await remote.get(session.id)).outcome).toMatchObject({ complete: false, partial: true })
+  expect((await remote.get(session.id)).outcome).toMatchObject({ complete: true, partial: false })
   expect(await remote.messages(session.id)).toHaveLength(2)
   expect(f.responses).toEqual(expect.arrayContaining([
     { method: "POST", path: `/api/remote/sessions/${session.id}/prompt`, status: 202 },

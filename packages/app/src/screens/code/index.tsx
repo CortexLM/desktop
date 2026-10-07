@@ -1,5 +1,6 @@
 import type { ScreenDef } from "../../registry";
 import { CodeHome, CodeSession } from "./code";
+import { CodeMachines } from "./remote-code";
 import { TasksScreen, ReviewScreen, DiffScreen, TerminalScreen, EnvScreen, PrScreen, SettingsScreen } from "./lot-code";
 
 const M = "Cortex Code" as const;
@@ -15,5 +16,6 @@ export const SCREENS: ScreenDef[] = [
   { id: "code-terminal", name: "code.screen.code-terminal", mode: M, group: G, variants: [V("code-terminal", "running", "encours"), V("code-terminal", "approval", "approbation"), V("code-terminal", "failed", "echec"), V("code-terminal", "done", "termine")], render: () => <TerminalScreen /> },
   { id: "code-env", name: "code.screen.code-env", mode: M, group: G, variants: [V("code-env", "list", "liste"), V("code-env", "edit", "edition"), V("code-env", "booting", "demarrage"), V("code-env", "error", "erreur")], render: () => <EnvScreen /> },
   { id: "code-pr", name: "code.screen.code-pr", mode: M, group: G, variants: [V("code-pr", "draft", "brouillon"), V("code-pr", "checks", "checks"), V("code-pr", "failed", "echec"), V("code-pr", "ready", "prete"), V("code-pr", "merged", "fusionnee")], render: () => <PrScreen /> },
+  { id: "code-machines", name: "code.screen.code-machines", mode: M, group: G, render: () => <CodeMachines /> },
   { id: "code-settings", name: "code.screen.code-settings", mode: M, group: G, variants: [V("code-settings", "repos", "depots"), V("code-settings", "instructions", "instructions"), V("code-settings", "approvals", "approbations"), V("code-settings", "usage", "usage")], render: () => <SettingsScreen /> },
 ];

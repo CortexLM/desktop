@@ -73,6 +73,7 @@ async function authBackend(tag: string) {
         return session(res);
       } finally { events.emit(`finished:${route}`); }
     }
+    if (req.method === "POST" && route === "/v1/auth/refresh") { problem(res, 401, "invalid_credential"); return; }
     if (req.method === "POST" && route === LOGOUT_PATH) {
       res.setHeader("set-cookie", "cortex_rt=; HttpOnly; Path=/v1/auth; Max-Age=0"); res.writeHead(204); res.end(); return;
     }
