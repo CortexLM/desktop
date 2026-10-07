@@ -1,5 +1,6 @@
 // Shared pieces of the Cortex Code area: agent mascot, deltas, monograms, diff views, CI icons, live helpers.
 import * as React from "react";
+import { Menu } from "@base-ui/react/menu";
 import { Icon, Tip } from "../../kit/ui";
 import { Mascot, DEFAULT_MASCOT, type State } from "../../mascot/Mascot";
 import { useT, useI18n } from "../../i18n";
@@ -131,6 +132,25 @@ export function useAgo() {
     for (const [u, n] of [["day", 86400], ["hour", 3600], ["minute", 60]] as const) if (Math.abs(s) >= n) return f.format(Math.round(s / n), u);
     return f.format(0, "minute");
   }, [locale]);
+}
+
+/** Context chip (repository, branch, environment, model) opening a single-choice menu. */
+export type ChipItem = { value: string; label: string; hint?: string };
+export function ChipMenu({ icon, label, ariaLabel, value, items, onChange, disabled, testId, className = "ctx", side = "bottom", align = "start" }: {
+  icon?: string; label: string; ariaLabel: string; value: string; items: ChipItem[]; onChange(v: string): void; disabled?: boolean; testId?: string;
+  className?: string; side?: "top" | "bottom"; align?: "start" | "end";
+}) {
+  return <Menu.Root>
+    <Menu.Trigger className={className} type="button" data-testid={testId} aria-label={`${ariaLabel}: ${label}`} disabled={disabled}>{icon && <Icon name={icon} size={16} />}<span className="code-ell">{label}</span><Icon name="chevron-down" size={12} /></Menu.Trigger>
+    <Menu.Portal><Menu.Positioner sideOffset={6} side={side} align={align}><Menu.Popup className="popup code-chip-pop">
+      <Menu.RadioGroup value={value} onValueChange={(v) => onChange(v as string)}>
+        {items.map((i) => <Menu.RadioItem key={i.value} value={i.value} closeOnClick className="mitem code-chip-item">
+          <span className="code-grow"><span className="code-ell">{i.label}</span>{i.hint && <span className="sub">{i.hint}</span>}</span>
+          <Menu.RadioItemIndicator><Icon name="check" /></Menu.RadioItemIndicator>
+        </Menu.RadioItem>)}
+      </Menu.RadioGroup>
+    </Menu.Popup></Menu.Positioner></Menu.Portal>
+  </Menu.Root>;
 }
 
 /** Puts a test id on the input of the shared composer (the composer has no prop for it). */

@@ -9,8 +9,8 @@ import { NavCtx, useNav, go, navigation, type readHash, type Route } from "./nav
 import { VariantPicker, type Theme, type ThemePref } from "../App";
 import { useT } from "../i18n";
 import { isPreview, useFixtures, usePreviewBot } from "../preview";
-import { platform } from "../api";
-import { useSessions, useBots, useProjects } from "../state/live";
+import { api, platform } from "../api";
+import { useSessions, useBots, useProjects, useQuery } from "../state/live";
 import { useRemoteSessions } from "../state/remote-list";
 import { NotFound } from "./not-found";
 import { previewChatStart, startPreviewChat } from "../components/composer";
@@ -294,6 +294,26 @@ function ProjectRows({ project, sessions }: { project: Project; sessions: Sessio
   </>;
 }
 
+// Signed-in Code: repositories from the producer's sessions, each with its latest tasks (design "Dépôts").
+const CODE_DOT: Record<string, string> = { running: "blue", connecting: "blue", connected: "blue", waiting: "blue", permission_blocked: "yellow", completed: "green", failed: "red" };
+function CodeRepos({ route, go }: { route: Route; go: (r: Route, p?: Record<string, string>) => void }) {
+  const t = useT(), { params } = useNav();
+  const connection = useQuery(() => api.connection.get(), []);
+  const remote = connection.state === "ready" && connection.data.mode !== "local" && connection.data.signedIn;
+  const list = useQuery(() => remote ? api.code.list() : Promise.resolve([]), [remote], (e) => e.type === "code.session.changed");
+  if (!remote) return null;
+  const sessions = list.state === "ready" ? list.data : [];
+  const repos = [...new Set(sessions.map((s) => s.repo).filter((r): r is string => !!r))].slice(0, 6);
+  return <div className="sb-group" data-testid="code-sidebar-repos">
+    <Section title={t("shell.code.repos")} action={<IconBtn icon="plus" label={t("shell.code.connectRepo")} onClick={() => go("code-settings", { v: "repos" })} />} />
+    {repos.map((r) => <React.Fragment key={r}>
+      <Row label={r.split("/").pop() || r} icon="folder-code" strong onClick={() => go("code-tasks")} />
+      {sessions.filter((s) => s.repo === r).slice(0, 3).map((s) => <Row key={s.id} label={s.title || t("shell.nav.untitled")} child status={CODE_DOT[s.state]} active={route === "code-session" && params.get("id") === s.id} onClick={() => go("code-session", { source: "code-api", id: s.id, epoch: s.epoch })} />)}
+    </React.Fragment>)}
+    {list.state === "ready" && !repos.length && <div className="sb-empty">{t("shell.code.noRepos")}</div>}
+  </div>;
+}
+
 function CodeNav({ route, go }: { route: Route; go: (r: Route, p?: Record<string, string>) => void }) {
   const t = useT();
   const fx = useFixtures<ShellFx>("shell");
@@ -319,14 +339,16 @@ function CodeNav({ route, go }: { route: Route; go: (r: Route, p?: Record<string
         <Section title={t("shell.code.envs")} />
         {fx.envs?.map((e) => <Row key={e.name} label={e.name} icon={e.icon} meta={e.meta} status={e.status} active={route === "code-env" && !!e.status} onClick={() => go("code-env")} />)}
       </div>
-    </> : (
+    </> : <>
+      <CodeRepos route={route} go={go} />
       <div className="sb-group">
         <Section title={t("shell.code.sessions")} />
         {sessions.state === "ready" && sessions.data.slice(0, 12).map((s) => <Row key={s.id} label={s.title || t("shell.nav.untitled")} child active={route === "code-session"} onClick={() => go("code-session", { id: s.id })} />)}
         {sessions.state === "ready" && !sessions.data.length && <div className="sb-empty">{t("shell.code.noSessions")}</div>}
         <Section title={t("shell.code.envs")} />
+        <Row label={t("shell.code.cloudMachines")} icon="cpu" active={route === "code-machines"} onClick={() => go("code-machines")} />
         <Row label={t("shell.code.thisMac")} icon="terminal" meta={t("shell.code.ready")} status="green" active={route === "code-env"} onClick={() => go("code-env")} />
       </div>
-    )}
+    </>}
   </>);
 }

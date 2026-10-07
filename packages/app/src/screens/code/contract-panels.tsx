@@ -2,8 +2,9 @@ import * as React from "react";
 import type { ContractCall } from "@cortex/schema";
 import { api } from "../../api";
 import { useT } from "../../i18n";
-import { Icon } from "../../kit/ui";
+import { Icon, IconBtn, MItem, MSep, Pop } from "../../kit/ui";
 import { useQuery } from "../../state/live";
+import { ChipMenu } from "./parts";
 
 export type Owner = { epoch: string; session: string };
 type Row = Record<string, unknown>;
@@ -100,59 +101,98 @@ export function LiveSessionGrant({ epoch, session }: Owner) {
   </div>;
 }
 
+// Machines Cloud (design: lot-security Machines): occupancy metrics, search + state filter, machine list, selected machine detail.
+const STATES = ["all", "running", "hibernated", "stopped"] as const;
+type Tree = { path: string; session_id?: string; branch?: string };
+const slug = (r: Row) => { const u = String(r.repo_url ?? ""); return /github\.com[/:]([^/]+\/[^/.]+)/.exec(u)?.[1] ?? (u || String(r.id)); };
 export function LiveRuntimeAdmin({ epoch }: { epoch: string }) {
   const t = useT(), c = useContract();
   const runtimes = useQuery(() => call<{ items: Row[] }>({ epoch, op: "code.runtimes" }), [epoch]);
-  const [filter, setFilter] = React.useState("all");
-  const items = runtimes.state === "ready" ? runtimes.data.items.filter(r => filter === "all" || r.status === filter) : [];
-  return <section data-testid="live-machines">
-    <select className="input" data-testid="machines-filter" aria-label={t("code.contract.filter")} value={filter} onChange={e => setFilter(e.target.value)}>
-      {["all", "running", "hibernated", "stopped"].map(s => <option key={s} value={s}>{t(`code.contract.machine.${s}`)}</option>)}
-    </select>
-    {runtimes.state === "ready" && !items.length && <p className="code-hint" data-testid="machines-empty">{t("code.contract.noMachines")}</p>}
-    {items.map(r => <RuntimeRow key={String(r.id)} epoch={epoch} runtime={r} reload={runtimes.reload} c={c} />)}
-    <ContractError code={c.error ?? (runtimes.state === "error" ? "other" : undefined)} />
+  const [filter, setFilter] = React.useState<string>("all"), [query, setQuery] = React.useState(""), [selected, setSelected] = React.useState("");
+  const all = runtimes.state === "ready" ? runtimes.data.items : [];
+  const trees = (r: Row) => Array.isArray(r.worktrees) ? r.worktrees as Tree[] : [];
+  const items = all.filter(r => (filter === "all" || r.status === filter) && slug(r).toLowerCase().includes(query.trim().toLowerCase()));
+  const current = items.find(r => r.id === selected) ?? items[0];
+  const used = all.reduce((n, r) => n + trees(r).length, 0), max = all.reduce((n, r) => n + Number(r.max_worktrees ?? 1), 0);
+  return <section className="code-machines" data-testid="live-machines">
+    <div className="code-machines-head"><div><h1>{t("code.machines.heading")}</h1><p>{t("code.machines.lead")}</p></div>
+      <button className="btn secondary" data-testid="machines-refresh" disabled={runtimes.state === "loading"} onClick={runtimes.reload}><Icon name="refresh" size={16} />{t("code.machines.refresh")}</button></div>
+    {runtimes.state === "error" ? <div className="empty code-machines-empty"><Icon name="cpu" /><h2>{t("code.contract.error.other")}</h2><button className="btn secondary" onClick={runtimes.reload}>{t("code.retry")}</button></div>
+      : runtimes.state === "ready" && !all.length ? <div className="empty code-machines-empty" data-testid="machines-none"><Icon name="cpu" /><h2>{t("code.machines.emptyTitle")}</h2><p>{t("code.machines.emptyBody")}</p></div>
+      : runtimes.state === "ready" && <>
+        <dl className="code-metrics">
+          <div><dt>{t("code.machines.count")}</dt><dd data-testid="machines-count">{all.length}</dd></div>
+          <div><dt>{t("code.machines.busy")}</dt><dd data-testid="machines-busy">{used}</dd></div>
+          <div><dt>{t("code.machines.free")}</dt><dd>{Math.max(0, max - used)}</dd></div>
+        </dl>
+        <div className="code-toolbar">
+          <label className="code-search"><Icon name="search" size={16} /><input type="search" data-testid="machines-search" aria-label={t("code.machines.search")} placeholder={t("code.machines.search")} value={query} onChange={e => setQuery(e.target.value)} /></label>
+          <ChipMenu testId="machines-filter" ariaLabel={t("code.machines.state")} label={t(`code.contract.machine.${filter}`)} value={filter} items={STATES.map(k => ({ value: k, label: t(`code.contract.machine.${k}`) }))} onChange={setFilter} />
+        </div>
+        {!items.length ? <p className="code-hint" data-testid="machines-empty">{t("code.contract.noMachines")}</p> : <ul className="code-mlist">{items.map(r => {
+          const n = trees(r).length, cap = Number(r.max_worktrees ?? 1);
+          return <li key={String(r.id)}><button className="code-mrow" data-testid="machine-row" data-status={String(r.status)} aria-pressed={current?.id === r.id} onClick={() => setSelected(String(r.id))}>
+            <Icon name="cpu" /><span className="code-grow"><b className="code-ell">{slug(r)}</b><small>{t("code.machines.spec", { cpu: Number(r.vcpus ?? 0), mem: Math.round(Number(r.memory_mib ?? 0) / 1024) })}</small></span>
+            <span className="code-mrow-end"><MachineBadge status={String(r.status)} /><small data-testid="machine-capacity">{t("code.contract.worktrees", { used: n, max: cap })}</small></span>
+          </button></li>;
+        })}</ul>}
+        {current && <MachineDetail key={String(current.id)} epoch={epoch} runtime={current} trees={trees(current)} reload={runtimes.reload} c={c} />}
+      </>}
+    <ContractError code={c.error} />
   </section>;
 }
 
-function RuntimeRow({ epoch, runtime, reload, c }: { epoch: string; runtime: Row; reload: () => void; c: ReturnType<typeof useContract> }) {
-  const t = useT(), id = String(runtime.id);
+const TONE: Record<string, string> = { running: "ok", requested: "run", stopping: "run", failed: "err" };
+function MachineBadge({ status }: { status: string }) {
+  const t = useT();
+  return <span className={"badge " + (TONE[status] ?? "code-mute")}>{t(`code.contract.machine.${["running", "hibernated", "stopped", "requested", "snapshotted", "stopping", "failed"].includes(status) ? status : "stopped"}`)}</span>;
+}
+
+function MachineDetail({ epoch, runtime, trees, reload, c }: { epoch: string; runtime: Row; trees: Tree[]; reload: () => void; c: ReturnType<typeof useContract> }) {
+  const t = useT(), id = String(runtime.id), cap = Number(runtime.max_worktrees ?? 1);
   const [open, setOpen] = React.useState(false), [name, setName] = React.useState(""), [value, setValue] = React.useState(""), [hosts, setHosts] = React.useState("");
   const secrets = useQuery(async () => open ? call<{ items: { name: string }[] }>({ epoch, op: "code.secrets", params: { runtime: id } }) : { items: [] }, [open, epoch, id]);
   const egress = useQuery(async () => open ? call<{ allow: string[] }>({ epoch, op: "code.egress", params: { runtime: id } }) : { allow: [] }, [open, epoch, id]);
   React.useEffect(() => { if (egress.state === "ready") setHosts(egress.data.allow.join(", ")); }, [egress.state]); // eslint-disable-line react-hooks/exhaustive-deps
-  const trees = Array.isArray(runtime.worktrees) ? runtime.worktrees as Row[] : [];
-  return <div className="code-machine" data-testid="machine-row" data-status={String(runtime.status)}>
-    <div className="li"><Icon name="server" size={16} /><span className="grow mono">{id}</span>
-      <span className="code-meta" data-testid="machine-capacity">{t("code.contract.worktrees", { used: trees.length, max: Number(runtime.max_worktrees ?? 1) })}</span>
-      <span className="badge">{String(runtime.status)}</span>
-      <button className="btn secondary" data-testid="machine-wake" disabled={c.busy || runtime.status === "running"} onClick={() => void c.run(() => call({ epoch, op: "code.runtime.lifecycle", params: { runtime: id }, body: { action: "resume" } }), reload)}>{t("code.contract.wake")}</button>
-      <button className="btn secondary" data-testid="machine-sleep" disabled={c.busy || runtime.status !== "running"} onClick={() => void c.run(() => call({ epoch, op: "code.runtime.lifecycle", params: { runtime: id }, body: { action: "hibernate" } }), reload)}>{t("code.contract.sleep")}</button>
-      <button className="btn secondary" data-testid="machine-delete" disabled={c.busy} onClick={() => { if (confirm(t("code.contract.deleteConfirm"))) void c.run(() => call({ epoch, op: "code.runtime.remove", params: { runtime: id } }), reload); }}>{t("code.contract.delete")}</button>
-      <button className="btn secondary" data-testid="machine-open" aria-expanded={open} onClick={() => setOpen(v => !v)}>{t("code.contract.configure")}</button>
+  const life = (action: "resume" | "hibernate") => void c.run(() => call({ epoch, op: "code.runtime.lifecycle", params: { runtime: id }, body: { action } }), reload);
+  return <section className="code-mdetail" data-testid="machine-detail">
+    <div className="code-card-row"><h2 className="h3 code-grow">{t("code.machines.worktrees", { name: slug(runtime) })}</h2><span className="code-meta code-num">{trees.length}/{cap}</span></div>
+    <meter className="code-mmeter" min={0} max={cap} value={trees.length} aria-label={t("code.contract.worktrees", { used: trees.length, max: cap })} />
+    {trees.length ? <div className="list">{trees.map(w => <div key={w.path} className="li"><Icon name="git-branch" size={16} /><span className="grow"><span className="ttl mono code-ell">{w.branch || w.path}</span><span className="sub mono">{w.path}</span></span><span className="code-meta">{t(w.session_id ? "code.machines.linked" : "code.machines.noSession")}</span></div>)}</div>
+      : <p className="code-hint">{t("code.machines.noTrees")}</p>}
+    <div className="code-row-gap code-mactions">
+      {runtime.status === "running"
+        ? <button className="btn secondary" data-testid="machine-sleep" disabled={c.busy} onClick={() => life("hibernate")}><Icon name="pause" size={16} />{t("code.contract.sleep")}</button>
+        : <button className="btn secondary" data-testid="machine-wake" disabled={c.busy} onClick={() => life("resume")}><Icon name="play" size={16} />{t("code.contract.wake")}</button>}
+      <button className="btn secondary" data-testid="machine-open" aria-expanded={open} onClick={() => setOpen(v => !v)}><Icon name="settings" size={16} />{t("code.contract.configure")}</button>
+      <div className="spacer" />
+      <button className="btn secondary code-danger" data-testid="machine-delete" disabled={c.busy} onClick={() => { if (confirm(t("code.contract.deleteConfirm"))) void c.run(() => call({ epoch, op: "code.runtime.remove", params: { runtime: id } }), reload); }}><Icon name="trash" size={16} />{t("code.contract.delete")}</button>
     </div>
     {open && <div className="code-machine-detail">
-      {trees.map(w => <div key={String(w.session_id)} className="li mono code-meta">{String(w.path)} · {String(w.branch ?? "")}</div>)}
-      {secrets.state === "ready" && secrets.data.items.map(s => <div key={s.name} className="li code-secret" data-testid="secret-row"><span className="grow mono">{s.name}</span>
-        <button className="btn secondary" data-testid="secret-remove" disabled={c.busy} onClick={() => void c.run(() => call({ epoch, op: "code.secrets.remove", params: { runtime: id, secret: s.name } }), secrets.reload)}>{t("code.contract.remove")}</button></div>)}
-      <form className="li" onSubmit={e => { e.preventDefault(); void c.run(() => call({ epoch, op: "code.secrets.put", params: { runtime: id, secret: name }, body: { value } }), () => { setName(""); setValue(""); secrets.reload(); }); }}>
-        <input className="input mono" data-testid="secret-name" aria-label={t("code.contract.secretName")} value={name} onChange={e => setName(e.target.value.toUpperCase())} />
-        <input className="input grow" type="password" autoComplete="off" data-testid="secret-value" aria-label={t("code.contract.secretValue")} value={value} onChange={e => setValue(e.target.value)} />
+      <h3 className="h3">{t("code.contract.secretName")}</h3>
+      {secrets.state === "ready" && secrets.data.items.length > 0 && <div className="list">{secrets.data.items.map(s => <div key={s.name} className="li code-secret" data-testid="secret-row"><Icon name="key" size={16} /><span className="grow mono">{s.name}</span>
+        <button className="btn secondary" data-testid="secret-remove" disabled={c.busy} onClick={() => void c.run(() => call({ epoch, op: "code.secrets.remove", params: { runtime: id, secret: s.name } }), secrets.reload)}>{t("code.contract.remove")}</button></div>)}</div>}
+      <form className="code-row-gap" onSubmit={e => { e.preventDefault(); void c.run(() => call({ epoch, op: "code.secrets.put", params: { runtime: id, secret: name }, body: { value } }), () => { setName(""); setValue(""); secrets.reload(); }); }}>
+        <input className="input mono" data-testid="secret-name" aria-label={t("code.contract.secretName")} placeholder={t("code.contract.secretName")} value={name} onChange={e => setName(e.target.value.toUpperCase())} />
+        <input className="input code-grow" type="password" autoComplete="off" data-testid="secret-value" aria-label={t("code.contract.secretValue")} placeholder={t("code.contract.secretValue")} value={value} onChange={e => setValue(e.target.value)} />
         <button className="btn primary" data-testid="secret-save" disabled={c.busy || !name || !value}>{t("code.contract.save")}</button>
       </form>
-      <form className="li" onSubmit={e => { e.preventDefault(); void c.run(() => call({ epoch, op: "code.egress.put", params: { runtime: id }, body: { allow: hosts.split(/[\s,]+/).filter(Boolean), confirm: true } }), egress.reload); }}>
-        <input className="input grow mono" data-testid="egress-hosts" aria-label={t("code.contract.egress")} value={hosts} onChange={e => setHosts(e.target.value)} />
+      <h3 className="h3">{t("code.contract.egress")}</h3>
+      <form className="code-row-gap" onSubmit={e => { e.preventDefault(); void c.run(() => call({ epoch, op: "code.egress.put", params: { runtime: id }, body: { allow: hosts.split(/[\s,]+/).filter(Boolean), confirm: true } }), egress.reload); }}>
+        <input className="input code-grow mono" data-testid="egress-hosts" aria-label={t("code.contract.egress")} value={hosts} onChange={e => setHosts(e.target.value)} />
         <button className="btn primary" data-testid="egress-save" disabled={c.busy}>{t("code.contract.save")}</button>
       </form>
     </div>}
-  </div>;
+  </section>;
 }
 
 export function LiveRepoToggle({ epoch, fullName, enabled, reload }: { epoch: string; fullName: string; enabled?: boolean; reload: () => void }) {
   const t = useT(), c = useContract(), [owner, repo] = fullName.split("/") as [string, string];
-  return <span className="ctx-bar" data-testid="repo-toggle">
-    <button className="btn secondary" data-testid="repo-enable" disabled={c.busy} onClick={() => void c.run(() => call({ epoch, op: "code.repository.put", params: { owner, repo }, body: { enabled: enabled === false } }), reload)}>{t(enabled === false ? "code.contract.enable" : "code.contract.disable")}</button>
-    <button className="btn secondary" data-testid="repo-remove" disabled={c.busy} onClick={() => void c.run(() => call({ epoch, op: "code.repository.remove", params: { owner, repo } }), reload)}>{t("code.contract.remove")}</button>
+  return <span className="code-row-gap" data-testid="repo-toggle">
+    <Pop align="end" width={220} trigger={<IconBtn icon="more-horizontal" data-testid="repo-menu" disabled={c.busy} label={t("code.optionsOf", { name: fullName })} />}>
+      <MItem icon={enabled === false ? "play" : "pause"} onClick={() => void c.run(() => call({ epoch, op: "code.repository.put", params: { owner, repo }, body: { enabled: enabled === false } }), reload)}>{t(enabled === false ? "code.contract.enable" : "code.contract.disable")}</MItem>
+      <MSep /><MItem icon="trash" danger onClick={() => void c.run(() => call({ epoch, op: "code.repository.remove", params: { owner, repo } }), reload)}>{t("code.contract.remove")}</MItem>
+    </Pop>
     <ContractError code={c.error} />
   </span>;
 }
