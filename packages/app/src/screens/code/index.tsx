@@ -8,7 +8,7 @@ const G = "code.group";
 const V = (screen: string, id: string, design: string): [string, string, string] => [id, `code.variant.${screen}.${id}`, design];
 
 export const SCREENS: ScreenDef[] = [
-  { id: "code", name: "code.screen.code", mode: M, group: G, render: () => <CodeHome /> },
+  { id: "code", name: "code.screen.code", mode: M, group: G, render: () => <Root id="code"><CodeHome /></Root> },
   { id: "code-session", name: "code.screen.code-session", mode: M, group: G, render: () => <Root id="code-session"><CodeSession /></Root> },
   { id: "code-tasks", name: "code.screen.code-tasks", mode: M, group: G, variants: [V("code-tasks", "list", "liste"), V("code-tasks", "filtered", "filtree"), V("code-tasks", "empty", "vide"), V("code-tasks", "attempts", "tentatives")], render: () => <TasksScreen /> },
   { id: "code-review", name: "code.screen.code-review", mode: M, group: G, variants: [V("code-review", "review", "revue"), V("code-review", "applied", "appliquee"), V("code-review", "approved", "approuvee")], render: () => <ReviewScreen /> },

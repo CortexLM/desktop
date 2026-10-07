@@ -73,7 +73,7 @@ function RemoteCodeHome() {
     } catch { if (owns()) setError(true); }
     finally { if (owns()) setBusy(false); }
   };
-  return <div className="home code-api" data-testid="screen-code">
+  return <div className="home code-api">
     <h1>{t("code.home.title")}</h1>
     <div className="ctx-bar" role="group" aria-label={t("code.remote.execution")}>
       <button className="btn secondary" data-testid="code-mode-local" aria-pressed={runtime === "local"} disabled={busy} onClick={() => setRuntime("local")}>{t("code.remote.local")}</button>
