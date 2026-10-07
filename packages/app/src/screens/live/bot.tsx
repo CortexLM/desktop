@@ -36,6 +36,15 @@ function ChannelThread({ epoch, id }: { epoch: string; id: string }) {
   </section>;
 }
 
+// The trunk has no Bot room route yet: the screen says so instead of inventing a room.
+export function BotRoom() {
+  const t = useT(), { go } = useNav();
+  return <>
+    <div className="content-top"><span className="title">{t("live.botRoom.title")}</span></div>
+    <div className="page"><div className="empty" data-testid="bot-room-unavailable"><h2>{t("live.botRoom.unavailable")}</h2><p>{t("live.botRoom.unavailableBody")}</p><button className="btn secondary" onClick={() => go("bot-channel")}>{t("live.botRoom.channels")}</button></div></div>
+  </>;
+}
+
 export function BotInvites() {
   const t = useT();
   return <Owned title={t("live.botInvites.title")}>{epoch => <InviteList epoch={epoch} />}</Owned>;

@@ -1,7 +1,7 @@
 import type { ScreenDef } from "../../registry";
 import { CodeHome, CodeSession } from "../code/code";
 import { LoginScreen } from "../system/account";
-import { BotChannel, BotCompanion, BotComputer, BotCreate, BotInvite, BotInvites, BotShare } from "./bot";
+import { BotChannel, BotRoom, BotCompanion, BotComputer, BotCreate, BotInvite, BotInvites, BotShare } from "./bot";
 import { CodeAutomation, CodeAutomations, CodeConnect } from "./code";
 import { ConnectionScreen, RemoteChatScreen, ModelPicker, Models, ProviderDetail, Providers, ToolApproval } from "./platform";
 import { McpAdd, PluginDetail, Plugins, Scheduled, ScheduledEdit, ScheduledHistory, Skills, Space, SpacePage } from "./productivity";
@@ -9,9 +9,10 @@ import "../code/lot-code.css";
 
 const C = { mode: "Cortex" as const, group: "live.group" };
 const K = { mode: "Cortex Code" as const, group: "live.group" };
-// bot-room has no trunk route (integration/backend openapi): recorded missing-backend, not registered.
+// bot-room has no trunk route (integration/backend openapi): it shows the honest unavailable state, never a fake room.
 export const SCREENS: ScreenDef[] = [
   { ...C, id: "bot-channel", name: "live.screen.bot-channel", render: () => <BotChannel /> },
+  { ...C, id: "bot-room", name: "live.screen.bot-room", render: () => <BotRoom /> },
   { ...C, id: "bot-companion", name: "live.screen.bot-companion", render: () => <BotCompanion /> },
   { ...C, id: "bot-invites", name: "live.screen.bot-invites", render: () => <BotInvites /> },
   { ...C, id: "bot-invite", name: "live.screen.bot-invite", render: () => <BotInvite /> },
