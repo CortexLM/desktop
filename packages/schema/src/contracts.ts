@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-// Closed table of Todo 3 producer contract routes the renderer may invoke through main (see desktop remote-contracts.ts).
+// Closed table of Todo 3 producer contract routes (plus task plans, approval policy and orgs) the renderer may invoke through main (see desktop remote-contracts.ts).
 export type ContractOp = { method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE"; path: string; slow?: boolean; text?: boolean }
 export const CONTRACT_OPS = {
   "code.attempts": { method: "GET", path: "/code/sessions/{session}/attempts" },
@@ -37,6 +37,17 @@ export const CONTRACT_OPS = {
   "bot.draft.cancel": { method: "POST", path: "/mascots/{bot}/tasks/{task}/drafts/{draft}/cancel" },
   "bot.credentials": { method: "POST", path: "/mascots/{bot}/tasks/{task}/credentials" },
   "bot.approval.transfer": { method: "POST", path: "/bot/approvals/{approval}/transfer" },
+  "plans.list": { method: "GET", path: "/task-plans" },
+  "plans.create": { method: "POST", path: "/task-plans" },
+  "plans.get": { method: "GET", path: "/task-plans/{plan}" },
+  "plans.remove": { method: "DELETE", path: "/task-plans/{plan}" },
+  "plans.step.add": { method: "POST", path: "/task-plans/{plan}/steps" },
+  "plans.step.update": { method: "PATCH", path: "/task-plans/{plan}/steps/{step}" },
+  "plans.step.remove": { method: "DELETE", path: "/task-plans/{plan}/steps/{step}" },
+  "policy.get": { method: "GET", path: "/approval-policy" },
+  "policy.put": { method: "PUT", path: "/approval-policy" },
+  "policy.diff": { method: "GET", path: "/approval-policy/diff" },
+  "orgs.list": { method: "GET", path: "/orgs" },
   // Todo 6b app screens: owner-scoped trunk routes, same closed-table rules.
   "app.channel": { method: "GET", path: "/channels/{channel}" },
   "app.channel.messages": { method: "GET", path: "/channels/{channel}/messages" },

@@ -6,7 +6,7 @@ import { ContractCall, CONTRACT_OPS, type ContractOp, type ContractResult } from
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const ULID = "[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}";
 const SEGMENT: Record<string, RegExp> = {
-  session: new RegExp(`^cnv_${ULID}$`), attempt: new RegExp(`^(?:msg|cnv)_${ULID}$`), runtime: new RegExp(`^crt_${ULID}$`),
+  session: new RegExp(`^cnv_${ULID}$`), attempt: new RegExp(`^(?:msg|cnv)_${ULID}$`), runtime: new RegExp(`^crt_${ULID}$`), plan: new RegExp(`^tpl_${ULID}$`), step: new RegExp(`^tps_${ULID}$`),
   comment: UUID, bot: UUID, task: UUID, draft: UUID, approval: UUID,
   channel: UUID, automation: UUID, scheduled: UUID, mcp: UUID, token: /^[0-9a-f]{1,128}$/i,
   conversation: new RegExp(`^cnv_${ULID}$`), prompt: new RegExp(`^prm_${ULID}$`), file: new RegExp(`^lbf_${ULID}$`),

@@ -1,7 +1,7 @@
 # SDK archives
 
 `README.md` records provenance, hashes and admission limits. The only pair is
-`trunk/cortex-sdk-0.4.4.tgz` / `cortex-api-types-0.3.3.tgz` (packed from backend
+`trunk/cortex-sdk-0.4.6.tgz` / `cortex-api-types-0.3.5.tgz` (packed from backend
 `integration/backend`), selected by
 `../packages/desktop/package.json`, `../packages/app/package.json` and `../bun.lock` with relative `file:../../vendor/...`
 paths (never absolute checkout paths). Older pairs were removed; git history keeps them.
