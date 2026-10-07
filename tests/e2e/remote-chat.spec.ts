@@ -13,7 +13,9 @@ const nextConversationID = "cnv_01h45ytscbeewvwm6xr90nbxp5";
 const nextAssistantID = "msg_01h45ytscbeewvwm6xr90nbxp5";
 const png = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==", "base64");
 const turnPath = "/v1/conversations/turns";
-const frame = (id: number, event: unknown) => `id: ${id}\ndata: ${JSON.stringify(event)}\n\n`;
+// Turn streams carry Redis stream IDs (`<ms>-<seq>`); bare numbers are refused as cursors.
+const cursor = (seq: number) => `1700000000000-${seq}`;
+const frame = (id: number, event: unknown) => `id: ${cursor(id)}\ndata: ${JSON.stringify(event)}\n\n`;
 const textFrame = (text: string) => frame(7, { type: "text_delta", message_id: assistantID, delta: text });
 const doneFrame = () => frame(8, { type: "done", message_id: assistantID, finish_reason: "stop" });
 function deferred<T>() {
@@ -542,7 +544,7 @@ test("detach and resume replay the original one-off, then an ordinary turn uses 
   expect(replay.raw).toBe(first.raw);
   expect(first.headers["idempotency-key"]).toMatch(/^[\da-f-]{36}$/i);
   expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]);
-  expect(replay.headers["last-event-id"]).toBe("7");
+  expect(replay.headers["last-event-id"]).toBe(cursor(7));
   replay.response.writeHead(200, {
     "content-type": "text/event-stream",
     "x-conversation-id": conversationID, "x-message-id": assistantID,
@@ -1453,7 +1455,7 @@ test("expired replay loads two known messages without generating or losing the n
   expect(replay.raw).toBe(first.raw);
   expect(first.headers["idempotency-key"]).toMatch(/^[\da-f-]{36}$/i);
   expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]);
-  expect(replay.headers["last-event-id"]).toBe("7");
+  expect(replay.headers["last-event-id"]).toBe(cursor(7));
   replay.response.writeHead(200, {
     "content-type": "text/event-stream",
     "x-conversation-id": conversationID, "x-message-id": assistantID,

@@ -14,7 +14,7 @@ it("projects main SDK delivery without persistence, local execution or private p
   const seen: { raw: unknown; source: string }[] = [];
   let origin = "", authOrdinal = 0, reply: http.ServerResponse | undefined;
   const json = (res: http.ServerResponse, body: unknown) => { res.writeHead(200, { "content-type": "application/json" }); res.end(JSON.stringify(body)); };
-  const frame = (id: number, event: unknown) => `id: ${id}\ndata: ${JSON.stringify(event)}\n\n`;
+  const frame = (id: number, event: unknown) => `id: ${id}-0\ndata: ${JSON.stringify(event)}\n\n`;
   const server = http.createServer(async (req, res) => {
     try {
       const chunks: Buffer[] = []; for await (const chunk of req) chunks.push(Buffer.from(chunk));
@@ -148,7 +148,7 @@ it.each([
     const events = [{ type: "text_delta", message_id: msg, delta: "Before" }, discarded,
       { type: "usage", message_id: msg, input_tokens: 7, output_tokens: 4, cached_tokens: 2, reasoning_tokens: null },
       { type: "done", message_id: msg, finish_reason: "stop" }];
-    return new Response(events.map((event, n) => `id: ${n + 1}\ndata: ${JSON.stringify(event)}\n\n`).join(""), {
+    return new Response(events.map((event, n) => `id: ${n + 1}-0\ndata: ${JSON.stringify(event)}\n\n`).join(""), {
       headers: { "content-type": "text/event-stream", "x-conversation-id": `cnv_${id}`, "x-message-id": msg },
     });
   } });
