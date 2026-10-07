@@ -46,9 +46,9 @@ preview controls remain temporary. This does not change prompt admission or perm
 Verified native accounts now retain remote snapshots in the existing `doc` table, scoped
 by canonical origin plus stable `/v1/me.id`; remote bus events still skip the local event
 journal and plugin hooks. Rebinding after restart assigns a fresh epoch and requires retained
-history for unfinished turns. No generation is automatically reissued. The cursorless producer
-list returns at most 100 active and 100 archived conversations; full discovery needs producer
-pagination. Earlier process-only descriptions below record the historical adapter.
+history for unfinished turns. No generation is automatically reissued. Discovery follows
+created-order producer pages of 100 rows per active/archived list until `has_more=false`, with
+no total record cap. Earlier process-only descriptions below record the historical adapter.
 
 `core.remoteSessions` uses the optional main-only `remoteChat` host; desktop supplies the
 same owner as `remoteAuth`. It has no public route or renderer caller yet. Models, selected

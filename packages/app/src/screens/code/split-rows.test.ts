@@ -11,3 +11,8 @@ it("pairs removed and added runs side by side and keeps context on both sides", 
   ]);
   expect(splitRows("")).toEqual([]);
 });
+
+it("keeps hunk body lines that look like file headers", () => {
+  const diff = "diff --git a/q.sql b/q.sql\n--- a/q.sql\n+++ b/q.sql\n@@ -1 +1 @@\n--- old comment\n+++ new\n";
+  expect(splitRows(diff)).toEqual([{ left: { k: "del", text: "-- old comment" }, right: { k: "add", text: "++ new" } }]);
+});

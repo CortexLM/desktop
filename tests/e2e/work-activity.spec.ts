@@ -129,8 +129,9 @@ for (const theme of ["light", "dark"]) test(`Activity persists finished outcomes
       };
     };
     await test.info().attach("before-crash-profile", { body: JSON.stringify(await profileReceipt()), contentType: "application/json" });
+    // Every Electron process (GPU, renderer, utility) holds profile and data files; the relaunch waits for all of them, not only the parent.
+    const tree = await app.evaluate(({ app }) => app.getAppMetrics().map((metric) => metric.pid));
     const child = app.process(), closed = app.waitForEvent("close");
-    // ponytail: the exact parent exit is observed; descendant handle settlement needs native evidence.
     const exited = once(child, "exit", { signal: AbortSignal.timeout(30_000) });
     // Observe late rejections if the kill command throws; normal awaits still reject.
     void exited.catch(() => {});
@@ -139,14 +140,19 @@ for (const theme of ["light", "dark"]) test(`Activity persists finished outcomes
     else child.kill("SIGKILL");
     const [exit] = await Promise.all([exited, closed]);
     intentionallyExited = true;
-    await test.info().attach("crash-parent-exit", { body: JSON.stringify({ pid: child.pid, code: exit[0], signal: exit[1], scope: "parent-only" }), contentType: "application/json" });
+    const alive = () => tree.filter((pid) => { try { process.kill(pid, 0); return true; } catch { return false; } });
+    await expect.poll(alive, { timeout: 30_000 }).toEqual([]);
+    await test.info().attach("crash-tree-exit", { body: JSON.stringify({ pid: child.pid, code: exit[0], signal: exit[1], tree }), contentType: "application/json" });
     app = await electron.launch({ args: [path.join(root, "packages/desktop/dist/main.cjs"), `--user-data-dir=${path.join(dataDir, "renderer")}`, ...(process.platform === "linux" ? ["--no-sandbox"] : [])], env: { ...process.env, ...env, CORTEX_DATA_DIR: dataDir, CORTEX_START_HASH: `#/activity?theme=${theme}`, CORTEX_LOCALE: "en" } as Record<string, string> });
     intentionallyExited = false;
     const restartLog: string[] = [];
     app.process().stderr?.on("data", (chunk: Buffer) => restartLog.push(chunk.toString()));
     const bootReceipt = () => app.evaluate(() => (globalThis as unknown as { cortexTestBoot?: { stage: string; errorName?: string } }).cortexTestBoot);
     try {
-      page = await app.firstWindow();
+      // The window event or a boot failure, whichever comes first; a failed boot never opens a window.
+      const failed = expect.poll(async () => (await bootReceipt())?.errorName, { timeout: 30_000 }).toBeDefined().then(() => { throw new Error(`Restart boot failed: ${JSON.stringify(restartLog.join("").slice(-2000))}`); });
+      void failed.catch(() => {});
+      page = await Promise.race([app.firstWindow({ timeout: 30_000 }), failed]);
     } catch (error) {
       await test.info().attach("restart-boot-state", { body: JSON.stringify(await bootReceipt()), contentType: "application/json" });
       await test.info().attach("restart-main-stderr", { body: restartLog.join(""), contentType: "text/plain" });

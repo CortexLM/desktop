@@ -89,7 +89,11 @@ async function boot() {
   const calls = createCallHost((origin) => remote.callAuth(origin));
   const callOrigin = () => { if (core.connection.get().mode === "local") throw new Error("Bot calls need a Cortex account"); return core.connection.remoteOrigin(); };
   ipcMain.handle("cortex:call:available", () => { try { return calls.available(callOrigin()); } catch { return "hidden"; } });
+  // One call per host: only the renderer that started it may drive it.
+  let callOwner: number | undefined;
+  const owns = (e: Electron.IpcMainEvent) => e.sender.id === callOwner;
   ipcMain.handle("cortex:call:start", async (e, botId: string) => {
+    callOwner = e.sender.id;
     const send = (channel: string, ...args: unknown[]) => { if (!e.sender.isDestroyed() && !e.sender.isCrashed()) e.sender.send(channel, ...args); };
     await calls.start(callOrigin(), String(botId), {
       snapshot: (s) => send("cortex:call:snapshot", s),
@@ -97,11 +101,11 @@ async function boot() {
       flush: () => send("cortex:call:flush"),
     }, e.sender);
   });
-  ipcMain.on("cortex:call:capture", (_e, pcm: Uint8Array) => { if (pcm instanceof Uint8Array && pcm.byteLength === 640) calls.capture(pcm); });
-  ipcMain.on("cortex:call:played", (_e, sequence: number, generation: number) => calls.played(Number(sequence), Number(generation)));
-  ipcMain.on("cortex:call:mute", (_e, muted: boolean) => calls.mute(muted === true));
-  ipcMain.on("cortex:call:interrupt", () => calls.interrupt());
-  ipcMain.on("cortex:call:end", () => calls.end());
+  ipcMain.on("cortex:call:capture", (e, pcm: Uint8Array) => { if (owns(e) && pcm instanceof Uint8Array && pcm.byteLength === 640) calls.capture(pcm); });
+  ipcMain.on("cortex:call:played", (e, sequence: number, generation: number) => { if (owns(e)) calls.played(Number(sequence), Number(generation)); });
+  ipcMain.on("cortex:call:mute", (e, muted: boolean) => { if (owns(e)) calls.mute(muted === true); });
+  ipcMain.on("cortex:call:interrupt", (e) => { if (owns(e)) calls.interrupt(); });
+  ipcMain.on("cortex:call:end", (e) => { if (owns(e)) calls.end(); });
   // Test hook for E2E receipts (frame counts). Ignored in packaged builds.
   if (!app.isPackaged) ipcMain.handle("cortex:call:stats", () => calls.stats() ?? null);
   // Server-sent events cannot cross invoke(); they are pumped over a dedicated channel.
