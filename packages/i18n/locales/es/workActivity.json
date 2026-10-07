@@ -1,6 +1,4 @@
 {
-  "scope": "Metadatos públicos de este Bot. Las filas son solo informativas: aquí nada responde, abre ni ejecuta nada.",
-  "streamNote": "Las actualizaciones en directo son avisos locales de este proceso que vuelven a leer los 200 eventos más recientes; no es un historial duradero ni completo y no se repite nada.",
   "error": "No se pudo leer la actividad. Vuelve a conectarte para cargar los eventos del propietario actual.",
   "noBots": "Aún no hay Bots.",
   "empty": "No hay actividad en los eventos más recientes.",
@@ -13,5 +11,11 @@
   "widget.secret_request": "solicitud de secreto",
   "widget.confirm": "confirmación",
   "widget.notice": "aviso",
-  "widget.waiting": "en espera"
+  "widget.waiting": "en espera",
+  "filter": "Filtrar actividad",
+  "filter.all": "Todo",
+  "filter.asks": "Preguntas",
+  "filter.media": "Multimedia",
+  "filter.other": "Otros",
+  "noBotsText": "Crea un Bot para ver aquí lo que hace."
 }

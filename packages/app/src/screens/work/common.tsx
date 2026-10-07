@@ -9,6 +9,7 @@ import { isPreview, useFixtures, usePreviewBot } from "../../preview";
 import { useBots, onEvent } from "../../state/live";
 import { toConfig } from "../bots/mascot-io";
 import { useI18n } from "../../i18n";
+import type { WorkBotView } from "@cortex/schema";
 import "./work.css";
 
 export const NB = "\u202f";
@@ -52,6 +53,48 @@ export function useDate() {
     short: (n: number) => new Intl.DateTimeFormat(locale, { weekday: "short", hour: "2-digit", minute: "2-digit" }).format(n),
     date: (n: number) => new Intl.DateTimeFormat(locale, { day: "numeric", month: "long" }).format(n),
   }), [locale]);
+}
+
+/** Mascot colour of a signed-in Bot look (WorkBotView.look). */
+const LOOK: Record<string, string> = { meadow: "#14B85A", teal: "#12B8A0", terracotta: "#FF6A13", amber: "#FFAA00", plum: "#8448FF", slate: "#5F6B7E" };
+export const LOOKS = Object.keys(LOOK) as WorkBotView["look"][];
+export const lookMascot = (bot: { name: string; look?: string }): MascotConfig => ({ ...DEFAULT_MASCOT, name: bot.name, color: LOOK[bot.look ?? ""] ?? DEFAULT_MASCOT.color });
+
+/** Five-field cron written by the routine editor, as a frequency + time. Anything else is "custom". */
+export function parseCron(expr: string): { kind: "daily" | "weekdays" | "monday" | "every30" | "custom"; time: string } {
+  const e = expr.trim().replace(/\s+/g, " ");
+  if (e === "*/30 * * * *") return { kind: "every30", time: "08:00" };
+  const m = e.match(/^(\d{1,2}) (\d{1,2}) \* \* (\*|1-5|1)$/);
+  if (!m || +m[1] > 59 || +m[2] > 23) return { kind: "custom", time: "08:00" };
+  return { kind: m[3] === "*" ? "daily" : m[3] === "1-5" ? "weekdays" : "monday", time: `${m[2].padStart(2, "0")}:${m[1].padStart(2, "0")}` };
+}
+export function toCron(kind: string, time: string, custom: string) {
+  const [h, m] = time.split(":").map(Number);
+  return kind === "every30" ? "*/30 * * * *" : kind === "custom" ? custom.trim() : `${m} ${h} * * ${kind === "daily" ? "*" : kind === "weekdays" ? "1-5" : "1"}`;
+}
+export function useCronLabel() {
+  const t = useI18n().t;
+  return (expr: string) => {
+    const { kind, time } = parseCron(expr);
+    return kind === "every30" ? t("work.sched.every30") : kind === "custom" ? t("work.sched.custom") : kind === "daily" ? t("work.sched.dailyAt", { time }) : kind === "weekdays" ? t("work.sched.weekdaysAt", { time }) : t("work.sched.mondayAt", { time });
+  };
+}
+/** "5 min ago"-style label for an ISO timestamp. */
+export function useAgo() {
+  const { locale } = useI18n();
+  return React.useCallback((iso: string) => {
+    const s = (Date.parse(iso) - Date.now()) / 1000, f = new Intl.RelativeTimeFormat(locale, { numeric: "auto", style: "short" });
+    if (Number.isNaN(s)) return "";
+    const a = Math.abs(s);
+    return a < 60 ? f.format(0, "minute") : a < 3600 ? f.format(Math.round(s / 60), "minute") : a < 86400 ? f.format(Math.round(s / 3600), "hour") : f.format(Math.round(s / 86400), "day");
+  }, [locale]);
+}
+
+/** Single-choice chips (radiogroup) replacing native selects. */
+export function Choice<V extends string>({ label, value, options, onChange, disabled, testId }: { label: string; value: V; options: [V, React.ReactNode][]; onChange: (v: V) => void; disabled?: boolean; testId?: string }) {
+  return <div className="field"><span style={{ fontWeight: 500 }}>{label}</span><div className="travail-opts" role="radiogroup" aria-label={label} data-testid={testId}>
+    {options.map(([v, l]) => <button key={v} type="button" role="radio" aria-checked={value === v} data-value={v} className="travail-opt" disabled={disabled} onClick={() => onChange(v)}>{l}</button>)}
+  </div></div>;
 }
 
 export function Top({ title, children }: { title: string; children?: React.ReactNode }) {

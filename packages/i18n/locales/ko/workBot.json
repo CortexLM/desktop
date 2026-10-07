@@ -19,10 +19,6 @@
   "hibernating": "일시 중지",
   "notifications": "알림",
   "save": "저장",
-  "autonomy": "승인 성공 이력을 집계할 수 없어 자율성 승격을 사용할 수 없습니다. 동의는 계속 필요합니다.",
-  "cloudUnavailable": "클라우드 컴퓨터를 사용할 수 없습니다. 이 컴퓨터에서 대신 실행하지 않습니다.",
-  "goal": "작업 목표",
-  "enqueue": "작업 대기열에 추가",
   "jobs": "저장된 작업",
   "uncertain": "외부 영향이 발생했을 수 있습니다. 되돌림이나 재실행을 보장하지 않습니다.",
   "cancel": "작업 취소",
@@ -37,8 +33,6 @@
   "look.amber": "호박색",
   "look.plum": "자두",
   "look.slate": "슬레이트",
-  "parentMessage": "원래 Bot에게 메시지",
-  "parentSend": "Bot에게 보내기",
   "copy.owner": "Share an independent copy",
   "copy.inbox": "Copy invitations",
   "copy.independent": "Each accepted invitation creates an independent copy. Conversations, memory, secrets, connections, channels and the owner’s computer are not included.",
@@ -227,5 +221,11 @@
   "contract.release": "제어권 돌려주기",
   "contract.transferTo": "팀원 ID",
   "contract.transfer": "이전",
-  "status.paused": "일시 중지됨"
+  "status.paused": "일시 중지됨",
+  "thread.approval": "{tool}을(를) 쓰려면 네 승인이 필요해.",
+  "thread.computerOff": "지금은 클라우드 컴퓨터를 쓸 수 없어.",
+  "thread.stop": "중지",
+  "thread.typing": "{name}이(가) 입력 중",
+  "thread.waiting": "{name}이(가) 최대한 빨리 답할 거야.",
+  "thread.failed": "{name}이(가) 끝내지 못했어. 다시 시도하려면 메시지를 다시 보내 줘."
 }

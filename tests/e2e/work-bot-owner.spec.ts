@@ -62,7 +62,9 @@ test("Work Bot failed Stop remains unconfirmed with running backend status", asy
     await page.evaluate(id => { location.hash = `#/bot?id=${id}&epoch=old`; }, id);
     await page.getByTestId("work-bot-cancel").click();
     await expect(page.getByTestId("work-bot-cancel-unconfirmed")).toBeVisible();
-    await expect(page.getByTestId("work-bot-job")).toHaveAttribute("data-status", "running");
+    // The running job keeps the Bot typing; no execution card stands in for it.
+    await expect(page.getByTestId("bot-typing")).toBeVisible();
+    await expect(page.getByTestId("work-bot-job")).toHaveCount(0);
     await expect(page.getByTestId("work-bot-cancel")).toBeEnabled();
   } finally { await app.close(); fs.rmSync(dataDir, { recursive: true, force: true }); }
 });

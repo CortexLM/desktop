@@ -19,10 +19,6 @@
   "hibernating": "Paused",
   "notifications": "Notifications",
   "save": "Save",
-  "autonomy": "Earned autonomy is unavailable: successful Ask accounting is not provided. Existing consent still applies.",
-  "cloudUnavailable": "Cloud computer execution is unavailable. No desktop host fallback will run.",
-  "goal": "Task goal",
-  "enqueue": "Queue task",
   "jobs": "Durable jobs",
   "uncertain": "External effects may have occurred. No effect rollback or replay is claimed.",
   "cancel": "Cancel task",
@@ -37,8 +33,6 @@
   "look.amber": "Amber",
   "look.plum": "Plum",
   "look.slate": "Slate",
-  "parentMessage": "Message the original Bot",
-  "parentSend": "Send to Bot",
   "copy.owner": "Share an independent copy",
   "copy.inbox": "Copy invitations",
   "copy.independent": "Each accepted invitation creates an independent copy. Conversations, memory, secrets, connections, channels and the owner’s computer are not included.",
@@ -227,5 +221,11 @@
   "contract.release": "Give control back",
   "contract.transferTo": "Teammate ID",
   "contract.transfer": "Transfer",
-  "status.paused": "Paused"
+  "status.paused": "Paused",
+  "thread.approval": "I need your approval to use {tool}.",
+  "thread.computerOff": "Cloud computer unavailable for now.",
+  "thread.stop": "Stop",
+  "thread.typing": "{name} is typing",
+  "thread.waiting": "{name} will reply as soon as it can.",
+  "thread.failed": "{name} couldn’t finish. Send your message again to retry."
 }

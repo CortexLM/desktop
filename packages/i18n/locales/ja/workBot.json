@@ -19,10 +19,6 @@
   "hibernating": "一時停止",
   "notifications": "通知",
   "save": "保存",
-  "autonomy": "承認実績を記録できないため自律性の昇格は利用できません。同意は引き続き必要です。",
-  "cloudUnavailable": "クラウドコンピューターは利用できません。この端末で代替実行しません。",
-  "goal": "タスクの目標",
-  "enqueue": "タスクをキューへ",
   "jobs": "保存されたタスク",
   "uncertain": "外部への操作が行われた可能性があります。取り消しや再実行は保証されません。",
   "cancel": "タスクをキャンセル",
@@ -37,8 +33,6 @@
   "look.amber": "琥珀",
   "look.plum": "プラム",
   "look.slate": "スレート",
-  "parentMessage": "元のBotにメッセージ",
-  "parentSend": "Botに送信",
   "copy.owner": "Share an independent copy",
   "copy.inbox": "Copy invitations",
   "copy.independent": "Each accepted invitation creates an independent copy. Conversations, memory, secrets, connections, channels and the owner’s computer are not included.",
@@ -227,5 +221,11 @@
   "contract.release": "操作を戻す",
   "contract.transferTo": "チームメンバー ID",
   "contract.transfer": "移管",
-  "status.paused": "一時停止中"
+  "status.paused": "一時停止中",
+  "thread.approval": "{tool}を使うにはあなたの承認が必要です。",
+  "thread.computerOff": "クラウドコンピューターは現在利用できません。",
+  "thread.stop": "停止",
+  "thread.typing": "{name}が入力中",
+  "thread.waiting": "{name}ができるだけ早く返信するよ。",
+  "thread.failed": "{name}は完了できませんでした。もう一度メッセージを送って再試行してね。"
 }

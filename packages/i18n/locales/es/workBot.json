@@ -19,10 +19,6 @@
   "hibernating": "En pausa",
   "notifications": "Notificaciones",
   "save": "Guardar",
-  "autonomy": "Autonomía adquirida no disponible. No hay contabilidad de aprobaciones correctas; sigue siendo necesario el consentimiento.",
-  "cloudUnavailable": "Ordenador cloud no disponible. No se ejecutará en este equipo como alternativa.",
-  "goal": "Objetivo",
-  "enqueue": "Poner tarea en cola",
   "jobs": "Tareas duraderas",
   "uncertain": "Puede haber efectos externos. No se afirma reversión ni repetición.",
   "cancel": "Cancelar tarea",
@@ -37,8 +33,6 @@
   "look.amber": "Ámbar",
   "look.plum": "Ciruela",
   "look.slate": "Pizarra",
-  "parentMessage": "Mensaje al Bot original",
-  "parentSend": "Enviar al Bot",
   "copy.owner": "Share an independent copy",
   "copy.inbox": "Copy invitations",
   "copy.independent": "Each accepted invitation creates an independent copy. Conversations, memory, secrets, connections, channels and the owner’s computer are not included.",
@@ -227,5 +221,11 @@
   "contract.release": "Devolver el control",
   "contract.transferTo": "ID del compañero",
   "contract.transfer": "Transferir",
-  "status.paused": "En pausa"
+  "status.paused": "En pausa",
+  "thread.approval": "Necesito tu aprobación para usar {tool}.",
+  "thread.computerOff": "El ordenador en la nube no está disponible por ahora.",
+  "thread.stop": "Detener",
+  "thread.typing": "{name} está escribiendo",
+  "thread.waiting": "{name} responderá en cuanto pueda.",
+  "thread.failed": "{name} no pudo terminar. Vuelve a enviar tu mensaje para reintentarlo."
 }

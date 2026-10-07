@@ -19,10 +19,6 @@
   "hibernating": "Pausiert",
   "notifications": "Benachrichtigungen",
   "save": "Speichern",
-  "autonomy": "Erarbeitete Autonomie ist nicht verfügbar. Erfolgreiche Freigaben werden nicht erfasst; Zustimmung bleibt erforderlich.",
-  "cloudUnavailable": "Cloud-Computer nicht verfügbar. Kein Rückgriff auf diesen Computer.",
-  "goal": "Aufgabenziel",
-  "enqueue": "Aufgabe einreihen",
   "jobs": "Gespeicherte Aufgaben",
   "uncertain": "Externe Auswirkungen sind möglich. Kein Zurücksetzen oder Wiederholen zugesagt.",
   "cancel": "Aufgabe abbrechen",
@@ -37,8 +33,6 @@
   "look.amber": "Bernstein",
   "look.plum": "Pflaume",
   "look.slate": "Schiefer",
-  "parentMessage": "Nachricht an den ursprünglichen Bot",
-  "parentSend": "An Bot senden",
   "copy.owner": "Share an independent copy",
   "copy.inbox": "Copy invitations",
   "copy.independent": "Each accepted invitation creates an independent copy. Conversations, memory, secrets, connections, channels and the owner’s computer are not included.",
@@ -227,5 +221,11 @@
   "contract.release": "Steuerung zurückgeben",
   "contract.transferTo": "Teammitglied-ID",
   "contract.transfer": "Übertragen",
-  "status.paused": "Pausiert"
+  "status.paused": "Pausiert",
+  "thread.approval": "Ich brauche deine Freigabe, um {tool} zu nutzen.",
+  "thread.computerOff": "Cloud-Computer gerade nicht verfügbar.",
+  "thread.stop": "Stopp",
+  "thread.typing": "{name} schreibt",
+  "thread.waiting": "{name} antwortet so bald wie möglich.",
+  "thread.failed": "{name} konnte nicht fertig werden. Sende deine Nachricht erneut, um es nochmal zu versuchen."
 }

@@ -19,10 +19,6 @@
   "hibernating": "暂停",
   "notifications": "通知",
   "save": "保存",
-  "autonomy": "无法统计成功的审批，因此自主权限提升不可用。仍需征得同意。",
-  "cloudUnavailable": "云电脑不可用。不会改在本机执行。",
-  "goal": "任务目标",
-  "enqueue": "加入任务队列",
   "jobs": "持久任务",
   "uncertain": "可能已产生外部影响。不能保证回滚，也不会重放操作。",
   "cancel": "取消任务",
@@ -37,8 +33,6 @@
   "look.amber": "琥珀",
   "look.plum": "李紫",
   "look.slate": "石板",
-  "parentMessage": "向原始 Bot 发送消息",
-  "parentSend": "发送给 Bot",
   "copy.owner": "Share an independent copy",
   "copy.inbox": "Copy invitations",
   "copy.independent": "Each accepted invitation creates an independent copy. Conversations, memory, secrets, connections, channels and the owner’s computer are not included.",
@@ -227,5 +221,11 @@
   "contract.release": "交还控制权",
   "contract.transferTo": "队友 ID",
   "contract.transfer": "转交",
-  "status.paused": "已暂停"
+  "status.paused": "已暂停",
+  "thread.approval": "我需要你批准才能使用 {tool}。",
+  "thread.computerOff": "云电脑暂时不可用。",
+  "thread.stop": "停止",
+  "thread.typing": "{name} 正在输入",
+  "thread.waiting": "{name} 会尽快回复你。",
+  "thread.failed": "{name} 没能完成。重新发送消息即可重试。"
 }
