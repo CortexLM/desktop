@@ -205,6 +205,13 @@ function UpdateLive() {
 
 /* ---------- About ---------- */
 const LICENSES: [string, string][] = [["react", "mit"], ["baseui", "mit"], ["geist", "ofl"], ["vite", "mit"], ["illustrations", "studio"]];
+// Public pages are hosted by the web app (Todo 7); the desktop opens them in the system browser (main allows https only).
+// ponytail: production hosts; a self-hosted origin's public pages need a configured site origin.
+const PUBLIC_WEB: [string, string, string][] = [
+  ["code", "https://app.cortex.foundation/code", "code"], ["bot", "https://app.cortex.foundation/bot", "bot"],
+  ["foundation", "https://cortex.foundation/foundation", "info"], ["research", "https://cortex.foundation/research", "file"],
+  ["news", "https://cortex.foundation/news", "bell"], ["legal", "https://cortex.foundation/legal", "shield-check"], ["status", "https://cortex.foundation/status", "globe"],
+];
 export function AboutScreen() {
   const t = useT();
   const { go } = useNav();
@@ -230,6 +237,11 @@ export function AboutScreen() {
       <div className="list">
         {([["info", "center"], ["command", "shortcuts", "shortcuts"], ["globe", "status"], ["mail", "support"]] as const).map(([ic, k, to]) => (
           <button key={k} className="li" style={{ width: "100%", textAlign: "left" }} onClick={() => to && go(to)}><span className="li-ic"><Icon name={ic} /></span><span className="grow"><div className="ttl">{t(`system.about.${k}.title`)}</div><div className="sub">{t(`system.about.${k}.desc`)}</div></span><Icon name="chevron-right" size={16} /></button>))}
+      </div>
+      <h3 className="h3">{t("extras.web.title")}</h3>
+      <div className="list">
+        {PUBLIC_WEB.map(([k, url, ic]) => (
+          <button key={k} className="li" data-testid={`public-web-${k}`} style={{ width: "100%", textAlign: "left" }} onClick={() => window.cortex?.openExternal?.(url)}><span className="li-ic"><Icon name={ic} /></span><span className="grow"><div className="ttl">{t(`extras.web.${k}`)}</div><div className="sub">{t(`extras.web.${k}Desc`)}</div></span><span className="sub">{t("extras.web.opens")}</span></button>))}
       </div>
       <h3 className="h3">{t("system.about.report")}</h3>
       <div className="list">

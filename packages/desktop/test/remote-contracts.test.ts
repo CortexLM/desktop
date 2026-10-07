@@ -21,7 +21,17 @@ describe("remote contract transport", () => {
     await expect(contractFetch({ epoch: "e", op: "code.attempts", params: { session: "../../admin" } }, owner(fetch))).rejects.toMatchObject({ code: "invalid_request" });
     await expect(contractFetch({ epoch: "e", op: "code.attempts", params: { session, extra: "x" } }, owner(fetch))).rejects.toMatchObject({ code: "invalid_request" });
     await expect(contractFetch({ epoch: "e", op: "code.secrets.put", params: { runtime: "crt_01J0000000000000000000000A", secret: "lower" }, body: { value: "v" } }, owner(fetch))).rejects.toMatchObject({ code: "invalid_request" });
+    await expect(contractFetch({ epoch: "e", op: "plans.get", params: { plan: "tpl_../x" } }, owner(fetch))).rejects.toMatchObject({ code: "invalid_request" });
+    await expect(contractFetch({ epoch: "e", op: "plans.step.update", params: { plan: "tpl_01J0000000000000000000000A", step: "cnv_01J0000000000000000000000A" } }, owner(fetch))).rejects.toMatchObject({ code: "invalid_request" });
     expect(fetch).not.toHaveBeenCalled();
+  });
+  it("routes task-plan step updates to the exact trunk path", async () => {
+    const seen: Request[] = [];
+    const fetch = vi.fn(async (r: RequestInfo | URL) => { seen.push(r as Request); return Response.json({ status: "done" }); }) as unknown as typeof globalThis.fetch;
+    const plan = "tpl_01J0000000000000000000000A", step = "tps_01J0000000000000000000000B";
+    await contractFetch({ epoch: "e", op: "plans.step.update", params: { plan, step }, body: { status: "done" } }, owner(fetch));
+    expect(seen[0]!.url).toBe(`${origin}/v1/task-plans/${plan}/steps/${step}`);
+    expect(seen[0]!.method).toBe("PATCH");
   });
   it("maps refusals to neutral typed errors and signs out on 401", async () => {
     const unauthorized = vi.fn();
