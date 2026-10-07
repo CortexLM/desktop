@@ -1,6 +1,24 @@
-# Vendored packages
+# Vendored Cortex SDK
 
-## Current pair: SDK 0.4.1 / api-types 0.3.0 (Task6 final contracts, gate round 2)
+## Current pair: SDK 0.4.2 / api-types 0.3.2 (backend trunk)
+
+The only vendored pair, in `trunk/`. Packed with `packages/sdk/scripts/pack.mjs` from a `git archive`
+export of backend branch `integration/backend` at `1e35f614` (Task6 contracts + Task10 + Task16
+call-session types). Selected by `packages/desktop/package.json`, `packages/app/package.json` and
+`bun.lock` through relative `file:../../vendor/trunk/...` paths. Every older pair was removed; the
+provenance below is history only. Todo 2 of cortex-finish-fast will publish 0.4.4 / 0.3.3, which
+replaces this pair.
+
+| Archive | SHA-256 |
+| --- | --- |
+| `trunk/cortex-sdk-0.4.2.tgz` | `c736e87943faa6bbcb39054dab5c4d0bed048c760e0cd7b4a9d9e742d3ebeabc` |
+| `trunk/cortex-api-types-0.3.2.tgz` | `51adf60df0fd975e5c4d4bd92deb335e600fa678528b18c7df059f129da6f17f` |
+
+Not published to a registry; not a deployment claim.
+
+# History (removed archives)
+
+## Former pair: SDK 0.4.1 / api-types 0.3.0 (Task6 final contracts, gate round 2)
 
 This pair supersedes the 0.3.5/0.2.0 pair below; those archives stay as history. SDK 0.4.1 replaces the
 unadmitted 0.4.0 draft: it restores the approved runtime exports `ActiveVersion`, `ApprovalPolicy`, `Computer`,
@@ -26,8 +44,8 @@ Public problem codes follow CortexLM/docs `problems/` at `ed7e41f9a2f59182ef73dd
 Breaking for callers: `TurnInput.body` is typed per route, and `/v1/conversations/turns`
 requires a JSON body. Not published to a registry; not a deployment claim.
 
-## Active Task8 activity-projection successor
-## Active Task10 completion pair (streaming calls)
+## Former Task8 activity-projection successor
+## Former Task10 completion pair (streaming calls)
 
 `packages/desktop/package.json` and `bun.lock` select `task10-completion/` through relative
 `file:../../vendor/...` paths, so CI resolves it from this checkout. Byte-identical copies of
@@ -87,7 +105,7 @@ replacement, foreign404/duplicate409. No enabled/provider settings or transcript
 admission. Prior inbox/routine/approval/hierarchy/copy/decline/connector pairs retained.
 Absolute local archive selection is fixture admission, not portable packaging/full Task8.
 
-## Active Task8 inbox/notifications successor
+## Former Task8 inbox/notifications successor
 
 Exact e2b independently approved pair:
 `/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-inbox-notifications-st01a10cdc/`.
@@ -99,7 +117,7 @@ SSE subscribe as invalidation. No arbitrary activity payload or raw generic tran
 Previous routine/approval/hierarchy/copy/connector archives retained, no source changes.
 Local absolute archives are fixture admission, not portable packaging/combined runtime.
 
-## Active Task8 Work-routines successor pair
+## Former Task8 Work-routines successor pair
 
 Local manifest selects the exact independently approved `st_01a10dfd` Task6 pair:
 `/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-work-routines-st01a10cdc/`.
@@ -116,7 +134,7 @@ Producer runtime binds through0157 and existing Task4 workers. Absolute paths ar
 local-only dependency admission, not portable packaging or combined-stack acceptance.
 Full Task8 remains open.
 
-## Active Task8 pending-approvals successor pair
+## Former Task8 pending-approvals successor pair
 
 Local manifest selects the exact independently approved `st_01a10dde` Task6 pair:
 `/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-pending-approvals-st01a10cdc/`.
@@ -129,7 +147,7 @@ No approval GET/outcome/invalidation capability is added. Hierarchy, decline, co
 connectors, Work receipts and auth contracts remain retained. Personal MCP and full
 Task8 remain open; absolute local paths are not portable release acceptance.
 
-## Active Task8 hierarchy successor pair
+## Former Task8 hierarchy successor pair
 
 Local manifest selects the exact approved Task6 archives in
 `/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-hierarchy-st01a10cdc/`.
@@ -143,7 +161,7 @@ Actual desktop runtime proof binds the approved `bot-specialist-hierarchy-st01a1
 producer through0157, not the combined assembled migration stack. Absolute local paths
 are not portable package acceptance; full Task8 remains open.
 
-## Active Task8 decline successor pair
+## Former Task8 decline successor pair
 
 The local-only desktop manifest and lockfile select the immutable Task6 archives at
 `/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-decline-st01a10cdc/`.
@@ -158,7 +176,7 @@ claim. Task6 contract assembly does not mount decline: desktop proof uses the ac
 `bot-share-decline-st01a10d4a` producer with migration 0156. Combined assembled producer
 migration-stack acceptance, hierarchy and full Task8 remain open.
 
-## Active Task8 connector/plugin pair
+## Former Task8 connector/plugin pair
 
 `connector-plugin-st01a10cdc/` adopts the exact immutable Task6 pair independently
 approved by `st_01a10d1e`; recovered report:
@@ -202,7 +220,7 @@ Precise Bot configuration/resource/retained-message DTOs augment the assembled
 contract. Prior Code task declarations and every older archive remain unchanged.
 `.omo/Task8WorkBotSDKContractReady.json` retains exact gate/hash admission.
 
-## Active Task8 assembled B1 pair
+## Former Task8 assembled B1 pair
 
 Task8 desktop uses the unmodified `assembled-b1-st01a10bfe/` pair admitted by
 `/root/.omo/wt/tae15693b69/m/.omo/evidence/task6-assembled-contract-b1-gate-review.md`.
@@ -212,7 +230,7 @@ This supersedes the active package paths below only in Task8. Every older archiv
 unchanged. Task7's approved dirty source baseline and before-image hashes are retained in
 `.omo/Task7SnapshotPreimageReceipts.json`.
 
-## Active Task7 pair
+## Former Task7 pair
 
 The active discovery pair is `discovery-fe79b147/`, admitted by
 `/root/.omo/wt/tbedb384524/m/.omo/evidence/task6-discovery-immutable-pair-gate-review.md`.

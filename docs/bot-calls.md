@@ -12,7 +12,7 @@ moves PCM, and it never sees a credential.
 
 | Side | File | Owns |
 | --- | --- | --- |
-| Protocol | `@cortex/api-types` `call-session.ts` (vendored pair, `vendor/task16-refactor/`) | `CallSession`: tickets, socket, sequence/epoch/generation, `played` credits, resume, end, malformed-frame handling; `resampleTo16k`, `takeCallFrames` |
+| Protocol | `@cortex/api-types` `call-session.ts` (vendored pair, `vendor/trunk/`) | `CallSession`: tickets, socket, sequence/epoch/generation, `played` credits, resume, end, malformed-frame handling; `resampleTo16k`, `takeCallFrames` |
 | Main clock | `packages/desktop/src/call-session.ts` | `timerEnv`, injected into `CallSession`. Main has no `online` event, so each resume attempt is the connectivity probe |
 | Main host | `packages/desktop/src/remote-call.ts` | `createCallHost`: one call per window, HTTP over the remote identity, the Node `WebSocket`, and owner watches |
 | IPC | `packages/desktop/src/main.ts`, `preload.ts` | The `cortex:call:*` channels below |
