@@ -289,13 +289,15 @@ function CortexNav({ route, go }: { route: Route; go: (r: Route, p?: Record<stri
       {/* One Recents list: account chats first, then chats kept on this computer; one empty state for both. */}
       <div className="sb-group" data-testid="sidebar-recents">
         <Section title={t("shell.nav.recents")} action={<IconBtn icon="plus" label={t("shell.nav.newChat")} onClick={() => go("home")} />} />
+        {remote.state !== "hidden" && <div data-testid="sidebar-remote-recents">
         {remote.state === "loading" && <div className="sb-empty thinking" role="status">{t("system.variant.loading")}</div>}
         {remote.state === "error" && <div role="alert"><div className="sb-empty">{t("chat.remote.unavailable")}</div><Row label={t("common.retry")} icon="refresh" onClick={remote.reload} /></div>}
-        {remote.state === "ready" && remote.data.length > 0 && <div data-testid="sidebar-remote-recents">{remote.data.slice(0, 12).map((s) => (
+        {remote.state === "ready" && remote.data.slice(0, 12).map((s) => (
           <Row key={`${s.epoch}:${s.id}`} label={s.title || t("shell.nav.untitled")} child
             active={route === "chat" && params.get("source") === "remote" && params.get("epoch") === s.epoch && params.get("id") === s.id}
             onClick={() => go("chat", { source: "remote", epoch: s.epoch, id: s.id })} />
-        ))}</div>}
+        ))}
+        </div>}
         {sessions.state === "ready" && local.slice(0, 12).map((s) => (
           <Row key={s.id} label={s.title || t("shell.nav.untitled")} child active={route === "chat" && params.get("source") !== "remote" && params.get("id") === s.id} onClick={() => go("chat", { id: s.id })} />
         ))}
