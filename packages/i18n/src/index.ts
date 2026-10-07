@@ -27,6 +27,14 @@ export function resolveLocale(wanted: readonly string[]): Locale {
   return SOURCE_LOCALE;
 }
 
+const english = (w: string) => /^en(?:-|$)/i.test(w);
+const supported = (w: string) => english(w) || resolveLocale([w]) !== SOURCE_LOCALE;
+/** An explicit choice (Settings, then CORTEX_LOCALE) wins, then the first supported system language, else English. */
+export function preferredLocale(explicit: string, system: readonly string[]): Locale {
+  if (explicit && supported(explicit)) return resolveLocale([explicit]);
+  return resolveLocale(system);
+}
+
 export function createTranslator(locale: Locale, load: CatalogSource) {
   const source = flatten(load(SOURCE_LOCALE));
   const cat = locale === SOURCE_LOCALE ? source : { ...source, ...flatten(load(locale)) };

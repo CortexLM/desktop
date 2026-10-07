@@ -9,6 +9,7 @@ export type WireRequest = { url: string; method: string; headers: [string, strin
 contextBridge.exposeInMainWorld("cortex", {
   platform: process.platform,
   appVersion: process.argv.find((a) => a.startsWith("--cortex-version="))?.slice(17) ?? "",
+  locale: process.argv.find((a) => a.startsWith("--cortex-locale="))?.slice(16) ?? "",
   request: (req: WireRequest): Promise<Wire> => ipcRenderer.invoke("cortex:fetch", req),
   /** Opens the engine event stream; chunks arrive on `onChunk` until the returned function is called. */
   events: (onChunk: (text: string) => void) => {

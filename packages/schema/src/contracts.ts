@@ -94,6 +94,7 @@ export const CONTRACT_OPS = {
   "app.integrations": { method: "GET", path: "/integrations" },
   "app.mcp.add": { method: "POST", path: "/integrations/mcp", slow: true },
   "app.devices": { method: "GET", path: "/me/devices" },
+  "app.me": { method: "GET", path: "/me" },
   "app.mcp.remove": { method: "DELETE", path: "/integrations/mcp/{mcp}" },
 } as const satisfies Record<string, ContractOp>
 export type ContractOpName = keyof typeof CONTRACT_OPS

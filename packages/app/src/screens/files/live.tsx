@@ -36,7 +36,7 @@ export function LiveFile({ kind, screen }: { kind: Kind; screen: string }) {
   };
   const data = state.s === "ready" ? state.data : undefined;
   const parts = data?.parts ?? [];
-  const body = !data ? <div className="fichiers-drop" data-testid="file-live-empty" onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); void open(e.dataTransfer.files[0]); }}>
+  const body = !data ? <div className="fichiers-drop" data-testid="upload-dropzone" onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); void open(e.dataTransfer.files[0]); }}>
       <span className="fichiers-drop-ic"><Icon name={ICON[kind]} /></span>
       <b>{t(`files.live.empty.${kind}`)}</b>
       <span>{t(state.s === "error" ? "files.live.error" : state.s === "loading" ? "files.live.loading" : "files.live.hint")}</span>

@@ -12,9 +12,15 @@ permissions:
 
 jobs:
   windows:
-    name: Windows build, package, launch
+    name: Windows build, package, launch (${{ matrix.shard }}/6)
     runs-on: windows-2025
     timeout-minutes: 40
+    # The serial (E2E_WORKERS=1) suite took ~36 min in one job; Playwright
+    # shards split it by test. Packaging and the smoke test run once, in shard 1.
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4, 5, 6]
     env:
       CSC_IDENTITY_AUTO_DISCOVERY: 'false'
       E2E_WORKERS: '1'
@@ -28,15 +34,17 @@ jobs:
       - run: node node_modules/electron/install.js
       - run: bun run build
       - name: E2E on Windows (source build)
-        run: bun run test:e2e
+        run: bun run test:e2e --shard=${{ matrix.shard }}/6
       - name: Package (unsigned validation only, x64)
+        if: matrix.shard == 1
         run: bunx --no-install electron-builder --win dir --x64 --publish never
       - name: Packaged smoke test
+        if: matrix.shard == 1
         run: node scripts/smoke.mjs win
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: windows-validation
+          name: windows-validation-${{ matrix.shard }}
           path: |
             out/
             test-results/
@@ -59,9 +67,13 @@ jobs:
       - run: bun run audit:i18n
 
   e2e:
-    name: E2E (Playwright + Electron, Linux)
+    name: E2E (Playwright + Electron, Linux) (${{ matrix.shard }}/4)
     runs-on: blacksmith-4vcpu-ubuntu-2404
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -76,22 +88,26 @@ jobs:
           fc-list --format '%{file}\t%{index}\t%{family}\t%{postscriptname}\t%{charset}\n' > out/fonts/fontconfig.tsv
           dpkg-query -W -f='${Package}\t${Version}\t${Status}\n' xvfb fonts-noto-cjk fontconfig > out/fonts/packages.tsv
       - run: bun run build
-      - run: xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e
+      - run: xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e --shard=${{ matrix.shard }}/4
         env:
           E2E_WORKERS: 1 # Native clipboard and foreground focus are shared by the X desktop.
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: e2e-linux
+          name: e2e-linux-${{ matrix.shard }}
           path: |
             test-results/
             playwright-report/
             out/fonts/
 
   macos:
-    name: macOS build, package, launch
+    name: macOS build, package, launch (${{ matrix.shard }}/4)
     runs-on: blacksmith-6vcpu-macos-26
     timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
     env:
       CSC_IDENTITY_AUTO_DISCOVERY: false
     steps:
@@ -103,10 +119,12 @@ jobs:
       - run: bun install --frozen-lockfile && node node_modules/electron/install.js
       - run: bun run build
       - name: E2E on macOS (source build)
-        run: bun run test:e2e
+        run: bun run test:e2e --shard=${{ matrix.shard }}/4
       - name: Package (unsigned, arm64)
+        if: matrix.shard == 1
         run: npx electron-builder --mac dir zip --arm64 --publish never -c.mac.identity=null -c.mac.notarize=false
       - name: Packaged smoke test
+        if: matrix.shard == 1
         run: node scripts/smoke.mjs mac
       - name: Crash logs
         if: always()
@@ -114,12 +132,13 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: macos
+          name: macos-${{ matrix.shard }}
           path: |
             out/
             test-results/
             playwright-report/
       - uses: actions/upload-artifact@v4
+        if: matrix.shard == 1
         with:
           name: cortex-mac-arm64-zip
           path: dist/*.zip
