@@ -119,10 +119,12 @@ test("web search and temporary chat send real turns; widgets and library carry n
   await show(page, "search-results");
   const search = page.getByTestId("screen-search-results");
   await expect(search.getByRole("heading", { name: chatCopy["tools.search.title"] })).toBeVisible();
-  backend.set([msg(user, "user", "Search the web: salons 2026", 1), msg(report, "assistant", "Eight fairs.", 2, { finish_reason: "stop", citations: [{ url: "https://example.org/fairs", title: "Fair calendar", domain: "example.org" }] })]);
+  backend.set([msg(user, "user", "salons 2026", 1), msg(report, "assistant", "**Eight** fairs.\n\n| Fair | Month |\n|---|---|\n| Maison | January |", 2, { finish_reason: "stop", citations: [{ url: "https://example.org/fairs", title: "Fair calendar", domain: "example.org" }] })]);
   await search.getByTestId("chat-tool-input").fill("salons 2026");
   await search.getByTestId("chat-tool-send").click();
-  await expect(search.getByTestId("chat-tool-answer")).toHaveText("Eight fairs.");
+  await expect(search.getByTestId("chat-tool-answer").locator("b")).toHaveText("Eight");
+  await expect(search.getByTestId("chat-tool-answer").locator("td").first()).toHaveText("Maison");
+  expect(backend.turns[0]).toMatchObject({ body: { message: "salons 2026" } });
   await expect(search.getByTestId("chat-tool-sources")).toContainText("Fair calendar");
   await expect(search.locator(".content-top .title")).toHaveText("salons 2026");
 
@@ -131,7 +133,7 @@ test("web search and temporary chat send real turns; widgets and library carry n
   await expect(temp.getByText(chatCopy["temp.notSaved"])).toBeVisible();
   await temp.getByTestId("chat-tool-input").fill("Secret plan");
   await temp.getByTestId("chat-tool-send").click();
-  await expect(temp.getByTestId("chat-tool-answer")).toHaveText("Eight fairs.");
+  await expect(temp.getByTestId("chat-tool-answer")).toContainText("Eight fairs.");
   expect(backend.turns.at(-1)).toMatchObject({ route: "/v1/conversations/turns", body: { message: "Secret plan", temporary: true } });
 
   await show(page, "library");

@@ -82,11 +82,27 @@ function Dock({ placeholder, onSend, disabled, children }: { placeholder: string
   return <div className="dock">{children}<Composer placeholder={placeholder} onSend={onSend} disabled={disabled} hideModel testId="chat-tool" /><span className="hint">{t("chat.hint")}</span></div>;
 }
 
+const inline = (text: string) => text.split(/(\*\*[^*]+\*\*|`[^`]+`|\*[^*\s][^*]*\*)/g).map((x, i) =>
+  /^\*\*.+\*\*$/.test(x) ? <b key={i}>{x.slice(2, -2)}</b> : /^`.+`$/.test(x) ? <code key={i}>{x.slice(1, -1)}</code> : /^\*.+\*$/.test(x) ? <i key={i}>{x.slice(1, -1)}</i> : x);
+const cells = (row: string) => row.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim());
+
 function Prose({ text }: { text: string }) {
-  return <>{text.split(/\n{1,}/).filter((l) => l.trim()).map((l, i) => {
-    const h = /^#{1,6}\s+(.*)$/.exec(l), li = /^\s*[-*]\s+(.*)$/.exec(l);
-    return h ? <h4 key={i}>{h[1]}</h4> : li ? <p key={i} className="chat-tool-li">{li[1]}</p> : <p key={i}>{l}</p>;
-  })}</>;
+  const lines = text.split("\n"), out: React.ReactNode[] = [];
+  for (let i = 0; i < lines.length; i++) {
+    const l = lines[i]!;
+    if (!l.trim()) continue;
+    if (/^\s*\|/.test(l) && /^\s*\|?[\s:|-]+\|?\s*$/.test(lines[i + 1] ?? "") && (lines[i + 1] ?? "").includes("-")) {
+      const head = cells(l), rows: string[][] = [];
+      for (i += 2; i < lines.length && /^\s*\|/.test(lines[i]!); i++) rows.push(cells(lines[i]!));
+      i--;
+      out.push(<div key={i} className="chat-tool-table"><table><thead><tr>{head.map((c, k) => <th key={k}>{inline(c)}</th>)}</tr></thead>
+        <tbody>{rows.map((r, k) => <tr key={k}>{r.map((c, j) => <td key={j}>{inline(c)}</td>)}</tr>)}</tbody></table></div>);
+      continue;
+    }
+    const h = /^#{1,6}\s+(.*)$/.exec(l), li = /^\s*(?:[-*]|\d+\.)\s+(.*)$/.exec(l);
+    out.push(h ? <h4 key={i}>{inline(h[1]!)}</h4> : li ? <p key={i} className="chat-tool-li">{inline(li[1]!)}</p> : /^\s*---+\s*$/.test(l) ? null : <p key={i}>{inline(l)}</p>);
+  }
+  return <>{out}</>;
 }
 
 function Sources({ list }: { list: Citation[] }) {
@@ -101,17 +117,15 @@ function Sources({ list }: { list: Citation[] }) {
 export function SearchTool({ epoch }: { epoch: string }) {
   const t = useT();
   const th = useToolThread(epoch);
-  const prefix = t("chat.tools.search.ask", { q: "" });
-  const shown = (text: string) => text.startsWith(prefix) ? text.slice(prefix.length) : text;
-  const ask = (q: string) => th.send({ message: prefix + q });
+  const ask = (q: string) => th.send({ message: q });
   const first = th.list?.find((m) => m.role === "user");
   return <>
-    <Top title={first ? shown(first.text) : t("chat.screen.search-results")}>{th.conversation && <><div className="spacer" /><IconBtn icon="compose" label={t("chat.newChat")} onClick={th.reset} /></>}</Top>
+    <Top title={first ? first.text : t("chat.screen.search-results")}>{th.conversation && <><div className="spacer" /><IconBtn icon="compose" label={t("chat.newChat")} onClick={th.reset} /></>}</Top>
     {!th.conversation ? <Hero state="idle" title={t("chat.tools.search.title")} lead={t("chat.tools.search.lead")}>
       {th.failed && <ErrorNote />}<Composer placeholder={t("chat.tools.search.placeholder")} onSend={ask} disabled={!epoch} hideModel testId="chat-tool" />
     </Hero> : <>
       <div className="thread"><div className="thread-inner chat-sr" data-testid="chat-tool-thread">
-        {th.list?.map((m) => m.role === "user" ? <div key={m.id} className="msg-user">{shown(m.text)}</div>
+        {th.list?.map((m) => m.role === "user" ? <div key={m.id} className="msg-user">{m.text}</div>
           : !m.finish_reason ? <BotRow key={m.id} st="working"><span className="thinking">{t("chat.tools.search.working")}</span>
             <div className="chat-cards">{[0, 1, 2, 3].map((i) => <div key={i} className="chat-rcard" aria-hidden><span className="skel line" style={{ width: "50%" }} /><span className="skel line" /></div>)}</div></BotRow>
           : <BotRow key={m.id} st="done"><Sources list={m.citations ?? []} /><div data-testid="chat-tool-answer"><Prose text={m.text} /></div></BotRow>)}
@@ -148,7 +162,7 @@ export function ResearchTool({ epoch }: { epoch: string }) {
   const running = !!last && !last.finish_reason && answers.length > 1;
   const done = !!last?.finish_reason && !!last.text.trim() && answers.length > 1;
   const start = (p: Plan) => void th.send({ message: p.title, research: { action: "run", plan: { title: p.title, questions: p.questions, ...(p.outline ? { outline: p.outline } : {}) } } });
-  const heads = done ? last!.text.split("\n").flatMap((l) => /^#{1,3}\s+(.*)$/.exec(l)?.[1] ?? []) : [];
+  const heads = done ? last!.text.split("\n").flatMap((l) => /^#{1,3}\s+(.*)$/.exec(l)?.[1]?.replace(/\*\*/g, "") ?? []) : [];
   return <>
     <Top title={t("chat.screen.deep-research")}>
       {running && <span className="badge run"><span className="spin" />{t("chat.deep.running")}</span>}{done && <span className="badge ok">{t("chat.deep.done")}</span>}

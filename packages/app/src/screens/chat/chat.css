@@ -444,6 +444,11 @@
 .chat-tool-li { padding-left: 14px; position: relative; }
 .chat-tool-li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 4px; height: 4px; border-radius: 2px; background: var(--t3); }
 .chat-gimg-live { inset: 0; }
+.chat-tool-table { overflow-x: auto; margin: 4px 0 12px; border-radius: 12px; box-shadow: var(--ring); }
+.chat-tool-table table { width: 100%; border-collapse: collapse; font-size: 12px; line-height: 17px; }
+.chat-tool-table th, .chat-tool-table td { padding: 8px 10px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.chat-tool-table th { font-weight: 500; color: var(--t2); background: var(--card); }
+.chat-tool-table tr:last-child td { border-bottom: 0; }
 .chat-tool-indeterminate { display: block; width: 35%; animation: chat-tool-slide 1.4s var(--ease-out) infinite; }
 @keyframes chat-tool-slide { from { translate: -100% 0; } to { translate: 300% 0; } }
 @container content (max-width: 720px) {
