@@ -8,6 +8,9 @@ const ULID = "[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}";
 const SEGMENT: Record<string, RegExp> = {
   session: new RegExp(`^cnv_${ULID}$`), attempt: new RegExp(`^(?:msg|cnv)_${ULID}$`), runtime: new RegExp(`^crt_${ULID}$`),
   comment: UUID, bot: UUID, task: UUID, draft: UUID, approval: UUID,
+  channel: UUID, automation: UUID, scheduled: UUID, mcp: UUID, token: /^[0-9a-f]{1,128}$/i,
+  conversation: new RegExp(`^cnv_${ULID}$`), prompt: new RegExp(`^prm_${ULID}$`), file: new RegExp(`^lbf_${ULID}$`),
+  provider: /^[a-z0-9][a-z0-9._-]{0,63}$/i, skill: /^[a-z0-9][a-z0-9-]{0,63}$/,
   secret: /^[A-Z_][A-Z0-9_]{0,63}$/, owner: /^[A-Za-z0-9][A-Za-z0-9-]{0,38}$/, repo: /^[A-Za-z0-9._-]{1,100}$/,
 };
 const REFUSAL: Record<number, CortexError["code"]> = { 400: "invalid_request", 404: "not_found", 409: "conflict", 413: "invalid_request", 422: "invalid_request", 429: "provider_rate_limited" };
@@ -39,6 +42,7 @@ export async function contractFetch(input: unknown, owner: { origin: string; fet
     throw new CortexError(response.status === 403 ? "permission_denied" : REFUSAL[response.status] ?? "provider_error", "The remote request was not accepted");
   }
   let data: unknown = null;
+  if (op.text) return { status: response.status, data: text };
   if (text) { try { data = JSON.parse(text); } catch { throw new CortexError("provider_error", "Invalid remote response"); } }
   return { status: response.status, data };
 }
