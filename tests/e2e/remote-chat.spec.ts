@@ -86,6 +86,8 @@ async function backend() {
       if (req.method === "POST" && route === "/v1/auth/magic-auth") {
         res.writeHead(204); res.end(); return;
       }
+      // A producer without native rotation keeps the email-code session process-local.
+      if (req.method === "POST" && route === "/v1/auth/refresh") { res.writeHead(401); res.end(); return; }
       if (req.method === "POST" && route === "/v1/auth/magic-auth/verify") {
         res.setHeader("set-cookie", "cortex_rt=test-only-chat-cookie; HttpOnly; Path=/v1/auth");
         return json(res, { status: "session", access_token: "test-only-chat-token" });
