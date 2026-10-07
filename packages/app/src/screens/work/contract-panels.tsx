@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { WorkJob } from "@cortex/schema";
 import { api } from "../../api";
+import { useQuery } from "../../state/live";
 import { useT } from "../../i18n";
 import { ContractError, useContract } from "../code/contract-panels";
 
@@ -18,21 +19,21 @@ export function LiveJobControls({ epoch, bot, job, reload }: Bot & { job: WorkJo
   </span>;
 }
 
-// ponytail: draft ids are read from the task result payload; add a drafts list route if results stop echoing tool output.
-const draftIds = (job: WorkJob) => [...new Set([...JSON.stringify(job.result ?? "").matchAll(/draft_id\\?"\s*:\s*\\?"([0-9a-f-]{36})/g)].map(m => m[1]!))];
-
 function LiveDrafts({ epoch, bot, job, reload }: Bot & { job: WorkJob; reload: () => void }) {
   const t = useT(), c = useContract(), task = job.id;
   const [site, setSite] = React.useState(""), [user, setUser] = React.useState(""), [pass, setPass] = React.useState("");
   const [outcome, setOutcome] = React.useState<Record<string, string>>({});
+  const drafts = useQuery(async () => ((await api.code.contract({ epoch, op: "bot.drafts", params: { bot, task } })).data as { items: { id: string; tool: string; status: string }[] }).items, [epoch, bot, task, job.status]);
+  const asks = useQuery(async () => ((await api.code.contract({ epoch, op: "bot.credentials.requests", params: { bot, task } })).data as { items: { site: string }[] }).items, [epoch, bot, task, job.status]);
+  React.useEffect(() => { if (asks.state === "ready" && asks.data[0]) setSite(asks.data[0].site); }, [asks.state]); // eslint-disable-line react-hooks/exhaustive-deps
   const draft = (id: string, op: "bot.draft.send" | "bot.draft.cancel") => void c.run(() => api.code.contract({ epoch, op, params: { bot, task, draft: id }, body: {} }), () => { setOutcome(o => ({ ...o, [id]: op === "bot.draft.send" ? "sent" : "cancelled" })); reload(); });
   return <span data-testid="work-job-drafts">
-    {draftIds(job).map(id => <span key={id} className="li" data-testid="work-draft" data-draft-id={id}>
-      <button className="btn primary" data-testid="work-draft-send" disabled={c.busy || !!outcome[id]} onClick={() => draft(id, "bot.draft.send")}>{t("workBot.contract.draftSend")}</button>
-      <button className="btn secondary" data-testid="work-draft-cancel" disabled={c.busy || !!outcome[id]} onClick={() => draft(id, "bot.draft.cancel")}>{t("workBot.contract.draftCancel")}</button>
+    {(drafts.state === "ready" ? drafts.data : []).map(({ id, tool, status }) => <span key={id} className="li" data-testid="work-draft" data-draft-id={id} data-status={status}><span className="mono">{tool}</span>
+      <button className="btn primary" data-testid="work-draft-send" disabled={c.busy || !!outcome[id] || status !== "pending"} onClick={() => draft(id, "bot.draft.send")}>{t("workBot.contract.draftSend")}</button>
+      <button className="btn secondary" data-testid="work-draft-cancel" disabled={c.busy || !!outcome[id] || status !== "pending"} onClick={() => draft(id, "bot.draft.cancel")}>{t("workBot.contract.draftCancel")}</button>
       {outcome[id] && <span className="code-meta" data-testid="work-draft-outcome">{t(`workBot.contract.draft.${outcome[id]}`)}</span>}
     </span>)}
-    {["running", "paused"].includes(job.status) && <form className="li" onSubmit={e => { e.preventDefault(); void c.run(() => api.code.contract({ epoch, op: "bot.credentials", params: { bot, task }, body: { site, username: user, password: pass } }), () => { setPass(""); setOutcome(o => ({ ...o, credentials: "credentials" })); }); }}>
+    {asks.state === "ready" && asks.data.length > 0 && <form className="li" onSubmit={e => { e.preventDefault(); void c.run(() => api.code.contract({ epoch, op: "bot.credentials", params: { bot, task }, body: { site, username: user, password: pass } }), () => { setPass(""); setOutcome(o => ({ ...o, credentials: "credentials" })); }); }}>
       <input className="input" data-testid="work-cred-site" aria-label={t("workBot.contract.site")} value={site} onChange={e => setSite(e.target.value)} />
       <input className="input" data-testid="work-cred-user" autoComplete="off" aria-label={t("workBot.contract.username")} value={user} onChange={e => setUser(e.target.value)} />
       <input className="input" data-testid="work-cred-pass" type="password" autoComplete="off" aria-label={t("workBot.contract.password")} value={pass} onChange={e => setPass(e.target.value)} />

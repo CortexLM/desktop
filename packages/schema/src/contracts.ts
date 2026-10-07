@@ -31,6 +31,8 @@ export const CONTRACT_OPS = {
   "bot.task.resume": { method: "POST", path: "/mascots/{bot}/tasks/{task}/resume" },
   "bot.task.retry": { method: "POST", path: "/mascots/{bot}/tasks/{task}/retry" },
   "bot.takeover": { method: "POST", path: "/mascots/{bot}/computer/takeover" },
+  "bot.drafts": { method: "GET", path: "/mascots/{bot}/tasks/{task}/drafts" },
+  "bot.credentials.requests": { method: "GET", path: "/mascots/{bot}/tasks/{task}/credentials" },
   "bot.draft.send": { method: "POST", path: "/mascots/{bot}/tasks/{task}/drafts/{draft}/send" },
   "bot.draft.cancel": { method: "POST", path: "/mascots/{bot}/tasks/{task}/drafts/{draft}/cancel" },
   "bot.credentials": { method: "POST", path: "/mascots/{bot}/tasks/{task}/credentials" },
