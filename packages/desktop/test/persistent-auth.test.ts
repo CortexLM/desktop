@@ -26,6 +26,8 @@ function fixture() {
       return json(pair(++version));
     }
     if (path === "/v1/auth/logout") { revoked = true; return new Response(null, { status: 204 }); }
+    if (path === "/v1/auth/magic-auth") return new Response(null, { status: 204 });
+    if (path === "/v1/auth/magic-auth/verify") { ++version; return new Response(JSON.stringify({ status: "session", access_token: token(version) }), { status: 200, headers: [["Content-Type", "application/json"], ["Set-Cookie", `cortex_rt=fixture-refresh-${version}; HttpOnly; SameSite=Lax; Path=/; Max-Age=604800`]] }); }
     if (path === "/v1/instance") return json({ mode: "cloud", auth: { mode: "cortex", required: true } });
     if (path === "/v1/models") return json({ items: [], has_more: false });
     return json({}, 404);
@@ -88,6 +90,26 @@ describe("persistent main native device authentication", () => {
         expect(credentials.get("remote-session")).toBeUndefined();
         await next.restore(origin);
         expect(next.state(origin).signedIn).toBe(false);
+      } finally { next.clear(); }
+    } finally { first.clear(); }
+  });
+  it("persists email-code sign-in as a durable account-bound pair that survives restart", async () => {
+    const credentials = memoryCredentials(), f = fixture();
+    const first = new RemoteSession({ credentials, fetch: f.transport });
+    try {
+      const sent = await first.authenticate(origin, { action: "email", owner: first.state(origin).owner!, email: "native@example.test" });
+      expect((await first.authenticate(origin, { action: "code", owner: sent.owner!, code: "424242" })).signedIn).toBe(true);
+      expect(first.bind(origin).accountID).toBe(account);
+      const stored = JSON.parse(credentials.get("remote-session")!);
+      expect(stored.accountID).toBe(account);
+      expect(JSON.stringify(first.state(origin))).not.toContain("fixture-refresh");
+      first.clear();
+      const next = new RemoteSession({ credentials, fetch: f.transport });
+      try {
+        await next.restore(origin);
+        expect(next.state(origin).signedIn).toBe(true);
+        expect(next.bind(origin).accountID).toBe(account);
+        expect(next.bindCode(origin).accountID).toBe(account);
       } finally { next.clear(); }
     } finally { first.clear(); }
   });

@@ -25,6 +25,7 @@ const Enrollment = Challenge.extend({
 const Interactive = z.discriminatedUnion("status", [Session, VerifyEmail, Challenge, Enrollment]);
 const LocalSession = Session.extend({ token_type: z.literal("Bearer"), expires_at: z.iso.datetime() });
 const Empty = z.void();
+const SessionCompletions = new Set(["/v1/auth/magic-auth/verify", "/v1/auth/verify-email", "/v1/auth/mfa/verify"]);
 const NativeSession = z.object({ access_token: Secret, refresh_token: Secret, token_type: z.literal("Bearer") }).strict();
 const Account = z.object({ id: z.string().refine((id) => isId("usr", id)), email: z.string().email() });
 const Saved = NativeSession.extend({ origin: ConnectionUrl, accountID: Account.shape.id });
@@ -362,6 +363,9 @@ export class RemoteSession {
         candidate.lifetime.signal.throwIfAborted();
         candidate.token = result.access_token;
         candidate.expiresAt = "expires_at" in result ? Date.parse(result.expires_at) : undefined;
+        // Durable email-code identity: rotate the cookie grant once into a stored native pair bound to the verified account.
+        if (candidate.refreshToken && input.action !== "local") await this.#refresh(candidate, selectedOrigin);
+        candidate.lifetime.signal.throwIfAborted();
         // One promotion path for email-code and device sign-in, so Chat and Code bindings always exist together.
         this.#promote(candidate);
       } else if (result?.status === "verify_email") {
@@ -442,6 +446,9 @@ export class RemoteSession {
               }
               identity.responseStatus = response.status;
               const path = new URL(request.url).pathname;
+              // Email-code completions carry the refresh grant only as a cookie; keep it main-only so promotion can rotate it into a durable native pair.
+              // ponytail: default producer cookie name; read it from /v1/instance if deployments rename it.
+              if (response.ok && SessionCompletions.has(path)) identity.refreshToken = response.headers.getSetCookie().map(c => /^cortex_rt=([^;\s]+)/.exec(c)?.[1]).find(Boolean) ?? identity.refreshToken;
               const status = path === "/v1/auth/magic-auth" || path === "/v1/auth/local/logout" ? 204 : 200;
               if (response.ok && !z.literal(status).safeParse(response.status).success) {
                 await response.body?.cancel();
