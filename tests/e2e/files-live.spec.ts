@@ -208,7 +208,7 @@ test("Saved image sources and tuples refuse unsafe/oversized bytes before native
   const code = await save(page, [{ type: "file", mime: "image/png", url: png }], "code"); await show(page, route(code)); await expect(viewer(page).getByText(copy["image.unavailableTitle"], { exact: true })).toBeVisible();
   // Retained VP8 dimensions, missing pixel payload: native decode rejects this independently verified fixture.
   const corrupt = await save(page, [{ type: "file", mime: "image/webp", data: "UklGRhYAAABXRUJQVlA4IAoAAAAQCgCdASrwAHgA" }]), decoded = (await probe.state()).decoded.length; await show(page, route(corrupt)); await expect(viewer(page).getByText(copy["image.invalidTitle"], { exact: true })).toBeVisible(); await expect(image(page)).toHaveCount(0); expect((await probe.state()).decoded.length).toBeGreaterThan(decoded);
-  await show(page, "file-image"); await expect(page.getByTestId("upload-dropzone")).toBeVisible();
+  await show(page, "file-image"); await expect(page.getByTestId("screen-file-image").getByTestId("file-live-empty")).toBeVisible();
 });
 
 test("Saved image read failures offer one real pending Retry", async ({ run: c }) => {

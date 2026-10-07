@@ -168,7 +168,7 @@ test("Empty/BOM-only text is Ready; unsafe encodings, budgets and tuple errors r
     await show(c.page, invalid); await expect(viewer(c.page).getByText(copy["text.unavailableTitle"], { exact: true })).toBeVisible(); await expect(source(c.page)).toHaveCount(0);
   }
   const code = await save(c, [file("Code-owned file")], "code"); await show(c.page, route(code)); await expect(viewer(c.page).getByText(copy["text.unavailableTitle"], { exact: true })).toBeVisible();
-  expect(requests).toEqual([]); await show(c.page, "file-code"); await expect(c.page.getByTestId("upload-dropzone")).toBeVisible();
+  expect(requests).toEqual([]); await show(c.page, "file-code"); await expect(c.page.getByTestId("screen-file-code").getByTestId("file-live-empty")).toBeVisible();
 });
 
 test("Text source Retry is single-owner; deletion cancels held reads, Copy and Download", async ({ run: c }) => {
