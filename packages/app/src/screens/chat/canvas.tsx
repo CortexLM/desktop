@@ -4,6 +4,7 @@ import { Icon, IconBtn, Pop, MItem, useToast } from "../../kit/ui";
 import { useVariant } from "../../registry";
 import { useT } from "../../i18n";
 import { isPreview } from "../../preview";
+import { LiveChatFeature } from "./live-features";
 import { BotRow, Box, Unavailable, css, useCopy, useFx, useStream } from "./shared";
 
 export const CANVAS_VARIANTS: [string, string, string][] = [["document", "document"], ["code", "code"], ["selection", "selection"], ["generation", "generation"], ["compare", "compare"]]
@@ -11,7 +12,7 @@ export const CANVAS_VARIANTS: [string, string, string][] = [["document", "docume
 
 export function Canvas() {
   const [v, setV] = useVariant("document");
-  if (!isPreview()) return <Unavailable feature="canvas" />;
+  if (!isPreview()) return <LiveChatFeature feature="canvas" local={<Unavailable feature="canvas" />} />;
   return <CanvasIn key={v} v={v} setV={setV} />;
 }
 

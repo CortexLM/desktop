@@ -9,6 +9,7 @@ import { useNav } from "../../shell/nav";
 import { useVariant } from "../../registry";
 import { useT } from "../../i18n";
 import { isPreview } from "../../preview";
+import { LiveChatFeature } from "./live-features";
 import { Actions, Att, BotRow, Box, ChatFrame, Cite, Fav, Paras, Reasoning, Unavailable, css, useBotCfg, useCopy, useFx, useStream, useTicker } from "./shared";
 
 type P = { onNew: () => void };
@@ -398,7 +399,7 @@ export const CHAT_STATE_VARIANTS: [string, string, string][] = [
 
 export function ChatStates() {
   const [v, setV] = useVariant("sending");
-  if (!isPreview()) return <Unavailable feature="chat-states" />;
+  if (!isPreview()) return <LiveChatFeature feature="chat-states" local={<Unavailable feature="chat-states" />} />;
   const p = { onNew: () => setV("empty") };
   const map: Record<string, React.ReactNode> = {
     sending: <VSending {...p} />, thinking: <VThinking {...p} />, streaming: <VStream {...p} />, searching: <VSearching {...p} />, sources: <VSources {...p} />,

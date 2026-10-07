@@ -114,6 +114,7 @@ export function createServer(core: Core): Hono {
     "code.instructions": ({ params, body }) => core.code.instructions(params.id!, body),
     "code.review": ({ params, body }) => core.code.review(params.id!, body),
     "code.contract": ({ body }) => core.code.contract(body),
+    "code.chatFeature": ({ body }) => core.code.chatFeature(body),
     "code.localInstructions": ({ body }) => core.code.localInstructions(body),
 
     "workBot.list": () => core.workBot.list(),

@@ -7,6 +7,7 @@ import { Mascot, type State } from "../../mascot/Mascot";
 import { useVariant } from "../../registry";
 import { useT } from "../../i18n";
 import { isPreview } from "../../preview";
+import { LiveChatFeature } from "./live-features";
 import { Actions, BotRow, Cite, Fav, Unavailable, css, useBotCfg, useFx, useTicker } from "./shared";
 
 const v3 = (ns: string, l: [string, string][]): [string, string, string][] => l.map(([id, d]) => [id, `chat.variant.${ns}.${id}`, d]);
@@ -17,7 +18,7 @@ function EmptyBot({ state }: { state: State }) { const bot = useBotCfg(); return
 
 export function SearchResults() {
   const [v] = useVariant("results");
-  if (!isPreview()) return <Unavailable feature="search-results" />;
+  if (!isPreview()) return <LiveChatFeature feature="search-results" local={<Unavailable feature="search-results" />} />;
   return <SearchIn key={v} v={v} />;
 }
 
@@ -69,7 +70,7 @@ function SearchIn({ v }: { v: string }) {
 
 export function DeepResearch() {
   const [v, setV] = useVariant("plan");
-  if (!isPreview()) return <Unavailable feature="deep-research" />;
+  if (!isPreview()) return <LiveChatFeature feature="deep-research" local={<Unavailable feature="deep-research" />} />;
   return <DeepIn key={v} v={v} setV={setV} />;
 }
 

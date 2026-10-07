@@ -644,7 +644,7 @@ export function Upload() {
     onDrop: (e: React.DragEvent) => { e.preventDefault(); depth.current = 0; setOver(false); add([...e.dataTransfer.files].map((f) => ({ name: f.name, size: f.size, file: f }))); },
   };
   return (
-    <div className="fichiers-root" {...dz}>
+    <div className="fichiers-root" data-testid="screen-upload" {...dz}>
       <div className="content-top"><span className="title">{t("files.upload.title")}</span><div className="spacer" />
         <span className="fichiers-meta" style={{ marginRight: 8 }}>{t("files.upload.count", { n: valid.length, max: MAX_FILES, size: MAX_MB })}</span>
         {/* ponytail: live mode has no project store yet, so "Add to project" stays disabled there. */}

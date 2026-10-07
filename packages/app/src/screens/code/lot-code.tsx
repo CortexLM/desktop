@@ -11,7 +11,7 @@ import { useVariant } from "../../registry";
 import { useNav } from "../../shell/nav";
 import { useT } from "../../i18n";
 import { isPreview, useFixtures } from "../../preview";
-import { CodeConnection, RemoteCodeSession } from "./remote-code";
+import { CodeConnection, LatestCodeSession, RemoteCodeSession } from "./remote-code";
 import { api } from "../../api";
 import { useSessions, useQuery } from "../../state/live";
 import { Agent, Av, Badge, CiIcon, Delta, LiveEmpty, Split, Unified, basename, ix, parse, rich, unfold, useAgo, type CS } from "./parts";
@@ -32,9 +32,9 @@ const ST: Record<St, [string, string]> = { run: ["run", "code.status.running"], 
 const FILTERS: [string, St | ""][] = [["code.tasks.filter.all", ""], ["code.tasks.filter.running", "run"], ["code.tasks.filter.review", "review"], ["code.tasks.filter.merged", "merged"], ["code.tasks.filter.failed", "fail"], ["code.tasks.filter.archived", "archived"]];
 
 // Signed-in desktop: the design sub-screens open the owned live session (review, diff, terminal, environment, PR tabs).
-function LiveSessionScreen() {
+function LiveSessionScreen({ view, screen }: { view: "changes" | "terminal" | "environment" | "pr"; screen: string }) {
   const { params } = useNav();
-  return params.get("id") && params.get("epoch") ? <RemoteCodeSession /> : <CodeConnection local={<LiveEmpty />} />;
+  return params.get("id") && params.get("epoch") ? <RemoteCodeSession view={view} /> : <CodeConnection local={<div data-testid={`screen-${screen}`} data-state="local"><LiveEmpty /></div>} remote={<LatestCodeSession view={view} screen={screen} />} />;
 }
 
 export function TasksScreen() {
@@ -223,7 +223,7 @@ function Attempts({ back }: { back: () => void }) {
    ===================================================================== */
 const SEV: Record<string, [string, string]> = { high: ["err", "code.sev.high"], medium: ["wait", "code.sev.medium"], low: ["", "code.sev.low"] };
 
-export function ReviewScreen() { const [v] = useVariant("review"); return isPreview() ? <Review key={v} v={v} /> : <LiveSessionScreen />; }
+export function ReviewScreen() { const [v] = useVariant("review"); return isPreview() ? <Review key={v} v={v} /> : <LiveSessionScreen view="changes" screen="code-review" />; }
 function Review({ v }: { v: string }) {
   const t = useT();
   const toast = useToast();
@@ -313,7 +313,7 @@ function Review({ v }: { v: string }) {
 const ST_LBL = { A: "code.diff.added", M: "code.diff.modified", D: "code.diff.deleted" };
 type Cm = { who: string; text: string };
 
-export function DiffScreen() { const [v] = useVariant("unified"); return isPreview() ? <DiffView key={v} v={v} /> : <LiveSessionScreen />; }
+export function DiffScreen() { const [v] = useVariant("unified"); return isPreview() ? <DiffView key={v} v={v} /> : <LiveSessionScreen view="changes" screen="code-diff" />; }
 function DiffView({ v }: { v: string }) {
   const t = useT();
   const toast = useToast();
@@ -422,7 +422,7 @@ function DiffView({ v }: { v: string }) {
 /* =====================================================================
    4. Terminal and logs
    ===================================================================== */
-export function TerminalScreen() { const [v, setV] = useVariant("running"); return isPreview() ? <Terminal key={v} v={v} setV={setV} /> : <LiveSessionScreen />; }
+export function TerminalScreen() { const [v, setV] = useVariant("running"); return isPreview() ? <Terminal key={v} v={v} setV={setV} /> : <LiveSessionScreen view="terminal" screen="code-terminal" />; }
 function Terminal({ v, setV }: { v: string; setV: (v: string) => void }) {
   const t = useT();
   const { go } = useNav();
@@ -533,7 +533,7 @@ function Terminal({ v, setV }: { v: string; setV: (v: string) => void }) {
    ===================================================================== */
 const NETS: [string, string, string][] = [["none", "code.env.net.none", "code.env.net.noneSub"], ["allowlist", "code.env.net.allowlist", "code.env.net.allowlistSub"], ["full", "code.env.net.full", "code.env.net.fullSub"]];
 
-export function EnvScreen() { const [v, setV] = useVariant("list"); return isPreview() ? <Env key={v} v={v} setV={setV} /> : <LiveSessionScreen />; }
+export function EnvScreen() { const [v, setV] = useVariant("list"); return isPreview() ? <Env key={v} v={v} setV={setV} /> : <LiveSessionScreen view="environment" screen="code-env" />; }
 function Env({ v, setV }: { v: string; setV: (v: string) => void }) {
   const t = useT();
   const toast = useToast();
@@ -673,7 +673,7 @@ function Env({ v, setV }: { v: string; setV: (v: string) => void }) {
    ===================================================================== */
 const MERGES = ["code.pr.squash", "code.pr.mergeCommit", "code.pr.rebase"];
 
-export function PrScreen() { const [v, setV] = useVariant("draft"); return isPreview() ? <Pr key={v} v={v} setV={setV} /> : <LiveSessionScreen />; }
+export function PrScreen() { const [v, setV] = useVariant("draft"); return isPreview() ? <Pr key={v} v={v} setV={setV} /> : <LiveSessionScreen view="pr" screen="code-pr" />; }
 function Pr({ v, setV }: { v: string; setV: (v: string) => void }) {
   const t = useT();
   const { go } = useNav();

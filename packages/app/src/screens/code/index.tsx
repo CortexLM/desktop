@@ -1,4 +1,4 @@
-import type { ScreenDef } from "../../registry";
+import { Root, type ScreenDef } from "../../registry";
 import { CodeHome, CodeSession } from "./code";
 import { CodeMachines } from "./remote-code";
 import { TasksScreen, ReviewScreen, DiffScreen, TerminalScreen, EnvScreen, PrScreen, SettingsScreen } from "./lot-code";
@@ -9,7 +9,7 @@ const V = (screen: string, id: string, design: string): [string, string, string]
 
 export const SCREENS: ScreenDef[] = [
   { id: "code", name: "code.screen.code", mode: M, group: G, render: () => <CodeHome /> },
-  { id: "code-session", name: "code.screen.code-session", mode: M, group: G, render: () => <CodeSession /> },
+  { id: "code-session", name: "code.screen.code-session", mode: M, group: G, render: () => <Root id="code-session"><CodeSession /></Root> },
   { id: "code-tasks", name: "code.screen.code-tasks", mode: M, group: G, variants: [V("code-tasks", "list", "liste"), V("code-tasks", "filtered", "filtree"), V("code-tasks", "empty", "vide"), V("code-tasks", "attempts", "tentatives")], render: () => <TasksScreen /> },
   { id: "code-review", name: "code.screen.code-review", mode: M, group: G, variants: [V("code-review", "review", "revue"), V("code-review", "applied", "appliquee"), V("code-review", "approved", "approuvee")], render: () => <ReviewScreen /> },
   { id: "code-diff", name: "code.screen.code-diff", mode: M, group: G, variants: [V("code-diff", "unified", "unifie"), V("code-diff", "split", "cote"), V("code-diff", "comment", "commentaire"), V("code-diff", "conflict", "conflit")], render: () => <DiffScreen /> },

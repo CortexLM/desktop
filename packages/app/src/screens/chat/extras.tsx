@@ -11,6 +11,7 @@ import { useNav } from "../../shell/nav";
 import { useVariant } from "../../registry";
 import { useT } from "../../i18n";
 import { isPreview } from "../../preview";
+import { LiveChatFeature } from "./live-features";
 import { Actions, BotRow, Box, NB, Unavailable, css, useBotCfg, useCopy, useFx, useTicker } from "./shared";
 
 const v3 = (ns: string, l: [string, string][]): [string, string, string][] => l.map(([id, d]) => [id, `chat.variant.${ns}.${id}`, d]);
@@ -24,7 +25,7 @@ const IMGS = ["ceramique", "atelier", "marche", "prairie"];
 
 export function ImageGen() {
   const [v, setV] = useVariant("generating");
-  if (!isPreview()) return <Unavailable feature="image-gen" />;
+  if (!isPreview()) return <LiveChatFeature feature="image-gen" local={<Unavailable feature="image-gen" />} />;
   return <ImageIn key={v} v={v} setV={setV} />;
 }
 
@@ -134,7 +135,7 @@ function ImageEdit({ onDone }: { onDone: () => void }) {
 /* ---------------- Share */
 export function Share() {
   const [v, setV] = useVariant("settings");
-  if (!isPreview()) return <Unavailable feature="share" />;
+  if (!isPreview()) return <LiveChatFeature feature="share" local={<Unavailable feature="share" />} />;
   return <ShareIn key={v} v={v} setV={setV} />;
 }
 
@@ -200,7 +201,7 @@ function ShareIn({ v, setV }: { v: string; setV: (v: string) => void }) {
 type Extra = { u: string; b?: string };
 export function TempChat() {
   const [v] = useVariant("empty");
-  if (!isPreview()) return <Unavailable feature="temp-chat" />;
+  if (!isPreview()) return <LiveChatFeature feature="temp-chat" local={<Unavailable feature="temp-chat" />} />;
   return <TempIn key={v} v={v} />;
 }
 

@@ -571,3 +571,6 @@ a.chip { display: inline-flex; align-items: center; text-decoration: none; }
 [data-host="desktop"][data-platform="win32"] .titlebar .side.end, [data-host="desktop"][data-platform="linux"] .titlebar .side.end { padding-right: 140px; }
 [data-host="desktop"][data-platform="win32"] [data-focus] .content-top, [data-host="desktop"][data-platform="linux"] [data-focus] .content-top { padding-right: 192px; }
 [data-host="desktop"][data-platform="darwin"] [data-focus] .content-top { padding-left: 96px; }
+
+/* Registry screen root (registry.tsx Root): layout-neutral wrapper carrying the per-screen testID. */
+.screen-root { display: contents; }

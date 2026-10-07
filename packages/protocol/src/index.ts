@@ -9,7 +9,7 @@ import {
   CodeOwner,
   CodePromptInput,
   CodeDecisionInput,
-  ContractCall, CodeSessionPatch, CodeSettingsInput, CodeInstructionsInput, CodeReviewInput, CodeLocalInstructionsInput, CodeBranchesInput,
+  ContractCall, ChatFeatureCall, CodeSessionPatch, CodeSettingsInput, CodeInstructionsInput, CodeReviewInput, CodeLocalInstructionsInput, CodeBranchesInput,
   WorkBotOwner, WorkBotCreate, WorkBotUpdate, WorkJobCreate, WorkBotParentInput,
   BotCopyCreate, BotCopyInviteInput, BotCopyAccept,
   AppCatalogInput, AppConsent, ConnectorEnable, ToolRuleInput,
@@ -116,6 +116,7 @@ export const routes = {
   "code.instructions": r("post", "/api/code/sessions/:id/instructions", { body: CodeInstructionsInput }),
   "code.review": r("post", "/api/code/sessions/:id/review", { body: CodeReviewInput }),
   "code.contract": r("post", "/api/code/contract", { body: ContractCall }),
+  "code.chatFeature": r("post", "/api/chat/feature", { body: ChatFeatureCall }),
   "code.localInstructions": r("post", "/api/code/local-instructions", { body: CodeLocalInstructionsInput }),
 
   "workBot.list": r("get", "/api/work-bot"),

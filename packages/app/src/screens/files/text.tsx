@@ -5,7 +5,7 @@ import { useI18n } from "../../i18n";
 import { Icon, IconBtn } from "../../kit/ui";
 import { navigation, readHash, useNav } from "../../shell/nav";
 import { onEvent } from "../../state/live";
-import { Upload } from "./docs";
+import { LiveFile } from "./live";
 import { CodeScreen } from "./media";
 import { readText, textFilename, type SavedText } from "./text-data";
 
@@ -27,7 +27,7 @@ export function FileText() {
   // The complete tuple owns reads; shell theme/sidebar updates keep that same owner.
   const tuple = React.useMemo(() => target(new URLSearchParams(key)), [key]);
   if (params.has("preview") || params.has("shot")) return <CodeScreen />;
-  if (fields.every((key) => !params.has(key))) return <Upload />;
+  if (fields.every((key) => !params.has(key))) return <LiveFile kind="code" screen="file-code" />;
   return <SavedTextView key={key} tuple={tuple} />;
 }
 
