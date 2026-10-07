@@ -10,11 +10,7 @@ import { VariantPicker, type Theme, type ThemePref } from "../App";
 import { useT } from "../i18n";
 import { isPreview, useFixtures, usePreviewBot } from "../preview";
 import { api, platform } from "../api";
-<<<<<<< HEAD
-import { useSessions, useBots, useProjects, useQuery } from "../state/live";
-=======
 import { useSessions, useBots, useProjects, useQuery, onEvent } from "../state/live";
->>>>>>> origin/main
 import { useRemoteSessions } from "../state/remote-list";
 import { NotFound } from "./not-found";
 import { previewChatStart, startPreviewChat } from "../components/composer";
