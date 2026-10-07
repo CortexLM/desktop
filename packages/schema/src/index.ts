@@ -1,8 +1,7 @@
 // Browser-safe contracts shared by core, protocol, server and client. zod only.
-import { z } from "zod"
-
 // Shared contracts must initialize under the renderer's CSP without probing dynamic evaluation.
-z.config({ jitless: true })
+import "./jitless"
+import { z } from "zod"
 
 export * from "./code"
 export * from "./work-bot"
