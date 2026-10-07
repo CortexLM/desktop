@@ -71,6 +71,13 @@ reconnect/reselect/save, never automatic retry. Metadata grants no autonomy or d
 Full Task8 remains open. Combined assembled
 migration-stack acceptance remains separate from this source-bound producer fixture.
 
+Todo 6b registers 31 signed-in owner screens under `packages/app/src/screens/live`
+(Bot channel/invites/share/computer/companion/create, Code automations/connect,
+connection, providers, models, model picker, remote chat, tool approval, space,
+scheduled tasks, plugins, skills, MCP add) through `app.*` contract operations onto
+trunk `/v1` routes. Providers and the registry catalog answer only on self-hosted
+trunks. Bot room has no trunk route and shows an honest unavailable state.
+
 Task7 native device sign-in uses the existing device grant, encrypted origin-bound
 credential pairs, `/v1/me.id` owner checks and single-flight refresh. OS encryption
 is required; Linux `basic_text` refuses persistence. Access-only web grants remain
