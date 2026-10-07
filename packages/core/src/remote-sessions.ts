@@ -59,7 +59,7 @@ function deferred<T>() {
   const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no })
   return { promise, resolve, reject }
 }
-type Owner = { binding: CoreRemoteBinding; origin: string; controller: AbortController; off(): void; catalog?: Map<string, RemoteModel>; catalogRead: number }
+type Owner = { binding: CoreRemoteBinding; origin: string; controller: AbortController; off(): void; catalog?: Map<string, RemoteModel>; catalogRead: number; discovered?: boolean }
 type RecordState = { owner: Owner; view: RemoteSessionView; messages: RemoteMessageView[]; files: Map<string, { file: RemoteFile; body: Blob; filename: string }>; uploads: number; historyRead: number; turn?: Turn }
 type Accepted = { messageID: string; done: Promise<RemoteOutcome> }
 type Attempt = { controller: AbortController; active: boolean; wireSettled: boolean; admission: ReturnType<typeof deferred<Accepted>>; done: ReturnType<typeof deferred<RemoteOutcome>> }
@@ -117,10 +117,11 @@ export class RemoteSessionService {
     return record
   }
 
-  private changed(record: RecordState) {
+  // Streamed deltas publish only; durable transitions (admission, terminal, detach, create, discover) persist the snapshot.
+  private changed(record: RecordState, persist = true) {
     this.guard(record.owner, record)
     record.view.time.updated = Date.now()
-    if (record.owner.binding.accountID && this.storage) {
+    if (persist && record.owner.binding.accountID && this.storage) {
       const parent = JSON.stringify([record.owner.origin, record.owner.binding.accountID])
       this.storage.putDoc("remote-record", JSON.stringify([parent, record.view.id]), { view: record.view, messages: record.messages }, parent, record.view.time.updated)
     }
@@ -174,10 +175,11 @@ export class RemoteSessionService {
     for (const row of rows) {
       if ([...this.records.values()].some((r) => r.view.conversationID === row.conversationID)) continue
       const now = Date.now()
-      const view: RemoteSessionView = { id: newId("session"), source: "remote", scope: "account", epoch: owner.binding.epoch, ...row, state: "history_required", time: { created: now, updated: now } }
+      const view: RemoteSessionView = { id: newId("session"), source: "remote", scope: "account", epoch: owner.binding.epoch, ...row, ...(owner.catalog?.get(row.modelSlug)?.reasoning === true ? { effort: "medium" as const } : {}), state: "history_required", time: { created: now, updated: now } }
       const record: RecordState = { owner, view, messages: [], files: new Map(), uploads: 0, historyRead: 0 }
       this.records.set(view.id, record); this.changed(record)
     }
+    owner.discovered = true
     return this.list()
   }
   messages(id: string): RemoteMessageView[] { return structuredClone(this.record(id).messages) }
@@ -199,9 +201,14 @@ export class RemoteSessionService {
   }
 
   async prompt(id: string, input: unknown): Promise<Accepted> {
+    // Restored conversations are only known to the binding after discovery.
+    const restored = this.record(id)
+    if (restored.view.conversationID && restored.owner.binding.discover && !restored.owner.discovered) await this.discover()
     const record = this.record(id), value = parse(RemotePromptInput, input, "invalid_request")
     if (this.pending || record.uploads) throw problem("session_busy")
     if (record.view.state === "history_required") throw problem("conflict")
+    // Discovered sessions carry no effort; reasoning models need one to continue.
+    if (record.view.effort === undefined && record.owner.catalog?.get(record.view.modelSlug)?.reasoning === true) record.view.effort = "medium"
     const files = value.attachmentIDs.map((id) => { const saved = record.files.get(id); if (!saved) throw problem("invalid_request"); return saved.file })
     const base = { sessionID: id, time: { created: Date.now() }, partial: false }
     const user: RemoteMessageView = { ...base, id: newId("message"), role: "user", parts: [
@@ -272,7 +279,7 @@ export class RemoteSessionService {
         guard()
         try { this.project(turn, event) }
         catch (error) { this.unsupported(turn, "unknown", true); this.changed(record); throw neutral(error) }
-        this.changed(record); guard()
+        this.changed(record, false); guard()
       },
       cursor: (id) => { guard(); turn.reset = id === "" },
     }

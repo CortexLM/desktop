@@ -147,8 +147,11 @@ export class RemoteSession {
   async #refresh(identity: Identity, origin: string): Promise<void> {
     if (identity.refreshing) return identity.refreshing;
     identity.refreshing = (async () => {
+      // Network errors, timeouts, 429 and 5xx keep the saved pair for a later retry; every other failure revokes it.
+      let transient = false;
       try {
-        const response = await this.#native(identity, origin, "/v1/auth/refresh", { refresh_token: identity.refreshToken });
+        const response = await this.#native(identity, origin, "/v1/auth/refresh", { refresh_token: identity.refreshToken }).catch((error: unknown) => { transient = true; throw error; });
+        if (response.status === 429 || response.status >= 500) { transient = true; throw new Error("Native refresh unavailable"); }
         if (response.status !== 200) throw new Error("Native refresh refused");
         await this.#pair(identity, origin, await response.json());
         clearTimeout(identity.expiry);
@@ -156,8 +159,8 @@ export class RemoteSession {
       } catch {
         const owned = this.#active === identity || this.#candidate === identity;
         this.#invalidate(identity);
-        if (owned) await this.#store();
-        throw new CortexError("provider_auth_failed", "Remote sign-in is required");
+        if (owned && !transient) await this.#store();
+        throw transient ? new CortexError("provider_error", "Remote sign-in is temporarily unavailable") : new CortexError("provider_auth_failed", "Remote sign-in is required");
       } finally { identity.refreshing = undefined; }
     })();
     return identity.refreshing;
@@ -199,8 +202,9 @@ export class RemoteSession {
       if (this.#candidate !== candidate) throw new Error("Native identity changed");
       this.#promote(candidate);
       this.#revision = crypto.randomUUID();
-    } catch {
-      if (this.#candidate === candidate) { this.#cancelCandidate(); await this.#store(); }
+    } catch (error) {
+      // A transient refresh failure keeps the saved pair so the next restore can retry.
+      if (this.#candidate === candidate) { this.#cancelCandidate(); if (!(error instanceof CortexError && error.code === "provider_error")) await this.#store(); }
     }
   }
 

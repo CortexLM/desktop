@@ -1,7 +1,14 @@
 // Side-by-side rows from one file's unified diff: context on both sides, a removed run paired with the added run after it.
 export type Half = { k: "ctx" | "add" | "del" | "empty"; text: string };
 export function splitRows(text: string): { left: Half; right: Half }[] {
-  const rows: { left: Half; right: Half }[] = [], body = (text ? text.replace(/\n$/, "").split("\n") : []).filter(l => !/^(diff --git|index |--- |\+\+\+ |@@|\\ )/.test(l));
+  const rows: { left: Half; right: Half }[] = [];
+  // File headers (index, ---, +++) only appear before the first @@ of each file; inside a hunk "--- x" is a removed "-- x".
+  let inHunk = false;
+  const body = (text ? text.replace(/\n$/, "").split("\n") : []).filter(l => {
+    if (l.startsWith("diff --git")) { inHunk = false; return false; }
+    if (l.startsWith("@@")) { inHunk = true; return false; }
+    return inHunk && !l.startsWith("\\ ");
+  });
   for (let i = 0; i < body.length;) {
     if (body[i].startsWith("-") || body[i].startsWith("+")) {
       const del: string[] = [], add: string[] = [];

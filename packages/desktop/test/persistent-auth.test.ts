@@ -113,6 +113,19 @@ describe("persistent main native device authentication", () => {
       } finally { next.clear(); }
     } finally { first.clear(); }
   });
+  it("keeps the saved pair when refresh fails transiently", async () => {
+    const credentials = memoryCredentials(), f = fixture();
+    const first = new RemoteSession({ credentials, fetch: f.transport });
+    await login(first); first.clear();
+    const saved = credentials.get("remote-session");
+    const outage: typeof fetch = async (input, init) => new URL((input instanceof Request ? input : new Request(input, init)).url).pathname === "/v1/auth/refresh" ? json({}, 503) : f.transport(input, init);
+    const next = new RemoteSession({ credentials, fetch: outage });
+    try {
+      await next.restore(origin);
+      expect(next.state(origin).signedIn).toBe(false);
+      expect(credentials.get("remote-session")).toBe(saved);
+    } finally { next.clear(); }
+  });
   it("refuses owner changes after rotation and clears revoked storage without new device login", async () => {
     for (const refusal of ["owner", "revoked"]) {
       const credentials = memoryCredentials(), f = fixture();

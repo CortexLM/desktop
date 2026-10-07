@@ -151,7 +151,7 @@ function RuntimeRow({ epoch, runtime, reload, c }: { epoch: string; runtime: Row
 export function LiveRepoToggle({ epoch, fullName, enabled, reload }: { epoch: string; fullName: string; enabled?: boolean; reload: () => void }) {
   const t = useT(), c = useContract(), [owner, repo] = fullName.split("/") as [string, string];
   return <span className="ctx-bar" data-testid="repo-toggle">
-    <button className="btn secondary" data-testid="repo-enable" disabled={c.busy} onClick={() => void c.run(() => call({ epoch, op: "code.repository.put", params: { owner, repo }, body: { enabled: !enabled } }), reload)}>{t(enabled === false ? "code.contract.enable" : "code.contract.disable")}</button>
+    <button className="btn secondary" data-testid="repo-enable" disabled={c.busy} onClick={() => void c.run(() => call({ epoch, op: "code.repository.put", params: { owner, repo }, body: { enabled: enabled === false } }), reload)}>{t(enabled === false ? "code.contract.enable" : "code.contract.disable")}</button>
     <button className="btn secondary" data-testid="repo-remove" disabled={c.busy} onClick={() => void c.run(() => call({ epoch, op: "code.repository.remove", params: { owner, repo } }), reload)}>{t("code.contract.remove")}</button>
     <ContractError code={c.error} />
   </span>;
