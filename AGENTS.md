@@ -174,7 +174,11 @@ identity, account-wide discovery and restart restoration remain gated. Nine JSON
 through the typed client, plus a strict base64 upload route capped at 8 MiB before
 decoding. Optional one-off model selection reaches main without changing recorded
 model/effort or original-request replay. A scoped Chat renderer now calls these routes;
-full acceptance remains in progress as recorded below.
+full acceptance remains in progress as recorded below. Signed-in Chat picks its model from a
+header popover (`remote-model-menu.tsx`: name, description or context size, capability badges,
+check, reasoning effort for reasoning models); a new chat preselects the first discovered model
+and shows the Home greeting and suggestions. Session-scope and detach caveats sit behind info
+tooltips in user language, not banners.
 The earlier adapter increment passed five adapter tests and 304 units, with scoped review approval; see
 `evidence/auth-owner-followup/remote-api-adapter.md`.
 Remote model routing/inference and continuation screens remain active delivery work; the dependency
