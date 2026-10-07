@@ -1,7 +1,7 @@
 // Electron main: hosts the local engine in-process and serves it to the renderer over IPC.
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { app, BrowserWindow, dialog, ipcMain, nativeTheme, protocol, net, safeStorage, shell } from "electron";
+import { app, autoUpdater, BrowserWindow, dialog, ipcMain, nativeTheme, protocol, net, safeStorage, session, shell } from "electron";
 import { createCore, findCuaDriver } from "@cortex/core";
 import { createServer } from "@cortex/server";
 import { createTranslator, resolveLocale } from "@cortex/i18n";
@@ -10,6 +10,7 @@ import { fileCredentials } from "./credentials";
 import { buildMenu } from "./menu";
 import { probeRemote } from "./remote";
 import { RemoteSession } from "./remote-session";
+import { createUpdater } from "./updater";
 
 const APP_NAME = "Cortex";
 declare const __CORTEX_RELEASE_CHANNEL__: string;
@@ -38,7 +39,19 @@ protocol.registerSchemesAsPrivileged([{ scheme: "cortex", privileges: { standard
 let win: BrowserWindow | undefined;
 
 async function boot() {
-  const remote = new RemoteSession();
+  // No runtime dictionary download: Linux Hunspell files load only from bundled resources/dictionaries.
+  // ponytail: none are bundled yet, so Linux spellcheck has no dictionary; ship .bdic files there to enable it.
+  if (process.platform === "linux") session.defaultSession.setSpellCheckerDictionaryDownloadURL(pathToFileURL(path.join(resources, "dictionaries") + path.sep).href);
+  // ponytail: the feed comes from CORTEX_UPDATE_FEED_URL only; bake a release feed into build.mjs once one is published.
+  const updates = createUpdater({ squirrel: autoUpdater, platform: process.platform, version: app.getVersion(), feed: process.env.CORTEX_UPDATE_FEED_URL });
+  ipcMain.handle("cortex:update:status", () => updates.status());
+  ipcMain.handle("cortex:update:check", () => updates.check());
+  ipcMain.handle("cortex:update:install", () => updates.install());
+  updates.on((s) => win?.webContents.send("cortex:update:state", s));
+  const remote = new RemoteSession({ openExternal: url => shell.openExternal(url), credentials: fileCredentials(path.join(dataDir, "remote-credentials.json"), {
+    isEncryptionAvailable: () => safeStorage.isEncryptionAvailable() && (process.platform !== "linux" || safeStorage.getSelectedStorageBackend() !== "basic_text"),
+    encryptString: (value) => safeStorage.encryptString(value), decryptString: (value) => safeStorage.decryptString(value),
+  }, true) });
   const core = createCore({
     dataDir,
     credentials: fileCredentials(path.join(dataDir, "credentials.json"), safeStorage),
@@ -47,12 +60,15 @@ async function boot() {
     remoteProbe: (url) => probeRemote(url),
     remoteAuth: remote,
     remoteChat: remote,
+    remoteCode: remote,
+    remoteWorkBot: remote,
     skills: { builtin: path.join(resources, "skills"), personal: path.join(app.getPath("home"), ".cortex", "skills") },
     plugins: { personal: path.join(app.getPath("home"), ".cortex", "plugins") },
   });
   bootStage("core-created");
   await core.start({ computerUse: findCuaDriver() });
   bootStage("core-started");
+  if (core.connection.get().mode !== "local") await remote.restore(core.connection.remoteOrigin());
   // Test hook: route one provider to a local endpoint (E2E streaming without network). Ignored in packaged builds.
   if (testBase) {
     bootStage("provider-update");

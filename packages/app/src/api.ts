@@ -2,6 +2,7 @@
 // in-process server (no socket, no CORS, no key in the renderer); this module turns it back into fetch().
 // In a plain browser (vite dev) requests go to /api through the dev proxy.
 import { createClient } from "@cortex/client";
+import type { UpdateState } from "@cortex/schema";
 
 type Wire = { status: number; headers: [string, string][]; body: string };
 type Bridge = {
@@ -12,6 +13,7 @@ type Bridge = {
   openExternal?: (url: string) => void;
   pickDirectory?: () => Promise<string | null>;
   onMenu?: (cb: (cmd: string) => void) => () => void;
+  update?: { status: () => Promise<UpdateState>; check: () => Promise<UpdateState>; install: () => Promise<boolean>; onState: (cb: (s: UpdateState) => void) => () => void };
 };
 declare global { interface Window { cortex?: Bridge } }
 

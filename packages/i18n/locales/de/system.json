@@ -849,5 +849,15 @@
   "motion.sidebar.name": "Sidebar ⌘B / Fokus ⌘\\",
   "motion.sidebar.desc": "Breite → 0, Chrome verblasst mit Unschärfe, dann Vollbild-Rahmen",
   "motion.sidebar.time": "240 ms + 320 ms",
-  "motion.sidebar.ease": "ease-out"
+  "motion.sidebar.ease": "ease-out",
+  "update.check": "Nach Updates suchen",
+  "update.checking": "Suche nach Updates…",
+  "update.upToDate": "Cortex ist auf dem neuesten Stand",
+  "update.downloadingBackground": "Eine neue Version ist verfügbar und wird heruntergeladen",
+  "update.readyVersion": "Version {v} ist bereit. Starte Cortex neu, um sie zu installieren.",
+  "update.error.unsupported": "Automatische Updates sind auf diesem System nicht verfügbar. Lade neue Versionen von cortex.foundation herunter.",
+  "update.error.not_configured": "Dieser Build hat keinen Update-Kanal.",
+  "update.error.feed_invalid": "Der Update-Kanal dieses Builds ist ungültig.",
+  "update.error.not_signed": "Diese Cortex-Kopie ist nicht signiert und kann sich daher nicht selbst aktualisieren.",
+  "update.error.check_failed": "Das Update konnte nicht geprüft oder geladen werden. Prüfe deine Verbindung und versuche es erneut."
 }

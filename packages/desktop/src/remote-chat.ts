@@ -2,7 +2,8 @@
 import { randomUUID } from "node:crypto";
 import { PRODUCTION_CLOUD_URL, CortexError } from "@cortex/core";
 import type { CortexClient } from "@cortex/sdk";
-import { isId, type StreamEvent } from "@cortex/api-types";
+import { isId, type StreamEvent, type HistoryMessage as HistoryDTO } from "@cortex/api-types";
+import { RemoteHistoryWindow, CodeWorkspaceRefusal } from "@cortex/schema";
 import { z } from "zod";
 
 const Name = z.string().trim().min(1).max(1024);
@@ -11,7 +12,6 @@ const ConversationID = z.string().refine((v): boolean => isId("cnv", v));
 const MessageID = z.string().refine((v): boolean => isId("msg", v));
 const FileID = z.string().refine((v): boolean => isId("lbf", v));
 const Effort = z.enum(["low", "medium", "high"]);
-const Finish = z.enum(["stop", "length", "tool_calls", "interrupted", "error"]);
 const ImageType = z.enum(["image/png", "image/jpeg", "image/webp", "image/gif"]);
 const IMAGE_BYTES = 8 * 1024 * 1024;
 const Instance = z.object({
@@ -47,13 +47,8 @@ const TurnInput = z.object({
 }).strict().refine((v) => !!v.message || v.attachmentIDs.length > 0)
   .refine((v) => new Set(v.attachmentIDs).size === v.attachmentIDs.length);
 const Admission = z.object({ conversationID: ConversationID, assistantID: MessageID });
-const HistoryMessage = z.object({
-  id: MessageID, role: z.enum(["user", "assistant", "system", "tool"]), text: z.string(), created_at: z.iso.datetime({ offset: true }),
-  version_index: Count, version_count: Count.positive(), is_active_version: z.literal(true),
-  finish_reason: Finish.optional(), model_name: Name.optional(),
-  attachments: z.array(z.object({ file_id: FileID, filename: Name, content_type: Name, byte_size: Count })).max(20).optional(),
-});
-const HistoryPage = z.object({ items: z.array(HistoryMessage).max(100), has_more: z.literal(false) })
+const HistoryMessage = RemoteHistoryWindow.shape.items.element;
+const HistoryPage = z.object({ items: z.array(HistoryMessage).max(200), has_more: z.boolean(), has_older: z.boolean(), has_newer: z.boolean(), next_cursor: MessageID.optional(), next_after_cursor: MessageID.optional() })
   .refine((p) => new Set(p.items.map((m) => m.id)).size === p.items.length);
 const Detail = z.object({ id: ConversationID, title: z.string(), model_slug: Name, message_count: Count });
 
@@ -74,7 +69,7 @@ export type MainRemoteObserver = {
   event(event: MainRemoteEvent): void;
   cursor?(id: string): void;
 };
-export type MainRemoteResult = { admission: MainRemoteAdmission; terminal: Extract<MainRemoteEvent, { type: "done" | "error" }>; projection: "limited" };
+export type MainRemoteResult = { admission: MainRemoteAdmission; terminal: Extract<MainRemoteEvent, { type: "done" | "error" }>; projection?: "limited" };
 export type MainRemoteDelivery = {
   /** Recovery disposition, not success: validated IDs win; refused releases pre-admission retry. Check epoch first. */
   readonly admissionState: "pending" | "refused" | "uncertain" | "admitted";
@@ -86,9 +81,11 @@ export type MainRemoteDelivery = {
 };
 export type MainRemoteHistory = {
   conversationID: string; title: string; modelSlug: string; items: z.infer<typeof HistoryMessage>[];
-  limit: 100; limited: true; projection: "text-and-attachments"; reasoningAndTools: "omitted";
+  limit: 200; limited: false; projection: "retained-parts"; reasoningAndTools: "retained";
 };
 export interface MainRemoteChatBinding {
+  readonly accountID?: string;
+  discover?(signal?: AbortSignal): Promise<{ conversationID: string; title: string; modelSlug: string }[]>;
   readonly epoch: string;
   readonly signal: AbortSignal;
   models(signal?: AbortSignal): Promise<MainRemoteModel[]>;
@@ -101,6 +98,8 @@ const failed = () => new CortexError("provider_error", "Could not complete the r
 // A definitive pre-admission refusal can release a draft; a transport failure cannot.
 class Refused extends CortexError {}
 class InstanceNotFound extends Refused {}
+/** Producer refused the session workspace; `reason` is its `box_error` tag, already narrowed to the public enum. */
+export class CodeWorkspaceRefused extends Refused { constructor(readonly reason: CodeWorkspaceRefusal) { super("provider_unsupported", "The Code workspace is unavailable"); } }
 const aborted = () => new CortexError("aborted", "Remote delivery was detached");
 const invalid = () => new CortexError("invalid_request", "Invalid remote request");
 const neutral = (error: unknown) => error instanceof CortexError ? error : failed();
@@ -110,17 +109,32 @@ function input<T>(schema: z.ZodType<T>, value: unknown): T {
   return parsed.data;
 }
 
-/** Private SDK Fetch policy. Only named Chat operations reach this path; auth keeps its existing policy. */
+/** Private SDK Fetch policy. Only named Chat/Code operations reach this path; auth keeps its existing policy. */
 export async function remoteChatFetch(request: Request, owner: {
   origin: string; fetch: typeof fetch; signal: AbortSignal; check(): void; unauthorized(): void;
 }): Promise<Response> {
   owner.check();
   const url = new URL(request.url);
-  const stream = request.method === "POST" && /^\/v1\/conversations(?:\/cnv_[\da-zA-Z]{26})?\/turns$/.test(url.pathname);
-  const json = (request.method === "GET" && (/^\/v1\/(?:instance|models|registry\/models)$/.test(url.pathname)
+  const codeSession = /^\/v1\/code\/sessions\/cnv_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}(?:\/(?:messages|permissions|events|turns|cancel|diff|diff\/review|file)|\/permissions\/prm_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26})?$/.test(url.pathname);
+  // Environment/usage/settings and repository/branch picker reads, the default-model write, draft-PR metadata PATCH and the AGENTS.md read only.
+  const codeOwned = (request.method === "GET" && ["/v1/code/runtimes", "/v1/code/runtimes/images", "/v1/code/usage", "/v1/code/providers", "/v1/code/repositories", "/v1/code/branches"].includes(url.pathname))
+    || (request.method === "PUT" && url.pathname === "/v1/code/settings")
+    || (codeSession && request.method === "POST" && url.pathname.endsWith("/diff/review"))
+    || (codeSession && request.method === "PATCH" && /^\/v1\/code\/sessions\/cnv_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$/.test(url.pathname))
+    || (codeSession && request.method === "GET" && url.pathname.endsWith("/file") && url.searchParams.get("path") === "AGENTS.md");
+  const codeStream = codeSession && ((request.method === "POST" && url.pathname.endsWith("/turns")) || (request.method === "GET" && url.pathname.endsWith("/events") && request.headers.get("accept")?.includes("text/event-stream")));
+  const codeJSON = (url.pathname === "/v1/code/sessions" && ["GET", "POST"].includes(request.method)) || (url.pathname === "/v1/code/capabilities" && request.method === "GET") || (codeSession && ((request.method === "GET" && /^\/v1\/code\/sessions\/cnv_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}(?:\/(?:messages|permissions|events|diff))?$/.test(url.pathname)) || (request.method === "POST" && (url.pathname.endsWith("/cancel") || /\/permissions\/prm_[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$/.test(url.pathname))))) || codeOwned;
+  const code = codeStream || codeJSON;
+  if (code) {
+    const allowedQuery = url.pathname.endsWith("/events") ? ["since", "limit"] : url.pathname.endsWith("/file") ? ["path"] : url.pathname === "/v1/code/branches" ? ["repo"] : [];
+    if (url.pathname === "/v1/code/branches" && !url.searchParams.get("repo")) throw invalid();
+    if ([...url.searchParams.keys()].some(key => !allowedQuery.includes(key) || url.searchParams.getAll(key).length !== 1)) throw invalid();
+  }
+  const stream = codeStream || (request.method === "POST" && /^\/v1\/conversations(?:\/cnv_[\da-zA-Z]{26})?\/turns$/.test(url.pathname));
+  const json = (request.method === "GET" && (/^\/v1\/(?:instance|models|registry\/models|conversations)$/.test(url.pathname)
     || /^\/v1\/conversations\/cnv_[\da-zA-Z]{26}(?:\/messages)?$/.test(url.pathname)))
     || (request.method === "POST" && url.pathname === "/v1/library");
-  if (url.origin !== owner.origin || (!stream && !json)) throw invalid();
+  if (url.origin !== owner.origin || (!stream && !json && !codeJSON)) throw invalid();
   const lifetime = new AbortController();
   const signal = AbortSignal.any([request.signal, owner.signal, lifetime.signal]);
   let timer: ReturnType<typeof setTimeout>;
@@ -129,7 +143,7 @@ export async function remoteChatFetch(request: Request, owner: {
     timer = setTimeout(() => lifetime.abort(failed()), ms);
     timer.unref();
   };
-  deadline(10000);
+  deadline(codeStream && request.method === "GET" ? 25000 : 10000);
   let reader: ReadableStreamDefaultReader<Uint8Array> | undefined;
   let response: Response | undefined;
   let controller: ReadableStreamDefaultController<Uint8Array> | undefined;
@@ -156,7 +170,16 @@ export async function remoteChatFetch(request: Request, owner: {
       void response.body?.cancel().catch(() => undefined);
       throw failed();
     }
-    if (response.status !== 200) {
+    const successStatus = codeJSON && request.method === "POST" && url.pathname === "/v1/code/sessions" ? 201 : 200;
+    if (response.status !== successStatus && request.method === "GET" && (url.pathname.endsWith("/diff") || url.pathname.endsWith("/file")) && [422, 503].includes(response.status)) {
+      // Only the bounded problem tag crosses; producer detail text never reaches the renderer.
+      const text = await response.text().catch(() => "");
+      let tag: unknown;
+      try { tag = text.length <= 16384 ? (JSON.parse(text) as { box_error?: unknown }).box_error : undefined; } catch { tag = undefined; }
+      const reason = CodeWorkspaceRefusal.safeParse(tag);
+      throw new CodeWorkspaceRefused(reason.success ? reason.data : "unavailable");
+    }
+    if (response.status !== successStatus) {
       void response.body?.cancel().catch(() => undefined);
       if (response.status === 401) { owner.unauthorized(); throw new CortexError("provider_auth_failed", "Remote sign-in is required"); }
       if (response.status === 403) throw new Refused("provider_error", "Remote access was not accepted");
@@ -186,7 +209,7 @@ export async function remoteChatFetch(request: Request, owner: {
       const chunks: Uint8Array[] = [];
       for (;;) { const chunk = await read(); if (chunk.done) break; chunks.push(chunk.value); }
       cleanup();
-      return new Response(Buffer.concat(chunks), { status: 200, headers: response.headers });
+      return new Response(Buffer.concat(chunks), { status: successStatus, headers: response.headers });
     }
     // Header deadline ends here. Each native read gets an idle bound, never a whole-turn auth deadline.
     deadline(60000);
@@ -215,7 +238,7 @@ export async function remoteChatFetch(request: Request, owner: {
 }
 
 /** Called only by RemoteSession after successful promotion; no client, token or Fetch escapes. */
-export function createRemoteChatBinding(client: CortexClient, origin: string, epoch: string, signal: AbortSignal, check: () => void): MainRemoteChatBinding {
+export function createRemoteChatBinding(client: CortexClient, origin: string, epoch: string, signal: AbortSignal, check: () => void, accountID?: string): MainRemoteChatBinding {
   let catalog: Map<string, MainRemoteModel> | undefined;
   let catalogRead = 0;
   const files = new Map<string, MainRemoteFile>();
@@ -223,7 +246,7 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
   type Ledger = {
     input: MainRemoteTurn; key: string; admission?: MainRemoteAdmission; cursor?: string;
     terminal?: MainRemoteResult["terminal"]; pendingImages: Set<string>; running: boolean; closed: boolean;
-    requested: boolean; delivery: AbortController;
+    requested: boolean; delivery: AbortController; reset?: boolean; discarded?: boolean;
   };
   let current: Ledger | undefined;
   const guard = (operation?: AbortSignal) => {
@@ -286,7 +309,7 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
   }, operation);
 
   const execute = (ledger: Ledger, observer: MainRemoteObserver, operation?: AbortSignal): Promise<MainRemoteResult> => run(async (s) => {
-    if (ledger.running || ledger.closed || (ledger.terminal && ledger.requested)) throw new CortexError("conflict", "Remote delivery cannot be resumed");
+    if (ledger.running || ledger.closed || ledger.reset || (ledger.terminal && ledger.requested)) throw new CortexError("conflict", "Remote delivery cannot be resumed");
     ledger.running = true;
     ledger.delivery = new AbortController();
     const delivery = AbortSignal.any([s, ledger.delivery.signal]);
@@ -300,8 +323,6 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
         if (!effective) throw new CortexError("model_not_found", "The remote model is not available");
         const historyImages = !!ledger.input.conversationID && conversations.get(ledger.input.conversationID)?.needsVision;
         if ((ledger.input.attachmentIDs.length || historyImages) && effective.vision !== true) throw new CortexError("model_no_image_input", "The remote model cannot accept images");
-        // ponytail: pinned backend omits historical pixels; allow follow-ups after verified image hydration.
-        if (historyImages) throw new CortexError("provider_unsupported", "Remote image history is not available");
         if ((model.reasoning === true) !== (ledger.input.effort !== undefined)) throw invalid();
       }
       ledger.requested = true;
@@ -309,6 +330,7 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
         ...(ledger.input.oneOffModelSlug ? { one_off_model_slug: ledger.input.oneOffModelSlug } : {}) };
       for await (const event of client.streamTurn({ conversationId: ledger.input.conversationID, body, idempotencyKey: ledger.key }, {
         signal: delivery, maxReconnects: 0, lastEventId: ledger.cursor,
+        onDiscardedFrame() { guard(delivery); ledger.discarded = true; },
         onResponse(response) {
           try {
             guard(delivery);
@@ -330,10 +352,12 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
           try {
             guard(delivery);
             // SDK 0.4.0 resumes only from complete Redis stream IDs (ms-seq, each u64).
-            if (!/^(0|[1-9]\d{0,19})-(0|[1-9]\d{0,19})$/.test(id) || id.split("-").some((part) => BigInt(part) > 18446744073709551615n)) throw failed();
+            if (id !== "" && (!/^(0|[1-9]\d{0,19})-(0|[1-9]\d{0,19})$/.test(id)
+              || id.split("-").some((part) => BigInt(part) > 18446744073709551615n))) throw failed();
             observer.cursor?.(id);
             guard(delivery);
-            ledger.cursor = id;
+            ledger.cursor = id || undefined;
+            ledger.reset = id === "";
           } catch (error) { ledger.delivery.abort(neutral(error)); throw neutral(error); }
         },
       })) {
@@ -356,8 +380,7 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
       guard(delivery);
       if (!ledger.admission || !ledger.terminal || ledger.pendingImages.size) throw failed();
       if (ledger.terminal.type !== "error" || ledger.terminal.recovery !== "history") { ledger.closed = true; if (current === ledger) current = undefined; }
-      // ponytail: SDK 0.3.5 hides discarded frames; full projection requires its discard callback.
-      return { admission: { ...ledger.admission }, terminal: structuredClone(ledger.terminal), projection: "limited" };
+      return { admission: { ...ledger.admission }, terminal: structuredClone(ledger.terminal), ...(ledger.discarded ? { projection: "limited" as const } : {}) };
     } catch (error) {
       // Before a request, releasing a reservation cannot duplicate an admitted turn.
       if (!ledger.requested || (!ledger.admission && error instanceof Refused)) { ledger.closed = true; if (current === ledger) current = undefined; }
@@ -367,7 +390,30 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
   }, operation);
 
   return Object.freeze({
-    epoch, signal, models,
+    epoch, signal, models, accountID,
+    discover: (operation?: AbortSignal) => run(async (s) => {
+      const rows: { conversationID: string; title: string; modelSlug: string }[] = [];
+      const ids = new Set<string>();
+      for (const archived of [false, true]) {
+        const cursors = new Set<string>();
+        let cursor: string | undefined;
+        for (;;) {
+          const raw = await client.conversations.list({ query: { sort: "created", limit: 100, archived, cursor }, signal: s });
+          const page = z.object({ items: z.array(Detail).max(100), has_more: z.boolean(), next_cursor: z.string().min(1).optional() }).parse(raw);
+          guard(s);
+          for (const item of page.items) {
+            if (ids.has(item.id)) throw failed();
+            ids.add(item.id);
+            if (!conversations.has(item.id)) conversations.set(item.id, { modelSlug: item.model_slug, needsVision: false });
+            rows.push({ conversationID: item.id, title: item.title, modelSlug: item.model_slug });
+          }
+          if (!page.has_more) break;
+          if (!page.items.length || !page.next_cursor || cursors.has(page.next_cursor)) throw failed();
+          cursor = page.next_cursor; cursors.add(cursor);
+        }
+      }
+      return rows;
+    }, operation),
     upload: (value: MainRemoteImage, operation?: AbortSignal) => run(async (s) => {
       const i = input(ImageInput, value);
       if (i.conversationID) known(i.conversationID);
@@ -395,7 +441,7 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
       if (i.conversationID) {
         known(i.conversationID);
         const stored = conversations.get(i.conversationID)!;
-        if (stored.modelSlug !== i.modelSlug || stored.effort !== i.effort) throw invalid();
+        if (stored.modelSlug !== i.modelSlug || (!accountID && stored.effort !== i.effort)) throw invalid();
       }
       for (const id of i.attachmentIDs) {
         const file = files.get(id);
@@ -412,19 +458,34 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
         resume: (next: MainRemoteObserver, nextSignal?: AbortSignal) => execute(ledger, next, nextSignal) });
     },
     history: (value: string, operation?: AbortSignal) => run(async (s): Promise<MainRemoteHistory> => {
-      const id = input(ConversationID, value); known(id);
+      const id = input(ConversationID, value);
+      if (!conversations.has(id) && !accountID) known(id);
       const detail = Detail.parse(await client.conversations.get({ path: { id }, signal: s }));
       guard(s);
-      // The precise generated query is absent; the pinned handler defaults to the latest 100.
-      const page = HistoryPage.parse(await client.conversations.messages.list({ path: { id }, signal: s }));
-      guard(s);
+      if (accountID && !conversations.has(id)) conversations.set(id, { modelSlug: detail.model_slug, needsVision: false });
+      const items: z.infer<typeof HistoryMessage>[] = [], seen = new Set<string>(), cursors = new Set<string>();
+      let before: string | undefined;
+      for (;;) {
+        const raw: { readonly items: readonly HistoryDTO[] } = await client.conversations.messages.list({ path: { id }, query: { limit: 200, ...(before ? { before } : {}) }, signal: s });
+        guard(s);
+        const page = HistoryPage.parse(raw);
+        if (page.has_more !== page.has_older || items.length + page.items.length > 10000) throw failed();
+        for (const message of page.items) { if (seen.has(message.id)) throw failed(); seen.add(message.id); }
+        items.unshift(...page.items);
+        if (!page.has_older) break;
+        if (!page.items.length || !page.next_cursor || cursors.has(page.next_cursor) || page.next_cursor !== page.items[0].id) throw failed();
+        before = page.next_cursor; cursors.add(before);
+      }
+      for (let index = 1; index < items.length; index++) if (items[index].parent_message_id !== items[index - 1].id) throw failed();
       if (detail.id !== id || detail.model_slug !== conversations.get(id)?.modelSlug) throw failed();
+      const stored = conversations.get(id)!;
+      stored.needsVision ||= items.some((message) => message.attachments?.some((attachment) => attachment.content_type?.startsWith("image/")));
       if (current && !current.running && current.admission?.conversationID === id
-        && page.items.some((m) => m.role === "assistant" && m.id === current?.admission?.assistantID && m.finish_reason !== undefined)) {
+        && items.some((m) => m.role === "assistant" && m.id === current?.admission?.assistantID && m.finish_reason !== undefined)) {
         current.closed = true; current = undefined;
       }
-      return { conversationID: id, title: detail.title, modelSlug: detail.model_slug, items: page.items,
-        limit: 100, limited: true, projection: "text-and-attachments", reasoningAndTools: "omitted" };
+      return { conversationID: id, title: detail.title, modelSlug: detail.model_slug, items,
+        limit: 200, limited: false, projection: "retained-parts", reasoningAndTools: "retained" };
     }, operation),
   });
 }

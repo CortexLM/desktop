@@ -28,7 +28,10 @@ return { providerID: id, enabled: c.enabled, hasKey: !!key, keyHint: key ? c.key
 
 Cortex Cloud session material follows the same rule: `packages/desktop/src/remote-session.ts`
 runs in main; only status, active `signedIn` and validated email cross to the renderer.
-Its cookies/tokens/continuation secrets are process-local, never persisted. Origin/account
+Native device pairs persist in a separate `remote-credentials.json`, OS-encrypted only:
+Windows CurrentUser DPAPI or safeStorage with Linux `basic_text` refused. Pair replacement
+is serialized and atomic; `/v1/me.id` must match before refresh commits. No SID or refresh
+expiry is projected. Access-only web cookies/tokens/continuation secrets remain process-local. Origin/account
 changes invalidate old clients and pending authentication; remote redirects are refused.
 MCP connection material is also write-only: command, arguments, environment, URL and headers
 are stored in main's separate `mcp-credentials.json`. Public `McpServer` exposes only name,

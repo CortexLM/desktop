@@ -849,5 +849,15 @@
   "motion.sidebar.name": "Barre latérale ⌘B / focus ⌘\\",
   "motion.sidebar.desc": "largeur → 0, chrome en fondu flou puis cadre plein écran",
   "motion.sidebar.time": "240 ms + 320 ms",
-  "motion.sidebar.ease": "ease-out"
+  "motion.sidebar.ease": "ease-out",
+  "update.check": "Rechercher des mises à jour",
+  "update.checking": "Recherche de mises à jour…",
+  "update.upToDate": "Cortex est à jour",
+  "update.downloadingBackground": "Une nouvelle version est disponible et en cours de téléchargement",
+  "update.readyVersion": "La version {v} est prête. Redémarrez Cortex pour l’installer.",
+  "update.error.unsupported": "Les mises à jour automatiques ne sont pas disponibles sur ce système. Téléchargez les nouvelles versions sur cortex.foundation.",
+  "update.error.not_configured": "Cette version n’a pas de canal de mise à jour.",
+  "update.error.feed_invalid": "Le canal de mise à jour de cette version n’est pas valide.",
+  "update.error.not_signed": "Cette copie de Cortex n’est pas signée et ne peut donc pas se mettre à jour.",
+  "update.error.check_failed": "Impossible de vérifier ou de télécharger la mise à jour. Vérifiez votre connexion et réessayez."
 }

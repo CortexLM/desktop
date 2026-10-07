@@ -7,6 +7,7 @@ import { useVariant } from "../../registry";
 import { useT } from "../../i18n";
 import { isPreview } from "../../preview";
 import { api, platform } from "../../api";
+import type { UpdateState } from "@cortex/schema";
 import { Top, Keys, Hl, useFx, useBotCfg, css, norm, NB } from "./common";
 
 /* ---------- Keyboard shortcuts (shared with Settings → Shortcuts) ---------- */
@@ -141,13 +142,7 @@ export function UpdateScreen() {
     const tm = setInterval(() => setP((x) => { if (x >= 100) { clearInterval(tm); setV("ready"); return 100; } return Math.min(100, x + 4); }), 220);
     return () => clearInterval(tm);
   }, [v]); // eslint-disable-line react-hooks/exhaustive-deps
-  if (!preview) return (<>
-    {/* ponytail: the desktop bridge exposes no updater yet; live shows the installed version only. */}
-    <Top title={t("system.update.title")} />
-    <div className="page"><div className="systeme-center" style={{ justifyContent: "flex-start", paddingTop: 24 }}><div className="systeme-upd">
-      <div className="systeme-card"><div className="systeme-upd-head"><span className="systeme-logo" aria-hidden /><span className="systeme-grow"><b>{t("system.update.name", { v: window.cortex?.appVersion ?? "—" })}</b><span>{t("system.update.installed")}</span></span></div></div>
-    </div></div></div>
-  </>);
+  if (!preview) return <UpdateLive />;
   const u = fx.update;
   const mb = (u.size * p) / 100;
   return (<>
@@ -173,6 +168,37 @@ export function UpdateScreen() {
         <ul className="systeme-notes">{u.notes.map(([b, l, x], i) => <li key={x} className="systeme-rise" style={css(i)}><span className={"badge " + b}>{t(`system.update.tag.${l}`)}</span><span>{x}</span></li>)}</ul>
       </div>
       <label className="systeme-row" style={{ padding: "0 4px" }}><span className="systeme-grow" style={{ color: "var(--t2)" }}>{t("system.update.auto")}</span><Switch defaultChecked aria-label={t("system.update.autoLabel")} /></label>
+    </div></div></div>
+  </>);
+}
+
+function UpdateLive() {
+  const t = useT();
+  const bridge = window.cortex?.update;
+  const [s, setS] = React.useState<UpdateState | null>(null);
+  React.useEffect(() => {
+    if (!bridge) return;
+    let live = true;
+    const off = bridge.onState((x) => { if (live) setS(x); });
+    void bridge.status().then((x) => { if (live) setS((cur) => cur ?? x); });
+    return () => { live = false; off(); };
+  }, [bridge]);
+  const version = s?.current ?? window.cortex?.appVersion ?? "—";
+  const busy = s?.state === "checking" || s?.state === "available" || s?.state === "downloading";
+  const line = !s ? t("system.update.installed") : s.state === "checking" ? t("system.update.checking") : s.state === "up-to-date" ? t("system.update.upToDate")
+    : s.state === "available" || s.state === "downloading" ? t("system.update.downloadingBackground") : s.state === "ready" ? t("system.update.readyVersion", { v: s.version || "—" })
+    : s.state === "error" ? t(`system.update.error.${s.code}`) : t("system.update.installed");
+  return (<>
+    <Top title={t("system.update.title")} />
+    <div className="page"><div className="systeme-center" style={{ justifyContent: "flex-start", paddingTop: 24 }}><div className="systeme-upd">
+      <div className="systeme-card" data-testid="update-card" data-state={s?.state ?? "unknown"}>
+        <div className="systeme-upd-head"><span className="systeme-logo" aria-hidden />
+          <span className="systeme-grow"><b data-testid="update-version">{t("system.update.name", { v: version })}</b><span role={s?.state === "error" ? "alert" : "status"} data-testid="update-line">{line}</span></span>
+          {bridge && s?.state === "ready" && <button className="btn primary" data-testid="update-install" onClick={() => void bridge.install()}><Icon name="refresh" />{t("system.update.restart")}</button>}
+          {bridge && s?.state !== "ready" && <button className="btn secondary" data-testid="update-check" disabled={busy} onClick={() => void bridge.check().then(setS)}><Icon name="refresh" />{t("system.update.check")}</button>}
+        </div>
+        {busy && <div style={{ marginTop: 16 }}><div className="systeme-track" role="progressbar" aria-label={t("system.update.checking")} aria-busy><div className="systeme-bar systeme-bar-indeterminate" /></div></div>}
+      </div>
     </div></div></div>
   </>);
 }
