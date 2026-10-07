@@ -356,12 +356,14 @@ verified/inherited scope; matching older PNGs does not prove alignment with the 
 
 `.github/workflows/ci.yml`: `checks` (lint, typecheck, test, audit:i18n) on the runner
 named by `vars.CORTEX_LINUX_X64_RUNNER` (CodeBuild labels get `-<run_id>-<run_attempt>`
-appended; fallback `ubuntu-latest`); `e2e` on `blacksmith-4vcpu-ubuntu-2404`; `macos` on
-`blacksmith-6vcpu-macos-26` (build, E2E, unsigned arm64 package, packaged smoke). No
-release, publish or signing jobs exist.
+appended; fallback `ubuntu-latest`); `e2e` on `blacksmith-4vcpu-ubuntu-2404` (4 Playwright
+shards); `macos` on `blacksmith-6vcpu-macos-26` (4 shards; shard 1 also packages unsigned arm64
+and runs the packaged smoke); `windows` on `windows-2025` (6 shards; shard 1 packages and smokes).
+Every shard runs the same build; `--shard=N/M` splits tests, it skips none. No release, publish
+or signing jobs exist.
 
 The workflow describes configured checks, not the latest result. Use the PR's run and
-uploaded artifacts for revision-specific evidence; there is no Windows CI job.
+uploaded artifacts (one per shard) for revision-specific evidence.
 
 `ffc118a` CI `37094538845` passes 92 Electron cases/426 renders per OS and 201 units plus
 one optional backend skip. Its 28 installed-Mac assertions/captures bind the same artifact;

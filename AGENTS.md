@@ -601,9 +601,9 @@ Corrected collector execution and installed-native acceptance remain pending. Se
 | Job | Runner | Runs |
 | --- | --- | --- |
 | `checks` | `vars.CORTEX_LINUX_X64_RUNNER` (CodeBuild label pattern `codebuild-…-<run_id>-<attempt>`), else `ubuntu-latest` | lint, typecheck, test, audit:i18n |
-| `e2e` | `blacksmith-4vcpu-ubuntu-2404` | build + `test:e2e` under `xvfb-run` |
-| `macos` | `blacksmith-6vcpu-macos-26` | build, E2E, unsigned arm64 package, `node scripts/smoke.mjs mac` |
-| `windows` | `windows-2025` | build, serial E2E, unsigned x64 directory package and packaged smoke; not a release installer |
+| `e2e` | `blacksmith-4vcpu-ubuntu-2404` | build + `test:e2e --shard=N/4` under `xvfb-run` (4 shards) |
+| `macos` | `blacksmith-6vcpu-macos-26` | build, E2E `--shard=N/4` (4 shards); shard 1 also packages unsigned arm64 and runs `node scripts/smoke.mjs mac` |
+| `windows` | `windows-2025` | build, serial E2E `--shard=N/6` (6 shards); shard 1 also builds the unsigned x64 directory package and packaged smoke; not a release installer |
 
 Linux CI runs Electron serially because native clipboard and foreground focus share its
 X desktop. It installs CJK fallback fonts and retains a font/package inventory. Its auth
