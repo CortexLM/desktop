@@ -1,10 +1,11 @@
 import * as React from "react";
-import { createTranslator, preferredLocale, type Locale, type T } from "@cortex/i18n";
+import { createTranslator, LOCALES, preferredLocale, type Locale, type T } from "@cortex/i18n";
 import { viteCatalogs } from "@cortex/i18n/vite";
 
 const KEY = "cortex.locale";
 // Saved Settings choice, then the desktop default (CORTEX_LOCALE or system), then the browser languages.
-const initial = (): Locale => preferredLocale(localStorage.getItem(KEY) || window.cortex?.locale || "", navigator.languages);
+const saved = () => { const l = localStorage.getItem(KEY) ?? ""; return (LOCALES as readonly string[]).includes(l) ? l : ""; };
+const initial = (): Locale => preferredLocale(saved() || window.cortex?.locale || "", navigator.languages);
 const I18nCtx = React.createContext<{ t: T; locale: Locale; setLocale: (l: Locale) => void }>({ t: createTranslator("en", viteCatalogs), locale: "en", setLocale: () => {} });
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {

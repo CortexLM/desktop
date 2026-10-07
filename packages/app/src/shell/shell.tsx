@@ -10,7 +10,7 @@ import { VariantPicker, type Theme, type ThemePref } from "../App";
 import { useT } from "../i18n";
 import { isPreview, useFixtures, usePreviewBot } from "../preview";
 import { api, platform } from "../api";
-import { useSessions, useBots, useProjects, useQuery } from "../state/live";
+import { useSessions, useBots, useProjects, useQuery, onEvent } from "../state/live";
 import { useRemoteSessions } from "../state/remote-list";
 import { NotFound } from "./not-found";
 import { previewChatStart, startPreviewChat } from "../components/composer";
@@ -205,6 +205,9 @@ const initialsOf = (name: string) => name.split(/[\s._@-]+/).filter(Boolean).sli
 /** Signed-in remote account: initials for the rail and the first owned Bot for the sidebar shortcut. Refreshed per navigation. */
 function useAccount() {
   const { entryKey } = useNav();
+  // Main retires the remote epoch on sign-out or account switch; drop the old initials and Bot with it.
+  const [epochs, retire] = React.useReducer((n: number) => n + 1, 0);
+  React.useEffect(() => onEvent((event) => { if (event.type === "remote.session.removed") retire(); }), []);
   const q = useQuery(async () => {
     if (isPreview()) return undefined;
     const connection = await api.connection.get();
@@ -212,7 +215,7 @@ function useAccount() {
     const auth = await api.connection.auth.get().catch(() => undefined);
     const bots = await api.workBot.list().catch(() => undefined);
     return { initials: auth?.email ? initialsOf(auth.email.split("@")[0]!) : "", bot: bots?.bots[0] ? { epoch: bots.epoch, bot: bots.bots[0] } : undefined };
-  }, [entryKey]);
+  }, [entryKey, epochs]);
   return q.state === "ready" ? q.data : undefined;
 }
 
