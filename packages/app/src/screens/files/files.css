@@ -432,3 +432,22 @@
 .medias-sum div { display: flex; flex-direction: column; gap: 2px; }
 .medias-sum b { font-weight: 500; font-size: 13px; font-variant-numeric: tabular-nums; }
 .medias-zbtn { font-size: 16px; line-height: 1; font-weight: 400; }
+
+/* Live viewers (files/live.tsx): own chrome per kind; picked local files only. */
+.fichiers-live { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.fichiers-live-body { flex: 1; min-height: 0; overflow: auto; padding: 24px; display: flex; flex-direction: column; align-items: center; }
+.fichiers-live-body > .fichiers-drop { width: min(560px, 100%); margin-top: 8vh; }
+.fichiers-live-pdf { width: 100%; flex: 1; min-height: 480px; border-radius: var(--r-frame); background: var(--bg2); }
+.fichiers-live-media { width: min(920px, 100%); border-radius: var(--r-frame); }
+.fichiers-live-audio .fichiers-live-media { margin-top: 12vh; }
+.fichiers-live-video { background: var(--bg2); }
+.fichiers-live-tree { list-style: none; margin: 0; padding: 0; width: min(760px, 100%); }
+.fichiers-live-tree li { display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 8px; border-bottom: 1px solid var(--line); }
+.fichiers-live-slides { display: grid; grid-template-columns: 72px 1fr; gap: 16px; width: 100%; flex: 1; }
+.fichiers-live-thumbs { display: flex; flex-direction: column; gap: 8px; }
+.fichiers-live-thumbs button { aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--t2); }
+.fichiers-live-thumbs button[aria-current] { border-color: var(--t1); color: var(--t1); }
+.fichiers-live-slide { aspect-ratio: 16 / 9; max-width: 100%; padding: 40px; border-radius: var(--r-frame); background: var(--bg); box-shadow: var(--sh-1, 0 1px 3px rgb(0 0 0 / .12)); white-space: pre-wrap; font-size: 20px; }
+.fichiers-live-xlsx { align-items: stretch; }
+.fichiers-live-grid { margin: 0; font: 12px/1.6 var(--mono, ui-monospace, monospace); tab-size: 16; white-space: pre; }
+.fichiers-live-doc { white-space: pre-wrap; }

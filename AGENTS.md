@@ -88,6 +88,18 @@ without a total record cap, against the approved Task7 pagination producer.
 See `docs/connection-modes.md` for the current contract; older process-only notes below
 describe the earlier admission.
 
+Todo 6 gate fix: signed-in Code home defaults the model picker to the first model of the
+producer catalogue; `code-diff`, `code-terminal`, `code-pr`, `code-review` and `code-env` open
+the newest producer session on their own tab when no id is given. Signed-in Bot/Work routes
+(`approvals`, `bot`, `bot-roster`, `bot-settings`, `bot-studio`, `work-task`) each render their
+own layout over the existing work-bot transport. Live file viewers (`files/live.tsx`) open a
+file picked on this computer in the renderer only; nothing is uploaded. Eight signed-in Chat
+screens read a closed trunk table (`@cortex/schema` `CHAT_FEATURE_OPS`, main
+`remote-chat-features.ts`, `/api/chat/feature`): conversations, messages, shares
+create/list/revoke, canvases, account search, research report, audio capabilities and live
+preferences. Temporary chat (the trunk flag is set only when a chat starts) and desktop live calls
+are stated as unavailable in place. Every live screen root carries `data-testid="screen-<id>"`.
+
 ## Read this first (mandatory)
 
 Every contributor — human or agent — **must** read this file and the rule files in

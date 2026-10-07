@@ -483,3 +483,14 @@ The backend's `none` mode also validates browser Origin headers on mutations. Ma
 SDK requests are origin-pinned server requests without a browser Origin; a separate browser
 client must use its operator-configured allowed origin. The renderer still never talks directly
 to the backend or bypasses this boundary.
+
+## Chat feature routes (Todo 6 gate fix)
+
+Main admits one closed table of trunk Chat routes, `CHAT_FEATURE_OPS` in `packages/schema/src/chat-features.ts`,
+through `packages/desktop/src/remote-chat-features.ts`. The renderer names an operation, the path segments and,
+for `search` only, `q`. Main validates `cnv_`/`cvs_` ids and share UUIDs, sends the bearer token itself, refuses
+redirects and returns bounded JSON or a typed refusal. A 401 invalidates the identity as other remote routes do.
+Operations: conversations, messages, shares (list, create, revoke), canvases (list, read), search, research
+report, audio capabilities and live preferences. Not admitted: temporary chats (the trunk accepts
+`temporary` only on the first turn of a new chat, and the desktop composer does not send it yet), image
+generation outside a chat turn, and live calls.

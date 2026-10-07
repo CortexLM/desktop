@@ -20,20 +20,20 @@ function useOwner(epoch = "") {
   return () => { const route = readHash(); return mounted.current && current.current === token && route.entryKey === entryKey && route.params.get("id") === id && route.params.get("epoch") === routeEpoch; };
 }
 
-export function CodeConnection({ local }: { local: React.ReactNode }) {
+export function CodeConnection({ local, remote }: { local: React.ReactNode; remote?: React.ReactNode }) {
   const connection = useQuery(() => api.connection.get(), []);
-  if (connection.state === "ready" && connection.data.mode !== "local" && connection.data.signedIn) return <RemoteCodeHome />;
+  if (connection.state === "ready" && connection.data.mode !== "local" && connection.data.signedIn) return remote ?? <RemoteCodeHome />;
   return local;
 }
 
-function CodeComposer({ models, model, setModel, text, setText, busy, send }: {
-  models: RemoteModel[]; model: string; setModel(value: string): void; text: string; setText(value: string): void; busy: boolean; send(): void;
+function CodeComposer({ models, model, setModel: onModel, text, setText, busy, send }: {
+  models: RemoteModel[]; model: string; setModel?(value: string): void; text: string; setText(value: string): void; busy: boolean; send(): void;
 }) {
   const t = useT(), enter = useSendEnter();
   return <form onSubmit={e => { e.preventDefault(); if (!busy && text.trim() && model) send(); }}>
     <textarea className="input" data-testid="code-composer-input" aria-label={t("code.home.placeholder")} placeholder={t("code.home.placeholder")} value={text} onChange={e => setText(e.target.value)} {...enter.field} />
     <div className="ctx-bar">
-      <select className="input" aria-label={t("code.remote.model")} value={model} disabled={busy} onChange={e => setModel(e.target.value)}>
+      <select className="input" data-testid="code-model-picker" aria-label={t("code.remote.model")} value={model} disabled={busy || !onModel} onChange={e => onModel?.(e.target.value)}>
         <option value="">{t("code.remote.chooseModel")}</option>{models.map(m => <option key={m.slug} value={m.slug}>{m.name}</option>)}
       </select>
       <button className="btn primary" data-testid="code-api-send" disabled={busy || !text.trim() || !model} type="submit">{t("code.remote.send")}</button>
@@ -49,6 +49,9 @@ function RemoteCodeHome() {
   const [model, setModel] = React.useState(""), [text, setText] = React.useState(""), [repo, setRepo] = React.useState(""), [branch, setBranch] = React.useState("");
   const [filter, setFilter] = React.useState<StatusFilter>("all");
   const [busy, setBusy] = React.useState(false), [error, setError] = React.useState(false);
+  // Default to the first model the producer lists; the picker still allows another one.
+  const firstModel = catalog.state === "ready" ? catalog.data.models[0]?.slug ?? "" : "";
+  React.useEffect(() => { if (firstModel) setModel(m => m || firstModel); }, [firstModel]);
   // No farm: cloud is refused before any request; the draft stays and nothing falls back to this computer.
   const cloudRefused = runtime === "cloud" && capabilities.state === "ready" && !capabilities.data.cloud.available;
   const retained = React.useRef<{ id: string; epoch: string; runtime: string; model: string; repo: string; branch: string } | undefined>(undefined);
@@ -70,7 +73,7 @@ function RemoteCodeHome() {
     } catch { if (owns()) setError(true); }
     finally { if (owns()) setBusy(false); }
   };
-  return <div className="home code-api">
+  return <div className="home code-api" data-testid="screen-code">
     <h1>{t("code.home.title")}</h1>
     <div className="ctx-bar" role="group" aria-label={t("code.remote.execution")}>
       <button className="btn secondary" data-testid="code-mode-local" aria-pressed={runtime === "local"} disabled={busy} onClick={() => setRuntime("local")}>{t("code.remote.local")}</button>
@@ -322,18 +325,29 @@ function LocalInstructions() {
   </div>;
 }
 
-export function RemoteCodeSession() {
+type SessionView = "changes" | "terminal" | "environment" | "pr" | "attempts";
+export function RemoteCodeSession({ view }: { view?: SessionView } = {}) {
   const { params, entryKey } = useNav();
-  return <OwnedCodeSession key={`${entryKey}:${params.get("id")}:${params.get("epoch")}`} />;
+  return <OwnedCodeSession key={`${entryKey}:${params.get("id")}:${params.get("epoch")}`} id={params.get("id") ?? ""} epoch={params.get("epoch") ?? ""} initialView={view} />;
 }
 
-function OwnedCodeSession() {
+// The diff, terminal and PR routes without an id open the most recent producer session on that tab.
+export function LatestCodeSession({ view, screen }: { view: SessionView; screen: string }) {
+  const t = useT();
+  const sessions = useQuery(() => api.code.list(), []);
+  if (sessions.state === "error") return <div className="banner err" role="alert" data-testid={`screen-${screen}`}>{t("code.remote.unavailable")}<button className="btn secondary" onClick={sessions.reload}>{t("code.retry")}</button></div>;
+  if (sessions.state !== "ready") return <div className="thinking" role="status" data-testid={`screen-${screen}`} data-state="loading" />;
+  const latest = sessions.data[0];
+  if (!latest) return <div data-testid={`screen-${screen}`} data-state="empty"><LiveEmpty /></div>;
+  return <OwnedCodeSession key={latest.id} id={latest.id} epoch={latest.epoch} initialView={view} screen={screen} />;
+}
+
+function OwnedCodeSession({ id, epoch, initialView, screen }: { id: string; epoch: string; initialView?: SessionView; screen?: string }) {
   const t = useT(), { params, go } = useNav(), owns = useOwner();
-  const id = params.get("id") ?? "", epoch = params.get("epoch") ?? "";
   const snapshot = useQuery(() => api.code.snapshot(id, epoch), [id, epoch], e => e.type === "code.session.changed" && e.properties.sessionID === id && e.properties.epoch === epoch);
   const catalog = useQuery(() => api.code.models(), []);
   const [text, setText] = React.useState(params.get("draft") ?? ""), [model, setModel] = React.useState("");
-  const [busy, setBusy] = React.useState(false), [error, setError] = React.useState(false), [view, setView] = React.useState("changes");
+  const [busy, setBusy] = React.useState(false), [error, setError] = React.useState(false), [view, setView] = React.useState<string>(initialView ?? "changes");
   const submitted = React.useRef<string | undefined>(params.get("submitted") ?? params.get("draft") ?? undefined);
   const data: CodeSnapshot | undefined = snapshot.state === "ready" && snapshot.data.session.id === id && snapshot.data.session.epoch === epoch ? snapshot.data : undefined;
   React.useEffect(() => {
@@ -354,7 +368,7 @@ function OwnedCodeSession() {
   const running = data?.session.delivery === "streaming" || data?.session.delivery === "admitting" || data?.session.state === "running" || asks.length > 0;
   const views = [t("code.session.changes"), t("code.session.terminal"), t("code.remote.environment"), t("code.remote.pr"), t("code.contract.attempts")];
   const keys = ["changes", "terminal", "environment", "pr", "attempts"];
-  return <div className="code-api code-api-session">
+  return <div className="code-api code-api-session" data-testid={screen ? `screen-${screen}` : undefined} data-view={view}>
     <div className="content-top"><span className="title">{data?.session.title || t("code.untitled")}</span><span className="badge" role="status">{running ? t("code.status.running") : data?.session.state === "interrupted" ? t("code.status.cancelled") : data?.session.state === "failed" || data?.session.errorCode ? t("code.status.failed") : t("code.status.ready")}</span><div className="spacer" />
       <button className="btn secondary" data-testid="code-reconnect" disabled={busy} onClick={() => snapshot.reload()}>{t("code.remote.reconnect")}</button>
       <button className="btn secondary" data-testid="code-stop" disabled={busy} onClick={() => void mutate(() => api.code.stop(id, epoch))}>{t("code.terminal.stop")}</button>
@@ -370,7 +384,7 @@ function OwnedCodeSession() {
           <div className="ctx-bar"><button className="btn primary" data-testid="permission-allow-once" disabled={busy} onClick={() => void mutate(() => api.code.decide(id, p.id, epoch, "allow"))}>{t("code.terminal.allowOnce")}</button><button className="btn secondary" data-testid="permission-deny" disabled={busy} onClick={() => void mutate(() => api.code.decide(id, p.id, epoch, "deny"))}>{t("code.terminal.deny")}</button></div>
           {p.tool_name === "bash" && <LiveSessionGrant epoch={epoch} session={id} />}
         </div>)}
-        <CodeComposer models={catalog.state === "ready" ? catalog.data.models : []} model={model} setModel={() => {}} text={text} setText={setText} busy={busy || running} send={send} />
+        <CodeComposer models={catalog.state === "ready" ? catalog.data.models : []} model={model} text={text} setText={setText} busy={busy || running} send={send} />
       </div>
       <div className="split-r">
         <div className="pane-head"><Segmented items={views} value={views[Math.max(0, keys.indexOf(view))]} onChange={v => setView(keys[views.indexOf(v)] ?? "changes")} /></div>

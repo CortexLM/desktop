@@ -33,5 +33,8 @@ export function useVariant(def?: string): [string, (v: string) => void] {
   return [v || def || "", set];
 }
 
+/** Layout-neutral screen root: gives the Electron flows a unique testID per route. */
+export const Root = ({ id, children }: { id: string; children: React.ReactNode }) => <div className="screen-root" data-testid={`screen-${id}`}>{children}</div>;
+
 const mods = import.meta.glob("./screens/*/index.tsx", { eager: true }) as Record<string, { SCREENS?: ScreenDef[] }>;
 export const SCREENS: ScreenDef[] = Object.keys(mods).sort().flatMap((k) => mods[k].SCREENS ?? []);

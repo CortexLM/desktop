@@ -10,6 +10,7 @@ import type { CodeBinding } from "@cortex/core";
 import type { WorkBotBinding } from "@cortex/core";
 import { createRemoteWorkBotBinding, workBotFetch } from "./remote-work-bot";
 import { contractFetch } from "./remote-contracts";
+import { chatFeatureFetch } from "./remote-chat-features";
 
 const Secret = z.string().min(1).refine((value) => !/\s/.test(value));
 const Session = z.object({ status: z.literal("session"), access_token: Secret.regex(/^[A-Za-z0-9._~+/-]+=*$/) }).strict();
@@ -170,7 +171,7 @@ export class RemoteSession {
     identity.chat = createRemoteChatBinding(identity.client, this.#origin!, crypto.randomUUID(),
       AbortSignal.any([identity.lifetime.signal, identity.chatLifetime.signal]), () => this.#checkActive(identity), identity.accountID);
     const code = createRemoteCodeBinding(identity.client, identity.chat, () => this.#checkActive(identity));
-    identity.code = { ...code, contract: (call) => contractFetch(call, {
+    const owner = {
       origin: this.#origin!, signal: identity.chat!.signal, check: () => this.#checkActive(identity),
       unauthorized: () => { this.#invalidate(identity); void this.#store().catch(() => undefined); },
       fetch: async (input: RequestInfo | URL) => {
@@ -179,7 +180,8 @@ export class RemoteSession {
         const headers = new Headers(request.headers); headers.set("Authorization", `Bearer ${identity.token}`);
         return this.#fetch(new Request(request, { headers }));
       },
-    }) };
+    };
+    identity.code = { ...code, contract: (call) => contractFetch(call, owner), chatFeature: (call) => chatFeatureFetch(call, owner) };
     this.#watchExpiry(identity);
   }
 

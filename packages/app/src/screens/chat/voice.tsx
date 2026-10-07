@@ -6,6 +6,7 @@ import { useNav } from "../../shell/nav";
 import { useVariant } from "../../registry";
 import { useT } from "../../i18n";
 import { isPreview } from "../../preview";
+import { LiveChatFeature } from "./live-features";
 import { Unavailable, css, useBotCfg, useFx, useTicker } from "./shared";
 
 type VSt = "connecting" | "listening" | "talking" | "muted" | "interrupted" | "ended";
@@ -16,7 +17,7 @@ export const VOICE_VARIANTS: [string, string, string][] = [["connecting", "conne
 
 export function Voice() {
   const [v] = useVariant("connecting");
-  if (!isPreview()) return <Unavailable feature="voice" />;
+  if (!isPreview()) return <LiveChatFeature feature="voice" local={<Unavailable feature="voice" />} />;
   return <VoiceIn key={v} init={v as VSt} />;
 }
 

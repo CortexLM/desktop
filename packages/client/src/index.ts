@@ -11,7 +11,7 @@ import {
   type CodeCreateInput,
   type CodePromptInput,
   type CodeSessionView,
-  type ContractCall, type ContractResult, type CodeSnapshot, type CodeCapabilitiesView, type CodeEnvironmentView, type CodeUsageView, type CodeSettingsView, type CodeFileView, type CodeSessionPatch, type CodeReviewInput, type CodeReviewView, type CodeRepositoriesView, type CodeBranchesView,
+  type ContractCall, type ContractResult, type ChatFeatureCall, type ChatFeatureResult, type CodeSnapshot, type CodeCapabilitiesView, type CodeEnvironmentView, type CodeUsageView, type CodeSettingsView, type CodeFileView, type CodeSessionPatch, type CodeReviewInput, type CodeReviewView, type CodeRepositoriesView, type CodeBranchesView,
   type WorkBotView, type WorkBotCreate, type WorkBotUpdate, type WorkBotSnapshot, type WorkJobCreate, type WorkJob, type WorkBotParentInput, type WorkBotParentResponse,
   type BotCopyStatus, type BotCopyIssued, type BotCopyInvite, type BotCopyInbox, type BotCopyPreview, type BotCopyResult, type BotCopyCreate, type BotCopyInviteInput, type BotCopyAccept, type BotCopyDecline,
   type SkillList, type SkillView, type SkillUpload, type SkillEnable,
@@ -213,6 +213,7 @@ export function createClient(opts: ClientOptions) {
       localInstructions: (dir: string) => post<CodeFileView>("/api/code/local-instructions", { dir }),
       review: (id: string, body: CodeReviewInput) => post<CodeReviewView>(`/api/code/sessions/${enc(id)}/review`, body),
       contract: (body: ContractCall) => post<ContractResult>("/api/code/contract", body),
+      chatFeature: (body: ChatFeatureCall) => post<ChatFeatureResult>("/api/chat/feature", body),
     },
     workBot: {
       channels: {

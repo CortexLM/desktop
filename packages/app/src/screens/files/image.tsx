@@ -5,7 +5,7 @@ import { useI18n } from "../../i18n";
 import { Icon, IconBtn } from "../../kit/ui";
 import { navigation, readHash, useNav } from "../../shell/nav";
 import { onEvent } from "../../state/live";
-import { Upload } from "./docs";
+import { LiveFile } from "./live";
 import { ImageScreen, ZoomView } from "./media";
 import { readRaster, rasterFilename } from "./raster";
 
@@ -26,7 +26,7 @@ export function FileImage() {
   // The complete tuple owns reads; shell theme/sidebar updates keep that same owner.
   const tuple = React.useMemo(() => target(new URLSearchParams(key)), [key]);
   if (params.has("preview") || params.has("shot")) return <ImageScreen />;
-  if (fields.every((key) => !params.has(key))) return <Upload />;
+  if (fields.every((key) => !params.has(key))) return <LiveFile kind="image" screen="file-image" />;
   return <SavedImage key={key} tuple={tuple} />;
 }
 

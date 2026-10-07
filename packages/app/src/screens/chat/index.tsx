@@ -1,4 +1,4 @@
-import type { ScreenDef } from "../../registry";
+import { Root, type ScreenDef } from "../../registry";
 import { Home, Chat } from "./live-chat";
 import { ChatStates, CHAT_STATE_VARIANTS } from "./states";
 import { Voice, VOICE_VARIANTS } from "./voice";
@@ -9,8 +9,8 @@ import { History, Library } from "./pages";
 
 const G = "chat.group";
 export const SCREENS: ScreenDef[] = [
-  { id: "home", name: "chat.screen.home", mode: "Cortex", group: G, render: () => <Home /> },
-  { id: "chat", name: "chat.screen.chat", mode: "Cortex", group: G, render: () => <Chat /> },
+  { id: "home", name: "chat.screen.home", mode: "Cortex", group: G, render: () => <Root id="home"><Home /></Root> },
+  { id: "chat", name: "chat.screen.chat", mode: "Cortex", group: G, render: () => <Root id="chat"><Chat /></Root> },
   { id: "chat-states", name: "chat.screen.chat-states", mode: "Cortex", group: G, variants: CHAT_STATE_VARIANTS, render: () => <ChatStates /> },
   { id: "voice", name: "chat.screen.voice", mode: "Cortex", group: G, variants: VOICE_VARIANTS, render: () => <Voice /> },
   { id: "canvas", name: "chat.screen.canvas", mode: "Cortex", group: G, variants: CANVAS_VARIANTS, render: () => <Canvas /> },
@@ -19,6 +19,6 @@ export const SCREENS: ScreenDef[] = [
   { id: "image-gen", name: "chat.screen.image-gen", mode: "Cortex", group: G, variants: IMAGE_VARIANTS, render: () => <ImageGen /> },
   { id: "share", name: "chat.screen.share", mode: "Cortex", group: G, variants: SHARE_VARIANTS, render: () => <Share /> },
   { id: "temp-chat", name: "chat.screen.temp-chat", mode: "Cortex", group: G, variants: TEMP_VARIANTS, render: () => <TempChat /> },
-  { id: "history", name: "chat.screen.history", mode: "Cortex", group: G, render: () => <History /> },
-  { id: "library", name: "chat.screen.library", mode: "Cortex", group: G, render: () => <Library /> },
+  { id: "history", name: "chat.screen.history", mode: "Cortex", group: G, render: () => <Root id="history"><History /></Root> },
+  { id: "library", name: "chat.screen.library", mode: "Cortex", group: G, render: () => <Root id="library"><Library /></Root> },
 ];
