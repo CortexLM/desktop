@@ -51,6 +51,10 @@ work; move the feature into main.
 - CSP in `packages/app/index.html`: `default-src 'self'`, `connect-src 'self'`.
 - Preload exposes plain-data functions only (`packages/desktop/src/preload.ts`). A new
   bridge function is a security review item.
+- Bot calls (`cortex:call:*`): main validates every renderer payload (Bot UUID, exactly
+  640-byte capture, numeric receipts, boolean mute) and never sends a ticket or bearer to
+  the renderer. Data from the media socket is untrusted: a frame that does not decode
+  ends the call, it never throws in main. See [`docs/bot-calls.md`](../docs/bot-calls.md).
 
 **Bad**: `webPreferences: { contextIsolation: false }` or `--disable-web-security`.
 

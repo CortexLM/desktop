@@ -12,6 +12,7 @@ import { BotSkills } from "./bot-skills";
 import { BotPending } from "./bot-pending";
 import { BotMemory } from "./bot-memory";
 import { Segmented } from "../../kit/ui";
+import { BotCall } from "./bot-call";
 
 export function WorkBotConnection({ local }: { local: React.ReactNode }) {
   const connection = useQuery(() => api.connection.get(), []);
@@ -83,6 +84,7 @@ function WorkBotOwner() {
           <p>{t("workBot.autonomy")}</p>
         </form> : data ? <>
           <div className="ctx-bar"><span className="badge" role="status">{data.bot.status}</span><button className="btn secondary" onClick={() => navigate("work-task")}>{t("workBot.work")}</button></div>
+          {id && <BotCall botId={id} name={data.bot.name} cfg={{ name: data.bot.name, ...DEFAULT_MASCOT }} />}
           <p>{t("workBot.autonomy")}</p>{!data.computerAvailable && <div className="banner warn" data-testid="work-bot-cloud-unavailable">{t("workBot.cloudUnavailable")}</div>}
           <form onSubmit={e => { e.preventDefault(); if (!busy && goal.trim()) enqueue(); }}><label className="field">{t("workBot.kind")}<select className="input" data-testid="work-bot-kind" value={kind} disabled={busy} onChange={e => setKind(e.target.value === "general-purpose" ? "general-purpose" : "explore")}><option value="explore">{t("workBot.kind.explore")}</option><option value="general-purpose">{t("workBot.kind.general-purpose")}</option></select></label><label className="field">{t("workBot.goal")}<textarea className="input" data-testid="work-bot-goal" value={goal} maxLength={4000} onChange={e => { draft.current = e.target.value; setGoal(e.target.value); }} /></label><button className="btn primary" data-testid="work-bot-enqueue" disabled={busy || !goal.trim()}>{t("workBot.enqueue")}</button></form>
           <h2>{t("workBot.jobs")}</h2>{data.jobs.map(job => <section className="travail-panel" key={job.id} data-testid="work-bot-job" data-job-id={job.id} data-status={job.status}><b>{job.goal}</b><p className="sub">{t(job.kind === "general-purpose" ? "workBot.kind.general-purpose" : "workBot.kind.explore")} · {new Date(job.created_at).toLocaleString()}</p><p role="status">{t(`workBot.status.${job.status}`)}</p>{job.error_code && <p data-testid="work-bot-job-error" data-error-code={job.error_code}>{t(job.error_code === "cancelled" ? "workBot.jobError.cancelled" : "workBot.jobError.generic")}</p>}{job.error_code === "execution_unknown" && <p>{t("workBot.uncertain")}</p>}{job.result !== undefined && <pre data-testid="work-bot-result">{JSON.stringify(job.result, null, 2)}</pre>}{["queued", "running"].includes(job.status) && <button className="btn secondary" disabled={busy} data-testid="work-bot-cancel" onClick={() => void mutate(async () => { await api.workBot.cancel(id, job.id, epoch); }, true)}>{t("workBot.cancel")}</button>}</section>)}

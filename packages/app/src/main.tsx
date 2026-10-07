@@ -1,4 +1,3 @@
-import "./zod-jitless";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./kit/styles.css";

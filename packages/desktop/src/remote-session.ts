@@ -210,6 +210,17 @@ export class RemoteSession {
     return identity.workBot ??= createRemoteWorkBotBinding(identity.client, chat, () => this.#checkActive(identity), this.#openExternal);
   }
 
+  /** Bearer for the active identity's Bot call (refreshed when due) and the lifetime that ends it on logout/switch. */
+  async callAuth(origin: string): Promise<{ token: string; signal: AbortSignal }> {
+    const identity = this.#active;
+    if (!identity || this.#origin !== origin) throw new CortexError("provider_auth_failed", "Remote sign-in is required");
+    this.#checkActive(identity);
+    if (identity.refreshToken && identity.expiresAt! <= Date.now()) await this.#refresh(identity, origin);
+    this.#checkActive(identity);
+    if (!identity.token) throw new CortexError("provider_auth_failed", "Remote sign-in is required");
+    return { token: identity.token, signal: identity.lifetime.signal };
+  }
+
   #checkActive(identity: Identity): void {
     if (!identity.refreshToken && identity.expiresAt !== undefined && identity.expiresAt <= Date.now()) this.#invalidate(identity);
     if (identity.lifetime.signal.aborted) {

@@ -47,6 +47,7 @@
       "name": "@cortex/app",
       "version": "0.2.0",
       "dependencies": {
+        "@cortex/api-types": "file:../../vendor/task16-refactor/cortex-api-types-0.3.2.tgz",
         "@cortex/client": "workspace:*",
         "@cortex/i18n": "workspace:*",
         "@cortex/schema": "workspace:*",

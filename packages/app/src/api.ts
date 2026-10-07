@@ -14,6 +14,17 @@ type Bridge = {
   pickDirectory?: () => Promise<string | null>;
   onMenu?: (cb: (cmd: string) => void) => () => void;
   update?: { status: () => Promise<UpdateState>; check: () => Promise<UpdateState>; install: () => Promise<boolean>; onState: (cb: (s: UpdateState) => void) => () => void };
+  call?: CallBridge;
+};
+export type CallSnapshot = { phase: "connecting" | "listening" | "hearing" | "thinking" | "speaking" | "reconnecting" | "ended" | "error"; muted: boolean; heard: readonly string[]; partial: string; streaming: boolean; end?: "ended" | "auth_revoked" | "superseded" | "unavailable" | "busy" | "failed" | "mic_lost" };
+export type CallBridge = {
+  available(): Promise<"offer" | "unavailable" | "hidden">;
+  start(botId: string, on: { snapshot(s: CallSnapshot): void; play(pcm: Uint8Array, sequence: number, generation: number): void; flush(): void }): { started: Promise<void>; stop(): void };
+  capture(pcm: Uint8Array): void;
+  played(sequence: number, generation: number): void;
+  mute(muted: boolean): void;
+  interrupt(): void;
+  end(): void;
 };
 declare global { interface Window { cortex?: Bridge } }
 

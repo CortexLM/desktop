@@ -285,7 +285,6 @@ button.travail-li { width: 100%; text-align: left; }
 .travail-act .mono { color: var(--t3); width: 40px; text-align: right; flex-shrink: 0; }
 .travail-activity-live .travail-tline { list-style: none; }
 .travail-activity-live .travail-lede { margin-top: 6px; }
-.travail-activity-live > .travail-meta { white-space: normal; overflow-wrap: anywhere; }
 .travail-act-live { width: 100%; min-width: 0; text-align: left; }
 .travail-act-live > span[aria-hidden] { display: contents; }
 .travail-act-live .travail-grow { white-space: normal; overflow: visible; overflow-wrap: anywhere; }
@@ -458,3 +457,25 @@ button.travail-li { width: 100%; text-align: left; }
   .travail-pane .pane-head .btn { flex-shrink: 0; white-space: nowrap; }
   .travail-pc-wrap { min-width: 0; }
 }
+
+/* Bot call minimized (Task16): cortex-ui voice-session.css `.voice-mini`, docked over the content frame. */
+.work-call-dock { position: absolute; right: 16px; bottom: 16px; z-index: 60; }
+.chat-partial { font-style: italic; }
+.voice-mini { min-width: 0; width: min(100%, 420px); min-height: 60px; display: flex; align-items: center; gap: 4px; padding: 6px; border-radius: 18px; background: var(--card); color: var(--t1); box-shadow: var(--shadow-float, 0 2px 12px #00000012), var(--ring); }
+.voice-mini-expand { flex: 1; min-width: 0; min-height: 44px; display: flex; align-items: center; gap: 10px; text-align: left; padding: 0 8px; border-radius: 12px; }
+.voice-mini-copy { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.voice-mini-copy strong { font-size: 13px; line-height: 18px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.voice-mini-copy > span { font-size: 12px; line-height: 16px; color: var(--t2); font-variant-numeric: tabular-nums; }
+.voice-mini-button { flex-shrink: 0; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; }
+.voice-mini-expand, .voice-mini-button { touch-action: manipulation; transition: background var(--d-micro) linear, scale var(--d-press) var(--ease-firm); }
+.voice-mini-button:disabled { opacity: .4; }
+.voice-mini-button[aria-pressed="true"] { background: var(--sel-row); }
+.voice-mini-end { color: var(--on-solid); background: var(--solid); }
+.voice-mini :focus-visible { outline: 2px solid var(--t1); outline-offset: 2px; }
+.voice-mini :focus-visible, .voice-mini :focus-visible:active { transition: none; scale: 1; }
+.voice-mini-expand:active, .voice-mini-button:active:not(:disabled) { scale: .97; }
+.voice-mini-wave { width: 26px; height: 28px; flex-shrink: 0; display: flex; align-items: center; gap: 2px; color: var(--t1); }
+.voice-mini-wave i { width: 3px; border-radius: 2px; background: currentColor; }
+.voice-mini[data-phase="muet"] .voice-mini-wave { opacity: .4; }
+@media (hover: hover) and (pointer: fine) { .voice-mini-expand:hover, .voice-mini-button:not(.voice-mini-end):hover:not(:disabled) { background: var(--hover, var(--fill)); } }
+@media (prefers-reduced-motion: reduce) { .voice-mini-expand, .voice-mini-button { transition: none; } .voice-mini :active { scale: 1; } }

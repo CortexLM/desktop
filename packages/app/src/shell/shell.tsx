@@ -14,6 +14,8 @@ import { useSessions, useBots, useProjects } from "../state/live";
 import { useRemoteSessions } from "../state/remote-list";
 import { NotFound } from "./not-found";
 import { previewChatStart, startPreviewChat } from "../components/composer";
+import { BotCallDock } from "../screens/work/bot-call";
+import "../screens/work/work.css";
 
 const THEME_KEY = "cortex.theme";
 const sysDark = () => matchMedia("(prefers-color-scheme: dark)").matches;
@@ -120,6 +122,7 @@ export function Shell({ hash, children }: { hash: ReturnType<typeof readHash>; c
                 <GettingStarted route={route} go={go} />
               </div></aside>
               <main className="content" key={params.has("preview") || hash.shot || route === "home" || route === "code" ? hash.entryKey : undefined} style={{ viewTransitionName: "content" }}>{children ?? screen}</main>
+              <BotCallDock />
             </div>
           </div>
         </div>

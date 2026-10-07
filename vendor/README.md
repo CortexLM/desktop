@@ -27,6 +27,45 @@ Breaking for callers: `TurnInput.body` is typed per route, and `/v1/conversation
 requires a JSON body. Not published to a registry; not a deployment claim.
 
 ## Active Task8 activity-projection successor
+## Active Task10 completion pair (streaming calls)
+
+`packages/desktop/package.json` and `bun.lock` select `task10-completion/` through relative
+`file:../../vendor/...` paths, so CI resolves it from this checkout. Byte-identical copies of
+the read-only Task10 completion pair
+`/root/cortex-dev/worktrees/task10-streaming-stt/.omo/archive-pair-task10-completion/`
+(worker `st_01a11270`, claim `task10-streaming-stt/.omo/Task10CompletionDoneClaim.json`; base
+Task6 r2 sdk 0.4.1 / api-types 0.3.0 plus the streaming delta: `LiveCallCapabilities.stt` admits
+`streaming`, `LiveCallEvent.type` admits `partial_transcript`).
+
+| Archive | SHA-256 |
+| --- | --- |
+| `task10-completion/cortex-sdk-0.4.2.tgz` | `fccf9381dbd91471590f67844778624a063aa59e80cd6fad1a6858d6c1fab398` |
+| `task10-completion/cortex-api-types-0.3.1.tgz` | `42e752596047d594487bd456d1ada350a52fb1318bca56a1328b1558d9487285` |
+
+Why: api-types 0.2.0's `parseAudioCapabilities` returns null for the capabilities a producer
+with `audio.elevenlabs_api_key` sends (`stt: "streaming"`, `interim_transcripts: true`), which
+hid the Bot call. A Task10 independent gate on this pair is pending; until it approves, the
+live-calls pair below is the last gate-approved selection.
+
+## Previous Task16 live-calls pair
+
+Selected by `live-calls-st01a10f26/` (relative path). The archives are byte-identical
+copies of the independently approved Task6/Task10 pair
+`/root/cortex-dev/worktrees/cortex-completion-task6/.omo/archive-pair-live-calls-st01a10f26/`
+(gate `cortex-completion-task6/.omo/evidence/task6-live-calls-gate-review.md`, verifier `st_01a10f49`;
+provenance `cortex-completion-task6/.omo/LiveCallsSDKProvenance-st01a10f26.json`).
+
+| Archive | SHA-256 |
+| --- | --- |
+| `live-calls-st01a10f26/cortex-sdk-0.3.5.tgz` | `a283c1627af0810dc1e312213ccb2b0f31df73e17a05026bcd49e594b3317973` |
+| `live-calls-st01a10f26/cortex-api-types-0.2.0.tgz` | `81b5c1977f2f72789296c54254a4183e1705b6bb45d5cb51733c2055654d2bb2` |
+
+Adds the `cortex-live-v1` Bot call contract (`liveMediaUrl`, `LIVE_FRAME`, frame codec,
+`parseAudioCapabilities`) to the activity-projection pair below. The generated routines
+`Resume` class is renamed `Resume2`; no consumer imports it by name. Older pairs, including
+the absolute-path selections recorded below, are historical.
+
+## Previous Task8 activity-projection successor
 
 Exact independently approved pair selected by desktop manifest/lock, vendored byte-identical at
 `activity-projection-st01a10ecc/` (`file:../../vendor/...`, lock integrity unchanged) from

@@ -240,6 +240,13 @@ preview fixtures. Only visible gallery iframes load; offscreen previews unload t
   with persistent storage must supply `mcpCredentials`; in-memory engines use an in-memory store.
   See [`docs/engine.md`](./docs/engine.md).
 
+- **Bot calls stay in main.** `window.cortex.call` (`cortex:call:*`, `main.ts`/`preload.ts`)
+  moves PCM, playback receipts and controls only; main holds the ticket, socket and bearer
+  (`src/remote-call.ts`). The protocol is the shared `CallSession` from the vendored
+  `@cortex/api-types` with main's `timerEnv`; the renderer shares only `resampleTo16k`.
+  Malformed binary frames end the call `failed` with `protocol_error`, never a throw in
+  main. Channels, payloads and lifetime: [`docs/bot-calls.md`](./docs/bot-calls.md).
+
 ## Product scope (do not invent a different app)
 
 Two modes in the sidebar switcher: **Cortex** and **Cortex Code**
