@@ -255,6 +255,7 @@ export const RemoteModel = z.object({
   slug: RemoteName, name: RemoteName,
   reasoning: z.union([z.boolean(), z.literal("unknown")]), vision: z.union([z.boolean(), z.literal("unknown")]), tools: z.union([z.boolean(), z.literal("unknown")]),
   contextTokens: RemoteCount.optional(), outputTokens: RemoteCount.optional(),
+  description: z.string().trim().min(1).max(1024).optional(), preview: z.literal(true).optional(),
   source: z.enum(["cloud", "models.dev", "cache", "cache_stale", "unavailable"]),
 })
 export type RemoteModel = z.infer<typeof RemoteModel>
