@@ -4,7 +4,8 @@ import http from "node:http";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { createCallHost } from "../src/remote-call";
 
-const caps = (available: boolean) => ({ stt: available, tts: available, live: false, bot_call: available
+// `live` is a boolean (api-types 0.3.5); trunk answers `live: true` when calls are configured, and 0.3.4 rejected that body.
+const caps = (available: boolean) => ({ stt: available, tts: available, live: available, bot_call: available
   ? { available: true, transport: "cortex-live-v1", stt: "utterance", tts: "pcm_stream", interim_transcripts: false, barge_in: true }
   : { available: false, transport: "cortex-live-v1", stt: "unavailable", tts: "unavailable", interim_transcripts: false, barge_in: false } });
 

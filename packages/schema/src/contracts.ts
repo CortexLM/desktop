@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 // Closed table of Todo 3 producer contract routes (plus task plans, approval policy and orgs) the renderer may invoke through main (see desktop remote-contracts.ts).
-export type ContractOp = { method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE"; path: string; slow?: boolean }
+export type ContractOp = { method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE"; path: string; slow?: boolean; text?: boolean }
 export const CONTRACT_OPS = {
   "code.attempts": { method: "GET", path: "/code/sessions/{session}/attempts" },
   "code.attempts.retry": { method: "POST", path: "/code/sessions/{session}/attempts", slow: true },
@@ -48,6 +48,53 @@ export const CONTRACT_OPS = {
   "policy.put": { method: "PUT", path: "/approval-policy" },
   "policy.diff": { method: "GET", path: "/approval-policy/diff" },
   "orgs.list": { method: "GET", path: "/orgs" },
+  // Todo 6b app screens: owner-scoped trunk routes, same closed-table rules.
+  "app.channel": { method: "GET", path: "/channels/{channel}" },
+  "app.channel.messages": { method: "GET", path: "/channels/{channel}/messages" },
+  "app.channel.send": { method: "POST", path: "/channels/{channel}/messages", slow: true },
+  "app.share.preview": { method: "GET", path: "/bot/shares/{token}" },
+  "app.share.clone": { method: "POST", path: "/bot/shares/{token}/clone" },
+  "app.computer": { method: "GET", path: "/mascots/{bot}/computer" },
+  "app.computer.lifecycle": { method: "POST", path: "/mascots/{bot}/computer/lifecycle", slow: true },
+  "app.automations": { method: "GET", path: "/code/automations" },
+  "app.automations.create": { method: "POST", path: "/code/automations" },
+  "app.automations.runs": { method: "GET", path: "/code/automations/runs" },
+  "app.automation": { method: "GET", path: "/code/automations/{automation}" },
+  "app.automation.update": { method: "PATCH", path: "/code/automations/{automation}" },
+  "app.automation.remove": { method: "DELETE", path: "/code/automations/{automation}" },
+  "app.automation.run": { method: "POST", path: "/code/automations/{automation}/run", slow: true },
+  "app.github.start": { method: "POST", path: "/code/github/oauth/start" },
+  "app.instance": { method: "GET", path: "/instance" },
+  "app.providers": { method: "GET", path: "/providers" },
+  "app.provider": { method: "GET", path: "/providers/{provider}" },
+  "app.models": { method: "GET", path: "/models" },
+  "app.registry.models": { method: "GET", path: "/registry/models?limit=200" },
+  "app.conversations": { method: "GET", path: "/conversations" },
+  "app.conversation.messages": { method: "GET", path: "/conversations/{conversation}/messages" },
+  "app.permissions": { method: "GET", path: "/conversations/{conversation}/permissions" },
+  "app.permission.decide": { method: "POST", path: "/conversations/{conversation}/permissions/{prompt}" },
+  "app.library": { method: "GET", path: "/library" },
+  "app.note.create": { method: "POST", path: "/library/notes" },
+  "app.file": { method: "GET", path: "/library/{file}" },
+  "app.file.rename": { method: "PATCH", path: "/library/{file}" },
+  "app.file.content": { method: "GET", path: "/library/{file}/content", text: true },
+  "app.file.remove": { method: "DELETE", path: "/library/{file}" },
+  "app.scheduled": { method: "GET", path: "/scheduled-tasks" },
+  "app.scheduled.create": { method: "POST", path: "/scheduled-tasks" },
+  "app.scheduled.get": { method: "GET", path: "/scheduled-tasks/{scheduled}" },
+  "app.scheduled.update": { method: "PATCH", path: "/scheduled-tasks/{scheduled}" },
+  "app.scheduled.remove": { method: "DELETE", path: "/scheduled-tasks/{scheduled}" },
+  "app.scheduled.run": { method: "POST", path: "/scheduled-tasks/{scheduled}/run", slow: true },
+  "app.skills": { method: "GET", path: "/skills?surface=chat" },
+  "app.skill.create": { method: "POST", path: "/skills" },
+  "app.skill": { method: "GET", path: "/skills/{skill}" },
+  "app.skill.update": { method: "PATCH", path: "/skills/{skill}" },
+  "app.skill.remove": { method: "DELETE", path: "/skills/{skill}" },
+  "app.skill.enable": { method: "PUT", path: "/skills/{skill}/enable?surface=chat" },
+  "app.integrations": { method: "GET", path: "/integrations" },
+  "app.mcp.add": { method: "POST", path: "/integrations/mcp", slow: true },
+  "app.devices": { method: "GET", path: "/me/devices" },
+  "app.mcp.remove": { method: "DELETE", path: "/integrations/mcp/{mcp}" },
 } as const satisfies Record<string, ContractOp>
 export type ContractOpName = keyof typeof CONTRACT_OPS
 export const ContractCall = z.object({
