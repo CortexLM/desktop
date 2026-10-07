@@ -10,6 +10,7 @@ export const CONTRACT_OPS = {
   "code.comments.add": { method: "POST", path: "/code/sessions/{session}/diff/comments" },
   "code.comments.remove": { method: "DELETE", path: "/code/sessions/{session}/diff/comments/{comment}" },
   "code.diff.resolve": { method: "POST", path: "/code/sessions/{session}/diff/resolve", slow: true },
+  "code.pr.open": { method: "POST", path: "/code/sessions/{session}/pull-request", slow: true },
   "code.pr.review": { method: "POST", path: "/code/sessions/{session}/pull-request/review" },
   "code.pr.reviewers": { method: "GET", path: "/code/sessions/{session}/pull-request/reviewers" },
   "code.pr.reviewers.request": { method: "POST", path: "/code/sessions/{session}/pull-request/reviewers" },

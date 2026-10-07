@@ -8,7 +8,7 @@ import { useQuery } from "../../state/live";
 import { useSendEnter } from "../../state/send-enter";
 import { splitRows } from "./split-rows";
 import { LiveEmpty } from "./parts";
-import { LiveAttempts, LiveComments, LivePrReview, LiveRepoToggle, LiveResolve, LiveRuntimeAdmin, LiveSessionGrant } from "./contract-panels";
+import { ContractError, useContract, LiveAttempts, LiveComments, LivePrReview, LiveRepoToggle, LiveResolve, LiveRuntimeAdmin, LiveSessionGrant } from "./contract-panels";
 
 function useOwner(epoch = "") {
   const { entryKey, params } = useNav();
@@ -164,8 +164,17 @@ function PrDraft({ session, diff }: { session: CodeSnapshot["session"]; diff: st
     {invalid && <div className="banner err" role="alert" data-testid="code-pr-invalid-ref">{t("code.remote.prInvalidRef")}</div>}
     {state === "saved" && <div className="banner" role="status" data-testid="code-pr-prepared">{t("code.remote.prPrepared")}</div>}
     {state === "error" && <div className="banner err" role="alert" data-testid="code-pr-error">{t("code.remote.unavailable")}</div>}
-    <p className="code-hint" data-testid="code-pr-no-open">{t("code.remote.prNoOpen")}</p>
+    {session.runtime === "cloud" && <OpenDraftPr session={session} title={title.trim()} ready={state === "saved"} />}
   </form>;
+}
+
+function OpenDraftPr({ session, title, ready }: { session: CodeSnapshot["session"]; title: string; ready: boolean }) {
+  const t = useT(), c = useContract(), [pr, setPr] = React.useState<{ number: number; url: string }>();
+  return <div className="ctx-bar" data-testid="code-pr-open-bar">
+    <button className="btn secondary" type="button" data-testid="code-pr-open" disabled={c.busy || !ready || !!pr || !title} onClick={() => void c.run(async () => setPr((await api.code.contract({ epoch: session.epoch, op: "code.pr.open", params: { session: session.id }, body: { title } })).data as { number: number; url: string }))}>{t("code.contract.openDraftPr")}</button>
+    {pr && <span className="code-meta" data-testid="code-pr-opened" data-number={pr.number}>{t("code.contract.prOpened", { n: pr.number })}</span>}
+    <ContractError code={c.error} />
+  </div>;
 }
 
 // Code settings against the signed-in producer; anything else keeps the local section.
