@@ -77,7 +77,7 @@ function RemoteCodeHome() {
   const envItems = [{ value: "local", label: t("code.remote.local"), hint: t("code.remote.localBody") }, { value: "cloud", label: t("code.remote.cloud"), hint: cloudOff ? t("code.home.cloudOff") : t("code.remote.cloudBody") }];
   const visible = sessions.state === "ready" ? sessions.data.filter(s => matches(filter, s.state)) : [];
   return <><div className="content-top"><div className="spacer" /><IconBtn icon="compose" label={t("code.newTask")} onClick={() => go("code")} /></div>
-  <div className="home code-api" data-testid="screen-code">
+  <div className="home code-api">
     <h1>{t("code.home.title")}</h1>
     <CodeComposer models={catalog.state === "ready" ? catalog.data.models : []} model={model} setModel={setModel} text={text} setText={editText} busy={busy || cloudRefused} send={() => void send()} />
     <div className="ctx-bar" data-testid="code-context">

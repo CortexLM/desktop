@@ -22,7 +22,7 @@ const CloudPage = z.object({
   items: z.array(z.object({
     slug: Name, display_name: Name, description: z.string(), context_tokens: Count, max_output_tokens: Count,
     supports_reasoning: z.boolean(), supports_tools: z.boolean(), supports_vision: z.boolean(),
-    kind: z.enum(["chat", "image"]).optional(),
+    kind: z.enum(["chat", "image"]).optional(), is_preview: z.boolean().optional(),
   })).max(10000),
   has_more: z.literal(false),
 });
@@ -54,7 +54,7 @@ const Detail = z.object({ id: ConversationID, title: z.string(), model_slug: Nam
 
 export type MainRemoteModel = {
   slug: string; name: string; reasoning: boolean | "unknown"; vision: boolean | "unknown"; tools: boolean | "unknown";
-  contextTokens?: number; outputTokens?: number; source: "cloud" | z.infer<typeof RegistryPage>["source"];
+  contextTokens?: number; outputTokens?: number; description?: string; preview?: true; source: "cloud" | z.infer<typeof RegistryPage>["source"];
 };
 export type MainRemoteImage = z.infer<typeof ImageInput>;
 export type MainRemoteFile = { id: string; filename: string; contentType: string; byteSize: number; conversationID?: string };
@@ -283,6 +283,7 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
       for (const m of page.items.filter((m) => m.kind === "chat")) list.push({
         slug: m.slug, name: m.display_name, reasoning: m.supports_reasoning, vision: m.supports_vision, tools: m.supports_tools,
         contextTokens: m.context_tokens || undefined, outputTokens: m.max_output_tokens || undefined, source: "cloud",
+        ...(m.description.trim() ? { description: m.description.trim().slice(0, 1024) } : {}), ...(m.is_preview ? { preview: true as const } : {}),
       });
     } else {
       const cursors = new Set<string>();
