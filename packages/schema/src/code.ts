@@ -70,7 +70,7 @@ export const CodeSessionPatch = CodeOwner.extend({ title: z.string().trim().max(
 export type CodeSessionPatch = z.infer<typeof CodeSessionPatch>
 // Cloud workspace pickers: producer repositories (GitHub plus repos seen in sessions) and a repo's branches.
 const GithubAccess = { githubConnected: z.boolean(), githubState: z.string(), githubError: z.string().optional() }
-export const CodeRepositoriesView = z.object({ epoch: z.string(), items: z.array(z.object({ fullName: z.string(), defaultBranch: z.string().optional(), private: z.boolean(), source: z.enum(["github", "session"]) })), ...GithubAccess })
+export const CodeRepositoriesView = z.object({ epoch: z.string(), items: z.array(z.object({ fullName: z.string(), defaultBranch: z.string().optional(), private: z.boolean(), enabled: z.boolean().optional(), source: z.enum(["github", "session"]) })), ...GithubAccess })
 export type CodeRepositoriesView = z.infer<typeof CodeRepositoriesView>
 export const CodeBranchesInput = CodeOwner.extend({ repo: Repo }).strict()
 export type CodeBranchesInput = z.infer<typeof CodeBranchesInput>

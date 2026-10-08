@@ -327,7 +327,7 @@ function ProjectRows({ project, sessions }: { project: Project; sessions: Sessio
 }
 
 // Signed-in Code: repositories from the producer's sessions, each with its latest tasks (design "Dépôts").
-const CODE_DOT: Record<string, string> = { running: "blue", connecting: "blue", connected: "blue", waiting: "blue", permission_blocked: "yellow", completed: "green", failed: "red" };
+const CODE_DOT: Record<string, string> = { running: "blue", connecting: "blue", connected: "blue", waiting: "blue", permission_blocked: "yellow", completed: "green", failed: "red", cloud_only: "green", local: "green", interrupted: "yellow", disconnected: "yellow", unpaired: "yellow" };
 function CodeRepos({ route, go }: { route: Route; go: (r: Route, p?: Record<string, string>) => void }) {
   const t = useT(), { params } = useNav();
   const connection = useQuery(() => api.connection.get(), []);

@@ -104,7 +104,7 @@ export function LiveSessionGrant({ epoch, session }: Owner) {
 // Machines Cloud (design: lot-security Machines): occupancy metrics, search + state filter, machine list, selected machine detail.
 const STATES = ["all", "running", "hibernated", "stopped"] as const;
 type Tree = { path: string; session_id?: string; branch?: string };
-const slug = (r: Row) => { const u = String(r.repo_url ?? ""); return /github\.com[/:]([^/]+\/[^/.]+)/.exec(u)?.[1] ?? (u || String(r.id)); };
+const slug = (r: Row) => { const u = String(r.repo_url ?? ""); return /github\.com[/:]([^/]+\/[^/?#]+?)(?:\.git)?(?:[/?#]|$)/.exec(u)?.[1] ?? (u || String(r.id)); };
 export function LiveRuntimeAdmin({ epoch }: { epoch: string }) {
   const t = useT(), c = useContract();
   const runtimes = useQuery(() => call<{ items: Row[] }>({ epoch, op: "code.runtimes" }), [epoch]);

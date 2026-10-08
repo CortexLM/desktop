@@ -99,7 +99,7 @@ function RemoteCodeHome() {
 
 // Task list status filter over the producer session states.
 type StatusFilter = "all" | "running" | "done" | "failed" | "cancelled";
-const STATUS_OF: Partial<Record<CodeSessionView["state"], StatusFilter>> = { running: "running", connecting: "running", connected: "running", waiting: "running", permission_blocked: "running", completed: "done", failed: "failed", interrupted: "cancelled" };
+const STATUS_OF: Partial<Record<CodeSessionView["state"], StatusFilter>> = { running: "running", connecting: "running", connected: "running", waiting: "running", permission_blocked: "running", completed: "done", failed: "failed", interrupted: "cancelled", disconnected: "cancelled", unpaired: "cancelled", cloud_only: "done", local: "done" };
 const matches = (filter: StatusFilter, state: CodeSessionView["state"]) => filter === "all" || STATUS_OF[state] === filter;
 const FILTER_LABEL: Record<StatusFilter, string> = { all: "code.tasks.filter.all", running: "code.tasks.filter.running", done: "code.status.done", failed: "code.tasks.filter.failed", cancelled: "code.status.cancelled" };
 const BADGE: Record<StatusFilter, string> = { all: "code-mute", running: "run", done: "ok", failed: "err", cancelled: "code-mute" };
@@ -230,7 +230,7 @@ function RemoteRepos({ epoch }: { epoch: string }) {
     {d.items.length ? <div className="list">{d.items.map(r => <div key={r.fullName} className="li" data-testid="code-repo-row">
       <span className="code-av code-av-org" data-tone={owner(r.fullName).length % 4} aria-hidden>{owner(r.fullName).slice(0, 2).toUpperCase()}</span>
       <span className="grow"><span className="ttl mono code-repo">{r.fullName}</span><span className="sub"><Icon name="git-branch" size={12} /> {[r.defaultBranch, t(r.private ? "live.private" : "live.public")].filter(Boolean).join(" · ")}</span></span>
-      <LiveRepoToggle epoch={epoch} fullName={r.fullName} reload={repos.reload} />
+      <LiveRepoToggle epoch={epoch} fullName={r.fullName} enabled={r.enabled} reload={repos.reload} />
     </div>)}</div>
       : <div className="empty code-empty-sm" data-testid="code-repos-empty"><Icon name="folder-code" size={20} /><h2>{t("code.settings.reposEmptyTitle")}</h2><p>{t("code.settings.reposEmptyBody")}</p></div>}
     <p className="code-hint">{t("code.settings.pushHint")}</p>
