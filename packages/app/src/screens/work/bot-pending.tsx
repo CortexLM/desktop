@@ -56,7 +56,7 @@ export function BotPending({ epoch, id, owns, inline }: { epoch: string; id?: st
     }
     finally { pending.current = false; if (current()) setBusy(false); }
   }
-  if (inline) return <>{rows?.items.filter(row => row.message_id && decision?.id !== row.id).map(row => <div className="msg-bot-row bot-thread-row" key={row.id} data-testid="bot-thread-approval" data-approval-id={row.id}>
+  if (inline) return <>{rows?.items.filter(row => row.message_id).map(row => <div className="msg-bot-row bot-thread-row" key={row.id} data-testid="bot-thread-approval" data-approval-id={row.id}>
     <Mascot cfg={inline} state="waiting" size={24} />
     <div className="bot-bubble bot-bubble-ask"><span>{t("workBot.thread.approval", { tool: toolName(t, row.tool_name) })}</span>
       <span className="bot-bubble-actions"><button className="btn secondary" data-testid="bot-pending-deny" disabled={busy} onClick={() => void decide(row, "deny")}>{t("workBot.pending.deny")}</button><button className="btn primary" data-testid="bot-pending-allow" disabled={busy} onClick={() => void decide(row, "allow")}>{t("workBot.pending.allow")}</button></span>

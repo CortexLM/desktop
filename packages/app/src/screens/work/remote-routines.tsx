@@ -107,7 +107,7 @@ function RoutineEditor({ epoch, id, rid, bots, owns, back, event: startEvent }: 
     if (owns()) back();
   });
   const validEvent = /^[A-Za-z0-9_\-.:/]{1,80}$/.test(event.trim());
-  const valid = !!name.trim() && !!prompt.trim() && !!bot && (kind === "cron" ? !!schedule : validEvent) && (!rid || initialized.current);
+  const valid = !!name.trim() && !!prompt.trim() && !!bot && (kind === "cron" ? !!schedule : validEvent && !!(original.state === "ready" && original.data?.schedule || schedule)) && (!rid || initialized.current);
   const stored = original.state === "ready" ? original.data : undefined;
   const test = () => void action(async () => {
     if (!stored || stored.trigger.kind === "cron" || !stored.trigger.event) return;

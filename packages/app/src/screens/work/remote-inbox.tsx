@@ -90,7 +90,7 @@ function NotificationPanel() {
   return <>
     <div className="travail-notif-h">
       <span className="travail-grow">{t("work.notif.title")}</span>
-      <button className="btn secondary" style={{ height: 28, boxShadow: "none" }} data-testid="notification-read-all" disabled={busy || !count()} onClick={() => void act(async () => { await api.workBot.inbox.readAllNotifications(epoch); await api.workBot.inbox.read({ epoch, read: { all: true } }); })}><Icon name="check" size={16} />{t("work.notif.markAll")}</button>
+      <button className="btn secondary" style={{ height: 28, boxShadow: "none" }} data-testid="notification-read-all" disabled={busy || !count()} onClick={() => void act(async () => { if (rows.some(r => r.kind === "notification" && r.unread)) await api.workBot.inbox.readAllNotifications(epoch); if (rows.some(r => r.kind === "inbox" && r.unread)) await api.workBot.inbox.read({ epoch, read: { all: true } }); })}><Icon name="check" size={16} />{t("work.notif.markAll")}</button>
     </div>
     <TabBar label={t("work.notif.filter")} value={tab} onChange={setTab} items={[["all", t("work.notif.tab.all"), count()], ["mentions", t("work.notif.tab.mentions"), count("mentions")], ["bots", t("work.notif.tab.bots"), count("bots")]]} />
     <div className="travail-notif-l" aria-live="polite" data-testid="notification-list" data-owner-epoch={epoch}>
