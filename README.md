@@ -1,25 +1,86 @@
-<p align="center">
-  <img src="docs/assets/banner.png" alt="Cortex Desktop: a Bot conversation in dark theme, with the Nova mascot, iMessage-style bubbles and typing dots" width="820">
-</p>
 <h1 align="center">Cortex Desktop</h1>
-<p align="center">A desktop app for Chat, Work, Bots and Code, with an agent engine that runs on your machine.</p>
+
 <p align="center">
-  <a href="https://github.com/CortexLM/desktop/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/CortexLM/desktop/ci.yml?style=flat-square&branch=main" /></a>
-  <a href="./LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue?style=flat-square" /></a>
-  <img alt="Status: alpha" src="https://img.shields.io/badge/status-alpha-orange?style=flat-square" />
-  <img alt="Electron 44" src="https://img.shields.io/badge/electron-44-47848f?style=flat-square" />
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="docs/assets/banner-light.png">
+    <img src="docs/assets/banner.png" alt="Cortex Desktop on macOS: the sidebar and a conversation with the Nova Bot, with message bubbles and typing dots (demo data)" width="100%">
+  </picture>
+</p>
+
+<p align="center">
+  <b>The desktop app for Chat, Work, Bots and Code, built on an agent engine that runs on your machine.</b> It's for people who want to talk to models they choose, keep their sessions and keys local, and optionally sign in to Cortex Cloud for Bots and remote workspaces.
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="license Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-6aa84f"></a>
+  <img alt="version 0.2.0" src="https://img.shields.io/badge/version-0.2.0-555555">
+  <img alt="status alpha" src="https://img.shields.io/badge/status-alpha-e07b39">
+  <img alt="Electron 44" src="https://img.shields.io/badge/Electron-44-47848f">
+  <img alt="React 19" src="https://img.shields.io/badge/React-19-149eca">
+  <img alt="Bun 1.4" src="https://img.shields.io/badge/Bun-1.4-f472b6">
+  <img alt="platforms macOS, Windows, Linux" src="https://img.shields.io/badge/platforms-macOS%20%7C%20Windows%20%7C%20Linux-1f6feb">
+  <a href="https://github.com/CortexLM/desktop/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/CortexLM/desktop/actions/workflows/ci.yml/badge.svg?branch=main"></a>
+</p>
+
+<p align="center">
+  <a href="docs/README.md">Documentation</a> ·
+  <a href="https://cortex.foundation">Website</a> ·
+  <a href="docs/getting-started.md">Getting started</a> ·
+  <a href="docs/configuration.md">Configuration</a> ·
+  <a href="docs/architecture.md">Architecture</a> ·
+  <a href="docs/connection-modes.md">Connection modes</a> ·
+  <a href="docs/providers.md">Providers</a> ·
+  <a href="docs/testing.md">Testing</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a> ·
+  <a href="SECURITY.md">Security</a> ·
+  <a href="LICENSE">License</a>
 </p>
 
 > [!WARNING]
-> **Alpha software.** Cortex Desktop is not recommended for production use. Features can change or break between commits, nothing is guaranteed to be stable, and builds are **unsigned** (no code signing, no notarization). Back up anything you care about and expect rough edges.
+> **Alpha, not stable.** Cortex Desktop is under active development: screens, settings and stored data can change or break between commits, and nothing is guaranteed to be stable. Builds are **unsigned** (no code signing, no notarization). Do not use it in production or for anything you can't afford to lose.
 
 ---
 
-## What is Cortex Desktop?
+## What is Cortex Desktop
 
-Cortex Desktop is one Electron app. The agent engine runs inside the app's main process, keeps sessions and settings in local SQLite (`node:sqlite`), and talks to the model providers you configure. Provider keys sit in a separate credential store in the main process and never reach the renderer. You don't need an account to use it.
+Cortex Desktop is one Electron app. The agent engine lives in the app's main process, keeps sessions and settings in local SQLite (`node:sqlite`) and calls the model providers you configure. You don't need an account.
 
-If you'd rather use Cortex Cloud, you can sign in with an email code from Settings. Signed-in screens (Bots, Work, remote Chat and Code) talk to the Cortex Cloud account, and everything else stays local.
+Three ideas hold it together:
+
+1. **The engine is local.** Sessions, tools, permissions, MCP servers and skills run on your machine. The renderer is sandboxed and only talks to the engine through a small preload bridge.
+2. **Keys stay in the main process.** Provider keys go into a separate credential store. They are write-only from the UI, and the renderer only ever sees the last four characters.
+3. **Cloud is optional.** Sign in to Cortex Cloud (or a self-hosted server) with an email code to use Bots and the signed-in Work, Chat and Code screens. Local mode keeps working without it.
+
+The banner is a real native macOS window of the app (Electron 44, dark theme, English). The Bot conversation is live code, but the screenshot feeds it **demo data**: a made-up Bot named Nova and invented messages, instead of a real Cortex Cloud account. No keys, emails or private paths appear.
+
+## How it works
+
+### 1. From the window to the model
+
+```mermaid
+flowchart LR
+    R["Renderer (sandboxed React app)"] -->|"window.cortex bridge"| P["Preload"] -->|"IPC cortex:fetch"| M["Main: local engine"]
+    M --> V["Model providers you configure"]
+    M -.->|"after email-code sign-in"| C["Cortex Cloud or self-hosted server"]
+    K[("Credential store")] --- M
+```
+
+The renderer never opens a socket and never sees a key. Requests go through `cortex:fetch` to the engine's route table, and events come back as a stream. Provider calls and the optional Cloud connection are made from the main process. Details: [docs/architecture.md](./docs/architecture.md).
+
+### 2. A Bot task with approvals (signed in)
+
+```mermaid
+flowchart LR
+    U["You send a message"] --> J["Bot job runs (typing dots)"] --> T{"Tool needs approval?"}
+    T -->|no| A["Reply bubble"]
+    T -->|yes| Q["Pending approval"] --> D{"Allow once or Deny"}
+    D -->|allow| A
+    D -->|deny| S["Tool skipped"] --> A
+```
+
+The Bot conversation shows message bubbles only, with typing dots while a job runs. A tool call that needs permission waits as a pending approval. Allow once lets it run; Deny skips the tool. Only safe metadata crosses to the renderer. See [AGENTS.md](./AGENTS.md) and [docs/connection-modes.md](./docs/connection-modes.md) for the exact contract.
+
+---
 
 ## Features
 
@@ -27,20 +88,11 @@ What works today (see [Status](#status) for the exact boundaries):
 
 - **Chat** on the local engine, streaming, with reasoning and image input for models that support them.
 - **Work** tasks and approvals.
-- **Bots** with mascots and an iMessage-style conversation: bubbles only, typing dots while a Bot works. These screens need a Cortex Cloud sign-in.
+- **Bots** with mascots and an iMessage-style conversation. These screens need a Cortex Cloud sign-in.
 - **Cortex Code** on a local folder.
 - **Providers and models** from the public [models.dev](https://models.dev) catalog (Anthropic, OpenAI, Google and OpenAI-compatible endpoints).
 - **MCP servers**, skills (a `summarize` skill ships in [`skills/`](./skills)) and optional [computer use](./docs/computer-use.md).
 - **Eight locales** (`en fr es de ja zh-Hans pt-BR ko`), English by default, dark and light themes.
-
-## Status
-
-- Live: Chat, Work tasks and approvals, Bots, Cortex Code on a local folder, Settings, Providers and models, connection selection with probing and email-code sign-in.
-- Preview only: file viewers and other screens without engine wiring (open `#/gallery` in a preview build).
-- Not built yet (waiting on design): Space, Scheduled, the Plugins and skills management screen, extra sign-in continuation screens. Remote prompt routing is pending.
-- Sign-in lasts until Cortex closes. Prompts still use the local engine and the providers you configured.
-- Acceptance is incomplete: see [evidence/STATUS.md](./evidence/STATUS.md).
-- The banner above is a real macOS window of the app (Electron 44, dark theme, English). The Bot thread is live code, but the screenshot feeds it demo data (a made-up Bot named Nova and fake messages) instead of a real Cortex Cloud account, so no personal data appears.
 
 ## Install
 
@@ -74,6 +126,8 @@ bun run dist:mac    # macOS dmg and zip (x64 and arm64)
 | Windows | Unsigned installers show a SmartScreen warning. |
 | Linux | AppImage and deb. Credential encryption needs a keyring; without one the app refuses to persist cloud sign-in. |
 
+---
+
 ## Quick start
 
 1. Start the app (`bun run start`).
@@ -82,6 +136,8 @@ bun run dist:mac    # macOS dmg and zip (x64 and arm64)
 4. Choose a model and start a chat.
 
 More in [docs/getting-started.md](./docs/getting-started.md).
+
+---
 
 ## Configuration
 
@@ -100,6 +156,8 @@ More in [docs/getting-started.md](./docs/getting-started.md).
 | `Cmd/Ctrl+[` and `Cmd/Ctrl+]` | Back and forward |
 | `Cmd/Ctrl+/` | Shortcuts |
 
+---
+
 ## Architecture
 
 | Package | Role |
@@ -114,6 +172,8 @@ More in [docs/getting-started.md](./docs/getting-started.md).
 | `packages/desktop` | Electron 44 main and preload, credentials, menu, Cloud probe and sign-in |
 
 `vendor/` holds the vendored SDK tarballs, `tests/` holds unit and Playwright suites, `scripts/` holds the i18n audit, smoke tests and Mac capture tools. Details: [docs/architecture.md](./docs/architecture.md).
+
+---
 
 ## Development
 
@@ -134,6 +194,18 @@ bun run dev:app    # Vite on :5299, proxies /api
 
 Read [AGENTS.md](./AGENTS.md) and [`.rules/`](./.rules/) before you change code. Testing details: [docs/testing.md](./docs/testing.md).
 
+---
+
+## Status
+
+- Live: Chat, Work tasks and approvals, Bots, Cortex Code on a local folder, Settings, Providers and models, connection selection with probing and email-code sign-in.
+- Preview only: file viewers and other screens without engine wiring (open `#/gallery` in a preview build).
+- Not built yet (waiting on design): Space, Scheduled, the Plugins and skills management screen, extra sign-in continuation screens. Remote prompt routing is pending.
+- Sign-in lasts until Cortex closes. Prompts still use the local engine and the providers you configured.
+- Acceptance is incomplete: see [evidence/STATUS.md](./evidence/STATUS.md).
+
+---
+
 ## Documentation
 
 Start at [docs/README.md](./docs/README.md). Highlights: [Getting started](./docs/getting-started.md), [Configuration](./docs/configuration.md), [Troubleshooting](./docs/troubleshooting.md), [FAQ](./docs/faq.md), [Architecture](./docs/architecture.md).
@@ -147,6 +219,8 @@ Start at [docs/README.md](./docs/README.md). Highlights: [Getting started](./doc
 **Where is my data?** In the app's data directory, in local SQLite. Keys are in a separate credentials file with restricted permissions.
 
 **Why is the app unsigned?** Release signing isn't set up yet.
+
+---
 
 ## Contributing
 
@@ -163,4 +237,4 @@ Report vulnerabilities privately, as described in [SECURITY.md](./SECURITY.md). 
 
 ## License
 
-Copyright 2026 Cortex Foundation / CortexLM. Licensed under the [Apache License, Version 2.0](./LICENSE). Third-party notices are in [NOTICE](./NOTICE).
+Apache-2.0, see [LICENSE](./LICENSE) and [NOTICE](./NOTICE). Copyright 2026 Cortex Foundation / CortexLM.
