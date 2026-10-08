@@ -5,8 +5,30 @@ import { useT } from "../../i18n";
 import { LiveApprovalTransfer } from "./contract-panels";
 import { Mascot, type MascotConfig } from "../../mascot/Mascot";
 import { toolName } from "../../state/tool-label";
+import { Collapsible } from "@base-ui/react/collapsible";
+import { Icon } from "../../kit/ui";
 
-export function BotPending({ epoch, id, owns, inline }: { epoch: string; id?: string; owns(): boolean; inline?: MascotConfig }) {
+/** The producer seals the widget text as `Allow <tool>?\n<reason>\n<action JSON>\nAlways grants ...`; show a short summary, keep the rest behind a toggle. */
+export function approvalSummary(text: string): { summary: string; details: string } {
+  const body = text.split("\n").slice(1).join("\n");
+  const end = body.lastIndexOf("}");
+  let summary = "";
+  // The reason may contain braces: the action is the first brace that parses through the last one.
+  for (let start = body.indexOf("{"); start >= 0 && start < end; start = body.indexOf("{", start + 1)) {
+    let o: unknown;
+    try { o = JSON.parse(body.slice(start, end + 1)); } catch { continue; /* not the action start */ }
+    if (o && typeof o === "object" && !Array.isArray(o)) {
+      const values = o as Record<string, unknown>;
+      const pick = ["command", "cmd", "path", "filePath", "file", "url", "query"].map(k => values[k]).find(v => typeof v === "string") ?? Object.values(values).find(v => typeof v === "string");
+      if (typeof pick === "string") summary = pick;
+    }
+    break;
+  }
+  const clip = summary.replace(/\s+/g, " ").trim();
+  return { summary: clip.length > 140 ? `${clip.slice(0, 139)}…` : clip, details: body.trim() };
+}
+
+export function BotPending({ epoch, id, owns, inline, messages }: { epoch: string; id?: string; owns(): boolean; inline?: MascotConfig; messages?: { id: string; text: string }[] }) {
   const t = useT();
   const [rows, setRows] = React.useState<PendingApprovals>(), [audit, setAudit] = React.useState<PolicyEvaluations>();
   const [error, setError] = React.useState(false), [busy, setBusy] = React.useState(false);
@@ -56,11 +78,15 @@ export function BotPending({ epoch, id, owns, inline }: { epoch: string; id?: st
     }
     finally { pending.current = false; if (current()) setBusy(false); }
   }
-  if (inline) return <>{rows?.items.filter(row => row.message_id).map(row => <div className="msg-bot-row bot-thread-row" key={row.id} data-testid="bot-thread-approval" data-approval-id={row.id}>
+  const reveal = React.useCallback((el: HTMLElement | null) => el?.scrollIntoView({ block: "end" }), []);
+  if (inline) return <>{rows?.items.filter(row => row.message_id).map(row => <div className="msg-bot-row bot-thread-row" key={row.id} ref={reveal} data-testid="bot-thread-approval" data-approval-id={row.id}>
     <Mascot cfg={inline} state="waiting" size={24} />
-    <div className="bot-bubble bot-bubble-ask"><span>{t("workBot.thread.approval", { tool: toolName(t, row.tool_name) })}</span>
+    {(() => { const { summary, details } = approvalSummary(messages?.find(m => m.id === row.message_id)?.text ?? ""); return <div className="bot-approval" role="group" aria-label={t("workBot.thread.approvalTitle", { tool: toolName(t, row.tool_name) })}>
+      <b className="bot-approval-title"><Icon name="shield-check" size={16} />{t("workBot.thread.approvalTitle", { tool: toolName(t, row.tool_name) })}</b>
+      {summary && <code className="bot-approval-sum" data-testid="bot-approval-summary">{summary}</code>}
+      {details && <Collapsible.Root className="bot-approval-more"><Collapsible.Trigger className="bot-approval-toggle">{t("workBot.thread.approvalDetails")}</Collapsible.Trigger><Collapsible.Panel><pre>{details}</pre></Collapsible.Panel></Collapsible.Root>}
       <span className="bot-bubble-actions"><button className="btn secondary" data-testid="bot-pending-deny" disabled={busy} onClick={() => void decide(row, "deny")}>{t("workBot.pending.deny")}</button><button className="btn primary" data-testid="bot-pending-allow" disabled={busy} onClick={() => void decide(row, "allow")}>{t("workBot.pending.allow")}</button></span>
-    </div></div>)}
+    </div>; })()}</div>)}
     {error && <p className="bot-thread-note" role="alert" data-testid="bot-pending-error">{t("workBot.pending.error")}</p>}</>;
   return <section className="travail-panel bot-apps" data-testid="bot-pending" aria-labelledby="bot-pending-title">
     <h2 id="bot-pending-title">{t(id ? "workBot.pending.bot" : "workBot.pending.account")}</h2>

@@ -126,12 +126,12 @@ const listed = !!epoch && list.state === "ready" && list.data.epoch === epoch;
     </div>
   </div></div>, pill);
   const cfg = lookMascot(data.bot);
-  const thread = <div className="bot-chat" data-testid="work-bot-parent"><BotThread snapshot={data} cfg={cfg} sending={busy} outgoing={outgoing} onStop={job => void mutate(async () => { await api.workBot.cancel(id, job, epoch); }, true)} approvals={listed && <BotPending key={`inline:${epoch}:${id}`} epoch={epoch} id={id} owns={owns} inline={cfg} />} /></div>;
+  const thread = <div className="bot-chat" data-testid="work-bot-parent"><BotThread snapshot={data} cfg={cfg} sending={busy} outgoing={outgoing} onStop={job => void mutate(async () => { await api.workBot.cancel(id, job, epoch); }, true)} approvals={listed && <BotPending key={`inline:${epoch}:${id}`} epoch={epoch} id={id} owns={owns} inline={cfg} messages={data.messages} />} /></div>;
   const ask = async (text: string) => { let ok = false; setOutgoing(text); try { await mutate(async () => { await api.workBot.parent(id, { epoch, text }); ok = true; }); } finally { if (owns()) setOutgoing(""); } return ok; };
   if (route === "work-task") return screen(data.bot.name, <div className="bot-chat-page">{banners}{thread}
     <div className="dock"><Composer placeholder={t("bots.page.ask", { name: data.bot.name })} onSend={ask} testId="work-bot-parent" disabled={busy} /></div>
   </div>, pill);
-  return screen(data.bot.name, <div className="page">
+  return screen(data.bot.name, <><div className="page">
     <div className="bot-hero"><Mascot cfg={mascot} state={live} size={72} track /><div><div className="page-title" style={{ margin: 0 }}>{data.bot.name}</div><div className="sub">{data.bot.label || data.bot.description}</div></div></div>
     <h3 className="h3">{t("bots.page.team")}</h3>
     <div className="roster">{bots.map(bot => <button key={bot.id} className="roster-item" data-on={bot.id === id || undefined} onClick={() => go("bot", { source: "work-bot-api", id: bot.id, epoch })}><Mascot cfg={{ name: bot.name, ...DEFAULT_MASCOT }} state={bot.status === "awake" ? "working" : "idle"} size={44} /><span>{bot.name}</span><span className="sub">{bot.label}</span></button>)}</div>
@@ -139,6 +139,6 @@ const listed = !!epoch && list.state === "ready" && list.data.epoch === epoch;
     {!data.computerAvailable && <p className="bot-thread-note" data-testid="work-bot-cloud-unavailable">{t("workBot.thread.computerOff")}</p>}
     {id && <BotCall botId={id} name={data.bot.name} cfg={cfg} />}
     {thread}
-    <div className="dock"><Composer placeholder={t("bots.page.ask", { name: data.bot.name })} onSend={ask} testId="work-bot-parent" disabled={busy} /></div>
-  </div>, pill);
+  </div>
+  <div className="dock"><Composer placeholder={t("bots.page.ask", { name: data.bot.name })} onSend={ask} testId="work-bot-parent" disabled={busy} /></div></>, pill);
 }
