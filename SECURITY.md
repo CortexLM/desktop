@@ -1,5 +1,7 @@
 # Security policy
 
+Cortex Desktop is alpha software, not recommended for production. Builds are unsigned.
+
 ## Report a vulnerability
 
 Email **security@cortex.foundation** (or open a **private** GitHub security

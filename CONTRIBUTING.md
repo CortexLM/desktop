@@ -1,6 +1,6 @@
 # Contributing to Cortex
 
-Bun workspaces monorepo; Electron 44 desktop app; React 19 renderer; local engine in main.
+Cortex Desktop is alpha software. It's a Bun workspaces monorepo: Electron 44 desktop app, React 19 renderer (Base UI, Vite 8), local engine in main. Setup and docs: [docs/README.md](./docs/README.md).
 Read [AGENTS.md](./AGENTS.md) and [`.rules/`](./.rules/) first. Keep changes small, typed,
 and tested.
 
@@ -73,4 +73,4 @@ issues, PRs or logs.
 
 ## Questions
 
-GitHub Issues for bugs; Discussions for design questions when enabled.
+Use [GitHub Issues](https://github.com/CortexLM/desktop/issues) with the bug and feature templates. Source copy is English; other locales come from `node scripts/translate-locales.mjs`.
