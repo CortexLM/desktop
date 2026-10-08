@@ -51,6 +51,8 @@ for (const theme of ["dark", "light"]) test(`Bot thread shows bubbles and a typi
     await expect(page.getByTestId("bot-typing")).toBeVisible();
     await expect(thread.locator("[data-sender=user][data-pending]")).toHaveText("Hi again");
     await expect(page.getByText(/is typing…|écrit…/)).toHaveCount(0);
+    // The dots show before the POST arrives; release only once the fixture holds the request.
+    await expect.poll(() => app.evaluate(() => typeof (globalThis as unknown as { lane: State }).lane.release === "function")).toBe(true);
     await app.evaluate(() => (globalThis as unknown as { lane: State }).lane.release?.());
     await expect(page.getByTestId("bot-typing")).toHaveCount(0);
     await expect(thread.locator("[data-sender=bot]")).toContainText("Hello there");
