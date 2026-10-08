@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Field } from "@base-ui/react/field";
 import { api } from "../../api";
 import { useT } from "../../i18n";
 import { useNav } from "../../shell/nav";
@@ -15,16 +16,29 @@ export function Space() {
 function SpaceHome({ epoch }: { epoch: string }) {
   const t = useT(), { go } = useNav(), c = useContract();
   const q = useOp<{ items: File[] }>(epoch, "app.library");
-  const [title, setTitle] = React.useState(""), [text, setText] = React.useState("");
-  return <section data-testid="space">
-    <form className="list" data-testid="space-new" onSubmit={e => { e.preventDefault(); void c.run(async () => { const f = await call<File>(epoch, "app.note.create", {}, { title: title.trim() || undefined, text }); go("space-page", { id: f.id }); }); }}>
-      <label className="field">{t("live.space.pageTitle")}<input className="input" data-testid="space-title" maxLength={200} value={title} onChange={e => setTitle(e.target.value)} /></label>
-      <label className="field">{t("live.space.text")}<textarea className="input" data-testid="space-text" required value={text} onChange={e => setText(e.target.value)} /></label>
-      <button className="btn primary" data-testid="space-create" disabled={c.busy || !text.trim()}>{t("live.space.create")}</button>
+  const [title, setTitle] = React.useState(""), [text, setText] = React.useState(""), [touched, setTouched] = React.useState(false);
+  const invalid = touched && !text.trim();
+  return <section className="space" data-testid="space">
+    <p className="space-lead">{t("live.space.lead")}</p>
+    <form className="space-form" data-testid="space-new" noValidate onSubmit={e => { e.preventDefault(); setTouched(true); if (!text.trim()) return; void c.run(async () => { const f = await call<File>(epoch, "app.note.create", {}, { title: title.trim() || undefined, text }); go("space-page", { id: f.id }); }); }}>
+      <Field.Root className="space-field">
+        <Field.Label className="space-label">{t("live.space.pageTitle")}<span className="space-opt">{t("live.space.optional")}</span></Field.Label>
+        <Field.Control className="input" data-testid="space-title" maxLength={200} placeholder={t("live.space.titlePlaceholder")} value={title} onChange={e => setTitle(e.target.value)} />
+      </Field.Root>
+      <Field.Root className="space-field" invalid={invalid}>
+        <Field.Label className="space-label">{t("live.space.text")}</Field.Label>
+        <Field.Control render={<textarea className="input space-text" data-testid="space-text" rows={6} />} placeholder={t("live.space.textPlaceholder")} value={text} onChange={e => setText((e.target as unknown as HTMLTextAreaElement).value)} onBlur={() => setTouched(true)} />
+        {invalid && <p className="space-error" role="alert" data-testid="space-text-error">{t("live.space.textRequired")}</p>}
+      </Field.Root>
       <ContractError code={c.error} />
+      <div className="space-actions">
+        <button className="btn primary" data-testid="space-create" aria-busy={c.busy} disabled={c.busy || !text.trim()}>{c.busy ? t("live.space.creating") : t("live.space.create")}</button>
+      </div>
     </form>
-    <h2>{t("live.space.pages")}</h2>
-    <Loaded q={q} empty={d => !d?.items.length}>{d => <div className="list">{d!.items.map(f => <button key={f.id} className="li" data-testid="space-row" onClick={() => go("space-page", { id: f.id })}><Icon name="file" /><span className="grow">{f.filename}</span><span className="code-meta">{when(f.created_at)}</span><Icon name="chevron-right" /></button>)}</div>}</Loaded>
+    <h2 className="space-h2">{t("live.space.pages")}</h2>
+    <Loaded q={q}>{d => d?.items.length
+      ? <div className="list" data-testid="space-list">{d.items.map(f => <button key={f.id} className="li space-row" data-testid="space-row" onClick={() => go("space-page", { id: f.id })}><span className="li-ic"><Icon name="file" /></span><span className="grow"><span className="ttl">{f.filename}</span></span><span className="code-meta">{when(f.created_at)}</span><Icon name="chevron-right" /></button>)}</div>
+      : <div className="space-empty" data-testid="live-empty"><span className="li-ic"><Icon name="file" /></span><h3>{t("live.space.emptyTitle")}</h3><p>{t("live.space.emptyText")}</p></div>}</Loaded>
   </section>;
 }
 

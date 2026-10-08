@@ -574,3 +574,20 @@ a.chip { display: inline-flex; align-items: center; text-decoration: none; }
 
 /* Registry screen root (registry.tsx Root): layout-neutral wrapper carrying the per-screen testID. */
 .screen-root { display: contents; }
+
+/* ---------- Space (pages) ---------- */
+.space { max-width: 680px; margin: 0 auto; padding-top: 8px; display: flex; flex-direction: column; }
+.space-lead { margin: 0 0 20px; color: var(--t2); }
+.space-form { display: flex; flex-direction: column; gap: 16px; padding: 18px; border-radius: var(--r-card); background: var(--card); box-shadow: var(--ring); }
+.space-field { display: flex; flex-direction: column; gap: 6px; }
+.space-label { display: flex; align-items: baseline; gap: 6px; font-weight: 500; }
+.space-opt { font-weight: 400; color: var(--t3); font-size: 11px; }
+.space-text { height: auto; min-height: 140px; resize: vertical; line-height: 20px; }
+.space-error { margin: 0; color: var(--red); font-size: 12px; }
+.space-actions { display: flex; justify-content: flex-end; }
+.space-h2 { margin: 28px 0 10px; font-size: 15px; font-weight: 500; }
+.space-row { width: 100%; text-align: left; }
+.space-row:hover { background: var(--hover); }
+.space-empty { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 32px 20px; border-radius: var(--r-card); background: var(--card); box-shadow: var(--ring); text-align: center; color: var(--t2); }
+.space-empty h3 { margin: 10px 0 0; font-size: 13px; font-weight: 500; color: var(--t1); }
+.space-empty p { margin: 0; }
