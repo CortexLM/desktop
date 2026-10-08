@@ -37,6 +37,7 @@ for (const theme of ["dark", "light"]) test(`Bot thread shows bubbles and a typi
   const { app, page } = await launch({ hash: `#/work-task?theme=${theme}` });
   try {
     await install(app, 1);
+    await page.reload(); // the connection gate reads /api/connection once at mount
     await page.evaluate(id => { location.hash = `#/work-task?id=${id}&epoch=owner`; }, bot);
     const thread = page.getByTestId("bot-thread");
     await expect(thread.getByTestId("bot-thread-message").first()).toBeVisible();
@@ -63,6 +64,7 @@ test("signed-in Work home shows the composer and suggestions, Bot create has no 
   const { app, page } = await launch({ hash: "#/home" });
   try {
     await install(app, 1);
+    await page.reload(); // the connection gate reads /api/connection once at mount
     await app.evaluate(() => { (globalThis as unknown as { lane: State }).lane.jobStatus = "none"; });
     await page.evaluate(() => { location.hash = "#/work-home?epoch=owner"; });
     await expect(page.getByTestId("work-home-composer-input")).toBeVisible();
@@ -79,6 +81,7 @@ test("without a Bot, Reconnect and Channels are hidden and routines offer creati
   const { app, page } = await launch({ hash: "#/home" });
   try {
     await install(app, 0);
+    await page.reload(); // the connection gate reads /api/connection once at mount
     await page.evaluate(() => { location.hash = "#/bot-roster?epoch=owner"; });
     await expect(page.getByTestId("work-bot-owner-count")).toBeVisible();
     await expect(page.getByTestId("work-bot-reconnect")).toHaveCount(0);
@@ -93,6 +96,7 @@ test("notifications open as a bell popover with tabs", async () => {
   const { app, page } = await launch({ hash: "#/home" });
   try {
     await install(app, 1);
+    await page.reload(); // the connection gate reads /api/connection once at mount
     await page.evaluate(() => { location.hash = "#/work-home?epoch=owner"; });
     await page.getByTestId("notification-bell").click();
     const pop = page.getByTestId("notification-popover");
