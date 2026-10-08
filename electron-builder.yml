@@ -18,6 +18,9 @@ files:
 extraResources:
   - from: skills
     to: skills
+  - from: packages/chrome-extension
+    to: chrome-extension
+    filter: ["**/*", "!**/*.d.ts"]
   - from: packages/i18n/locales
     to: locales
     filter: ["**/*.json", "!**/*.source.json", "!**/fixtures/**"]

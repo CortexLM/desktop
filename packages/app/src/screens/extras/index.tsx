@@ -1,5 +1,6 @@
 import type { ScreenDef } from "../../registry";
-import { Widgets, Browser, Planning, PlanDetail, Organisation, Approvals, WhatsNew } from "./extras";
+import { Browser } from "./browser";
+import { Widgets, Planning, PlanDetail, Organisation, Approvals, WhatsNew } from "./extras";
 
 const G = "extras.group";
 // Design lot-workspace-extras.tsx. Live screens only: no preview fixtures, so the gallery shows the signed-out state.

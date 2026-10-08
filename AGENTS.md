@@ -73,6 +73,8 @@ reconnect/reselect/save, never automatic retry. Metadata grants no autonomy or d
 Full Task8 remains open. Combined assembled
 migration-stack acceptance remains separate from this source-bound producer fixture.
 
+Local browser (`#/browser-authorization`): `packages/chrome-extension` pairs with a main-owned loopback host by one-time code; the user shares tabs one by one and the agent gets `browser_tabs`/`browser_read` for those only. See `docs/browser-connector.md`.
+
 Shell/settings: the Cortex sidebar adds a Workspace group (Space, Scheduled tasks, Planning, Local browser,
 Extensions and skills) and the signed-in account's first Bot; remote and local chats share one Recents list.
 Signed-in Profile reads `/v1/me` (`app.me`); the rail shows account initials. Settings links Models,

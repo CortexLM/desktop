@@ -16,6 +16,18 @@ type Bridge = {
   onMenu?: (cb: (cmd: string) => void) => () => void;
   update?: { status: () => Promise<UpdateState>; check: () => Promise<UpdateState>; install: () => Promise<boolean>; onState: (cb: (s: UpdateState) => void) => () => void };
   call?: CallBridge;
+  browser?: BrowserBridgeApi;
+};
+export type BrowserTab = { id: number; title: string; url: string; sharedAt: number };
+export type BrowserState = { listening: boolean; port?: number; connected: boolean; pairing?: { code: string; expiresAt: number }; tabs: BrowserTab[] };
+export type BrowserBridgeApi = {
+  status(): Promise<BrowserState>;
+  pair(): Promise<{ code: string; expiresAt: number }>;
+  revoke(tabId: number): Promise<void>;
+  disconnect(): Promise<void>;
+  extensionDir(): Promise<string>;
+  revealExtension(): Promise<string>;
+  onChange(cb: (s: BrowserState) => void): () => void;
 };
 export type CallSnapshot = { phase: "connecting" | "listening" | "hearing" | "thinking" | "speaking" | "reconnecting" | "ended" | "error"; muted: boolean; heard: readonly string[]; partial: string; streaming: boolean; end?: "ended" | "auth_revoked" | "superseded" | "unavailable" | "busy" | "failed" | "mic_lost" };
 export type CallBridge = {

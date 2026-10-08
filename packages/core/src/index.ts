@@ -4,6 +4,7 @@ import { PermissionRule, RuntimeSettings, RuntimeSettingsUpdateInput, type Permi
 import { z } from "zod"
 import { AGENTS } from "./agent"
 import { BotService } from "./bot"
+import { BrowserBridge } from "./browser"
 import { Bus } from "./bus"
 import { Catalog } from "./catalog"
 import { ConnectionService, type RemoteAuth, type RemoteProbe } from "./connection"
@@ -94,7 +95,9 @@ export function createCore(opts: CoreOptions) {
       return r
     },
   }
+  const browser = new BrowserBridge()
   const sessions = new SessionService({
+    browser,
     storage,
     bus,
     catalog,
@@ -131,6 +134,7 @@ export function createCore(opts: CoreOptions) {
     skills,
     plugins,
     mcp,
+    browser,
     sessions,
     remoteSessions,
     code,
@@ -149,6 +153,7 @@ export function createCore(opts: CoreOptions) {
       scheduler.start(o.schedulerIntervalMs)
     },
     async close() {
+      browser.disconnect()
       remoteSessions.close()
       code.close()
       workBot.close()
@@ -165,6 +170,7 @@ export * from "./agent"
 export * from "./code"
 export * from "./work-bot"
 export * from "./bot"
+export * from "./browser"
 export * from "./bus"
 export * from "./catalog"
 export * from "./computer-use"
