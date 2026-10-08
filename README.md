@@ -3,7 +3,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: light)" srcset="docs/assets/banner-light.png">
-    <img src="docs/assets/banner.png" alt="Cortex Desktop on macOS: the sidebar and a conversation with the Nova Bot, with message bubbles and typing dots (demo data)" width="100%">
+    <img src="docs/assets/banner.png" alt="Real macOS screenshot of the Cortex Desktop window in dark theme: sidebar and a conversation with the Nova Bot, with message bubbles and typing dots (demo data)" width="100%">
   </picture>
 </p>
 
@@ -51,34 +51,13 @@ Three ideas hold it together:
 2. **Keys stay in the main process.** Provider keys go into a separate credential store. They are write-only from the UI, and the renderer only ever sees the last four characters.
 3. **Cloud is optional.** Sign in to Cortex Cloud (or a self-hosted server) with an email code to use Bots and the signed-in Work, Chat and Code screens. Local mode keeps working without it.
 
-The banner is a real native macOS window of the app (Electron 44, dark theme, English). The Bot conversation is live code, but the screenshot feeds it **demo data**: a made-up Bot named Nova and invented messages, instead of a real Cortex Cloud account. No keys, emails or private paths appear.
+The banner is a real screenshot of the app: an unedited native macOS window capture (`screencapture -l` on macOS 26.6.2, Electron 44, dark theme, English), taken as is with the native window shadow and no mockup or recomposition. The Bot conversation is live code, but the screenshot feeds it **demo data**: a made-up Bot named Nova and invented messages, instead of a real Cortex Cloud account. No keys, emails or private paths appear.
 
 ## How it works
 
-### 1. From the window to the model
+The renderer is a sandboxed React app. It never opens a socket and never sees a key: it calls `window.cortex`, a small preload bridge, which forwards requests over IPC (`cortex:fetch`) to the engine's route table in the main process, and events come back as a stream. Provider calls and the optional Cortex Cloud connection are made from the main process, and keys live in a separate credential store there. Details: [docs/architecture.md](./docs/architecture.md).
 
-```mermaid
-flowchart LR
-    R["Renderer (sandboxed React app)"] -->|"window.cortex bridge"| P["Preload"] -->|"IPC cortex:fetch"| M["Main: local engine"]
-    M --> V["Model providers you configure"]
-    M -.->|"after email-code sign-in"| C["Cortex Cloud or self-hosted server"]
-    K[("Credential store")] --- M
-```
-
-The renderer never opens a socket and never sees a key. Requests go through `cortex:fetch` to the engine's route table, and events come back as a stream. Provider calls and the optional Cloud connection are made from the main process. Details: [docs/architecture.md](./docs/architecture.md).
-
-### 2. A Bot task with approvals (signed in)
-
-```mermaid
-flowchart LR
-    U["You send a message"] --> J["Bot job runs (typing dots)"] --> T{"Tool needs approval?"}
-    T -->|no| A["Reply bubble"]
-    T -->|yes| Q["Pending approval"] --> D{"Allow once or Deny"}
-    D -->|allow| A
-    D -->|deny| S["Tool skipped"] --> A
-```
-
-The Bot conversation shows message bubbles only, with typing dots while a job runs. A tool call that needs permission waits as a pending approval. Allow once lets it run; Deny skips the tool. Only safe metadata crosses to the renderer. See [AGENTS.md](./AGENTS.md) and [docs/connection-modes.md](./docs/connection-modes.md) for the exact contract.
+In the Bot conversation (signed in), you send a message and the Bot runs a job while typing dots show. If a tool needs permission it waits as a pending approval in the thread: Allow once lets it run, Deny skips the tool. Only safe metadata crosses to the renderer. See [AGENTS.md](./AGENTS.md) and [docs/connection-modes.md](./docs/connection-modes.md) for the exact contract.
 
 ---
 
