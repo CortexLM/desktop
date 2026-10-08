@@ -8,15 +8,21 @@ const listeners = new Set<Listener>();
 const resync = new Set<() => void>();
 let unsub: (() => void) | null = null;
 let reconnect: ReturnType<typeof setTimeout> | undefined;
+let stale = false;
 const connect = () => {
   reconnect = undefined;
   if (!listeners.size || unsub) return;
-  unsub = api.subscribe((e) => listeners.forEach((f) => f(e)), { onError: () => {
-    unsub?.();
-    unsub = null;
-    resync.forEach((refresh) => refresh());
-    if (listeners.size) reconnect = setTimeout(connect, 1000);
-  } });
+  // Resync only once the replacement stream is attached: a snapshot taken earlier could miss events
+  // sent before it, and one taken during the outage would fail. Failed opens keep `stale` for the next try.
+  unsub = api.subscribe((e) => listeners.forEach((f) => f(e)), {
+    onOpen: () => { if (stale) { stale = false; resync.forEach((refresh) => refresh()); } },
+    onError: () => {
+      unsub?.();
+      unsub = null;
+      stale = true;
+      if (listeners.size) reconnect = setTimeout(connect, 1000);
+    },
+  });
 };
 export function onEvent(l: Listener, refresh?: () => void) {
   listeners.add(l);
@@ -30,6 +36,7 @@ export function onEvent(l: Listener, refresh?: () => void) {
       unsub = null;
       clearTimeout(reconnect);
       reconnect = undefined;
+      stale = false;
     }
   };
 }
@@ -105,7 +112,12 @@ export function useMessages(sessionID: string | undefined) {
         for (const part of message.parts) putPart(part, true);
       }
       publish();
-    }, () => {});
+    }, (err: { code?: string }) => {
+      // The session was deleted while the stream was down; transient failures keep the last view.
+      if (!live || err?.code !== "not_found") return;
+      records.clear(); settled.clear(); status = "idle";
+      publish();
+    });
     const off = onEvent((e) => {
       if (!live) return;
       switch (e.type) {

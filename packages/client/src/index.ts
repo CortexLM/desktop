@@ -146,12 +146,14 @@ export function createClient(opts: ClientOptions) {
     health: () => get<{ ok: true; version: string }>("/api/health"),
 
     /** Subscribe to the live bus. Returns an unsubscribe function. Reconnect is the caller's choice. */
-    subscribe(onEvent: (e: Event) => void, o: { onError?: (err: unknown) => void } = {}): () => void {
+    subscribe(onEvent: (e: Event) => void, o: { onError?: (err: unknown) => void; onOpen?: () => void } = {}): () => void {
       const ctrl = new AbortController()
       void (async () => {
         try {
           const res = await doFetch(new Request(`${base}/api/events`, { headers: { accept: "text/event-stream" }, signal: ctrl.signal }))
           if (!res.ok || !res.body) throw new CortexApiError("internal", `Event stream failed with status ${res.status}`, res.status)
+          // The server attaches its bus before answering, so events from here on are delivered.
+          if (!ctrl.signal.aborted) o.onOpen?.()
           for await (const e of parseSSE(res.body, ctrl.signal)) onEvent(e)
           if (!ctrl.signal.aborted) o.onError?.(new CortexApiError("internal", "Event stream closed", 0))
         } catch (err) {

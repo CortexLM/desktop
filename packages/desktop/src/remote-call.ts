@@ -50,8 +50,15 @@ export function createCallHost(auth: CallAuth, fetchImpl: typeof fetch = fetch) 
       if (!BOT.test(botId)) throw new CortexError("invalid_request", "Invalid Bot");
       end();
       const mine = generation;
-      const { signal } = await auth(origin);
-      if (mine !== generation || signal.aborted) throw new CortexError("invalid_request", "Call start was cancelled");
+      // Watch the owner during authentication too: a window lost here must not get a server call.
+      let lost = false;
+      const lose = () => { lost = true; };
+      owner?.once("destroyed", lose);
+      owner?.once("render-process-gone", lose);
+      const { signal } = await auth(origin).finally(() => {
+        owner?.removeListener("destroyed", lose); owner?.removeListener("render-process-gone", lose);
+      });
+      if (mine !== generation || signal.aborted || lost) throw new CortexError("invalid_request", "Call start was cancelled");
       const transport: CallTransport = {
         post: (path, body) => request(origin, path, { method: "POST", body: JSON.stringify(body) }).catch(() => ({ status: 0, body: null })),
         del: async (path) => { await request(origin, path, { method: "DELETE" }); },

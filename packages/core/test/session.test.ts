@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
 import { afterEach, describe, expect, it } from "vitest"
@@ -232,6 +232,7 @@ describe("session runner (fake OpenAI-compatible SSE)", () => {
       const tool = core.sessions.messages(session.id).flatMap(row => row.parts).find(part => part.type === "tool")
       expect(tool).toMatchObject({ state: { status: "error" } })
       expect(JSON.stringify(tool)).not.toContain("PRIVATE_SECRET")
+      expect(JSON.stringify(core.sessions.messages(session.id))).not.toContain("secret.txt")
     } finally {
       await core.close()
     }
@@ -287,6 +288,24 @@ describe("session runner (fake OpenAI-compatible SSE)", () => {
       await core.sessions.promptAndWait(session.id, { parts: [{ type: "text", text: "read" }] });
       expect(JSON.stringify(core.sessions.messages(session.id))).not.toContain("PRIVATE");
       expect(core.sessions.messages(session.id).flatMap((message) => message.parts).find((part) => part.type === "tool")).toMatchObject({ state: { status: "error" } });
+    } finally { rmSync(root, { recursive: true, force: true }); }
+  });
+
+  // File symlinks need elevated rights on Windows.
+  it.skipIf(process.platform === "win32")("checks external-directory permission for a write through a dangling in-tree symlink", async () => {
+    const root = mkdtempSync(join(tmpdir(), "cortex-dangling-"));
+    const dir = join(root, "project");
+    mkdirSync(dir);
+    symlinkSync(join(root, "outside.txt"), join(dir, "link.txt"));
+    const srv = await fakeOpenAI([{ deltas: [toolCall("w1", "write", { path: "link.txt", content: "ESCAPED" })], finish: "tool_calls" }]);
+    close = srv.close;
+    const core = testCore(srv.url);
+    core.permissionRules.set([{ tool: "external_directory", pattern: "*", action: "deny" }, { tool: "write", pattern: "*", action: "allow" }]);
+    const session = core.sessions.create({ directory: dir, model: { providerID: "fake", modelID: "reasoner" } });
+    try {
+      await core.sessions.promptAndWait(session.id, { parts: [{ type: "text", text: "write" }] });
+      expect(core.sessions.messages(session.id).flatMap((message) => message.parts).find((part) => part.type === "tool")).toMatchObject({ state: { status: "error" } });
+      expect(existsSync(join(root, "outside.txt"))).toBe(false);
     } finally { rmSync(root, { recursive: true, force: true }); }
   });
 

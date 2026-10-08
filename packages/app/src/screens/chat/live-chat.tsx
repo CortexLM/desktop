@@ -348,7 +348,7 @@ function LiveChat({ id }: { id: string }) {
     if (opening.current) return;
     let undone = false;
     toast.add({ title: t("chat.toast.deleted"), description: title, data: { undo: true, icon: "trash", onUndo: () => { undone = true; go("chat", { id }); } },
-      onClose: () => { if (!undone) api.sessions.delete(id).catch(() => { go("chat", { id }); toast.add({ title: t("chat.err.generic.title"), data: { icon: "alert-triangle" } }); }); } });
+      onClose: () => { if (!undone) api.sessions.delete(id).catch(() => { if (readHash().route === "home") go("chat", { id }); toast.add({ title: t("chat.err.generic.title"), data: { icon: "alert-triangle" } }); }); } });
     go("home");
   };
   const movable = session.state === "ready" && session.data.kind === "chat" && !session.data.parentID;

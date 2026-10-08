@@ -21,6 +21,22 @@ describe("client", () => {
     try { await expect(error).resolves.toMatchObject({ code: "internal" }) }
     finally { stop() }
   })
+
+  it("signals open only for an accepted event stream", async () => {
+    const order: string[] = []
+    let settled: () => void = () => { throw new Error("error signal not initialized") }
+    const done = new Promise<void>((resolve) => { settled = resolve })
+    const ok = createClient({ baseUrl: "http://engine.test", fetch: async () => new Response(streamOf([])) })
+    const stopOk = ok.subscribe(() => undefined, { onOpen: () => order.push("open"), onError: () => { order.push("error"); settled() } })
+    await done
+    stopOk()
+    const refusedDone = new Promise<void>((resolve) => { settled = resolve })
+    const refused = createClient({ baseUrl: "http://engine.test", fetch: async () => new Response(null, { status: 503 }) })
+    const stopRefused = refused.subscribe(() => undefined, { onOpen: () => order.push("open"), onError: () => { order.push("error"); settled() } })
+    await refusedDone
+    stopRefused()
+    expect(order).toEqual(["open", "error", "error"])
+  })
   it("trims only trailing URL slashes without backtracking", async () => {
     const base = `https://engine.test/${"/".repeat(100_000)}prefix`
     const urls: string[] = []

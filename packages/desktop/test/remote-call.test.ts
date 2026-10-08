@@ -49,6 +49,22 @@ describe("createCallHost", () => {
     expect(seen.slice(before)).toHaveLength(0);
   });
 
+  it("refuses a start whose owner window died during authentication", async () => {
+    let release: () => void = () => { throw new Error("gate missing"); };
+    const gate = new Promise<void>((resolve) => { release = resolve; });
+    const life = new AbortController();
+    const host = createCallHost(async () => { await gate; return { token: "t", signal: life.signal }; });
+    const owner = new EventEmitter();
+    const before = seen.length;
+    const start = host.start(origin, "00000000-0000-4000-8000-000000000001", { snapshot: () => undefined, play: () => undefined, flush: () => undefined }, owner);
+    const cancelled = expect(start).rejects.toThrow("cancelled");
+    owner.emit("destroyed");
+    release();
+    await cancelled;
+    expect(seen.slice(before)).toHaveLength(0);
+    expect(owner.listenerCount("destroyed") + owner.listenerCount("render-process-gone")).toBe(0);
+  });
+
   it("supersedes an awaiting start before creating a second server session", async () => {
     sessions = "grant";
     const life = new AbortController();
