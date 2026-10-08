@@ -73,8 +73,18 @@ for (const width of [960, 1440]) for (const theme of ["light", "dark"]) test(`ki
     await expect(toggle).toHaveAttribute("aria-checked", "true");
     expect(await page.evaluate(() => localStorage.getItem("cortex.pref.appearance.reduceMotion"))).toBe("true");
     await capture("settings-reduced-motion");
+    await page.evaluate(() => {
+      (window as unknown as { homeMounted: Promise<void> }).homeMounted = new Promise((resolve, reject) => {
+        const observer = new MutationObserver(() => {
+          if (!document.querySelector(".home h1") || !document.querySelector(".home .composer")) return;
+          clearTimeout(deadline); observer.disconnect(); resolve();
+        });
+        const deadline = setTimeout(() => { observer.disconnect(); reject(new Error("Home controls did not mount")); }, 5000);
+        observer.observe(document.getElementById("root")!, { childList: true, subtree: true });
+      });
+    });
     await rail.click();
-    await expect(page.locator(".home")).toBeVisible();
+    await page.evaluate(() => (window as unknown as { homeMounted: Promise<void> }).homeMounted);
     const reduced = await page.locator(".home h1, .home .composer, .progress-card circle.val, .sb-scroll").evaluateAll((elements) => elements.map((element) => ({ name: element.getAttribute("class"), animation: getComputedStyle(element).animationName })));
     expect(reduced).toHaveLength(4);
     expect(reduced.every((value) => value.animation === "none")).toBe(true);
