@@ -35,6 +35,58 @@ beforeAll(async () => {
 afterAll(() => { for (const s of held) s.destroy(); return new Promise<void>((r) => server.close(() => r())); });
 
 describe("createCallHost", () => {
+  it("end cancels a start held in authentication before a server session exists", async () => {
+    let release: () => void = () => { throw new Error("gate missing"); };
+    const gate = new Promise<void>((resolve) => { release = resolve; });
+    const life = new AbortController();
+    const host = createCallHost(async () => { await gate; return { token: "t", signal: life.signal }; });
+    const before = seen.length;
+    const start = host.start(origin, "00000000-0000-4000-8000-000000000001", { snapshot: () => undefined, play: () => undefined, flush: () => undefined });
+    const cancelled = expect(start).rejects.toThrow("cancelled");
+    host.end();
+    release();
+    await cancelled;
+    expect(seen.slice(before)).toHaveLength(0);
+  });
+
+  it("refuses a start whose owner window died during authentication", async () => {
+    let release: () => void = () => { throw new Error("gate missing"); };
+    const gate = new Promise<void>((resolve) => { release = resolve; });
+    const life = new AbortController();
+    const host = createCallHost(async () => { await gate; return { token: "t", signal: life.signal }; });
+    const owner = new EventEmitter();
+    const before = seen.length;
+    const start = host.start(origin, "00000000-0000-4000-8000-000000000001", { snapshot: () => undefined, play: () => undefined, flush: () => undefined }, owner);
+    const cancelled = expect(start).rejects.toThrow("cancelled");
+    owner.emit("destroyed");
+    release();
+    await cancelled;
+    expect(seen.slice(before)).toHaveLength(0);
+    expect(owner.listenerCount("destroyed") + owner.listenerCount("render-process-gone")).toBe(0);
+  });
+
+  it("supersedes an awaiting start before creating a second server session", async () => {
+    sessions = "grant";
+    const life = new AbortController();
+    let releaseAuth: () => void = () => { throw new Error("auth gate not initialized"); };
+    const firstAuth = new Promise<void>((resolve) => { releaseAuth = resolve; });
+    let authCalls = 0;
+    const host = createCallHost(async () => {
+      if (++authCalls === 1) await firstAuth;
+      return { token: "t", signal: life.signal };
+    });
+    const on = { snapshot: () => undefined, play: () => undefined, flush: () => undefined };
+    const before = seen.length;
+    const first = host.start(origin, "00000000-0000-4000-8000-000000000001", on);
+    const superseded = expect(first).rejects.toThrow();
+    await host.start(origin, "00000000-0000-4000-8000-000000000001", on);
+    releaseAuth();
+    await superseded;
+    expect(seen.slice(before).filter((r) => r.method === "POST" && r.url === "/v1/live/sessions")).toHaveLength(1);
+    host.end();
+    sessions = "refuse";
+  });
+
   it("offers only on bot_call, hides for signed-out windows, and keeps the bearer in main", async () => {
     const life = new AbortController();
     const host = createCallHost(async () => ({ token: "main-only-bearer", signal: life.signal }));

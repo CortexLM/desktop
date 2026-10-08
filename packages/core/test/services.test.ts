@@ -181,7 +181,15 @@ describe("mcp", () => {
     expect(info.tools.map((t) => t.name)).toEqual(["add"])
     expect(core.mcp.tools().map((t) => t.name)).toEqual(["demo_add"])
     const s = core.sessions.create({ model: { providerID: "fake", modelID: "reasoner" } })
+    let asked = 0
+    const stopAsk = core.bus.on("permission.asked", (event) => {
+      asked++
+      expect(event.properties.permission.tool).toBe("demo_add")
+      core.permissions.reply(event.properties.permission.id, "once")
+    })
     await core.sessions.promptAndWait(s.id, { parts: [{ type: "text", text: "add" }] })
+    stopAsk()
+    expect(asked).toBe(1)
     expect(srv.requests[0].tools.map((t: any) => t.function.name)).toContain("demo_add")
     expect(core.sessions.messages(s.id)[1]!.parts.find((x) => x.type === "tool")).toMatchObject({ tool: "demo_add", state: { status: "completed", output: "5" } })
     await core.mcp.setEnabled("demo", false)

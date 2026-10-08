@@ -7,7 +7,7 @@ import type { McpConfig } from "@cortex/schema";
 
 export const COMPUTER_USE_SERVER = "computer-use";
 /** Tools that only observe; everything else (click, type, keys, scroll, launch…) is an input action. */
-const OBSERVE = /(^|_)(screenshot|list|get|find|read|describe|inspect|tree|state|windows?|apps?|elements?|size|position)(_|$)/i;
+const OBSERVE = /^(screenshot|list|get|find|read|describe|inspect|tree|state)(_|$)/i;
 
 export const isComputerUseInput = (tool: string) => tool.startsWith(`${COMPUTER_USE_SERVER}_`) && !OBSERVE.test(tool.slice(COMPUTER_USE_SERVER.length + 1));
 

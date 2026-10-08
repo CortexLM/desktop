@@ -1,4 +1,4 @@
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
 import { afterEach, describe, expect, it } from "vitest"
@@ -216,6 +216,28 @@ describe("session runner (fake OpenAI-compatible SSE)", () => {
     expect(srv.requests).toHaveLength(3)
   })
 
+  it.each(["grep", "glob"])("%s cannot bypass a denied read path", async (name) => {
+    const dir = mkdtempSync(join(tmpdir(), "cortex-search-perm-"))
+    writeFileSync(join(dir, "secret.txt"), "PRIVATE_SECRET\n")
+    const srv = await fakeOpenAI([
+      { deltas: [toolCall("search", name, { pattern: name === "grep" ? "." : "*.txt" })], finish: "tool_calls" },
+      { deltas: [{ content: "done" }], finish: "stop" },
+    ])
+    close = srv.close
+    const core = testCore(srv.url)
+    core.permissionRules.set([{ tool: "read", pattern: "*secret.txt", action: "deny" }])
+    const session = core.sessions.create({ model: { providerID: "fake", modelID: "reasoner" }, directory: dir })
+    try {
+      await core.sessions.promptAndWait(session.id, { parts: [{ type: "text", text: "Search the files" }] })
+      const tool = core.sessions.messages(session.id).flatMap(row => row.parts).find(part => part.type === "tool")
+      expect(tool).toMatchObject({ state: { status: "error" } })
+      expect(JSON.stringify(tool)).not.toContain("PRIVATE_SECRET")
+      expect(JSON.stringify(core.sessions.messages(session.id))).not.toContain("secret.txt")
+    } finally {
+      await core.close()
+    }
+  })
+
   it("abort stops a pending permission wait", async () => {
     const dir = mkdtempSync(join(tmpdir(), "cortex-abort-"))
     const srv = await fakeOpenAI([{ deltas: [toolCall("b1", "bash", { command: "echo hi" })], finish: "tool_calls" }])
@@ -250,6 +272,81 @@ describe("session runner (fake OpenAI-compatible SSE)", () => {
     const tool = core.sessions.messages(s.id)[1]!.parts.find((p) => p.type === "tool")
     expect(tool).toMatchObject({ state: { status: "completed", output: "child report" } })
   })
+
+  it("checks external-directory permission for an in-tree symlink escape", async () => {
+    const root = mkdtempSync(join(tmpdir(), "cortex-symlink-"));
+    const dir = join(root, "project");
+    mkdirSync(dir);
+    writeFileSync(join(root, "secret.txt"), "PRIVATE");
+    symlinkSync(root, join(dir, "outside"), process.platform === "win32" ? "junction" : "dir");
+    const srv = await fakeOpenAI([{ deltas: [toolCall("r1", "read", { path: "outside/secret.txt" })], finish: "tool_calls" }]);
+    close = srv.close;
+    const core = testCore(srv.url);
+    core.permissionRules.set([{ tool: "external_directory", pattern: "*", action: "deny" }]);
+    const session = core.sessions.create({ directory: dir, model: { providerID: "fake", modelID: "reasoner" } });
+    try {
+      await core.sessions.promptAndWait(session.id, { parts: [{ type: "text", text: "read" }] });
+      expect(JSON.stringify(core.sessions.messages(session.id))).not.toContain("PRIVATE");
+      expect(core.sessions.messages(session.id).flatMap((message) => message.parts).find((part) => part.type === "tool")).toMatchObject({ state: { status: "error" } });
+    } finally { rmSync(root, { recursive: true, force: true }); }
+  });
+
+  // File symlinks need elevated rights on Windows.
+  it.skipIf(process.platform === "win32")("checks external-directory permission for a write through a dangling in-tree symlink", async () => {
+    const root = mkdtempSync(join(tmpdir(), "cortex-dangling-"));
+    const dir = join(root, "project");
+    mkdirSync(dir);
+    symlinkSync(join(root, "outside.txt"), join(dir, "link.txt"));
+    const srv = await fakeOpenAI([{ deltas: [toolCall("w1", "write", { path: "link.txt", content: "ESCAPED" })], finish: "tool_calls" }]);
+    close = srv.close;
+    const core = testCore(srv.url);
+    core.permissionRules.set([{ tool: "external_directory", pattern: "*", action: "deny" }, { tool: "write", pattern: "*", action: "allow" }]);
+    const session = core.sessions.create({ directory: dir, model: { providerID: "fake", modelID: "reasoner" } });
+    try {
+      await core.sessions.promptAndWait(session.id, { parts: [{ type: "text", text: "write" }] });
+      expect(core.sessions.messages(session.id).flatMap((message) => message.parts).find((part) => part.type === "tool")).toMatchObject({ state: { status: "error" } });
+      expect(existsSync(join(root, "outside.txt"))).toBe(false);
+    } finally { rmSync(root, { recursive: true, force: true }); }
+  });
+
+  it("a plan child cannot bypass the parent's read-only permission", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "cortex-plan-child-"))
+    const srv = await fakeOpenAI([
+      { deltas: [toolCall("t1", "task", { description: "sub", prompt: "write file", agent: "general" })], finish: "tool_calls" },
+      { deltas: [toolCall("w1", "write", { path: "blocked.txt", content: "blocked" })], finish: "tool_calls" },
+      { deltas: [{ content: "child done" }], finish: "stop" },
+      { deltas: [{ content: "parent done" }], finish: "stop" },
+    ])
+    close = srv.close
+    const core = testCore(srv.url)
+    const s = core.sessions.create({ agent: "plan", directory: dir, model: { providerID: "fake", modelID: "reasoner" } })
+    let asked = 0
+    const stop = core.bus.on("permission.asked", (event) => { asked++; core.permissions.reply(event.properties.permission.id, "once") })
+    try {
+      await core.sessions.promptAndWait(s.id, { parts: [{ type: "text", text: "delegate" }] })
+      expect(asked).toBe(0)
+      const child = core.sessions.list({ parentID: s.id })[0]
+      expect(child).toBeDefined()
+      const tool = core.sessions.messages(child!.id).flatMap((m) => m.parts).find((p) => p.type === "tool")
+      expect(tool).toMatchObject({ state: { status: "error" } })
+    } finally { stop(); rmSync(dir, { recursive: true, force: true }) }
+  })
+
+  it("offers enabled skill names through the model tool schema", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "cortex-skill-discovery-"));
+    const skillDir = join(dir, ".cortex", "skills", "fixture-skill");
+    mkdirSync(skillDir, { recursive: true });
+    writeFileSync(join(skillDir, "SKILL.md"), "---\nname: fixture-skill\ndescription: Fixture instructions\n---\nOnly loaded after selection.");
+    const srv = await fakeOpenAI([{ deltas: [{ content: "done" }], finish: "stop" }]);
+    close = srv.close;
+    const core = testCore(srv.url);
+    const session = core.sessions.create({ directory: dir, model: { providerID: "fake", modelID: "reasoner" } });
+    try {
+      await core.sessions.promptAndWait(session.id, { parts: [{ type: "text", text: "available skills" }] });
+      const schema = srv.requests[0].tools.find((tool: { function: { name: string } }) => tool.function.name === "skill").function.parameters;
+      expect(schema.properties.name.enum).toEqual(["fixture-skill"]);
+    } finally { rmSync(dir, { recursive: true, force: true }); }
+  });
 
   it("bot sessions use persona and memory as system prompt", async () => {
     const srv = await fakeOpenAI([{ deltas: [{ content: "hi" }], finish: "stop" }])

@@ -36,6 +36,24 @@ describe("browser host", () => {
     expect((await req("/share", { body: { id: 1, title: "", url: "https://a.test/" } })).status).toBe(401)
     expect(bridge.status().connected).toBe(false)
   })
+  it("preserves multibyte page text through the real loopback body", async () => {
+    const { bridge, req } = await boot()
+    const { code } = bridge.startPairing()
+    const { token } = await (await req("/pair", { body: { code } })).json()
+    await req("/share", { token, body: { id: 5, title: "Docs", url: "https://a.test/" } })
+    const read = bridge.read(5)
+    const { commands } = await (await req("/poll", { method: "GET", token })).json()
+    const text = "€".repeat(100_000)
+    expect((await req("/result", { token, body: { id: commands[0].id, ok: true, title: "Docs", url: "https://a.test/", text } })).status).toBe(204)
+    await expect(read).resolves.toMatchObject({ text: text.slice(0, 50_000) })
+  })
+  it("rejects oversized multibyte bodies by bytes", async () => {
+    const { bridge, req } = await boot()
+    const { code } = bridge.startPairing()
+    const { token } = await (await req("/pair", { body: { code } })).json()
+    expect((await req("/share", { token, body: { id: 5, title: "€".repeat(700_000), url: "https://a.test/" } })).status).toBe(400)
+    expect(bridge.status().tabs).toHaveLength(0)
+  })
   it("rejects a non-loopback Host header", async () => {
     const { bridge } = await boot()
     const port = bridge.status().port!

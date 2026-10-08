@@ -23,6 +23,7 @@ const BOT = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 export function createCallHost(auth: CallAuth, fetchImpl: typeof fetch = fetch) {
   let current: { session: CallSession; release(): void } | undefined;
   let last: CallSession | undefined;
+  let generation = 0;
   const request = async (origin: string, path: string, init: RequestInit) => {
     const { token, signal } = await auth(origin);
     const response = await fetchImpl(`${origin}${path}`, {
@@ -32,7 +33,7 @@ export function createCallHost(auth: CallAuth, fetchImpl: typeof fetch = fetch) 
     return { status: response.status, body: response.status === 204 ? null : await response.json().catch(() => null) };
   };
   // End first so the renderer receives the final snapshot, then detach.
-  const end = () => { const c = current; current = undefined; const done = c?.session.end(); c?.release(); void done; };
+  const end = () => { generation++; const c = current; current = undefined; const done = c?.session.end(); c?.release(); void done; };
   return {
     /** The `bot_call` block only; Chat Live's `live` is never consulted. */
     async available(origin: string): Promise<"offer" | "unavailable" | "hidden"> {
@@ -48,7 +49,16 @@ export function createCallHost(auth: CallAuth, fetchImpl: typeof fetch = fetch) 
     async start(origin: string, botId: string, on: CallEvents, owner?: CallOwnerEvents): Promise<void> {
       if (!BOT.test(botId)) throw new CortexError("invalid_request", "Invalid Bot");
       end();
-      const { signal } = await auth(origin);
+      const mine = generation;
+      // Watch the owner during authentication too: a window lost here must not get a server call.
+      let lost = false;
+      const lose = () => { lost = true; };
+      owner?.once("destroyed", lose);
+      owner?.once("render-process-gone", lose);
+      const { signal } = await auth(origin).finally(() => {
+        owner?.removeListener("destroyed", lose); owner?.removeListener("render-process-gone", lose);
+      });
+      if (mine !== generation || signal.aborted || lost) throw new CortexError("invalid_request", "Call start was cancelled");
       const transport: CallTransport = {
         post: (path, body) => request(origin, path, { method: "POST", body: JSON.stringify(body) }).catch(() => ({ status: 0, body: null })),
         del: async (path) => { await request(origin, path, { method: "DELETE" }); },
@@ -84,6 +94,7 @@ export function createCallHost(auth: CallAuth, fetchImpl: typeof fetch = fetch) 
         if ((s.phase === "ended" || s.phase === "error") && current?.session === session) { const c = current; current = undefined; c.release(); }
       });
       await session.start();
+      if (mine !== generation) throw new CortexError("invalid_request", "Call start was cancelled");
     },
     capture(pcm: Uint8Array) { current?.session.capture(pcm); },
     played(sequence: number, generation: number) { current?.session.played(sequence, generation); },

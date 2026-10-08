@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest"
-import { Event, EVENT_TYPES, McpConfig, newId, Part, Schedule } from "../src/index"
+import { BotUpdateInput, Event, EVENT_TYPES, McpConfig, newId, Part, Schedule, TaskUpdateInput } from "../src/index"
 
 describe("schema", () => {
   afterEach(() => vi.restoreAllMocks())
@@ -22,5 +22,9 @@ describe("schema", () => {
     expect(McpConfig.parse({ name: "fs", type: "stdio", command: "npx" })).toMatchObject({ args: [], enabled: true })
     expect(() => McpConfig.parse({ name: "bad name", type: "remote", url: "https://x.test" })).toThrow()
     expect(() => Schedule.parse({ type: "daily", time: "9am" })).toThrow()
+  })
+  it("leaves omitted Bot and task PATCH fields omitted", () => {
+    expect(BotUpdateInput.parse({ name: "Renamed" })).toEqual({ name: "Renamed" })
+    expect(TaskUpdateInput.parse({ title: "Renamed" })).toEqual({ title: "Renamed" })
   })
 })

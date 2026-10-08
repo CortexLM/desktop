@@ -10,6 +10,9 @@ describe("computer use (Cua Driver over MCP)", () => {
     expect(isComputerUseInput("computer-use_list_windows")).toBe(false)
     expect(isComputerUseInput("computer-use_click")).toBe(true)
     expect(isComputerUseInput("computer-use_type_text")).toBe(true)
+    for (const name of ["launch_app", "quit_app", "click_element", "scroll_window", "close_window", "move_window", "resize_window", "focus_app"]) {
+      expect(isComputerUseInput(`computer-use_${name}`)).toBe(true)
+    }
     expect(isComputerUseInput("other_click")).toBe(false)
   })
 

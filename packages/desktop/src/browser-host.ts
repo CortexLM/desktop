@@ -10,11 +10,14 @@ const POLL_MS = 20_000
 const isExtensionOrigin = (o: string | undefined) => !!o && /^chrome-extension:\/\/[a-p]{32}$/.test(o)
 
 async function body(req: IncomingMessage): Promise<Record<string, unknown>> {
-  let raw = ""
+  const chunks: Buffer[] = []
+  let bytes = 0
   for await (const chunk of req) {
-    raw += chunk
-    if (raw.length > MAX_BODY) throw new CortexError("invalid_request", "Body too large")
+    bytes += chunk.length
+    if (bytes > MAX_BODY) throw new CortexError("invalid_request", "Body too large")
+    chunks.push(chunk)
   }
+  const raw = Buffer.concat(chunks).toString("utf8")
   try {
     const v = raw ? JSON.parse(raw) : {}
     if (v && typeof v === "object" && !Array.isArray(v)) return v as Record<string, unknown>

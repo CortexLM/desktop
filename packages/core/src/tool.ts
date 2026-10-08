@@ -1,5 +1,5 @@
 import { exec } from "node:child_process"
-import { glob as fsGlob, mkdir, readdir, readFile, stat, writeFile } from "node:fs/promises"
+import { glob as fsGlob, mkdir, open, readdir, readlink, realpath, stat, writeFile } from "node:fs/promises"
 import { basename, dirname, isAbsolute, join, relative, resolve } from "node:path"
 import { z } from "zod"
 import type { BrowserBridge } from "./browser"
@@ -50,10 +50,44 @@ export const truncate = (s: string, max = MAX_OUTPUT) => (s.length > max ? s.sli
 /** Resolve against the session directory; paths escaping it need an `external_directory` approval. */
 async function target(ctx: ToolContext, p: string): Promise<string> {
   const dir = ctx.directory!
-  const abs = isAbsolute(p) ? resolve(p) : resolve(dir, p)
-  const rel = relative(dir, abs)
+  let abs = isAbsolute(p) ? resolve(p) : resolve(dir, p)
+  let parent = abs
+  const missing: string[] = []
+  for (;;) {
+    try { abs = join(await realpath(parent), ...missing); break }
+    catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT" || dirname(parent) === parent) throw error
+      // A dangling link is not a missing component: follow it so its outside target is checked.
+      const link = await readlink(parent).catch(() => undefined)
+      if (link !== undefined) { parent = resolve(dirname(parent), link); continue }
+      missing.unshift(basename(parent)); parent = dirname(parent)
+    }
+  }
+  const rel = relative(await realpath(dir), abs)
   if (rel.startsWith("..") || isAbsolute(rel)) await ctx.ask(abs, { path: abs }, "external_directory")
   return abs
+}
+
+/**
+ * Read the approved canonical path through one descriptor, refusing it when a link swapped in after
+ * approval redirects the open. ponytail: a double swap between open and the identity check still
+ * races; Node has no openat2(RESOLVE_NO_SYMLINKS). Upgrade to a native resolver if that matters.
+ */
+async function readApproved(abs: string, max = Infinity): Promise<string | undefined> {
+  const fh = await open(abs, "r")
+  try {
+    const [held, named] = await Promise.all([fh.stat({ bigint: true }), stat(abs, { bigint: true })])
+    if (await realpath(abs) !== abs || held.dev !== named.dev || held.ino !== named.ino) throw new CortexError("tool_failed", "The file changed while it was being opened")
+    if (!held.isFile() || held.size > max) return undefined
+    return await fh.readFile("utf8")
+  } finally { await fh.close() }
+}
+
+/** Per-candidate checks in glob/grep: a refusal must not reveal the candidate's name. */
+async function quiet<T>(check: () => Promise<T>): Promise<T> {
+  try { return await check() } catch (error) {
+    throw new CortexError(error instanceof CortexError ? error.code : "tool_failed", "A matching file is not readable under the current permissions")
+  }
 }
 
 const SKIP_DIRS = new Set(["node_modules", ".git", "dist", ".next", "build"])
@@ -67,7 +101,9 @@ const read = defineTool({
   async execute({ path, offset = 1, limit = 2000 }, ctx) {
     const file = await target(ctx, path)
     await ctx.ask(file, { path: file })
-    const lines = (await readFile(file, "utf8")).split("\n")
+    const content = await readApproved(file)
+    if (content === undefined) throw new CortexError("tool_failed", "Not a regular file")
+    const lines = content.split("\n")
     const slice = lines.slice(offset - 1, offset - 1 + limit)
     return { title: relative(ctx.directory!, file) || file, output: truncate(slice.map((l, i) => `${offset + i}: ${l}`).join("\n")), metadata: { lines: lines.length } }
   },
@@ -94,7 +130,8 @@ const edit = defineTool({
   parameters: z.object({ path: z.string(), oldString: z.string().min(1), newString: z.string(), replaceAll: z.boolean().optional() }),
   async execute({ path, oldString, newString, replaceAll }, ctx) {
     const file = await target(ctx, path)
-    const text = await readFile(file, "utf8")
+    const text = await readApproved(file)
+    if (text === undefined) throw new CortexError("tool_failed", "Not a regular file")
     const count = text.split(oldString).length - 1
     if (count === 0) throw new CortexError("tool_failed", "oldString not found in file")
     if (count > 1 && !replaceAll) throw new CortexError("tool_failed", `oldString occurs ${count} times; add context or set replaceAll`)
@@ -125,8 +162,10 @@ const glob = defineTool({
   parameters: z.object({ pattern: z.string(), path: z.string().optional() }),
   async execute({ pattern, path }, ctx) {
     const cwd = await target(ctx, path ?? ".")
+    await ctx.ask(cwd, { path: cwd }, "read")
     const out: string[] = []
     for await (const f of fsGlob(pattern, { cwd, exclude: skip })) {
+      await quiet(async () => { const abs = await target(ctx, join(cwd, f)); await ctx.ask(abs, { path: abs }, "read") })
       out.push(f)
       if (out.length >= 1000) break
     }
@@ -141,6 +180,7 @@ const grep = defineTool({
   parameters: z.object({ pattern: z.string(), path: z.string().optional(), include: z.string().optional() }),
   async execute({ pattern, path, include }, ctx) {
     const cwd = await target(ctx, path ?? ".")
+    await ctx.ask(cwd, { path: cwd }, "read")
     let re: RegExp
     try {
       re = new RegExp(pattern)
@@ -150,11 +190,12 @@ const grep = defineTool({
     const hits: string[] = []
     // ponytail: pure-JS scan, fine for project-sized trees; swap for ripgrep if large monorepos get slow.
     for await (const f of fsGlob(include ?? "**/*", { cwd, exclude: skip })) {
-      const abs = join(cwd, f)
+      const abs = await quiet(() => target(ctx, join(cwd, f)))
       const st = await stat(abs).catch(() => undefined)
       if (!st?.isFile() || st.size > 1_000_000) continue
-      const text = await readFile(abs, "utf8").catch(() => "")
-      if (text.includes("\u0000")) continue
+      await quiet(() => ctx.ask(abs, { path: abs }, "read"))
+      const text = await readApproved(abs, 1_000_000).catch(() => undefined)
+      if (text === undefined || text.includes("\u0000")) continue
       text.split("\n").forEach((line, i) => {
         if (hits.length < 500 && re.test(line)) hits.push(`${f}:${i + 1}: ${line.slice(0, 300)}`)
       })

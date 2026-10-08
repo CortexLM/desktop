@@ -146,6 +146,26 @@ it("narrows a refused live diff to its public workspace tag and never exposes pr
   await expect(remoteChatFetch(new Request(origin + diff, { method: "POST" }), owner)).rejects.toMatchObject({ code: "invalid_request" });
 });
 
+it("reconnects a Code watch after EOF and resyncs before new events", async () => {
+  let calls = 0;
+  const client = createCortexClient({ baseUrl: origin, fetch: async () => {
+    const body = new ReadableStream<Uint8Array>({ start(controller) { if (++calls === 1) controller.close(); } });
+    return new Response(body, { headers: { "content-type": "text/event-stream" } });
+  } });
+  const life = new AbortController();
+  const chat = createRemoteChatBinding(client, origin, "fixture-epoch", life.signal, () => {}, "usr_fixture");
+  const code = createRemoteCodeBinding(client, chat, () => {});
+  const changed = vi.fn();
+  vi.useFakeTimers();
+  const watch = code.watch(cnv, changed);
+  try {
+    await watch.ready;
+    await vi.advanceTimersByTimeAsync(250);
+    expect(calls).toBe(2);
+    expect(changed).toHaveBeenCalledTimes(2);
+  } finally { watch.close(); life.abort(); vi.useRealTimers(); }
+});
+
 it("refuses IPC-forced cloud create and cloud prompt in main with no producer write while no farm is admitted", async () => {
   routes.set("/v1/code/capabilities", json({ runtimes: { available: false, unavailable_reason: "code_compute_not_configured" } }));
   routes.set("/v1/code/sessions", json({ id: cnv, runtime: "cloud", model_slug: "fixture", title: "", state: "cloud_only" }, 201));

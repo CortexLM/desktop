@@ -1,6 +1,15 @@
 import { test, expect } from "@playwright/test";
 import { launch } from "./fixtures";
 
+test("a chat link without an ID replaces its entry instead of trapping Back", async () => {
+  const { app, page } = await launch({ hash: "#/chat", env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
+  try {
+    await expect(page).toHaveURL(/#\/home$/);
+    const routes = await page.evaluate(() => (window as unknown as { navigation: { entries(): { url: string }[] } }).navigation.entries().map((entry) => new URL(entry.url).hash));
+    expect(routes).not.toContain("#/chat");
+  } finally { await app.close(); }
+});
+
 test("skipped native route and theme transitions preserve updates and report callback errors", async () => {
   const { app, page } = await launch({ hash: "#/home?preview&theme=light", env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
   const errors: string[] = [];

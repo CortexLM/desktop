@@ -1,5 +1,9 @@
 # Chrome connector
 
+Loopback bodies enforce the two-million-byte cap before decoding UTF-8 once;
+split multibyte sequences survive transport. `browser_read` retains its existing
+50,000-character limit independently of the HTTP body cap.
+
 `packages/chrome-extension` (Manifest V3, load unpacked from the folder the **Install extension** button opens) talks to the
 desktop app over a loopback HTTP endpoint (`127.0.0.1`, ports 47821-47825) owned by `packages/desktop/src/browser-host.ts`.
 Chrome native messaging was not used: it needs a per-OS manifest registration and an extension ID that only exists after store publishing.

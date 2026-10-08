@@ -4,7 +4,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import type { RemoteAuthState } from "@cortex/schema";
-import { root } from "./fixtures";
+import { launch, root } from "./fixtures";
 
 const account = "usr_00000000000000000000000001";
 
@@ -48,6 +48,31 @@ async function call<T>(page: Page, route: string, method = "GET", body?: unknown
   }, { route, method, body });
 }
 const auth = async (page: Page) => (await call<RemoteAuthState>(page, "/api/connection/auth")).body;
+
+test("opens the window signed out when the persisted credential store is corrupt", async () => {
+  const fixture = await backend();
+  const first = await launch();
+  const firstProcess = first.app.process();
+  const store = path.join(first.dataDir, "remote-credentials.json");
+  try {
+    expect((await call(first.page, "/api/connection", "PUT", { mode: "selfhost", url: fixture.origin, signedIn: false })).status).toBe(200);
+    await first.app.close();
+    fs.writeFileSync(store, "{");
+    const next = await launch({ env: { CORTEX_DATA_DIR: first.dataDir } });
+    try {
+      expect((await auth(next.page)).signedIn).toBe(false);
+      expect(fs.readFileSync(store, "utf8")).toBe("{");
+      expect(fixture.count("/v1/auth/refresh")).toBe(0);
+    } finally {
+      await next.app.close();
+      fs.rmSync(next.dataDir, { recursive: true, force: true });
+    }
+  } finally {
+    if (firstProcess.exitCode === null) await first.app.close();
+    fs.rmSync(first.dataDir, { recursive: true, force: true });
+    await fixture.close();
+  }
+});
 
 test("restores saved remote credentials after restart and erases revoked ones", async () => {
   const fixture = await backend();

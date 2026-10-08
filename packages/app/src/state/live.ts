@@ -5,11 +5,40 @@ import { api } from "../api";
 
 type Listener = (e: Event) => void;
 const listeners = new Set<Listener>();
+const resync = new Set<() => void>();
 let unsub: (() => void) | null = null;
-export function onEvent(l: Listener) {
+let reconnect: ReturnType<typeof setTimeout> | undefined;
+let stale = false;
+const connect = () => {
+  reconnect = undefined;
+  if (!listeners.size || unsub) return;
+  // Resync only once the replacement stream is attached: a snapshot taken earlier could miss events
+  // sent before it, and one taken during the outage would fail. Failed opens keep `stale` for the next try.
+  unsub = api.subscribe((e) => listeners.forEach((f) => f(e)), {
+    onOpen: () => { if (stale) { stale = false; resync.forEach((refresh) => refresh()); } },
+    onError: () => {
+      unsub?.();
+      unsub = null;
+      stale = true;
+      if (listeners.size) reconnect = setTimeout(connect, 1000);
+    },
+  });
+};
+export function onEvent(l: Listener, refresh?: () => void) {
   listeners.add(l);
-  if (!unsub) unsub = api.subscribe((e) => listeners.forEach((f) => f(e)), { onError: () => {} });
-  return () => { listeners.delete(l); };
+  if (refresh) resync.add(refresh);
+  if (!unsub && !reconnect) connect();
+  return () => {
+    listeners.delete(l);
+    if (refresh) resync.delete(refresh);
+    if (!listeners.size) {
+      unsub?.();
+      unsub = null;
+      clearTimeout(reconnect);
+      reconnect = undefined;
+      stale = false;
+    }
+  };
 }
 
 export type Load<T> = { state: "loading" } | { state: "ready"; data: T } | { state: "error"; code: string };
@@ -23,7 +52,7 @@ export function useQuery<T>(load: () => Promise<T>, deps: unknown[], when?: (e: 
     load().then((data) => n === seq.current && set({ state: "ready", data }), (err: { code?: string }) => n === seq.current && set({ state: "error", code: err?.code ?? "internal" }));
   }, deps); // eslint-disable-line react-hooks/exhaustive-deps
   React.useEffect(() => { run(); }, [run]);
-  React.useEffect(() => (when ? onEvent((e) => { if (when(e)) run(); }) : undefined), [run]); // eslint-disable-line react-hooks/exhaustive-deps
+  React.useEffect(() => (when ? onEvent((e) => { if (when(e)) run(); }, run) : undefined), [run]); // eslint-disable-line react-hooks/exhaustive-deps
   return { ...s, reload: run };
 }
 
@@ -76,6 +105,19 @@ export function useMessages(sessionID: string | undefined) {
     };
     publish();
     if (!sessionID) return () => { live = false; };
+    const refresh = () => api.sessions.messages(sessionID).then((msgs) => {
+      if (!live) return;
+      for (const message of msgs) {
+        putMessage(message.info, true);
+        for (const part of message.parts) putPart(part, true);
+      }
+      publish();
+    }, (err: { code?: string }) => {
+      // The session was deleted while the stream was down; transient failures keep the last view.
+      if (!live || err?.code !== "not_found") return;
+      records.clear(); settled.clear(); status = "idle";
+      publish();
+    });
     const off = onEvent((e) => {
       if (!live) return;
       switch (e.type) {
@@ -108,15 +150,8 @@ export function useMessages(sessionID: string | undefined) {
         default: return;
       }
       publish();
-    });
-    api.sessions.messages(sessionID).then((msgs) => {
-      if (!live) return;
-      for (const message of msgs) {
-        putMessage(message.info, true);
-        for (const part of message.parts) putPart(part, true);
-      }
-      publish();
-    }, () => {});
+    }, refresh);
+    void refresh();
     return () => { live = false; off(); records.clear(); settled.clear(); };
   }, [sessionID]);
   return state.sessionID === sessionID ? { msgs: state.msgs, status: state.status } : { msgs: [], status: "idle" as const };
