@@ -33,9 +33,11 @@ export type ComposerProps = {
   disabled?: boolean;
   /** data-testid prefix: `<id>-input`, `<id>-send`. */
   testId?: string;
+  /** Live tool pages send with the account default model; hide the display-only model menu. */
+  hideModel?: boolean;
 };
 
-export function Composer({ placeholder, onSend, models, initialModel, onModelChange, disabled, testId = "composer" }: ComposerProps) {
+export function Composer({ placeholder, onSend, models, initialModel, onModelChange, disabled, testId = "composer", hideModel }: ComposerProps) {
   const t = useT();
   const { go } = useNav();
   const toast = useToast();
@@ -70,7 +72,7 @@ export function Composer({ placeholder, onSend, models, initialModel, onModelCha
         ? <textarea rows={1} {...enter.field} data-testid={`${testId}-input`} value={text} disabled={submitting} onChange={(e) => setText(e.target.value)} placeholder={ph} aria-label={ph} aria-description={instructions} />
         : <input data-testid={`${testId}-input`} value={text} disabled={submitting} onChange={(e) => setText(e.target.value)} placeholder={ph} aria-label={ph} />}
       {enter.live && enter.value === null && <span className="composer-storage-error" role="status">{instructions}</span>}
-      <Menu.Root>
+      {!hideModel && <Menu.Root>
         <Menu.Trigger className="model" type="button" disabled={submitting}>{model}<Icon name="chevron-down" size={12} /></Menu.Trigger>
         <Menu.Portal><Menu.Positioner sideOffset={6} align="end" side="top"><Menu.Popup className="popup" style={{ width: 220 }}>
           <Menu.RadioGroup value={model} onValueChange={(v) => { setModel(v as string); onModelChange?.(v as string); }}>
@@ -82,7 +84,7 @@ export function Composer({ placeholder, onSend, models, initialModel, onModelCha
             ))}
           </Menu.RadioGroup>
         </Menu.Popup></Menu.Positioner></Menu.Portal>
-      </Menu.Root>
+      </Menu.Root>}
       <IconBtn type="button" icon="mic" label={t("composer.dictate")} className="round" disabled={submitting} onClick={() => go("voice")} />
       <Tip label={hasText ? t("composer.send") : t("composer.voice")} kbd={hasText && enter.value === true ? "↵" : undefined}>
         <button type={hasText ? "submit" : "button"} onClick={hasText ? undefined : () => go("voice")} data-testid={`${testId}-send`} className="send" disabled={disabled || submitting || (hasText && !onSend)} data-has-text={hasText ? "" : undefined} aria-label={hasText ? t("composer.send") : t("composer.voice")}>

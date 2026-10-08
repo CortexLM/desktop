@@ -86,7 +86,6 @@ export function Widgets() {
   const t = useT(), { go } = useNav();
   return <Page title={t("extras.widgets.title")} action={<button className="btn secondary" onClick={() => go("planning")}><Icon name="history" />{t("extras.link.planning")}</button>}>
     <h1>{t("extras.widgets.h1")}</h1><p className={`${R}-lead`}>{t("extras.widgets.lead")}</p>
-    <Notice>{t("extras.widgets.notice")}</Notice>
     <Empty icon="projects" title={t("extras.widgets.emptyTitle")} action={<button className="btn primary" data-testid="widgets-new-chat" onClick={() => go("home")}>{t("extras.widgets.emptyAction")}</button>}>{t("extras.widgets.emptyBody")}</Empty>
   </Page>;
 }

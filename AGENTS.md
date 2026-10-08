@@ -103,8 +103,8 @@ file picked on this computer in the renderer only; nothing is uploaded. Eight si
 screens read a closed trunk table (`@cortex/schema` `CHAT_FEATURE_OPS`, main
 `remote-chat-features.ts`, `/api/chat/feature`): conversations, messages, shares
 create/list/revoke, canvases, account search, research report, audio capabilities and live
-preferences. Temporary chat (the trunk flag is set only when a chat starts) and desktop live calls
-are stated as unavailable in place. Every live screen root carries `data-testid="screen-<id>"`.
+preferences. Web search, Deep research, Images and Temporary chat send tool turns through the same table
+(`turn.start`/`turn.continue`, see `docs/connection-modes.md`); desktop live calls are stated as unavailable in place. Every live screen root carries `data-testid="screen-<id>"`.
 
 ## Read this first (mandatory)
 

@@ -430,6 +430,32 @@
 .chat-text-open:hover { background: var(--hover); }
 .chat-mthink .switch { display: inline-block; }
 
+/* Signed-in tool pages (search, deep research, images, temporary chat) */
+.chat-tool-root, .chat-feature { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.chat-tool-root .home { flex: 1; min-height: 0; }
+.chat-tool-root .home .composer { width: 100%; max-width: 680px; }
+.chat-tool-root .home .chat-fmts { justify-content: center; margin-bottom: 10px; }
+.chat-tool-root .home .chat-err { width: 100%; max-width: 680px; }
+.chat-tool-banner { margin: 0 15px 8px; }
+.chat-tool-images { padding-top: 24px; }
+.chat-tool-images .home { padding-bottom: 32px; }
+.chat-tool-li { padding-left: 14px; position: relative; }
+.chat-tool-li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 4px; height: 4px; border-radius: 2px; background: var(--t3); }
+.chat-gimg-live { inset: 0; }
+.chat-tool-table { overflow-x: auto; margin: 4px 0 12px; border-radius: 12px; box-shadow: var(--ring); }
+.chat-tool-table table { width: 100%; border-collapse: collapse; font-size: 12px; line-height: 17px; }
+.chat-tool-table th, .chat-tool-table td { padding: 8px 10px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.chat-tool-table th { font-weight: 500; color: var(--t2); background: var(--card); }
+.chat-tool-table tr:last-child td { border-bottom: 0; }
+.chat-tool-indeterminate { display: block; width: 35%; animation: chat-tool-slide 1.4s var(--ease-out) infinite; }
+@keyframes chat-tool-slide { from { translate: -100% 0; } to { translate: 300% 0; } }
+@container content (max-width: 720px) {
+  .chat-tool-root .chat-report { grid-template-columns: minmax(0, 1fr); padding: 8px 20px 40px; }
+  .chat-tool-root .chat-toc { display: none; }
+  .chat-tool-root .chat-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .chat-tool-root .home { padding: 0 20px 64px; }
+  .chat-tool-root .chat-fmts { flex-wrap: wrap; }
+}
 /* Signed-in Chat header model picker */
 .remote-model-trigger { display: inline-flex; align-items: center; gap: 6px; min-width: 0; max-width: min(360px, 60cqi); height: 32px; padding: 0 10px; border-radius: var(--r-row); color: var(--t1); font-size: 15px; font-weight: 500; transition: background var(--d-micro) linear; }
 .remote-model-trigger:hover, .remote-model-trigger[data-popup-open] { background: var(--hover); }

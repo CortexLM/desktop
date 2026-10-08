@@ -6,6 +6,7 @@ import { api } from "../../api";
 import { useT } from "../../i18n";
 import { Icon } from "../../kit/ui";
 import { useQuery } from "../../state/live";
+import { ImagesTool, ResearchTool, SearchTool, TempTool } from "./tools-live";
 
 type Conversation = { id: string; title: string; last_message_at: string; message_count: number };
 type Message = { id: string; role: string; text: string; finish_reason?: string; citations?: { url?: string; title?: string }[]; generated_images?: { url?: string; prompt?: string }[] };
@@ -24,12 +25,16 @@ export function LiveChatFeature({ feature, local }: { feature: string; local: Re
   return <Frame feature={feature} epoch={catalog.state === "ready" ? catalog.data.epoch : ""} failed={catalog.state === "error"} />;
 }
 
+const TOOLS: Record<string, (p: { epoch: string }) => React.ReactNode> = { "search-results": SearchTool, "deep-research": ResearchTool, "image-gen": ImagesTool, "temp-chat": TempTool };
+
 function Frame({ feature, epoch, failed }: { feature: string; epoch: string; failed: boolean }) {
   const t = useT();
-  const body = feature === "share" ? <ShareLive epoch={epoch} /> : feature === "canvas" ? <CanvasLive epoch={epoch} /> : feature === "search-results" ? <SearchLive epoch={epoch} />
-    : feature === "deep-research" ? <ResearchLive epoch={epoch} /> : feature === "image-gen" ? <ImagesLive epoch={epoch} /> : feature === "voice" ? <VoiceLive epoch={epoch} />
-    : feature === "temp-chat" ? <TempLive /> : <StatesLive epoch={epoch} />;
-  return <div className={`chat-live chat-live-${feature}`} data-testid={`screen-${feature}`} data-state={failed ? "error" : epoch ? "ready" : "loading"}>
+  const Tool = TOOLS[feature];
+  if (Tool) return <div className="chat-tool-root" data-testid={`screen-${feature}`} data-state={failed ? "error" : epoch ? "ready" : "loading"}>
+    {failed ? <><div className="content-top"><span className="title">{t(`chat.screen.${feature}`)}</span></div><div className="empty"><h2>{t("chat.err.generic.title")}</h2><p>{t("chat.remote.unavailable")}</p></div></> : <Tool epoch={epoch} />}
+  </div>;
+  const body = feature === "share" ? <ShareLive epoch={epoch} /> : feature === "canvas" ? <CanvasLive epoch={epoch} /> : feature === "voice" ? <VoiceLive epoch={epoch} /> : <StatesLive epoch={epoch} />;
+  return <div className={`chat-feature chat-feature-${feature}`} data-testid={`screen-${feature}`} data-state={failed ? "error" : epoch ? "ready" : "loading"}>
     <div className="content-top"><span className="title">{t(`chat.screen.${feature}`)}</span></div>
     {failed ? <div className="banner err" role="alert">{t("chat.remote.unavailable")}</div> : <div className="page">{body}</div>}
   </div>;
@@ -93,37 +98,8 @@ function CanvasLive({ epoch }: { epoch: string }) {
   </div>;
 }
 
-function SearchLive({ epoch }: { epoch: string }) {
-  const t = useT();
-  const [q, setQ] = React.useState(""), [sent, setSent] = React.useState("");
-  const r = useFeature<{ chats: { id: string; title: string }[]; library: { id: string; title: string; detail: string }[]; skills: { id: string; title: string; detail: string }[] }>(epoch, sent ? "search" : "", {}, sent);
-  return <div className="chat-search-live">
-    <form className="ctx-bar" onSubmit={e => { e.preventDefault(); setSent(q.trim()); }}><input className="input" data-testid="chat-search-input" aria-label={t("chat.live.search")} placeholder={t("chat.live.search")} value={q} onChange={e => setQ(e.target.value)} /><button className="btn primary" disabled={!q.trim()}><Icon name="search" size={16} /></button></form>
-    <p className="code-hint" data-testid="chat-search-scope">{t("chat.live.searchScope")}</p>
-    {r.state === "ready" && r.data && (["chats", "library", "skills"] as const).map(g => <section key={g}><h3 className="h3">{t(`chat.live.group.${g}`)}</h3><div className="list">{r.data![g].map(x => <div className="li" key={x.id} data-testid="chat-search-hit"><span className="grow ttl">{x.title}</span></div>)}</div></section>)}
-  </div>;
-}
 
-function ResearchLive({ epoch }: { epoch: string }) {
-  const t = useT();
-  const [id, setID] = React.useState("");
-  const r = useFeature<{ title?: string; sections?: { heading?: string; text?: string }[]; citations?: { url: string; title: string }[] }>(epoch, id ? "research" : "", { conversation: id });
-  return <div className="chat-research-live"><Picker epoch={epoch} value={id} onChange={setID} />
-    {r.state === "error" && <p className="sub" data-testid="chat-research-none">{t("chat.live.noResearch")}</p>}
-    {r.state === "ready" && r.data && <article className="fichiers-a4" data-testid="chat-research-report"><h2>{r.data.title}</h2>{r.data.sections?.map((s, i) => <section key={i}><h3>{s.heading}</h3><p>{s.text}</p></section>)}
-      <ol>{r.data.citations?.map(c => <li key={c.url}><a href={c.url} target="_blank" rel="noreferrer">{c.title}</a></li>)}</ol></article>}
-  </div>;
-}
 
-function ImagesLive({ epoch }: { epoch: string }) {
-  const t = useT();
-  const [id, setID] = React.useState("");
-  return <div className="chat-images-live"><Picker epoch={epoch} value={id} onChange={setID} />
-    <p className="code-hint">{t("chat.live.imagesHint")}</p>
-    {id && <Messages epoch={epoch} id={id} render={items => { const imgs = items.flatMap(m => m.generated_images ?? []).filter(g => typeof g.url === "string");
-      return imgs.length ? <div className="travail-cgrid" data-testid="chat-images-grid">{imgs.map((g, i) => <img key={i} src={g.url} alt={g.prompt ?? ""} style={{ width: "100%", borderRadius: 12 }} />)}</div> : <p className="sub" data-testid="chat-images-empty">{t("chat.live.noImages")}</p>; }} />}
-  </div>;
-}
 
 function VoiceLive({ epoch }: { epoch: string }) {
   const t = useT();
@@ -138,7 +114,3 @@ function VoiceLive({ epoch }: { epoch: string }) {
   </div>;
 }
 
-function TempLive() {
-  const t = useT();
-  return <div className="empty" data-testid="chat-temp-gap"><Icon name="clock" /><h2>{t("chat.screen.temp-chat")}</h2><p>{t("chat.live.tempGap")}</p></div>;
-}
