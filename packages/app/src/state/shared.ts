@@ -10,3 +10,4 @@ export function shared<T>(key: string, load: () => Promise<T>): Promise<T> {
   inflight.set(key, p);
   return p;
 }
+export const remember = (key: string, value: unknown) => { last.set(key, value); };

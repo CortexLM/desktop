@@ -3,7 +3,7 @@ import { RemoteSessionView } from "@cortex/schema";
 import { api } from "../api";
 import { useNav } from "../shell/nav";
 import { onEvent } from "./live";
-import { shared, cached, forget } from "./shared";
+import { cached, forget, remember } from "./shared";
 
 const KEY = "remote-sessions";
 
@@ -40,14 +40,16 @@ export function useRemoteSessions(enabled = true) {
         }
         setSnapshot((old) => old.owner === owner && old.value.state === "ready"
           ? old : { owner, value: { state: "loading" } });
-        const rows = RemoteSessionView.array().parse(await shared(KEY, () => api.remoteSessions.list()));
+        const rows = RemoteSessionView.array().parse(await api.remoteSessions.list());
         if (!current()) return;
         const epoch = rows[0]?.epoch;
         if (rows.some((row) => row.epoch !== epoch || retired.current.has(row.epoch))
           || new Set(rows.map((row) => row.id)).size !== rows.length) {
           throw new Error("Invalid remote session list");
         }
-        publish({ state: "ready", data: rows.sort((a, b) => b.time.updated - a.time.updated || a.id.localeCompare(b.id)) });
+        rows.sort((a, b) => b.time.updated - a.time.updated || a.id.localeCompare(b.id));
+        remember(KEY, rows); // only fenced (current, non-retired) snapshots reach the cache
+        publish({ state: "ready", data: rows });
       } catch {
         if (current()) publish({ state: "error" });
       }
