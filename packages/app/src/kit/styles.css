@@ -591,3 +591,38 @@ a.chip { display: inline-flex; align-items: center; text-decoration: none; }
 .space-empty { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 32px 20px; border-radius: var(--r-card); background: var(--card); box-shadow: var(--ring); text-align: center; color: var(--t2); }
 .space-empty h3 { margin: 10px 0 0; font-size: 13px; font-weight: 500; color: var(--t1); }
 .space-empty p { margin: 0; }
+
+:root {
+  --motion-fast: 120ms;
+  --motion-base: 220ms;
+  --motion-enter: 320ms;
+  --motion-exit: 180ms;
+  --d-press: var(--motion-fast);
+  --d-micro: var(--motion-fast);
+  --d-chrome: var(--motion-base);
+  --d-swap: var(--motion-enter);
+  --d-layout: var(--motion-enter);
+  --d-morph: var(--motion-enter);
+}
+.rail-btn {
+  transition: background var(--motion-fast) linear, color var(--motion-fast) linear, transform var(--motion-fast) var(--ease-out), opacity var(--motion-fast) linear;
+}
+.rail-btn:active:not(:disabled) { scale: none; transform: scale(.97); opacity: .9; }
+/* Base controls reset outlines; keyboard focus must win those resets. */
+:focus-visible, :is(button, input, textarea, a[href], [tabindex]):focus-visible,
+.theme button:focus-visible, .pg-hrow:focus-visible, .row:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+.theme:focus-within { overflow: visible; }
+html[data-reduce-motion] *, html[data-reduce-motion] *::before, html[data-reduce-motion] *::after {
+  transition-duration: 0s !important;
+  animation: none !important;
+}
+html[data-reduce-motion] .rail-btn:active { transform: none; }
+html[data-reduce-motion] :is(.thinking, .shimmer span) { color: var(--t2) !important; background: none !important; }
+html[data-reduce-motion]::view-transition-group(*), html[data-reduce-motion]::view-transition-old(*), html[data-reduce-motion]::view-transition-new(*) { animation: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; }
+  .rail-btn:active { transform: none; }
+}
