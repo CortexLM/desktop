@@ -13,7 +13,7 @@ Settings, Connection chooses where the app connects:
 
 | Mode | What it means |
 | --- | --- |
-| Local | No account. Everything runs in the app. |
+| Local | No Cortex account. Prompts use the local engine and configured providers, which may be remote. |
 | Cortex Cloud | Probes the Cloud origin and signs in with an email code. Bots and signed-in Work, Chat and Code screens use the account. |
 | Self-hosted | Same flow against a server you provide. |
 

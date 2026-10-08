@@ -198,7 +198,7 @@ handoff and main-only implementation sequence are tracked in [`docs/connection-m
 | Command | Does |
 | --- | --- |
 | `bun run build` | `build:app` (Vite → `packages/app/dist`) + `build:desktop` (esbuild → `packages/desktop/dist/{main,preload}.cjs`) |
-| `bun run start` | `electron .` (needs a build). Headless Linux: `DISPLAY=:1 bun run start -- --no-sandbox` |
+| `bun run start` | `electron .` (needs a build). Headless Linux: `xvfb-run -a bun run start` (keep the sandbox; only e2e tests pass `--no-sandbox`) |
 | `bun run dev:app` | Vite on `:5299`, proxies `/api` to `:5298` |
 | `bun run dev:api` | Engine on `:5298` for the browser dev loop (in-memory keys) |
 | `bun run typecheck` | `tsc -p tsconfig.json` |

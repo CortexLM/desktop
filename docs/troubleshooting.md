@@ -5,7 +5,7 @@
 
 **Electron fails to start after `bun install`.** Run `node node_modules/electron/install.js`. Bun skips the postinstall.
 
-**Blank window or sandbox error on Linux.** Run with `--no-sandbox` and a `DISPLAY`: `DISPLAY=:1 bun run start -- --no-sandbox`.
+**Blank window or sandbox error on Linux.** Without a display, run `xvfb-run -a bun run start`. For a `chrome-sandbox` error, give the helper its required owner and mode: `sudo chown root node_modules/electron/dist/chrome-sandbox && sudo chmod 4755 node_modules/electron/dist/chrome-sandbox`. Do not disable the sandbox with `--no-sandbox`; only the automated Linux end-to-end tests use it.
 
 **macOS says the app can't be opened.** Builds are unsigned. Right-click, choose Open, or clear quarantine with `xattr -dr com.apple.quarantine /path/to/Cortex.app`.
 

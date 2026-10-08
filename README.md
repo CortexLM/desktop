@@ -37,7 +37,7 @@ What works today (see [Status](#status) for the exact boundaries):
 
 - Live: Chat, Work tasks and approvals, Bots, Cortex Code on a local folder, Settings, Providers and models, connection selection with probing and email-code sign-in.
 - Preview only: file viewers and other screens without engine wiring (open `#/gallery` in a preview build).
-- Not built yet (waiting on design): Space, Scheduled, Plugins and skills, extra sign-in continuation screens. Remote prompt routing is pending.
+- Not built yet (waiting on design): Space, Scheduled, the Plugins and skills management screen, extra sign-in continuation screens. Remote prompt routing is pending.
 - Sign-in lasts until Cortex closes. Prompts still use the local engine and the providers you configured.
 - Acceptance is incomplete: see [evidence/STATUS.md](./evidence/STATUS.md).
 - The banner above is a real macOS window of the app (Electron 44, dark theme, English). The Bot thread is live code, but the screenshot feeds it demo data (a made-up Bot named Nova and fake messages) instead of a real Cortex Cloud account, so no personal data appears.
@@ -57,7 +57,7 @@ bun run build
 bun run start
 ```
 
-On headless Linux use `DISPLAY=:1 bun run start -- --no-sandbox`.
+On a Linux machine without a display, install Xvfb and run `xvfb-run -a bun run start`. Keep the Chromium sandbox on: if Electron refuses to start because `chrome-sandbox` is not set up, run `sudo chown root node_modules/electron/dist/chrome-sandbox && sudo chmod 4755 node_modules/electron/dist/chrome-sandbox`. Only the automated Linux end-to-end tests pass `--no-sandbox` (see [`tests/e2e/fixtures.ts`](./tests/e2e/fixtures.ts)); never use it for normal use.
 
 ### Unsigned packages
 

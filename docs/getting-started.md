@@ -19,7 +19,7 @@ bun run build
 bun run start
 ```
 
-Bun skips Electron's postinstall script, which is why the `install.js` step exists. On headless Linux, run `DISPLAY=:1 bun run start -- --no-sandbox`.
+Bun skips Electron's postinstall script, which is why the `install.js` step exists. On a Linux machine without a display, install Xvfb and run `xvfb-run -a bun run start`. Keep the Chromium sandbox on: if Electron refuses to start because `chrome-sandbox` is not set up, run `sudo chown root node_modules/electron/dist/chrome-sandbox && sudo chmod 4755 node_modules/electron/dist/chrome-sandbox`. Only the automated Linux end-to-end tests pass `--no-sandbox` (see [`tests/e2e/fixtures.ts`](../tests/e2e/fixtures.ts)); never use it for normal use.
 
 ## Add a provider
 
