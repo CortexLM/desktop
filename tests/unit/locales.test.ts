@@ -26,7 +26,7 @@ describe("locale catalogs", () => {
   });
   it("translates every French value that is not a brand or technical token", () => {
     // Values that stay identical in French on purpose: product names, file formats, code and CSS easing names.
-    const SAME = /^(?:Cortex(?: [A-Z][a-z]+)*|Studio Cortex|Word \(\.docx\)|Google Docs|Pull request|pnpm build|SIL Open Font License 1\.1|Micro-interactions|refs\/.*|ease-[a-z-]+|https:\/\/\S+|-{3}[\s\S]*|(?:Bot|Code|Cortex Code) · (?:invitation|session))$/;
+    const SAME = /^(?:Cortex(?: [A-Z][a-z]+)*|Studio Cortex|Word \(\.docx\)|Google Docs|Pull request|pnpm build|SIL Open Font License 1\.1|Micro-interactions|refs\/.*|[a-z_]+(?:\.[a-z_]+)+|ease-[a-z-]+|https:\/\/\S+|-{3}[\s\S]*|(?:Bot|Code|Cortex Code) · (?:invitation|session))$/;
     const fr = nodeCatalogs(dir)("fr"), en = nodeCatalogs(dir)("en");
     const same = Object.entries(en).filter(([n]) => n !== "components").flatMap(([n, keys]) => Object.entries(keys)
       .filter(([k, v]) => fr[n]?.[k] === v && (v.replace(/\{\w+\}/g, "").match(/\b[A-Za-z]{3,}\b/g) ?? []).length >= 2 && !SAME.test(v)).map(([k]) => `${n}.${k}`));

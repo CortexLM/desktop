@@ -1,6 +1,4 @@
 {
-  "scope": "Public metadata from this Bot. Rows are informational only: nothing here answers, opens or runs anything.",
-  "streamNote": "Live updates are process-local hints that re-read the latest 200 events; this is not a durable or complete history and nothing is replayed.",
   "error": "Activity could not be read. Reconnect to load the current owner's events.",
   "noBots": "No Bots yet.",
   "empty": "No activity in the latest events.",
@@ -13,5 +11,11 @@
   "widget.secret_request": "secret request",
   "widget.confirm": "confirmation",
   "widget.notice": "notice",
-  "widget.waiting": "waiting"
+  "widget.waiting": "waiting",
+  "filter": "Filter activity",
+  "filter.all": "All",
+  "filter.asks": "Questions",
+  "filter.media": "Media",
+  "filter.other": "Other",
+  "noBotsText": "Create a Bot to see what it does here."
 }

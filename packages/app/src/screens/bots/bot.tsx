@@ -130,7 +130,7 @@ export function BotOnboarding() {
 }
 
 // The knob follows the pointer 1:1, validates at ≥ 96 % of the track, springs back otherwise. Enter/Space activate too.
-function SlideToActivate({ onDone }: { onDone: () => Promise<boolean> | boolean }) {
+export function SlideToActivate({ onDone }: { onDone: () => Promise<boolean> | boolean }) {
   const t = useT();
   const track = React.useRef<HTMLDivElement>(null);
   const [x, setX] = React.useState(0);

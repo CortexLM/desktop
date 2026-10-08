@@ -27,15 +27,15 @@ test("late old-owner hierarchy PATCH cannot alter replacement lead selection", a
       });
     }, { id, lead });
     await page.evaluate(id => { location.hash = `#/bot-settings?id=${id}&epoch=old`; }, id);
-    await page.getByTestId("work-bot-lead").selectOption(lead);
+    await page.getByTestId("work-bot-lead").locator(`[role=radio][data-value="${lead}"]`).click();
     const entered = app.evaluate(() => (globalThis as unknown as { hierarchyGate: { arrived: { promise: Promise<void> } } }).hierarchyGate.arrived.promise);
     await page.getByTestId("work-bot-lead-save").click(); await entered;
     await app.evaluate(() => { (globalThis as unknown as { hierarchyGate: { epoch: string } }).hierarchyGate.epoch = "new"; });
     await page.evaluate(id => { location.hash = `#/bot-settings?id=${id}&epoch=new`; }, id);
-    await expect(page.getByTestId("work-bot-lead").locator("option").last()).toHaveText("New lead");
-    await page.getByTestId("work-bot-lead").selectOption("");
+    await expect(page.getByTestId("work-bot-lead").getByRole("radio").last()).toHaveText("New lead");
+    await page.getByTestId("work-bot-lead").locator('[role=radio][data-value=""]').click();
     await app.evaluate(() => { (globalThis as unknown as { hierarchyGate: { release: { resolve(): void } } }).hierarchyGate.release.resolve(); });
-    await expect(page.getByTestId("work-bot-lead")).toHaveValue("");
+    await expect(page.getByTestId("work-bot-lead").locator('[role=radio][data-value=""]')).toHaveAttribute("aria-checked", "true");
     await expect(page.getByTestId("work-bot-current-lead")).toHaveText("No lead");
     expect(await app.evaluate(() => (globalThis as unknown as { hierarchyGate: { calls: number } }).hierarchyGate.calls)).toBe(1);
   } finally {

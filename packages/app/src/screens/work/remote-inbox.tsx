@@ -1,89 +1,108 @@
+// Notifications: the bell popover (Tout / Mentions / Bots) over the signed-in owner's inbox and notifications (design notifications).
 import * as React from "react";
+import { Popover } from "@base-ui/react/popover";
+import type { WorkBotView } from "@cortex/schema";
 import { api } from "../../api";
-import { useQuery, onEvent } from "../../state/live";
-import { readHash, useNav } from "../../shell/nav";
+import { useQuery } from "../../state/live";
+import { useNav } from "../../shell/nav";
 import { useT } from "../../i18n";
 import { isPreview } from "../../preview";
-import { Top } from "./common";
+import { Icon, IconBtn, Tip } from "../../kit/ui";
+import { Mascot } from "../../mascot/Mascot";
+import { toolName } from "../../state/tool-label";
+import { TabBar, Top, css, lookMascot, useAgo } from "./common";
+
+const useSignedIn = () => {
+  const { entryKey } = useNav();
+  const connection = useQuery(() => api.connection.get(), [entryKey]);
+  return !isPreview() && connection.state === "ready" && connection.data.mode !== "local" && connection.data.signedIn;
+};
 
 export function InboxConnection({ local }: { local: React.ReactNode }) {
-  const connection = useQuery(() => api.connection.get(), []), { entryKey, params } = useNav();
-  return !isPreview() && connection.state === "ready" && connection.data.mode !== "local" && connection.data.signedIn ? <RemoteInbox key={`${entryKey}:${params.get("epoch")}`} /> : local;
+  const t = useT(), { entryKey } = useNav();
+  if (!useSignedIn()) return local;
+  return <>
+    <Top title={t("work.home.title")}><NotificationBell /></Top>
+    <div className="travail-notif-stage">
+      <div className="travail-notif-bg" aria-hidden><div className="travail-board">{["todo", "doing", "review", "done"].map(c => <div key={c} className="travail-col" style={{ minHeight: 420 }}><div className="travail-col-head">{t(`work.col.${c}`)}</div></div>)}</div></div>
+      <section className="popup travail-notif" role="dialog" aria-label={t("work.notif.title")}><NotificationPanel key={entryKey} /></section>
+    </div>
+  </>;
 }
 
-function RemoteInbox() {
-  const t = useT(), { go, entryKey } = useNav();
+type Row = { id: string; kind: "notification" | "inbox"; tab: "mentions" | "bots" | "other"; who?: WorkBotView; title: string; at: string; unread: boolean; approval: boolean };
+
+function useOwnerInbox() {
   const owner = useQuery(() => api.workBot.list(), []);
   const epoch = owner.state === "ready" ? owner.data.epoch : "";
-  const snapshot = useQuery(async () => epoch ? { epoch, data: await api.workBot.inbox.snapshot(epoch) } : undefined, [epoch]);
-  const reloadSnapshot = snapshot.reload;
-  const [tab, setTab] = React.useState<"inbox" | "notifications">("inbox"), [filter, setFilter] = React.useState("unread"), [query, setQuery] = React.useState("");
-  const [busy, setBusy] = React.useState(false), [error, setError] = React.useState(false), [updated, setUpdated] = React.useState<number>(), [stream, setStream] = React.useState("connecting");
-  const mounted = React.useRef(true), pending = React.useRef<symbol | undefined>(undefined), subscription = React.useRef<string | undefined>(undefined);
-  const currentEpoch = React.useRef(epoch); currentEpoch.current = epoch;
-  React.useEffect(() => () => { mounted.current = false; }, []);
-  React.useEffect(() => { pending.current = undefined; setBusy(false); setError(false); setUpdated(undefined); setStream("connecting"); }, [epoch]);
-  const owns = () => mounted.current && readHash().entryKey === entryKey && currentEpoch.current === epoch && owner.state === "ready" && owner.data.epoch === epoch;
+  const snapshot = useQuery(async () => epoch ? { epoch, data: await api.workBot.inbox.snapshot(epoch) } : undefined, [epoch],
+    e => e.type === "workInbox.changed" && e.properties.epoch === epoch);
+  const data = snapshot.state === "ready" && snapshot.data?.epoch === epoch ? snapshot.data.data : undefined;
+  return { owner, epoch, snapshot, data, bots: owner.state === "ready" ? owner.data.bots : [] };
+}
+
+export function NotificationBell() {
+  const t = useT(), signedIn = useSignedIn(), { route, go } = useNav();
+  if (!signedIn) return <IconBtn icon="bell" label={t("shell.notifications")} onClick={() => go("notifications")} />;
+  return <SignedInBell open={route === "notifications" ? true : undefined} />;
+}
+
+function SignedInBell({ open }: { open?: boolean }) {
+  const t = useT(), { data } = useOwnerInbox();
+  const unread = (data?.notifications.items.filter(n => !n.read).length ?? 0) + (data?.items.filter(i => i.unread).length ?? 0);
+  const button = <button className="ibtn" data-testid="notification-bell" aria-label={t("work.notif.bellLabel", { count: unread })} style={{ position: "relative" }}><Icon name="bell" size={16} />{unread > 0 && <span className="travail-bell-dot" />}</button>;
+  if (open) return button;
+  return <Popover.Root>
+    <Tip label={t("work.notif.title")}><Popover.Trigger render={button} /></Tip>
+    <Popover.Portal><Popover.Positioner side="bottom" align="end" sideOffset={6}><Popover.Popup className="popup travail-notif travail-notif-pop" data-testid="notification-popover"><NotificationPanel /></Popover.Popup></Popover.Positioner></Popover.Portal>
+  </Popover.Root>;
+}
+
+function NotificationPanel() {
+  const t = useT(), ago = useAgo(), { go } = useNav();
+  const { epoch, snapshot, data, bots, owner } = useOwnerInbox();
+  const [tab, setTab] = React.useState("all"), [busy, setBusy] = React.useState(false), [error, setError] = React.useState(false);
   React.useEffect(() => {
     if (!epoch) return;
-    let live = true;
-    const off = onEvent(event => {
-      if (event.type !== "workInbox.changed" || !live || event.properties.epoch !== epoch || currentEpoch.current !== epoch || !mounted.current || readHash().entryKey !== entryKey) return;
-      if (event.properties.state !== "changed") setStream(event.properties.state);
-      reloadSnapshot();
-    });
-    void api.workBot.inbox.subscribe(epoch).then(result => {
-      if (!live) { void api.workBot.inbox.unsubscribe(epoch, result.subscription).catch(() => {}); return; }
-      subscription.current = result.subscription;
-      // ponytail: process-local stream only; reconnect starts fresh and always re-reads durable state.
-      reloadSnapshot();
-    }).catch(() => { if (live) setStream("disconnected"); });
-    return () => { live = false; off(); const token = subscription.current; subscription.current = undefined; if (token) void api.workBot.inbox.unsubscribe(epoch, token).catch(() => {}); };
-  }, [epoch, entryKey, reloadSnapshot]);
-  const refresh = async () => {
-    if (!mounted.current || readHash().entryKey !== entryKey) return;
-    owner.reload();
-    if (!owns()) return;
-    const token = subscription.current; subscription.current = undefined;
-    if (token) await api.workBot.inbox.unsubscribe(epoch, token);
-    snapshot.reload(); setStream("connecting");
-    try { const result = await api.workBot.inbox.subscribe(epoch); if (owns()) { subscription.current = result.subscription; snapshot.reload(); } else await api.workBot.inbox.unsubscribe(epoch, result.subscription); }
-    catch { if (owns()) setStream("disconnected"); }
+    let live = true, token: string | undefined;
+    void api.workBot.inbox.subscribe(epoch).then(r => { token = r.subscription; if (!live) void api.workBot.inbox.unsubscribe(epoch, token).catch(() => {}); }).catch(() => {});
+    return () => { live = false; if (token) void api.workBot.inbox.unsubscribe(epoch, token).catch(() => {}); };
+  }, [epoch]);
+  const bot = (id?: string) => bots.find(b => b.id === id);
+  const rows: Row[] = data ? [
+    ...data.notifications.items.map(n => ({ id: n.id, kind: "notification" as const, tab: /mention/i.test(n.kind) ? "mentions" as const : n.mascot_id ? "bots" as const : "other" as const, who: bot(n.mascot_id), title: n.title || n.body, at: n.created_at, unread: !n.read, approval: false })),
+    ...data.items.map(i => ({ id: i.id, kind: "inbox" as const, tab: "bots" as const, who: bot(i.mascot_id), title: i.kind === "approval" ? t("work.notif.approval", { tool: toolName(t, i.tool_name ?? "") }) : i.text ?? t("work.notif.message"), at: i.at, unread: i.unread, approval: i.kind === "approval" })),
+  ].sort((a, b) => b.at.localeCompare(a.at)) : [];
+  const count = (k?: Row["tab"]) => rows.filter(r => r.unread && (!k || r.tab === k)).length;
+  const shown = rows.filter(r => tab === "all" || r.tab === tab);
+  const act = async (action: () => Promise<unknown>) => {
+    if (busy || !epoch) return;
+    setBusy(true); setError(false);
+    try { await action(); snapshot.reload(); } catch { setError(true); } finally { setBusy(false); }
   };
-  const mutate = async (action: () => Promise<number | void>) => {
-    if (pending.current || !owns()) return;
-    const token = Symbol(); pending.current = token; setBusy(true); setError(false); setUpdated(undefined);
-    try { const count = await action(); if (owns()) { setUpdated(count === undefined ? undefined : count); snapshot.reload(); } }
-    catch { if (owns()) setError(true); }
-    finally { if (pending.current === token) pending.current = undefined; if (owns()) setBusy(false); }
+  const open = (r: Row) => {
+    if (r.kind === "notification" && r.unread) void act(() => api.workBot.inbox.notificationRead(r.id, epoch));
+    else if (r.kind === "inbox" && r.unread && !r.approval) void act(() => api.workBot.inbox.read({ epoch, read: { item_ids: [r.id] } }));
+    if (r.approval) go("approvals");
+    else if (r.who) go("bot", { source: "work-bot-api", id: r.who.id, epoch });
   };
-  const data = epoch && snapshot.state === "ready" && snapshot.data?.epoch === epoch ? snapshot.data.data : undefined;
-  const bots = owner.state === "ready" ? owner.data.bots : [];
-  const botName = (id: string) => bots.find(bot => bot.id === id)?.name ?? t("workInbox.unknownBot");
-  const inboxUnread = data?.items.filter(item => item.unread).length ?? 0, notificationUnread = data?.notifications.items.filter(item => !item.read).length ?? 0;
-  const matches = (unread: boolean, approval: boolean, text: string) => (filter === "all" || filter === "unread" && unread || filter === "read" && !unread || filter === "approvals" && approval) && text.toLocaleLowerCase().includes(query.toLocaleLowerCase());
-  const inboxRows = data?.items.filter(item => matches(item.unread, item.kind === "approval", `${item.text ?? item.tool_name ?? item.kind} ${botName(item.mascot_id)}`)) ?? [];
-  const notificationRows = data?.notifications.items.filter(item => matches(!item.read, false, `${item.title} ${item.body}`)) ?? [];
+  const failed = error || snapshot.state === "error" || owner.state === "error";
   return <>
-    <Top title={t("workInbox.title")}><button className="btn secondary" data-testid="work-inbox-refresh" disabled={!epoch || busy} onClick={() => void refresh()}>{t("workBot.reconnect")}</button><button className="btn secondary" data-testid="work-inbox-read-all" disabled={busy || !data} onClick={() => void mutate(async () => { if (tab === "inbox") return (await api.workBot.inbox.read({ epoch, read: { all: true } })).updated; await api.workBot.inbox.readAllNotifications(epoch); })}>{t("workInbox.readAll")}</button></Top>
-    <div className="page"><div className="travail-mid remote-inbox" data-testid="remote-work-inbox" data-owner-epoch={epoch}>
-      {(error || snapshot.state === "error" || owner.state === "error") && <div className="banner err" role="alert" data-testid="work-inbox-error">{t("workInbox.unconfirmed")}</div>}
-      <div className="work-inbox-controls"><div className="btnrow" role="group" aria-label={t("workInbox.sections")}><button className="btn secondary" data-testid="work-inbox-tab" aria-pressed={tab === "inbox"} onClick={() => { setTab("inbox"); setFilter("unread"); }}>{t("workInbox.inboxCount", { count: inboxUnread })}</button><button className="btn secondary" data-testid="work-notifications-tab" aria-pressed={tab === "notifications"} onClick={() => { setTab("notifications"); setFilter("unread"); }}>{t("workInbox.notificationCount", { count: notificationUnread })}</button></div>
-        <label>{t("workInbox.filter")}<select className="input" data-testid="work-inbox-filter" value={filter} onChange={event => setFilter(event.target.value)}>{["unread", "all", "read", ...(tab === "inbox" ? ["approvals"] : [])].map(value => <option key={value} value={value}>{t(`workInbox.filter.${value}`)}</option>)}</select></label><label>{t("workInbox.search")}<input className="input" data-testid="work-inbox-search" value={query} onChange={event => setQuery(event.target.value)} /></label>
-      </div>
-      <p className="travail-meta" data-testid="work-inbox-stream" data-state={stream}>{t(`workInbox.stream.${stream}`)} {t("workInbox.streamNote")}</p><p className="travail-meta">{t("workInbox.windowNote")}</p>
-      {updated !== undefined && <p role="status" data-testid="work-inbox-updated" data-updated={updated}>{t("workInbox.updated", { count: updated })}</p>}
-      {!data && owner.state !== "error" && snapshot.state !== "error" ? <p role="status">{t("workBot.loading")}</p> : <div className="list" aria-label={t(tab === "inbox" ? "workInbox.inbox" : "workInbox.notifications")}>
-        {tab === "inbox" ? inboxRows.map(item => <div className="li work-inbox-row" key={item.id} data-testid="work-inbox-row" data-item-id={item.id} data-unread={item.unread} data-kind={item.kind}>
-          <div className="grow"><div className="ttl">{botName(item.mascot_id)} · {item.kind}</div><p>{item.kind === "approval" ? item.tool_name : item.text ?? item.kind}</p><span className="sub">{item.at}</span></div><span className="badge">{t(item.unread ? "workInbox.filter.unread" : "workInbox.filter.read")}</span>
-          <div className="btnrow">{item.kind === "approval" ? <button className="btn secondary" data-testid="work-inbox-approval" disabled={!bots.some(bot => bot.id === item.mascot_id)} onClick={() => go("bot", { id: item.mascot_id, epoch })}>{t("workInbox.reviewApproval")}</button> : <button className="btn secondary" data-testid="work-inbox-mark" disabled={busy} onClick={() => void mutate(async () => (await api.workBot.inbox.read({ epoch, read: { item_ids: [item.id], unread: !item.unread } })).updated)}>{t(item.unread ? "workInbox.markRead" : "workInbox.markUnread")}</button>}
-          <button className="btn secondary" data-testid="work-inbox-open" disabled={!bots.some(bot => bot.id === item.mascot_id)} onClick={() => go("bot", { id: item.mascot_id, epoch })}>{t("workInbox.openBot")}</button></div>
-        </div>) : notificationRows.map(item => <div className="li work-inbox-row" key={item.id} data-testid="work-notification-row" data-item-id={item.id} data-read={item.read}>
-          <div className="grow"><div className="ttl">{item.title}</div><p>{item.body}</p><span className="sub">{item.kind} · {item.created_at}</span></div><span className="badge">{t(item.read ? "workInbox.filter.read" : "workInbox.filter.unread")}</span><div className="btnrow"><button className="btn secondary" data-testid="work-notification-mark" disabled={busy || item.read} onClick={() => void mutate(async () => { await api.workBot.inbox.notificationRead(item.id, epoch); })}>{t("workInbox.markRead")}</button></div>
-        </div>)}
-        {data && !(tab === "inbox" ? inboxRows.length : notificationRows.length) && <p className="li" data-testid="work-inbox-empty">{t("workInbox.empty")}</p>}
-      </div>}
-      {data && <p className="travail-meta" data-testid="work-inbox-working">{t("workInbox.working", { count: data.working_mascot_ids.length })}</p>}
-    </div></div>
+    <div className="travail-notif-h">
+      <span className="travail-grow">{t("work.notif.title")}</span>
+      <button className="btn secondary" style={{ height: 28, boxShadow: "none" }} data-testid="notification-read-all" disabled={busy || !count()} onClick={() => void act(async () => { if (rows.some(r => r.kind === "notification" && r.unread)) await api.workBot.inbox.readAllNotifications(epoch); if (rows.some(r => r.kind === "inbox" && r.unread)) await api.workBot.inbox.read({ epoch, read: { all: true } }); })}><Icon name="check" size={16} />{t("work.notif.markAll")}</button>
+    </div>
+    <TabBar label={t("work.notif.filter")} value={tab} onChange={setTab} items={[["all", t("work.notif.tab.all"), count()], ["mentions", t("work.notif.tab.mentions"), count("mentions")], ["bots", t("work.notif.tab.bots"), count("bots")]]} />
+    <div className="travail-notif-l" aria-live="polite" data-testid="notification-list" data-owner-epoch={epoch}>
+      {failed && <div className="banner err" role="alert" data-testid="notification-error">{t("work.notif.error")}<button className="btn secondary" onClick={() => { owner.reload(); snapshot.reload(); setError(false); }}>{t("common.retry")}</button></div>}
+      {!data && !failed ? [0, 1, 2].map(i => <div key={i} className="travail-n-i" aria-busy="true"><span className="skel circle" style={{ width: 28, height: 28 }} /><span className="travail-grow"><span className="skel line" style={{ width: `${80 - i * 15}%` }} /><span className="skel line" style={{ width: "30%" }} /></span></div>)
+        : data && !shown.length ? <div className="empty" style={{ padding: 24 }} data-testid="notification-empty"><Icon name="bell" size={16} /><p>{t(rows.length ? "work.notif.upToDate" : "work.notif.empty")}</p></div>
+        : shown.map((r, i) => <button key={r.id} className="travail-n-i travail-rise" style={css(i)} data-testid="notification-row" data-kind={r.kind} data-unread={r.unread || undefined} disabled={busy} onClick={() => open(r)}>
+          {r.who ? <Mascot cfg={lookMascot(r.who)} size={28} state={r.approval ? "waiting" : "idle"} /> : <span className="avatar-dot" style={{ width: 28, height: 28, borderRadius: 14, margin: 0 }}><Icon name="bell" size={16} /></span>}
+          <span className="travail-grow"><span className="ttl">{r.who && <b>{r.who.name} </b>}{r.title}</span><span className="travail-meta">{ago(r.at)}</span></span>
+          <span className="travail-unread" aria-label={r.unread ? t("work.notif.unread") : undefined} />
+        </button>)}
+    </div>
+    <div className="travail-n-f"><button className="btn secondary" style={{ height: 28, boxShadow: "none" }} onClick={() => go("activity")}>{t("work.notif.allActivity")}</button><span className="travail-grow" /><button className="btn secondary" style={{ height: 28, boxShadow: "none" }} onClick={() => go("inbox")}>{t("work.inbox.title")}</button></div>
   </>;
 }

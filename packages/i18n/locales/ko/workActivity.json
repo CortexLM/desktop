@@ -1,6 +1,4 @@
 {
-  "scope": "이 Bot의 공개 메타데이터입니다. 각 행은 정보 표시용이며 여기서 응답하거나 열거나 실행하지 않습니다.",
-  "streamNote": "실시간 업데이트는 최신 이벤트 200개를 다시 읽는 이 프로세스 안의 알림입니다. 영구적이거나 완전한 기록이 아니며 아무것도 다시 실행되지 않습니다.",
   "error": "활동을 읽을 수 없습니다. 현재 소유자의 이벤트를 불러오려면 다시 연결하세요.",
   "noBots": "아직 Bot이 없습니다.",
   "empty": "최신 이벤트에 활동이 없습니다.",
@@ -13,5 +11,11 @@
   "widget.secret_request": "비밀 정보 요청",
   "widget.confirm": "확인",
   "widget.notice": "안내",
-  "widget.waiting": "대기 중"
+  "widget.waiting": "대기 중",
+  "filter": "활동 필터",
+  "filter.all": "전체",
+  "filter.asks": "질문",
+  "filter.media": "미디어",
+  "filter.other": "기타",
+  "noBotsText": "Bot을 만들면 여기서 뭘 하는지 볼 수 있어."
 }

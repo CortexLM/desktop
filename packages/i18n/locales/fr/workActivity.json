@@ -1,6 +1,4 @@
 {
-  "scope": "Métadonnées publiques de ce Bot. Les lignes sont informatives : rien ici ne répond, n’ouvre ni ne lance quoi que ce soit.",
-  "streamNote": "Les mises à jour en direct sont des indications locales à ce processus qui relisent les 200 derniers événements ; ce n’est ni un historique durable ni complet, et rien n’est rejoué.",
   "error": "Impossible de lire l’activité. Reconnectez-vous pour charger les événements du propriétaire actuel.",
   "noBots": "Aucun Bot pour l’instant.",
   "empty": "Aucune activité dans les derniers événements.",
@@ -13,5 +11,11 @@
   "widget.secret_request": "demande de secret",
   "widget.confirm": "confirmation",
   "widget.notice": "information",
-  "widget.waiting": "en attente"
+  "widget.waiting": "en attente",
+  "filter": "Filtrer l’activité",
+  "filter.all": "Tout",
+  "filter.asks": "Questions",
+  "filter.media": "Médias",
+  "filter.other": "Autres",
+  "noBotsText": "Crée un Bot pour suivre ici ce qu’il fait."
 }

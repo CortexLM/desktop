@@ -19,10 +19,6 @@
   "hibernating": "En pause",
   "notifications": "Notifications",
   "save": "Enregistrer",
-  "autonomy": "Autonomie acquise indisponible : les demandes approuvees ne sont pas comptabilisees. Le consentement reste obligatoire.",
-  "cloudUnavailable": "Execution sur ordinateur cloud indisponible. Aucun repli sur cet ordinateur.",
-  "goal": "Objectif",
-  "enqueue": "Mettre en file",
   "jobs": "Taches durables",
   "uncertain": "Des effets externes ont pu avoir lieu. Aucun retour arriere ni rejeu annonce.",
   "cancel": "Annuler",
@@ -227,5 +223,11 @@
   "contract.release": "Rendre le contrôle",
   "contract.transferTo": "ID du coéquipier",
   "contract.transfer": "Transférer",
-  "status.paused": "En pause"
+  "status.paused": "En pause",
+  "thread.approval": "J’ai besoin de ta validation pour utiliser {tool}.",
+  "thread.computerOff": "Ordinateur cloud indisponible pour le moment.",
+  "thread.stop": "Arrêter",
+  "thread.typing": "{name} écrit",
+  "thread.waiting": "{name} répondra dès que possible.",
+  "thread.failed": "{name} n’a pas pu terminer. Renvoie ton message pour réessayer."
 }

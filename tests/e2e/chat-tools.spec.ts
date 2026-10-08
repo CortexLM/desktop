@@ -35,6 +35,8 @@ async function trunk() {
       res.end("data: {}\n\n"); return;
     }
     if (route === `/v1/conversations/${conversation}/messages`) return json(res, { items: messages, has_more: false, has_older: false, has_newer: false });
+    if (req.method === "GET" && route === "/v1/bot/inbox") return json(res, { items: [], working_mascot_ids: [] });
+    if (req.method === "GET" && route === "/v1/notifications") return json(res, { items: [], has_more: false });
     if (req.method === "GET" && route === "/v1/mascots") return json(res, { items: [], has_more: false });
     if (route === "/v1/library") return json(res, { items: [{ id: image }], has_more: false });
     if (route === `/v1/library/${image}/content`) { res.writeHead(200, { "content-type": "image/png" }); res.end(png); return; }

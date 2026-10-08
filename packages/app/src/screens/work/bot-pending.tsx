@@ -3,8 +3,10 @@ import type { PendingApprovals, PolicyEvaluations } from "@cortex/schema";
 import { api } from "../../api";
 import { useT } from "../../i18n";
 import { LiveApprovalTransfer } from "./contract-panels";
+import { Mascot, type MascotConfig } from "../../mascot/Mascot";
+import { toolName } from "../../state/tool-label";
 
-export function BotPending({ epoch, id, owns }: { epoch: string; id?: string; owns(): boolean }) {
+export function BotPending({ epoch, id, owns, inline }: { epoch: string; id?: string; owns(): boolean; inline?: MascotConfig }) {
   const t = useT();
   const [rows, setRows] = React.useState<PendingApprovals>(), [audit, setAudit] = React.useState<PolicyEvaluations>();
   const [error, setError] = React.useState(false), [busy, setBusy] = React.useState(false);
@@ -54,6 +56,12 @@ export function BotPending({ epoch, id, owns }: { epoch: string; id?: string; ow
     }
     finally { pending.current = false; if (current()) setBusy(false); }
   }
+  if (inline) return <>{rows?.items.filter(row => row.message_id).map(row => <div className="msg-bot-row bot-thread-row" key={row.id} data-testid="bot-thread-approval" data-approval-id={row.id}>
+    <Mascot cfg={inline} state="waiting" size={24} />
+    <div className="bot-bubble bot-bubble-ask"><span>{t("workBot.thread.approval", { tool: toolName(t, row.tool_name) })}</span>
+      <span className="bot-bubble-actions"><button className="btn secondary" data-testid="bot-pending-deny" disabled={busy} onClick={() => void decide(row, "deny")}>{t("workBot.pending.deny")}</button><button className="btn primary" data-testid="bot-pending-allow" disabled={busy} onClick={() => void decide(row, "allow")}>{t("workBot.pending.allow")}</button></span>
+    </div></div>)}
+    {error && <p className="bot-thread-note" role="alert" data-testid="bot-pending-error">{t("workBot.pending.error")}</p>}</>;
   return <section className="travail-panel bot-apps" data-testid="bot-pending" aria-labelledby="bot-pending-title">
     <h2 id="bot-pending-title">{t(id ? "workBot.pending.bot" : "workBot.pending.account")}</h2>
     <p>{t("workBot.pending.boundary")}</p>

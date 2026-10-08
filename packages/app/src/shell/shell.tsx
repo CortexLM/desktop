@@ -15,6 +15,7 @@ import { useRemoteSessions } from "../state/remote-list";
 import { NotFound } from "./not-found";
 import { previewChatStart, startPreviewChat } from "../components/composer";
 import { BotCallDock } from "../screens/work/bot-call";
+import { NotificationBell } from "../screens/work/remote-inbox";
 import "../screens/work/work.css";
 
 const THEME_KEY = "cortex.theme";
@@ -114,7 +115,7 @@ export function Shell({ hash, children }: { hash: ReturnType<typeof readHash>; c
                 <div className="sb-head">
                   <ModeSwitcher key={focus || !sidebar ? "hidden" : "shown"} mode={mode} onMode={(m) => go(m === "Cortex" ? "home" : "code")} />
                   <div style={{ flex: 1 }} />
-                  <div style={{ display: "flex" }}><IconBtn icon="bell" label={t("shell.notifications")} onClick={() => go("notifications")} /><IconBtn icon="search" label={t("shell.search")} kbd="⌘K" onClick={() => go("command")} /></div>
+                  <div style={{ display: "flex" }}><NotificationBell /><IconBtn icon="search" label={t("shell.search")} kbd="⌘K" onClick={() => go("command")} /></div>
                 </div>
                 <div className="sb-scroll" key={mode} style={{ animation: "rise 320ms var(--ease-out) both" }}>
                   {mode === "Cortex" ? <CortexNav route={route} go={go} /> : <CodeNav route={route} go={go} />}

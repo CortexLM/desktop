@@ -41,6 +41,8 @@ async function authBackend(tag: string) {
     if (route === "/v1/instance") return json(res, { mode: "self_host", version: "test", auth: { mode: "cortex", required: true, providers: ["cortex"] }, registry: { enabled: true } });
     if (route === "/v1/registry/models") return json(res, { items: [], has_more: false, source: "cache" });
     if (req.method === "GET" && route === "/v1/mascots") return json(res, { items: [], has_more: false });
+    if (req.method === "GET" && route === "/v1/bot/inbox") return json(res, { items: [], working_mascot_ids: [] });
+    if (req.method === "GET" && route === "/v1/notifications") return json(res, { items: [], has_more: false });
     if (req.method === "POST" && route === EMAIL_PATH) {
       if (state.failSend) return problem(res, 429, "rate_limited");
       res.writeHead(204); res.end(); return;
