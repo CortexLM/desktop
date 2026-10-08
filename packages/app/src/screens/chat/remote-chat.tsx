@@ -12,6 +12,7 @@ import { navigation, readHash, useNav } from "../../shell/nav";
 import { Att, BotRow, Paras } from "./shared";
 import type { ComposerLeaveGuard } from "./model-composer";
 import { RemoteModelMenu, type Effort } from "./remote-model-menu";
+import { ownsRemoteSession as matches } from "./remote-owner";
 
 type Draft = { text: string; files: File[]; oneOff: string };
 type Submitted = { draft: Draft; attachmentIDs: string[]; id: string; epoch: string };
@@ -144,8 +145,6 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
     if (!current() || !loaded || locked.current || pending.current || removed.current) return;
     draftRef.current = next; setDraft(next);
   };
-  const matches = (value: RemoteSessionView, target: string, expected: string) =>
-    value.source === "remote" && value.scope === "process" && value.id === target && value.epoch === expected;
   const fail = (): never => { throw new Error("Remote ownership mismatch"); };
 
   React.useEffect(() => {
@@ -315,8 +314,7 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
         });
         if (!owns() || removed.current) return;
         target = RemoteSessionView.parse(raw);
-        if (target.source !== "remote" || target.scope !== "process" || target.epoch !== expected
-          || !target.id || target.modelSlug !== base!.slug
+        if (!target.id || !matches(target, target.id, expected!) || target.modelSlug !== base!.slug
           || target.effort !== (base!.reasoning === true ? effort : undefined)) fail();
         record.current = target; setSession(target);
       }
