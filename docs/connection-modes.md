@@ -406,7 +406,7 @@ successor, precise account/history contract, historical-image hydration or exact
 import permission appears in that readback. Public instance remains404; model metadata
 still supplies zero vision-capable Chat models.
 
-The [00:24 UTC successor readback](../evidence/text-live-followup/owner-readback-final/REPORT.md)
+The 00:24 UTC successor readback (report not kept in this repository)
 independently verifies G2 `de3b9dd19baa4239ad5aba00da19b7955f053f37`, canonical blob
 `232505fc45ba2f506fa891383495592ea7f62de4`. All 422 operation shapes/IDs match the admitted
 G3 schema; only the VNC-description text differs. Canonical screenshot-schema reconciliation
