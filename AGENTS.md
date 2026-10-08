@@ -9,7 +9,7 @@ deleted:true; foreign404, malformed422 and duplicate409 are distinct refusals.
 No enabled/provider settings, transcript/send/spawnWake or delivery is admitted.
 Full Task8, arbitrary activity/durable feed and combined runtime remain open.
 
-Signed-in Work surfaces (Todo 12 lane): Work home is a composer, suggestions and a board of owned Bot jobs; notifications open as a sidebar bell popover (All/Mentions/Bots) over the same inbox SDK pair; routines and scheduled tasks use chip/switch editors with human schedule labels (raw cron only as an advanced option); Bot creation is a guided flow; the Bot conversation is message bubbles only (typing dots while a job runs, one quiet line when waiting, approvals as inline bubbles) and job controls live in Bot settings. No native select/details in these screens; contract notes below stay engineering facts, never UI copy.
+Signed-in Work surfaces (Todo 12 lane): Work home is a composer, suggestions and a board of owned Bot jobs; notifications open as a sidebar bell popover (All/Mentions/Bots) over the same inbox SDK pair; routines and scheduled tasks use chip/switch editors with human schedule labels (raw cron only as an advanced option); Bot creation is a guided flow; the Bot conversation is message bubbles only (typing dots while a job runs, one quiet line when waiting, approvals as one compact inline card with a short command summary and collapsed details, composer pinned below the scrolling thread) and job controls live in Bot settings. No native select/details in these screens; contract notes below stay engineering facts, never UI copy.
 
 Signed-in Work Activity renders one owned Bot's latest 200 AgentEvents through the
 approved activity-projection SDK pair (`projectAgentEvent`). Only strict projected

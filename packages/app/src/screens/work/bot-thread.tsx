@@ -14,7 +14,7 @@ const GAP = 10 * 60_000;
 export function BotThread({ snapshot, cfg, approvals, sending, outgoing, onStop }: { snapshot: WorkBotSnapshot; cfg: MascotConfig; approvals?: React.ReactNode; sending?: boolean; outgoing?: string; onStop?: (job: string) => void }) {
   const t = useT(), date = useDate(), end = React.useRef<HTMLDivElement>(null);
   const items: Item[] = [
-    ...snapshot.messages.filter(m => !m.dismissed && m.text.trim()).map((m: Message) => ({ id: m.id, mine: m.sender === "user", text: m.text, at: m.at })),
+    ...snapshot.messages.filter(m => !m.dismissed && m.kind !== "confirm" && m.text.trim()).map((m: Message) => ({ id: m.id, mine: m.sender === "user", text: m.text, at: m.at })),
     ...snapshot.jobs.map((j: Job) => ({ id: `job:${j.id}`, mine: true, text: j.goal, at: j.created_at })),
     ...snapshot.jobs.filter(j => j.status === "done" && typeof j.result === "string" && j.result.trim()).map(j => ({ id: `result:${j.id}`, mine: false, text: j.result as string, at: j.created_at })),
   ].sort((a, b) => a.at.localeCompare(b.at));

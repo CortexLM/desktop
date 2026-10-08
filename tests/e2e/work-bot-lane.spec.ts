@@ -1,11 +1,11 @@
 import { test, expect, type ElectronApplication } from "@playwright/test";
 import { launch } from "./fixtures";
 
-const bot = "00000000-0000-4000-8000-000000000001", msg = "00000000-0000-4000-8000-000000000002", job = "00000000-0000-4000-8000-000000000003";
-type State = { bots: number; jobStatus: string; replied: boolean; requests: string[]; release?: () => void };
+const bot = "00000000-0000-4000-8000-000000000001", msg = "00000000-0000-4000-8000-000000000002", ask = "00000000-0000-4000-8000-000000000004", job = "00000000-0000-4000-8000-000000000003";
+type State = { ask?: boolean; bots: number; jobStatus: string; replied: boolean; requests: string[]; release?: () => void };
 
 async function install(app: ElectronApplication, bots: number) {
-  await app.evaluate(({ ipcMain }, { bot, msg, job, bots }) => {
+  await app.evaluate(({ ipcMain }, { bot, msg, job, bots, ask }) => {
     type Wire = { url: string; method: string; body?: string };
     const original = (ipcMain as unknown as { _invokeHandlers: Map<string, (e: unknown, r: Wire) => Promise<unknown>> })._invokeHandlers.get("cortex:fetch")!;
     const state = { bots, jobStatus: "done", replied: false, requests: [] as string[] } as State;
@@ -19,10 +19,10 @@ async function install(app: ElectronApplication, bots: number) {
       if (path === "/api/connection") return ok({ mode: "cloud", signedIn: true });
       if (path === "/api/work-bot" && request.method === "GET") return ok({ epoch: "owner", bots: state.bots ? [view] : [] });
       if (path === `/api/work-bot/${bot}/snapshot`) return ok({ epoch: "owner", bot: view, computerAvailable: true,
-        messages: [{ id: msg, sender: "user", kind: "text", text: "Hi", at: now, dismissed: false, responded: true }, ...(state.replied ? [{ id: job, sender: "mascot", kind: "text", text: "Hello there", at: now, dismissed: false, responded: false }] : [])],
+        messages: [...(state.ask ? [{ id: ask, sender: "mascot", kind: "confirm", text: "Allow shell?\nshell changes your computer, so it waits for your approval.\n" + JSON.stringify({ command: "rm -rf build && npm run build -- --verbose ".repeat(6), cwd: "/tmp" }, null, 2) + "\nAlways grants this tool.", at: now, dismissed: false, responded: false }] : []), { id: msg, sender: "user", kind: "text", text: "Hi", at: now, dismissed: false, responded: true }, ...(state.replied ? [{ id: job, sender: "mascot", kind: "text", text: "Hello there", at: now, dismissed: false, responded: false }] : [])],
         jobs: state.jobStatus === "none" ? [] : [{ id: job, kind: "general-purpose", goal: "Sort my inbox", status: state.jobStatus, created_at: now }] });
       if (path === `/api/work-bot/${bot}/messages`) { state.jobStatus = "running"; await new Promise<void>(r => { state.release = r; }); state.jobStatus = "done"; state.replied = true; return ok({ message: { id: msg, sender: "user", kind: "text", text: "Hi", at: now, dismissed: false, responded: false }, replies: [] }); }
-      if (path === "/api/work-bot/pending" || path === `/api/work-bot/${bot}/pending`) return ok({ items: [] });
+      if (path === "/api/work-bot/pending" || path === `/api/work-bot/${bot}/pending`) return ok({ items: state.ask ? [{ id: "00000000-0000-4000-8000-000000000005", mascot_id: bot, tool_name: "shell", created_at: now, message_id: ask }] : [] });
       if (path === `/api/work-bot/${bot}/policy-evaluations`) return ok({ items: [] });
       if (path === "/api/work-inbox") return ok({ items: [], working_mascot_ids: [], notifications: { items: [], has_more: false } });
       if (path === "/api/work-inbox/subscribe") return ok({ subscription: "00000000-0000-4000-8000-000000000099" });
@@ -30,7 +30,7 @@ async function install(app: ElectronApplication, bots: number) {
       if (path.endsWith("/copy/status")) return ok({ active: false, invites: [] });
       return original(event, request);
     });
-  }, { bot, msg, job, bots });
+  }, { bot, msg, job, bots, ask });
 }
 
 for (const theme of ["dark", "light"]) test(`Bot thread shows bubbles and a typing indicator, never an execution card — ${theme}`, async () => {
@@ -105,5 +105,58 @@ test("notifications open as a bell popover with tabs", async () => {
     await expect(pop.getByTestId("notification-empty")).toBeVisible();
     await expect(page.locator("select")).toHaveCount(0);
     await expect(page.getByText(/process-local|loaded window/)).toHaveCount(0);
+  } finally { await app.close(); }
+});
+
+for (const theme of ["dark", "light"]) test(`approval card is compact and the composer stays pinned in view — ${theme}`, async () => {
+  const { app, page } = await launch({ hash: `#/home?theme=${theme}` });
+  try {
+    await install(app, 1);
+    await app.evaluate(() => { (globalThis as unknown as { lane: State }).lane.ask = true; });
+    await page.setViewportSize({ width: 1100, height: 640 });
+    await page.reload(); // the connection gate reads /api/connection once at mount
+    await page.evaluate(id => { location.hash = `#/bot?id=${id}&epoch=owner&source=work-bot-api`; }, bot);
+    const card = page.getByTestId("bot-thread-approval");
+    await expect(card).toBeVisible();
+    await expect(card).not.toContainText(/\{|"command"/);
+    await expect(card.getByTestId("bot-approval-summary")).toBeVisible();
+    await expect(card.getByRole("button", { name: "Allow once" })).toBeVisible();
+    await expect(card.getByRole("button", { name: "Deny" })).toBeVisible();
+    expect((await card.boundingBox())!.height).toBeLessThan(200);
+    const input = page.getByTestId("work-bot-parent-input");
+    await expect(input).toBeInViewport({ ratio: 1 });
+    await input.fill("still typing");
+    await expect(input).toHaveValue("still typing");
+    await page.screenshot({ path: `test-results/shots/bot-approval-${theme}.png` });
+  } finally { await app.close(); }
+});
+
+for (const theme of ["dark", "light"]) test(`scheduled tasks tabs are one non-overlapping tab bar — ${theme}`, async () => {
+  const { app, page } = await launch({ hash: `#/home?theme=${theme}` });
+  try {
+    await app.evaluate(({ ipcMain }) => {
+      type Wire = { url: string; method: string; body?: string };
+      const original = (ipcMain as unknown as { _invokeHandlers: Map<string, (e: unknown, r: Wire) => Promise<unknown>> })._invokeHandlers.get("cortex:fetch")!;
+      const ok = (body: unknown) => ({ status: 200, headers: [["content-type", "application/json"]], body: JSON.stringify(body) });
+      ipcMain.removeHandler("cortex:fetch");
+      ipcMain.handle("cortex:fetch", async (event, request: Wire) => {
+        const path = new URL(request.url).pathname;
+        if (path === "/api/connection") return ok({ mode: "cloud", signedIn: true });
+        if (path === "/api/code/models") return ok({ epoch: "e", models: [] });
+        if (path === "/api/code/contract") return ok({ data: { items: [] } });
+        return original(event, request);
+      });
+    });
+    await page.reload();
+    await page.evaluate(() => { location.hash = "#/scheduled"; });
+    const tabs = page.getByRole("tablist", { name: "Workspace" });
+    await expect(tabs).toBeVisible();
+    const boxes = await tabs.getByRole("tab").evaluateAll(els => els.map(e => { const r = e.getBoundingClientRect(); return { l: r.left, r: r.right, t: r.top, b: r.bottom, clipped: e.scrollWidth > e.clientWidth }; }));
+    expect(boxes).toHaveLength(4);
+    for (let i = 1; i < boxes.length; i++) expect(boxes[i].l).toBeGreaterThanOrEqual(boxes[i - 1].r);
+    expect(boxes.some(b => b.clipped)).toBe(false);
+    const heading = await page.getByRole("heading", { name: "Scheduled tasks", exact: true }).boundingBox();
+    expect(heading!.y).toBeGreaterThanOrEqual(Math.max(...boxes.map(b => b.b)));
+    await page.screenshot({ path: `test-results/shots/scheduled-tabs-${theme}.png` });
   } finally { await app.close(); }
 });

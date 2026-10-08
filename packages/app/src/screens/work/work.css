@@ -498,3 +498,9 @@ button.travail-li { width: 100%; text-align: left; }
 .bot-thread-note { align-self: flex-start; margin: 4px 0 0 32px; font-size: 12px; color: var(--t3); }
 .bot-thread-stop { margin-left: 4px; font-size: 12px; color: var(--t2); text-decoration: underline; }
 .bot-thread-stop:hover { color: var(--t1); }
+.work-bot-screen { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.bot-approval { width: min(100%, 440px); display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 18px; background: var(--card); box-shadow: var(--ring); font-size: 13px; line-height: 20px; animation: rise 320ms var(--ease-out) both; }
+.bot-approval-title { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+.bot-approval-sum { display: block; padding: 6px 10px; border-radius: 10px; background: var(--sel-row); font-family: var(--mono, ui-monospace, monospace); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bot-approval-toggle { align-self: flex-start; font-size: 12px; color: var(--t2); text-decoration: underline; }
+.bot-approval-more pre { margin: 6px 0 0; max-height: 160px; overflow: auto; font-size: 11px; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--t2); }

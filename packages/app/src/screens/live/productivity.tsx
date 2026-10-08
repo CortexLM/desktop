@@ -53,14 +53,14 @@ export function Scheduled() {
   const t = useT(), { go } = useNav();
   return <Owned title={t("live.scheduled.title")} actions={<button className="btn primary" style={{ height: 28 }} data-testid="scheduled-new" onClick={() => go("scheduled-edit")}><Icon name="plus" size={16} />{t("live.scheduled.new")}</button>}>{epoch => <TaskList epoch={epoch} />}</Owned>;
 }
-const WORKSPACE: [string, string, string][] = [["space", "live.space.title", "projects"], ["scheduled", "live.scheduled.tab", "clock-loop"], ["plugins", "live.plugins.tab", "link"], ["skills", "live.skills.title", "file-code"]];
+const WORKSPACE: [string, string][] = [["space", "live.space.title"], ["scheduled", "live.scheduled.tab"], ["plugins", "live.plugins.tab"], ["skills", "live.skills.title"]];
 function TaskList({ epoch }: { epoch: string }) {
   const t = useT(), { go, route } = useNav(), c = useContract(), q = useOp<{ items: Task[] }>(epoch, "app.scheduled"), cron = useCronLabel();
   const [filter, setFilter] = React.useState("all");
   const items = q.state === "ready" ? q.data?.items ?? [] : [];
   const shown = items.filter(x => filter === "all" || (filter === "active" ? !x.paused : filter === "paused" ? x.paused : s(x.last_status) === "failed"));
   return <section data-testid="scheduled" className="scheduled">
-    <nav className="scheduled-nav" aria-label={t("live.scheduled.workspace")}>{WORKSPACE.map(([r, k, icon]) => <button key={r} type="button" className="chip" aria-current={route === r ? "page" : undefined} data-pressed={route === r || undefined} onClick={() => go(r)}><Icon name={icon} size={16} />{t(k)}</button>)}</nav>
+    <TabBar label={t("live.scheduled.workspace")} value={route} onChange={go} items={WORKSPACE.map(([r, k]) => [r, t(k)])} />
     <header className="scheduled-head"><h1>{t("live.scheduled.heading")}</h1><p>{t("live.scheduled.description")}</p></header>
     <TabBar label={t("live.scheduled.filter")} value={filter} onChange={setFilter} items={[["all", t("live.scheduled.filter.all")], ["active", t("live.scheduled.filter.active")], ["paused", t("live.scheduled.filter.paused")], ["failed", t("live.scheduled.filter.failed")]]} />
     <Loaded q={q}>{() => !items.length ? <div className="empty" data-testid="scheduled-empty"><span className="li-ic"><Icon name="clock-loop" size={16} /></span><h2>{t("live.scheduled.emptyTitle")}</h2><p>{t("live.scheduled.emptyText")}</p><button className="btn secondary" data-testid="scheduled-empty-create" onClick={() => go("scheduled-edit")}>{t("live.scheduled.emptyAction")}</button></div>
