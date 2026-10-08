@@ -8,6 +8,7 @@ type Wire = { status: number; headers: [string, string][]; body: string };
 type Bridge = {
   platform: string;
   appVersion: string;
+  locale?: string;
   request: (req: { url: string; method: string; headers: [string, string][]; body?: string }) => Promise<Wire>;
   events: (onChunk: (text: string) => void) => () => void;
   openExternal?: (url: string) => void;

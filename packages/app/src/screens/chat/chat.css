@@ -38,8 +38,6 @@
 .chat-note .chat-link { height: 22px; padding: 0 8px; border-radius: 11px; }
 .chat-note .chat-link:hover { background: var(--hover); text-decoration: none; }
 .remote-chat .chat-note { height: auto; min-height: 28px; min-width: 0; max-width: 100%; flex-shrink: 0; flex-wrap: wrap; padding: 6px 10px; overflow-wrap: anywhere; }
-.remote-chat details label { min-width: 0; max-width: 100%; }
-.remote-chat details select { max-width: 100%; }
 .chat-tag { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 0 7px; margin-bottom: 6px; border-radius: 10px; background: var(--sel-row); color: var(--t2); font-size: 11px; font-weight: 500; }
 
 /* Extended composer */
@@ -458,3 +456,27 @@
   .chat-tool-root .home { padding: 0 20px 64px; }
   .chat-tool-root .chat-fmts { flex-wrap: wrap; }
 }
+/* Signed-in Chat header model picker */
+.remote-model-trigger { display: inline-flex; align-items: center; gap: 6px; min-width: 0; max-width: min(360px, 60cqi); height: 32px; padding: 0 10px; border-radius: var(--r-row); color: var(--t1); font-size: 15px; font-weight: 500; transition: background var(--d-micro) linear; }
+.remote-model-trigger:hover, .remote-model-trigger[data-popup-open] { background: var(--hover); }
+.remote-model-trigger:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+.remote-model-trigger:disabled { opacity: .55; }
+.remote-model-trigger svg { flex-shrink: 0; color: var(--t3); }
+.remote-model-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.remote-model-effort { flex-shrink: 0; color: var(--t3); font-weight: 400; }
+.remote-chat-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--t2); }
+.remote-model-menu { width: min(360px, calc(100vw - 24px)); max-height: min(480px, var(--available-height)); overflow: auto; }
+.remote-model-item { align-items: flex-start; padding: 8px 10px; }
+.remote-model-text { display: flex; flex-direction: column; gap: 2px; }
+.remote-model-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.remote-model-row .ttl, .remote-model-text > .ttl { font-weight: 500; }
+.remote-model-row .badge { height: 18px; padding: 0 6px; font-size: 10px; background: var(--sel-row); color: var(--t2); }
+.remote-model-row .badge.run { background: color-mix(in srgb, var(--blue) 14%, transparent); color: color-mix(in srgb, var(--blue) 80%, var(--t1)); }
+.remote-model-check { margin-top: 2px; color: var(--t1); }
+.remote-model-item[data-checked] { background: transparent; }
+.remote-model-item[data-highlighted] { background: var(--hover); }
+.remote-effort { display: flex; gap: 4px; padding: 2px 6px 6px; }
+.remote-effort-item { flex: 1; justify-content: center; min-height: 28px; border-radius: var(--r-row); color: var(--t2); box-shadow: var(--ring); }
+.remote-effort-item[data-checked] { background: var(--sel-row); color: var(--t1); font-weight: 500; }
+.remote-empty .chat-box { max-width: 680px; }
+.remote-empty .chat-err { width: 100%; max-width: 680px; margin-bottom: 12px; }

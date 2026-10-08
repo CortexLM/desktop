@@ -71,6 +71,12 @@ reconnect/reselect/save, never automatic retry. Metadata grants no autonomy or d
 Full Task8 remains open. Combined assembled
 migration-stack acceptance remains separate from this source-bound producer fixture.
 
+Shell/settings: the Cortex sidebar adds a Workspace group (Space, Scheduled tasks, Planning, Local browser,
+Extensions and skills) and the signed-in account's first Bot; remote and local chats share one Recents list.
+Signed-in Profile reads `/v1/me` (`app.me`); the rail shows account initials. Settings links Models,
+Organization and Approvals; Providers is hidden for Cortex Cloud. Models show display names and context
+as approximate pages, never slugs or raw token counts.
+
 Todo 6b registers 31 signed-in owner screens under `packages/app/src/screens/live`
 (Bot channel/invites/share/computer/companion/create, Code automations/connect,
 connection, providers, models, model picker, remote chat, tool approval, space,
@@ -168,7 +174,11 @@ identity, account-wide discovery and restart restoration remain gated. Nine JSON
 through the typed client, plus a strict base64 upload route capped at 8 MiB before
 decoding. Optional one-off model selection reaches main without changing recorded
 model/effort or original-request replay. A scoped Chat renderer now calls these routes;
-full acceptance remains in progress as recorded below.
+full acceptance remains in progress as recorded below. Signed-in Chat picks its model from a
+header popover (`remote-model-menu.tsx`: name, description or context size, capability badges,
+check, reasoning effort for reasoning models); a new chat preselects the first discovered model
+and shows the Home greeting and suggestions. Session-scope and detach caveats sit behind info
+tooltips in user language, not banners.
 The earlier adapter increment passed five adapter tests and 304 units, with scoped review approval; see
 `evidence/auth-owner-followup/remote-api-adapter.md`.
 Remote model routing/inference and continuation screens remain active delivery work; the dependency
@@ -221,7 +231,7 @@ preview fixtures. Only visible gallery iframes load; offscreen previews unload t
 | `CORTEX_STAGING_API_ORIGIN` | same | Required non-production HTTPS origin for staging; embedded in main only, invalid or ambiguous configuration fails build |
 | `CORTEX_DATA_DIR` | `packages/desktop/src/main.ts`, `scripts/dev-api.ts` | Engine data dir (default `<userData>/engine`) |
 | `CORTEX_CATALOG_URL` | same | Override `https://models.dev/api.json` |
-| `CORTEX_LOCALE` | `main.ts` | Force the native menu locale |
+| `CORTEX_LOCALE` | `main.ts` | Native menu locale and the app default when Settings has no saved locale (fallback: first supported OS language, else English) |
 | `CORTEX_START_HASH` | `main.ts` | Initial route hash, e.g. `#/settings?section=providers` |
 | `CORTEX_RENDERER_URL` | `main.ts` | Load the renderer from a dev server |
 | `CORTEX_TEST_PROVIDER_BASEURL` | `main.ts` | `id=url` provider base URL override; **ignored when packaged** |
@@ -601,9 +611,9 @@ Corrected collector execution and installed-native acceptance remain pending. Se
 | Job | Runner | Runs |
 | --- | --- | --- |
 | `checks` | `vars.CORTEX_LINUX_X64_RUNNER` (CodeBuild label pattern `codebuild-…-<run_id>-<attempt>`), else `ubuntu-latest` | lint, typecheck, test, audit:i18n |
-| `e2e` | `blacksmith-4vcpu-ubuntu-2404` | build + `test:e2e` under `xvfb-run` |
-| `macos` | `blacksmith-6vcpu-macos-26` | build, E2E, unsigned arm64 package, `node scripts/smoke.mjs mac` |
-| `windows` | `windows-2025` | build, serial E2E, unsigned x64 directory package and packaged smoke; not a release installer |
+| `e2e` | `blacksmith-4vcpu-ubuntu-2404` | build + `test:e2e --shard=N/4` under `xvfb-run` (4 shards) |
+| `macos` | `blacksmith-6vcpu-macos-26` | build, E2E `--shard=N/4` (4 shards); shard 1 also packages unsigned arm64 and runs `node scripts/smoke.mjs mac` |
+| `windows` | `windows-2025` | build, serial E2E `--shard=N/6` (6 shards); shard 1 also builds the unsigned x64 directory package and packaged smoke; not a release installer |
 
 Linux CI runs Electron serially because native clipboard and foreground focus share its
 X desktop. It installs CJK fallback fonts and retains a font/package inventory. Its auth

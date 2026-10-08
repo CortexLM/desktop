@@ -71,6 +71,8 @@ async function backend() {
         });
       }
       if (route === "/readyz") { res.end("ok"); return; }
+      // The signed-in sidebar reads the account's Bots for its shortcut; this account has none.
+      if (req.method === "GET" && route === "/v1/mascots") return json(res, { items: [], has_more: false });
       if (route === "/v1/instance") return json(res, {
         mode: "self_host", version: "test",
         auth: { mode: "cortex", required: true, providers: ["cortex"] },
@@ -176,6 +178,18 @@ async function call<T>(page: Page, route: string, method = "GET", body?: unknown
 async function show(page: Page, route: string) {
   await page.evaluate((route) => history.pushState(null, "", `#/${route}`), route);
 }
+const modelTrigger = (page: Page) => page.getByTestId("remote-model-trigger");
+const modelOption = (page: Page, slug: string) => page.locator(`[data-testid="remote-model-option"][data-value="${slug}"]`);
+async function openModels(page: Page) {
+  await modelTrigger(page).click();
+  await expect(page.getByRole("menu")).toBeVisible();
+}
+async function choose(page: Page, slug: string) {
+  await openModels(page);
+  await modelOption(page, slug).click();
+  await expect(page.getByRole("menu")).toBeHidden();
+  await expect(modelTrigger(page)).toHaveAttribute("data-value", slug);
+}
 async function signIn(page: Page, origin: string) {
   await call(page, "/api/connection", "PUT", { mode: "selfhost", url: origin, signedIn: false });
   const { owner } = await call<RemoteAuthState>(page, "/api/connection/auth");
@@ -187,11 +201,14 @@ async function signIn(page: Page, origin: string) {
   expect(state.signedIn).toBe(true);
 }
 async function prepare(page: Page, draft: string) {
-  const model = page.getByLabel(chatCopy["remote.model"], { exact: true });
-  await expect(model).toBeAttached();
-  await page.locator("details").filter({ has: model }).locator("summary").click();
-  await model.selectOption("fixture");
-  await page.getByLabel(chatCopy["remote.effortLabel"], { exact: true }).selectOption("high");
+  const trigger = modelTrigger(page);
+  await expect(trigger).toBeEnabled();
+  // A new chat preselects the first discovered model.
+  await expect(trigger).toHaveAttribute("data-value", "fixture");
+  await openModels(page);
+  await page.locator('[data-testid="remote-effort-option"][data-value="high"]').click();
+  await page.keyboard.press("Escape");
+  await expect(trigger).toContainText(chatCopy["remote.effort.high"]);
   await page.getByTestId("composer-input").fill(draft);
 }
 async function routedSession(page: Page) {
@@ -215,8 +232,9 @@ async function prepareRecorded(page: Page, draft: string) {
   });
   await show(page, `chat?source=remote&epoch=${epoch}&id=${session.id}`);
   await page.getByTestId("composer-input").fill(draft);
-  const oneOff = page.getByLabel(chatCopy["remote.oneOff"], { exact: true });
-  await page.locator("details").filter({ has: oneOff }).locator("summary").click();
+  const oneOff = modelTrigger(page);
+  await expect(oneOff).toBeEnabled();
+  await expect(oneOff).toHaveAttribute("data-value", "");
   return { session, oneOff };
 }
 async function settled(page: Page, id: string) {
@@ -227,7 +245,7 @@ async function settled(page: Page, id: string) {
   expect(session).toMatchObject({
     state: "settled", outcome: { finishReason: "stop" },
   });
-  await expect(page.getByText(chatCopy["remote.limited"], { exact: true })).toBeVisible();
+  await expect(page.getByTestId("remote-session-note")).toBeVisible();
 }
 
 const test = base.extend<{ chat: { page: Page; app: Awaited<ReturnType<typeof launch>>["app"]; backend: Awaited<ReturnType<typeof backend>> } }>({
@@ -329,7 +347,7 @@ test("remote Home admits selected model and effort only after backend headers", 
   expect(messages[1]).toMatchObject({ role: "assistant", remoteID: assistantID, partial: true, finishReason: "stop" });
   expect(await call<Session[]>(page, "/api/sessions")).toEqual([]);
   expect(backend.turns).toHaveLength(1);
-  const recents = page.locator(".sb-group").filter({ hasText: chatCopy["remote.recents"] });
+  const recents = page.getByTestId("sidebar-remote-recents");
   await expect(recents).toContainText(session.title);
   await show(page, "history");
   const remoteHistory = page.locator("section").filter({ has: page.getByRole("heading", { name: chatCopy["remote.recents"], exact: true }) });
@@ -363,9 +381,8 @@ test("M1 historical-image refusal carries the exact next draft into a fresh remo
 
   const draft = "  Carry this next draft\nwithout losing whitespace  ";
   await page.getByTestId("composer-input").fill(draft);
-  const oneOff = page.getByLabel(chatCopy["remote.oneOff"], { exact: true });
-  await page.locator("details").filter({ has: oneOff }).locator("summary").click();
-  await oneOff.selectOption("fixture-next");
+  const oneOff = modelTrigger(page);
+  await choose(page, "fixture-next");
   await page.getByTestId("attach-input").setInputFiles({
     name: "next.png", mimeType: "image/png", buffer: png,
   });
@@ -374,7 +391,7 @@ test("M1 historical-image refusal carries the exact next draft into a fresh remo
   await page.locator(".chat-box .chat-attach").getByRole("button").click();
   await expect(page.locator(".chat-box .chat-attach")).toHaveCount(0);
   await expect(page.getByTestId("composer-input")).toHaveValue(draft);
-  await expect(oneOff).toHaveValue("fixture-next");
+  await expect(oneOff).toHaveAttribute("data-value", "fixture-next");
   await expect(page.getByTestId("composer-send")).toBeDisabled();
   await expect(page.getByText(chatCopy["remote.historyImages"], { exact: true })).toBeVisible();
   // Enter exercises the form guard independently of the disabled Send button.
@@ -462,7 +479,7 @@ test("M1 historical-image refusal carries the exact next draft into a fresh remo
     await expect(input).toBeEditable();
     await expect(input).toHaveValue(draft);
     await expect(page.locator(".chat-box .chat-attach")).toContainText("next.png");
-    await expect(oneOff).toHaveValue("fixture-next");
+    await expect(oneOff).toHaveAttribute("data-value", "fixture-next");
   } finally {
     await gate.evaluate((gate) => gate.restore());
     await gate.dispose();
@@ -470,7 +487,7 @@ test("M1 historical-image refusal carries the exact next draft into a fresh remo
   await expect(page.getByTestId("composer-send")).toBeEnabled();
   await expect(page.getByTestId("composer-input")).toHaveValue(draft);
   await expect(page.locator(".chat-box .chat-attach")).toContainText("next.png");
-  await expect(oneOff).toHaveValue("fixture-next");
+  await expect(oneOff).toHaveAttribute("data-value", "fixture-next");
   await expect(page.getByTestId("assistant-text")).toHaveCount(0);
 
   const params = new URLSearchParams(new URL(page.url()).hash.split("?")[1]);
@@ -574,7 +591,7 @@ test("header-held refusal preserves the exact draft without admitting messages",
 
 test("detach and resume replay the original one-off, then an ordinary turn uses the recorded model", async ({ chat: { page, backend } }) => {
   const { oneOff } = await prepareRecorded(page, "Original remote request");
-  await oneOff.selectOption("fixture-next");
+  await choose(page, "fixture-next");
   await page.getByTestId("composer-send").click();
   const first = await backend.arrivals[0].promise;
   expect(JSON.parse(first.raw)).toEqual({
@@ -607,7 +624,7 @@ test("detach and resume replay the original one-off, then an ordinary turn uses 
   replay.response.end(frame(9, { type: "done", message_id: assistantID, finish_reason: "stop" }));
   await settled(page, session.id);
   await expect(page.getByTestId("composer-input")).toHaveValue("A different unsent draft");
-  await expect(oneOff).toHaveValue("");
+  await expect(oneOff).toHaveAttribute("data-value", "");
   const messages = await call<RemoteMessageView[]>(page, `/api/remote/sessions/${session.id}/messages`);
   expect(messages).toHaveLength(2);
   expect(messages[0]).toMatchObject({
@@ -655,20 +672,20 @@ for (const slug of ["fixture-no-image", "fixture-unknown"]) {
     await page.getByTestId("attach-input").setInputFiles({
       name: "retained.png", mimeType: "image/png", buffer: png,
     });
-    await oneOff.selectOption(slug);
-    await expect(oneOff).toHaveValue(slug);
+    await choose(page, slug);
+    await expect(oneOff).toHaveAttribute("data-value", slug);
     await expect(page.getByText(chatCopy["remote.imageUnsupported"], { exact: true })).toBeVisible();
     await expect(page.getByTestId("composer-send")).toBeDisabled();
     await page.getByTestId("composer-input").press("Enter");
     await expect(page.getByTestId("composer-input")).toHaveValue(draft);
     await expect(page.locator(".chat-box .chat-attach")).toContainText("retained.png");
-    await expect(oneOff).toHaveValue(slug);
+    await expect(oneOff).toHaveAttribute("data-value", slug);
     expect(backend.uploads).toEqual([]);
     expect(backend.turns).toEqual([]);
     expect(await call<RemoteMessageView[]>(page, `/api/remote/sessions/${session.id}/messages`)).toEqual([]);
 
     // Explicitly selecting a compatible model must send the retained bytes.
-    await oneOff.selectOption("fixture-next");
+    await choose(page, "fixture-next");
     await page.getByTestId("composer-send").click();
     const turn = await backend.arrivals[0].promise;
     expect(JSON.parse(turn.raw)).toEqual({
@@ -686,14 +703,18 @@ for (const slug of ["fixture-no-image", "fixture-unknown"]) {
 
 test("disabled registry entries cannot be selected in Home or recorded Chat", async ({ chat: { page, backend } }) => {
   await prepare(page, "Keep the configured selection");
-  const model = page.getByLabel(chatCopy["remote.model"], { exact: true });
-  await expect(model.locator('option[value="fixture-disabled"]')).toHaveCount(0);
-  await model.selectOption("fixture-unknown");
-  await expect(model).toHaveValue("fixture-unknown");
+  const model = modelTrigger(page);
+  await openModels(page);
+  await expect(modelOption(page, "fixture-disabled")).toHaveCount(0);
+  await page.keyboard.press("Escape");
+  await choose(page, "fixture-unknown");
+  await expect(model).toHaveAttribute("data-value", "fixture-unknown");
   const { oneOff } = await prepareRecorded(page, "Recorded selection");
-  await expect(oneOff.locator('option[value="fixture-disabled"]')).toHaveCount(0);
-  await oneOff.selectOption("fixture-unknown");
-  await expect(oneOff).toHaveValue("fixture-unknown");
+  await openModels(page);
+  await expect(modelOption(page, "fixture-disabled")).toHaveCount(0);
+  await page.keyboard.press("Escape");
+  await choose(page, "fixture-unknown");
+  await expect(oneOff).toHaveAttribute("data-value", "fixture-unknown");
   expect(backend.modelQueries.length).toBeGreaterThan(0);
   expect(backend.modelQueries.every((query) => new URLSearchParams(query).get("configured") === "true")).toBe(true);
   expect(backend.turns).toEqual([]);
@@ -721,15 +742,16 @@ test("reopening a Chat whose recorded model disappeared never selects a fallback
   await expect(page.getByText(chatCopy["remote.modelUnavailable"], { exact: true })).toBeVisible();
   const draft = "  Do not substitute another model  ";
   await page.getByTestId("composer-input").fill(draft);
-  const oneOff = page.getByLabel(chatCopy["remote.oneOff"], { exact: true });
-  await page.locator("details").filter({ has: oneOff }).locator("summary").click();
-  await expect(oneOff).toHaveValue("");
-  await expect(oneOff.locator('option[value="fixture"]')).toHaveCount(0);
-  await oneOff.selectOption("fixture-next");
+  const oneOff = modelTrigger(page);
+  await expect(oneOff).toHaveAttribute("data-value", "");
+  await openModels(page);
+  await expect(modelOption(page, "fixture")).toHaveCount(0);
+  await page.keyboard.press("Escape");
+  await choose(page, "fixture-next");
   await expect(page.getByTestId("composer-send")).toBeDisabled();
   await page.getByTestId("composer-input").press("Enter");
   await expect(page.getByTestId("composer-input")).toHaveValue(draft);
-  await expect(oneOff).toHaveValue("fixture-next");
+  await expect(oneOff).toHaveAttribute("data-value", "fixture-next");
   expect(await call<RemoteSessionView>(page, `/api/remote/sessions/${session.id}`)).toMatchObject({
     modelSlug: "fixture", effort: "high", conversationID,
   });
@@ -740,7 +762,7 @@ test("reopening a Chat whose recorded model disappeared never selects a fallback
 test("missing admission headers retain exact text, image and one-off without admitting messages", async ({ chat: { page, backend } }) => {
   const draft = "  Preserve ambiguous admission\nwith whitespace  ";
   const { session, oneOff } = await prepareRecorded(page, draft);
-  await oneOff.selectOption("fixture-next");
+  await choose(page, "fixture-next");
   await page.getByTestId("attach-input").setInputFiles({
     name: "ambiguous.png", mimeType: "image/png", buffer: png,
   });
@@ -756,7 +778,7 @@ test("missing admission headers retain exact text, image and one-off without adm
   await expect(page.getByTestId("composer-input")).toBeEditable();
   await expect(page.getByTestId("composer-input")).toHaveValue(draft);
   await expect(page.locator(".chat-box .chat-attach")).toContainText("ambiguous.png");
-  await expect(oneOff).toHaveValue("fixture-next");
+  await expect(oneOff).toHaveAttribute("data-value", "fixture-next");
   await expect(page.getByTestId("assistant-text")).toHaveCount(0);
   await expect(page.getByTestId("composer-send")).toBeDisabled();
   await expect(page.getByRole("button", { name: chatCopy["remote.resume"], exact: true })).toBeEnabled();
@@ -769,31 +791,26 @@ test("missing admission headers retain exact text, image and one-off without adm
   expect(backend.turns).toHaveLength(1);
 });
 
-test("keyboard options toggles retain focus, exact draft, image and model selections", async ({ chat: { page, backend } }) => {
+test("keyboard model picker retains focus, exact draft, image and model selections", async ({ chat: { page, backend } }) => {
   const draft = "  Keyboard draft\nkeep every character  ";
   await prepare(page, draft);
   await page.getByTestId("attach-input").setInputFiles({
     name: "keyboard.png", mimeType: "image/png", buffer: png,
   });
-  const options = page.locator(".chat-box details"), summary = options.locator("summary");
-  const model = page.getByLabel(chatCopy["remote.model"], { exact: true });
-  const effort = page.getByLabel(chatCopy["remote.effortLabel"], { exact: true });
-  await summary.focus();
+  const trigger = modelTrigger(page);
+  await trigger.focus();
   for (const key of ["Enter", "Space"]) {
-    await summary.press(key);
-    await expect(options).not.toHaveAttribute("open", "");
-    await expect(summary).toBeFocused();
+    await trigger.press(key);
+    const menu = page.getByRole("menu");
+    await expect(menu).toBeVisible();
+    await expect(modelOption(page, "fixture")).toHaveAttribute("aria-checked", "true");
+    await page.keyboard.press("Escape");
+    await expect(menu).toBeHidden();
+    await expect(trigger).toBeFocused();
     await expect(page.getByTestId("composer-input")).toHaveValue(draft);
     await expect(page.locator(".chat-box .chat-attach")).toContainText("keyboard.png");
-    await expect(model).toHaveValue("fixture");
-    await expect(effort).toHaveValue("high");
-    await summary.press(key);
-    await expect(options).toHaveAttribute("open", "");
-    await expect(summary).toBeFocused();
-    await summary.press("Tab");
-    await expect(model).toBeFocused();
-    await model.press("Shift+Tab");
-    await expect(summary).toBeFocused();
+    await expect(trigger).toHaveAttribute("data-value", "fixture");
+    await expect(trigger).toContainText(chatCopy["remote.effort.high"]);
   }
   expect(backend.uploads).toEqual([]);
   expect(backend.turns).toEqual([]);
@@ -807,6 +824,57 @@ test("keyboard options toggles retain focus, exact draft, image and model select
   const session = await routedSession(page);
   turn.response.end(doneFrame());
   await settled(page, session.id);
+});
+
+test("new chat shows an empty state and a header model picker that sends at once", async ({ chat: { page, backend } }) => {
+  await expect(page.getByRole("heading", { name: chatCopy["home.title"], exact: true })).toBeVisible();
+  for (const hidden of ["remote.limited", "remote.options", "remote.detachNote"]) {
+    expect(chatCopy).not.toHaveProperty(hidden);
+  }
+  await expect(page.locator(".chat-box details")).toHaveCount(0);
+  const trigger = modelTrigger(page);
+  await expect(trigger).toHaveText(/Cortex Fixture/);
+  await expect(trigger).toHaveAccessibleName(chatCopy["remote.modelTrigger"].replace("{model}", "Cortex Fixture"));
+  await trigger.press("Enter");
+  const menu = page.getByRole("menu");
+  await expect(menu).toBeVisible();
+  const options = page.getByTestId("remote-model-option");
+  await expect(options).toHaveText([/Cortex Fixture/, /Cortex Next Fixture/, /Cortex Text Fixture/, /Cortex Unknown Fixture/]);
+  await expect(modelOption(page, "fixture")).toHaveAttribute("aria-checked", "true");
+  await expect(modelOption(page, "fixture-no-image")).toContainText(chatCopy["model.reasoning"]);
+  await expect(modelOption(page, "fixture-no-image")).not.toContainText(chatCopy["model.image"]);
+  await expect(page.getByTestId("remote-effort-option")).toHaveCount(3);
+  await expect(page.locator('[data-testid="remote-effort-option"][data-value="medium"]')).toHaveAttribute("aria-checked", "true");
+  // Arrow keys move between models; Enter selects and closes.
+  await expect(modelOption(page, "fixture")).toBeFocused();
+  await page.keyboard.press("ArrowDown");
+  await expect(modelOption(page, "fixture-next")).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(menu).toBeHidden();
+  await expect(trigger).toBeFocused();
+  await expect(trigger).toHaveAttribute("data-value", "fixture-next");
+  // A model without reasoning hides the effort control.
+  await choose(page, "fixture-unknown");
+  await expect(trigger).not.toContainText(chatCopy["remote.effort.medium"]);
+  await openModels(page);
+  await expect(page.getByTestId("remote-effort-option")).toHaveCount(0);
+  await page.keyboard.press("Escape");
+  await choose(page, "fixture");
+  const suggestion = page.locator(".remote-empty .suggestion").first();
+  await suggestion.click();
+  await expect(page.getByTestId("composer-input")).toHaveValue(chatCopy["remote.suggest.summary"]);
+  await expect(page.getByTestId("composer-send")).toBeEnabled();
+  await page.getByTestId("composer-send").click();
+  const turn = await backend.arrivals[0].promise;
+  expect(JSON.parse(turn.raw)).toEqual({
+    message: chatCopy["remote.suggest.summary"], model_slug: "fixture", reasoning_effort: "medium", attachment_ids: [],
+  });
+  backend.admit(turn, "Five key points.");
+  const session = await call<RemoteSessionView[]>(page, "/api/remote/sessions");
+  turn.response.end(doneFrame());
+  await settled(page, session[0].id);
+  await expect(page.locator(".content-top .remote-chat-title")).toBeVisible();
+  await expect(page.locator(".remote-empty")).toHaveCount(0);
 });
 
 // Hold the same route callback as navigation.spec.ts, then traverse back to the
@@ -967,7 +1035,7 @@ test("H2 header-held Home resume preserves an edited next draft and file without
   const next = "  A different next draft\nretain its whitespace  ";
   await page.getByTestId("composer-input").fill(next);
   await page.getByTestId("attach-input").setInputFiles({ name: "next-draft.png", mimeType: "image/png", buffer: png });
-  await page.getByLabel(chatCopy["remote.oneOff"], { exact: true }).selectOption("fixture");
+  await choose(page, "fixture");
   await expect(page.locator(".chat-box .chat-attach")).toContainText("next-draft.png");
   const route = await page.evaluateHandle(() => {
     const navigation = (window as unknown as {
@@ -997,7 +1065,7 @@ test("H2 header-held Home resume preserves an edited next draft and file without
     // Editing becomes available only after Home's resume continuation finishes.
     await expect(page.getByTestId("composer-input")).toBeEditable();
     await expect(page.getByTestId("composer-input")).toHaveValue(next);
-    await expect(page.getByLabel(chatCopy["remote.oneOff"], { exact: true })).toHaveValue("fixture");
+    await expect(modelTrigger(page)).toHaveAttribute("data-value", "fixture");
     await expect(page.locator(".chat-box .chat-attach")).toContainText("next-draft.png");
     await expect(page.getByTestId("assistant-text")).toHaveText("Original request recovered");
     await expect(page).toHaveURL(/#\/home(?:\?|$)/);
@@ -1045,7 +1113,7 @@ async function captureRemoteVisual(page: Page, name: string) {
         y: root.scrollHeight - innerHeight,
       },
       horizontalOverflow: [...document.querySelectorAll<HTMLElement>(
-        "main.content, .thread, .thread-inner, .dock, .chat-box, .composer, .chat-box details, .chat-box details > div, .page, .pg-narrow",
+        "main.content, .thread, .thread-inner, .dock, .chat-box, .composer, .content-top, .page, .pg-narrow",
       )].filter((element) => element.getClientRects().length)
         .map((element) => ({
           element: element.className || element.tagName,
@@ -1139,15 +1207,13 @@ for (const size of [{ width: 960, height: 640 }, { width: 1280, height: 900 }]) 
       const prefix = `remote-en-${size.width}x${size.height}-${theme}`;
       const draft = "Summarize the next steps for this conversation.";
       await prepare(page, draft);
-      const homeOptions = page.locator(".chat-box details");
-      await expect(homeOptions).toHaveAttribute("open", "");
-      await expect(page.getByLabel(chatCopy["remote.model"], { exact: true })).toHaveValue("fixture");
-      await expect(page.getByLabel(chatCopy["remote.effortLabel"], { exact: true })).toHaveValue("high");
+      await expect(modelTrigger(page)).toHaveAttribute("data-value", "fixture");
+      await expect(modelTrigger(page)).toContainText(chatCopy["remote.effort.high"]);
       await expect(page.getByTestId("composer-input")).toBeEditable();
       await expect(page.getByTestId("composer-input")).toHaveValue(draft);
       await expect(page.getByTestId("composer-send")).toBeEnabled();
       await expect(page.locator(".chat-err")).toHaveCount(0);
-      await expect(page.getByText(chatCopy["remote.limited"], { exact: true })).toBeVisible();
+      await expect(page.getByTestId("remote-session-note")).toBeVisible();
       await captureRemoteVisual(page, `${prefix}-home-options`);
 
       await page.getByTestId("composer-send").click();
@@ -1161,18 +1227,14 @@ for (const size of [{ width: 960, height: 640 }, { width: 1280, height: 900 }]) 
       await settled(page, session.id);
       await expect(page.getByTestId("composer-input")).toBeEditable();
       await expect(page.getByTestId("composer-input")).toHaveValue("");
-      const oneOff = page.getByLabel(chatCopy["remote.oneOff"], { exact: true });
-      const transcriptOptions = page.locator("details").filter({ has: oneOff });
-      await transcriptOptions.locator("summary").click();
-      await expect(transcriptOptions).toHaveAttribute("open", "");
-      await oneOff.selectOption("fixture-next");
-      await expect(oneOff).toHaveValue("fixture-next");
-      await expect(transcriptOptions).toContainText(chatCopy["remote.oneOffNote"]);
+      const oneOff = modelTrigger(page);
+      await choose(page, "fixture-next");
+      await expect(oneOff).toHaveAttribute("data-value", "fixture-next");
+      await expect(page.getByTestId("remote-one-off-note")).toHaveAccessibleName(chatCopy["remote.oneOffNote"]);
       await expect(page.getByRole("button", { name: chatCopy["remote.loadHistory"], exact: true })).toBeEnabled();
       await expect(page.locator(".chat-err")).toHaveCount(0);
       await captureRemoteVisual(page, `${prefix}-settled-options`);
       for (const [name, target] of [
-        ["limits", page.getByText(chatCopy["remote.limited"], { exact: true })],
         ["answer", page.getByTestId("assistant-text")],
         ["partial", page.getByText(chatCopy["remote.partial"], { exact: true })],
       ] as const) {
@@ -1199,7 +1261,7 @@ for (const size of [{ width: 960, height: 640 }, { width: 1280, height: 900 }]) 
       await expect(remoteHistory.getByRole("button")).toHaveCount(1);
       await expect(page.locator("main.content .thinking")).toHaveCount(0);
       await expect(page.locator("main.content [role=alert]")).toHaveCount(0);
-      await expect(page.locator(".sb-group").filter({ hasText: chatCopy["remote.recents"] })).toContainText(session.title);
+      await expect(page.getByTestId("sidebar-remote-recents")).toContainText(session.title);
       await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
       await captureRemoteVisual(page, `${prefix}-history`);
       expect(backend.turns).toHaveLength(1);
@@ -1246,7 +1308,7 @@ test("remote lists reject pre-logout snapshots delivered after removal", async (
   const session = await routedSession(page);
   turn.response.end(doneFrame());
   await settled(page, session.id);
-  const recents = page.locator(".sb-group").filter({ hasText: chatCopy["remote.recents"] });
+  const recents = page.getByTestId("sidebar-remote-recents");
   await expect(recents).toContainText(session.title);
 
   const gate = await app.evaluateHandle(({ ipcMain }, sessionID) => {
@@ -1472,19 +1534,15 @@ test("remote settled options stay reachable across eight locales and two themes"
         await expect(page.getByRole("status").filter({
           hasText: copy["remote.state.settled"],
         })).toBeVisible();
-        await expect(page.getByText(copy["remote.limited"], { exact: true })).toBeVisible();
+        await expect(page.getByTestId("remote-session-note")).toHaveAccessibleName(copy["remote.sessionOnly"]);
         await expect(page.getByTestId("composer-input")).toBeEditable();
         await expect(page.getByTestId("composer-input")).toHaveValue("");
 
-        const model = page.getByLabel(copy["remote.oneOff"], { exact: true });
-        const options = page.locator(".chat-box details").filter({ has: model });
-        await expect(options.locator("summary")).toHaveText(copy["remote.options"]);
-        await options.locator("summary").click();
-        await expect(options).toHaveAttribute("open", "");
+        const model = modelTrigger(page);
         await expect(model).toBeEnabled();
-        await model.selectOption("fixture-next");
-        await expect(model).toHaveValue("fixture-next");
-        await expect(options.getByText(copy["remote.oneOffNote"], { exact: true })).toBeVisible();
+        await choose(page, "fixture-next");
+        await expect(model).toHaveAttribute("data-value", "fixture-next");
+        await expect(page.getByTestId("remote-one-off-note")).toHaveAccessibleName(copy["remote.oneOffNote"]);
         // A retained unsent draft makes Send an actionable control without another backend turn.
         await page.getByTestId("composer-input").fill("Unsent geometry check");
         await expect(page.getByTestId("composer-send")).toBeEnabled();
@@ -1651,3 +1709,4 @@ test("SDK reasoning, completed tools, disclosure and post-done media render with
   expect(backend.historyRequests).toEqual([]);
   expect(await call<Session[]>(page, "/api/sessions")).toEqual([]);
 });
+

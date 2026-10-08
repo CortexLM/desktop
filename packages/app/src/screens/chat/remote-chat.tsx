@@ -5,18 +5,19 @@ import {
 } from "@cortex/schema";
 import { api } from "../../api";
 import { useT } from "../../i18n";
-import { Icon, IconBtn } from "../../kit/ui";
+import { Gel, Icon, IconBtn, Tip } from "../../kit/ui";
 import { onEvent } from "../../state/live";
 import { useSendEnter } from "../../state/send-enter";
 import { navigation, readHash, useNav } from "../../shell/nav";
 import { Att, BotRow, Paras } from "./shared";
 import type { ComposerLeaveGuard } from "./model-composer";
+import { RemoteModelMenu, type Effort } from "./remote-model-menu";
 
-type Effort = "low" | "medium" | "high";
 type Draft = { text: string; files: File[]; oneOff: string };
 type Submitted = { draft: Draft; attachmentIDs: string[]; id: string; epoch: string };
 const emptyDraft = (): Draft => ({ text: "", files: [], oneOff: "" });
 const imageTypes = ["image/png", "image/jpeg", "image/webp", "image/gif"];
+const SUGGESTIONS = [["documents", "chat.remote.suggest.summary"], ["recherche-web", "chat.remote.suggest.explain"], ["automatisations", "chat.remote.suggest.plan"]] as const;
 // ponytail: one renderer-local handoff; persistent drafts need engine-owned storage.
 let draftHandoff: {
   entryKey: string; id: string; epoch: string; draft: Draft; clear(): void;
@@ -132,6 +133,7 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
   const draftRef = React.useRef(draft);
   const submitted = React.useRef<Submitted | null>(null);
   const fileInput = React.useRef<HTMLInputElement>(null);
+  const textInput = React.useRef<HTMLTextAreaElement>(null);
   const locked = React.useRef(false);
   const [leaving, setLeaving] = React.useState(false);
   const sequence = React.useRef(0);
@@ -197,6 +199,8 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
         if (binding.current && binding.current !== catalog.epoch) fail();
         binding.current = catalog.epoch;
         setModels(catalog.models);
+        // A new chat starts on the first offered model so Send works at once; a chosen model that vanished stays so modelValid blocks Send.
+        setModel((slug) => slug || (catalog.models[0]?.slug ?? ""));
         if (id || record.current) await read();
         else { setLoaded(true); setError(""); }
       } catch { if (valid()) { setLoaded(false); setError("unavailable"); } }
@@ -406,10 +410,6 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
   };
 
   const composer = <div className="chat-box remote-chat" inert={leaving}>
-    {session && <p className="chat-note">{t("chat.remote.recorded", {
-      model: session.modelSlug,
-      effort: session.effort ? t(`chat.remote.effort.${session.effort}`) : t(base?.reasoning === false ? "chat.remote.notApplicable" : "chat.remote.unknown"),
-    })}</p>}
     {draft.files.length > 0 && <div className="chat-attach">{draft.files.map((file, i) =>
       <Att key={i} name={file.name} meta={t("chat.remote.fileMetadata", { mime: file.type, bytes: file.size })}
         onRemove={busy ? undefined : () => mutate({ ...draftRef.current, files: draftRef.current.files.filter((_, index) => index !== i) })} />)}</div>}
@@ -425,7 +425,7 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
         }} />
       <IconBtn type="button" icon="paperclip" label={t("composer.addFiles")} disabled={busy || leaving || !loaded || effective?.vision !== true}
         onClick={() => { if (current() && !pending.current && !locked.current) fileInput.current?.click(); }} />
-      <textarea rows={1} {...enter.field} value={draft.text} maxLength={100000} disabled={busy || leaving || !loaded}
+      <textarea ref={textInput} rows={1} {...enter.field} value={draft.text} maxLength={100000} disabled={busy || leaving || !loaded}
         placeholder={t("chat.reply")} aria-label={t("chat.reply")} aria-description={instructions} data-testid="composer-input"
         onChange={(event) => mutate({ ...draftRef.current, text: event.target.value })} />
       <button className="send" type="submit" aria-label={t("composer.send")} data-testid="composer-send"
@@ -434,34 +434,6 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
       </button>
     </form>
     {enter.value === null && <p role="status">{instructions}</p>}
-    <details>
-      <summary>{t("chat.remote.options")}</summary>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, maxHeight: 180, overflow: "auto" }}>
-        <label>{t(session ? "chat.remote.oneOff" : "chat.remote.model")}
-          <select className="input" aria-label={t(session ? "chat.remote.oneOff" : "chat.remote.model")} value={session ? draft.oneOff : model} disabled={busy || leaving || !loaded}
-            onChange={(event) => {
-              if (!current() || pending.current || locked.current || removed.current) return;
-              if (session) mutate({ ...draftRef.current, oneOff: event.target.value });
-              else setModel(event.target.value);
-            }}>
-            <option value="">{t(session ? "chat.remote.useRecorded" : "chat.remote.chooseModel")}</option>
-            {models.map((item) => <option key={item.slug} value={item.slug}>{item.name}</option>)}
-          </select>
-        </label>
-        {!session && base?.reasoning === true && <label>{t("chat.remote.effortLabel")}
-          <select className="input" aria-label={t("chat.remote.effortLabel")} value={effort} disabled={busy || leaving} onChange={(event) => {
-            const value = event.target.value;
-            if (current() && !pending.current && !locked.current && (value === "low" || value === "medium" || value === "high")) setEffort(value);
-          }}>{(["low", "medium", "high"] as const).map((value) => <option key={value} value={value}>{t(`chat.remote.effort.${value}`)}</option>)}</select>
-        </label>}
-        {effective && <p className="chat-note">{t("chat.remote.capabilities", {
-          vision: t(`chat.remote.capability.${effective.vision}`),
-          reasoning: t(`chat.remote.capability.${effective.reasoning}`),
-          tools: t(`chat.remote.capability.${effective.tools}`),
-        })}</p>}
-        {draft.oneOff && <p className="chat-note">{t("chat.remote.oneOffNote")}</p>}
-      </div>
-    </details>
     {historyImages && <>
       <p role="status">{t("chat.remote.historyImages")}</p>
       <button className="btn secondary" type="button"
@@ -472,32 +444,61 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
     {loaded && !modelValid && <p role="status">{t("chat.remote.modelUnavailable")}</p>}
   </div>;
 
-  return <>
-    <div className="content-top" inert={leaving}>
-      <span className="title">{session?.title || t("chat.untitled")}</span><div className="spacer" />
-      <IconBtn icon="compose" label={t("chat.newChat")} onClick={newChat} />
+  const picker = <RemoteModelMenu models={models} disabled={busy || leaving || !loaded}
+    value={session ? draft.oneOff : model}
+    recorded={session ? { name: base?.name ?? session.modelSlug } : undefined}
+    onValue={(slug) => {
+      if (!current() || pending.current || locked.current || removed.current) return;
+      if (session) mutate({ ...draftRef.current, oneOff: slug });
+      else setModel(slug);
+    }}
+    effort={!session && base?.reasoning === true ? effort : undefined}
+    onEffort={(value) => { if (current() && !pending.current && !locked.current) setEffort(value); }} />;
+  const status = <>
+    {!loaded && !error && <p role="status">{t("system.variant.loading")}</p>}
+    {error && <div className="chat-err" role="alert">
+      <span>{t(`chat.remote.${error}`)}</span>
+      {!removed.current && <button className="btn secondary" disabled={busy} onClick={() => {
+        if (!current() || pending.current) return;
+        setError(""); retry();
+      }}>{t("common.retry")}</button>}
+    </div>}
+  </>;
+  const header = <div className="content-top" inert={leaving}>
+    {picker}
+    {draft.oneOff && <IconBtn icon="info" label={t("chat.remote.oneOffNote")} data-testid="remote-one-off-note" />}
+    {session && <span className="title remote-chat-title">{session.title || t("chat.untitled")}</span>}
+    <div className="spacer" />
+    {session?.scope !== "account" && <IconBtn icon="info" label={t("chat.remote.sessionOnly")} data-testid="remote-session-note" />}
+    <IconBtn icon="compose" label={t("chat.newChat")} onClick={newChat} />
+  </div>;
+
+  if (!session && !id) return <>
+    {header}
+    <div className="home remote-chat remote-empty" inert={leaving}>
+      <h1>{t("chat.home.title")}</h1>
+      {status}
+      {composer}
+      <div className="suggestions">{SUGGESTIONS.map(([gel, key], i) => <button key={key} type="button" className="suggestion" style={{ ["--i" as string]: i }}
+        disabled={busy || leaving || !loaded} onClick={() => { mutate({ ...draftRef.current, text: t(key) }); textInput.current?.focus(); }}>
+        <Gel name={gel} size={16} />{t(key)}
+      </button>)}</div>
     </div>
+  </>;
+
+  return <>
+    {header}
     <div className="thread remote-chat"><div className="thread-inner" style={{ overflowWrap: "anywhere" }}>
-      <div className="banner info" role="status" style={{ display: "block" }}>
-        <b>{t("chat.remote.limited")}</b><p>{t(session?.scope === "account" ? "chat.remote.accountBody" : "chat.remote.limitedBody")}</p>
-        {history && <p>{t("chat.remote.returnedCount", { count: history.items.length })}</p>}
-      </div>
-      {!loaded && !error && <p role="status">{t("system.variant.loading")}</p>}
-      {error && <div className="chat-err" role="alert">
-        <span>{t(`chat.remote.${error}`)}</span>
-        {!removed.current && <button className="btn secondary" disabled={busy} onClick={() => {
-          if (!current() || pending.current) return;
-          setError(""); retry();
-        }}>{t("common.retry")}</button>}
-      </div>}
+      {status}
       {session && <div className="chat-note" style={{ flexWrap: "wrap" }}>
         <span role="status">{t(`chat.remote.state.${session.state}`)}</span>
-        {["admitting", "streaming"].includes(session.state) && <button className="btn secondary" disabled={detachBusy} onClick={() => void recover("detach")}>{t("chat.remote.detach")}</button>}
+        {["admitting", "streaming"].includes(session.state) && <Tip label={t("chat.remote.detachNote")}><button className="btn secondary" disabled={detachBusy} onClick={() => void recover("detach")}>{t("chat.remote.detach")}</button></Tip>}
         {["detached", "uncertain"].includes(session.state) && <button className="btn secondary" disabled={busy || detachBusy} onClick={() => void recover("resume")}>{t("chat.remote.resume")}</button>}
         {session.conversationID && !["admitting", "streaming"].includes(session.state) && <button className="btn secondary" disabled={busy || detachBusy} onClick={() => void recover("history")}>{t("chat.remote.loadHistory")}</button>}
       </div>}
       {history && <section aria-label={t("chat.remote.knownHistory")}>
         <h3>{t("chat.remote.knownHistory")}</h3>
+        <p className="chat-meta">{t("chat.remote.returnedCount", { count: history.items.length })}</p>
         {history.items.map((message) => <article key={message.id}>
           <b>{t(`chat.remote.role.${message.role}`)}</b>
           {message.parts?.length ? message.parts.map((part) => <section key={part.id} data-testid="remote-history-part">
@@ -511,13 +512,12 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
             meta={t("chat.remote.fileMetadata", { mime: file.content_type ?? t("chat.remote.unknown"), bytes: file.byte_size ?? t("chat.remote.unknown") })} />)}
         </article>)}
       </section>}
-      {messages.length > 0 && <h3>{t("chat.remote.liveProjection")}</h3>}
       {messages.map((message) => {
         const content = <>
           {message.parts.map((part) => <RemotePartView key={part.id} part={part} assistant={message.role === "assistant"} />)}
           {message.partial && <p className="chat-note">{t("chat.remote.partial")}</p>}
           {message.errorCode && <p className="chat-err" role="alert">{t("chat.remote.deliveryError")}</p>}
-          {message.finishReason && <p className="chat-note">{t(`chat.remote.finish.${message.finishReason}`)}</p>}
+          {message.finishReason && message.finishReason !== "stop" && <p className="chat-note">{t(`chat.remote.finish.${message.finishReason}`)}</p>}
           {message.terminalOutcome && <p className="chat-err" role="status">{t("chat.remote.incompleteTerminal", { outcome: message.terminalOutcome, reason: message.terminationReason ?? t("chat.remote.unknown") })}</p>}
         </>;
         return message.role === "user"
@@ -526,6 +526,6 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
       })}
       <div ref={end} />
     </div></div>
-    <div className="dock">{composer}<span className="hint" style={{ color: "var(--t2)" }}>{t("chat.remote.detachNote")}</span></div>
+    <div className="dock">{composer}</div>
   </>;
 }
