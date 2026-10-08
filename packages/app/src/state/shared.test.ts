@@ -11,3 +11,16 @@ it("dedupes in-flight loads and keeps last value", async () => {
   forget("k");
   expect(cached("k")).toBeUndefined();
 });
+
+it("forget drops an in-flight load so it can neither fill the cache nor serve later callers", async () => {
+  forget();
+  let release!: (v: string) => void;
+  const old = shared("k", () => new Promise<string>((r) => { release = r; }));
+  forget("k");
+  const fresh = shared("k", async () => "new");
+  expect(fresh).not.toBe(old);
+  expect(await fresh).toBe("new");
+  release("old");
+  expect(await old).toBe("old");
+  expect(cached("k")).toBe("new");
+});

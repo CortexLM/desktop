@@ -209,7 +209,8 @@ function useAccount() {
   const { entryKey } = useNav();
   // Main retires the remote epoch on sign-out or account switch; drop the old initials and Bot with it.
   const [epochs, retire] = React.useReducer((n: number) => n + 1, 0);
-  React.useEffect(() => onEvent((event) => { if (event.type === "remote.session.removed") { forget("account"); retire(); } }), []);
+  // A retired session also drops the kept account, so a failed reload cannot show the previous account.
+  React.useEffect(() => onEvent((event) => { if (event.type === "remote.session.removed") { forget("account"); kept.current = undefined; retire(); } }), []);
   const q = useQuery(() => shared("account", async () => {
     if (isPreview()) return undefined;
     const connection = await api.connection.get();
