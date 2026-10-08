@@ -1,5 +1,29 @@
 # Engine
 
+Chat deletion waits for the four-second Undo grace; a closed window cancels
+an uncommitted grace, not a persisted delete. Refused deletes restore the Chat
+and display an error. Enabled skill names appear in the model tool's enum,
+while SKILL.md content loads only when selected.
+
+File-path permission checks use canonical targets, including existing parent
+directories of files to create. Symlink escapes require external_directory
+approval before read/write or discovered-file content reaches the model.
+
+The client reports unexpected event-stream EOF; the renderer owns reconnect
+and releases its stream/retry when the last subscriber leaves. Cached local
+queries and transcript snapshots re-read after interruption, without replay.
+
+Child sessions inherit parent-agent deny rules; plan delegation cannot write,
+edit or execute shell commands. Saved grants never override those denials.
+
+Partial Bot updates preserve omitted configuration and permission fields;
+partial scheduled-task updates preserve pause state. Create defaults never
+apply implicitly to a PATCH.
+
+Native boot opens the window signed out when persisted remote restore fails;
+invalid credential-store bytes remain untouched. Calls fence pending starts
+before authentication resolves and before acquiring IPC ownership.
+
 `@cortex/core`, created with `createCore(opts)` (`packages/core/src/index.ts`). Nothing
 touches the network or starts timers until `start()`, which registers the computer-use
 preset (when a driver was found), scans plugins, connects enabled MCP servers and starts
@@ -260,13 +284,17 @@ Agents (`agent.ts`): `build` (default), `plan` (read-only; write/edit/bash denie
 `general` and `explore` (subagents). Tools (`tool.ts`): `read write edit list glob grep
 bash webfetch todowrite task skill`. File tools exist only when the session has a
 `directory`; paths outside it ask `external_directory`. `task` spawns a child session;
-children never get `task`. MCP tools are exposed as `<server>_<tool>` and always ask.
+children never get `task`. MCP tools are exposed as `<server>_<tool>` and default
+to ask before user/agent/Bot rules; explicit allow and saved grants still apply.
+Computer-use inputs always ask even under allow and never save Always.
 
 ## Permissions
 
 Rules `(tool, pattern, allow|ask|deny)`, last match wins, default ask. Order: defaults
 (`bash`, `write`, `edit`, `external_directory` ask) → user rules
 (`/api/permissions/rules`) → agent → bot. A configured deny beats saved approvals.
+`glob` and `grep` check `read` permission on the search root and every discovered
+file before returning names or reading contents; per-file denials remain effective.
 Replies: `once`, `always` (saved per project directory), `reject` (stops the loop and
 cancels the session's other pending asks). Computer-use input tools never save `always`
 ([computer-use.md](./computer-use.md)).

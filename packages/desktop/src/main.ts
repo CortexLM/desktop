@@ -70,7 +70,10 @@ async function boot() {
   bootStage("core-created");
   await core.start({ computerUse: findCuaDriver() });
   bootStage("core-started");
-  if (core.connection.get().mode !== "local") await remote.restore(core.connection.remoteOrigin());
+  if (core.connection.get().mode !== "local") {
+    try { await remote.restore(core.connection.remoteOrigin()); }
+    catch { console.warn("Remote session could not be restored; continuing signed out"); }
+  }
   // Test hook: route one provider to a local endpoint (E2E streaming without network). Ignored in packaged builds.
   if (testBase) {
     bootStage("provider-update");
@@ -103,21 +106,25 @@ async function boot() {
   ipcMain.handle("cortex:call:available", () => { try { return calls.available(callOrigin()); } catch { return "hidden"; } });
   // One call per host: only the renderer that started it may drive it.
   let callOwner: number | undefined;
+  let pendingCall: { owner: number } | undefined;
   const owns = (e: Electron.IpcMainEvent) => e.sender.id === callOwner;
   ipcMain.handle("cortex:call:start", async (e, botId: string) => {
-    callOwner = e.sender.id;
+    const pending = pendingCall = { owner: e.sender.id };
     const send = (channel: string, ...args: unknown[]) => { if (!e.sender.isDestroyed() && !e.sender.isCrashed()) e.sender.send(channel, ...args); };
-    await calls.start(callOrigin(), String(botId), {
-      snapshot: (s) => send("cortex:call:snapshot", s),
-      play: (pcm, sequence, generation) => send("cortex:call:play", pcm, sequence, generation),
-      flush: () => send("cortex:call:flush"),
-    }, e.sender);
+    try {
+      await calls.start(callOrigin(), String(botId), {
+        snapshot: (s) => send("cortex:call:snapshot", s),
+        play: (pcm, sequence, generation) => send("cortex:call:play", pcm, sequence, generation),
+        flush: () => send("cortex:call:flush"),
+      }, e.sender);
+      callOwner = e.sender.id;
+    } finally { if (pendingCall === pending) pendingCall = undefined; }
   });
   ipcMain.on("cortex:call:capture", (e, pcm: Uint8Array) => { if (owns(e) && pcm instanceof Uint8Array && pcm.byteLength === 640) calls.capture(pcm); });
   ipcMain.on("cortex:call:played", (e, sequence: number, generation: number) => { if (owns(e)) calls.played(Number(sequence), Number(generation)); });
   ipcMain.on("cortex:call:mute", (e, muted: boolean) => { if (owns(e)) calls.mute(muted === true); });
   ipcMain.on("cortex:call:interrupt", (e) => { if (owns(e)) calls.interrupt(); });
-  ipcMain.on("cortex:call:end", (e) => { if (owns(e)) calls.end(); });
+  ipcMain.on("cortex:call:end", (e) => { if (owns(e) || e.sender.id === pendingCall?.owner) calls.end(); });
   // Test hook for E2E receipts (frame counts). Ignored in packaged builds.
   if (!app.isPackaged) ipcMain.handle("cortex:call:stats", () => calls.stats() ?? null);
   // Server-sent events cannot cross invoke(); they are pumped over a dedicated channel.

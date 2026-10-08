@@ -579,7 +579,12 @@ export const BotCreateInput = z.object({
   permission: z.array(PermissionRule).default([]),
 })
 export type BotCreateInput = z.input<typeof BotCreateInput>
-export const BotUpdateInput = BotCreateInput.partial()
+export const BotUpdateInput = BotCreateInput.partial().extend({
+  persona: z.string().optional(),
+  mascot: Mascot.optional(),
+  tools: ToolFilter.optional(),
+  permission: z.array(PermissionRule).optional(),
+})
 export type BotUpdateInput = z.input<typeof BotUpdateInput>
 export const TaskCreateInput = z.object({
   title: z.string().min(1),
@@ -592,7 +597,7 @@ export const TaskCreateInput = z.object({
   enabled: z.boolean().default(true),
 })
 export type TaskCreateInput = z.input<typeof TaskCreateInput>
-export const TaskUpdateInput = TaskCreateInput.partial()
+export const TaskUpdateInput = TaskCreateInput.partial().extend({ enabled: z.boolean().optional() })
 export type TaskUpdateInput = z.input<typeof TaskUpdateInput>
 export const SpaceCreateInput = z.object({ kind: SpaceItem.shape.kind, title: z.string().min(1), content: z.string().optional(), url: z.string().optional() })
 export type SpaceCreateInput = z.infer<typeof SpaceCreateInput>

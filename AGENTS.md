@@ -1,5 +1,68 @@
 # AGENTS.md
 
+Chat removal remains pending during the four-second Undo toast; the backend
+delete is sent only on toast close. Window shutdown before close cancels that
+uncommitted grace. A refused delete restores the Chat and shows an error,
+matching History's existing rollback. The toast is not proof of durable deletion.
+
+Enabled skills are offered by name enum in the model's skill tool schema;
+disabled skills and empty catalogs are not offered. Content stays loaded only
+through the skill tool. Native Code watch uses SDK reconnect and refreshes
+durable state on each accepted connection; owner abort closes that subscription.
+
+File tools canonicalize existing paths and the nearest existing parent of new
+paths before external_directory checks. An in-project symlink cannot bypass
+external read/write permission. The tool uses the checked canonical path.
+
+Pending native call starts permit hangup only from that initiating window;
+pending ownership uses request identity so an older same-window completion
+cannot erase the newer pending owner. Active IPC ownership commits after start.
+
+Native logout accepts the producer's 200 or 204 without opening logout_url.
+Failed keyring reads preserve stored bytes. A rotated pair whose owner identity
+read fails transiently is saved under the previously verified owner, while the
+session stays signed out until a later successful identity verification.
+
+Renderer bus reconnects after transport errors or unexpected EOF, with a
+one-second retry owned by the active listeners. Last listener cancels stream
+and retry. Query/message caches resync on interruption; no wire replay claim.
+Automatic missing-ID Chat redirect replaces its history entry; Back never
+returns to that invalid redirect entry.
+
+Connected MCP tools default to ask by exact exposed tool name before explicit
+user/agent/Bot rules. Saved grants remain effective for non-computer-input calls;
+computer-use inputs keep mandatory per-action consent.
+
+Subagents inherit parent-agent deny rules after their own rules, so plan's
+read-only restriction cannot escape through task delegation or saved grants.
+Computer-use observation is identified by a leading observation verb, never
+an app/window/element noun anywhere in the action name.
+
+Bot/task PATCH parsers leave omitted fields absent: rename preserves persona,
+tool filter, permission rules, mascot and routine enabled state. Create defaults
+remain unchanged. Locale parity compares keys in both directions; generated
+browser-connector screenshots use per-test output, never tracked evidence.
+
+Remote restore failures cannot block window creation: boot continues signed
+out, retaining unreadable credential bytes. Credential-store set/delete still
+refuse invalid stores; no automatic replacement or erasure is authorized.
+
+Native call starts fence pending authentication by generation; superseding
+start/end cannot create an orphan session or acquire IPC ownership late.
+Browser-host request bodies accumulate bytes before UTF-8 decoding once;
+the two-million-byte cap applies to bytes, not decoded characters.
+
+SDK 0.4.9 / api-types 0.3.8 archives carry pending-image reconnect and visible
+failure on live server-error frames. Relative consumer paths and lock hashes
+must match producer archives; shared tests do not prove deployed voice service.
+Resampling retains the previous input sample across 128-sample worklet chunks;
+chunked 44.1/48 kHz signal matches contiguous interpolation exactly.
+
+Local `glob` and `grep` enforce `read` permission on their search root and each
+discovered file before returning names or reading contents. A per-file deny
+cannot be bypassed through search. Regression: core session tests with denied
+secret.txt on both tools.
+
 Signed-in Work/Bot Channels manages owned group metadata through the approved exact
 channel SDK pair. List/filter/create/get/rename/full member replacement/delete only.
 Rename omits membership until explicitly edited; unlisted stored members remain
@@ -235,6 +298,7 @@ preview fixtures. Only visible gallery iframes load; offscreen previews unload t
 | `CORTEX_STAGING_API_ORIGIN` | same | Required non-production HTTPS origin for staging; embedded in main only, invalid or ambiguous configuration fails build |
 | `CORTEX_DATA_DIR` | `packages/desktop/src/main.ts`, `scripts/dev-api.ts` | Engine data dir (default `<userData>/engine`) |
 | `CORTEX_CATALOG_URL` | same | Override `https://models.dev/api.json` |
+| `CORTEX_UPDATE_FEED_URL` | `packages/desktop/src/main.ts`, `updater.ts` | Optional native update feed; HTTPS or literal loopback only |
 | `CORTEX_LOCALE` | `main.ts` | Native menu locale and the app default when Settings has no saved locale (fallback: first supported OS language, else English) |
 | `CORTEX_START_HASH` | `main.ts` | Initial route hash, e.g. `#/settings?section=providers` |
 | `CORTEX_RENDERER_URL` | `main.ts` | Load the renderer from a dev server |
@@ -626,8 +690,10 @@ missing glyphs. See [`docs/i18n.md`](./docs/i18n.md).
 
 **Production release and signing are not configured.** The old build/publish workflows were removed;
 CI packages with `--publish never`, `-c.mac.identity=null`, `-c.mac.notarize=false`.
-The old publish actions, `publish:` block and workflow README are removed. No auto-updater
-is wired in main. Workflow configuration is not a passing run.
+The old publish actions, `publish:` block and workflow README are removed. Main wires
+the native updater only when `CORTEX_UPDATE_FEED_URL` supplies a validated HTTPS
+or literal loopback feed. Production signing/publishing remains unconfigured.
+Workflow configuration is not a passing run.
 
 `publish-staging.yml` is an explicit main-only dispatch gated by exact-SHA successful
 CI, including Windows build/package/launch. It defines unsigned Linux x64 AppImage/deb

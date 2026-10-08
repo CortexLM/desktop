@@ -117,7 +117,7 @@ function LocalHome() {
 export function Chat() {
   const { params, go, entryKey } = useNav();
   const id = params.get("id");
-  React.useEffect(() => { if (!id && !isPreview()) go("home"); }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
+  React.useEffect(() => { if (!id && !isPreview()) go("home", undefined, null, true); }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
   if (!isPreview() && params.has("source")) return <RemoteBoundary key={entryKey} explicit />;
   if (id) return <LiveChat key={id} id={id} />;
   const start = previewChatStart();
@@ -348,7 +348,7 @@ function LiveChat({ id }: { id: string }) {
     if (opening.current) return;
     let undone = false;
     toast.add({ title: t("chat.toast.deleted"), description: title, data: { undo: true, icon: "trash", onUndo: () => { undone = true; go("chat", { id }); } },
-      onClose: () => { if (!undone) api.sessions.delete(id).catch(() => {}); } });
+      onClose: () => { if (!undone) api.sessions.delete(id).catch(() => { go("chat", { id }); toast.add({ title: t("chat.err.generic.title"), data: { icon: "alert-triangle" } }); }); } });
     go("home");
   };
   const movable = session.state === "ready" && session.data.kind === "chat" && !session.data.parentID;

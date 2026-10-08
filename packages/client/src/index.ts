@@ -153,6 +153,7 @@ export function createClient(opts: ClientOptions) {
           const res = await doFetch(new Request(`${base}/api/events`, { headers: { accept: "text/event-stream" }, signal: ctrl.signal }))
           if (!res.ok || !res.body) throw new CortexApiError("internal", `Event stream failed with status ${res.status}`, res.status)
           for await (const e of parseSSE(res.body, ctrl.signal)) onEvent(e)
+          if (!ctrl.signal.aborted) o.onError?.(new CortexApiError("internal", "Event stream closed", 0))
         } catch (err) {
           if (!ctrl.signal.aborted) o.onError?.(err)
         }

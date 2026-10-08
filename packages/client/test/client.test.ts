@@ -13,6 +13,14 @@ const streamOf = (chunks: string[]) =>
   })
 
 describe("client", () => {
+  it("reports unexpected event-stream EOF so its owner can reconnect", async () => {
+    const client = createClient({ baseUrl: "http://engine.test", fetch: async () => new Response(streamOf([])) })
+    let failed: (error: unknown) => void = () => { throw new Error("error signal not initialized") }
+    const error = new Promise<unknown>((resolve) => { failed = resolve })
+    const stop = client.subscribe(() => undefined, { onError: failed })
+    try { await expect(error).resolves.toMatchObject({ code: "internal" }) }
+    finally { stop() }
+  })
   it("trims only trailing URL slashes without backtracking", async () => {
     const base = `https://engine.test/${"/".repeat(100_000)}prefix`
     const urls: string[] = []

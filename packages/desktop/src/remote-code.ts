@@ -111,8 +111,8 @@ export function createRemoteCodeBinding(client: CortexClient, chat: MainRemoteCh
       void (async () => {
         try {
           for await (const event of client.subscribePath(`/v1/code/sessions/${id(rawID)}/events`, {
-            signal: AbortSignal.any([controller.signal, chat.signal]), maxReconnects: 0,
-            onResponse: () => { guard(); resolveReady(); },
+            signal: AbortSignal.any([controller.signal, chat.signal]),
+            onResponse: () => { guard(); changed(); resolveReady(); },
           })) {
             guard();
             if (event.resource !== "code_session") throw new Error("Invalid Code event owner");

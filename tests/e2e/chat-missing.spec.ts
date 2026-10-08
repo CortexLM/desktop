@@ -15,6 +15,31 @@ const request = (page: Page, route: string, method: string, body?: unknown) => p
   return { status: r.status, body: await r.json() };
 }, { route, method, body });
 
+test("a failed deferred delete restores the Chat with an error", async () => {
+  const { app, page } = await launch({ hash: "#/home?theme=light", env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
+  try {
+    const result = await request(page, "/api/sessions", "POST", { kind: "chat", title: "Delete failure", model: { providerID: "fake", modelID: "reasoner" } });
+    expect(result.status).toBe(201);
+    const session = result.body as Session;
+    await page.evaluate(({ id }) => { location.hash = `#/chat?id=${id}&theme=light`; }, session);
+    await expect(page.locator(".content-top .title")).toHaveText("Delete failure");
+    await app.evaluate(async ({ ipcMain }) => {
+      const handlers = (ipcMain as unknown as { _invokeHandlers: Map<string, (event: unknown, req: { method: string }) => unknown> })._invokeHandlers;
+      const original = handlers.get("cortex:fetch")!;
+      ipcMain.removeHandler("cortex:fetch");
+      ipcMain.handle("cortex:fetch", (event, req) => req.method === "DELETE"
+        ? { status: 500, headers: [["content-type", "application/json"]], body: JSON.stringify({ error: { code: "internal", message: "fixture refusal" } }) }
+        : original(event, req));
+    });
+    await page.getByRole("button", { name: chat.options, exact: true }).click();
+    await page.getByRole("menuitem", { name: chat["menu.delete"], exact: true }).click();
+    await expect(page).toHaveURL(/#\/home/);
+    await expect(page).toHaveURL(new RegExp(session.id), { timeout: 10_000 });
+    await expect(page.getByText(chat["err.generic.title"], { exact: true })).toBeVisible();
+    expect((await request(page, `/api/sessions/${session.id}`, "GET")).status).toBe(200);
+  } finally { await app.close(); }
+});
+
 for (const theme of ["light", "dark"]) test(`Deleted Chat shows truthful missing-page recovery — ${theme}`, async () => {
   const fake = await startFakeProvider();
   const { app, page, dataDir } = await launch({ hash: `#/home?theme=${theme}`, locale: "en", env: {

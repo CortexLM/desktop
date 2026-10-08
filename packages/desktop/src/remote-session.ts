@@ -133,7 +133,12 @@ export class RemoteSession {
     identity.lifetime.signal.addEventListener("abort", cancel, { once: true });
     probe.token = pair.access_token;
     try {
-      const response = await this.#native(probe, origin, "/v1/me");
+      const keepRotated = async () => {
+        if (identity.accountID) await this.#store({ ...pair, origin, accountID: Account.shape.id.parse(identity.accountID) }, identity);
+        throw new CortexError("provider_error", "Remote sign-in is temporarily unavailable");
+      };
+      const response = await this.#native(probe, origin, "/v1/me").catch(keepRotated);
+      if (response.status === 429 || response.status >= 500) await keepRotated();
       if (response.status !== 200) throw new Error("Native identity refused");
       const account = Account.parse(await response.json());
       identity.lifetime.signal.throwIfAborted();
@@ -157,8 +162,9 @@ export class RemoteSession {
         await this.#pair(identity, origin, await response.json());
         clearTimeout(identity.expiry);
         this.#watchExpiry(identity);
-      } catch {
+      } catch (error) {
         const owned = this.#active === identity || this.#candidate === identity;
+        transient ||= error instanceof CortexError && error.code === "provider_error";
         this.#invalidate(identity);
         if (owned && !transient) await this.#store();
         throw transient ? new CortexError("provider_error", "Remote sign-in is temporarily unavailable") : new CortexError("provider_auth_failed", "Remote sign-in is required");
@@ -193,8 +199,10 @@ export class RemoteSession {
     const selected = this.#origin!;
     const candidate = this.#create(selected, "", crypto.randomUUID());
     this.#candidate = candidate;
+    let read = false;
     try {
       const raw = await this.#credentials?.get("remote-session");
+      read = true;
       if (!raw) { this.#cancelCandidate(); return; }
       const saved = Saved.parse(JSON.parse(raw));
       if (saved.origin !== selected) { this.#cancelCandidate(); return; }
@@ -206,7 +214,7 @@ export class RemoteSession {
       this.#revision = crypto.randomUUID();
     } catch (error) {
       // A transient refresh failure keeps the saved pair so the next restore can retry.
-      if (this.#candidate === candidate) { this.#cancelCandidate(); if (!(error instanceof CortexError && error.code === "provider_error")) await this.#store(); }
+      if (this.#candidate === candidate) { this.#cancelCandidate(); if (read && !(error instanceof CortexError && error.code === "provider_error")) await this.#store(); }
     }
   }
 
@@ -519,7 +527,7 @@ export class RemoteSession {
         if (active.refreshing) await active.refreshing;
         if (active.expiresAt! <= Date.now()) await this.#refresh(active, origin);
         const response = await this.#native(active, origin, "/v1/auth/logout", {});
-        if (response.status !== 204) throw failure(active);
+        if (response.status !== 204 && response.status !== 200) throw failure(active);
         return this.state(origin);
       } catch { throw failure(active); }
       finally {

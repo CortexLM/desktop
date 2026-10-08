@@ -1,5 +1,10 @@
 # Connection modes
 
+Native logout accepts 200/204, ignoring logout_url. Keyring read failures keep
+the ciphertext. After token rotation, transient identity-read failures preserve
+the new pair under the previously verified owner but do not promote a signed-in
+identity. Revoked tokens and owner mismatches still clear the stored pair.
+
 ## Task8 bounded Work/Bot
 
 Work/Bot -> Channels uses the exact e5e-approved SDK pair for owned group metadata.

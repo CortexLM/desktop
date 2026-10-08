@@ -1,5 +1,5 @@
 import { exec } from "node:child_process"
-import { glob as fsGlob, mkdir, readdir, readFile, stat, writeFile } from "node:fs/promises"
+import { glob as fsGlob, mkdir, readdir, readFile, realpath, stat, writeFile } from "node:fs/promises"
 import { basename, dirname, isAbsolute, join, relative, resolve } from "node:path"
 import { z } from "zod"
 import type { BrowserBridge } from "./browser"
@@ -50,8 +50,17 @@ export const truncate = (s: string, max = MAX_OUTPUT) => (s.length > max ? s.sli
 /** Resolve against the session directory; paths escaping it need an `external_directory` approval. */
 async function target(ctx: ToolContext, p: string): Promise<string> {
   const dir = ctx.directory!
-  const abs = isAbsolute(p) ? resolve(p) : resolve(dir, p)
-  const rel = relative(dir, abs)
+  let abs = isAbsolute(p) ? resolve(p) : resolve(dir, p)
+  let parent = abs
+  const missing: string[] = []
+  for (;;) {
+    try { abs = join(await realpath(parent), ...missing); break }
+    catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT" || dirname(parent) === parent) throw error
+      missing.unshift(basename(parent)); parent = dirname(parent)
+    }
+  }
+  const rel = relative(await realpath(dir), abs)
   if (rel.startsWith("..") || isAbsolute(rel)) await ctx.ask(abs, { path: abs }, "external_directory")
   return abs
 }
@@ -125,8 +134,11 @@ const glob = defineTool({
   parameters: z.object({ pattern: z.string(), path: z.string().optional() }),
   async execute({ pattern, path }, ctx) {
     const cwd = await target(ctx, path ?? ".")
+    await ctx.ask(cwd, { path: cwd }, "read")
     const out: string[] = []
     for await (const f of fsGlob(pattern, { cwd, exclude: skip })) {
+      const abs = await target(ctx, join(cwd, f))
+      await ctx.ask(abs, { path: abs }, "read")
       out.push(f)
       if (out.length >= 1000) break
     }
@@ -141,6 +153,7 @@ const grep = defineTool({
   parameters: z.object({ pattern: z.string(), path: z.string().optional(), include: z.string().optional() }),
   async execute({ pattern, path, include }, ctx) {
     const cwd = await target(ctx, path ?? ".")
+    await ctx.ask(cwd, { path: cwd }, "read")
     let re: RegExp
     try {
       re = new RegExp(pattern)
@@ -150,9 +163,10 @@ const grep = defineTool({
     const hits: string[] = []
     // ponytail: pure-JS scan, fine for project-sized trees; swap for ripgrep if large monorepos get slow.
     for await (const f of fsGlob(include ?? "**/*", { cwd, exclude: skip })) {
-      const abs = join(cwd, f)
+      const abs = await target(ctx, join(cwd, f))
       const st = await stat(abs).catch(() => undefined)
       if (!st?.isFile() || st.size > 1_000_000) continue
+      await ctx.ask(abs, { path: abs }, "read")
       const text = await readFile(abs, "utf8").catch(() => "")
       if (text.includes("\u0000")) continue
       text.split("\n").forEach((line, i) => {

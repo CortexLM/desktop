@@ -25,7 +25,7 @@ function fixture() {
       if (revoked || body.refresh_token !== `fixture-refresh-${version}`) return json({}, 401);
       return json(pair(++version));
     }
-    if (path === "/v1/auth/logout") { revoked = true; return new Response(null, { status: 204 }); }
+    if (path === "/v1/auth/logout") { revoked = true; return json({ logout_url: "https://native.example.test/logout" }); }
     if (path === "/v1/auth/magic-auth") return new Response(null, { status: 204 });
     if (path === "/v1/auth/magic-auth/verify") { ++version; return new Response(JSON.stringify({ status: "session", access_token: token(version) }), { status: 200, headers: [["Content-Type", "application/json"], ["Set-Cookie", `cortex_rt=fixture-refresh-${version}; HttpOnly; SameSite=Lax; Path=/; Max-Age=604800`]] }); }
     if (path === "/v1/instance") return json({ mode: "cloud", auth: { mode: "cortex", required: true } });
@@ -113,6 +113,19 @@ describe("persistent main native device authentication", () => {
       } finally { next.clear(); }
     } finally { first.clear(); }
   });
+  it("preserves stored ciphertext while the keyring is unavailable", async () => {
+    const credentials = memoryCredentials(), f = fixture();
+    const first = new RemoteSession({ credentials, fetch: f.transport });
+    await login(first); first.clear();
+    const saved = credentials.get("remote-session");
+    const next = new RemoteSession({ credentials: { ...credentials, get: () => { throw new Error("Credential protection unavailable"); } }, fetch: f.transport });
+    try {
+      await next.restore(origin);
+      expect(next.state(origin).signedIn).toBe(false);
+      expect(credentials.get("remote-session")).toBe(saved);
+    } finally { next.clear(); }
+  });
+
   it("keeps the saved pair when refresh fails transiently", async () => {
     const credentials = memoryCredentials(), f = fixture();
     const first = new RemoteSession({ credentials, fetch: f.transport });
@@ -124,6 +137,23 @@ describe("persistent main native device authentication", () => {
       await next.restore(origin);
       expect(next.state(origin).signedIn).toBe(false);
       expect(credentials.get("remote-session")).toBe(saved);
+    } finally { next.clear(); }
+  });
+  it("retains a rotated pair when the identity read fails transiently without signing in", async () => {
+    const credentials = memoryCredentials(), f = fixture();
+    const first = new RemoteSession({ credentials, fetch: f.transport });
+    await login(first); first.clear();
+    const outage: typeof fetch = async (input, init) => new URL((input instanceof Request ? input : new Request(input, init)).url).pathname === "/v1/me" ? json({}, 503) : f.transport(input, init);
+    const next = new RemoteSession({ credentials, fetch: outage });
+    try {
+      await next.restore(origin);
+      expect(next.state(origin).signedIn).toBe(false);
+      const saved = await credentials.get("remote-session");
+      if (!saved) throw new Error("rotated pair was lost");
+      expect(JSON.parse(saved).refresh_token).toBe("fixture-refresh-2");
+      const recovered = new RemoteSession({ credentials, fetch: f.transport });
+      try { await recovered.restore(origin); expect(recovered.state(origin).signedIn).toBe(true); }
+      finally { recovered.clear(); }
     } finally { next.clear(); }
   });
   it("refuses owner changes after rotation and clears revoked storage without new device login", async () => {

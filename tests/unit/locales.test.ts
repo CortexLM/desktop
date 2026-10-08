@@ -43,6 +43,7 @@ describe("locale catalogs", () => {
       const p = path.join(dir, l, f);
       expect(fs.existsSync(p), `${l}/${f}`).toBe(true);
       const tr = JSON.parse(fs.readFileSync(p, "utf8"));
+      expect(Object.keys(tr).sort(), `${l}/${f}`).toEqual(Object.keys(enJ).sort());
       for (const k of keys("en", f)) { expect(tr[k], `${l}/${f} ${k}`).toBeTypeOf("string"); expect(vars(tr[k]), `${l}/${f} ${k}`).toBe(vars(enJ[k])); }
     }
   });

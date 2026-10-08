@@ -1,4 +1,5 @@
 import { dynamicTool, isStepCount, jsonSchema, streamText, type ModelMessage, type ToolSet } from "ai"
+import { z } from "zod"
 import {
   capabilities,
   newId,
@@ -229,7 +230,8 @@ export class SessionService {
   }
 
   private rules(session: Session, agent: Agent, bot?: BotContext): PermissionRule[] {
-    return [...DEFAULT_RULES, ...(this.d.rules?.() ?? []), ...agent.permission, ...(bot?.permission ?? [])]
+    const parent = session.parentID ? getAgent(this.get(session.parentID).agent) : undefined
+    return [...DEFAULT_RULES, ...this.d.mcp.tools().map((tool): PermissionRule => ({ tool: tool.name, pattern: "*", action: "ask" })), ...(this.d.rules?.() ?? []), ...agent.permission, ...(bot?.permission ?? []), ...(parent?.permission.filter((rule) => rule.action === "deny") ?? [])]
   }
 
   private toolServices(): ToolServices {
@@ -357,6 +359,11 @@ export class SessionService {
             controller.abort()
           })
         : undefined
+      if (toolset?.skill) {
+        const available = (await this.d.skills.list(session.directory)).filter((skill) => skill.enabled);
+        if (available.length) toolset.skill = { ...toolset.skill, inputSchema: z.object({ name: z.enum(available.map((skill) => skill.name)) }) };
+        else delete toolset.skill;
+      }
       const system = [agent.prompt, bot?.system, instructions, session.directory ? `Working directory: ${session.directory}` : undefined].filter(Boolean).join("\n\n")
       const result = streamText({
         model: resolved.language,

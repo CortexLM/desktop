@@ -1,13 +1,25 @@
 # Vendored Cortex SDK
 
-## Current pair: SDK 0.4.6 / api-types 0.3.5 (backend trunk)
+## Current audit pair: SDK 0.4.9 / api-types 0.3.8
 
-The only vendored pair, in `trunk/`. Packed with `packages/sdk/scripts/pack.mjs` (umask 077) from a
+Packed from the fresh backend audit clone at baseline `63c91220` plus the
+pending-image reconnect, live server-error and cross-chunk resampling fixes. Both consumers select
+`trunk/` relative archives; hashes match the backend web archives byte for byte.
+Admission covers consumer suites, not deployed-account acceptance.
+
+| Archive | SHA-256 |
+| --- | --- |
+| `trunk/cortex-sdk-0.4.9.tgz` | `7cd2f4c23c7e554aba713aad2fe8ca6679acc3573040f33dd0915db0c6045c0c` |
+| `trunk/cortex-api-types-0.3.8.tgz` | `c7e642065bbabd0be72fa82cceb6b325938d879f3720e42fa361c937e69d6cee` |
+
+## Previous pair: SDK 0.4.6 / api-types 0.3.5 (backend trunk)
+
+The previous vendored pair, retained in `trunk/`. Packed with `packages/sdk/scripts/pack.mjs` (umask 077) from a
 `git archive` export of backend branch `integration/backend` at `17bb982b`; byte-identical to the
 backend's `apps/web/vendor` copies. Turn resume cursors are full Redis stream IDs (`<ms>-<seq>`); the
 SDK refuses any other cursor before opening a request, and the trunk API answers 422 to one. Selected by
-`packages/desktop/package.json`, `packages/app/package.json` and `bun.lock` through relative
-`file:../../vendor/trunk/...` paths. Every older pair was removed; the provenance below is history only.
+the previous manifests through relative `file:../../vendor/trunk/...` paths.
+The audit pair above is now selected; older provenance below is history only.
 
 | Archive | SHA-256 |
 | --- | --- |
