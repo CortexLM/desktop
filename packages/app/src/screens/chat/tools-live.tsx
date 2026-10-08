@@ -28,9 +28,11 @@ function useToolThread(epoch: string) {
   const [failed, setFailed] = React.useState(false);
   const [busy, setBusy] = React.useState(false);
   const [tick, bump] = React.useReducer((n: number) => n + 1, 0);
+  const mounted = React.useRef(true);
+  React.useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
   React.useEffect(() => {
     if (!epoch || !conversation) return;
-    let live = true, timer: ReturnType<typeof setTimeout> | undefined;
+    let live = true, polls = 0, timer: ReturnType<typeof setTimeout> | undefined;
     const load = async () => {
       try {
         const list = (await call<{ items: Message[] }>(epoch, "messages", { conversation })).items;
@@ -38,7 +40,7 @@ function useToolThread(epoch: string) {
         setItems({ id: conversation, list }); setFailed(false);
         const last = list.at(-1);
         // ponytail: polls stored history; a resumable event stream per tool page replaces this when the IPC carries SSE.
-        if (!last || last.role !== "assistant" || !last.finish_reason) timer = setTimeout(load, 1500);
+        if (!last || last.role !== "assistant" || !last.finish_reason) { if (++polls > 400) setFailed(true); else timer = setTimeout(load, 1500); }
       } catch { if (live) setFailed(true); }
     };
     void load();
@@ -49,9 +51,10 @@ function useToolThread(epoch: string) {
     setBusy(true); setFailed(false);
     try {
       const ids = await call<ChatTurnAdmission>(epoch, conversation ? "turn.continue" : "turn.start", conversation ? { conversation } : {}, body);
+      if (!mounted.current) return true;
       if (ids.conversation_id === conversation) bump(); else go(route, { c: ids.conversation_id });
       return true;
-    } catch { setFailed(true); return false; } finally { setBusy(false); }
+    } catch { if (mounted.current) setFailed(true); return false; } finally { if (mounted.current) setBusy(false); }
   };
   const list = items && items.id === conversation ? items.list : conversation ? null : [];
   const last = list?.at(-1);
@@ -196,7 +199,7 @@ function LibraryImage({ epoch, id, i }: { epoch: string; id: string; i: number }
   const img = useQuery(() => call<{ url: string }>(epoch, "file.content", { file: id }), [epoch, id]);
   return <div className="chat-gtile" style={css({ "--i": i })} data-testid="chat-image-tile">
     {img.state === "ready" ? <><span className="chat-gimg chat-gimg-live" role="img" aria-label={t("chat.search.image", { n: i + 1 })} style={{ backgroundImage: `url("${img.data.url}")` }} />
-      <div className="chat-gact"><a className="ibtn" href={img.data.url} download={`cortex-${id}.png`} aria-label={t("chat.image.download")}><Icon name="download" /></a></div></>
+      <div className="chat-gact"><a className="ibtn" href={img.data.url} download={`cortex-${id}.${/^data:image\/(\w+)/.exec(img.data.url)?.[1]?.replace("jpeg", "jpg") ?? "png"}`} aria-label={t("chat.image.download")}><Icon name="download" /></a></div></>
       : <span className="chat-gshim" />}
   </div>;
 }
