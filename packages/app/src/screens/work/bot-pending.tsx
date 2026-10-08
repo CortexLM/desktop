@@ -11,15 +11,19 @@ import { Icon } from "../../kit/ui";
 /** The producer seals the widget text as `Allow <tool>?\n<reason>\n<action JSON>\nAlways grants ...`; show a short summary, keep the rest behind a toggle. */
 export function approvalSummary(text: string): { summary: string; details: string } {
   const body = text.split("\n").slice(1).join("\n");
-  const start = body.indexOf("{"), end = body.lastIndexOf("}");
-  let json = "";
-  if (start >= 0 && end > start) json = body.slice(start, end + 1);
+  const end = body.lastIndexOf("}");
   let summary = "";
-  try {
-    const o = JSON.parse(json) as Record<string, unknown>;
-    const pick = ["command", "cmd", "path", "filePath", "file", "url", "query"].map(k => o[k]).find(v => typeof v === "string") ?? Object.values(o).find(v => typeof v === "string");
-    if (typeof pick === "string") summary = pick;
-  } catch { /* unparsable action: details only */ }
+  // The reason may contain braces: the action is the first brace that parses through the last one.
+  for (let start = body.indexOf("{"); start >= 0 && start < end; start = body.indexOf("{", start + 1)) {
+    let o: unknown;
+    try { o = JSON.parse(body.slice(start, end + 1)); } catch { continue; /* not the action start */ }
+    if (o && typeof o === "object" && !Array.isArray(o)) {
+      const values = o as Record<string, unknown>;
+      const pick = ["command", "cmd", "path", "filePath", "file", "url", "query"].map(k => values[k]).find(v => typeof v === "string") ?? Object.values(values).find(v => typeof v === "string");
+      if (typeof pick === "string") summary = pick;
+    }
+    break;
+  }
   const clip = summary.replace(/\s+/g, " ").trim();
   return { summary: clip.length > 140 ? `${clip.slice(0, 139)}…` : clip, details: body.trim() };
 }
