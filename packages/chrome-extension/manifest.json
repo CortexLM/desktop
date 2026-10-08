@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Cortex Tab Connector",
+  "version": "0.1.0",
+  "description": "Share one browser tab at a time with the Cortex desktop app. Cookies and credentials are never read.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Cortex",
+    "default_popup": "popup.html"
+  }
+}

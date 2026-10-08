@@ -17,6 +17,7 @@ export default tseslint.config(
     },
   },
   { files: ["**/test/**", "tests/**"], rules: { "@typescript-eslint/no-explicit-any": "off", "@typescript-eslint/no-unused-expressions": "off" } },
+  { files: ["packages/chrome-extension/**/*.js"], languageOptions: { globals: { chrome: "readonly", document: "readonly", AbortSignal: "readonly" } } },
   { files: ["scripts/dev-smoke.mjs"], languageOptions: { globals: { document: "readonly" } } },
   { files: ["scripts/smoke.mjs"], languageOptions: { globals: { WebSocket: "readonly" } } },
   { files: ["tests/e2e/**"], rules: { "react-hooks/rules-of-hooks": "off", "no-empty-pattern": "off" } },

@@ -30,6 +30,20 @@ contextBridge.exposeInMainWorld("cortex", {
       return () => ipcRenderer.removeListener("cortex:update:state", f);
     },
   },
+  /** Chrome extension bridge: pairing code and shared tabs. Page text never reaches the renderer. */
+  browser: {
+    status: () => ipcRenderer.invoke("cortex:browser:status"),
+    pair: () => ipcRenderer.invoke("cortex:browser:pair"),
+    revoke: (tabId: number) => ipcRenderer.invoke("cortex:browser:revoke", tabId),
+    disconnect: () => ipcRenderer.invoke("cortex:browser:disconnect"),
+    extensionDir: (): Promise<string> => ipcRenderer.invoke("cortex:browser:extension-dir"),
+    revealExtension: (): Promise<string> => ipcRenderer.invoke("cortex:browser:reveal-extension"),
+    onChange: (cb: (s: unknown) => void) => {
+      const f = (_: unknown, s: unknown) => cb(s);
+      ipcRenderer.on("cortex:browser:changed", f);
+      return () => ipcRenderer.removeListener("cortex:browser:changed", f);
+    },
+  },
   /** Bot call: main holds the ticket and socket; this side only moves PCM and controls. */
   call: {
     available: (): Promise<"offer" | "unavailable" | "hidden"> => ipcRenderer.invoke("cortex:call:available"),

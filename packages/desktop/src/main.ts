@@ -12,6 +12,7 @@ import { probeRemote } from "./remote";
 import { RemoteSession } from "./remote-session";
 import { createUpdater } from "./updater";
 import { createCallHost } from "./remote-call";
+import { startBrowserHost } from "./browser-host";
 
 const APP_NAME = "Cortex";
 declare const __CORTEX_RELEASE_CHANNEL__: string;
@@ -77,6 +78,17 @@ async function boot() {
     bootStage("provider-updated");
   }
   const server = createServer(core);
+
+  // Chrome extension bridge: loopback only, pairing code + per-tab consent; the renderer only sees status.
+  const browserHost = await startBrowserHost(core.browser).catch(() => undefined);
+  ipcMain.handle("cortex:browser:status", () => core.browser.status());
+  ipcMain.handle("cortex:browser:pair", () => core.browser.startPairing());
+  ipcMain.handle("cortex:browser:revoke", (_e, tabId: number) => core.browser.revoke(Number(tabId), true));
+  ipcMain.handle("cortex:browser:disconnect", () => core.browser.disconnect());
+  ipcMain.handle("cortex:browser:extension-dir", () => path.join(resources, app.isPackaged ? "chrome-extension" : "packages/chrome-extension"));
+  ipcMain.handle("cortex:browser:reveal-extension", () => shell.openPath(path.join(resources, app.isPackaged ? "chrome-extension" : "packages/chrome-extension")));
+  core.browser.onChange(() => { for (const w of BrowserWindow.getAllWindows()) if (!w.isDestroyed()) w.webContents.send("cortex:browser:changed", core.browser.status()); });
+  app.on("before-quit", () => void browserHost?.close());
 
   // Renderer → engine. Requests are rebuilt in main; only /api paths are routed.
   ipcMain.handle("cortex:fetch", async (_e, req: { url: string; method: string; headers: [string, string][]; body?: string }) => {

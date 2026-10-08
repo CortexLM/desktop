@@ -1,6 +1,6 @@
 // Workspace extras (design lot-workspace-extras.tsx) on the real trunk routes through the main-process contract
-// transport: /v1/task-plans, /v1/approval-policy and /v1/orgs. Widgets and the local browser operator have no producer
-// route, so they show their honest unavailable state (as the web app does).
+// transport: /v1/task-plans, /v1/approval-policy and /v1/orgs. Widgets have no producer route, so they show their
+// honest unavailable state (as the web app does). The local browser screen lives in browser.tsx.
 import * as React from "react";
 import { Dialog } from "@base-ui/react/dialog";
 import type { ContractCall } from "@cortex/schema";
@@ -34,7 +34,7 @@ function useOwner() {
     : connection.state !== "ready" || owner.state !== "ready" ? { state: "loading" as const } : owner.data ? { state: "ready" as const, epoch: owner.data } : { state: "local" as const };
 }
 
-function Page({ title, back, action, children }: { title: string; back?: string; action?: React.ReactNode; children: React.ReactNode }) {
+export function Page({ title, back, action, children }: { title: string; back?: string; action?: React.ReactNode; children: React.ReactNode }) {
   const t = useT(), { go } = useNav();
   return <div className={R}><div className="content-top">{back && <IconBtn icon="arrow-left" label={t("extras.back")} onClick={() => go(back)} />}<span className="title">{title}</span><div className="spacer" />{action}
     <Pop align="end" trigger={<button className="ibtn" aria-label={t("extras.more")}><Icon name="more-dots" /></button>}>{LINKS.map(([route, k, icon]) => <MItem key={route} icon={icon} onClick={() => go(route)}>{t(`extras.link.${k}`)}</MItem>)}</Pop></div>
@@ -43,7 +43,7 @@ function Page({ title, back, action, children }: { title: string; back?: string;
 function Notice({ children, error }: { children: React.ReactNode; error?: boolean }) {
   return <div className={`${R}-notice`} role={error ? "alert" : "status"} data-error={error || undefined}><Icon name={error ? "alert-triangle" : "info"} /><div>{children}</div></div>;
 }
-function Empty({ title, icon = "history", action, children }: { title: string; icon?: string; action?: React.ReactNode; children: React.ReactNode }) {
+export function Empty({ title, icon = "history", action, children }: { title: string; icon?: string; action?: React.ReactNode; children: React.ReactNode }) {
   return <section className={`${R}-empty`}><Icon name={icon} /><h2>{title}</h2><p>{children}</p>{action}</section>;
 }
 function Skeleton() {
@@ -87,15 +87,6 @@ export function Widgets() {
   return <Page title={t("extras.widgets.title")} action={<button className="btn secondary" onClick={() => go("planning")}><Icon name="history" />{t("extras.link.planning")}</button>}>
     <h1>{t("extras.widgets.h1")}</h1><p className={`${R}-lead`}>{t("extras.widgets.lead")}</p>
     <Empty icon="projects" title={t("extras.widgets.emptyTitle")} action={<button className="btn primary" data-testid="widgets-new-chat" onClick={() => go("home")}>{t("extras.widgets.emptyAction")}</button>}>{t("extras.widgets.emptyBody")}</Empty>
-  </Page>;
-}
-
-export function Browser() {
-  const t = useT();
-  return <Page title={t("extras.browser.title")}>
-    <h1>{t("extras.browser.h1")}</h1><p className={`${R}-lead`}>{t("extras.browser.lead")}</p>
-    <Notice>{t("extras.browser.notice")}</Notice>
-    <Empty icon="globe" title={t("extras.browser.emptyTitle")} action={<button className="btn secondary" disabled>{t("extras.browser.unavailable")}</button>}>{t("extras.browser.emptyBody")}</Empty>
   </Page>;
 }
 

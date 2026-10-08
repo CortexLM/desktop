@@ -28,6 +28,7 @@ import type { ProjectService } from "./project"
 import { resolveModel, type ProviderSettings } from "./provider"
 import type { SkillService } from "./skill"
 import type { Storage } from "./storage"
+import type { BrowserBridge } from "./browser"
 import { BUILTIN_TOOLS, type ToolContext, type ToolDef, type ToolServices } from "./tool"
 
 export const DEFAULT_TITLE = ""
@@ -55,6 +56,7 @@ export interface SessionDeps {
   /** Global user permission rules (Settings), layered after defaults. */
   rules?: () => PermissionRule[]
   maxSteps?: number
+  browser?: BrowserBridge
 }
 
 const zeroUsage = (): Usage => ({ input: 0, output: 0, reasoning: 0, cost: 0 })
@@ -233,6 +235,7 @@ export class SessionService {
   private toolServices(): ToolServices {
     return {
       fetch: this.d.fetch ?? fetch,
+      browser: this.d.browser,
       todos: { get: (id) => this.todos.get(id) ?? [], set: (id, t) => void this.todos.set(id, t) },
       loadSkill: async (name, dir) => (await this.d.skills.load(name, dir))?.content,
       runSubagent: async ({ parentID, agent, prompt, description, signal }) => {
@@ -259,6 +262,7 @@ export class SessionService {
         toolAllowed(agent.tools, t.name) &&
         (!bot || toolAllowed(bot.tools, t.name)) &&
         (!t.needsDirectory || !!session.directory) &&
+        (!t.name.startsWith("browser_") || !!this.d.browser?.status().tabs.length) &&
         !(t.name === "task" && session.parentID), // no nested task
     )
   }

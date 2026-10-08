@@ -2,7 +2,8 @@ import { exec } from "node:child_process"
 import { glob as fsGlob, mkdir, readdir, readFile, stat, writeFile } from "node:fs/promises"
 import { basename, dirname, isAbsolute, join, relative, resolve } from "node:path"
 import { z } from "zod"
-import { CortexError } from "./error"
+import type { BrowserBridge } from "./browser"
+import { CortexError, fail } from "./error"
 
 export interface ToolResult {
   title?: string
@@ -28,6 +29,8 @@ export interface ToolServices {
   loadSkill(name: string, directory?: string): Promise<string | undefined>
   todos: { get(sessionID: string): unknown[]; set(sessionID: string, todos: unknown[]): void }
   fetch: typeof fetch
+  /** Local browser bridge; only tabs the user shared are readable. */
+  browser?: BrowserBridge
 }
 
 export interface ToolDef<P extends z.ZodType = z.ZodType> {
@@ -195,6 +198,31 @@ const webfetch = defineTool({
   },
 })
 
+const needBrowser = (ctx: ToolContext) => ctx.services.browser ?? fail("tool_failed", "No local browser is available")
+
+const browserTabs = defineTool({
+  name: "browser_tabs",
+  description: "List the browser tabs the user explicitly shared with Cortex (id, title, URL). Other tabs are not visible.",
+  parameters: z.object({}),
+  async execute(_input, ctx) {
+    const b = needBrowser(ctx)
+    const tabs = b.status().tabs
+    return { title: "Shared tabs", output: tabs.length ? tabs.map((t) => `${t.id}\t${t.title}\t${t.url}`).join("\n") : "No tab is shared. Ask the user to share a tab from the Cortex Chrome extension.", metadata: { count: tabs.length } }
+  },
+})
+
+const browserRead = defineTool({
+  name: "browser_read",
+  description: "Read the title, URL and visible text of one tab the user shared (see browser_tabs). Refused for any other tab.",
+  parameters: z.object({ tabId: z.number().int() }),
+  async execute({ tabId }, ctx) {
+    const b = needBrowser(ctx)
+    await ctx.ask(String(tabId), { tabId })
+    const page = await b.read(tabId, ctx.signal)
+    return { title: page.title, output: truncate(`${page.title}\n${page.url}\n\n${page.text}`), metadata: { url: page.url } }
+  },
+})
+
 const Todo = z.object({ content: z.string(), status: z.enum(["pending", "in_progress", "completed", "cancelled"]), priority: z.enum(["high", "medium", "low"]).optional() })
 const todowrite = defineTool({
   name: "todowrite",
@@ -228,4 +256,4 @@ const skill = defineTool({
   },
 })
 
-export const BUILTIN_TOOLS: ToolDef[] = [read, write, edit, list, glob, grep, bash, webfetch, todowrite, task, skill]
+export const BUILTIN_TOOLS: ToolDef[] = [read, write, edit, list, glob, grep, bash, webfetch, todowrite, task, skill, browserTabs, browserRead]

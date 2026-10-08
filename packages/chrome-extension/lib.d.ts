@@ -1,0 +1,10 @@
+export const PORTS: number[];
+export const MAX_TEXT: number;
+export type Consent = Record<number, { title: string; url: string }>;
+export function shareableUrl(url: string): boolean;
+export function normalizeCode(input: unknown): string | null;
+export function consentAdd(state: Consent, tab: { id: number; title?: string; url: string }): Consent;
+export function consentRemove(state: Consent, tabId: number): Consent;
+export function consentHas(state: Consent, tabId: number): boolean;
+export function consentValid(state: Consent, tab: { id: number; url: string }): boolean;
+export function clipText(text: unknown): string;

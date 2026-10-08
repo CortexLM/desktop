@@ -162,3 +162,27 @@
   .workspace-extras .workspace-extras-matrix .input { min-height: 40px; }
   .workspace-extras-people > li { flex-wrap: wrap; }
 }
+
+/* Local browser: connection card, pairing steps and shared tabs (extends the design lot-workspace-extras tokens). */
+.workspace-extras-conn { border: 1px solid var(--line); border-radius: var(--r-card); background: var(--card); margin: 18px 0 24px; overflow: hidden; }
+.workspace-extras-conn-head { display: flex; align-items: center; gap: 14px; padding: 18px; }
+.workspace-extras-conn-head h2, .workspace-extras-conn-head p { margin: 0; }
+.workspace-extras-conn-head p { color: var(--t2); font-size: 12px; }
+.workspace-extras-conn-icon, .workspace-extras-tab-icon { width: 36px; height: 36px; flex-shrink: 0; display: grid; place-items: center; border-radius: var(--r-ctl); background: var(--sidebar-bg); color: var(--i1); }
+.workspace-extras-conn[data-mode="connected"] .workspace-extras-conn-icon { color: var(--green); }
+.workspace-extras-conn > .workspace-extras-actions { margin: 0; padding: 0 18px 18px; }
+.workspace-extras-conn-steps { border-top: 1px solid var(--line); }
+.workspace-extras-conn-step { display: flex; align-items: center; gap: 14px; padding: 16px 18px; }
+.workspace-extras-conn-step + .workspace-extras-conn-step { border-top: 1px solid var(--line); }
+.workspace-extras-conn-step p { margin: 0; color: var(--t2); font-size: 12px; }
+.workspace-extras-conn-buttons { display: flex; gap: 8px; flex-shrink: 0; }
+.workspace-extras-step-n { width: 22px; height: 22px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); color: var(--t2); font-size: 11px; }
+.workspace-extras .workspace-extras-pair-code { font-family: var(--mono); font-size: 24px; line-height: 32px; letter-spacing: .14em; color: var(--t1); font-weight: 500; margin: 2px 0; }
+.workspace-extras-pair-code span { color: var(--t2); margin-inline: .1em; }
+.workspace-extras-tabs-list { list-style: none; margin: 0 0 16px; padding: 0; border-block: 1px solid var(--line); }
+.workspace-extras-tabs-list li { display: flex; align-items: center; gap: 12px; padding: 12px 0; }
+.workspace-extras-tabs-list li + li { border-top: 1px solid var(--line); }
+.workspace-extras-tabs-list strong, .workspace-extras-tab-url { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.workspace-extras-tab-url { font-size: 11px; }
+.workspace-extras-footnote > svg { vertical-align: -2px; }
+@media (max-width: 720px) { .workspace-extras-conn-step { flex-wrap: wrap; } .workspace-extras-conn-buttons { width: 100%; } }
