@@ -458,6 +458,10 @@ test("M1 historical-image refusal carries the exact next draft into a fresh remo
     // Register the signal before triggering the owned new-chat handoff.
     await Promise.all([
       gate.evaluate((gate) => gate.wait()),
+      page.waitForURL((url) => {
+        const id = new URLSearchParams(url.hash.split("?")[1]).get("id");
+        return !!id && id !== original.id;
+      }),
       page.getByRole("button", { name: chatCopy["remote.newChatWithDraft"], exact: true }).click(),
     ]);
     const destination = new URLSearchParams(new URL(page.url()).hash.split("?")[1]);
