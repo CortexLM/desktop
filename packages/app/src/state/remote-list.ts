@@ -3,6 +3,9 @@ import { RemoteSessionView } from "@cortex/schema";
 import { api } from "../api";
 import { useNav } from "../shell/nav";
 import { onEvent } from "./live";
+import { shared, cached, forget } from "./shared";
+
+const KEY = "remote-sessions";
 
 type State =
   | { state: "hidden" | "loading" | "error" }
@@ -15,7 +18,7 @@ export function useRemoteSessions(enabled = true) {
   const [retry, reload] = React.useReducer((n: number) => n + 1, 0);
   const owner = React.useMemo(() => ({ route, query, entryKey, enabled, preview, retry }), [route, query, entryKey, enabled, preview, retry]);
   const [snapshot, setSnapshot] = React.useState<{ owner: object; value: State }>({
-    owner, value: { state: "hidden" },
+    owner, value: cached<RemoteSessionView[]>(KEY) ? { state: "ready", data: cached<RemoteSessionView[]>(KEY)! } : { state: "hidden" },
   });
   const retired = React.useRef(new Set<string>());
 
@@ -37,7 +40,7 @@ export function useRemoteSessions(enabled = true) {
         }
         setSnapshot((old) => old.owner === owner && old.value.state === "ready"
           ? old : { owner, value: { state: "loading" } });
-        const rows = RemoteSessionView.array().parse(await api.remoteSessions.list());
+        const rows = RemoteSessionView.array().parse(await shared(KEY, () => api.remoteSessions.list()));
         if (!current()) return;
         const epoch = rows[0]?.epoch;
         if (rows.some((row) => row.epoch !== epoch || retired.current.has(row.epoch))
@@ -54,6 +57,7 @@ export function useRemoteSessions(enabled = true) {
       if (event.type === "remote.session.removed") {
         // Main emits removals when clearing an owner; the entire epoch is retired.
         retired.current.add(event.properties.epoch);
+        forget(KEY);
         ++sequence;
         setSnapshot((old) => old.owner === owner && old.value.state === "ready"
           ? { owner, value: { state: "ready", data: old.value.data.filter((row) => row.epoch !== event.properties.epoch) } }
@@ -67,7 +71,11 @@ export function useRemoteSessions(enabled = true) {
     return () => { live = false; ++sequence; off(); };
   }, [owner, enabled, preview]);
 
-  const value: State = enabled && !preview && snapshot.owner === owner
-    ? snapshot.value : { state: "hidden" };
+  // A route change re-keys owner; keep showing the last good list instead of flashing hidden/loading/error.
+  const stale = cached<RemoteSessionView[]>(KEY);
+  const value: State = !enabled || preview ? { state: "hidden" }
+    : snapshot.owner === owner ? snapshot.value
+    : snapshot.value.state === "ready" ? snapshot.value
+    : stale ? { state: "ready", data: stale } : { state: "hidden" };
   return { ...value, reload };
 }

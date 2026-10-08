@@ -11,6 +11,7 @@ import { useT } from "../i18n";
 import { isPreview, useFixtures, usePreviewBot } from "../preview";
 import { api, platform } from "../api";
 import { useSessions, useBots, useProjects, useQuery, onEvent } from "../state/live";
+import { shared, forget } from "../state/shared";
 import { useRemoteSessions } from "../state/remote-list";
 import { NotFound } from "./not-found";
 import { previewChatStart, startPreviewChat } from "../components/composer";
@@ -208,16 +209,19 @@ function useAccount() {
   const { entryKey } = useNav();
   // Main retires the remote epoch on sign-out or account switch; drop the old initials and Bot with it.
   const [epochs, retire] = React.useReducer((n: number) => n + 1, 0);
-  React.useEffect(() => onEvent((event) => { if (event.type === "remote.session.removed") retire(); }), []);
-  const q = useQuery(async () => {
+  React.useEffect(() => onEvent((event) => { if (event.type === "remote.session.removed") { forget("account"); retire(); } }), []);
+  const q = useQuery(() => shared("account", async () => {
     if (isPreview()) return undefined;
     const connection = await api.connection.get();
     if (connection.mode === "local" || !connection.signedIn) return undefined;
     const auth = await api.connection.auth.get().catch(() => undefined);
     const bots = await api.workBot.list().catch(() => undefined);
     return { initials: auth?.email ? initialsOf(auth.email.split("@")[0]!) : "", bot: bots?.bots[0] ? { epoch: bots.epoch, bot: bots.bots[0] } : undefined };
-  }, [entryKey, epochs]);
-  return q.state === "ready" ? q.data : undefined;
+  }), [entryKey, epochs]);
+  // Keep the last account while a refresh runs; never fall back to the signed-out look on navigation.
+  const kept = React.useRef<Extract<typeof q, { state: "ready" }>["data"]>(undefined);
+  if (q.state === "ready") kept.current = q.data;
+  return q.state === "ready" ? q.data : kept.current;
 }
 
 type ShellFx = {
