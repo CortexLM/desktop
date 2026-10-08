@@ -2,12 +2,12 @@ import * as React from "react";
 import { CodeSessionPatch, type CodeFileView, type CodeSessionView, type CodeSnapshot, type RemoteModel } from "@cortex/schema";
 import { api } from "../../api";
 import { useT } from "../../i18n";
-import { Icon, Segmented } from "../../kit/ui";
+import { Icon, IconBtn, Segmented } from "../../kit/ui";
 import { useNav, readHash } from "../../shell/nav";
 import { useQuery } from "../../state/live";
 import { useSendEnter } from "../../state/send-enter";
 import { splitRows } from "./split-rows";
-import { LiveEmpty } from "./parts";
+import { ChipMenu, LiveEmpty } from "./parts";
 import { ContractError, useContract, LiveAttempts, LiveComments, LivePrReview, LiveRepoToggle, LiveResolve, LiveRuntimeAdmin, LiveSessionGrant } from "./contract-panels";
 
 function useOwner(epoch = "") {
@@ -26,18 +26,18 @@ export function CodeConnection({ local, remote }: { local: React.ReactNode; remo
   return local;
 }
 
+// Design composer: one rounded field, the model chip and the send button; Enter follows the send-key preference.
 function CodeComposer({ models, model, setModel: onModel, text, setText, busy, send }: {
   models: RemoteModel[]; model: string; setModel?(value: string): void; text: string; setText(value: string): void; busy: boolean; send(): void;
 }) {
   const t = useT(), enter = useSendEnter();
-  return <form onSubmit={e => { e.preventDefault(); if (!busy && text.trim() && model) send(); }}>
-    <textarea className="input" data-testid="code-composer-input" aria-label={t("code.home.placeholder")} placeholder={t("code.home.placeholder")} value={text} onChange={e => setText(e.target.value)} {...enter.field} />
-    <div className="ctx-bar">
-      <select className="input" data-testid="code-model-picker" aria-label={t("code.remote.model")} value={model} disabled={busy || !onModel} onChange={e => onModel?.(e.target.value)}>
-        <option value="">{t("code.remote.chooseModel")}</option>{models.map(m => <option key={m.slug} value={m.slug}>{m.name}</option>)}
-      </select>
-      <button className="btn primary" data-testid="code-api-send" disabled={busy || !text.trim() || !model} type="submit">{t("code.remote.send")}</button>
-    </div>
+  const has = !!text.trim();
+  const name = models.find(m => m.slug === model)?.name ?? t("code.remote.chooseModel");
+  return <form className="composer code-composer" data-has-text={has || undefined} onSubmit={e => { e.preventDefault(); if (!busy && has && model) send(); }}>
+    <textarea rows={1} data-testid="code-composer-input" aria-label={t("code.home.placeholder")} placeholder={t("code.home.placeholder")} value={text} onChange={e => setText(e.target.value)} {...enter.field} />
+    <ChipMenu className="model" side="top" align="end" testId="code-model-picker" ariaLabel={t("code.remote.model")} label={name} value={model} disabled={busy || !onModel}
+      items={models.map(m => ({ value: m.slug, label: m.name }))} onChange={v => onModel?.(v)} />
+    <button className="send" data-testid="code-api-send" type="submit" data-has-text={has ? "" : undefined} aria-label={t("code.remote.send")} disabled={busy || !has || !model}><Icon name="arrow-up" /></button>
   </form>;
 }
 
@@ -53,7 +53,8 @@ function RemoteCodeHome() {
   const firstModel = catalog.state === "ready" ? catalog.data.models[0]?.slug ?? "" : "";
   React.useEffect(() => { if (firstModel) setModel(m => m || firstModel); }, [firstModel]);
   // No farm: cloud is refused before any request; the draft stays and nothing falls back to this computer.
-  const cloudRefused = runtime === "cloud" && capabilities.state === "ready" && !capabilities.data.cloud.available;
+  const cloudOff = capabilities.state === "ready" && !capabilities.data.cloud.available;
+  const cloudRefused = runtime === "cloud" && cloudOff;
   const retained = React.useRef<{ id: string; epoch: string; runtime: string; model: string; repo: string; branch: string } | undefined>(undefined);
   const draft = React.useRef(text);
   const editText = (value: string) => { draft.current = value; setText(value); };
@@ -73,58 +74,65 @@ function RemoteCodeHome() {
     } catch { if (owns()) setError(true); }
     finally { if (owns()) setBusy(false); }
   };
-  return <div className="home code-api">
+  const envItems = [{ value: "local", label: t("code.remote.local"), hint: t("code.remote.localBody") }, { value: "cloud", label: t("code.remote.cloud"), hint: cloudOff ? t("code.home.cloudOff") : t("code.remote.cloudBody") }];
+  const visible = sessions.state === "ready" ? sessions.data.filter(s => matches(filter, s.state)) : [];
+  return <><div className="content-top"><div className="spacer" /><IconBtn icon="compose" label={t("code.newTask")} onClick={() => go("code")} /></div>
+  <div className="home code-api">
     <h1>{t("code.home.title")}</h1>
-    <div className="ctx-bar" role="group" aria-label={t("code.remote.execution")}>
-      <button className="btn secondary" data-testid="code-mode-local" aria-pressed={runtime === "local"} disabled={busy} onClick={() => setRuntime("local")}>{t("code.remote.local")}</button>
-      <button className="btn secondary" data-testid="code-mode-cloud" aria-pressed={runtime === "cloud"} disabled={busy} onClick={() => setRuntime("cloud")}>{t("code.remote.cloud")}</button>
-    </div>
-    <p>{t(runtime === "local" ? "code.remote.localBody" : "code.remote.cloudBody")}</p>
-    {cloudRefused && <div className="banner warn" role="status" data-testid="code-cloud-unavailable" data-reason={capabilities.state === "ready" ? capabilities.data.cloud.reason : undefined}><span>{t("code.workspace.refused.code_compute_not_configured")}</span></div>}
-    {runtime === "cloud" && catalog.state === "ready" && <WorkspacePicker epoch={catalog.data.epoch} repo={repo} setRepo={v => { setRepo(v); setBranch(""); }} branch={branch} setBranch={setBranch} busy={busy} />}
     <CodeComposer models={catalog.state === "ready" ? catalog.data.models : []} model={model} setModel={setModel} text={text} setText={editText} busy={busy || cloudRefused} send={() => void send()} />
-    {(catalog.state === "error" || sessions.state === "error" || error) && <div className="banner err" role="alert"><span>{t("code.remote.unavailable")}</span><button className="btn secondary" onClick={() => { catalog.reload(); sessions.reload(); }}>{t("code.retry")}</button></div>}
-    {sessions.state === "ready" && <TaskFilter value={filter} onChange={setFilter} />}
-    {sessions.state === "ready" && sessions.data.length > 0 && !sessions.data.some(s => matches(filter, s.state)) && <div className="empty" data-testid="code-tasks-no-match"><p>{t("code.tasks.noMatchTitle")}</p><button className="btn secondary" onClick={() => setFilter("all")}>{t("code.tasks.clearFilters")}</button></div>}
-    {sessions.state === "ready" && <div className="tasks" data-testid="code-task-list">{sessions.data.filter(s => matches(filter, s.state)).map(s => <button className="task" key={s.id} data-testid="code-task" data-state={s.state} onClick={() => go("code-session", { source: "code-api", id: s.id, epoch: s.epoch })}><span className="grow"><b>{s.title || t("code.untitled")}</b><span className="sub">{t(s.runtime === "local" ? "code.remote.local" : "code.remote.cloud")}</span></span></button>)}</div>}
-  </div>;
+    <div className="ctx-bar" data-testid="code-context">
+      {runtime === "cloud" && catalog.state === "ready" && <WorkspacePicker epoch={catalog.data.epoch} repo={repo} setRepo={v => { setRepo(v); setBranch(""); }} branch={branch} setBranch={setBranch} busy={busy} />}
+      <ChipMenu icon={runtime === "cloud" ? "globe" : "cpu"} testId="code-env-picker" ariaLabel={t("code.remote.execution")} label={t(runtime === "cloud" ? "code.remote.cloud" : "code.remote.local")} value={runtime} disabled={busy} items={envItems} onChange={v => setRuntime(v === "cloud" ? "cloud" : "local")} />
+    </div>
+    {cloudRefused && <div className="banner warn code-home-note" role="status" data-testid="code-cloud-unavailable" data-reason={capabilities.state === "ready" ? capabilities.data.cloud.reason : undefined}><Icon name="info" size={16} /><span>{t("code.workspace.refused.code_compute_not_configured")}</span></div>}
+    {(catalog.state === "error" || sessions.state === "error" || error) && <div className="banner err code-home-note" role="alert"><span className="grow">{t("code.remote.unavailable")}</span><button className="btn secondary" onClick={() => { catalog.reload(); sessions.reload(); }}>{t("code.retry")}</button></div>}
+    {sessions.state === "ready" && sessions.data.length > 0 && <div className="tasks" data-testid="code-task-list">
+      <div className="code-tasks-head"><span className="h3">{t("code.home.recent")}</span><div className="spacer" /><TaskFilter value={filter} onChange={setFilter} /></div>
+      {!visible.length && <div className="code-hint" data-testid="code-tasks-no-match">{t("code.tasks.noMatchTitle")} <button className="code-link" onClick={() => setFilter("all")}>{t("code.tasks.clearFilters")}</button></div>}
+      {visible.map((s, i) => <button className="task" key={s.id} style={{ ["--i" as string]: i }} data-testid="code-task" data-state={s.state} onClick={() => go("code-session", { source: "code-api", id: s.id, epoch: s.epoch })}>
+        <span className="grow"><span className="ttl">{s.title || t("code.untitled")}</span><span className="sub">{[s.repo, t(s.runtime === "local" ? "code.remote.local" : "code.remote.cloud")].filter(Boolean).join(" · ")}</span></span>
+        <StateBadge state={s.state} />
+      </button>)}
+    </div>}
+  </div></>;
 }
 
 // Task list status filter over the producer session states.
 type StatusFilter = "all" | "running" | "done" | "failed" | "cancelled";
-const STATUS_OF: Partial<Record<CodeSessionView["state"], StatusFilter>> = { running: "running", connecting: "running", connected: "running", waiting: "running", permission_blocked: "running", completed: "done", failed: "failed", interrupted: "cancelled" };
+const STATUS_OF: Partial<Record<CodeSessionView["state"], StatusFilter>> = { running: "running", connecting: "running", connected: "running", waiting: "running", permission_blocked: "running", completed: "done", failed: "failed", interrupted: "cancelled", disconnected: "cancelled", unpaired: "cancelled", cloud_only: "done", local: "done" };
 const matches = (filter: StatusFilter, state: CodeSessionView["state"]) => filter === "all" || STATUS_OF[state] === filter;
 const FILTER_LABEL: Record<StatusFilter, string> = { all: "code.tasks.filter.all", running: "code.tasks.filter.running", done: "code.status.done", failed: "code.tasks.filter.failed", cancelled: "code.status.cancelled" };
+const BADGE: Record<StatusFilter, string> = { all: "code-mute", running: "run", done: "ok", failed: "err", cancelled: "code-mute" };
+function StateBadge({ state }: { state: CodeSessionView["state"] }) {
+  const t = useT(), f = STATUS_OF[state];
+  return f ? <span className={"badge " + BADGE[f]}>{f === "running" && <span className="spin" />}{t(FILTER_LABEL[f])}</span> : null;
+}
 function TaskFilter({ value, onChange }: { value: StatusFilter; onChange(v: StatusFilter): void }) {
   const t = useT();
-  return <div className="ctx-bar" role="group" aria-label={t("code.tasks.filterLabel")} data-testid="code-task-filter">
-    {(Object.keys(FILTER_LABEL) as StatusFilter[]).map(f => <button key={f} className="btn secondary" data-testid={`code-task-filter-${f}`} aria-pressed={value === f} onClick={() => onChange(f)}>{t(FILTER_LABEL[f])}</button>)}
-  </div>;
+  return <ChipMenu testId="code-task-filter" align="end" ariaLabel={t("code.tasks.filterLabel")} label={t(FILTER_LABEL[value])} value={value}
+    items={(Object.keys(FILTER_LABEL) as StatusFilter[]).map(f => ({ value: f, label: t(FILTER_LABEL[f]) }))} onChange={v => onChange(v as StatusFilter)} />;
 }
 
-// Cloud workspace pickers over the producer's repositories and a repo's branches. A typed repository stays possible when
+// Cloud workspace chips over the producer's repositories and a repo's branches. A typed repository stays possible when
 // the producer lists none (GitHub not connected and no earlier session); refusals are shown, never replaced by fixtures.
 const REPO = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 function WorkspacePicker({ epoch, repo, setRepo, branch, setBranch, busy }: { epoch: string; repo: string; setRepo(v: string): void; branch: string; setBranch(v: string): void; busy: boolean }) {
-  const t = useT();
+  const t = useT(), { go } = useNav();
   const repos = useQuery(() => api.code.repositories(epoch), [epoch]);
   const valid = REPO.test(repo.trim());
   const branches = useQuery(() => valid ? api.code.branches(epoch, repo.trim()) : Promise.resolve(undefined), [epoch, valid ? repo.trim() : ""]);
   const listed = repos.state === "ready" ? repos.data.items : [];
+  const shortName = (r: string) => r.split("/").pop() || r;
   return <div className="code-pickers" data-testid="code-workspace-picker" data-github={repos.state === "ready" ? repos.data.githubState : repos.state}>
     {listed.length > 0
-      ? <select className="input" data-testid="code-repo-picker" aria-label={t("code.remote.repository")} value={repo} disabled={busy} onChange={e => setRepo(e.target.value)}>
-          <option value="">{t("code.remote.repoChoose")}</option>
-          {listed.map(r => <option key={r.fullName} value={r.fullName}>{r.fullName}</option>)}
-        </select>
-      : <input className="input" data-testid="code-repo-input" aria-label={t("code.remote.repository")} placeholder={t("code.remote.repository")} value={repo} disabled={busy} onChange={e => setRepo(e.target.value)} />}
-    {repos.state === "ready" && !repos.data.githubConnected && <p className="sub" role="status" data-testid="code-github-state">{t("code.remote.githubNotConnected")}</p>}
-    {(repos.state === "error" || (repos.state === "ready" && repos.data.githubError)) && <div className="banner err" role="alert" data-testid="code-repos-error"><span>{t("code.remote.reposFailed")}</span><button className="btn secondary" onClick={() => repos.reload()}>{t("code.retry")}</button></div>}
-    {valid && branches.state === "ready" && branches.data && branches.data.items.length > 0 && <select className="input" data-testid="code-branch-picker" aria-label={t("code.remote.prBranch")} value={branch} disabled={busy} onChange={e => setBranch(e.target.value)}>
-      <option value="">{t("code.remote.branchDefault")}</option>
-      {branches.data.items.map(b => <option key={b} value={b}>{b}</option>)}
-    </select>}
-    {valid && (branches.state === "error" || (branches.state === "ready" && branches.data?.githubError)) && <div className="banner err" role="alert" data-testid="code-branches-error"><span>{t("code.remote.branchesFailed")}</span><button className="btn secondary" onClick={() => branches.reload()}>{t("code.retry")}</button></div>}
+      ? <ChipMenu icon="folder-code" testId="code-repo-picker" ariaLabel={t("code.remote.repository")} label={repo ? shortName(repo) : t("code.remote.repoChoose")} value={repo} disabled={busy}
+          items={listed.map(r => ({ value: r.fullName, label: r.fullName, hint: r.defaultBranch }))} onChange={setRepo} />
+      : <label className="ctx code-ctx-input"><Icon name="folder-code" size={16} /><input data-testid="code-repo-input" aria-label={t("code.remote.repository")} placeholder={t("code.home.repoPlaceholder")} value={repo} disabled={busy} onChange={e => setRepo(e.target.value)} /></label>}
+    {valid && branches.state === "ready" && branches.data && branches.data.items.length > 0 && <ChipMenu icon="git-branch" testId="code-branch-picker" ariaLabel={t("code.remote.prBranch")} label={branch || t("code.remote.branchDefault")} value={branch} disabled={busy}
+      items={[{ value: "", label: t("code.remote.branchDefault") }, ...branches.data.items.map(b => ({ value: b, label: b }))]} onChange={setBranch} />}
+    {repos.state === "ready" && !repos.data.githubConnected && <button type="button" className="ctx" data-testid="code-github-state" onClick={() => go("code-connect")}><Icon name="link" size={16} />{t("live.codeConnect.connect")}</button>}
+    {(repos.state === "error" || (repos.state === "ready" && repos.data.githubError)) && <span className="code-chip-err" role="alert" data-testid="code-repos-error">{t("code.remote.reposFailed")}<button type="button" className="code-link" onClick={() => repos.reload()}>{t("code.retry")}</button></span>}
+    {valid && (branches.state === "error" || (branches.state === "ready" && branches.data?.githubError)) && <span className="code-chip-err" role="alert" data-testid="code-branches-error">{t("code.remote.branchesFailed")}<button type="button" className="code-link" onClick={() => branches.reload()}>{t("code.retry")}</button></span>}
   </div>;
 }
 
@@ -182,8 +190,16 @@ function OpenDraftPr({ session, title, ready }: { session: CodeSnapshot["session
 
 // Code settings against the signed-in producer; anything else keeps the local section.
 export function CodeMachines() {
-  const t = useT();
-  return <><div className="content-top"><span className="title">{t("code.contract.machines")}</span></div><div className="page"><RemoteCodeSettings section="machines" local={<LiveEmpty />} /></div></>;
+  const t = useT(), { go } = useNav();
+  return <><div className="content-top"><IconBtn icon="arrow-left" label={t("code.machines.back")} onClick={() => go("code")} /><span className="title">{t("code.machines.title")}</span></div>
+    <div className="page"><div className="code-wrap code-narrow"><RemoteCodeSettings section="machines" local={<SignInNeeded />} /></div></div></>;
+}
+
+// Shown where a section needs the signed-in Cortex account (cloud machines, repositories, usage).
+export function SignInNeeded() {
+  const t = useT(), { go } = useNav();
+  return <div className="empty code-empty-sm" data-testid="code-sign-in-needed"><Icon name="cpu" size={20} /><h2>{t("code.settings.unavailableTitle")}</h2><p>{t("code.settings.unavailableBody")}</p>
+    <button className="btn primary" onClick={() => go("connection")}>{t("live.connection.signIn")}</button></div>;
 }
 
 export function RemoteCodeSettings({ section, local }: { section: string; local: React.ReactNode }) {
@@ -203,12 +219,22 @@ function RemoteSettingsBody({ section, local }: { section: string; local: React.
 }
 
 function RemoteRepos({ epoch }: { epoch: string }) {
-  const t = useT();
+  const t = useT(), { go } = useNav();
   const repos = useQuery(() => api.code.repositories(epoch), [epoch]);
-  if (repos.state === "error") return <div className="banner err" role="alert">{t("code.remote.unavailable")}</div>;
-  return <div data-testid="code-repos-live">{repos.state === "ready" && repos.data.items.map(r => <div key={r.fullName} className="li" data-testid="code-repo-row">
-    <span className="grow mono">{r.fullName}</span><LiveRepoToggle epoch={epoch} fullName={r.fullName} reload={repos.reload} />
-  </div>)}</div>;
+  if (repos.state === "error") return <div className="banner err" role="alert"><span className="grow">{t("code.remote.reposFailed")}</span><button className="btn secondary" onClick={repos.reload}>{t("code.retry")}</button></div>;
+  if (repos.state !== "ready") return null;
+  const d = repos.data, owner = (r: string) => r.split("/")[0] ?? r;
+  return <div data-testid="code-repos-live" data-github={d.githubState}>
+    <div className="code-card-row code-repos-head"><span className="code-meta code-grow">{t(d.githubConnected ? "live.codeConnect.github" : "live.codeConnect.noGithub")}</span>
+      <button className="btn secondary code-h28" data-testid="code-repos-connect" onClick={() => go("code-connect")}><Icon name="plus" size={16} />{t(d.githubConnected ? "code.connectRepo" : "live.codeConnect.connect")}</button></div>
+    {d.items.length ? <div className="list">{d.items.map(r => <div key={r.fullName} className="li" data-testid="code-repo-row">
+      <span className="code-av code-av-org" data-tone={owner(r.fullName).length % 4} aria-hidden>{owner(r.fullName).slice(0, 2).toUpperCase()}</span>
+      <span className="grow"><span className="ttl mono code-repo">{r.fullName}</span><span className="sub"><Icon name="git-branch" size={12} /> {[r.defaultBranch, t(r.private ? "live.private" : "live.public")].filter(Boolean).join(" · ")}</span></span>
+      <LiveRepoToggle epoch={epoch} fullName={r.fullName} enabled={r.enabled} reload={repos.reload} />
+    </div>)}</div>
+      : <div className="empty code-empty-sm" data-testid="code-repos-empty"><Icon name="folder-code" size={20} /><h2>{t("code.settings.reposEmptyTitle")}</h2><p>{t("code.settings.reposEmptyBody")}</p></div>}
+    <p className="code-hint">{t("code.settings.pushHint")}</p>
+  </div>;
 }
 
 function RemoteUsage({ epoch }: { epoch: string }) {
@@ -238,10 +264,9 @@ function RemoteDefaultModel({ epoch }: { epoch: string }) {
     try { await api.code.setDefaultModel(epoch, ref); settings.reload(); } catch { setFailed(true); } finally { setSaving(false); }
   };
   return <div className="list code-approval-defaults">
-    <label className="li"><span className="grow"><span className="ttl">{t("code.settings.defaultModel")}</span><span className="sub">{t("code.settings.defaultModelSub")}</span></span>
-      <select className="input" data-testid="code-default-model" disabled={saving} value={settings.data.defaultModel ?? ""} onChange={e => { if (e.target.value) void choose(e.target.value); }}>
-        <option value="">{t("code.remote.chooseModel")}</option>{settings.data.models.map(m => <option key={m.ref} value={m.ref}>{m.name}</option>)}
-      </select></label>
+    <div className="li"><span className="grow"><span className="ttl">{t("code.settings.defaultModel")}</span><span className="sub">{t("code.settings.defaultModelSub")}</span></span>
+      <ChipMenu className="btn secondary code-h28" align="end" testId="code-default-model" disabled={saving} ariaLabel={t("code.settings.defaultModel")} value={settings.data.defaultModel ?? ""}
+        label={settings.data.models.find(m => m.ref === settings.data.defaultModel)?.name ?? t("code.remote.chooseModel")} items={settings.data.models.map(m => ({ value: m.ref, label: m.name }))} onChange={v => { if (v) void choose(v); }} /></div>
     {failed && <div className="banner err" role="alert" data-testid="code-default-model-error">{t("code.settings.rulesSaveFailed")}</div>}
   </div>;
 }
@@ -256,9 +281,10 @@ function RemoteInstructions({ epoch }: { epoch: string }) {
   if (sessions.state !== "ready") return null;
   return <div data-testid="code-instructions">
     <p className="code-lead">{t("code.remote.instructionsLead")}</p>
-    <select className="input" data-testid="code-instructions-session" aria-label={t("code.remote.instructionsSession")} value={id} onChange={e => setID(e.target.value)}>
-      <option value="">{t("code.remote.instructionsSession")}</option>{sessions.data.map(s => <option key={s.id} value={s.id}>{s.title || t("code.untitled")} · {t(s.runtime === "local" ? "code.remote.local" : "code.remote.cloud")}</option>)}
-    </select>
+    {sessions.data.length ? <ChipMenu className="btn secondary code-h28" icon="file-code" testId="code-instructions-session" ariaLabel={t("code.remote.instructionsSession")} value={id}
+      label={sessions.data.find(x => x.id === id)?.title || t("code.remote.instructionsSession")}
+      items={sessions.data.map(x => ({ value: x.id, label: x.title || t("code.untitled"), hint: [x.repo, t(x.runtime === "local" ? "code.remote.local" : "code.remote.cloud")].filter(Boolean).join(" · ") }))} onChange={setID} />
+      : <div className="empty code-empty-sm" data-testid="code-instructions-empty"><Icon name="file-code" size={20} /><p>{t("code.remote.instructionsNoSession")}</p></div>}
     {file.state === "ready" && file.data?.state === "ready" && <div className="diff code-file"><div className="code-head">{file.data.path}</div><pre data-testid="code-instructions-content">{file.data.content}</pre></div>}
     {file.state === "ready" && file.data?.state === "missing" && <p className="sub" data-testid="code-instructions-missing">{t("code.remote.instructionsMissing")}</p>}
     {file.state === "ready" && file.data?.state === "refused" && <div className="banner warn" role="status" data-testid="code-instructions-refused" data-reason={file.data.reason}>{t(`code.workspace.refused.${file.data.reason}`)}</div>}

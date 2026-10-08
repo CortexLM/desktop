@@ -144,9 +144,9 @@ export function createRemoteCodeBinding(client: CortexClient, chat: MainRemoteCh
     // Producer pickers. GitHub access state and its public error text come from the producer; nothing is cached.
     async repositories() {
       guard();
-      const raw = z.object({ items: z.array(z.object({ full_name: z.string(), default_branch: z.string().optional(), private: z.boolean(), source: z.enum(["github", "session"]) })), github_connected: z.boolean(), github_state: z.string(), github_error: z.string().optional() }).parse(await client.code.repositories.list());
+      const raw = z.object({ items: z.array(z.object({ full_name: z.string(), default_branch: z.string().optional(), private: z.boolean(), enabled: z.boolean().optional(), source: z.enum(["github", "session"]) })), github_connected: z.boolean(), github_state: z.string(), github_error: z.string().optional() }).parse(await client.code.repositories.list());
       guard();
-      return CodeRepositoriesView.parse({ epoch: chat.epoch, items: raw.items.map(r => ({ fullName: r.full_name, ...(r.default_branch ? { defaultBranch: r.default_branch } : {}), private: r.private, source: r.source })), githubConnected: raw.github_connected, githubState: raw.github_state, ...(raw.github_error ? { githubError: raw.github_error } : {}) });
+      return CodeRepositoriesView.parse({ epoch: chat.epoch, items: raw.items.map(r => ({ fullName: r.full_name, ...(r.default_branch ? { defaultBranch: r.default_branch } : {}), private: r.private, ...(r.enabled === undefined ? {} : { enabled: r.enabled }), source: r.source })), githubConnected: raw.github_connected, githubState: raw.github_state, ...(raw.github_error ? { githubError: raw.github_error } : {}) });
     },
     async branches(repo) {
       guard();
