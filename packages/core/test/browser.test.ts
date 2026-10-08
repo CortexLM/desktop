@@ -79,6 +79,26 @@ describe("consent", () => {
     await expect(pending).rejects.toMatchObject({ code: "permission_denied" })
     expect(b.status().tabs).toEqual([])
   })
+  it("rejects an already-aborted read without queueing it", async () => {
+    const { b } = paired()
+    b.share({ id: 3, title: "Docs", url: "https://a.test/" })
+    const ctl = new AbortController()
+    ctl.abort()
+    await expect(b.read(3, ctl.signal)).rejects.toMatchObject({ code: "aborted" })
+    expect(await b.poll(0)).toEqual([])
+  })
+  it("removes its abort listener once the read settles", async () => {
+    const { b } = paired()
+    b.share({ id: 3, title: "Docs", url: "https://a.test/" })
+    const ctl = new AbortController(), removed: string[] = []
+    const remove = ctl.signal.removeEventListener.bind(ctl.signal)
+    ctl.signal.removeEventListener = ((type: string, ...rest: [EventListenerOrEventListenerObject]) => (removed.push(type), remove(type, ...rest))) as typeof remove
+    const pending = b.read(3, ctl.signal)
+    const [cmd] = await b.poll(0)
+    b.complete(cmd!.id, { ok: true, title: "Docs", url: "https://a.test/", text: "x" })
+    await pending
+    expect(removed).toContain("abort")
+  })
   it("refuses reads while the extension is silent", async () => {
     const { b, c } = paired()
     b.share({ id: 3, title: "Docs", url: "https://a.test/" })

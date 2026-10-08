@@ -1,6 +1,6 @@
 // Service worker: pairs with the Cortex desktop app, keeps the list of tabs the user shared, answers read requests.
 // It never touches cookies, storage of pages or credentials: a read returns title, URL and visible text of a shared tab only.
-import { PORTS, normalizeCode, shareableUrl, consentAdd, consentRemove, consentHas, consentValid, clipText } from "./lib.js";
+import { PORTS, pairOnPorts, normalizeCode, shareableUrl, consentAdd, consentRemove, consentHas, consentValid, clipText } from "./lib.js";
 
 const store = chrome.storage.session;
 let looping = false;
@@ -21,16 +21,9 @@ const forget = () => store.set({ token: null, port: null, shared: {} });
 async function pair(input) {
   const code = normalizeCode(input);
   if (!code) throw new Error("bad_code");
-  for (const port of PORTS) {
-    let res;
-    try { res = await fetch(`${origin(port)}/pair`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ code }) }); } catch { continue; }
-    if (res.status === 403) throw new Error("wrong_code");
-    if (!res.ok) continue;
-    await store.set({ token: (await res.json()).token, port, shared: {} });
-    void loop();
-    return;
-  }
-  throw new Error("app_not_running");
+  const { token, port } = await pairOnPorts(code, PORTS);
+  await store.set({ token, port, shared: {} });
+  void loop();
 }
 
 async function share(tab) {

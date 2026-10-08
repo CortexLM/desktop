@@ -26,4 +26,23 @@ export const consentHas = (state, tabId) => Object.hasOwn(state, tabId);
 /** A shared tab that navigated elsewhere is no longer the page the user agreed to share. */
 export const consentValid = (state, tab) => consentHas(state, tab.id) && state[tab.id].url === tab.url;
 
+/**
+ * Tries each port in turn. Only a 403 whose JSON body says `permission_denied` is Cortex refusing the code;
+ * any other 403 (another local service on that port) moves on. Returns { token, port }.
+ */
+export async function pairOnPorts(code, ports, fetchFn = fetch) {
+  for (const port of ports) {
+    let res;
+    try { res = await fetchFn(`http://127.0.0.1:${port}/pair`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ code }) }); } catch { continue; }
+    if (res.status === 403) {
+      const body = await res.json().catch(() => null);
+      if (body?.error === "permission_denied") throw new Error("wrong_code");
+      continue;
+    }
+    if (!res.ok) continue;
+    return { token: (await res.json()).token, port };
+  }
+  throw new Error("app_not_running");
+}
+
 export const clipText = (text) => String(text ?? "").replace(/\n{3,}/g, "\n\n").trim().slice(0, MAX_TEXT);
