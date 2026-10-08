@@ -654,3 +654,5 @@ a late prompt or starting inference.
 Model capability gates include attachments replayed from history, including text-only follow-ups.
 The bus's internal remote source skips SQLite persistence and local plugin event hooks;
 ordinary live subscribers still receive the unchanged event. Existing publishers default local.
+
+Space (`#/space`): labelled Base UI `Field` form (optional title, required content with inline validation), designed empty state and card list; copy in `live.space.*`. Evidence: `evidence/space-redesign/`.
