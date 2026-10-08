@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-// @ts-expect-error plain ES module shipped in the extension
 import * as lib from "../../packages/chrome-extension/lib.js";
 
 describe("chrome extension helpers", () => {
