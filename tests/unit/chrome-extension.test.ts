@@ -20,6 +20,17 @@ describe("chrome extension helpers", () => {
     const down = (async () => { throw new Error("refused"); }) as unknown as typeof fetch;
     await expect(lib.pairOnPorts("ABCD2345", [1], down)).rejects.toThrow("app_not_running");
   });
+  it("pairing skips silent or malformed services", async () => {
+    const hang = ((_u: string, init: RequestInit) => new Promise((_r, reject) => init.signal!.addEventListener("abort", () => reject(new Error("timeout"))))) as unknown as typeof fetch;
+    const mixed = (async (url: string, init: RequestInit) => {
+      const port = Number(new URL(url).port);
+      if (port === 1) return hang(url, init);
+      if (port === 2) return new Response("<html>", { status: 200 });
+      if (port === 3) return new Response(JSON.stringify({ token: 7 }), { status: 200 });
+      return new Response(JSON.stringify({ token: "ok" }), { status: 200 });
+    }) as unknown as typeof fetch;
+    await expect(lib.pairOnPorts("ABCD2345", [1, 2, 3, 4], mixed, 20)).resolves.toEqual({ token: "ok", port: 4 });
+  });
   it("tracks consent per tab and drops it after navigation", () => {
     let s = lib.consentAdd({}, { id: 1, title: "A", url: "https://a.test/" });
     s = lib.consentAdd(s, { id: 2, title: "B", url: "chrome://x" });

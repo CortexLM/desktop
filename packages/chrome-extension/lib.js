@@ -30,17 +30,19 @@ export const consentValid = (state, tab) => consentHas(state, tab.id) && state[t
  * Tries each port in turn. Only a 403 whose JSON body says `permission_denied` is Cortex refusing the code;
  * any other 403 (another local service on that port) moves on. Returns { token, port }.
  */
-export async function pairOnPorts(code, ports, fetchFn = fetch) {
+export async function pairOnPorts(code, ports, fetchFn = fetch, timeoutMs = 3000) {
   for (const port of ports) {
-    let res;
-    try { res = await fetchFn(`http://127.0.0.1:${port}/pair`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ code }) }); } catch { continue; }
-    if (res.status === 403) {
+    // One deadline covers the request and the body read, so a silent service cannot block the later ports.
+    const signal = AbortSignal.timeout(timeoutMs);
+    try {
+      const res = await fetchFn(`http://127.0.0.1:${port}/pair`, { method: "POST", signal, headers: { "content-type": "application/json" }, body: JSON.stringify({ code }) });
       const body = await res.json().catch(() => null);
-      if (body?.error === "permission_denied") throw new Error("wrong_code");
-      continue;
+      if (res.status === 403 && body?.error === "permission_denied") throw new Error("wrong_code");
+      // Anything but a well-formed Cortex answer means another service owns this port.
+      if (res.ok && typeof body?.token === "string" && body.token) return { token: body.token, port };
+    } catch (e) {
+      if (e.message === "wrong_code") throw e;
     }
-    if (!res.ok) continue;
-    return { token: (await res.json()).token, port };
   }
   throw new Error("app_not_running");
 }

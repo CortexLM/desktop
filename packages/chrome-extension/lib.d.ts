@@ -8,4 +8,4 @@ export function consentRemove(state: Consent, tabId: number): Consent;
 export function consentHas(state: Consent, tabId: number): boolean;
 export function consentValid(state: Consent, tab: { id: number; url: string }): boolean;
 export function clipText(text: unknown): string;
-export function pairOnPorts(code: string, ports: number[], fetchFn?: typeof fetch): Promise<{ token: string; port: number }>;
+export function pairOnPorts(code: string, ports: number[], fetchFn?: typeof fetch, timeoutMs?: number): Promise<{ token: string; port: number }>;
