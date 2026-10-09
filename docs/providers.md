@@ -27,6 +27,12 @@ The model list is the public models.dev catalog, `https://models.dev/api.json`
 Routes: `GET /api/catalog/providers`, `GET /api/catalog/providers/:id/models`,
 `GET /api/catalog/search`.
 
+Signed-in Chat and its feature screens use the main-owned remote Chat catalog through
+`remoteChatModels()` in `screens/chat/remote-owner.ts`. Concurrent reads share one
+`api.remoteSessions.models()` request. The Code catalog endpoint does not populate the
+Chat core catalog; it must not be substituted under the same shared key. Completed reads
+are not reused indefinitely: the next call reloads against the current owner.
+
 ## Supported providers
 
 A provider is usable when its catalog `npm` maps to a bundled AI SDK factory

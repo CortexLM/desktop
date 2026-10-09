@@ -6,6 +6,7 @@ import { api } from "../../api";
 import { useT } from "../../i18n";
 import { Icon } from "../../kit/ui";
 import { useQuery } from "../../state/live";
+import { remoteChatModels } from "./remote-owner";
 import { ImagesTool, ResearchTool, SearchTool, TempTool } from "./tools-live";
 
 type Conversation = { id: string; title: string; last_message_at: string; message_count: number };
@@ -19,7 +20,7 @@ function useFeature<T>(epoch: string, op: ChatFeatureCall["op"] | "", params: Re
 
 export function LiveChatFeature({ feature, local }: { feature: string; local: React.ReactNode }) {
   const connection = useQuery(() => api.connection.get(), []);
-  const catalog = useQuery(() => api.code.models(), []);
+  const catalog = useQuery(() => remoteChatModels(), []);
   if (connection.state !== "ready") return null;
   if (connection.data.mode === "local" || !connection.data.signedIn) return <div data-testid={`screen-${feature}`} data-state="local">{local}</div>;
   return <Frame feature={feature} epoch={catalog.state === "ready" ? catalog.data.epoch : ""} failed={catalog.state === "error"} />;
@@ -97,7 +98,6 @@ function CanvasLive({ epoch }: { epoch: string }) {
     <div className="split-r"><article className="fichiers-a4" data-testid="chat-canvas-doc">{canvas.state === "ready" && canvas.data ? <><h2>{canvas.data.title}</h2><pre style={{ whiteSpace: "pre-wrap" }}>{canvas.data.content}</pre></> : <p className="sub">{t("chat.live.pickCanvas")}</p>}</article></div>
   </div>;
 }
-
 
 
 
