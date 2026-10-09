@@ -98,10 +98,31 @@ for (const width of [960, 1440]) for (const theme of ["light", "dark"]) test(`ki
     await toggle.click();
     expect(await page.evaluate(() => document.documentElement.hasAttribute("data-reduce-motion"))).toBe(false);
     await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.evaluate(() => {
+      (window as unknown as { homeMounted: Promise<void> }).homeMounted = new Promise((resolve, reject) => {
+        const observer = new MutationObserver(() => {
+          if (!document.querySelector(".home h1") || !document.querySelector(".home .composer")) return;
+          clearTimeout(deadline); observer.disconnect(); resolve();
+        });
+        const deadline = setTimeout(() => { observer.disconnect(); reject(new Error("Home controls did not mount")); }, 5000);
+        observer.observe(document.getElementById("root")!, { childList: true, subtree: true });
+      });
+    });
     await rail.click();
-    await expect(page.locator(".home")).toBeVisible();
+    await page.evaluate(() => (window as unknown as { homeMounted: Promise<void> }).homeMounted);
     expect(await page.locator(".home h1").evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
     observations.push({ scenario: "DSK-15-OS-preference", animation: "none" });
+    await rail.hover();
+    await page.mouse.down();
+    try {
+      const pressed = await rail.evaluate(async (element) => {
+        await Promise.all(element.getAnimations().map((animation) => animation.finished));
+        return { active: element.matches(":active"), transform: getComputedStyle(element).transform };
+      });
+      expect(pressed).toEqual({ active: true, transform: "none" });
+      observations.push({ scenario: "DSK-15-OS-only-press", pressed });
+      await capture("rail-pressed-OS-reduced-motion");
+    } finally { await page.mouse.up(); }
   } finally {
     await test.info().attach("kit-motion-observations", { body: JSON.stringify(observations, null, 2), contentType: "application/json" });
     await app.close();

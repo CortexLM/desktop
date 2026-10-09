@@ -624,5 +624,5 @@ html[data-reduce-motion] :is(.thinking, .shimmer span) { color: var(--t2) !impor
 html[data-reduce-motion]::view-transition-group(*), html[data-reduce-motion]::view-transition-old(*), html[data-reduce-motion]::view-transition-new(*) { animation: none !important; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; }
-  .rail-btn:active { transform: none; }
+  .rail-btn:active:not(:disabled) { transform: none; }
 }
