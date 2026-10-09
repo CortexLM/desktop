@@ -59,8 +59,8 @@ test("reduced-motion startup inherits themed text immediately", async () => {
       await page.reload();
       await expect(page.locator(".home h1")).toBeVisible();
       await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
-      await expect.poll(() => page.locator(".home h1").evaluate((el) => getComputedStyle(el).color === getComputedStyle(document.body).color)).toBe(true);
-      expect(await page.locator(".home .composer").evaluate((el) => ({ transition: getComputedStyle(el).transitionDuration, animation: getComputedStyle(el).animationDuration }))).toEqual({ transition: "0s", animation: "0.001s" });
+      expect(await page.locator(".home h1").evaluate((el) => getComputedStyle(el).color === getComputedStyle(document.body).color)).toBe(true);
+      expect(await page.locator(".home .composer").evaluate((el) => ({ transition: getComputedStyle(el).transitionDuration, animation: getComputedStyle(el).animationName }))).toEqual({ transition: "0s", animation: "none" });
     }
   } finally { await app.close(); }
 });

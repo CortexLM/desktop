@@ -7,6 +7,17 @@ import { Toast } from "@base-ui/react/toast";
 import { Icon, Gel } from "../icons/Icon";
 import { useT } from "../i18n";
 
+// The existing Settings switch persists this device preference in its change callback.
+function syncReducedMotion() {
+  if (typeof document === "undefined") return;
+  document.documentElement.toggleAttribute("data-reduce-motion", localStorage.getItem("cortex.pref.appearance.reduceMotion") === "true");
+}
+syncReducedMotion();
+if (typeof document !== "undefined") window.addEventListener("storage", (event) => {
+  if (event.key === "cortex.pref.appearance.reduceMotion" || event.key === null) syncReducedMotion();
+});
+const reducedMotion = () => document.documentElement.hasAttribute("data-reduce-motion") || matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export { Icon, Gel };
 
 export function Tip({ label, kbd, children, side = "bottom" }: { label: string; kbd?: string; children: React.ReactElement; side?: "top" | "bottom" | "left" | "right" }) {
@@ -69,7 +80,7 @@ export function Segmented({ items, value: external, onChange, resetKey }: { item
     const to = [...l.querySelectorAll<HTMLElement>(".seg-tab")].find((tab) => tab.dataset.value === value);
     if (!to) return;
     const end = { translate: `${to.offsetLeft}px 0`, width: `${to.offsetWidth}px` };
-    if (!placed.current || matchMedia("(prefers-reduced-motion: reduce)").matches) { placed.current = true; Object.assign(i.style, end); return; }
+    if (!placed.current || reducedMotion()) { placed.current = true; Object.assign(i.style, end); return; }
     const from = i.getBoundingClientRect(), parent = l.getBoundingClientRect();
     const left = Math.min(from.left - parent.left, to.offsetLeft), right = Math.max(from.right - parent.left, to.offsetLeft + to.offsetWidth);
     let cancelled = false;
@@ -95,7 +106,7 @@ export function Segmented({ items, value: external, onChange, resetKey }: { item
         pending.current = undefined;
         if (next !== (requested.current?.value ?? committed.current)) requested.current = { value: next, key: onChange(next) ?? undefined };
       };
-      if (matchMedia("(prefers-reduced-motion: reduce)").matches) commit();
+      if (reducedMotion()) commit();
       else pending.current = window.setTimeout(commit, 610);
     }}>
       <Tabs.List className="seg" ref={list}>
@@ -107,7 +118,10 @@ export function Segmented({ items, value: external, onChange, resetKey }: { item
 }
 
 export function Switch(p: { checked?: boolean; defaultChecked?: boolean; disabled?: boolean; onCheckedChange?: (v: boolean) => void; "aria-label"?: string }) {
-  return <BSwitch.Root className="switch" {...p}><BSwitch.Thumb className="switch-thumb" /></BSwitch.Root>;
+  return <BSwitch.Root className="switch" {...p} onCheckedChange={(checked) => {
+    p.onCheckedChange?.(checked);
+    syncReducedMotion();
+  }}><BSwitch.Thumb className="switch-thumb" /></BSwitch.Root>;
 }
 
 export function ProgressCard({ label, done, total, onClick }: { label: string; done: number; total: number; onClick?: () => void }) {
@@ -148,7 +162,7 @@ export function ModeSwitcher({ mode, onMode }: { mode: Mode; onMode: (m: Mode) =
   return (
     <Menu.Root>
       <Menu.Trigger className="mode-trigger" onPointerDown={(e) => {
-        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        if (reducedMotion()) return;
         e.currentTarget.getAnimations().forEach((animation) => { if (!(animation instanceof CSSTransition)) animation.cancel(); });
         e.currentTarget.animate([{ scale: 1 }, { scale: .97 }, { scale: 1 }], { duration: 260, easing: "cubic-bezier(.3,.9,.4,1)" });
         ring.current?.getAnimations().forEach((animation) => animation.cancel());
@@ -176,6 +190,10 @@ export function ModeSwitcher({ mode, onMode }: { mode: Mode; onMode: (m: Mode) =
       </Menu.Portal>
     </Menu.Root>
   );
+}
+
+export function Banner({ tone = "info", children, action }: { tone?: "info" | "warn" | "err"; children: React.ReactNode; action?: React.ReactNode }) {
+  return <div className={`banner ${tone}`} role={tone === "err" ? "alert" : "status"}><span className="grow">{children}</span>{action}</div>;
 }
 
 export const useToast = () => Toast.useToastManager();
