@@ -12,7 +12,7 @@ import { navigation, readHash, useNav } from "../../shell/nav";
 import { Att, BotRow, Paras } from "./shared";
 import type { ComposerLeaveGuard } from "./model-composer";
 import { RemoteModelMenu, type Effort } from "./remote-model-menu";
-import { ownsRemoteSession as matches } from "./remote-owner";
+import { ownsRemoteSession as matches, remoteChatModels } from "./remote-owner";
 
 type Draft = { text: string; files: File[]; oneOff: string };
 type Submitted = { draft: Draft; attachmentIDs: string[]; id: string; epoch: string };
@@ -193,7 +193,7 @@ function RemoteChat({ id, epoch }: { id?: string; epoch?: string }) {
     });
     void (async () => {
       try {
-        const catalog = await api.remoteSessions.models();
+        const catalog = await remoteChatModels();
         if (!valid()) return;
         if (binding.current && binding.current !== catalog.epoch) fail();
         binding.current = catalog.epoch;
